@@ -38,7 +38,7 @@ export class SiteComponent implements OnInit {
     }
 ];
 
-  private categories = [{
+  public categories = [{
     id: 1,
     title: "Antiquities & Art.png",
     image: '../../../assets/images/navigation/Antiquities & Art.png',
