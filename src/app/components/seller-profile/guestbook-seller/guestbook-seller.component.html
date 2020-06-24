@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="rate">
+    <span>Rate the seller</span>
+    <nz-rate [ngModel]="3"></nz-rate>
+    <span>Please provide any additional feedback:</span>
+    <textarea rows="4"></textarea>
+    <div class="button">
+      <button>Submit</button>
+    </div>
+  </div>
+  <div *ngFor="let guest of guests" class="card">
+    <span>{{guest.useraName}}</span>
+    <nz-rate [ngModel]="3" nzDisabled></nz-rate>
+    <span>{{guest.comment}}</span>
+    <hr>
+  </div>
+</div>

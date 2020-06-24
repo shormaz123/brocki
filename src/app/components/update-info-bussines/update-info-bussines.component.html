@@ -1,0 +1,81 @@
+<div class="loginContainer">
+  <div class="mainContainer">
+  <div class="titleDiv">
+    <span class="title">Update <span style="color: #d62b1f;">info</span></span>
+  </div>
+      <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/company.png">
+        <input placeholder="Company" [(ngModel)]="newUser.company"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/name.png">
+        <input placeholder="Name"[(ngModel)]="newUser.name"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/surname.png">
+        <input placeholder="Surname"[(ngModel)]="newUser.surname"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/email.png">
+        <input placeholder="Email"[(ngModel)]="newUser.email"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/website.png">
+        <input placeholder="Website" [(ngModel)]="newUser.website"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/phone.png">
+        <input placeholder="Phone"[(ngModel)]="newUser.phone"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/mobile.png">
+        <input placeholder="Mobile" [(ngModel)]="newUser.mobile"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/address.png">
+        <input placeholder="Address" [(ngModel)]="newUser.address"/>
+    </div>
+    <div class="textItem">
+      <label>About us:</label>
+      <textarea rows="8" [(ngModel)]="newUser.aboutUs"></textarea>
+    </div>
+    <div class="imagesDiv">
+      <label>Pictures of company:</label>
+      <div class="clearfix">
+        <nz-upload
+        [nzHeaders] = "setMediaUploadHeaders"
+          nzListType="picture-card"
+          [nzShowButton]="fileList.length < 7"
+          [nzShowUploadList]="showUploadList"
+          [(nzFileList)]="fileList"
+          [nzPreview]="handlePreview"
+          (nzChange)="handleChange($event)"
+        >
+          <i nz-icon nzType="plus"></i>
+          <div class="ant-upload-text">Upload</div>
+        </nz-upload>
+        <nz-modal
+          [nzVisible]="previewVisible"
+          [nzContent]="modalContent"
+          [nzFooter]="null"
+          (nzOnCancel)="previewVisible = false"
+        >
+          <ng-template #modalContent>
+            <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+          </ng-template>
+        </nz-modal>
+      </div>
+    </div>
+    <div class="locationInput">
+      <nz-select nzMode="tags" nzPlaceHolder="Region" [(ngModel)]="newUser.region">
+        <nz-option *ngFor="let option of listOfRegions" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+      </nz-select>
+    </div>
+    <div class="locationInput">
+      <nz-select nzMode="tags" nzPlaceHolder="City" [(ngModel)]="newUser.city">
+        <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+      </nz-select>
+    </div>
+  </div>
+  <button class="signInButton" (click)="onSubmit()">Save changes</button>
+</div>

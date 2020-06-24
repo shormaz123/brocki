@@ -1,0 +1,83 @@
+
+<div class="mainContainer">
+  <div class="container">
+  <div class="account">
+    <div class="image">
+      <div class="imageBorder">
+      <img src="../../../assets/images/myAccount/profile picture.png">
+    </div>
+      <span>Seller Account</span>
+    </div>
+    <div class="body">
+      <div class="checkmarks">
+        <div>
+          <img src="../../../assets/images/myAccount/check box.png">
+          <span style="padding-left: 10px;">checked user</span>
+        </div>
+        <div>
+          <img src="../../../assets/images/myAccount/check box.png">
+          <span style="padding-left: 10px;">approved phone</span>
+        </div>
+        <div>
+          <img src="../../../assets/images/myAccount/check box.png">
+          <span style="padding-left: 10px;">successful sales</span>
+        </div>
+      </div>
+      <div class="boxes">
+        <div class="firstBox">
+          <div class="phoneImage">
+            <img src="../../../assets/images/update-info-bussines/phone.png">
+          </div>
+          <div class="phone">
+            <span>+123 4 567 890</span>
+            <span>+123 4 567 890</span>
+          </div>
+        </div>
+        <div class="secondBox">
+          <img src="../../../assets/images/update-info-bussines/email.png">
+          <span>info@sellerprofile.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navigation">
+    <div class="navItem" (click)="activeButton()">
+      <div [ngClass]="{'active' : active, 'focus': !active}"
+      >
+        <span>Active</span>
+      </div>
+    </div>
+    <div class="navItem" (click)="soldButton()">
+      <div [ngClass]="{'active' : sold, 'focus': !sold}"
+     >
+      <span>Sold</span>
+    </div>
+  </div>
+  <div class="navItem" (click)="aboutButton()">
+    <div [ngClass]="{'active' : about, 'focus': !about}"
+    >
+    <span>About us </span>
+  </div>
+</div>
+    <div class="navItem" (click)="infoButton()">
+      <div [ngClass]="{'active' : info, 'focus': !info}"
+      >
+      <span>Info</span>
+    </div>
+  </div>
+    <div class="navItem" (click)="guestButton()">
+      <div [ngClass]="{'active' : guest, 'focus': !guest}"
+      >
+      <span>Guest book</span>
+    </div>
+  </div>
+  </div>
+</div>
+<div class="secondContainer">
+<app-active-seller *ngIf="active"></app-active-seller>
+<app-aboutus-seller *ngIf="about"></app-aboutus-seller>
+<app-guestbook-seller *ngIf="guest"></app-guestbook-seller>
+<app-sold-seller *ngIf="sold"></app-sold-seller>
+<app-info-seller *ngIf="info"></app-info-seller>
+</div>
+</div>

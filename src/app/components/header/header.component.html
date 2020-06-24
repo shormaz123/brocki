@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="firstContainer" routerLink="/create-ad">
+    <div class="addImage" >
+      <img class="image" src="../../../assets/images/header/Create ad.png" />
+    </div>
+    <span class="createAd">&nbsp; Create ad</span>
+  </div>
+  <div class="secondContainer">
+    <img src="../../../assets/images/header/minibrocki logo.png" routerLink="/site"/>
+  </div>
+  <div class="thirdContainer">
+    <div class="languageFlags">
+      <img class="flags" src="../../../assets/images/header/EN.png" />
+      <img class="flags" src="../../../assets/images/header/GE.png" />
+      <img class="flags" src="../../../assets/images/header/IT.png" />
+      <img class="flags" src="../../../assets/images/header/FR.png" />
+    </div>
+    <div class="account" >
+      <span class="accountAd" routerLink="/login" *ngIf="!accountName">Login&nbsp;</span>
+      <span class="accountAd" routerLink="/user" *ngIf="accountName">{{accountName}} &nbsp;</span>
+      <img
+        class="accountLogo"
+        src="../../../assets/images/header/My account.png"
+      />
+    </div>
+  </div>
+</div>

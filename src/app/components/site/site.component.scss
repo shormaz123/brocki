@@ -1,0 +1,357 @@
+@import "../../../scss/variables";
+
+
+.container {
+  height: auto;
+  width: 100vw;
+  background-color: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+
+  .navBar {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-items: center;
+
+  .search {
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    }
+
+  .navigation {
+    display: flex;
+    height: auto;
+    width: 100%;
+    margin-bottom: 20px;
+
+    }
+
+  }
+
+}
+
+.search-hero {
+  max-width: 500px;
+  padding-bottom: 50px;
+  margin:auto;
+}
+
+.form-control {
+  width: 600px;
+  height: 40px;
+  padding-left: 10px;
+
+}
+.form-control::placeholder  {
+  font-family: FontAwesome;
+}
+
+.filters {
+  background-color: $red;
+  color: white;
+  border-radius: 20px;
+  width: 12%;
+  height: 40px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.favorite {
+  background-color: white;
+  color: $red;
+  border-radius: 20px;
+  width: 12%;
+  height: 40px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.searchBox {
+  width: 600px;
+  display: flex;
+  border: 1px solid white;
+  border-radius: 20px;
+  flex-direction: row;
+
+
+}
+
+.searchButton {
+  width: 60px;
+  border-radius: 20px;
+  background-color: $red;
+}
+
+.fa-search {
+  color: white;
+  cursor: pointer;
+}
+
+//searchbar
+
+.searchBox {
+  width: 600px;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  padding-left: 10px;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid $red;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  outline: none;
+  color: $red;
+  height: 40px;
+  border-radius: 20px 0px 0px 20px;
+  padding-left: 10px;
+
+}
+
+.searchTerm:focus{
+  color: $red;
+}
+
+.searchButton {
+  width: 70px;
+  height: 40px;
+  border: 1px solid $red;
+  background: $red;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+.category {
+  height: auto;
+}
+
+.tabs {
+  width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+button {
+
+  .tab-icon {
+    padding: 5px 25px;
+    padding-bottom: 5px;
+  }
+
+  &:focus {
+    .icon-not-active {
+      display: none;
+    }
+
+    .icon-active {
+      display: inline;
+    }
+  }
+
+  .icon-not-active {
+    display: inline;
+  }
+
+  .icon-active {
+    display: none;
+  }
+}
+
+//Carousel
+
+
+p-carousel {
+  width: 100% !important;
+  overflow:  hidden !important;
+  padding-top: 20px !important;
+  height: auto !important;
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.advertise {
+  padding-top: 50px;
+  height: 250px;
+  width: 900px;
+  padding-bottom: 50px;
+
+  img {
+    display: inline;
+    width: 100%;
+  }
+}
+
+.siteButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 70%;
+  height: 40px;
+  margin-bottom: 50px;
+
+  .siteButton {
+    background-color: $red;
+    border-radius: 15px;
+    width: 150px !important;
+    height: 30px;
+    width: auto;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.suggestions {
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .suggText {
+    font-size: 16pt;
+    counter-reset: $darkgrey;
+    margin-bottom: 30px;
+  }
+
+  .bodySuggestions {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 300px;
+    margin-bottom: 50px;
+
+    .cards {
+      width: 80%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+}
+
+.bodySuggestions2 {
+  margin-bottom: 50px;
+}
+
+.pricetag {
+  display: flex;
+  justify-content: center;
+
+  width: fit-content;
+  color: white;
+  padding-left: 5px;
+  background-color: $red;
+  padding-right: 5px;
+  border-radius: 15px;
+    }
+
+    .ui-card-title {
+      font-size: 11pt;
+      font-weight: bold;
+      margin-bottom: .5em;
+      overflow: auto;
+      height: auto;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+
+  .cardBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 50px;
+  }
+
+  .description {
+    display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+  }
+
+  .lineCard {
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+
+  }
+
+  .line {
+    height: 5px;
+    width: 100%;
+    border: 0 0 0 5px solid;
+    border: 0 0 5px 0;
+    border-bottom: 2px solid $lightgray-second;
+    margin-bottom: 50px;
+  }
+
+  p-carousel {
+    width: 90% !important;
+  }
+
+
+
+
+
+
+
+

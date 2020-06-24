@@ -1,0 +1,24 @@
+<div class="loginContainer">
+  <div style="padding-left: 4%;">
+    <span class="title">Sign <span style="color: #d62b1f;">in</span></span>
+  </div>
+  <div class="data">
+    <div class="labels">
+      <span >Email</span>
+      <span >Password</span>
+    </div>
+    <div class="input">
+      <input [(ngModel)]="email"/>
+      <input [(ngModel)]="password"/>
+    </div>
+  </div>
+  <nz-alert nzType="error" nzMessage={{errorMessage}} nzShowIcon *ngIf="errorBoolean" style="margin-bottom: 20px; margin-left: 4.5%;"></nz-alert>
+  <button class="signInButton" (click)="submitForm()">Submit</button>
+  <div class="lastDiv">
+    <div class="emptyDiv"></div>
+    <div class="textPassword">
+      <button class="signUpButton" routerLink="/registration">Sign up</button>
+      <span class="forPassword">Forgot password?</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,427 @@
+@import "../../../scss/variables";
+
+* {
+  font-family: $header-font-family;
+  color: $darkgrey;
+}
+
+.loginContainer {
+  background-color: #f6f6f6;
+  height: auto;
+  background-color: #f6f6f6 !important;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 50px;
+}
+.titleDiv {
+display: flex;
+justify-content: center;
+padding-bottom: 20px;
+  .title {
+    font-size: 24pt;
+    padding-left: 30px;
+  }
+}
+
+
+.labels {
+  width: 15%;
+  display: flex;
+  justify-content: inherit;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 440px;
+  height: 200px;
+    justify-content: space-between;
+}
+
+.data {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  height: 40%;
+  justify-content: space-evenly;
+}
+
+input {
+  height: 25px;
+  border: 1px solid darkgray;
+  border-radius: 15px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+.signInButton {
+  background-color: $red;
+  height: 35px;
+  width: 15%;
+  border: 1px solid;
+  border-radius: 15px;
+  color: white;
+  font-size: 17px;
+  margin-left: 30px;
+  cursor: pointer;
+
+  &:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.1);
+  }
+}
+
+.emptyDiv {
+  width: 15%;
+}
+
+.lastDiv {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.textPassword {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.signUpButton {
+  background-color: white;
+  height: 25px;
+  width: 30%;
+  border: 1px solid;
+  border-radius: 15px;
+  color: $darkgrey;
+  font-size: 17px;
+  margin-left: 4.5%;
+  cursor: pointer;
+
+  &:hover {
+    color: $red;
+  }
+}
+
+.forPassword {
+  cursor: pointer;
+  color: $red;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+//Checkbox
+
+input[type="checkbox"] + label {
+  display: block;
+  margin: 0.2em;
+  cursor: pointer;
+  padding: 0.2em;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + label:before {
+  content: "\2714";
+  border: 0.1em solid #000;
+  border-radius: 0.2em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  padding-left: 0.2em;
+  padding-bottom: 0.3em;
+  margin-right: 0.2em;
+  vertical-align: bottom;
+  color: transparent;
+  transition: 0.2s;
+}
+
+input[type="checkbox"] + label:active:before {
+  transform: scale(0);
+}
+
+input[type="checkbox"]:checked + label:before {
+  background-color: MediumSeaGreen;
+  border-color: MediumSeaGreen;
+  color: #fff;
+}
+
+input[type="checkbox"]:disabled + label:before {
+  transform: scale(1);
+  border-color: #aaa;
+}
+
+input[type="checkbox"]:checked:disabled + label:before {
+  transform: scale(1);
+  background-color: #bfb;
+  border-color: #bfb;
+}
+
+.lastDiv1 {
+  display: flex;
+  width: 100%;
+  padding-left: 494px;
+
+  .emptyDiv1 {
+    width: 15%;
+    height: 100%;
+  }
+}
+
+//checkbox css
+
+.example-h2 {
+  margin: 10px;
+  color: $red;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+  color: $darkgrey;
+  margin-bottom: 30px;
+  font-size: 16px;
+  width: 100%;
+
+
+}
+
+.mat-checkbox-frame {
+  background-color: transparent;
+  transition: border-color 90ms cubic-bezier(0,0,.2,.1);
+  border-width: 2px;
+  border-style: solid;
+  border-color: $red !important;
+}
+
+.roleButton {
+  height: auto;
+  display: flex;
+  justify-content: center;
+
+
+  .roleButtons {
+    background-color: $lightgrey;
+    height: 35px;
+    width: 130px;
+    border: 1px solid;
+    border-radius: 15px;
+    color: $darkgrey;
+    font-size: 17px;
+    margin: 5px;
+    cursor: pointer;
+
+  }
+}
+
+
+
+.bussinesButton {
+  height: auto;
+  display: flex;
+  justify-content: center;
+
+
+  .bussinesButtons {
+    background-color: $lightgrey;
+    height: 35px;
+    width: 180px;
+    border: 1px solid;
+    border-radius: 15px;
+    color: $darkgrey;
+    font-size: 17px;
+    margin: 5px;
+    cursor: pointer;
+
+
+
+  }
+}
+
+.inputItem {
+  display: flex;
+justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+
+input {
+  width: 440px;
+  height: 25px;
+}
+
+label {
+  padding-right: 20px;
+}
+
+}
+
+.inputItem2 {
+  width: 100%;
+  padding-left: 323px;
+
+  input {
+    width: 500px;
+    height: 25px;
+  }
+
+  label {
+    padding-right: 20px;
+  }
+
+}
+
+.inputItem3 {
+  width: 100%;
+  padding-left: 317px;
+
+  input {
+    width: 440px;
+    height: 25px;
+  }
+
+  label {
+    padding-right: 20px;
+  }
+}
+
+.inputItem4 {
+  width: 100%;
+  padding-left:410px;
+
+  input {
+    width: 500px;
+    height: 25px;
+  }
+
+  label {
+    padding-right: 20px;
+  }
+}
+
+.inputItem5 {
+  width: 100%;
+  padding-left: 346px;
+
+  input {
+    width: 500px;
+    height: 25px;
+  }
+
+  label {
+    padding-right: 20px;
+  }
+}
+
+
+
+
+
+.mainContainer {
+  height: 100%;
+  width: 1000px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.grey {
+  background-color: $lightgrey;
+  color: $darkgrey;
+}
+
+.red {
+  background-color: $red !important;
+  color: white !important;
+}
+
+img {
+  padding-right: 10px;
+}
+
+.textItem {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 75%;
+  padding-left: 300px;
+  border-color: darkgray;
+  margin-bottom: 20px;
+
+  label {
+    color: $darkgrey;
+  }
+
+  textarea {
+    border: 1px solid darkgray;
+    border-radius: 15px;
+    padding-left: 10px;
+    font-size: 20px;
+  }
+}
+
+.imagesDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 300px;
+  border-color: darkgray;
+  width: 75%;
+  height: auto;
+  margin-bottom: 20px;
+
+}
+
+.clearfix {
+  border: 1px solid;
+    border-radius: 15px;
+    border-color: darkgray;
+    padding: 10px;
+    background-color: white;
+}
+
+.locationInput {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  nz-select {
+    width: 445px;
+    margin-left: 50px;
+  }
+
+}
+
+
+
+
+
+
+

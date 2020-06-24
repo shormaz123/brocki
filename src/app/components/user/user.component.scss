@@ -1,0 +1,145 @@
+@import "../../../scss/variables";
+
+.mainContainer {
+  width: 100vw;
+  height: auto;
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .container {
+    width: 70%;
+    height: 300px;
+    background-color: white;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+
+    .account {
+      height: 250px;
+      display: flex;
+      flex-direction: row;
+
+      .image {
+        width: 33%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .imageBorder {
+          border: 2px solid $red;
+          border-radius: 20px;
+        }
+        span {
+          font-size: 18pt;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .navigation {
+      height: 50px;
+      background-color: $red;
+    }
+  }
+}
+
+.body {
+  width: 100%;
+
+  .checkmarks {
+    display: flex;
+    justify-content: space-around;
+    height: 20%;
+    align-items: center;
+
+  }
+}
+
+.boxes {
+  height: 80%;
+  display: flex;
+  justify-content: space-around;
+
+  div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  span {
+    margin-top: 10px;
+  }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .navItem {
+    width: 20% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    height: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  span {
+    color: white;
+  }
+}
+
+.focus {
+  height: 100%;
+  width: 50% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+}
+
+.active {
+  width: 50% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background: white;
+    height: 40px;
+    margin-top: 19px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+
+    span {
+      color: $red;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+}
+
+.secondContainer {
+  height: 550px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 70%;
+}
+
+

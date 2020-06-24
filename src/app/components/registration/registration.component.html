@@ -1,0 +1,61 @@
+<div class="loginContainer">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" #myForm="ngForm">
+  <div class="mainContainer">
+
+  <div class="titleDiv">
+    <span class="title">Sign <span style="color: #d62b1f;">up</span></span>
+  </div>
+  <div class="roleButton">
+    <button class="roleButtons" (click)="privateButton(3)"
+    [ngClass]="{'red' : private, 'grey': !private}" >Private</button>
+    <button class="roleButtons" (click)="businessButton(2)"
+    [ngClass]="{'red' : business, 'grey': !business}">Business</button>
+  </div>
+  <div class="bussinesButton" *ngIf="business">
+    <button class="bussinesButtons" (click)="brockButton('BROCKENSTUBE')"
+    [ngClass]="{'red' : brockenstube, 'grey': !brockenstube}">Brockenstube</button>
+    <button class="bussinesButtons" (click)="instButton('INSTITUTION')"
+    [ngClass]="{'red' : institution, 'grey': !institution}">Institution</button>
+  </div>
+    <div class="input">
+      <div class="inputItem">
+        <label>Email</label>
+        <input formControlName="email"
+       >
+
+    </div>
+    <div class="inputItem2">
+        <label>Password </label>
+        <input formControlName="password"/>
+    </div>
+    <div class="inputItem3">
+        <label>Username</label>
+        <input formControlName="userName"/>
+    </div>
+    <div class="inputItem4">
+        <label>City</label>
+        <input formControlName="city"/>
+    </div>
+    <div class="inputItem5">
+        <label>Location</label>
+        <input formControlName="location"/>
+    </div>
+
+
+  </div>
+  <div class="lastDiv1">
+    <div class="textPassword">
+      <mat-checkbox class="example-margin" formControlName="terms">Please confirm that you agree to <br>our terms & conditions.</mat-checkbox>
+    </div>
+  </div>
+  <nz-alert nzType="error" nzMessage="Please, fill every field in accurate way" nzShowIcon *ngIf="error" style="margin-bottom: 20px; margin-left: 1.5%;"></nz-alert>
+  <button class="signInButton" type="submit" >Create account</button>
+  <div class="lastDiv">
+    <div class="textPassword">
+      <button class="signUpButton" routerLink="/login">Sign in</button>
+    </div>
+  </div>
+</div>
+</form>
+
+</div>

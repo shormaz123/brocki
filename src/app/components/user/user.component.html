@@ -1,0 +1,78 @@
+<div class="mainContainer">
+  <div class="container">
+  <div class="account">
+    <div class="image">
+      <div class="imageBorder">
+      <img src="../../../assets/images/myAccount/profile picture.png">
+    </div>
+      <span>My Account</span>
+    </div>
+    <div class="body">
+      <div class="checkmarks">
+        <div>
+          <img src="../../../assets/images/myAccount/check box.png">
+          <span style="padding-left: 10px;">checked user</span>
+        </div>
+        <div>
+          <img src="../../../assets/images/myAccount/check box.png">
+          <span style="padding-left: 10px;">approved phone</span>
+        </div>
+        <div>
+          <img src="../../../assets/images/myAccount/check box.png">
+          <span style="padding-left: 10px;">successful sales</span>
+        </div>
+      </div>
+      <div class="boxes">
+        <div>
+          <img src="../../../assets/images/myAccount/update info.png" (click)="updateInfo()">
+          <span>Update info</span>
+        </div>
+        <div>
+          <img src="../../../assets/images/myAccount/credits.png">
+          <span>Credits</span>
+        </div>
+        <div>
+          <img src="../../../assets/images/myAccount/contact us.png">
+          <span>Contact us</span>
+        </div>
+        <div>
+          <img src="../../../assets/images/myAccount/add item.png">
+          <span>Add item</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navigation">
+    <div class="navItem">
+      <div (click)="activeButton()"
+      [ngClass]="{'active' : active, 'focus': !active}">
+        <span>Active</span>
+      </div>
+    </div>
+    <div class="navItem">
+      <div (click)="expiredButton()"
+      [ngClass]="{'active' : expired, 'focus': !expired}">
+      <span>Expired</span>
+    </div>
+  </div>
+    <div class="navItem">
+      <div (click)="soldButton()"
+      [ngClass]="{'active' : sold, 'focus': !sold}">
+      <span>Sold</span>
+    </div>
+  </div>
+    <div class="navItem">
+      <div (click)="guestButton()"
+      [ngClass]="{'active' : guest, 'focus': !guest}">
+      <span>Guest book</span>
+    </div>
+  </div>
+  </div>
+</div>
+<div class="secondContainer">
+<app-guest-book *ngIf="guest"></app-guest-book>
+<app-account-sold *ngIf="sold"></app-account-sold>
+<app-account-expired *ngIf="expired"></app-account-expired>
+<app-account-active *ngIf="active"></app-account-active>
+</div>
+</div>

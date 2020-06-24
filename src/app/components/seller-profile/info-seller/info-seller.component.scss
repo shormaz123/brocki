@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  padding: 20px;
+
+  .left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: end;
+  }
+
+  .right {
+    width: 50%;
+  }
+}
+
+.item {
+  width: 100%;
+  padding-left: 20%;
+  height: auto;
+
+  span {
+    padding-left: 10px;
+  }
+}

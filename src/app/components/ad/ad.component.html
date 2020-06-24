@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="imageContainer">
+  <div class="imageGallery">
+    <p-galleria [images]="images" panelWidth="500" panelHeight="313" ></p-galleria>
+  </div>
+  </div>
+  <div class="socialMedia">
+    <div style="width:10%;"><label>Share via:</label></div>
+    <div class="social">
+      <div class="socialButton"><img src="../../../assets/images/ad/logoOne.png">twitter</div>
+      <div class="socialButton"><img src="../../../assets/images/ad/logoTwo.png">facebook</div>
+      <div class="socialButton"><img src="../../../assets/images/ad/logoThree.png">copy link</div>
+    </div>
+  </div>
+  <div class="title">
+    <label style="font-size: 16pt;">Pocket0lint Apple Macbook Pro with touchbar</label>
+  </div>
+  <div class="info">
+    <div class="left">
+      <div class="card">
+        <div class="cardColumn">1180.00 CHF</div>
+        <div class="cardColumn">NEW</div>
+        <div class="cardColumn">ZURICH</div>
+        <div class="cardColumn2">20.02.2020</div>
+      </div>
+    </div>
+    <div class="right">
+        <div class="profile">
+          <img src="../../../assets/images/myAccount/profile picture.png">
+          <label>Sellfactory</label>
+        </div>
+        <div class="contact">
+        <div class="phone">
+          <img src="../../../assets/images/ad/icon phone.png">
+          <div class="numbers">
+            <label>+100 2 345 678</label>
+            <label>+100 2 345 678</label>
+          </div>
+        </div>
+        <div class="mail">
+          <img src="../../../assets/images/ad/icon mail.png">
+          <label>info@sellerprofile.com</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="des">
+  <div class="description">
+    <label>Label:</label>
+    <div><label style="color: black;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</label></div>
+  </div>
+</div>
+<div class="articles">
+  <label>All articles of this seller</label>
+  <div class="bodySuggestions">
+  <div class="cards">
+    <p-carousel [value]="cards" [numVisible]="3" [numScroll]="1" styleClass="width" >
+      <ng-template let-card pTemplate="item">
+      <div style="width: '200px'; height:'250px'; padding: '5px'; background-color: white; padding: 10px !important;" >
+          <div class="image">
+              <img src="Card" src="../../../assets/images/myAccount/Image car _ delete.png">
+          </div>
+          <div class="cardBody">
+            <label style="font-size: 16px; font-weight: bolder;">{{card.title}}</label>
+            <div class="description">
+              <label style="font-size: 10px;">{{card.descriptiopn}}</label>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="pricetag"><label >{{card.price}} CHF</label></div>
+            <span style="color: black;">{{card.date}}</span>
+          </div>
+        </div>
+      </ng-template>
+  </p-carousel>
+  </div>
+</div>
+  <label>Similar products:</label>
+  <div class="bodySuggestions">
+    <div class="cards">
+      <p-carousel [value]="cards" [numVisible]="3" [numScroll]="1" >
+        <ng-template let-card pTemplate="item">
+        <div style="width: '200px'; height:'250px'; padding: '5px'; background-color: white; padding: 10px !important;" >
+            <div class="image">
+                <img src="Card" src="../../../assets/images/myAccount/Image car _ delete.png">
+            </div>
+            <div class="cardBody">
+              <label style="font-size: 16px; font-weight: bolder;">{{card.title}}</label>
+              <div class="description">
+                <label style="font-size: 10px;">{{card.descriptiopn}}</label>
+              </div>
+            </div>
+            <div class="footer">
+              <div class="pricetag"><label >{{card.price}} CHF</label></div>
+              <span style="color: black;">{{card.date}}</span>
+            </div>
+          </div>
+        </ng-template>
+    </p-carousel>
+    </div>
+  </div>
+</div>
+</div>

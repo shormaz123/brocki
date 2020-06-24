@@ -1,0 +1,101 @@
+@import "../../../../scss/variables";
+
+.container {
+  height: 400px;
+  width: 100vw;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .mainContainer {
+    width: 70%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 40px;
+  }
+}
+
+.carousel {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 800px
+}
+
+nz-carousel {
+  padding: 40px !important;
+}
+
+[nz-carousel-content] {
+  line-height: 160px;
+  background: white;
+  color: #fff;
+  overflow: hidden;
+  height: fit-content;
+  display: flex !important;
+   flex-direction: row;
+}
+
+.leftContainer {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  width: 50%;
+  height: 360px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.containers {
+  width: 90%;
+    height: 360px;
+    display: flex;
+
+
+}
+
+.rightContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+.title {
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  height: 280px;
+  display: flex;
+  align-items: center;
+  overflow: auto;
+  padding: 10px
+}
+
+.price {
+  height: 30px;
+  display: flex;
+  align-items: center;
+
+  .pricetag {
+background-color: $red;
+height: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    margin-right: 20px;
+  }
+
+}

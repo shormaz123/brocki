@@ -1,0 +1,300 @@
+@import "../../../scss/variables";
+
+.container {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  padding-bottom: 50px;
+  padding-top: 50px;
+background-color: $lightgrey;
+flex-direction: column;
+
+
+.imageContainer {
+
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding-bottom: 5px;
+  padding-top: 5px;
+
+  .imageGallery {
+
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+}
+
+.socialMedia {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  flex-direction: row;;
+  margin-top: 10px;
+}
+
+.social {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  justify-content: space-evenly;
+}
+
+.socialButton {
+  width: fit-content;
+  border-radius: 20px;
+  text-align: center;
+  padding-right: 10px;
+  background-color: white;
+  color: $red;
+  cursor: pointer;
+
+  img {
+    margin-right:10px;
+    width: 25px;
+    height: 23px;
+  }
+}
+
+.title {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  background-color: white;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin-bottom: 25px;
+
+  .left {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 25px;
+
+    .card {
+      width: 370px;
+      height: 250px;
+      border-radius: 15px;
+      border:1px solid;
+      border-color: $darkgrey;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+
+      .cardColumn {
+        border-bottom: 1px solid;
+        width: 90%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+      }
+    }
+  }
+
+  .right {
+    width: 50%;
+    padding-top: 25px;
+
+    .profile {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        border: 1px solid;
+    border-radius: 15px;
+    border-color: $red;
+      }
+    }
+    .contact {
+      display: flex;
+      flex-direction: row;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+
+    .phone {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 20px;
+
+      img {
+        margin-right: 5px;
+      }
+      .numbers {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .mail {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      img {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  }
+}
+
+.cardColumn2 {
+  width: 90%;
+display: flex;
+justify-content: center;
+padding-bottom: 10px;
+}
+
+.des {
+width: 100vw;
+background-color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: auto;
+  width: 75%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background-color: white;
+
+  label {
+    color: $red;
+    margin-bottom: 20px;
+  }
+}
+}
+
+
+
+
+.articles {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 70%;
+  justify-content: center;
+
+  label {
+    margin-bottom: 25px;
+    font-size: 16pt;
+  }
+
+  .bodySuggestions {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 300px;
+    margin-bottom: 50px;
+
+    .cards {
+      width: 80%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.pricetag {
+  display: flex;
+  justify-content: center;
+  height: 33px;
+  width: fit-content;
+  color: white;
+  padding-left: 10px;
+  background-color: $red;
+  padding-right: 10px;
+  border-radius: 15px;
+    }
+
+    .ui-card-title {
+      font-size: 11pt;
+      font-weight: bold;
+      margin-bottom: .5em;
+      overflow: auto;
+      height: auto;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+  }
+
+  .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+
+  .cardBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 50px;
+    .description {
+      display: block;
+      max-width: 98%;
+      white-space: nowrap;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+    }
+  }
+
+
+
+  .lineCard {
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+
+  }
+
+  .line {
+    height: 5px;
+    width: 100%;
+    border: 0 0 0 5px solid;
+    border: 0 0 5px 0;
+    border-bottom: 2px solid $lightgray-second;
+    margin-bottom: 50px;
+  }
+
+  .carousel {
+    width: 100%;
+  }
+

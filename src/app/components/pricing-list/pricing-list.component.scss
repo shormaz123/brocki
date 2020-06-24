@@ -1,0 +1,31 @@
+@import "../../../scss/variables";
+
+
+.container {
+
+  background-color: $lightgrey;
+  width: 100vw;
+  height: 110vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  color: $darkgrey;
+  padding-bottom: 40px;
+  margin-top: 20px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16pt;
+}
+
+.amount {
+color: $red;
+}
+
+.list {
+  color: $red;
+}

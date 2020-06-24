@@ -1,0 +1,26 @@
+<div class="container">
+  <div *ngFor="let ad of ads" class="card">
+    <div class="image">
+      <img src="../../../../assets/images/myAccount/Image car _ delete.png">
+    </div>
+    <div class="text">
+      <div style="height: 10%;font-size: 14pt;">
+        <span>{{ad.title}}</span>
+      </div>
+      <hr>
+      <div style="height: 70%;overflow: overlay;">
+        <span class="description">{{ad.text}}</span>
+      </div>
+      <div class="priceBox">
+        <div class="price">
+        <span>{{ad.price}}</span>
+      </div>
+        <span style="padding-left: 10px;">{{ad.days}}</span>
+      </div>
+
+    </div>
+    <div class="amount">
+      <img src="../../../../assets/images/myAccount/money icon.png">
+    </div>
+  </div>
+</div>

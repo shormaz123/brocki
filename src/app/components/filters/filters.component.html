@@ -1,0 +1,53 @@
+<div class="container">
+  <form>
+  <div class="underContainer">
+
+    <span class="title" style="padding-bottom: 40px;">Filters</span>
+    <div class="location" style="padding-bottom: 20px;">
+      <img src="../../../assets/images/filters/location icon.png">
+      <input placeholder="Location">
+    </div>
+    <div class="amount" style="padding-bottom: 20px;">
+      <img src="../../../assets/images/filters/CHF.png">
+      <span>From:&nbsp;</span>
+      <input>
+      <span>	&nbsp;to&nbsp;</span>
+      <input>
+    </div>
+    <div class="buttons" style="padding-bottom: 20px;">
+      <button [ngClass]="{'selected' : all, 'deselected': !all}" (click)="allButton()">ALL</button>
+      <button [ngClass]="{'selected' : used, 'deselected': !used}" (click)="usedButton()">USED</button>
+      <button [ngClass]="{'selected' : new, 'deselected': !new}" (click)="newButton()">NEW</button>
+    </div>
+    <div class="checkboxes" style="padding-bottom: 20px;">
+      <span style="padding-right:25%; padding-bottom: 5px;">Other filters:</span>
+    <div class="checkbox">
+      <mat-checkbox class="example-margin"></mat-checkbox>
+      <span>Fixed price</span>
+    </div>
+    <div class="checkbox">
+      <mat-checkbox class="example-margin"></mat-checkbox>
+      <span>Only products with pictures</span>
+    </div>
+    <div class="checkbox">
+      <mat-checkbox class="example-margin"></mat-checkbox>
+      <span>Free delivery </span>
+    </div>
+    <div class="checkbox">
+      <mat-checkbox class="example-margin"></mat-checkbox>
+      <span>Product warranty</span>
+    </div>
+    <div class="checkbox">
+      <mat-checkbox class="example-margin"></mat-checkbox>
+      <span>Urgent sales</span>
+    </div>
+    <div class="checkbox">
+      <mat-checkbox class="example-margin"></mat-checkbox>
+      <span>Categories</span>
+    </div>
+  </div>
+    <button class="confirmButton" style="margin-bottom: 20px;">Confirm</button>
+    <button class="resetButton">Reset filters</button>
+  </div>
+</form>
+</div>

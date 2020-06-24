@@ -1,0 +1,114 @@
+@import "../../../scss/variables";
+
+* {
+  height: 120px;
+  color: $darkgrey;
+  font-size: 20pt;
+  font-family: $header-font-family;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+
+  .firstContainer {
+    width: 33%;
+    display: flex;
+    flex-direction: row;
+
+    .createAd {
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        cursor: pointer;
+        color: black;
+      }
+    }
+  }
+
+  .secondContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+
+    img {
+      width: 300px;
+      height: 65px;
+    }
+  }
+
+  .thirdContainer {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+
+    .languageFlags {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      height: 25px;
+
+      .flags {
+        width: 24px;
+        height: 20px;
+        padding-left: 10px;
+        padding-top: 5px;
+
+        &:hover {
+          -ms-transform: scale(1.5); /* IE 9 */
+          -webkit-transform: scale(1.5); /* Safari 3-8 */
+          transform: scale(1.1);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .account {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 75%;
+
+      .accountAd {
+        height: 85px;
+      }
+
+      .accountLogo {
+        width: 50px;
+        height: 40px;
+      }
+
+      span {
+        align-items: center;
+        display: flex;
+
+        &:hover {
+          color: black;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.addImage {
+  display: flex;
+  align-items: center;
+
+  .image {
+    width: 50px;
+    height: 50px;
+
+    &:hover {
+      -ms-transform: scale(1.5); /* IE 9 */
+      -webkit-transform: scale(1.5); /* Safari 3-8 */
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+}

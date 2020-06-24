@@ -1,0 +1,52 @@
+<div class="loginContainer">
+  <div class="mainContainer" >
+  <div class="titleDiv">
+    <span class="title">Update <span style="color: #d62b1f;">info</span></span>
+  </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/name.png">
+        <input placeholder="Name" [(ngModel)]="newUser.name"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/surname.png">
+        <input placeholder="Surname" [(ngModel)]="newUser.surname"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/email.png">
+        <input placeholder="Email" [(ngModel)]="newUser.email"/>
+    </div>
+
+
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/phone.png">
+        <input placeholder="Phone" [(ngModel)]="newUser.phone"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/mobile.png">
+        <input placeholder="Mobile" [(ngModel)]="newUser.mobile"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/address.png">
+        <input placeholder="Address" [(ngModel)]="newUser.address"/>
+    </div>
+    <div class="inputItem">
+      <img src="../../../assets/images/update-info-bussines/address.png">
+        <input placeholder="City" [(ngModel)]="newUser.city"/>
+  </div>
+    <div class="locationInput">
+      <nz-form-control >
+      <nz-select  nzPlaceHolder="Region" nzShowSearch = true [(ngModel)]="newUser.region">
+        <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value" ></nz-option>
+      </nz-select>
+    </nz-form-control>
+    </div>
+    <div class="inputItem">
+      <a (click)="changePassword()">Change password?</a>
+    </div>
+
+    <div class="inputItem">
+      <button class="signInButton" (click)="onSubmit()">Save changes</button>
+    </div>
+  </div>
+
+</div>
