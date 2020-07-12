@@ -58,7 +58,7 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import {CardModule} from 'primeng/card';
 import { AdComponent } from './components/ad/ad.component';
-import {GalleriaModule} from 'primeng/galleria';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 
 registerLocaleData(en);
@@ -116,7 +116,7 @@ registerLocaleData(en);
     NzCarouselModule,
     NzCardModule,
     CardModule,
-    GalleriaModule
+    NgxGalleryModule
 
 
   ],

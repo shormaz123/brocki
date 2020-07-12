@@ -1,7 +1,8 @@
 <div class="container">
   <div class="imageContainer">
   <div class="imageGallery">
-    <p-galleria [images]="images" panelWidth="500" panelHeight="313" ></p-galleria>
+    <!-- <p-galleria [images]="images" panelWidth="500" panelHeight="313" ></p-galleria> -->
+    <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
   </div>
   </div>
   <div class="socialMedia">
@@ -13,33 +14,33 @@
     </div>
   </div>
   <div class="title">
-    <label style="font-size: 16pt;">Pocket0lint Apple Macbook Pro with touchbar</label>
+    <label style="font-size: 16pt;">{{ad?.productName}}</label>
   </div>
   <div class="info">
     <div class="left">
       <div class="card">
-        <div class="cardColumn">1180.00 CHF</div>
-        <div class="cardColumn">NEW</div>
+        <div class="cardColumn">{{ad?.price}}</div>
+        <div class="cardColumn">{{ad?.adsType}}</div>
         <div class="cardColumn">ZURICH</div>
-        <div class="cardColumn2">20.02.2020</div>
+        <div class="cardColumn2">{{ad?.adsDate}}</div>
       </div>
     </div>
     <div class="right">
         <div class="profile">
           <img src="../../../assets/images/myAccount/profile picture.png">
-          <label>Sellfactory</label>
+          <label>{{userSeller?.name}}</label>
         </div>
         <div class="contact">
         <div class="phone">
           <img src="../../../assets/images/ad/icon phone.png">
           <div class="numbers">
-            <label>+100 2 345 678</label>
-            <label>+100 2 345 678</label>
+            <label>{{userSeller?.phone}}</label>
+            <label>{{userSeller?.mobile}}</label>
           </div>
         </div>
         <div class="mail">
           <img src="../../../assets/images/ad/icon mail.png">
-          <label>info@sellerprofile.com</label>
+          <label>{{userSeller?.email}}</label>
         </div>
       </div>
     </div>
@@ -47,7 +48,7 @@
   <div class="des">
   <div class="description">
     <label>Label:</label>
-    <div><label style="color: black;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</label></div>
+    <div><label style="color: black;">{{ad?.description}}</label></div>
   </div>
 </div>
 <div class="articles">
@@ -101,3 +102,4 @@
   </div>
 </div>
 </div>
+

@@ -273,6 +273,11 @@ p-carousel {
 
 .bodySuggestions2 {
   margin-bottom: 50px;
+  width: 100% !important;
+
+  img {
+    width: 100%;
+  }
 }
 
 .pricetag {
@@ -332,6 +337,10 @@ p-carousel {
     width: 100%;
     justify-content: space-evenly;
     margin-bottom: 50px;
+
+    img {
+      width: 100%;
+    }
 
   }
 

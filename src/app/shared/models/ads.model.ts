@@ -12,7 +12,7 @@ export interface Ads {
     productName: string,
     productWarranty: boolean,
     urgentSales: boolean,
-    user_id: number,
+    userId: number,
     visibleAds: true
 
 }
