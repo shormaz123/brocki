@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/models/user.model';
-import { UserService } from '../../@core/services/user.service';
-import { AuthConst } from 'src/app/@core/consts/auth.const';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { User } from "src/app/shared/models/user.model";
+import { UserService } from "../../@core/services/user.service";
+import { AuthConst } from "src/app/@core/consts/auth.const";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  selector: "app-user",
+  templateUrl: "./user.component.html",
+  styleUrls: ["./user.component.scss"],
 })
 export class UserComponent implements OnInit {
   expression: boolean;
@@ -20,25 +20,20 @@ export class UserComponent implements OnInit {
   path: string;
   uploadingUrl: string;
 
-
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
     this.guest = true;
-    // this.userService.getUser().subscribe(response => {
-    //   this.path = response.roleName
-    //   console.log(this.path)
-    // })
-
+    this.userService.getUser().subscribe((response) => {
+      this.path = response.roleName;
+    });
   }
-
 
   activeButton() {
     this.active = true;
     this.expired = false;
     this.sold = false;
     this.guest = false;
-
   }
 
   expiredButton() {
@@ -46,7 +41,6 @@ export class UserComponent implements OnInit {
     this.expired = true;
     this.sold = false;
     this.guest = false;
-
   }
 
   soldButton() {
@@ -54,7 +48,6 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = true;
     this.guest = false;
-
   }
 
   guestButton() {
@@ -62,15 +55,16 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = false;
     this.guest = true;
-
   }
 
   updateInfo() {
     if (this.path === "private") {
-      this.router.navigate(['/update-info-private'])
+      this.router.navigate(["/update-info-private"]);
     } else {
-      this.router.navigate(['/update-info-bussines'])
+      this.router.navigate(["/update-info-bussines"]);
     }
   }
-
+  goTo(route: string): void {
+    this.router.navigate([route]);
+  }
 }
