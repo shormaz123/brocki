@@ -7,7 +7,7 @@ import { adsGroup } from 'src/app/shared/models/adsGroup.model';
 import { adsSubGroup } from 'src/app/shared/models/adsSubGroup.model';
 import { User } from 'src/app/shared/models/user.model';
 import { CreateAd } from 'src/app/shared/models/create-ad.model';
-import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType, HttpParams } from '@angular/common/http';
 import { map } from  'rxjs/operators';
 
 @Injectable({
@@ -20,6 +20,10 @@ export class AdsService {
 
   getAllAds(): Observable<Ads[]> {
     return this.http.get(`${this.baseUrl}/mybrocki/brocki/ads`)
+  }
+
+  getAdsByParam(data:any): Observable<Ads[]> {
+    return this.http.get(`${this.baseUrl}/mybrocki/ads/filter`, data)
   }
 
   newAd(ad: CreateAd): Observable<Ads>{

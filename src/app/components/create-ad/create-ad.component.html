@@ -10,31 +10,72 @@
       <label>Description:</label>
       <textarea [(ngModel)]="newAd.description"></textarea>
     </div>
+
+    <!-- <nz-select
+    style="width: 50%; margin-bottom: 20px;"
+      nzSize = 'large'
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Select category"
+        [(ngModel)]="newAd.adsGroupId"
+        (ngModelChange)="categorySelected($event)"
+
+      >
+        <nz-option
+          *ngFor="let adGroup of adsGroup "
+          [nzLabel]="adGroup.groupName"
+          [nzValue]="adGroup.id"
+        ></nz-option>
+      </nz-select>
+      <nz-select
+      style="width: 50%; margin-bottom: 20px;"
+      nzSize = 'large'
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Select sub category"
+        [(ngModel)]="newAd.adsSubGroupId"
+        (ngModelChange)="subCategorySelected($event)"
+        (nzOpenChange)="true"
+      >
+        <nz-option
+          *ngFor="let adSubGroup of adsSubGroup"
+          [nzLabel]="adSubGroup.subGroupName"
+          [nzValue]="adSubGroup.id"
+        ></nz-option>
+      </nz-select> -->
+    <!-- <p-dropdown [options]="adsGroupName" [(ngModel)]="newAd.adsGroupId" optionLabel="Select category" ></p-dropdown>
+    <p-dropdown [options]="adsSubGroup" [(ngModel)]="newAd.adsSubGroupId" optionLabel="Select subcategory"></p-dropdown> -->
+    <div class="form-group">
+      <select
+          name="contactMethod"
+          id="contactMethod"
+          class="form-control"
+          required
+          #month
+          [(ngModel)]="newAd.adsGroupId"
+          (change)="onChange($event.target.value)"
+          >
+          <option [ngValue]="null" [disabled]="true" >Select Category</option>
+          <option *ngFor="let group of adsGroup" [value]="group.id">{{ group.groupName }}</option>
+      </select>
+  </div>
+  <div class="form-group">
+    <select
+        name="contactMethod"
+        id="contactMethod"
+        class="form-control"
+        [(ngModel)]="newAd.adsSubGroupId">
+        <option [ngValue]="null" [disabled]="true" >Select Subcategory</option>
+        <option *ngFor="let group of adsSubGroup" [value]="group.id">{{ group.subGroupName }}</option>
+    </select>
+</div>
     <div class="buttons" style="padding-bottom: 20px;">
       <button [ngClass]="{'selected' : used, 'deselected': !used}" (click)="usedButton()">USED</button>
       <button [ngClass]="{'selected' : new, 'deselected': !new}" (click)="newButton()">NEW</button>
     </div>
     <div class="imageDiv">
     <div class="clearfix">
-      <nz-upload
-        nzAction="https://jsonplaceholder.typicode.com/posts/"
-        nzListType="picture-card"
-        [nzShowButton]="fileList.length < 3"
-        [(nzFileList)]="fileList"
-      >
-        <i nz-icon nzType="plus"></i>
-        <div class="ant-upload-text">Upload</div>
-      </nz-upload>
-      <nz-modal
-        [nzVisible]="previewVisible"
-        [nzContent]="modalContent"
-        [nzFooter]="null"
-        (nzOnCancel)="previewVisible = false"
-      >
-        <ng-template #modalContent>
-          <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
-        </ng-template>
-      </nz-modal>
+      <app-image-upload (onImagePicked)="getImagesList($event)"></app-image-upload>
     </div>
   </div>
   <div class="checkboxes" style="padding-bottom: 20px;">
@@ -66,9 +107,14 @@
       <label>Ad will be charged:</label>
       <div class="credit">
         <img src="../../../assets/images/credits icon.png">
-        <div class="creditCount"><span style="color: #d62b1f;"><span style="color: #d62b1f; font-weight: bold;">6 </span>&nbsp;Credits</span></div>
+        <div class="creditCount"><span style="color: #d62b1f;"><span style="color: #d62b1f; font-weight: bold;"></span>No charge for now</span></div>
       </div>
     </div>
-    <button class="confirmButton" style="margin-bottom: 20px;" (click)="saveChanges()" >Save changes</button>
+    <nz-alert nzType="error" nzMessage={{errorMessage}} nzShowIcon *ngIf="errorBoolean" style="margin-bottom: 20px;"></nz-alert>
+    <!-- <button class="confirmButton" style="margin-bottom: 20px;" (click)="saveChanges()" >Save changes</button> -->
+    <button mat-raised-button color="#d62b1f" style="margin-bottom: 50px; margin-top: 20px; height: 50px;
+    background-color: #d62b1f;
+    color: white;
+    font-size: 20px;" (click)="saveChanges()">Save changes</button>
   </div>
 </div>

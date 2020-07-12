@@ -7,7 +7,7 @@
     <nz-carousel [nzEffect]="'fade'" nzArrows="true" nzDots="false">
 
   <div nz-carousel-content *ngFor="let ad of ads" >
-    <div class="containers">
+    <div class="containers" [routerLink]="['/ad',ad.id]">
       <div class="leftContainer">
         <img [src]="ad.image[0]">
       </div>

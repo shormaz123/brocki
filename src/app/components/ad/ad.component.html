@@ -22,7 +22,7 @@
         <div class="cardColumn">{{ad?.price}}</div>
         <div class="cardColumn">{{ad?.adsType}}</div>
         <div class="cardColumn">ZURICH</div>
-        <div class="cardColumn2">{{ad?.adsDate}}</div>
+        <div class="cardColumn2">{{ad?.adsDate | date}}</div>
       </div>
     </div>
     <div class="right">
@@ -55,21 +55,21 @@
   <label>All articles of this seller</label>
   <div class="bodySuggestions">
   <div class="cards">
-    <p-carousel [value]="cards" [numVisible]="3" [numScroll]="1" styleClass="width" >
-      <ng-template let-card pTemplate="item">
+    <p-carousel [value]="adsByUser" [numVisible]="3" [numScroll]="1" styleClass="width" >
+      <ng-template let-adByUser pTemplate="item">
       <div style="width: '200px'; height:'250px'; padding: '5px'; background-color: white; padding: 10px !important;" >
           <div class="image">
-              <img src="Card" src="../../../assets/images/myAccount/Image car _ delete.png">
+              <img src="Card" [src]="adByUser?.image[0]" style="width: 100%;">
           </div>
           <div class="cardBody">
-            <label style="font-size: 16px; font-weight: bolder;">{{card.title}}</label>
+            <label style="font-size: 16px; font-weight: bolder;">{{adByUser?.productName}}</label>
             <div class="description">
-              <label style="font-size: 10px;">{{card.descriptiopn}}</label>
+              <label style="font-size: 10px;">{{adByUser?.description}}</label>
             </div>
           </div>
           <div class="footer">
-            <div class="pricetag"><label >{{card.price}} CHF</label></div>
-            <span style="color: black;">{{card.date}}</span>
+            <div class="pricetag"><label >{{adByUser?.price}} CHF</label></div>
+            <span style="color: black;">{{adByUser?.adsDate | date}}</span>
           </div>
         </div>
       </ng-template>
@@ -79,21 +79,21 @@
   <label>Similar products:</label>
   <div class="bodySuggestions">
     <div class="cards">
-      <p-carousel [value]="cards" [numVisible]="3" [numScroll]="1" >
-        <ng-template let-card pTemplate="item">
+      <p-carousel [value]="adsByCategory" [numVisible]="3" [numScroll]="1" >
+        <ng-template let-adByCat pTemplate="item">
         <div style="width: '200px'; height:'250px'; padding: '5px'; background-color: white; padding: 10px !important;" >
             <div class="image">
-                <img src="Card" src="../../../assets/images/myAccount/Image car _ delete.png">
+                <img src="Card" [src]="adByCat?.image[0]" style="width: 100%;">
             </div>
             <div class="cardBody">
-              <label style="font-size: 16px; font-weight: bolder;">{{card.title}}</label>
+              <label style="font-size: 16px; font-weight: bolder;">{{adByCat?.productName}}</label>
               <div class="description">
-                <label style="font-size: 10px;">{{card.descriptiopn}}</label>
+                <label style="font-size: 10px;">{{adByCat?.description}}</label>
               </div>
             </div>
             <div class="footer">
-              <div class="pricetag"><label >{{card.price}} CHF</label></div>
-              <span style="color: black;">{{card.date}}</span>
+              <div class="pricetag"><label >{{adByCat?.price}} CHF</label></div>
+              <span style="color: black;">{{adByCat?.adsDate | date}}</span>
             </div>
           </div>
         </ng-template>

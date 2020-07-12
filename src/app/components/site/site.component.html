@@ -1,13 +1,13 @@
 <div class="container">
 <div class="navBar">
 <div class="search">
+  <button class="filters" routerLink="/filters">Filters</button>
   <div class="searchBox">
     <input type="text" class="searchTerm" placeholder="Search">
     <button type="submit" class="searchButton">
       <i class="fa fa-search"></i>
    </button>
  </div>
-  <button class="filters" routerLink="/filters">Filters</button>
   <button class="favorite">Favorite<img src="../../../assets/images/favorite-24px.svg"></button>
 </div>
 <div class="navigation">
@@ -81,7 +81,7 @@
           </div>
           <div class="footer">
             <div class="pricetag"><label >{{card.price}} CHF</label></div>
-            <span style="color: black;">{{card.adsDate | date}}}</span>
+            <span style="color: black;">{{card.adsDate | date}}</span>
           </div>
         </div>
       </ng-template>

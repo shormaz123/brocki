@@ -65,7 +65,6 @@ const routes: Routes = [{
     path:'site',
     component: SiteComponent
   },
-
   {
     path:'change-password',
     component: ChangePasswordComponent,

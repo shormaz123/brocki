@@ -20,8 +20,8 @@ export class UserService {
     return this.http.delete<String>(`${this.baseUrl}/brocki/users/${id}`);
   }
 
-  getUserById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}/mybrocki/auth/user/${id}`);
+  getUserById(id: any): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/mybrocki/user/${id}`);
   }
 
   getAllUsers(): Observable<User[]> {

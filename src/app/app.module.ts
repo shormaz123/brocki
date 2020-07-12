@@ -59,6 +59,9 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import {CardModule} from 'primeng/card';
 import { AdComponent } from './components/ad/ad.component';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 
 registerLocaleData(en);
@@ -92,7 +95,8 @@ registerLocaleData(en);
     SiteComponent,
     ChangePasswordComponent,
     AdSingleCarouselComponent,
-    AdComponent
+    AdComponent,
+    ImageUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +120,10 @@ registerLocaleData(en);
     NzCarouselModule,
     NzCardModule,
     CardModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
 
 
   ],

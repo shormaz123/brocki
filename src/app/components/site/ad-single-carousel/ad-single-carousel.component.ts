@@ -26,10 +26,6 @@ export class AdSingleCarouselComponent implements OnInit,OnChanges {
   constructor(private adsService: AdsService) { }
 
   ngOnInit() {
-    // this.adsService.getAllAds().subscribe( x => {
-    //   this.ads = x
-    //   console.log(this.ads);
-    // })
   }
 
   ngOnChanges(changes: SimpleChanges) {

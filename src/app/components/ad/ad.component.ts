@@ -22,6 +22,13 @@ userSellerId: number;
 ad: Ads;
 userSeller: User;
 productName;
+adsByUser;
+adGroupId;
+adsByCategory;
+
+usersImagesAvailabe: boolean;
+categoryImagesAvailable: boolean;
+
 
 
 
@@ -106,7 +113,8 @@ productName;
     this.adsService.getAdById(this.adId).subscribe( response => {
       this.userSellerId = response.userId
       this.ad = response
-      console.log(this.ad)
+      this.adGroupId = response.adsgroupId
+      console.log(this.userSellerId)
 
 
       for (let i = 0; i < response.image.length; i++)
@@ -114,21 +122,42 @@ productName;
         small: response.image[i], medium: response.image[i], big: response.image[i],
       });
 
-      // response.image.forEach(element =>
-      //   { this.galleryImages = [
-      //         {
-      //           small: element, medium: element, big: element,
-      //         }
-      //       ];
-      //      },
-      //   )
         console.log(this.galleryImages)
 
       this.userService.getUserById(this.userSellerId).subscribe( x=> {
-        this.userSeller = x
+
+        if ( x == null )
+        {
+          this.usersImagesAvailabe = false;
+        } else {
+          this.usersImagesAvailabe = true;
+          this.userSeller = x
+        }
       })
+
+      this.adsService.getAllByUserId(this.userSellerId).subscribe( x => {
+
+        if ( x == null) {
+          this.usersImagesAvailabe = false;
+        } else {
+          this.usersImagesAvailabe = true;
+          this.adsByUser = x
+        }
+        })
     })
-  }
+
+
+
+      this.adsService.getAdsByParam(this.adGroupId).subscribe( x=> {
+
+        if ( x == null) {
+          this.categoryImagesAvailable = false;
+        } else {
+          this.categoryImagesAvailable = true;
+          this.adsByCategory = x
+        }
+        })
+      }
 
 
 }

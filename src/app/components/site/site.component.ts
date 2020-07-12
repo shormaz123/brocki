@@ -253,6 +253,7 @@ cards = [{
     this.selectCategory(1)
     this.adsService.getAllVisibleAds().subscribe( response => {
       this.ads = response
+      this.randomAds = this.shuffle(response)
       console.log(response)
     })
 
