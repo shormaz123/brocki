@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrlBase: "https://mybrocki-be.herokuapp.com"
+  apiUrlBase: "https://minibrocki-be-stage.herokuapp.com"
 };
