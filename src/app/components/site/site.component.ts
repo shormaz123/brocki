@@ -244,9 +244,6 @@ cards = [{
 
 
   constructor(private cdr: ChangeDetectorRef, private adsService: AdsService) {
-
-
-
    }
 
   ngOnInit() {
