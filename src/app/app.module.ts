@@ -63,7 +63,6 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
-
 registerLocaleData(en);
 
 @NgModule({

@@ -7,8 +7,8 @@
     <nz-carousel [nzEffect]="'fade'" nzArrows="true" nzDots="false">
 
   <div nz-carousel-content *ngFor="let ad of ads" >
-    <div class="containers" [routerLink]="['/ad',ad.id]">
-      <div class="leftContainer">
+    <div class="containers" >
+      <div class="leftContainer" [routerLink]="['/ad',ad.id]">
         <img [src]="ad.image[0]">
       </div>
       <div class="rightContainer">
@@ -17,7 +17,27 @@
         </div>
 
         <div class="text">
-        <label style="color: #4d4d4d;line-height: normal;">{{ad.description}}</label>
+          <div style="width: 100%;height:80%;">
+            <label style="color: #4d4d4d;line-height: normal;">{{ad.description}}</label>
+          </div>
+
+        <div style="width: 100%;height: 10%;display: flex;">
+          <button mat-icon-button (click)="toggleSelected()">
+
+            <mat-icon
+              *ngIf="selected"
+              aria-label="Example icon-button with a heart icon">
+              favorite
+            </mat-icon>
+
+            <mat-icon
+              *ngIf="!selected"
+              aria-label="Example icon-button with a heart icon">
+              favorite_border
+            </mat-icon>
+
+          </button>
+        </div>
         </div>
         <div class="price">
           <div class="pricetag"><label >{{ad.price}} CHF</label></div>

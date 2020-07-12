@@ -11,7 +11,8 @@ import { Ads } from 'src/app/shared/models/ads.model';
 })
 export class AdSingleCarouselComponent implements OnInit,OnChanges {
 
-  private _response: Ads[];
+  selected: boolean;
+
 
   @Input() ads: Ads[];
   @ViewChild(NzCarouselComponent, { static: false }) myCarousel: NzCarouselComponent;
@@ -32,7 +33,9 @@ export class AdSingleCarouselComponent implements OnInit,OnChanges {
     console.log(changes)
   }
 
-
+  toggleSelected() {
+  this.selected = !this.selected;
+  }
 
   next() {
     console.log(this.myCarousel.activeIndex)
