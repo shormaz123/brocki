@@ -62,6 +62,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { HelpersService } from './@core/services/helpers.service';
 
 
 registerLocaleData(en);
@@ -129,6 +130,7 @@ registerLocaleData(en);
   ],
   providers: [
     HttpBaseService,
+    HelpersService,
     AuthService,
     UserService,
     AdsService,

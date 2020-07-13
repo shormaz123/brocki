@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, ViewEncapsulation, Input } from '
 import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
 import { AdsService } from 'src/app/@core/services/ads.service';
 import { Ads } from 'src/app/shared/models/ads.model';
+import { AuthConst } from 'src/app/@core/consts/auth.const';
 
 @Component({
   selector: 'app-site',
@@ -253,6 +254,7 @@ cards = [{
       this.randomAds = this.shuffle(response)
       console.log(response)
     })
+
 
 
   }

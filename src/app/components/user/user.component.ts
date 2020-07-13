@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user.model';
 import { UserService } from '../../@core/services/user.service';
 import { AuthConst } from 'src/app/@core/consts/auth.const';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -19,16 +19,21 @@ export class UserComponent implements OnInit {
   currentUserId: number;
   path: string;
   uploadingUrl: string;
+  userId: number;
 
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.guest = true;
-    // this.userService.getUser().subscribe(response => {
-    //   this.path = response.roleName
-    //   console.log(this.path)
-    // })
+    this.activatedRoute.params.subscribe(params => {
+      this.userId = params["id"];
+      console.log(this.userId)
+      this.userService.getUserById(this.userId).subscribe( user => {
+        this.user = user
+       })
+    });
+
 
   }
 

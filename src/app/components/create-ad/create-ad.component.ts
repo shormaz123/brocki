@@ -1,10 +1,11 @@
 import { Component, OnInit, ErrorHandler, OnChanges, SimpleChanges } from '@angular/core';
 import { CreateAd } from 'src/app/shared/models/create-ad.model';
 import { AdsService } from 'src/app/@core/services/ads.service';
-import { UploadChangeParam, UploadFile, UploadXHRArgs } from 'ng-zorro-antd';
+import { UploadChangeParam, UploadFile, UploadXHRArgs, NzNotificationService } from 'ng-zorro-antd';
 import { HttpHeaders, HttpRequest, HttpClient, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { adsGroup } from 'src/app/shared/models/adsGroup.model';
 import { adsSubGroup } from 'src/app/shared/models/adsSubGroup.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-ad',
@@ -81,7 +82,7 @@ uploadImageUrl = "https://mybrocki-be.herokuapp.com/mybrocki/auth/image/upload"
 
 
 
-  constructor(private adsService: AdsService, private http: HttpClient) { }
+  constructor(private adsService: AdsService, private http: HttpClient, private router: Router, private notification: NzNotificationService) { }
 
   ngOnInit() {
     this.newButton();
@@ -131,7 +132,10 @@ this.getSubGroup(1)
 
   saveChanges() {
     this.adsService.newAd(this.newAd).subscribe( x=> {
-      console.log(this.newAd)
+      console.log(this.newAd),
+      this.notification.success('', 'Ad successfully created!'),
+      this.router.navigateByUrl('/site');
+
     },
     error => {
       this.errorBoolean = true;
@@ -143,7 +147,7 @@ this.getSubGroup(1)
   public getImagesList(data: any):void {
     this.newAd.image = data
     console.log(this.newAd.image)
-  }
+}
 
 
 
