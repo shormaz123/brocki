@@ -7,7 +7,12 @@ import {
 } from "@angular/core";
 import { CreateAd } from "src/app/shared/models/create-ad.model";
 import { AdsService } from "src/app/@core/services/ads.service";
-import { UploadChangeParam, UploadFile, UploadXHRArgs } from "ng-zorro-antd";
+import {
+  UploadChangeParam,
+  UploadFile,
+  UploadXHRArgs,
+  NzNotificationService,
+} from "ng-zorro-antd";
 import {
   HttpHeaders,
   HttpRequest,
@@ -18,6 +23,7 @@ import {
 } from "@angular/common/http";
 import { adsGroup } from "src/app/shared/models/adsGroup.model";
 import { adsSubGroup } from "src/app/shared/models/adsSubGroup.model";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-create-ad",
@@ -89,7 +95,12 @@ export class CreateAdComponent implements OnInit {
   ];
   listOfSubGroups = [];
 
-  constructor(private adsService: AdsService, private http: HttpClient) {}
+  constructor(
+    private adsService: AdsService,
+    private http: HttpClient,
+    private router: Router,
+    private notification: NzNotificationService
+  ) {}
 
   ngOnInit() {
     this.newButton();
@@ -137,7 +148,9 @@ export class CreateAdComponent implements OnInit {
   saveChanges() {
     this.adsService.newAd(this.newAd).subscribe(
       (x) => {
-        console.log(this.newAd);
+        console.log(this.newAd),
+          this.notification.success("", "Ad successfully created!"),
+          this.router.navigateByUrl("/site");
       },
       (error) => {
         this.errorBoolean = true;

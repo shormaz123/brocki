@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { AuthConst } from "src/app/@core/consts/auth.const";
 import { AuthService } from "src/app/@core/services/auth.service";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
+import { HelpersService } from "src/app/@core/services/helpers.service";
 
 @Component({
   selector: "app-login",
@@ -16,10 +18,14 @@ export class LoginComponent implements OnInit {
   errorBoolean: boolean;
   errorMessage: string;
   userId;
+
+  private loginName: Subscription;
+
   constructor(
     private authService: AuthService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private helpers: HelpersService
   ) {}
 
   ngOnInit() {
@@ -34,7 +40,8 @@ export class LoginComponent implements OnInit {
         if (response) {
           localStorage.setItem(AuthConst.roleName, response.roleName);
           localStorage.setItem(AuthConst.token, response.token);
-          // console.log(response);
+          console.log(response);
+          this.helpers.$loginName.next(response.token);
         }
         this.router.navigate(["/site"]);
       },

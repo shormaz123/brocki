@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/@core/services/user.service';
 
 @Component({
   selector: 'app-seller-profile',
@@ -13,12 +15,20 @@ export class SellerProfileComponent implements OnInit {
   about:boolean;
   info:boolean;
   guest:boolean;
+  sellerId;
+  seller;
 
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
     this.active = true;
+    this.activatedRoute.params.subscribe(params => {
+      this.sellerId = params["id"];
+      this.userService.getUserById(this.sellerId).subscribe( seller => {
+        this.seller = seller
+       })
+    });
   }
 
   activeButton() {

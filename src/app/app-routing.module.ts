@@ -26,11 +26,11 @@ const routes: Routes = [{
       component: SiteComponent
     },
     {
-    path:'user',
+    path:'user/:id',
     component: UserComponent
   },
   {
-    path:'seller',
+    path:'seller/:id',
     component: SellerProfileComponent
   },
   {

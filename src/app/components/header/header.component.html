@@ -1,5 +1,6 @@
 <div class="container">
-  <div class="firstContainer" routerLink="/create-ad">
+  <div class="firstContainer" *ngIf="!createAd"></div>
+  <div class="firstContainer" routerLink="/create-ad" *ngIf="createAd">
     <div class="addImage">
       <img class="image" src="../../../assets/images/header/Create ad.png" />
     </div>
@@ -19,10 +20,14 @@
       <img class="flags" src="../../../assets/images/header/FR.png" />
     </div>
     <div class="account">
-      <span class="accountAd" routerLink="/login" *ngIf="!isLogin"
+      <span class="accountAd" routerLink="/login" *ngIf="!accountName"
         >Login&nbsp;</span
       >
-      <span class="accountAd" routerLink="/user" *ngIf="isLogin"
+      <span
+        class="accountAd"
+        routerLink="/user"
+        *ngIf="accountName"
+        [routerLink]="['/user', userId]"
         >{{ accountName }} &nbsp;</span
       >
       <img

@@ -125,6 +125,7 @@ registerLocaleData(en);
   ],
   providers: [
     HttpBaseService,
+    // HelpersService,
     AuthService,
     UserService,
     AdsService,
