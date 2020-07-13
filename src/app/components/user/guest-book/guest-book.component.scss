@@ -1,26 +1,52 @@
 @import "../../../../scss/variables";
+@import "../../../../scss/mixin.scss";
 
 .container {
   width: 100%;
   height: auto;
   background-color: white;
+  padding: 0 0 100px 0;
+
+  @include rwdm(1600) {
+    width: 1280px;
+  }
+
+  @include rwd(1600) {
+    width: 985px;
+  }
 
   .card {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
-    margin-bottom: 20px;
+    padding: 20px 100px 0;
     height: auto;
+
+    &__title {
+      font-weight: 500;
+    }
+
+    &__comment {
+      color: #b3b3b3;
+      font-weight: 500;
+      white-space: pre-wrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
+}
+.active {
+  fill: red;
+  color: red;
 }
 
 hr {
   border: 1px solid;
   border-color: $red;
   width: 100%;
-  margin-top: 10px;
+  margin: 15px 0 0 0;
 }
-
+svg {
+  fill: red;
+  color: red;
+}

@@ -1,6 +1,5 @@
 @import "../../../scss/variables";
 
-
 .container {
   height: auto;
   width: 100vw;
@@ -10,48 +9,43 @@
   justify-content: center;
   flex-direction: column;
 
-
   .navBar {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    align-items: center;
 
-  .search {
-    display: flex;
-    flex-direction: row;
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-    margin-bottom: 20px;
-    margin-top: 30px;
+    .search {
+      display: flex;
+      flex-direction: row;
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+      margin-bottom: 20px;
+      margin-top: 30px;
     }
 
-  .navigation {
-    display: flex;
-    height: auto;
-    width: 100%;
-    margin-bottom: 20px;
-
+    .navigation {
+      display: flex;
+      height: auto;
+      width: 100%;
+      margin-bottom: 20px;
     }
-
   }
-
 }
 
 .search-hero {
   max-width: 500px;
   padding-bottom: 50px;
-  margin:auto;
+  margin: auto;
 }
 
 .form-control {
   width: 600px;
   height: 40px;
   padding-left: 10px;
-
 }
-.form-control::placeholder  {
+.form-control::placeholder {
   font-family: FontAwesome;
 }
 
@@ -85,8 +79,6 @@
   border: 1px solid white;
   border-radius: 20px;
   flex-direction: row;
-
-
 }
 
 .searchButton {
@@ -121,10 +113,9 @@
   height: 40px;
   border-radius: 20px 0px 0px 20px;
   padding-left: 10px;
-
 }
 
-.searchTerm:focus{
+.searchTerm:focus {
   color: $red;
 }
 
@@ -141,7 +132,7 @@
 }
 
 /*Resize the wrap to see the search bar change!*/
-.wrap{
+.wrap {
   width: 30%;
   position: absolute;
   top: 50%;
@@ -149,22 +140,18 @@
   transform: translate(-50%, -50%);
 }
 
-
-
-
 .category {
   height: auto;
 }
 
 .tabs {
   width: 90%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 button {
-
   .tab-icon {
     padding: 5px 25px;
     padding-bottom: 5px;
@@ -191,10 +178,9 @@ button {
 
 //Carousel
 
-
 p-carousel {
   width: 100% !important;
-  overflow:  hidden !important;
+  overflow: hidden !important;
   padding-top: 20px !important;
   height: auto !important;
 }
@@ -214,7 +200,7 @@ p-carousel {
   padding-bottom: 50px;
 
   img {
-    display: inline;
+    // display: inline;
     width: 100%;
   }
 }
@@ -268,7 +254,6 @@ p-carousel {
       justify-content: center;
     }
   }
-
 }
 
 .bodySuggestions2 {
@@ -285,73 +270,64 @@ p-carousel {
   background-color: $red;
   padding-right: 5px;
   border-radius: 15px;
-    }
+}
 
-    .ui-card-title {
-      font-size: 11pt;
-      font-weight: bold;
-      margin-bottom: .5em;
-      overflow: auto;
-      height: auto;
-  }
+.ui-card-title {
+  font-size: 11pt;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  overflow: auto;
+  height: auto;
+}
 
-  .footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
 
-  .image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-  }
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
 
-  .cardBody {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-    height: 50px;
-  }
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+}
 
-  .description {
-    display: block;
-    max-width: 98%;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-  }
+.description {
+  display: block;
+  max-width: 98%;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
 
-  .lineCard {
-    display: flex;
-    height: auto;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-evenly;
-    margin-bottom: 50px;
+.lineCard {
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+}
 
-  }
+.line {
+  height: 5px;
+  width: 100%;
+  border: 0 0 0 5px solid;
+  border: 0 0 5px 0;
+  border-bottom: 2px solid $lightgray-second;
+  margin-bottom: 50px;
+}
 
-  .line {
-    height: 5px;
-    width: 100%;
-    border: 0 0 0 5px solid;
-    border: 0 0 5px 0;
-    border-bottom: 2px solid $lightgray-second;
-    margin-bottom: 50px;
-  }
-
-  p-carousel {
-    width: 90% !important;
-  }
-
-
-
-
-
-
-
-
+p-carousel {
+  width: 90% !important;
+}

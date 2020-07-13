@@ -1,8 +1,8 @@
 <div class="container">
   <div *ngFor="let guest of guests" class="card">
-    <span>{{guest.useraName}}</span>
-    <nz-rate [ngModel]="3" nzDisabled></nz-rate>
-    <span>{{guest.comment}}</span>
-    <hr>
+    <div class="card__title">{{ guest.useraName }}</div>
+    <nz-rate [ngClass]="'active'" [ngModel]="3.5" nzDisabled></nz-rate>
+    <div class="card__comment">{{ guest.comment }}</div>
+    <hr />
   </div>
 </div>
