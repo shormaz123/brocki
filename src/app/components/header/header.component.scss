@@ -1,4 +1,5 @@
 @import "../../../scss/variables";
+@import "../../../scss/mixin.scss";
 
 * {
   height: 120px;
@@ -8,13 +9,17 @@
 }
 
 .container {
-  width: 100%;
+  width: 1280px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   background-color: white;
 
+  @include rwd(1600) {
+    width: 985px;
+  }
+
   .firstContainer {
-    width: 33%;
     display: flex;
     flex-direction: row;
 
@@ -33,7 +38,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 33%;
 
     img {
       width: 300px;
@@ -44,7 +48,6 @@
   .thirdContainer {
     display: flex;
     flex-direction: column;
-    width: 33%;
 
     .languageFlags {
       display: flex;

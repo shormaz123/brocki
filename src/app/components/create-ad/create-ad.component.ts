@@ -1,26 +1,38 @@
-import { Component, OnInit, ErrorHandler, OnChanges, SimpleChanges } from '@angular/core';
-import { CreateAd } from 'src/app/shared/models/create-ad.model';
-import { AdsService } from 'src/app/@core/services/ads.service';
-import { UploadChangeParam, UploadFile, UploadXHRArgs } from 'ng-zorro-antd';
-import { HttpHeaders, HttpRequest, HttpClient, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
-import { adsGroup } from 'src/app/shared/models/adsGroup.model';
-import { adsSubGroup } from 'src/app/shared/models/adsSubGroup.model';
+import {
+  Component,
+  OnInit,
+  ErrorHandler,
+  OnChanges,
+  SimpleChanges,
+} from "@angular/core";
+import { CreateAd } from "src/app/shared/models/create-ad.model";
+import { AdsService } from "src/app/@core/services/ads.service";
+import { UploadChangeParam, UploadFile, UploadXHRArgs } from "ng-zorro-antd";
+import {
+  HttpHeaders,
+  HttpRequest,
+  HttpClient,
+  HttpEvent,
+  HttpEventType,
+  HttpResponse,
+} from "@angular/common/http";
+import { adsGroup } from "src/app/shared/models/adsGroup.model";
+import { adsSubGroup } from "src/app/shared/models/adsSubGroup.model";
 
 @Component({
-  selector: 'app-create-ad',
-  templateUrl: './create-ad.component.html',
-  styleUrls: ['./create-ad.component.scss']
+  selector: "app-create-ad",
+  templateUrl: "./create-ad.component.html",
+  styleUrls: ["./create-ad.component.scss"],
 })
 export class CreateAdComponent implements OnInit {
-
   customReq = (item: UploadXHRArgs) => {
-    console.log(JSON.stringify(item))
+    console.log(JSON.stringify(item));
     const formData = new FormData();
-    formData.append('file', item.file as any)
+    formData.append("file", item.file as any);
 
-    const req = new HttpRequest('POST', item.action!, formData, {
+    const req = new HttpRequest("POST", item.action!, formData, {
       reportProgress: true,
-      withCredentials: true
+      withCredentials: true,
     });
     // Always returns a `Subscription` object. nz-upload would automatically unsubscribe it at correct time.
     return this.http.request(req).subscribe(
@@ -36,19 +48,16 @@ export class CreateAdComponent implements OnInit {
           item.onSuccess!(event.body, item.file!, event);
         }
       },
-      err => {
+      (err) => {
         item.onError!(err, item.file!);
       }
     );
+  };
 
-  }
+  uploadImageUrl =
+    "https://mybrocki-be.herokuapp.com/mybrocki/auth/image/upload";
 
-
-uploadImageUrl = "https://mybrocki-be.herokuapp.com/mybrocki/auth/image/upload"
-
-  fileList: string[] = [
-
-  ];
+  fileList: string[] = [];
 
   used: boolean;
   new: boolean;
@@ -56,13 +65,13 @@ uploadImageUrl = "https://mybrocki-be.herokuapp.com/mybrocki/auth/image/upload"
   freeDelivery: boolean;
   productWarranty: boolean;
   urgentSales: boolean;
-  adsDate = new Date;
+  adsDate = new Date();
   public newAd = <CreateAd>{};
-  errorMessage: string = "Please, complete every field in this form!"
+  errorMessage: string = "Please, complete every field in this form!";
   errorBoolean: boolean;
-  mySelect = -1
+  mySelect = -1;
 
-  previewImage: string | undefined = '';
+  previewImage: string | undefined = "";
   previewVisible = false;
   selectedCategory: number;
 
@@ -74,14 +83,13 @@ uploadImageUrl = "https://mybrocki-be.herokuapp.com/mybrocki/auth/image/upload"
   category: string = null;
 
   listOfGroups = [
-    { label: 'Jack', value: 'jack' },
-    { label: 'Lucy', value: 'lucy' },
-    { label: 'disabled', value: 'disabled', disabled: true }]
-  listOfSubGroups = []
+    { label: "Jack", value: "jack" },
+    { label: "Lucy", value: "lucy" },
+    { label: "disabled", value: "disabled", disabled: true },
+  ];
+  listOfSubGroups = [];
 
-
-
-  constructor(private adsService: AdsService, private http: HttpClient) { }
+  constructor(private adsService: AdsService, private http: HttpClient) {}
 
   ngOnInit() {
     this.newButton();
@@ -89,63 +97,57 @@ uploadImageUrl = "https://mybrocki-be.herokuapp.com/mybrocki/auth/image/upload"
     this.newAd.freeDelivery = false;
     this.newAd.productWarrant = false;
     this.newAd.urgentSales = false;
-    this.newAd.image = []
+    this.newAd.image = [];
     this.errorBoolean = false;
-    this.selectedCategory = 1
+    this.selectedCategory = 1;
     this.newAd.adsGroupId = null;
     this.newAd.adsSubGroupId = null;
 
-    this.adsService.getAllAdsGroups().subscribe( x => {
-      this.adsGroup = x;
-      console.log(this.adsGroup)
+    this.adsService.getAllAdsGroups().subscribe((x) => {
+      // this.adsGroup = x;
+      // console.log(this.adsGroup);
       // this.getSubGroup(1);
-    })
-this.getSubGroup(1)
-
+    });
+    this.getSubGroup(1);
   }
 
   onChange(deviceValue) {
     console.log(deviceValue);
-    this.getSubGroup(deviceValue)
+    this.getSubGroup(deviceValue);
+  }
 
-}
-
-  getSubGroup(id:number) {
-    this.adsService.getAllAdsSubGroup(id).subscribe( x=> {
-      this.adsSubGroup = x
-    })
+  getSubGroup(id: number) {
+    this.adsService.getAllAdsSubGroup(id).subscribe((x) => {
+      // this.adsSubGroup = x;
+    });
   }
 
   usedButton() {
     this.new = false;
     this.used = true;
-    this.newAd.adsType = "NEW"
-
+    this.newAd.adsType = "NEW";
   }
 
   newButton() {
     this.new = true;
     this.used = false;
-    this.newAd.adsType = "USED"
+    this.newAd.adsType = "USED";
   }
 
   saveChanges() {
-    this.adsService.newAd(this.newAd).subscribe( x=> {
-      console.log(this.newAd)
-    },
-    error => {
-      this.errorBoolean = true;
-    });
-    console.log(this.newAd)
+    this.adsService.newAd(this.newAd).subscribe(
+      (x) => {
+        console.log(this.newAd);
+      },
+      (error) => {
+        this.errorBoolean = true;
+      }
+    );
+    console.log(this.newAd);
   }
 
-
-  public getImagesList(data: any):void {
-    this.newAd.image = data
-    console.log(this.newAd.image)
+  public getImagesList(data: any): void {
+    this.newAd.image = data;
+    console.log(this.newAd.image);
   }
-
-
-
-
 }
