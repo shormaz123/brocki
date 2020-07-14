@@ -1,10 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 
-export interface EmptyFields {
-  email: string;
-  password: string;
-}
 
 @Injectable({ providedIn: "root" })
 export class HelpersService {

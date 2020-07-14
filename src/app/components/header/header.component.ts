@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import { UserService } from "src/app/@core/services/user.service";
 import { AuthConst } from "src/app/@core/consts/auth.const";
 import { Subscription } from "rxjs";
@@ -9,12 +9,13 @@ import { HelpersService } from "src/app/@core/services/helpers.service";
   templateUrl: "./header.component.html",
   styleUrls: ["./header.component.scss"],
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
   accountName: string;
   createAd: boolean;
   roleName;
   user;
-  userId = {};
+  userId;
+
 
   private loginNameSubscription: Subscription;
 
@@ -26,35 +27,32 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loginNameSubscription = this.helpers.$loginName.subscribe((filter) => {
       this.getUser();
+      console.log("getUser function")
     });
-    if ((this.accountName = localStorage.getItem("username"))) {
-      this.createAd = true;
+    if(localStorage.getItem(AuthConst.token) == null) {
     } else {
-      (this.accountName = null), (this.createAd = false);
+      this.getUser();
     }
-
-    this.userId = parseFloat(localStorage.getItem(AuthConst.userId));
-
-    console.log(this.userId);
   }
 
   ngOnDestroy() {
     this.loginNameSubscription.unsubscribe();
   }
 
-  getUser() {
+  getUser(): void {
     this.userService.getUser().subscribe((user) => {
       if (user == null) {
         this.accountName = null;
-        console.log(this.accountName);
         this.createAd = false;
       } else {
         this.accountName = user.userName;
         this.createAd = true;
-
-        localStorage.setItem("username", user.userName);
-        localStorage.setItem(AuthConst.userId, user.id.toString());
+        console.log(user);
       }
-    });
+    },
+    error => console.log("User not logged in")
+    );
+
+
   }
 }
