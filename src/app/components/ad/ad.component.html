@@ -1,3 +1,4 @@
+<app-header class="header"></app-header>
 <div class="container">
   <div class="imageContainer">
   <div class="imageGallery">
@@ -57,7 +58,7 @@
   <div class="cards">
     <p-carousel [value]="adsByUser" [numVisible]="3" [numScroll]="1" styleClass="width" >
       <ng-template let-adByUser pTemplate="item">
-      <div style="width: '200px'; height:'250px'; padding: '5px'; background-color: white; padding: 10px !important;" >
+      <div style="width: '200px'; height:'250px'; padding: '5px'; background-color: white; padding: 10px !important;" (click)="getNewAd(adByUser.id)">
           <div class="image">
               <img src="Card" [src]="adByUser?.image[0]" style="width: 100%;">
           </div>
@@ -81,7 +82,7 @@
     <div class="cards">
       <p-carousel [value]="adsByCategory" [numVisible]="3" [numScroll]="1" >
         <ng-template let-adByCat pTemplate="item">
-        <div style="width: '200px'; height:'250px'; padding: '5px'; background-color: white; padding: 10px !important;" >
+        <div style="width: '200px'; height:'250px'; padding: '5px'; background-color: white; padding: 10px !important;" (click)="getNewAd(adByCat.id)">
             <div class="image">
                 <img src="Card" [src]="adByCat?.image[0]" style="width: 100%;">
             </div>
