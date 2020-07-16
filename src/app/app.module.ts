@@ -62,6 +62,7 @@ import { ImageUploadComponent } from "./image-upload/image-upload.component";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { HelpersService } from './@core/services/helpers.service';
+import { AuthGuardService } from './@core/services/authGuard.service';
 
 registerLocaleData(en);
 
@@ -130,6 +131,7 @@ registerLocaleData(en);
     AuthService,
     UserService,
     AdsService,
+    AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,

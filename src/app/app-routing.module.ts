@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { SiteComponent } from './components/site/site.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component'
 import { AdComponent } from './components/ad/ad.component';
+import { AuthGuardService } from './@core/services/authGuard.service';
 
 
 const routes: Routes = [{
@@ -51,15 +52,18 @@ const routes: Routes = [{
   },
   {
     path:'create-ad',
-    component: CreateAdComponent
+    component: CreateAdComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path:'update-info-private',
-    component: UpdateInfoPrivateComponent
+    component: UpdateInfoPrivateComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path:'update-info-bussines',
-    component: UpdateInfoBussinesComponent
+    component: UpdateInfoBussinesComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path:'site',

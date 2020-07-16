@@ -46,50 +46,42 @@
       <label>Pictures of company:</label>
       <div class="clearfix">
         <nz-upload
-          [nzHeaders]="setMediaUploadHeaders"
-          nzListType="picture-card"
-          [nzShowButton]="fileList.length < 7"
-          [nzShowUploadList]="showUploadList"
-          [(nzFileList)]="fileList"
-          [nzPreview]="handlePreview"
-          (nzChange)="handleChange($event)"
-        >
-          <i nz-icon nzType="plus"></i>
-          <div class="ant-upload-text">Upload</div>
-        </nz-upload>
-        <nz-modal
-          [nzVisible]="previewVisible"
-          [nzContent]="modalContent"
-          [nzFooter]="null"
-          (nzOnCancel)="previewVisible = false"
-        >
-          <ng-template #modalContent>
-            <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
-          </ng-template>
-        </nz-modal>
+        nzAction="https://jsonplaceholder.typicode.com/posts/"
+        nzListType="picture-card"
+        [nzShowButton]="fileList.length < 3"
+        [(nzFileList)]="fileList"
+      >
+        <i nz-icon nzType="plus"></i>
+        <div class="ant-upload-text">Upload</div>
+      </nz-upload>
+      <nz-modal
+        [nzVisible]="previewVisible"
+        [nzContent]="modalContent"
+        [nzFooter]="null"
+        (nzOnCancel)="previewVisible = false"
+      >
+        <ng-template #modalContent>
+          <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+        </ng-template>
+      </nz-modal>
       </div>
     </div>
     <div class="locationInput">
-      <nz-select
-        nzMode="tags"
-        nzPlaceHolder="Region"
-        [(ngModel)]="newUser.region"
-      >
-        <nz-option
-          *ngFor="let option of listOfRegions"
-          [nzLabel]="option.label"
-          [nzValue]="option.value"
-        ></nz-option>
-      </nz-select>
-    </div>
-    <div class="locationInput">
-      <nz-select nzMode="tags" nzPlaceHolder="City" [(ngModel)]="newUser.city">
-        <nz-option
-          *ngFor="let option of listOfOption"
-          [nzLabel]="option.label"
-          [nzValue]="option.value"
-        ></nz-option>
-      </nz-select>
+      <nz-form-control>
+        <nz-select nzShowSearch="true" >
+          <nz-option
+            nzValue=""
+            nzLabel="Region"
+            selected
+            disabled
+          ></nz-option>
+          <nz-option
+            *ngFor="let region of regions"
+            nzLabel="{{ region }}"
+            nzValue="newUser.location"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
     </div>
   </div>
   <button class="signInButton" (click)="onSubmit()">Save changes</button>

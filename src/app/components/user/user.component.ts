@@ -35,6 +35,9 @@ export class UserComponent implements OnInit {
       this.userService.getUserById(this.userId).subscribe((user) => {
         this.user = user;
       });
+    },
+    error => {
+      console.log("user not found")
     });
   }
 
