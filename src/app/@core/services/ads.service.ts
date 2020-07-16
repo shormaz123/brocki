@@ -67,7 +67,6 @@ export class AdsService {
   }
 
   uploadImageInStorage(formData) {
-    console.log(formData);
     return this.httpClient.post<any>(
       `${this.baseUrl}/mybrocki/auth/image/upload`,
       formData

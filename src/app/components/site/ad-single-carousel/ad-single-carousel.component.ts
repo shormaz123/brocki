@@ -11,6 +11,7 @@ import { NguCarouselConfig } from "@ngu/carousel";
 import { NzCarouselBaseStrategy, NzCarouselComponent } from "ng-zorro-antd";
 import { AdsService } from "src/app/@core/services/ads.service";
 import { Ads } from "src/app/shared/models/ads.model";
+import { UserService } from 'src/app/@core/services/user.service';
 
 @Component({
   selector: "app-ad-single-carousel",
@@ -27,16 +28,7 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges {
   @ViewChild(NzCarouselComponent, { static: false })
   myCarousel: NzCarouselComponent;
 
-  cars = [
-    {
-      number: 1,
-    },
-    {
-      number: 2,
-    },
-  ];
-
-  constructor(private adsService: AdsService) {}
+  constructor(private adsService: AdsService, private userService: UserService) {}
 
   ngOnInit() {
   }
@@ -45,8 +37,10 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges {
     // console.log(changes)
   }
 
-  toggleSelected() {
+  toggleSelected(ad: Ads) {
   this.selected = !this.selected;
+
+
   }
 
   next() {
