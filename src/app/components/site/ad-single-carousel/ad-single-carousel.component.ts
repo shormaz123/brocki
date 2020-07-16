@@ -18,8 +18,15 @@ import { Ads } from "src/app/shared/models/ads.model";
   templateUrl: "./ad-single-carousel.component.html",
   styleUrls: ["./ad-single-carousel.component.scss"],
 })
+<<<<<<< HEAD
 export class AdSingleCarouselComponent implements OnInit, OnChanges {
   private _response: Ads[];
+=======
+export class AdSingleCarouselComponent implements OnInit,OnChanges {
+
+  selected: boolean;
+
+>>>>>>> Favorites(Site-Component)
 
   @Input() ads: Ads[];
   @ViewChild(NzCarouselComponent, { static: false })
@@ -43,6 +50,13 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges {
     // console.log(changes)
   }
 
+<<<<<<< HEAD
+=======
+  toggleSelected() {
+  this.selected = !this.selected;
+  }
+
+>>>>>>> Favorites(Site-Component)
   next() {
     // console.log(this.myCarousel.activeIndex)
     this.myCarousel.next();

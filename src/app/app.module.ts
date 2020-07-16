@@ -18,6 +18,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
+<<<<<<< HEAD
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { FiltersComponent } from "./components/filters/filters.component";
@@ -64,6 +65,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { HelpersService } from './@core/services/helpers.service';
 import { AuthGuardService } from './@core/services/authGuard.service';
 
+=======
+>>>>>>> Favorites(Site-Component)
 registerLocaleData(en);
 
 @NgModule({
