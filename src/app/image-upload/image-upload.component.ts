@@ -43,14 +43,6 @@ export class ImageUploadComponent implements OnInit {
 
     }
 
-
-  //   private uploadFiles() {
-  //     this.fileUpload.nativeElement.value = '';
-  //     this.imagesList.forEach(file => {
-  //       this.uploadFile(file);
-  //     });
-  // }
-
   onClick() {
     const fileUpload = this.fileUpload.nativeElement;
 
