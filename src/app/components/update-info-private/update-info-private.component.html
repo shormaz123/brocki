@@ -35,7 +35,6 @@
       <div class="inputItem">
         <div class="locationInput locationInput--margin">
           <select class="select-city" formControlName="canton">
-            <option value="" selected disabled>Canton</option>
             <option *ngFor="let canton of cantons" [value]="canton">
               {{ canton }}
             </option>
@@ -45,7 +44,6 @@
       <div class="inputItem">
         <div class="locationInput locationInput--margin">
           <select class="select-city" formControlName="city">
-            <option value="" selected disabled>City</option>
             <option *ngFor="let city of cities" [value]="city">{{
               city
             }}</option>
