@@ -16,6 +16,7 @@ export class ChangePasswordComponent implements OnInit {
 
   oldPassword: string;
   newPassword: string;
+  reTypePassword: string;
   userId: number;
 
   constructor(
@@ -45,7 +46,7 @@ export class ChangePasswordComponent implements OnInit {
       nzContent: "",
       nzOnOk: () => {
         (this.oldPassword = this.changePasswordForm.value.oldPassword),
-          (this.newPassword = this.changePasswordForm.value.reTypePassword),
+          (this.newPassword = this.changePasswordForm.value.newPassword),
           this.authService
             .newPassword(this.oldPassword, this.newPassword)
             .subscribe(
@@ -58,7 +59,8 @@ export class ChangePasswordComponent implements OnInit {
                 // });
               }
             );
-      },
+    }
     });
+
   }
 }
