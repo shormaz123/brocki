@@ -5,7 +5,7 @@ import { AuthConst } from "src/app/@core/consts/auth.const";
 import { UserService } from "src/app/@core/services/user.service";
 import { NzNotificationService, NzModalService } from "ng-zorro-antd";
 import { Router } from "@angular/router";
-import regions from "../../shared/regions.json";
+import cantons from "../../shared/cantons.json";
 
 @Component({
   selector: "app-update-info-bussines",
@@ -16,7 +16,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
   currentUser: User;
   newUser: User;
   companyImage;
-  regions = regions;
+  cantons = cantons;
 
   showUploadList = {
     showPreviewIcon: true,
@@ -27,10 +27,9 @@ export class UpdateInfoBussinesComponent implements OnInit {
   previewImage: string | undefined = "";
   previewVisible = false;
   uploadImageUrl =
-  "https://mybrocki-be.herokuapp.com/mybrocki/auth/image/upload";
+    "https://mybrocki-be.herokuapp.com/mybrocki/auth/image/upload";
 
-fileList: string[] = [];
-
+  fileList: string[] = [];
 
   listOfOption: Array<{ label: string; value: string }> = [];
   listOfTagOptions = [];
@@ -47,7 +46,6 @@ fileList: string[] = [];
       this.newUser = response;
     });
   }
-
 
   onSubmit() {
     const formData = new FormData();

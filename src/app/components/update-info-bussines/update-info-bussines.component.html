@@ -46,38 +46,33 @@
       <label>Pictures of company:</label>
       <div class="clearfix">
         <nz-upload
-        nzAction="https://jsonplaceholder.typicode.com/posts/"
-        nzListType="picture-card"
-        [nzShowButton]="fileList.length < 3"
-        [(nzFileList)]="fileList"
-      >
-        <i nz-icon nzType="plus"></i>
-        <div class="ant-upload-text">Upload</div>
-      </nz-upload>
-      <nz-modal
-        [nzVisible]="previewVisible"
-        [nzContent]="modalContent"
-        [nzFooter]="null"
-        (nzOnCancel)="previewVisible = false"
-      >
-        <ng-template #modalContent>
-          <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
-        </ng-template>
-      </nz-modal>
+          nzAction="https://jsonplaceholder.typicode.com/posts/"
+          nzListType="picture-card"
+          [nzShowButton]="fileList.length < 3"
+          [(nzFileList)]="fileList"
+        >
+          <i nz-icon nzType="plus"></i>
+          <div class="ant-upload-text">Upload</div>
+        </nz-upload>
+        <nz-modal
+          [nzVisible]="previewVisible"
+          [nzContent]="modalContent"
+          [nzFooter]="null"
+          (nzOnCancel)="previewVisible = false"
+        >
+          <ng-template #modalContent>
+            <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+          </ng-template>
+        </nz-modal>
       </div>
     </div>
     <div class="locationInput">
       <nz-form-control>
-        <nz-select nzShowSearch="true" >
+        <nz-select nzShowSearch="true">
+          <nz-option nzValue="" nzLabel="Region" selected disabled></nz-option>
           <nz-option
-            nzValue=""
-            nzLabel="Region"
-            selected
-            disabled
-          ></nz-option>
-          <nz-option
-            *ngFor="let region of regions"
-            nzLabel="{{ region }}"
+            *ngFor="let canton of cantons"
+            nzLabel="{{ canton }}"
             nzValue="newUser.location"
           ></nz-option>
         </nz-select>

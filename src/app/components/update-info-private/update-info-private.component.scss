@@ -5,6 +5,10 @@
   color: $darkgrey;
 }
 
+::placeholder {
+  color: $text-gray;
+}
+
 .loginContainer {
   background-color: #f6f6f6;
   height: auto;
@@ -14,7 +18,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-bottom: 50px;
 }
 .titleDiv {
   display: flex;
@@ -53,10 +56,12 @@
 
 input {
   height: 25px;
-  border: 1px solid darkgray;
-  border-radius: 15px;
+  border: 1px solid $border-gray;
+  border-radius: 25px;
   padding-left: 10px;
-  font-size: 20px;
+  font-size: 17px;
+  font-weight: 500;
+  color: $text-gray;
 }
 
 input:focus,
@@ -258,11 +263,13 @@ input[type="checkbox"]:checked:disabled + label:before {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 
   input {
     width: 440px;
-    height: 25px;
+    height: 40px;
+    padding: 15px 15px;
+    background-color: $white;
   }
 
   label {
@@ -328,7 +335,7 @@ input[type="checkbox"]:checked:disabled + label:before {
 
 .mainContainer {
   height: 100%;
-  width: 1000px;
+  width: 550px;
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
@@ -381,6 +388,16 @@ img {
   margin-bottom: 20px;
 }
 
+.select-city {
+  width: 438px;
+  padding: 5px 0 5px 10px;
+  border-radius: 25px;
+  font-size: 17px;
+  border: 1px solid $border-gray;
+  color: $text-gray;
+  height: 40px;
+}
+
 .clearfix {
   border: 1px solid;
   border-radius: 15px;
@@ -392,12 +409,18 @@ img {
 .locationInput {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  &--margin {
+    margin-left: 55px;
+  }
 
   nz-select {
     width: 445px;
-    margin-left: 50px;
     font-size: 20px;
+    color: $text-gray;
+  }
+
+  nz-option {
+    color: $border-gray;
   }
 }
 .background {
@@ -407,5 +430,5 @@ img {
 a {
   color: $red;
   font-weight: bold;
-  margin-left: 360px;
+  margin: -15px 0 0 360px;
 }

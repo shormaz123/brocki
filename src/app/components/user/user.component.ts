@@ -28,17 +28,22 @@ export class UserComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.guest = true;
-    this.activatedRoute.params.subscribe((params) => {
-      this.userId = params["id"];
-      console.log(this.userId);
-      this.userService.getUserById(this.userId).subscribe((user) => {
-        this.user = user;
-      });
-    },
-    error => {
-      console.log("user not found")
+    this.userService.getUser().subscribe((res) => {
+      this.path = res.bussinesType;
     });
+    this.guest = true;
+    this.activatedRoute.params.subscribe(
+      (params) => {
+        this.userId = params["id"];
+        console.log(this.userId);
+        this.userService.getUserById(this.userId).subscribe((user) => {
+          this.user = user;
+        });
+      },
+      (error) => {
+        console.log("user not found");
+      }
+    );
   }
 
   activeButton() {
@@ -70,7 +75,7 @@ export class UserComponent implements OnInit {
   }
 
   updateInfo() {
-    if (this.path === "private") {
+    if (this.path === "PRIVATE") {
       this.router.navigate(["/update-info-private"]);
     } else {
       this.router.navigate(["/update-info-bussines"]);
