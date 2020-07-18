@@ -19,6 +19,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
   cities = cities;
   userName: string;
   newUser: Array<User> = [];
+  userId: number;
 
   constructor(
     private notification: NzNotificationService,
@@ -38,6 +39,10 @@ export class UpdateInfoPrivateComponent implements OnInit {
       address: [""],
       city: [""],
       canton: [""],
+    });
+
+    this.userService.getUser().subscribe((res) => {
+      this.userId = res.id;
     });
 
     this.userService.getUser().subscribe((res) => {
@@ -104,7 +109,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
         this.userService.updateUser(updateUserInfo).subscribe(
           (user) => {
             this.notification.success("", "User updated");
-            this.router.navigate(["/user"]);
+            this.router.navigate([`/user/${this.userId}`]);
           },
           (error) => {
             this.modal.error({
