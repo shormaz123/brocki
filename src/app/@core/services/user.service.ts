@@ -3,8 +3,8 @@ import { environment } from "src/environments/environment";
 import { HttpBaseService } from "./http-base.service";
 import { User } from "src/app/shared/models/user.model";
 import { Observable } from "rxjs";
-import { UserFavorite } from '../../shared/models/userFavorite.model';
 import { HttpClient } from '@angular/common/http';
+import { UserFavorite } from 'src/app/shared/models/userFavorite.model';
 
 @Injectable({
   providedIn: "root",
@@ -52,15 +52,15 @@ export class UserService {
     return this.http.put<User>(`${this.baseUrl}/brocki/users/updateuser`, user);
   }
 
-  updateUserFavourites(userAddAdsRequest: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/mybrocki/auth/users/favourites`, userAddAdsRequest);
+  updateUserFavourites(adId: number, userId: number): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/mybrocki/auth/users/favourites`, {adId, userId});
   }
 
   getFavourites(id: number): Observable <any> {
     return this.http.get<any>(`${this.baseUrl}/mybrocki/auth/users/favourites/${id}`);
   }
 
-  deleteUserFavourite(userFavorite: any) {
-    return this.http.delete<UserFavorite>(`${this.baseUrl}/mybrocki/auth/users/favourites/delete`, userFavorite);
+  deleteUserFavourite(adId: number, userId: number) {
+    return this.http.delete<UserFavorite>(`${this.baseUrl}/mybrocki/auth/users/favourites/delete?adsId=${adId}&userId=${userId}`);
   }
 }

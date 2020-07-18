@@ -230,3 +230,8 @@ body
 p-carousel {
   width: 80%;
 }
+
+.ui-sidebar-left.ui-sidebar-active, .ui-sidebar-right.ui-sidebar-active {
+  transform: translateX(0);
+  overflow: scroll;
+}

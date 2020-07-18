@@ -4,6 +4,7 @@ export interface Ads {
     adssubgropuId: number,
     adsgroupId: number,
     description: string,
+    favourite: boolean;
     fixedPrice: boolean,
     freeDelivery: boolean,
     id: number,

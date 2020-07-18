@@ -36,7 +36,7 @@ export class AdsService {
     return this.http.post(`${this.baseUrl}/mybrocki/auth/ads/create`, ad);
   }
 
-  getAllAdsGroups(): Observable<adsGroup[]> {
+  getAllAdsGroups(): Observable<any> {
     return this.http.get(`${this.baseUrl}/mybrocki/auth/ads/group`);
   }
 

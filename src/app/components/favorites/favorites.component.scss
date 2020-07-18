@@ -1,0 +1,29 @@
+@import "../../../scss/variables";
+
+* {
+  color: $darkgrey;
+  outline: none;
+}
+
+.container {
+  padding-top: 50px;
+  width: 100vw;
+  background-color: $lightgrey;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 80vh;
+  height: auto;
+
+  .underContainer {
+    width: 1000px;
+    display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .title {
+    font-size: 24pt;
+  }
+  }
+}
+

@@ -1,4 +1,16 @@
 <app-header class="header"></app-header>
+<div class="mainContainer">
+<div class="sidebar">
+  <p-sidebar [(visible)]="displaySideNav" [baseZIndex]="10000">
+    <h1 style="text-align: center;">All categories</h1>
+    <p-accordion>
+      <p-accordionTab header="{{category.groupName}}" *ngFor="let category of categoriesGroup" (click)="selectDropDown(category.id)">
+         <div *ngFor="let subCategory of subCategories" class="accordationDiv">
+           <span class="accordationSpan" (click)="getAdsByParams(subCategory.subGroupName)">{{subCategory.subGroupName}}</span></div>
+      </p-accordionTab>
+  </p-accordion>
+</p-sidebar>
+</div>
 <div class="container">
   <div class="navBar">
     <div class="search">
@@ -9,21 +21,23 @@
           <i class="fa fa-search"></i>
         </button>
       </div>
-      <button class="favorite">
-        Favorite<img src="../../../assets/images/favorite-24px.svg" />
+      <button class="favorite" routerLink="/favorite">
+        Favorite <span *ngIf="numberOfFavorites">({{numberOfFavorites}})</span>
       </button>
     </div>
     <div class="navigation">
       <div class="category">
         <button style="height: 100%; background: none; border: none;">
-          <div class="tab-icon">
+          <div class="tab-icon" (click)="displaySideNav = true">
             <img
               class="icon-not-active"
               src="../../../assets/images/navigation/Listofcategories.png"
+
             />
             <img
               class="icon-active"
               src="../../../assets/images/navigation/red/Listofcategories.png"
+              (click)="hideSide()"
             />
           </div>
         </button>
@@ -48,7 +62,7 @@
       </p-carousel>
     </div>
   </div>
-  <app-ad-single-carousel [ads]="ads"></app-ad-single-carousel>
+  <app-ad-single-carousel [ads]="ads" [userId]="userId"></app-ad-single-carousel>
   <div class="advertise">
     <img src="../../../assets/images/brocki-adv-image.png" />
   </div>
@@ -190,4 +204,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

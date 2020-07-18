@@ -22,16 +22,16 @@
           </div>
 
         <div style="width: 100%;height: 10%;display: flex;">
-          <button mat-icon-button (click)="toggleSelected(ad)">
+
+          <button mat-icon-button (click)="toggleSelected(ad.id)">
 
             <mat-icon
               *ngIf="selected"
               aria-label="Example icon-button with a heart icon">
               favorite
             </mat-icon>
-
             <mat-icon
-              *ngIf="!selected"
+            *ngIf="!selected"
               aria-label="Example icon-button with a heart icon">
               favorite_border
             </mat-icon>

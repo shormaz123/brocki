@@ -48,6 +48,7 @@ export class HeaderComponent implements OnInit {
         this.accountName = user.userName;
         this.createAd = true;
         console.log(user);
+        localStorage.setItem(AuthConst.userId, user.id.toString());
       }
     },
     error => console.log("User not logged in")

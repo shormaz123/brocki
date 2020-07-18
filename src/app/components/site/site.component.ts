@@ -9,6 +9,8 @@ import { MatCarousel, MatCarouselComponent } from "@ngmodule/material-carousel";
 import { AdsService } from "src/app/@core/services/ads.service";
 import { Ads } from "src/app/shared/models/ads.model";
 import { AuthConst } from "src/app/@core/consts/auth.const";
+import { UserService } from 'src/app/@core/services/user.service';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: "app-site",
@@ -24,6 +26,17 @@ export class SiteComponent implements OnInit {
   public ads: Ads[] = [];
   public randomAds: Ads[];
   public login: string;
+  isLoggedIn: boolean;
+  user?: User;
+  public favoriteAds;
+  numberOfFavorites: number;
+  token;
+  userId;
+  displaySideNav: boolean;
+  categoriesGroup:any;
+  subCategories:any;
+  categortGroupId: number;
+  adssubgroup:string;
 
   responsiveOptions = [
     {
@@ -196,47 +209,11 @@ export class SiteComponent implements OnInit {
     },
   ];
 
-  cards = [
-    {
-      title: "Smart Sizzling BBQ",
-      descriptiopn:
-        "This is description about product of this seller yipi yo yipi yo, This is description about product of this seller yipi yo yipi yo, This is description about product of this seller yipi yo yipi yo",
-      price: 49000.0,
-      date: "6 days ago",
-    },
-    {
-      title: "Smart Sizzling BBQ 2",
-      descriptiopn: "",
-      price: 49.0,
-      date: "6 days ago",
-    },
-    {
-      title: "Smart Sizzling BBQ 3",
-      descriptiopn: "",
-      price: 49.0,
-      date: "6 days ago",
-    },
-    {
-      title: "Smart Sizzling BBQ 4",
-      descriptiopn: "",
-      price: 49.0,
-      date: "6 days ago",
-    },
-    {
-      title: "Smart Sizzling BBQ 5",
-      descriptiopn: "",
-      price: 49.0,
-      date: "6 days ago",
-    },
-    {
-      title: "Smart Sizzling BBQ 6",
-      descriptiopn: "",
-      price: 49.0,
-      date: "6 days ago",
-    },
-  ];
 
-  constructor(private cdr: ChangeDetectorRef, private adsService: AdsService) {}
+  constructor(private cdr: ChangeDetectorRef, private adsService: AdsService, private userService: UserService) {
+    this.token =localStorage.getItem(AuthConst.token)
+
+  }
 
   ngOnInit() {
     this.selectCategory(1);
@@ -245,6 +222,23 @@ export class SiteComponent implements OnInit {
       this.randomAds = this.shuffle(response);
       console.log(response);
     });
+    this.adsService.getAllAdsGroups().subscribe( x => {
+      this.categoriesGroup = x
+      console.log(this.categoriesGroup)
+
+    })
+
+    if (this.token) {
+      this.userService.getUser().subscribe( response => {
+        this.userId = response.id
+        this.userService.getFavourites(response.id).subscribe( x => {
+          this.favoriteAds = x
+          this.numberOfFavorites = x.length
+          console.log('Favorite ads number', this.numberOfFavorites)
+        },
+        )
+      })
+      }
   }
 
   deselectAll() {
@@ -282,5 +276,29 @@ export class SiteComponent implements OnInit {
     }
 
     return array;
+  }
+
+  displaySide() {
+    this.displaySideNav = true;
+  }
+
+  hideSide() {
+    this.displaySideNav = false;
+  }
+
+  selectDropDown(id:number) {
+    this.adsService.getAllAdsSubGroup(id).subscribe( response => {
+      this.subCategories = response
+      console.log(this.subCategories)
+    })
+  }
+
+  getAdsByParams(adssubgroup: any) {
+    this.adssubgroup = adssubgroup
+    this.adsService.getAdsByParam(this.adssubgroup).subscribe( response => {
+      this.ads = response
+      this.randomAds = this.shuffle(response)
+      console.log(response)
+    })
   }
 }

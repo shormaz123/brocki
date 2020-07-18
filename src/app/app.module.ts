@@ -63,6 +63,9 @@ import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { HelpersService } from './@core/services/helpers.service';
 import { AuthGuardService } from './@core/services/authGuard.service';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import {SidebarModule} from 'primeng/sidebar';
+import {AccordionModule} from 'primeng/accordion';
 
 registerLocaleData(en);
 
@@ -97,6 +100,7 @@ registerLocaleData(en);
     AdSingleCarouselComponent,
     AdComponent,
     ImageUploadComponent,
+    FavoritesComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,9 +125,11 @@ registerLocaleData(en);
     NzCardModule,
     CardModule,
     NgxGalleryModule,
-    MatCardModule,
+  MatCardModule,
     MatIconModule,
     MatButtonModule,
+    SidebarModule,
+    AccordionModule
   ],
   providers: [
     HttpBaseService,

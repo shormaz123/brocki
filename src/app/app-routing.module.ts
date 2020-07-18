@@ -16,6 +16,7 @@ import { SiteComponent } from './components/site/site.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component'
 import { AdComponent } from './components/ad/ad.component';
 import { AuthGuardService } from './@core/services/authGuard.service';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 
 const routes: Routes = [{
@@ -54,6 +55,10 @@ const routes: Routes = [{
     path:'create-ad',
     component: CreateAdComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path:'favorite',
+    component: FavoritesComponent,
   },
   {
     path:'update-info-private',
