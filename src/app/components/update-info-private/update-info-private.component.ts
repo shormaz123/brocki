@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { User } from "src/app/shared/models/user.model";
 import { UserService } from "src/app/@core/services/user.service";
 import { NzModalService } from "ng-zorro-antd/modal";
 import { NzNotificationService } from "ng-zorro-antd";
 import { Router } from "@angular/router";
-import regions from "../../shared/regions.json";
+import cantons from "../../shared/cantons.json";
+import cities from "../../shared/cities.json";
 
 @Component({
   selector: "app-update-info-private",
@@ -14,7 +15,8 @@ import regions from "../../shared/regions.json";
 })
 export class UpdateInfoPrivateComponent implements OnInit {
   itemForm: FormGroup;
-  regions = regions;
+  cantons = cantons;
+  cities = cities;
   userName: string;
   newUser: Array<User> = [];
 
@@ -30,12 +32,12 @@ export class UpdateInfoPrivateComponent implements OnInit {
     this.itemForm = this.fb.group({
       name: [""],
       surname: [""],
-      email: ["", [Validators.required, Validators.email]],
+      email: [{ value: "", disabled: true }],
       phone: [""],
       mobile: [""],
       address: [""],
       city: [""],
-      region: [""],
+      canton: [""],
     });
 
     this.userService.getUser().subscribe((res) => {
@@ -71,7 +73,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
         mobile: user.mobile,
         address: user.address,
         city: user.city,
-        region: user.region,
+        canton: user.region,
       });
     });
   }
@@ -89,7 +91,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
         updateUserInfo.mobile = this.itemForm.value.mobile;
         updateUserInfo.address = this.itemForm.value.address;
         updateUserInfo.city = this.itemForm.value.city;
-        updateUserInfo.region = this.itemForm.value.region;
+        updateUserInfo.region = this.itemForm.value.canton;
         updateUserInfo.aboutUs = "";
         updateUserInfo.location = "";
         updateUserInfo.company = "";
