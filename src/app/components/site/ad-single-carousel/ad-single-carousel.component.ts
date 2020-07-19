@@ -6,24 +6,25 @@ import {
   AfterViewInit,
   OnChanges,
   SimpleChanges,
-} from "@angular/core";
-import { NguCarouselConfig } from "@ngu/carousel";
-import { NzCarouselBaseStrategy, NzCarouselComponent } from "ng-zorro-antd";
-import { AdsService } from "src/app/@core/services/ads.service";
-import { Ads } from "src/app/shared/models/ads.model";
+} from '@angular/core';
+import { NguCarouselConfig } from '@ngu/carousel';
+import { NzCarouselBaseStrategy, NzCarouselComponent } from 'ng-zorro-antd';
+import { AdsService } from 'src/app/@core/services/ads.service';
+import { Ads } from 'src/app/shared/models/ads.model';
 import { UserService } from 'src/app/@core/services/user.service';
 import { AuthConst } from 'src/app/@core/consts/auth.const';
+import { HelpersService } from 'src/app/@core/services/helpers.service';
+import { UserAddAdsRequest } from 'src/app/shared/models/useraddAdsRequest.model';
 
 @Component({
-  selector: "app-ad-single-carousel",
-  templateUrl: "./ad-single-carousel.component.html",
-  styleUrls: ["./ad-single-carousel.component.scss"],
+  selector: 'app-ad-single-carousel',
+  templateUrl: './ad-single-carousel.component.html',
+  styleUrls: ['./ad-single-carousel.component.scss'],
 })
-export class AdSingleCarouselComponent implements OnInit, OnChanges {
-  private _response: Ads[];
+export class AdSingleCarouselComponent implements OnInit {
 
   favourite: boolean;
-  newArray:Ads[] = [];
+  newArray: Ads[] = [];
 
   @Input() userId;
   @Input() ads;
@@ -34,52 +35,51 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges {
   receivedAds = this.ads;
   equalAds;
   numberOfFavorites?: number;
+  userRequest: UserAddAdsRequest;
 
-  constructor(private adsService: AdsService, private userService: UserService) {}
+  constructor(private adsService: AdsService, private userService: UserService, private helpersService: HelpersService) {}
 
   ngOnInit() {
 
     if (this.userId) {
       this.userService.getUser().subscribe( user => {
-        this.userId = user.id
+        this.userId = user.id;
 
       });
     }
-    console.log(this.userId)
-  }
-
-
-
-  ngOnChanges(changes: SimpleChanges) {
+    console.log(this.userId);
   }
 
   toggleSelected(adId: number) {
-  this.selected = !this.selected;
+    this.userRequest = {
+      adsId: adId,
+      userId: this.userId
+    };
 
-  if (this.selected) {
-    this.userService.updateUserFavourites(adId, this.userId).subscribe(
-      x => {
-        console.log("add update to favorite")
+    if (!this.selected) {
+    this.userService.updateUserFavourites(this.userRequest).subscribe(
+      _x => {
+        console.log('add update to favorite', _x);
       }
     ),
-      error => {
-        console.log("not to favorite")
-    }
+      // tslint:disable-next-line: no-unused-expression
+      _error => {
+        console.log('not to favorite');
+    };
 
-  }
-
-  if (!this.selected) {
+  } else {
     this.userService.deleteUserFavourite(adId, this.userId).subscribe(
-      x => {
-        console.log("delete update to favorite")
+      _x => {
+        console.log('delete update to favorite', _x);
       }
     ),
-      error => {
-        console.log("not delete to favorite")
-    }
+      _error => {
+        console.log('not delete to favorite');
+    };
   }
-
-  console.log(adId)
+    this.helpersService.$numOfFavs.next();
+    console.log(adId);
+    this.selected = !this.selected;
   }
 
   next() {
