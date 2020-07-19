@@ -55,7 +55,7 @@
       </div>
 
       <div class="inputItem">
-        <button class="signInButton" type="submit">
+        <button class="signInButton" type="submit" [disabled]="!itemForm.dirty">
           Save changes
         </button>
       </div>
