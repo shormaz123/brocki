@@ -23,17 +23,13 @@ import { UserAddAdsRequest } from 'src/app/shared/models/useraddAdsRequest.model
 })
 export class AdSingleCarouselComponent implements OnInit {
 
-  favourite: boolean;
-  newArray: Ads[] = [];
-
   @Input() userId;
-  @Input() ads;
+  @Input() favAds: Ads;
   @ViewChild(NzCarouselComponent, { static: false })
   myCarousel: NzCarouselComponent;
   public favoriteAds;
   selected: boolean;
-  receivedAds = this.ads;
-  equalAds;
+  receivedAds = this.favAds;
   numberOfFavorites?: number;
   userRequest: UserAddAdsRequest;
 
@@ -44,9 +40,9 @@ export class AdSingleCarouselComponent implements OnInit {
     if (this.userId) {
       this.userService.getUser().subscribe( user => {
         this.userId = user.id;
-
       });
     }
+    console.log('favAds', this.favAds)
     console.log(this.userId);
   }
 

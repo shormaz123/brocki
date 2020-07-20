@@ -41,6 +41,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   subCategories: any;
   categortGroupId: number;
   adssubgroup: string;
+  favAds;
 
   private numberOfFavs: Subscription;
 
@@ -228,7 +229,6 @@ export class SiteComponent implements OnInit, OnDestroy {
     this.adsService.getAllAdsGroups().subscribe( x => {
       this.categoriesGroup = x;
       console.log(this.categoriesGroup);
-
     });
     this.token = localStorage.getItem(AuthConst.token);
     this.selectCategory(1);
@@ -255,7 +255,11 @@ export class SiteComponent implements OnInit, OnDestroy {
         this.favoriteAds = x;
         this.numberOfFavorites = x.length;
         console.log('Favorite ads number', this.numberOfFavorites);
-      },
+        console.log(this.favoriteAds)
+        // Replace objects between two arrays.
+        this.favAds = this.ads.map(obj => this.favoriteAds.find(o => o.id === obj.id) || obj);
+        console.log(this.favAds)
+        }
       );
     });
   }
