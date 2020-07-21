@@ -4,7 +4,7 @@ import { map } from "rxjs/operators";
 import { UserService } from "src/app/@core/services/user.service";
 import { AuthService } from "src/app/@core/services/auth.service";
 import { NzNotificationService, NzModalService } from "ng-zorro-antd";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-change-password",
@@ -34,9 +34,9 @@ export class ChangePasswordComponent implements OnInit {
     });
 
     this.changePasswordForm = this.fb.group({
-      oldPassword: ["", []],
-      newPassword: ["", []],
-      reTypePassword: ["", []],
+      oldPassword: ["", [Validators.required]],
+      newPassword: ["", [Validators.required]],
+      reTypePassword: ["", [Validators.required]],
     });
   }
 
@@ -60,7 +60,6 @@ export class ChangePasswordComponent implements OnInit {
               }
             );
       }
-    });
-
+      });
   }
 }

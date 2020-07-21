@@ -1,11 +1,9 @@
 @import "../../../scss/variables";
 
-
 .container {
-
   background-color: $lightgrey;
   width: 100vw;
-  height: 110vh;
+  padding: 60px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,12 +18,22 @@
   flex-direction: column;
   align-items: center;
   font-size: 16pt;
+  padding: 0 0 20px 0;
 }
 
 .amount {
-color: $red;
+  color: $red;
 }
 
 .list {
   color: $red;
+}
+
+.text {
+  color: $text-gray;
+}
+
+.title {
+  font-size: 24pt;
+  padding-bottom: 20px;
 }
