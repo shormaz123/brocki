@@ -46,7 +46,7 @@
                     <ng-template let-category pTemplate="item">
                         <div class="categoryItem" style="cursor: pointer;" (click)="selectCategory(category.id)">
                             <img src="{{ category.imageTo }}" />
-                            <span>{{ category.title }}</span>
+                            <span style="text-align: center;">{{ category.title }}</span>
                         </div>
                     </ng-template>
                 </p-carousel>
