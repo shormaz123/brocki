@@ -15,6 +15,7 @@ import { UserService } from 'src/app/@core/services/user.service';
 import { User } from 'src/app/shared/models/user.model';
 import { HelpersService } from 'src/app/@core/services/helpers.service';
 import { Subscription } from 'rxjs';
+import { AdsParam } from 'src/app/shared/models/adParams.model';
 
 @Component({
   selector: 'app-site',
@@ -40,8 +41,8 @@ export class SiteComponent implements OnInit, OnDestroy {
   categoriesGroup: any;
   subCategories: any;
   categortGroupId: number;
-  adssubgroup: string;
   favAds;
+  adParams: AdsParam;
 
   private numberOfFavs: Subscription;
 
@@ -236,13 +237,17 @@ export class SiteComponent implements OnInit, OnDestroy {
       this.ads = response;
       this.randomAds = this.shuffle(response);
       console.log(response);
+      if (this.token) {
+        // tslint:disable-next-line: no-unused-expression
+        this.getUserAndFavAd();
+        } else {
+          this.favAds = this.ads;
+          console.log('allads', this.ads)
+        }
     });
 
 
-    if (this.token) {
-      // tslint:disable-next-line: no-unused-expression
-      this.getUserAndFavAd();
-      }
+
     this.numberOfFavs = this.helpersService.$numOfFavs.subscribe( response => {
       this.getUserAndFavAd();
       });
@@ -252,14 +257,16 @@ export class SiteComponent implements OnInit, OnDestroy {
     this.userService.getUser().subscribe( response => {
       this.userId = response.id;
       this.userService.getFavourites(response.id).subscribe( x => {
-        this.favoriteAds = x;
-        this.numberOfFavorites = x.length;
-        console.log('Favorite ads number', this.numberOfFavorites);
-        console.log(this.favoriteAds)
-        // Replace objects between two arrays.
-        this.favAds = this.ads.map(obj => this.favoriteAds.find(o => o.id === obj.id) || obj);
-        console.log(this.favAds)
-        }
+        if (this.token) {
+          this.favoriteAds = x;
+          this.numberOfFavorites = x.length;
+          console.log('Favorite ads number', this.numberOfFavorites);
+
+          // Replace objects between two arrays.
+          this.favAds = this.ads.map(obj => this.favoriteAds.find(o => o.id === obj.id) || obj);
+          console.log(this.favAds);
+        };
+      }
       );
     });
   }
@@ -321,9 +328,11 @@ export class SiteComponent implements OnInit, OnDestroy {
     });
   }
 
-  getAdsByParams(adssubgroup: any) {
-    this.adssubgroup = adssubgroup;
-    this.adsService.getAdsByParam(this.adssubgroup).subscribe( response => {
+  getAdsByParams(adssubgroup: string ) {
+    this.adParams = {
+      adssubgroup: adssubgroup
+    }
+    this.adsService.getAdsByParam(this.adParams).subscribe( response => {
       this.ads = response;
       this.randomAds = this.shuffle(response);
       console.log(response);

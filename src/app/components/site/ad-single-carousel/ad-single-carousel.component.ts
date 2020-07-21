@@ -23,6 +23,7 @@ import { UserAddAdsRequest } from 'src/app/shared/models/useraddAdsRequest.model
 })
 export class AdSingleCarouselComponent implements OnInit {
 
+
   @Input() userId;
   @Input() favAds: Ads;
   @ViewChild(NzCarouselComponent, { static: false })
