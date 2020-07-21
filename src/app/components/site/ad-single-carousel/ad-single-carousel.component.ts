@@ -33,11 +33,12 @@ export class AdSingleCarouselComponent implements OnInit {
   receivedAds = this.favAds;
   numberOfFavorites?: number;
   userRequest: UserAddAdsRequest;
+  token;
 
   constructor(private adsService: AdsService, private userService: UserService, private helpersService: HelpersService) {}
 
   ngOnInit() {
-
+    this.token = localStorage.getItem(AuthConst.token);
     if (this.userId) {
       this.userService.getUser().subscribe( user => {
         this.userId = user.id;

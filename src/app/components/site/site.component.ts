@@ -219,15 +219,15 @@ export class SiteComponent implements OnInit, OnDestroy {
 
 
   constructor(private cdr: ChangeDetectorRef,
-              private adsService: AdsService,
-              private userService: UserService,
-              private helpersService: HelpersService) {
+    private adsService: AdsService,
+    private userService: UserService,
+    private helpersService: HelpersService) {
 
 
   }
 
   ngOnInit() {
-    this.adsService.getAllAdsGroups().subscribe( x => {
+    this.adsService.getAllAdsGroups().subscribe(x => {
       this.categoriesGroup = x;
       console.log(this.categoriesGroup);
     });
@@ -240,23 +240,23 @@ export class SiteComponent implements OnInit, OnDestroy {
       if (this.token) {
         // tslint:disable-next-line: no-unused-expression
         this.getUserAndFavAd();
-        } else {
-          this.favAds = this.ads;
-          console.log('allads', this.ads)
-        }
+      } else {
+        this.favAds = this.ads;
+        console.log('allads', this.ads)
+      }
     });
 
 
 
-    this.numberOfFavs = this.helpersService.$numOfFavs.subscribe( response => {
+    this.numberOfFavs = this.helpersService.$numOfFavs.subscribe(response => {
       this.getUserAndFavAd();
-      });
+    });
   }
 
   getUserAndFavAd() {
-    this.userService.getUser().subscribe( response => {
+    this.userService.getUser().subscribe(response => {
       this.userId = response.id;
-      this.userService.getFavourites(response.id).subscribe( x => {
+      this.userService.getFavourites(response.id).subscribe(x => {
         if (this.token) {
           this.favoriteAds = x;
           this.numberOfFavorites = x.length;
@@ -322,20 +322,18 @@ export class SiteComponent implements OnInit, OnDestroy {
   }
 
   selectDropDown(id: number) {
-    this.adsService.getAllAdsSubGroup(id).subscribe( response => {
+    this.adsService.getAllAdsSubGroup(id).subscribe(response => {
       this.subCategories = response;
       console.log(this.subCategories);
     });
   }
 
-  getAdsByParams(adssubgroup: string ) {
-    this.adParams = {
-      adssubgroup: adssubgroup
-    }
-    this.adsService.getAdsByParam(this.adParams).subscribe( response => {
+  getAdsByParams(adssubgroup: number) {
+    this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe(response => {
       this.ads = response;
       this.randomAds = this.shuffle(response);
       console.log(response);
+      this.getUserAndFavAd();
     });
   }
 }

@@ -6,7 +6,7 @@
             <p-accordion>
                 <p-accordionTab header="{{category.groupName}}" *ngFor="let category of categoriesGroup" (click)="selectDropDown(category.id)">
                     <div *ngFor="let subCategory of subCategories" class="accordationDiv">
-                        <span class="accordationSpan" (click)="getAdsByParams(subCategory.subGroupName)">{{subCategory.subGroupName}}</span></div>
+                        <span class="accordationSpan" (click)="getAdsByParams(subCategory.id)">{{subCategory.subGroupName}}</span></div>
                 </p-accordionTab>
             </p-accordion>
         </p-sidebar>

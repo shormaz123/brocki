@@ -23,7 +23,7 @@
 
                                 <div style="width: 100%;height: 10%;display: flex;">
 
-                                    <button mat-icon-button (click)="toggleSelected(ad.id)">
+                                    <button mat-icon-button (click)="toggleSelected(ad.id)" *ngIf="token">
 
             <mat-icon
               *ngIf="ad.favourite; else elseBlock"
