@@ -66,6 +66,7 @@ import { AuthGuardService } from './@core/services/authGuard.service';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import {SidebarModule} from 'primeng/sidebar';
 import {AccordionModule} from 'primeng/accordion';
+import {TooltipModule} from 'primeng/tooltip';
 
 registerLocaleData(en);
 
@@ -129,7 +130,8 @@ registerLocaleData(en);
     MatIconModule,
     MatButtonModule,
     SidebarModule,
-    AccordionModule
+    AccordionModule,
+    TooltipModule
   ],
   providers: [
     HttpBaseService,
