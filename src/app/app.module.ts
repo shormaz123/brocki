@@ -67,6 +67,7 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import {SidebarModule} from 'primeng/sidebar';
 import {AccordionModule} from 'primeng/accordion';
 import {TooltipModule} from 'primeng/tooltip';
+import {MatMenuModule} from '@angular/material/menu';
 
 registerLocaleData(en);
 
@@ -131,7 +132,9 @@ registerLocaleData(en);
     MatButtonModule,
     SidebarModule,
     AccordionModule,
-    TooltipModule
+    TooltipModule,
+    NzDropDownModule,
+    MatMenuModule
   ],
   providers: [
     HttpBaseService,
