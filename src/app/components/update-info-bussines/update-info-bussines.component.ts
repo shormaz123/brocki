@@ -1,11 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { UploadFile, UploadChangeParam } from "ng-zorro-antd/upload";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { User } from "src/app/shared/models/user.model";
-import { AuthConst } from "src/app/@core/consts/auth.const";
 import { UserService } from "src/app/@core/services/user.service";
+import { AdsService } from "../../@core/services/ads.service";
 import { NzNotificationService, NzModalService } from "ng-zorro-antd";
 import { Router } from "@angular/router";
 import cantons from "../../shared/cantons.json";
+import cities from "../../shared/cities.json";
+import { getMatIconFailedToSanitizeLiteralError } from "@angular/material/icon";
 
 @Component({
   selector: "app-update-info-bussines",
@@ -13,61 +15,154 @@ import cantons from "../../shared/cantons.json";
   styleUrls: ["./update-info-bussines.component.scss"],
 })
 export class UpdateInfoBussinesComponent implements OnInit {
-  currentUser: User;
-  newUser: User;
-  companyImage;
+  formData = new FormData();
+  businessForm: FormGroup;
+  businessUser: Array<User> = [];
+  uploadPhoto: Array<any> = [];
+  photos: Array<string> = [];
+  companyPhotos: Array<string> = [];
+  res: Array<string> = [];
+  userId: number;
+  userName: string;
+  bussinesType: string;
+  roleName: string;
   cantons = cantons;
-
-  showUploadList = {
-    showPreviewIcon: true,
-    showRemoveIcon: true,
-    hidePreviewIconInNonImage: true,
-  };
-
-  previewImage: string | undefined = "";
-  previewVisible = false;
-  uploadImageUrl =
-    "https://mybrocki-be.herokuapp.com/mybrocki/auth/image/upload";
-
-  fileList: string[] = [];
-
-  listOfOption: Array<{ label: string; value: string }> = [];
-  listOfTagOptions = [];
+  cities = cities;
 
   constructor(
     private notification: NzNotificationService,
     private userService: UserService,
     private modal: NzModalService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder,
+    private adsService: AdsService
   ) {}
 
   ngOnInit() {
-    this.userService.getUser().subscribe((response) => {
-      this.newUser = response;
+    this.businessForm = this.fb.group({
+      company: [""],
+      name: [""],
+      surname: [""],
+      email: [{ value: "", disabled: true }],
+      website: [""],
+      phone: [""],
+      mobile: [""],
+      address: [""],
+      canton: [""],
+      city: [""],
+      aboutUs: [""],
+    });
+
+    this.userService.getUser().subscribe((res) => {
+      console.log(res);
+      const user = new User();
+      user.aboutUs = res.aboutUs;
+      user.address = res.address;
+      this.bussinesType = res.bussinesType;
+      user.bussinesType = res.bussinesType;
+      user.city = res.city;
+      user.company = res.company;
+      user.companyImage = res.companyImage;
+      this.companyPhotos = res.companyImage;
+      user.credit = res.credit;
+      user.dateOfBirth = res.dateOfBirth;
+      user.email = res.email;
+      user.id = res.id;
+      user.location = res.location;
+      user.mobile = res.mobile;
+      user.name = res.name;
+      user.phone = res.phone;
+      user.region = res.region;
+      user.roleName = res.roleName;
+      this.roleName = res.roleName;
+      user.surname = res.surname;
+      user.userName = res.userName;
+      this.userName = res.userName;
+      user.visible = res.visible;
+      user.website = res.website;
+      this.businessUser.push(user);
+
+      this.businessForm.patchValue({
+        company: user.company,
+        name: user.name,
+        surname: user.surname,
+        email: user.email,
+        website: user.website,
+        phone: user.phone,
+        mobile: user.mobile,
+        address: user.address,
+        city: user.city,
+        canton: user.region,
+        aboutUs: user.aboutUs,
+      });
     });
   }
 
-  onSubmit() {
-    const formData = new FormData();
+  uploadImage(event: any): void {
+    this.uploadPhoto = [];
+    if (event.target.files || event.target.files.length) {
+      this.formData = new FormData();
+      this.uploadPhoto.push(...event.target.files);
+    }
+    if (this.uploadPhoto.length > 0) {
+      for (const picture of this.uploadPhoto) {
+        this.formData.append("file", picture);
+      }
+      this.adsService.uploadImageInStorage(this.formData).subscribe((res) => {
+        this.res = res;
+        this.photos.push(...this.res);
+        console.log(this.photos);
+      });
+    }
+  }
 
+  deleteStoragedPhoto(index: number): void {
+    console.log(index);
+  }
+
+  deletePhoto(index: number): void {
+    console.log(index);
+  }
+
+  onSubmit() {
     this.modal.confirm({
       nzTitle: "Are you sure you want to change your info?",
       nzContent: "",
-      nzOnOk: () =>
-        this.userService.updateUser(this.newUser).subscribe(
+      nzOnOk: () => {
+        const updateBusiness = new User();
+        updateBusiness.name = this.businessForm.value.name;
+        updateBusiness.surname = this.businessForm.value.surname;
+        updateBusiness.email = this.businessForm.value.email;
+        updateBusiness.phone = this.businessForm.value.phone;
+        updateBusiness.mobile = this.businessForm.value.mobile;
+        updateBusiness.address = this.businessForm.value.address;
+        updateBusiness.city = this.businessForm.value.city;
+        updateBusiness.region = this.businessForm.value.canton;
+        updateBusiness.aboutUs = this.businessForm.value.aboutUs;
+        updateBusiness.location = "";
+        updateBusiness.company = this.businessForm.value.company;
+        updateBusiness.companyImage = this.photos.concat(this.companyPhotos);
+        updateBusiness.bussinesType = this.bussinesType;
+        updateBusiness.roleName = this.roleName;
+        updateBusiness.userName = this.userName;
+        updateBusiness.visible = true;
+        updateBusiness.website = this.businessForm.value.website;
+        this.userService.updateUser(updateBusiness).subscribe(
           (user) => {
-            console.log(user);
             this.notification.success("", "User updated");
-            this.router.navigate(["/site"]);
-            console.log("User updated");
+            this.router.navigate([`/user/${this.userId}`]);
           },
           (error) => {
             this.modal.error({
               nzTitle: "Ops, something went wrong!",
             });
           }
-        ),
+        );
+      },
     });
-    console.log(this.newUser);
+  }
+
+  goTo(route: string): void {
+    this.router.navigate([route]);
   }
 }

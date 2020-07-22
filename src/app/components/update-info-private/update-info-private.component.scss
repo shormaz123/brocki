@@ -405,6 +405,13 @@ img {
   border: 1px solid $border-gray;
   color: $text-gray;
   height: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  cursor: pointer;
+  background-image: url("../../../assets/images/update-info-bussines/arrow menu.png");
+  background-repeat: no-repeat;
+  background-position: 398px 7px;
 }
 
 .clearfix {

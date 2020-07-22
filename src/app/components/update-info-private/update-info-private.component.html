@@ -6,7 +6,7 @@
         >Update <span style="color: #d62b1f;">info</span></span
       >
     </div>
-    <form (ngSubmit)="onSubmit()" [formGroup]="itemForm">
+    <form (ngSubmit)="onSubmit()" [formGroup]="privateForm">
       <div class="inputItem">
         <img src="../../../assets/images/update-info-bussines/name.png" />
         <input placeholder="Name" formControlName="name" />
@@ -55,7 +55,11 @@
       </div>
 
       <div class="inputItem">
-        <button class="signInButton" type="submit" [disabled]="!itemForm.dirty">
+        <button
+          class="signInButton"
+          type="submit"
+          [disabled]="!privateForm.dirty"
+        >
           Save changes
         </button>
       </div>

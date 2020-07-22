@@ -17,6 +17,7 @@ import { UserService } from "./@core/services/user.service";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { InlineSVGModule } from "ng-inline-svg";
 
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
@@ -61,11 +62,11 @@ import { NgxGalleryModule } from "ngx-gallery";
 import { ImageUploadComponent } from "./image-upload/image-upload.component";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
-import { HelpersService } from './@core/services/helpers.service';
-import { AuthGuardService } from './@core/services/authGuard.service';
-import { FavoritesComponent } from './components/favorites/favorites.component';
-import {SidebarModule} from 'primeng/sidebar';
-import {AccordionModule} from 'primeng/accordion';
+import { HelpersService } from "./@core/services/helpers.service";
+import { AuthGuardService } from "./@core/services/authGuard.service";
+import { FavoritesComponent } from "./components/favorites/favorites.component";
+import { SidebarModule } from "primeng/sidebar";
+import { AccordionModule } from "primeng/accordion";
 
 registerLocaleData(en);
 
@@ -125,11 +126,12 @@ registerLocaleData(en);
     NzCardModule,
     CardModule,
     NgxGalleryModule,
-  MatCardModule,
+    MatCardModule,
     MatIconModule,
     MatButtonModule,
     SidebarModule,
-    AccordionModule
+    AccordionModule,
+    InlineSVGModule.forRoot(),
   ],
   providers: [
     HttpBaseService,

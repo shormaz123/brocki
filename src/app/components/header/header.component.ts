@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
           this.accountName = user.userName;
           this.createAd = true;
           this.userId = user.id;
-          console.log(user);
+          // console.log(user);
           localStorage.setItem(AuthConst.userId, user.id.toString());
         }
       },

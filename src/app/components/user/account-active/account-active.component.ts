@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { AdsService } from "../../../@core/services/ads.service";
+import { UserService } from "../../../@core/services/user.service";
 
 @Component({
   selector: "app-account-active",
@@ -6,6 +8,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./account-active.component.scss"],
 })
 export class AccountActiveComponent implements OnInit {
+  userId: number;
   ads = [
     {
       title: "Toyota",
@@ -22,7 +25,17 @@ export class AccountActiveComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(
+    private userService: UserService,
+    private adService: AdsService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService.getUser().subscribe((res) => {
+      this.userId = res.id;
+    });
+    this.adService.getAllByUserId(this.userId).subscribe((res) => {
+      console.log(res);
+    });
+  }
 }

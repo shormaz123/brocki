@@ -115,11 +115,8 @@ export class CreateAdComponent implements OnInit {
     this.newAd.adsSubGroupId = null;
 
     this.adsService.getAllAdsGroups().subscribe((x) => {
-      // this.adsGroup = x;
-      // console.log(this.adsGroup);
-      // this.getSubGroup(1);
+      this.adsGroup = x;
     });
-    this.getSubGroup(1);
   }
 
   onChange(deviceValue) {
@@ -129,7 +126,8 @@ export class CreateAdComponent implements OnInit {
 
   getSubGroup(id: number) {
     this.adsService.getAllAdsSubGroup(id).subscribe((x) => {
-      // this.adsSubGroup = x;
+      this.adsSubGroup = x;
+      console.log(this.adsSubGroup);
     });
   }
 

@@ -14,7 +14,7 @@ import cities from "../../shared/cities.json";
   styleUrls: ["./update-info-private.component.scss"],
 })
 export class UpdateInfoPrivateComponent implements OnInit {
-  itemForm: FormGroup;
+  privateForm: FormGroup;
   cantons = cantons;
   cities = cities;
   userName: string;
@@ -30,7 +30,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.itemForm = this.fb.group({
+    this.privateForm = this.fb.group({
       name: [""],
       surname: [""],
       email: [{ value: "", disabled: true }],
@@ -70,7 +70,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
       user.website = res.website;
       this.newUser.push(user);
 
-      this.itemForm.patchValue({
+      this.privateForm.patchValue({
         name: user.name,
         surname: user.surname,
         email: user.email,
@@ -89,14 +89,14 @@ export class UpdateInfoPrivateComponent implements OnInit {
       nzContent: "",
       nzOnOk: () => {
         const updateUserInfo = new User();
-        updateUserInfo.name = this.itemForm.value.name;
-        updateUserInfo.surname = this.itemForm.value.surname;
-        updateUserInfo.email = this.itemForm.value.email;
-        updateUserInfo.phone = this.itemForm.value.phone;
-        updateUserInfo.mobile = this.itemForm.value.mobile;
-        updateUserInfo.address = this.itemForm.value.address;
-        updateUserInfo.city = this.itemForm.value.city;
-        updateUserInfo.region = this.itemForm.value.canton;
+        updateUserInfo.name = this.privateForm.value.name;
+        updateUserInfo.surname = this.privateForm.value.surname;
+        updateUserInfo.email = this.privateForm.value.email;
+        updateUserInfo.phone = this.privateForm.value.phone;
+        updateUserInfo.mobile = this.privateForm.value.mobile;
+        updateUserInfo.address = this.privateForm.value.address;
+        updateUserInfo.city = this.privateForm.value.city;
+        updateUserInfo.region = this.privateForm.value.canton;
         updateUserInfo.aboutUs = "";
         updateUserInfo.location = "";
         updateUserInfo.company = "";
