@@ -1,28 +1,30 @@
 <div class="container">
-  <div class="firstContainer" *ngIf="!createAd"></div>
-  <div class="firstContainer" routerLink="/create-ad" *ngIf="createAd">
-    <div class="addImage">
-      <img class="image" src="../../../assets/images/header/Create ad.png" />
+    <div class="firstContainer" *ngIf="!createAd"></div>
+    <div class="firstContainer" routerLink="/create-ad" *ngIf="createAd">
+        <div class="addImage">
+            <img class="image" src="../../../assets/images/header/create ad.svg" />
+        </div>
+        <span class="createAd" *ngIf="createAd">&nbsp; Create ad</span>
     </div>
-    <span class="createAd" *ngIf="createAd">&nbsp; Create ad</span>
-  </div>
-  <div class="secondContainer">
-    <img
-      src="../../../assets/images/header/minibrocki logo.png"
-      routerLink="/site"
-    />
-  </div>
-  <div class="thirdContainer">
-    <div class="languageFlags">
-      <img class="flags" src="../../../assets/images/header/EN.png" />
-      <img class="flags" src="../../../assets/images/header/GE.png" />
-      <img class="flags" src="../../../assets/images/header/IT.png" />
-      <img class="flags" src="../../../assets/images/header/FR.png" />
+    <div class="secondContainer">
+        <img src="../../../assets/images/header/minibrocki.svg" routerLink="/site" />
     </div>
-    <div class="account">
-      <span class="accountAd" routerLink="/login" *ngIf="!accountName"
-        >Login&nbsp;</span
+    <div class="thirdContainer">
+        <div class="languageFlags">
+            <img class="flags" src="../../../assets/images/header/EN.png" />
+            <img class="flags" src="../../../assets/images/header/GE.png" />
+            <img class="flags" src="../../../assets/images/header/IT.png" />
+            <img class="flags" src="../../../assets/images/header/FR.png" />
+        </div>
+        <div class="account">
+            <span class="accountAd" routerLink="/login" *ngIf="!accountName">Login&nbsp;</span
       >
+      <button mat-button [routerLink]="['/user', userId]" *ngIf="accountName">{{ accountName }}</button>
+      <mat-menu #menu="matMenu" >
+        <button mat-menu-item (click)="create()" *ngIf="!accountName">Create profile</button>
+        <button mat-menu-item (click)="logout()" *ngIf="accountName">Logout</button>
+      </mat-menu>
+      <!--
       <span
         class="accountAd"
         routerLink="/user"
@@ -30,9 +32,12 @@
         [routerLink]="['/user', userId]"
         >{{ accountName }} &nbsp;</span
       >
+      -->
       <img
+      style="cursor: pointer;"
+      [matMenuTriggerFor]="menu"
         class="accountLogo"
-        src="../../../assets/images/header/My account.png"
+        src="../../../assets/images/header/my account.svg"
       />
     </div>
   </div>

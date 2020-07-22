@@ -15,6 +15,7 @@ import {
   HttpParams,
 } from "@angular/common/http";
 import { map } from "rxjs/operators";
+import { AdsParam } from 'src/app/shared/models/adParams.model';
 
 @Injectable({
   providedIn: "root",
@@ -28,8 +29,12 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/brocki/ads`);
   }
 
-  getAdsByParam(data: any): Observable<Ads[]> {
-    return this.http.get(`${this.baseUrl}/mybrocki/ads/filter`, data);
+  getAdsByParam(data: AdsParam): Observable<Ads[]> {
+    return this.http.get(`${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${data.adsGroupId}&adsType=${data.adsType}&adssubgroup=${data.adssubgroup}&bussinesType=${data.bussinesType}&fixedPrice=${data.fixedPrice}&freeDelivery=${data.freeDelivery}&fromPrice=${data.fromPrice}&hasImage=${data.hasImage}&productWarranty=${data.productWarranty}&region=${data.region}&status=${data.status}&toPrice=${data.toPrice}&urgentSales=${data.urgentSales}&userId=${data.userId}`);
+  }
+
+  getAdsBySubGroupParam(adssubgroup: number): Observable<Ads[]> {
+    return this.http.get(`${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}`);
   }
 
   newAd(ad: CreateAd): Observable<Ads> {

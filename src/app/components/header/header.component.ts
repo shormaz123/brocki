@@ -3,6 +3,8 @@ import { UserService } from "src/app/@core/services/user.service";
 import { AuthConst } from "src/app/@core/consts/auth.const";
 import { Subscription } from "rxjs";
 import { HelpersService } from "src/app/@core/services/helpers.service";
+import { NzModalService } from 'ng-zorro-antd';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-header",
@@ -20,7 +22,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private helpers: HelpersService
+    private helpers: HelpersService,
+    private modal: NzModalService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -55,4 +59,22 @@ export class HeaderComponent implements OnInit {
       (error) => console.log("User not logged in")
     );
   }
+
+  logout() {
+    this.modal.confirm({
+      nzTitle: "Are you sure you want to logout?",
+      nzContent: "",
+      nzOnOk: () => {
+       localStorage.removeItem(AuthConst.roleName);
+       localStorage.removeItem(AuthConst.token);
+       localStorage.removeItem(AuthConst.userId);
+       this.router.navigate(['/site']);
+       window.location.reload();
+      }
+      });
+  }
+
+    create() {
+      this.router.navigate(['/registration']);
+    }
 }
