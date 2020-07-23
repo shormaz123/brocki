@@ -84,10 +84,10 @@
             class="form__upload--image"
             *ngFor="let photo of photos; let j = index"
           >
-            <div class="form__delete" (click)="deletePhoto(j)">
-              delete photo X
-            </div>
             <img [src]="photo" class="form__image" />
+            <div class="form__delete" (click)="deletePhoto(j)">
+              <label class="form__delete-label">delete photo X</label>
+            </div>
           </div>
           <div
             class="form__svg"

@@ -54,7 +54,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
     });
 
     this.userService.getUser().subscribe((res) => {
-      console.log(res);
       const user = new User();
       user.aboutUs = res.aboutUs;
       user.address = res.address;
@@ -111,7 +110,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
       this.adsService.uploadImageInStorage(this.formData).subscribe((res) => {
         this.res = res;
         this.photos.push(...this.res);
-        console.log(this.photos);
       });
     }
   }

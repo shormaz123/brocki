@@ -32,10 +32,8 @@ export class AccountActiveComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUser().subscribe((res) => {
+      console.log(res.id);
       this.userId = res.id;
-    });
-    this.adService.getAllByUserId(this.userId).subscribe((res) => {
-      console.log(res);
     });
   }
 }

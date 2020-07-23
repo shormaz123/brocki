@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { User } from "src/app/shared/models/user.model";
 import { UserService } from "../../@core/services/user.service";
+import { AdsService } from "../../@core/services/ads.service";
 import { AuthConst } from "src/app/@core/consts/auth.const";
 import { Router, ActivatedRoute } from "@angular/router";
 
@@ -24,7 +25,8 @@ export class UserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private adService: AdsService
   ) {}
 
   ngOnInit() {
@@ -51,6 +53,9 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = false;
     this.guest = false;
+    this.adService.getAllByUserId(this.userId).subscribe((res) => {
+      console.log(res);
+    });
   }
 
   expiredButton() {
