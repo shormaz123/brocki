@@ -1,7 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
+import { Component, Input, OnChanges } from "@angular/core";
 import { Ads } from "../../../shared/models/ads.model";
 import { AdsService } from "../../../@core/services/ads.service";
-import { Router } from "@angular/router";
 import { NzNotificationService, NzModalService } from "ng-zorro-antd";
 
 @Component({
@@ -13,21 +12,24 @@ export class AccountActiveComponent implements OnChanges {
   @Input() activeProducts: Ads;
   @Input() ads: boolean;
   Ads: Boolean;
+  userId: number;
 
   constructor(
     private modal: NzModalService,
     private notification: NzNotificationService,
-    private adsService: AdsService,
-    private router: Router
+    private adsService: AdsService
   ) {}
 
-  ngOnChanges(changes: SimpleChanges) {}
+  ngOnChanges() {
+    console.log(this.ads);
+  }
 
   deleteAd(active: Ads, index: number): void {
     this.modal.confirm({
       nzTitle: "Are you sure you want to delete this ad?",
       nzContent: "",
       nzOnOk: () => {
+        this.activeProducts[0].splice(index, 1);
         const ads = new Ads();
         ads.adsDate = null;
         ads.adsLocation = null;
@@ -47,9 +49,7 @@ export class AccountActiveComponent implements OnChanges {
         ads.urgentSales = null;
         ads.userId = null;
         this.adsService.deleteAds(ads, ads.id).subscribe(() => {
-          this.activeProducts[0].slice(index, 1);
           this.notification.success("", "The ad is deleted");
-          this.router.navigate(["/site"]);
         });
       },
     });
