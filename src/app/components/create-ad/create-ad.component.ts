@@ -106,7 +106,7 @@ export class CreateAdComponent implements OnInit {
     this.newButton();
     this.newAd.fixedPrice = false;
     this.newAd.freeDelivery = false;
-    this.newAd.productWarrant = false;
+    this.newAd.productWarranty = false;
     this.newAd.urgentSales = false;
     this.newAd.image = [];
     this.errorBoolean = false;

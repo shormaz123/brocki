@@ -115,11 +115,12 @@ export class UpdateInfoBussinesComponent implements OnInit {
   }
 
   deleteStoragedPhoto(index: number): void {
-    console.log(index);
+    this.companyPhotos.splice(index, 1);
+    console.log(this.companyPhotos);
   }
 
   deletePhoto(index: number): void {
-    console.log(index);
+    this.photos.splice(index, 1);
   }
 
   onSubmit() {
