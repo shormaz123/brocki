@@ -85,6 +85,10 @@
     <app-guest-book *ngIf="guest"></app-guest-book>
     <app-account-sold *ngIf="sold"></app-account-sold>
     <app-account-expired *ngIf="expired"></app-account-expired>
-    <app-account-active *ngIf="active"></app-account-active>
+    <app-account-active
+      [activeProducts]="activeProducts"
+      [ads]="ads"
+      *ngIf="active"
+    ></app-account-active>
   </div>
 </div>

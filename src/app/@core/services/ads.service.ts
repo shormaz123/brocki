@@ -37,11 +37,11 @@ export class AdsService {
   }
 
   getAllAdsGroups(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/mybrocki/auth/ads/group`);
+    return this.http.get(`${this.baseUrl}/mybrocki/ads/group`);
   }
 
   getAllAdsSubGroup(id: number): Observable<adsSubGroup[]> {
-    return this.http.get(`${this.baseUrl}/mybrocki/auth/ads/group/${id}`);
+    return this.http.get(`${this.baseUrl}/mybrocki/ads/group/${id}`);
   }
 
   uploadAdImage(id: number, file: FormData): Observable<Ads> {
@@ -64,6 +64,15 @@ export class AdsService {
 
   getAllVisibleAds(): Observable<Ads[]> {
     return this.http.get(`${this.baseUrl}/mybrocki/ads/visible`);
+  }
+
+  deleteAds(ads: Ads, id: number): Observable<Ads> {
+    let query = new HttpParams();
+    query = query.append("status", ads.status);
+    return this.http.put<Ads>(
+      `${this.baseUrl}/mybrocki/auth/ads/status/${id}`,
+      ads
+    );
   }
 
   uploadImageInStorage(formData) {

@@ -1,19 +1,20 @@
-export interface Ads {
-    adsDate: string,
-    adsType: string,
-    adssubgropuId: number,
-    adsgroupId: number,
-    description: string,
-    favourite: boolean;
-    fixedPrice: boolean,
-    freeDelivery: boolean,
-    id: number,
-    image: string[],
-    price: number,
-    productName: string,
-    productWarranty: boolean,
-    urgentSales: boolean,
-    userId: number,
-    visibleAds: true
-
+export class Ads {
+  id: number;
+  productName: string;
+  description: string;
+  price: number;
+  image: string[];
+  status: string;
+  userId: number;
+  adssubgropuId: number;
+  adsgroupId: number;
+  adsType: string;
+  fixedPrice: boolean;
+  freeDelivery: boolean;
+  productWarranty: boolean;
+  urgentSales: boolean;
+  adsDate: string;
+  favourite: boolean;
+  adsLocation: string;
+  visibleAds: true;
 }

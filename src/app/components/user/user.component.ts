@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { User } from "src/app/shared/models/user.model";
 import { UserService } from "../../@core/services/user.service";
+import { AdsService } from "../../@core/services/ads.service";
+import { Ads } from "../../shared/models/ads.model";
 import { AuthConst } from "src/app/@core/consts/auth.const";
 import { Router, ActivatedRoute } from "@angular/router";
 
@@ -20,11 +22,14 @@ export class UserComponent implements OnInit {
   path: string;
   uploadingUrl: string;
   userId: number;
+  activeProducts: Array<any> = [];
+  ads: boolean;
 
   constructor(
     private userService: UserService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private adService: AdsService
   ) {}
 
   ngOnInit() {
@@ -35,7 +40,6 @@ export class UserComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       (params) => {
         this.userId = params["id"];
-        console.log(this.userId);
         this.userService.getUserById(this.userId).subscribe((user) => {
           this.user = user;
         });
@@ -51,6 +55,16 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = false;
     this.guest = false;
+    this.adService.getAllByUserId(this.userId).subscribe((res) => {
+      console.log(res);
+      this.activeProducts.push(res);
+      if (this.activatedRoute[0] === undefined) {
+        this.ads = false;
+      } else {
+        this.ads = true;
+      }
+      console.log(this.ads);
+    });
   }
 
   expiredButton() {
