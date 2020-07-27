@@ -5,6 +5,7 @@ import { User } from "src/app/shared/models/user.model";
 import { Observable } from "rxjs";
 import { HttpClient } from '@angular/common/http';
 import { UserFavorite } from 'src/app/shared/models/userFavorite.model';
+import { UserAddAdsRequest } from 'src/app/shared/models/useraddAdsRequest.model';
 
 @Injectable({
   providedIn: "root",
@@ -52,8 +53,8 @@ export class UserService {
     return this.http.put<User>(`${this.baseUrl}/brocki/users/updateuser`, user);
   }
 
-  updateUserFavourites(adId: number, userId: number): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/mybrocki/auth/users/favourites`, {adId, userId});
+  updateUserFavourites(useraddAdsRequest: UserAddAdsRequest): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/mybrocki/auth/users/favourites`, useraddAdsRequest);
   }
 
   getFavourites(id: number): Observable <any> {

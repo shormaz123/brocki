@@ -67,6 +67,8 @@ import { FavoritesComponent } from "./components/favorites/favorites.component";
 import { SidebarModule } from "primeng/sidebar";
 import { AccordionModule } from "primeng/accordion";
 import { InlineSVGModule } from "ng-inline-svg";
+import { TooltipModule } from "primeng/tooltip";
+import { MatMenuModule } from "@angular/material/menu";
 
 registerLocaleData(en);
 
@@ -132,6 +134,9 @@ registerLocaleData(en);
     SidebarModule,
     AccordionModule,
     InlineSVGModule,
+    TooltipModule,
+    NzDropDownModule,
+    MatMenuModule,
   ],
   providers: [
     HttpBaseService,

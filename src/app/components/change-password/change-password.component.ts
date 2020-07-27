@@ -26,7 +26,7 @@ export class ChangePasswordComponent implements OnInit {
     private fb: FormBuilder,
     private modal: NzModalService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userService.getUser().subscribe((response) => {
@@ -50,7 +50,7 @@ export class ChangePasswordComponent implements OnInit {
           this.authService
             .newPassword(this.oldPassword, this.newPassword)
             .subscribe(
-              (res) => {},
+              (res) => { },
               (error) => {
                 this.notification.success("", "Password successfully changed!");
                 this.router.navigate([`/user/${this.userId}`]);
@@ -59,7 +59,7 @@ export class ChangePasswordComponent implements OnInit {
                 // });
               }
             );
-      },
-    });
+      }
+      });
   }
 }

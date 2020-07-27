@@ -6,6 +6,10 @@ import { Subject } from "rxjs";
 export class HelpersService {
   public $loginName: Subject<any> = new Subject<any>();
   public $createAd: Subject<any> = new Subject<any>();
+  public $numOfFavs: Subject<any> = new Subject<any>();
+
 
   constructor() {}
+
+
 }
