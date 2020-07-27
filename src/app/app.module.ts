@@ -68,6 +68,7 @@ import {SidebarModule} from 'primeng/sidebar';
 import {AccordionModule} from 'primeng/accordion';
 import {TooltipModule} from 'primeng/tooltip';
 import {MatMenuModule} from '@angular/material/menu';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 registerLocaleData(en);
 
@@ -103,6 +104,7 @@ registerLocaleData(en);
     AdComponent,
     ImageUploadComponent,
     FavoritesComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,
