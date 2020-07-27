@@ -83,7 +83,7 @@
             *ngFor="let photo of photos; let i = index"
           >
             <img [src]="photo" class="form__image" />
-            <div class="form__delete" (click)="deletePhoto(photo, i)">
+            <div class="form__delete" (click)="deletePhoto(i)">
               <label class="form__delete-label">delete photo X</label>
             </div>
           </div>

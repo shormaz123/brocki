@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  OnChanges,
-  SimpleChanges,
-} from "@angular/core";
+import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { Ads } from "../../../shared/models/ads.model";
 import { AdsService } from "../../../@core/services/ads.service";
 import { Router } from "@angular/router";
@@ -15,7 +9,7 @@ import { NzNotificationService, NzModalService } from "ng-zorro-antd";
   templateUrl: "./account-active.component.html",
   styleUrls: ["./account-active.component.scss"],
 })
-export class AccountActiveComponent implements OnInit, OnChanges {
+export class AccountActiveComponent implements OnChanges {
   @Input() activeProducts: Ads;
   @Input() ads: boolean;
   Ads: Boolean;
@@ -27,7 +21,6 @@ export class AccountActiveComponent implements OnInit, OnChanges {
     private router: Router
   ) {}
 
-  ngOnInit() {}
   ngOnChanges(changes: SimpleChanges) {}
 
   deleteAd(active: Ads, index: number): void {
@@ -53,7 +46,6 @@ export class AccountActiveComponent implements OnInit, OnChanges {
         ads.status = "DELETE";
         ads.urgentSales = null;
         ads.userId = null;
-        ads.visibleAds = null;
         this.adsService.deleteAds(ads, ads.id).subscribe(() => {
           this.activeProducts[0].slice(index, 1);
           this.notification.success("", "The ad is deleted");

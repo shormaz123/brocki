@@ -87,9 +87,8 @@ export class CreateAdComponent implements OnInit {
     }
   }
 
-  deletePhoto(photo: string, index: number): void {
+  deletePhoto(index: number): void {
     this.photos.splice(index, 1);
-    console.log(this.photos);
   }
 
   findsubcategory(event: any): void {
