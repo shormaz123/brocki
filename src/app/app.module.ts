@@ -68,7 +68,7 @@ import {SidebarModule} from 'primeng/sidebar';
 import {AccordionModule} from 'primeng/accordion';
 import {TooltipModule} from 'primeng/tooltip';
 import {MatMenuModule} from '@angular/material/menu';
-
+import  {MatCurrencyFormatModule} from 'mat-currency-format'
 registerLocaleData(en);
 
 @NgModule({
@@ -135,6 +135,7 @@ registerLocaleData(en);
     TooltipModule,
     NzDropDownModule,
     MatMenuModule,
+
   ],
   providers: [
     HttpBaseService,

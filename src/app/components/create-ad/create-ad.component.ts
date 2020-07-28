@@ -88,11 +88,6 @@ export class CreateAdComponent implements OnInit {
 
   category: string = null;
 
-  listOfGroups = [
-    { label: "Jack", value: "jack" },
-    { label: "Lucy", value: "lucy" },
-    { label: "disabled", value: "disabled", disabled: true },
-  ];
   listOfSubGroups = [];
 
   constructor(
