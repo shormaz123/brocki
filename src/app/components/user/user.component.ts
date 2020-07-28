@@ -57,7 +57,7 @@ export class UserComponent implements OnInit {
     this.guest = false;
     this.adService.getAllByUserId(this.userId).subscribe((res) => {
       this.activeProducts.push(res);
-      if (this.activatedRoute[0]) {
+      if (this.activatedRoute[0] === undefined) {
         this.ads = false;
       } else {
         this.ads = true;

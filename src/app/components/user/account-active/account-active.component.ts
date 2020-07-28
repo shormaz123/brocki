@@ -20,9 +20,7 @@ export class AccountActiveComponent implements OnChanges {
     private adsService: AdsService
   ) {}
 
-  ngOnChanges() {
-    console.log(this.ads);
-  }
+  ngOnChanges() {}
 
   deleteAd(active: Ads, index: number): void {
     this.modal.confirm({
