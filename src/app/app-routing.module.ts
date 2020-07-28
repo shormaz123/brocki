@@ -33,7 +33,7 @@ const routes: Routes = [
         component: UserComponent,
       },
       {
-        path: "seller",
+        path: "seller/:id",
         component: SellerProfileComponent,
       },
       {
