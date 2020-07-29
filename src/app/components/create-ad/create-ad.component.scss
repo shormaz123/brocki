@@ -1,4 +1,5 @@
 @import "../../../scss/variables";
+@import "../../../scss/mixin";
 
 * {
   color: $darkgrey;
@@ -6,197 +7,284 @@
 }
 
 .container {
-  padding-top: 50px;
-  width: 100vw;
   background-color: $lightgrey;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100vw;
+}
 
-  .underContainer {
-    width: 1000px;
-    display: flex;
-  align-items: center;
-  flex-direction: column;
+.create {
+  width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 60px 0;
 
-  .title {
+  @include rwd(1600) {
+    width: 985px;
+  }
+
+  &__ad-title {
+    padding-bottom: 20px;
+  }
+
+  &__title {
     font-size: 24pt;
-  }
+    text-transform: capitalize;
+
+    &--red {
+      color: $red;
+      text-transform: lowercase;
+    }
   }
 }
 
+.form {
+  width: 480px;
+  margin: 0 auto;
+  &__input {
+    padding: 0 0 25px 0;
+    width: 480px;
 
-input {
-  height: 25px;
-  border: 1px solid darkgray;
-  border-radius: 15px;
-  padding-left: 10px;
-  font-size: 20px;
-}
+    &--price {
+      width: 240px;
+      padding: 0 15px;
+    }
+  }
 
-
-
-
-.buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  width:500px;
-
-  button {
-    background-color: $lightgrey;
-    height: 35px;
-    width: 20%;
-    border: 1px solid;
-    border-radius: 15px;
-    color: $darkgrey;
+  &__label {
+    display: flex;
+    margin: 0 0 0 20px;
+    padding: 0px 0 5px;
     font-size: 17px;
-    outline: none;
-    width: 30%;
+    text-transform: capitalize;
 
+    &--padding {
+      padding-bottom: 15px;
+    }
+  }
 
+  &__textarea {
+    height: 170px;
+    resize: none;
+    padding: 5px 15px 0;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 0 25px 0;
+  }
+
+  &__used,
+  &__new {
+    background-color: white;
+    height: 35px;
+    padding: 0 35px;
+    border: 1px solid $border-gray;
+    border-radius: 15px;
+    color: $text-gray;
+    font-size: 17px;
     cursor: pointer;
   }
-}
 
-.checkboxes {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  width: 500px;
-}
+  &__select {
+    width: 480px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: "";
+    cursor: pointer;
+    background-image: url("../../../assets/images/update-info-bussines/arrow menu.png");
+    background-repeat: no-repeat;
+    background-position: 440px 8px;
+  }
 
-.selected {
-  background-color: $red !important;
-  color: white !important;
-}
-
-.deselected {
-background-color: $lightgrey !important;
-color: $darkgrey !important;
-}
-
-.clearfix {
-  border: 1px solid;
+  &__picture {
+    border: 1px solid;
     border-radius: 15px;
-    border-color: darkgray;
+    border-color: $border-gray;
     padding: 10px;
     background-color: white;
-}
-
-.confirmButton {
-  background-color: $red;
-  height: 35px;
-  width: 15%;
-  border: 1px solid;
-  border-radius: 15px;
-  color: white;
-  font-size: 17px;
-  margin-left: 30px;
-  cursor: pointer;
-
-  &:hover {
-    -ms-transform: scale(1.5); /* IE 9 */
-    -webkit-transform: scale(1.5); /* Safari 3-8 */
-    transform: scale(1.1);
-  }
-}
-
-.titleAd {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-
-  input {
-    height: 35px;
-  }
-}
-
-.description {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-
-}
-
-.price {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  width: 50%;
-  input {
-  width: 50%;
-  height: 35px;
-
-  }
-}
-
-.imageDiv {
-display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border-color: darkgray;
-  width: 50%;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-textarea {
-  border: 1px solid darkgray;
-  border-radius: 15px;
-  padding-left: 10px;
-  font-size: 20px;
-}
-
-.credit {
-
-  display: flex;
-  flex-direction: row;
-  margin-right: 28%;
-  align-items: center;
-
-  img {
-
+    display: flex;
+    flex-wrap: wrap;
+    width: 480px;
+    height: 325px;
   }
 
-}
+  &__image {
+    height: 152px;
+    width: 152px;
+    padding: 10px;
+  }
 
-.creditCount {
-  width: auto;
+  &__svg {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 10px 0 50px 10px;
+  }
+
+  &__svg--image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+  }
+
+  &__upload--image {
+    height: 152px;
+    width: 152px;
+    position: relative;
+    &--image-input {
+      height: 100px;
+      width: 100px;
+      opacity: 0;
+      z-index: 1;
+      cursor: pointer;
+    }
+  }
+
+  &__delete {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 132px;
+    height: 132px;
+    &:hover {
+      position: absolute;
+      width: 132px;
+      height: 132px;
+      background-color: rgba(128, 128, 128, 0.75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    &:hover .form__delete-label {
+      display: block;
+    }
+  }
+
+  &__delete-label {
+    display: none;
+    color: white;
+  }
+
+  &__input--upload {
+    width: 120px;
+  }
+
+  &__box-body {
+    text-align: start;
+  }
+
+  &__checkboxes {
+    padding: 0 0 25px 0;
+  }
+
+  &__checkbox {
+    padding: 0 0 15px 0;
+  }
+
+  &__box-check-text {
+    margin-left: 10px;
+  }
+
+  &__price {
+    text-align: start;
+    display: flex;
+  }
+
+  &__currency {
+    margin: 8px 0 0 10px;
+    font-size: 17px;
+    color: #d62b1f;
+    font-weight: bold;
+  }
+
+  &__token {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 50%;
+    input {
+      width: 50%;
+      height: 35px;
+    }
+  }
+
+  &__credit {
+    display: flex;
+    flex-direction: row;
+    margin-right: 28%;
+    align-items: center;
+  }
+
+  &__creditCount {
+    width: auto;
     padding-right: 10px;
     padding-left: 10px;
-  background-color: #f6f6f6;
-  height: 35px;
-  border: 1px solid;
-  border-radius: 15px;
-  color: #4d4d4d;
-  font-size: 17px;
-  outline: none;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  margin-left:10px;
-}
-
-.checkbox {
-margin-bottom: 20px;
-
-span {
-  margin-left:10px ;
-}
-}
-
-.form-group {
-  width: 50%;
-
-  select {
-    width: 100%;
+    background-color: #f6f6f6;
     height: 35px;
-    margin-bottom: 20px;
-    border-color: gray;
+    border: 1px solid $border-gray;
     border-radius: 15px;
-    padding-left: 5px;
-    font-size: large;
+    color: #4d4d4d;
+    font-size: 17px;
+    outline: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: 10px;
   }
+
+  &__saveButton {
+    background-color: $red;
+    height: 35px;
+    padding: 0 35px;
+    border: 1px solid;
+    border-radius: 15px;
+    color: white;
+    font-size: 17px;
+    margin-left: 30px;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: default;
+      &:hover {
+        -ms-transform: scale(1); /* IE 9 */
+        -webkit-transform: scale(1); /* Safari 3-8 */
+        transform: scale(1);
+      }
+    }
+
+    &:hover {
+      -ms-transform: scale(1.5); /* IE 9 */
+      -webkit-transform: scale(1.5); /* Safari 3-8 */
+      transform: scale(1.1);
+    }
+  }
+}
+
+.active {
+  background-color: $red;
+  color: $white;
+}
+
+input,
+select,
+textarea {
+  width: 480px;
+  height: 40px;
+  padding: 0 15px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  border: 1px solid $border-gray;
+  color: $text-gray;
+  font-size: 17px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
