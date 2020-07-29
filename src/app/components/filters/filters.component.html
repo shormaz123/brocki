@@ -5,7 +5,7 @@
         <div class="location" style="padding-bottom: 20px;">
             <img src="../../../assets/images/filters/location icon.png" />
             <select name="contactMethod" id="contactMethod" class="form-control" [(ngModel)]="reg">
-                    <option *ngFor="let region of cantons" [value]="region" [selected] ="true">{{
+                    <option *ngFor="let region of cantons" [value]="region" [selected]="true">{{
                       region
                     }}</option>
                   </select>
@@ -13,7 +13,7 @@
         <div class="location" style="padding-bottom: 20px;">
             <img src="../../../assets/icon3 2.png" />
             <select name="contactMethod" id="contactMethod" class="form-control" [(ngModel)]="category.id">
-                  <option *ngFor="let category of categoriesGroup" [value]="category.id" [selected] ="true">{{
+                  <option *ngFor="let category of categoriesGroup" [value]="category.id" [selected]="true">{{
                     category.groupName
                   }}</option>
                 </select>

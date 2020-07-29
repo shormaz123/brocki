@@ -12,66 +12,6 @@ import { Router } from "@angular/router";
   styleUrls: ["./create-ad.component.scss"],
 })
 export class CreateAdComponent implements OnInit {
-<<<<<<< HEAD
-  customReq = (item: UploadXHRArgs) => {
-    console.log(JSON.stringify(item));
-    const formData = new FormData();
-    formData.append("file", item.file as any);
-
-    const req = new HttpRequest("POST", item.action!, formData, {
-      reportProgress: true,
-      withCredentials: true,
-    });
-    // Always returns a `Subscription` object. nz-upload would automatically unsubscribe it at correct time.
-    return this.http.request(req).subscribe(
-      // tslint:disable-next-line no-any
-      (event: HttpEvent<any>) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          if (event.total! > 0) {
-            // tslint:disable-next-line:no-any
-            (event as any).percent = (event.loaded / event.total!) * 100;
-          }
-          item.onProgress!(event, item.file!);
-        } else if (event instanceof HttpResponse) {
-          item.onSuccess!(event.body, item.file!, event);
-        }
-      },
-      (err) => {
-        item.onError!(err, item.file!);
-      }
-    );
-  };
-
-  uploadImageUrl =
-    "https://mybrocki-be.herokuapp.com/mybrocki/auth/image/upload";
-
-  fileList: string[] = [];
-
-  used: boolean;
-  new: boolean;
-  fixedPrice: boolean;
-  freeDelivery: boolean;
-  productWarranty: boolean;
-  urgentSales: boolean;
-  adsDate = new Date();
-  public newAd = <CreateAd>{};
-  errorMessage: string = "Please, complete every field in this form!";
-  errorBoolean: boolean;
-  mySelect = -1;
-
-  previewImage: string | undefined = "";
-  previewVisible = false;
-  selectedCategory: number;
-
-  adsGroupName;
-
-  adsGroup: adsGroup[];
-  adsSubGroup: adsSubGroup[];
-
-  category: string = null;
-
-  listOfSubGroups = [];
-=======
   createForm: FormGroup;
   formData = new FormData();
   statusOfProduct: string = "NEW";
@@ -82,7 +22,6 @@ export class CreateAdComponent implements OnInit {
   picture: Array<string> = [];
   categoryId: number;
   subcategoryId: number;
->>>>>>> e6ff3fb54352f1327b8e5eddc344ec539ef4e1b3
 
   constructor(
     private fb: FormBuilder,
