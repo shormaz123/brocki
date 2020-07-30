@@ -1,7 +1,5 @@
-export interface adsSubGroup {
-
-  adsgroup: string,
-  id: number,
-  subGroupName: string
-
+export class adsSubGroup {
+  adsgroup: number;
+  id: number;
+  subGroupName: string;
 }

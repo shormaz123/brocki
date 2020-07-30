@@ -61,14 +61,15 @@ import { NgxGalleryModule } from "ngx-gallery";
 import { ImageUploadComponent } from "./image-upload/image-upload.component";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
-import { HelpersService } from './@core/services/helpers.service';
-import { AuthGuardService } from './@core/services/authGuard.service';
-import { FavoritesComponent } from './components/favorites/favorites.component';
-import {SidebarModule} from 'primeng/sidebar';
-import {AccordionModule} from 'primeng/accordion';
-import {TooltipModule} from 'primeng/tooltip';
-import {MatMenuModule} from '@angular/material/menu';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { ContactUsComponent } from "./components/contact-us/contact-us.component";
+import { HelpersService } from "./@core/services/helpers.service";
+import { AuthGuardService } from "./@core/services/authGuard.service";
+import { FavoritesComponent } from "./components/favorites/favorites.component";
+import { SidebarModule } from "primeng/sidebar";
+import { AccordionModule } from "primeng/accordion";
+import { InlineSVGModule } from "ng-inline-svg";
+import { TooltipModule } from "primeng/tooltip";
+import { MatMenuModule } from "@angular/material/menu";
 
 registerLocaleData(en);
 
@@ -129,11 +130,12 @@ registerLocaleData(en);
     NzCardModule,
     CardModule,
     NgxGalleryModule,
-  MatCardModule,
+    MatCardModule,
     MatIconModule,
     MatButtonModule,
     SidebarModule,
     AccordionModule,
+    InlineSVGModule,
     TooltipModule,
     NzDropDownModule,
     MatMenuModule,

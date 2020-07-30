@@ -14,8 +14,9 @@ import { AuthConst } from 'src/app/@core/consts/auth.const';
 import { UserService } from 'src/app/@core/services/user.service';
 import { User } from 'src/app/shared/models/user.model';
 import { HelpersService } from 'src/app/@core/services/helpers.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { AdsParam } from 'src/app/shared/models/adParams.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-site',
@@ -25,10 +26,11 @@ import { AdsParam } from 'src/app/shared/models/adParams.model';
 export class SiteComponent implements OnInit, OnDestroy {
   encapsulation: ViewEncapsulation.None;
 
+
   searchText;
   items: Array<any> = [];
   categoryImage: any;
-  public ads: Ads[] = [];
+  public ads = [];
   public randomAds: Ads[];
   public login: string;
   isLoggedIn: boolean;
@@ -43,6 +45,9 @@ export class SiteComponent implements OnInit, OnDestroy {
   categortGroupId: number;
   favAds;
   adParams: AdsParam;
+  filteredAds = [];
+
+  state;
 
   private numberOfFavs: Subscription;
 
@@ -270,37 +275,49 @@ export class SiteComponent implements OnInit, OnDestroy {
   constructor(private cdr: ChangeDetectorRef,
     private adsService: AdsService,
     private userService: UserService,
-    private helpersService: HelpersService) {
+    private helpersService: HelpersService,
+    private router: Router,
+    private helpers: HelpersService) {
 
-
+      if (this.router.getCurrentNavigation().extras.state) {
+       this.filteredAds= this.router.getCurrentNavigation().extras.state.data;
+       console.log('filteredads', this.filteredAds)
+      }
   }
 
   ngOnInit() {
     this.adsService.getAllAdsGroups().subscribe(x => {
       this.categoriesGroup = x;
-      console.log(this.categoriesGroup);
     });
     this.token = localStorage.getItem(AuthConst.token);
     this.selectCategory(1);
-    this.adsService.getAllVisibleAds().subscribe((response) => {
-      this.ads = response;
-      this.randomAds = this.shuffle(response);
-      console.log(response);
+    if(this.filteredAds.length > 0) {
+      this.ads = this.filteredAds
+      this.randomAds = this.shuffle(this.filteredAds);
       if (this.token) {
-        // tslint:disable-next-line: no-unused-expression
         this.getUserAndFavAd();
       } else {
         this.favAds = this.ads;
-        console.log('allads', this.ads)
       }
-    });
-
-
-
+    } else {
+      this.adsService.getAllVisibleAds().subscribe((response) => {
+        this.ads = response;
+        console.log('ads',this.ads)
+        this.randomAds = this.shuffle(response);
+        if (this.token) {
+          this.getUserAndFavAd();
+        } else {
+          this.favAds = this.ads;
+        }
+      });
+    }
     this.numberOfFavs = this.helpersService.$numOfFavs.subscribe(response => {
       this.getUserAndFavAd();
     });
+
   }
+
+
 
   getUserAndFavAd() {
     this.userService.getUser().subscribe(response => {
@@ -309,11 +326,9 @@ export class SiteComponent implements OnInit, OnDestroy {
         if (this.token) {
           this.favoriteAds = x;
           this.numberOfFavorites = x.length;
-          console.log('Favorite ads number', this.numberOfFavorites);
 
           // Replace objects between two arrays.
           this.favAds = this.ads.map(obj => this.favoriteAds.find(o => o.id === obj.id) || obj);
-          console.log(this.favAds);
         };
       }
       );
@@ -373,7 +388,6 @@ export class SiteComponent implements OnInit, OnDestroy {
   selectDropDown(id: number) {
     this.adsService.getAllAdsSubGroup(id).subscribe(response => {
       this.subCategories = response;
-      console.log(this.subCategories);
     });
   }
 
@@ -381,7 +395,6 @@ export class SiteComponent implements OnInit, OnDestroy {
     this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe(response => {
       this.ads = response;
       this.randomAds = this.shuffle(response);
-      console.log(response);
       this.getUserAndFavAd();
     });
   }
