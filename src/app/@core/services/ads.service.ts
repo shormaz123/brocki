@@ -15,7 +15,7 @@ import {
   HttpParams,
 } from "@angular/common/http";
 import { map } from "rxjs/operators";
-import { AdsParam } from 'src/app/shared/models/adParams.model';
+import { AdsParam } from "src/app/shared/models/adParams.model";
 
 @Injectable({
   providedIn: "root",
@@ -30,11 +30,15 @@ export class AdsService {
   }
 
   getAdsByParam(data: AdsParam): Observable<Ads[]> {
-    return this.http.get(`${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${data.adsGroupId}&adsType=${data.adsType}&adssubgroup=${data.adssubgroup}&bussinesType=${data.bussinesType}&fixedPrice=${data.fixedPrice}&freeDelivery=${data.freeDelivery}&fromPrice=${data.fromPrice}&hasImage=${data.hasImage}&productWarranty=${data.productWarranty}&region=${data.region}&status=${data.status}&toPrice=${data.toPrice}&urgentSales=${data.urgentSales}&userId=${data.userId}`);
+    return this.http.get(
+      `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${data.adsGroupId}&adsType=${data.adsType}&adssubgroup=${data.adssubgroup}&bussinesType=${data.bussinesType}&fixedPrice=${data.fixedPrice}&freeDelivery=${data.freeDelivery}&fromPrice=${data.fromPrice}&hasImage=${data.hasImage}&productWarranty=${data.productWarranty}&region=${data.region}&status=${data.status}&toPrice=${data.toPrice}&urgentSales=${data.urgentSales}&userId=${data.userId}`
+    );
   }
 
   getAdsBySubGroupParam(adssubgroup: number): Observable<Ads[]> {
-    return this.http.get(`${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}`);
+    return this.http.get(
+      `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}`
+    );
   }
 
   newAd(ad: CreateAd): Observable<Ads> {
@@ -78,6 +82,23 @@ export class AdsService {
       `${this.baseUrl}/mybrocki/auth/ads/status/${id}`,
       ads
     );
+  }
+
+  soldAds(ads: Ads, id: number): Observable<Ads> {
+    let query = new HttpParams();
+    query = query.append("status", ads.status);
+    return this.http.put<Ads>(
+      `${this.baseUrl}/mybrocki/auth/ads/status/${id}`,
+      ads
+    );
+  }
+
+  getSold(data: AdsParam): Observable<Ads> {
+    console.log(data.status, data.userId);
+    let query = new HttpParams();
+    query = query.append("status", data.status);
+    query = query.append("userId", data.userId.toString());
+    return this.http.get<Ads>(`${this.baseUrl}/mybrocki/ads/filter?${query}`);
   }
 
   uploadImageInStorage(formData) {
