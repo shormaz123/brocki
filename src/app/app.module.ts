@@ -137,6 +137,7 @@ registerLocaleData(en);
     TooltipModule,
     NzDropDownModule,
     MatMenuModule,
+
   ],
   providers: [
     HttpBaseService,

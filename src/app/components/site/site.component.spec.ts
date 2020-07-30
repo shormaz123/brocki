@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SiteComponent } from './site.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 describe('SiteComponent', () => {
   let component: SiteComponent;
@@ -8,13 +10,19 @@ describe('SiteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SiteComponent ]
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        SiteComponent
+      ],
+      providers: [ {provide: Router, useClass: RouterStub}]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SiteComponent);
+    fixture = TestBed.createComponent(SiteComponent );
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

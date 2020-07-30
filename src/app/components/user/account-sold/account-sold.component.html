@@ -1,11 +1,11 @@
 <div class="container">
   <div class="ads" *ngIf="ads === false">
     <div class="ads__text">
-      You haven't sold anything yet
+      No sold ads
     </div>
   </div>
   <div *ngIf="ads === true">
-    <div *ngFor="let ad of soldAds[0]" class="card">
+    <div *ngFor="let ad of soldAds[0]; let i = index" class="card">
       <div class="image">
         <img [src]="ad.image[0]" />
       </div>
@@ -22,10 +22,11 @@
             <div>{{ ad.price | number: ".2-2" }} CHF</div>
           </div>
           <div class="text__day">
-            <div>{{ ad.adsDate | date: "medium" }}</div>
+            <!-- <div>{{ ad.adsDate | date: "medium" }}</div> -->
           </div>
         </div>
       </div>
+      <div class="delete-ad" (click)="deleteAd(ad, i)">X</div>
       <div class="sold">
         sold
       </div>

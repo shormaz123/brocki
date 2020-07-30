@@ -2,7 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { AdsService } from "../../../@core/services/ads.service";
 import { AdsParam } from "../../../shared/models/adParams.model";
 // import { Ads } from "../../../shared/models/ads.model";
+import { NzNotificationService, NzModalService } from "ng-zorro-antd";
 import { UserService } from "../../../@core/services/user.service";
+import { Ads } from "src/app/shared/models/ads.model";
 
 @Component({
   selector: "app-account-sold",
@@ -15,7 +17,9 @@ export class AccountSoldComponent implements OnInit {
   ads: boolean;
   constructor(
     private adsService: AdsService,
-    private userService: UserService
+    private userService: UserService,
+    private modal: NzModalService,
+    private notification: NzNotificationService
   ) {}
 
   ngOnInit() {
@@ -39,7 +43,7 @@ export class AccountSoldComponent implements OnInit {
       const soldAds = new AdsParam();
       soldAds.status = "SOLD";
       soldAds.userId = res.id;
-      this.adsService.getSold(soldAds).subscribe((res) => {
+      this.adsService.getSoldAds(soldAds).subscribe((res) => {
         this.soldAds.push(res);
         if (this.soldAds[0].length === 0) {
           this.ads = false;
@@ -48,6 +52,37 @@ export class AccountSoldComponent implements OnInit {
         }
         // console.log(this.soldAds);
       });
+    });
+  }
+
+  deleteAd(ad: Ads, index: number): void {
+    this.modal.confirm({
+      nzTitle: "Are you sure you want to delete this ad?",
+      nzContent: "",
+      nzOnOk: () => {
+        this.soldAds[0].splice(index, 1);
+        const ads = new Ads();
+        ads.adsDate = null;
+        ads.adsLocation = null;
+        ads.adsType = null;
+        ads.adsgroupId = null;
+        ads.adssubgropuId = null;
+        ads.description = null;
+        ads.favourite = null;
+        ads.fixedPrice = null;
+        ads.freeDelivery = null;
+        ads.id = ad.id;
+        ads.image = null;
+        ads.price = null;
+        ads.productName = null;
+        ads.productWarranty = null;
+        ads.status = "DELETE";
+        ads.urgentSales = null;
+        ads.userId = null;
+        this.adsService.deleteAds(ads, ads.id).subscribe(() => {
+          this.notification.success("", "The ad is deleted");
+        });
+      },
     });
   }
 }

@@ -55,7 +55,7 @@ export class AccountActiveComponent implements OnChanges {
 
   soldAd(active: Ads, index: number): void {
     this.modal.confirm({
-      nzTitle: "Are you sure you want to sell this ad?",
+      nzTitle: "whether this ad is sold?",
       nzContent: "",
       nzOnOk: () => {
         this.activeProducts[0].splice(index, 1);
@@ -78,7 +78,7 @@ export class AccountActiveComponent implements OnChanges {
         ads.urgentSales = null;
         ads.userId = null;
         this.adsService.deleteAds(ads, ads.id).subscribe(() => {
-          this.notification.success("", "The ad is sold");
+          this.notification.success("", "The ad is moved to sold");
         });
       },
     });

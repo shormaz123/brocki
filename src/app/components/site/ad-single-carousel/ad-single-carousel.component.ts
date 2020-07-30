@@ -44,8 +44,6 @@ export class AdSingleCarouselComponent implements OnInit {
         this.userId = user.id;
       });
     }
-    console.log('favAds', this.favAds)
-    console.log(this.userId);
   }
 
   toggleSelected(adId: number) {
@@ -76,12 +74,10 @@ export class AdSingleCarouselComponent implements OnInit {
     };
   }
     this.helpersService.$numOfFavs.next();
-    console.log(adId);
     this.selected = !this.selected;
   }
 
   next() {
-    // console.log(this.myCarousel.activeIndex)
     this.myCarousel.next();
 
   }

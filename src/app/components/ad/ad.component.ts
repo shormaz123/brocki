@@ -150,7 +150,7 @@ export class AdComponent implements OnInit {
       });
     });
 
-    this.adsService.getAdsByParam(this.adGroupId).subscribe((x) => {
+    this.adsService.getAdsByParamToFilter(this.adGroupId).subscribe((x) => {
       if (x == null) {
         this.categoryImagesAvailable = false;
       } else {
