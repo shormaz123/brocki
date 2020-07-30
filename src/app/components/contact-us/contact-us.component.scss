@@ -1,0 +1,87 @@
+@import "../../../scss/variables";
+@import "../../../scss/mixin.scss";
+
+.container {
+  background-color: $lightgrey;
+  width: 100vw;
+}
+
+.contact-us {
+  width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 60px 0 190px;
+  font-size: 20px;
+
+  @include rwd(1600) {
+    width: 985px;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 24pt;
+    padding: 0 0 75px;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    padding: 0 0 40px;
+    text-align: center;
+  }
+
+  &__body {
+    width: 560px;
+    margin: 0 auto;
+    text-align: start;
+  }
+
+  &__image {
+    display: flex;
+    padding: 0 0 40px 50px;
+  }
+
+  &__photo {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__text {
+    padding: 5px 0 0 15px;
+    text-align: center;
+  }
+
+  &__color {
+    color: $red;
+  }
+}
+
+.contact-images {
+  width: 560px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+
+  &--image {
+    padding: 0 0 0 50px;
+  }
+
+  &__picture {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__text {
+    margin: 5px 0 0 15px;
+  }
+
+  &__email {
+    color: $text-gray;
+    text-decoration: none;
+
+    &:hover {
+      color: $blue;
+      font-size: 21px;
+      padding: -1px 0 0 0;
+    }
+  }
+}
