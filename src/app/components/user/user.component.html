@@ -83,7 +83,11 @@
   </div>
   <div class="secondContainer">
     <app-guest-book *ngIf="guest"></app-guest-book>
-    <app-account-sold *ngIf="sold"></app-account-sold>
+    <app-account-sold
+      [soldProducts]="soldProducts"
+      [ads]="ads"
+      *ngIf="sold"
+    ></app-account-sold>
     <app-account-expired *ngIf="expired"></app-account-expired>
     <app-account-active
       [activeProducts]="activeProducts"

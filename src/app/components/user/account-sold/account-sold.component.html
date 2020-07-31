@@ -5,9 +5,9 @@
     </div>
   </div>
   <div *ngIf="ads === true">
-    <div *ngFor="let ad of soldAds[0]; let i = index" class="card">
+    <div *ngFor="let ad of soldProducts[0]; let i = index" class="card">
       <div class="image">
-        <img [src]="ad.image[0]" />
+        <img class="image__sold" [src]="ad.image[0]" />
       </div>
       <div class="text">
         <div class="text__link">

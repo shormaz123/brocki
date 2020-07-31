@@ -4,6 +4,7 @@ import { UserService } from "../../@core/services/user.service";
 import { AdsService } from "../../@core/services/ads.service";
 import { Ads } from "../../shared/models/ads.model";
 import { AuthConst } from "src/app/@core/consts/auth.const";
+import { AdsParam } from "../../shared/models/adParams.model";
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -23,13 +24,14 @@ export class UserComponent implements OnInit {
   uploadingUrl: string;
   userId: number;
   activeProducts: Array<any> = [];
+  soldProducts: Array<any> = [];
   ads: boolean;
 
   constructor(
     private userService: UserService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private adService: AdsService
+    private adsService: AdsService
   ) {}
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = false;
     this.guest = false;
-    this.adService.getAllByUserId(this.userId).subscribe((res) => {
+    this.adsService.getAllByUserId(this.userId).subscribe((res) => {
       this.activeProducts.push(res);
       if (this.activeProducts[0].length === 0) {
         this.ads = false;
@@ -77,6 +79,19 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = true;
     this.guest = false;
+    this.userService.getUser().subscribe((res) => {
+      const soldAds = new AdsParam();
+      soldAds.status = "SOLD";
+      soldAds.userId = res.id;
+      this.adsService.getSoldAds(soldAds).subscribe((res) => {
+        this.soldProducts.push(res);
+        if (this.soldProducts[0].length === 0) {
+          this.ads = false;
+        } else {
+          this.ads = true;
+        }
+      });
+    });
   }
 
   guestButton() {
