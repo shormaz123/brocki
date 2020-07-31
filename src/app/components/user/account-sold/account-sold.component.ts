@@ -27,6 +27,9 @@ export class AccountSoldComponent implements OnChanges {
       nzContent: "",
       nzOnOk: () => {
         this.soldProducts[0].splice(index, 1);
+        if (this.soldProducts[0].length === 0) {
+          this.ads = false;
+        }
         const ads = new Ads();
         ads.adsDate = null;
         ads.adsLocation = null;

@@ -85,6 +85,7 @@ export class UserComponent implements OnInit {
       soldAds.userId = res.id;
       this.adsService.getSoldAds(soldAds).subscribe((res) => {
         this.soldProducts.push(res);
+        console.log(this.soldProducts);
         if (this.soldProducts[0].length === 0) {
           this.ads = false;
         } else {

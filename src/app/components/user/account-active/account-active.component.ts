@@ -28,6 +28,9 @@ export class AccountActiveComponent implements OnChanges {
       nzContent: "",
       nzOnOk: () => {
         this.activeProducts[0].splice(index, 1);
+        if (this.activeProducts[0].length === 0) {
+          this.ads = false;
+        }
         const ads = new Ads();
         ads.adsDate = null;
         ads.adsLocation = null;
@@ -59,6 +62,9 @@ export class AccountActiveComponent implements OnChanges {
       nzContent: "",
       nzOnOk: () => {
         this.activeProducts[0].splice(index, 1);
+        if (this.activeProducts[0].length === 0) {
+          this.ads = false;
+        }
         const ads = new Ads();
         ads.adsDate = null;
         ads.adsLocation = null;
