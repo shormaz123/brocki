@@ -11,7 +11,6 @@ import { Ads } from "src/app/shared/models/ads.model";
 export class AccountSoldComponent implements OnChanges {
   @Input() ads: boolean;
   @Input() soldProducts: Array<any> = [];
-  userId: number;
 
   constructor(
     private adsService: AdsService,
@@ -20,38 +19,4 @@ export class AccountSoldComponent implements OnChanges {
   ) {}
 
   ngOnChanges() {}
-
-  deleteAd(ad: Ads, index: number): void {
-    this.modal.confirm({
-      nzTitle: "Are you sure you want to delete this ad?",
-      nzContent: "",
-      nzOnOk: () => {
-        this.soldProducts[0].splice(index, 1);
-        if (this.soldProducts[0].length === 0) {
-          this.ads = false;
-        }
-        const ads = new Ads();
-        ads.adsDate = null;
-        ads.adsLocation = null;
-        ads.adsType = null;
-        ads.adsgroupId = null;
-        ads.adssubgropuId = null;
-        ads.description = null;
-        ads.favourite = null;
-        ads.fixedPrice = null;
-        ads.freeDelivery = null;
-        ads.id = ad.id;
-        ads.image = null;
-        ads.price = null;
-        ads.productName = null;
-        ads.productWarranty = null;
-        ads.status = "DELETE";
-        ads.urgentSales = null;
-        ads.userId = null;
-        this.adsService.deleteAds(ads, ads.id).subscribe(() => {
-          this.notification.success("", "The ad is deleted");
-        });
-      },
-    });
-  }
 }
