@@ -41,6 +41,9 @@ export class FiltersComponent implements OnInit {
     groupName: ''
   }
 
+  noCategory="";
+  noRegion="";
+
 
   constructor(
     private adsService: AdsService,

@@ -5,6 +5,7 @@
         <div class="location" style="padding-bottom: 20px;">
             <img src="../../../assets/images/filters/location icon.png" />
             <select name="contactMethod" id="contactMethod" class="form-control" [(ngModel)]="reg">
+                    <option [value]="noRegion">All cantons</option>
                     <option *ngFor="let region of cantons" [value]="region" [selected]="true">{{
                       region
                     }}</option>
@@ -13,6 +14,7 @@
         <div class="location" style="padding-bottom: 20px;">
             <img src="../../../assets/icon3 2.png" />
             <select name="contactMethod" id="contactMethod" class="form-control" [(ngModel)]="category.id">
+              <option  [value]="noCategory" >All categories</option>
                   <option *ngFor="let category of categoriesGroup" [value]="category.id" [selected]="true">{{
                     category.groupName
                   }}</option>

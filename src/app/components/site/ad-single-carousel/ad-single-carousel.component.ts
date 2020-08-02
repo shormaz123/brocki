@@ -35,47 +35,18 @@ export class AdSingleCarouselComponent implements OnInit {
   userRequest: UserAddAdsRequest;
   token;
 
-  constructor(private adsService: AdsService, private userService: UserService, private helpersService: HelpersService) {}
+  constructor(private adsService: AdsService, private userService: UserService, private helpersService: HelpersService) { }
 
   ngOnInit() {
     this.token = localStorage.getItem(AuthConst.token);
     if (this.userId) {
-      this.userService.getUser().subscribe( user => {
+      this.userService.getUser().subscribe(user => {
         this.userId = user.id;
       });
     }
   }
 
-  toggleSelected(adId: number) {
-    this.userRequest = {
-      adsId: adId,
-      userId: this.userId
-    };
 
-    if (!this.selected) {
-    this.userService.updateUserFavourites(this.userRequest).subscribe(
-      _x => {
-        console.log('add update to favorite', _x);
-      }
-    ),
-      // tslint:disable-next-line: no-unused-expression
-      _error => {
-        console.log('not to favorite');
-    };
-
-  } else {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe(
-      _x => {
-        console.log('delete update to favorite', _x);
-      }
-    ),
-      _error => {
-        console.log('not delete to favorite');
-    };
-  }
-    this.helpersService.$numOfFavs.next();
-    this.selected = !this.selected;
-  }
 
   next() {
     this.myCarousel.next();
@@ -84,6 +55,34 @@ export class AdSingleCarouselComponent implements OnInit {
 
   pre() {
     this.myCarousel.pre();
+  }
+
+  addToWishlist(adId: number) {
+    this.userRequest = {
+      adsId: adId,
+      userId: this.userId
+    };
+    this.userService.updateUserFavourites(this.userRequest).subscribe(
+      _x => {
+        console.log('add update to favorite', _x);
+      }
+    ),
+      _error => {
+        console.log('not to favorite');
+      };
+    this.helpersService.$numOfFavs.next();
+  }
+
+  removeFromWishlist(adId: number) {
+    this.userService.deleteUserFavourite(adId, this.userId).subscribe(
+      _x => {
+        console.log('delete update to favorite', _x);
+      }
+    ),
+      _error => {
+        console.log('not delete to favorite');
+      };
+    this.helpersService.$numOfFavs.next();
   }
 
 }
