@@ -2,10 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "src/app/shared/models/user.model";
 import { UserService } from "../../@core/services/user.service";
 import { AdsService } from "../../@core/services/ads.service";
+import { AuthService } from "../../@core/services/auth.service";
 import { Ads } from "../../shared/models/ads.model";
 import { AuthConst } from "src/app/@core/consts/auth.const";
 import { AdsParam } from "../../shared/models/adParams.model";
 import { Router, ActivatedRoute } from "@angular/router";
+import { NzModalService } from "ng-zorro-antd";
 
 @Component({
   selector: "app-user",
@@ -29,9 +31,11 @@ export class UserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private adsService: AdsService
+    private adsService: AdsService,
+    private modal: NzModalService
   ) {}
 
   ngOnInit() {
@@ -111,5 +115,16 @@ export class UserComponent implements OnInit {
   }
   goTo(route: string): void {
     this.router.navigate([route]);
+  }
+
+  logout(): void {
+    this.modal.confirm({
+      nzTitle: "Are you sure you want to logout?",
+      nzContent: "",
+      nzOnOk: () => {
+        this.authService.logout();
+        this.router.navigate(["/site"]);
+      },
+    });
   }
 }

@@ -12,7 +12,7 @@
         <span>My Account</span>
       </div>
       <div class="body">
-        <div class="checkmarks">
+        <!-- <div class="checkmarks">
           <div>
             <img src="../../../assets/images/myAccount/check box.png" />
             <span style="padding-left: 10px;">checked user</span>
@@ -25,26 +25,36 @@
             <img src="../../../assets/images/myAccount/check box.png" />
             <span style="padding-left: 10px;">successful sales</span>
           </div>
-        </div>
+        </div> -->
         <div class="boxes">
           <div class="boxes__link">
             <img
+              class="boxes__image"
               src="../../../assets/images/myAccount/update info.png"
               (click)="updateInfo()"
             />
-            <span>update info</span>
+            <div class="boxes__text">update info</div>
           </div>
           <div class="boxes__link" (click)="goTo('/pricing')">
-            <img src="../../../assets/images/myAccount/credits.png" />
-            <span>credits</span>
+            <img
+              class="boxes__image"
+              src="../../../assets/images/myAccount/credits.png"
+            />
+            <div class="boxes__text">credits</div>
           </div>
           <div class="boxes__link" (click)="goTo('/contact-us')">
-            <img src="../../../assets/images/myAccount/contact us.png" />
-            <span>contact us</span>
+            <img
+              class="boxes__image"
+              src="../../../assets/images/myAccount/contact us.png"
+            />
+            <div class="boxes__text">contact us</div>
           </div>
-          <div class="boxes__link" (click)="goTo('/create-ad')">
-            <img src="../../../assets/images/myAccount/add item.png" />
-            <span>add item</span>
+          <div class="boxes__link" (click)="logout()">
+            <div
+              class="boxes__image"
+              [inlineSVG]="'../../../assets/images/logout/logout.svg'"
+            ></div>
+            <div class="boxes__text">Logout</div>
           </div>
         </div>
       </div>
