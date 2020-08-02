@@ -2,9 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "src/app/shared/models/user.model";
 import { UserService } from "../../@core/services/user.service";
 import { AdsService } from "../../@core/services/ads.service";
+import { AuthService } from "../../@core/services/auth.service";
 import { Ads } from "../../shared/models/ads.model";
 import { AuthConst } from "src/app/@core/consts/auth.const";
+import { AdsParam } from "../../shared/models/adParams.model";
 import { Router, ActivatedRoute } from "@angular/router";
+import { NzModalService } from "ng-zorro-antd";
 
 @Component({
   selector: "app-user",
@@ -23,13 +26,16 @@ export class UserComponent implements OnInit {
   uploadingUrl: string;
   userId: number;
   activeProducts: Array<any> = [];
+  soldProducts: Array<any> = [];
   ads: boolean;
 
   constructor(
     private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private adService: AdsService
+    private adsService: AdsService,
+    private modal: NzModalService
   ) {}
 
   ngOnInit() {
@@ -55,7 +61,7 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = false;
     this.guest = false;
-    this.adService.getAllByUserId(this.userId).subscribe((res) => {
+    this.adsService.getAllByUserId(this.userId).subscribe((res) => {
       this.activeProducts.push(res);
       if (this.activeProducts[0].length === 0) {
         this.ads = false;
@@ -77,6 +83,20 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = true;
     this.guest = false;
+    this.userService.getUser().subscribe((res) => {
+      const soldAds = new AdsParam();
+      soldAds.status = "SOLD";
+      soldAds.userId = res.id;
+      this.adsService.getSoldAds(soldAds).subscribe((res) => {
+        this.soldProducts.push(res);
+        console.log(this.soldProducts);
+        if (this.soldProducts[0].length === 0) {
+          this.ads = false;
+        } else {
+          this.ads = true;
+        }
+      });
+    });
   }
 
   guestButton() {
@@ -95,5 +115,16 @@ export class UserComponent implements OnInit {
   }
   goTo(route: string): void {
     this.router.navigate([route]);
+  }
+
+  logout(): void {
+    this.modal.confirm({
+      nzTitle: "Are you sure you want to logout?",
+      nzContent: "",
+      nzOnOk: () => {
+        this.authService.logout();
+        this.router.navigate(["/site"]);
+      },
+    });
   }
 }

@@ -28,6 +28,9 @@ export class AccountActiveComponent implements OnChanges {
       nzContent: "",
       nzOnOk: () => {
         this.activeProducts[0].splice(index, 1);
+        if (this.activeProducts[0].length === 0) {
+          this.ads = false;
+        }
         const ads = new Ads();
         ads.adsDate = null;
         ads.adsLocation = null;
@@ -48,6 +51,40 @@ export class AccountActiveComponent implements OnChanges {
         ads.userId = null;
         this.adsService.deleteAds(ads, ads.id).subscribe(() => {
           this.notification.success("", "The ad is deleted");
+        });
+      },
+    });
+  }
+
+  soldAd(active: Ads, index: number): void {
+    this.modal.confirm({
+      nzTitle: "Whether the ad was actually sold?",
+      nzContent: "",
+      nzOnOk: () => {
+        this.activeProducts[0].splice(index, 1);
+        if (this.activeProducts[0].length === 0) {
+          this.ads = false;
+        }
+        const ads = new Ads();
+        ads.adsDate = null;
+        ads.adsLocation = null;
+        ads.adsType = null;
+        ads.adsgroupId = null;
+        ads.adssubgropuId = null;
+        ads.description = null;
+        ads.favourite = null;
+        ads.fixedPrice = null;
+        ads.freeDelivery = null;
+        ads.id = active.id;
+        ads.image = null;
+        ads.price = null;
+        ads.productName = null;
+        ads.productWarranty = null;
+        ads.status = "SOLD";
+        ads.urgentSales = null;
+        ads.userId = null;
+        this.adsService.soldAds(ads, ads.id).subscribe(() => {
+          this.notification.success("", "The ad is moved to sold");
         });
       },
     });

@@ -27,8 +27,11 @@
         </div>
       </div>
       <div class="delete-ad" (click)="deleteAd(active, i)">X</div>
-      <div class="amount">
-        <img src="../../../../assets/images/myAccount/money icon.png" />
+      <div class="amount" (click)="soldAd(active, i)">
+        <div class="tooltip">
+          <img src="../../../../assets/images/myAccount/money icon.png" />
+          <span class="tooltiptext">Sold ad?</span>
+        </div>
       </div>
     </div>
   </div>
