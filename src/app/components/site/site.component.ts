@@ -46,6 +46,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   favAds;
   adParams: AdsParam;
   filteredAds = [];
+  showItems = 16;
 
   state;
 
@@ -397,5 +398,9 @@ export class SiteComponent implements OnInit, OnDestroy {
       this.randomAds = this.shuffle(response);
       this.getUserAndFavAd();
     });
+  }
+
+  increaseShow() {
+    this.showItems += 16;
   }
 }
