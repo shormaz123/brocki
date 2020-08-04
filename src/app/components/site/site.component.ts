@@ -17,6 +17,7 @@ import { HelpersService } from 'src/app/@core/services/helpers.service';
 import { Subscription, Observable } from 'rxjs';
 import { AdsParam } from 'src/app/shared/models/adParams.model';
 import { Router } from '@angular/router';
+import { UserAddAdsRequest } from 'src/app/shared/models/useraddAdsRequest.model';
 
 @Component({
   selector: 'app-site',
@@ -47,8 +48,10 @@ export class SiteComponent implements OnInit, OnDestroy {
   adParams: AdsParam;
   filteredAds = [];
   showItems = 16;
+  userRequest: UserAddAdsRequest;
 
   state;
+  selected: boolean;
 
   private numberOfFavs: Subscription;
 
@@ -278,12 +281,12 @@ export class SiteComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private helpersService: HelpersService,
     private router: Router,
-    private helpers: HelpersService) {
+  ) {
 
-      if (this.router.getCurrentNavigation().extras.state) {
-       this.filteredAds= this.router.getCurrentNavigation().extras.state.data;
-       console.log('filteredads', this.filteredAds)
-      }
+    if (this.router.getCurrentNavigation().extras.state) {
+      this.filteredAds = this.router.getCurrentNavigation().extras.state.data;
+      console.log('filteredads', this.filteredAds)
+    }
   }
 
   ngOnInit() {
@@ -292,18 +295,19 @@ export class SiteComponent implements OnInit, OnDestroy {
     });
     this.token = localStorage.getItem(AuthConst.token);
     this.selectCategory(1);
-    if(this.filteredAds.length > 0) {
+    if (this.filteredAds.length > 0) {
       this.ads = this.filteredAds
       this.randomAds = this.shuffle(this.filteredAds);
       if (this.token) {
         this.getUserAndFavAd();
       } else {
         this.favAds = this.ads;
+
       }
     } else {
       this.adsService.getAllVisibleAds().subscribe((response) => {
         this.ads = response;
-        console.log('ads',this.ads)
+        console.log('ads', this.ads)
         this.randomAds = this.shuffle(response);
         if (this.token) {
           this.getUserAndFavAd();
@@ -313,7 +317,7 @@ export class SiteComponent implements OnInit, OnDestroy {
       });
     }
     this.numberOfFavs = this.helpersService.$numOfFavs.subscribe(response => {
-      this.getUserAndFavAd();
+      this.getNumOfFavs();
     });
 
   }
@@ -330,6 +334,18 @@ export class SiteComponent implements OnInit, OnDestroy {
 
           // Replace objects between two arrays.
           this.favAds = this.ads.map(obj => this.favoriteAds.find(o => o.id === obj.id) || obj);
+        };
+      }
+      );
+    });
+  }
+
+  getNumOfFavs() {
+    this.userService.getUser().subscribe(response => {
+      this.userId = response.id;
+      this.userService.getFavourites(response.id).subscribe(x => {
+        if (this.token) {
+          this.numberOfFavorites = x.length;
         };
       }
       );
@@ -402,5 +418,33 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   increaseShow() {
     this.showItems += 16;
+  }
+
+  addToWishlist(adId: number) {
+    this.userRequest = {
+          adsId: adId,
+          userId: this.userId
+        };
+    this.userService.updateUserFavourites(this.userRequest).subscribe(
+      _x => {
+        console.log('add update to favorite', _x);
+      }
+    ),
+      _error => {
+        console.log('not to favorite');
+      };
+      this.helpersService.$numOfFavs.next();
+  }
+
+removeFromWishlist(adId: number) {
+    this.userService.deleteUserFavourite(adId, this.userId).subscribe(
+      _x => {
+        console.log('delete update to favorite', _x);
+      }
+    ),
+      _error => {
+        console.log('not delete to favorite');
+      };
+      this.helpersService.$numOfFavs.next();
   }
 }

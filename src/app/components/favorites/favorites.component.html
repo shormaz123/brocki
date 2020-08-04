@@ -1,7 +1,54 @@
 <app-header class="header"></app-header>
 <div class="container">
-  <div class="underContainer">
-    <span class="title" style="padding-bottom: 40px;"
-      >Favorite <span style="color: #d62b1f;">ads</span></span>
-  </div>
+    <div class="underContainer">
+        <span class="title" style="padding-bottom: 40px;">Favorite <span style="color: #d62b1f;">ads</span></span>
+    </div>
+    <div class="bodySuggestions2">
+        <div style="
+        padding: '5px';
+        padding: 10px !important;
+        width: 25%;
+        background-color: #f6f6f6;
+        box-sizing: border-box;
+      " *ngFor="let card of favoriteAds, let i = index">
+            <div style="background-color: white; cursor: pointer; padding: 10px;" class="cardHover">
+                <div class="image" [routerLink]="['/ad', card.id]">
+                    <img src="Card" [src]="card.image[0]" />
+                </div>
+                <div class="cardBody" [routerLink]="['/ad', card.id]">
+                    <label style="font-size: 20px; font-weight: bolder;">{{
+            card.productName
+          }}</label>
+                    <div class="adLine"></div>
+                    <div class="description">
+                        <label style="font-size: 12px;">{{ card.description }}</label>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="pricetag">
+                        <label style="color: white;">{{ card.price }} CHF</label>
+                    </div>
+                    <div>
+                        <button mat-icon-button (click)="card.favourite = !card.favourite">
+              <mat-icon
+                *ngIf="card.favourite;"
+                (click)="removeFromWishlist(card.id, i)"
+                aria-label="Example icon-button with a heart icon"
+              >
+                favorite
+              </mat-icon>
+              <mat-icon
+                *ngIf="!card.favourite"
+                (click)="addToWishlist(card.id)"
+                aria-label="Example icon-button with a heart icon"
+              >
+                favorite_border
+              </mat-icon>
+            </button>
+                    </div>
+                    <span style="color: black;">{{ card.adsDate | date }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

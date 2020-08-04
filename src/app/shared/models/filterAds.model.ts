@@ -7,5 +7,5 @@ export interface FilterAds {
   freeDelivery: boolean,
   productWarranty: boolean,
   urgentSales: boolean,
-  adsGroupId: number
+  adsGroupId: any
 }
