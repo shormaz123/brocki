@@ -49,7 +49,7 @@ export class AccountActiveComponent implements OnChanges {
         ads.status = "DELETE";
         ads.urgentSales = null;
         ads.userId = null;
-        this.adsService.deleteAds(ads, ads.id).subscribe(() => {
+        this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
           this.notification.success("", "The ad is deleted");
         });
       },
@@ -83,7 +83,7 @@ export class AccountActiveComponent implements OnChanges {
         ads.status = "SOLD";
         ads.urgentSales = null;
         ads.userId = null;
-        this.adsService.soldAds(ads, ads.id).subscribe(() => {
+        this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
           this.notification.success("", "The ad is moved to sold");
         });
       },
