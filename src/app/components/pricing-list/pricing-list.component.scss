@@ -58,11 +58,16 @@
 
   &__image-box {
     padding: 20px 0 0;
-    text-align: center;
   }
 
   &__image {
     width: 50px;
     height: 50px;
+    margin: 0 auto;
+
+    &--b2b {
+      width: 70px;
+      height: 70px;
+    }
   }
 }
