@@ -28,25 +28,25 @@
         </div> -->
         <div class="boxes">
           <div class="boxes__link">
-            <img
-              class="boxes__image"
-              src="../../../assets/images/myAccount/update info.png"
+            <div
               (click)="updateInfo()"
-            />
+              class="boxes__image"
+              [inlineSVG]="'./../../assets/images/myAccount/update-info.svg'"
+            ></div>
             <div class="boxes__text">update info</div>
           </div>
           <div class="boxes__link" (click)="goTo('/pricing')">
-            <img
+            <div
               class="boxes__image"
-              src="../../../assets/images/myAccount/credits.png"
-            />
+              [inlineSVG]="'../../../assets/images/myAccount/credits.svg'"
+            ></div>
             <div class="boxes__text">credits</div>
           </div>
           <div class="boxes__link" (click)="goTo('/contact-us')">
-            <img
+            <div
               class="boxes__image"
-              src="../../../assets/images/myAccount/contact us.png"
-            />
+              [inlineSVG]="'../../../assets/images/myAccount/contact-us.svg'"
+            ></div>
             <div class="boxes__text">contact us</div>
           </div>
           <div class="boxes__link" (click)="logout()">
