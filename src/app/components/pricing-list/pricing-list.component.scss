@@ -1,38 +1,73 @@
 @import "../../../scss/variables";
+@import "../../../scss/mixin.scss";
 
 .container {
   background-color: $lightgrey;
   width: 100vw;
   padding: 60px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   color: $darkgrey;
-  padding-bottom: 40px;
 }
 
-.box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 16pt;
-  padding: 0 0 20px 0;
-}
+.pricing {
+  width: 1280px;
+  margin: 0 auto;
 
-.amount {
-  color: $red;
-}
+  @include rwd(1600) {
+    width: 985px;
+  }
 
-.list {
-  color: $red;
-}
+  &__list {
+    color: $red;
+  }
 
-.text {
-  color: $text-gray;
-}
+  &__title {
+    font-size: 24pt;
+    padding-bottom: 10px;
+    text-align: center;
+  }
 
-.title {
-  font-size: 24pt;
-  padding-bottom: 20px;
+  &__subtitle {
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    color: $red;
+  }
+
+  &__subtitle-text {
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 2;
+    font-size: 16px;
+  }
+
+  &__text {
+    width: 960px;
+    margin: 0 auto;
+    letter-spacing: 1px;
+    color: $text-gray;
+
+    &--padding {
+      padding: 0;
+    }
+  }
+
+  &__second-subtitle {
+    padding-bottom: 20px;
+    color: $black;
+  }
+
+  &__image-box {
+    padding: 20px 0 0;
+  }
+
+  &__image {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+
+    &--b2b {
+      width: 70px;
+      height: 70px;
+    }
+  }
 }

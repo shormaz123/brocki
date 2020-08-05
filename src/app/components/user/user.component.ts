@@ -27,7 +27,8 @@ export class UserComponent implements OnInit {
   userId: number;
   activeProducts: Array<any> = [];
   soldProducts: Array<any> = [];
-  ads: boolean;
+  adsActive: boolean;
+  adsSold: boolean;
 
   constructor(
     private userService: UserService,
@@ -64,9 +65,9 @@ export class UserComponent implements OnInit {
     this.adsService.getAllByUserId(this.userId).subscribe((res) => {
       this.activeProducts.push(res);
       if (this.activeProducts[0].length === 0) {
-        this.ads = false;
+        this.adsActive = false;
       } else {
-        this.ads = true;
+        this.adsActive = true;
       }
     });
   }
@@ -83,19 +84,17 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = true;
     this.guest = false;
-    this.userService.getUser().subscribe((res) => {
-      const soldAds = new AdsParam();
-      soldAds.status = "SOLD";
-      soldAds.userId = res.id;
-      this.adsService.getSoldAds(soldAds).subscribe((res) => {
-        this.soldProducts.push(res);
-        console.log(this.soldProducts);
-        if (this.soldProducts[0].length === 0) {
-          this.ads = false;
-        } else {
-          this.ads = true;
-        }
-      });
+    const soldAds = new AdsParam();
+    soldAds.status = "SOLD";
+    soldAds.userId = this.userId;
+    this.adsService.getSoldAds(soldAds).subscribe((res) => {
+      this.soldProducts = [];
+      this.soldProducts.push(res);
+      if (this.soldProducts[0].length === 0) {
+        this.adsSold = true;
+      } else {
+        this.adsSold = false;
+      }
     });
   }
 

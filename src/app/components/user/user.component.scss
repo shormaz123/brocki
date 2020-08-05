@@ -93,7 +93,7 @@
   padding: 116px 170px 0 180px;
 
   @include rwd(1600) {
-    padding: 30px 160px 0 120px;
+    padding: 116px 140px 0 130px;
   }
 
   &__image {
@@ -161,7 +161,7 @@
   flex-direction: row;
   background: white;
   height: 40px;
-  margin-top: 10px;
+  margin-top: 11px;
   border-radius: 10px 10px 0 0;
   cursor: pointer;
 

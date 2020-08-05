@@ -94,16 +94,7 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/ads/visible`);
   }
 
-  deleteAds(ads: Ads, id: number): Observable<Ads> {
-    let query = new HttpParams();
-    query = query.append("status", ads.status);
-    return this.http.put<Ads>(
-      `${this.baseUrl}/mybrocki/auth/ads/status/${id}`,
-      ads
-    );
-  }
-
-  soldAds(ads: Ads, id: number): Observable<Ads> {
+  changeStatusOfAds(ads: Ads, id: number): Observable<Ads> {
     let query = new HttpParams();
     query = query.append("status", ads.status);
     return this.http.put<Ads>(

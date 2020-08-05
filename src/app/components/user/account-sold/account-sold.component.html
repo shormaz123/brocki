@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="ads" *ngIf="ads === false">
+  <div class="ads" *ngIf="ads === true">
     <div class="ads__text">
-      No sold ads
+      You have not any sold ads
     </div>
   </div>
-  <div *ngIf="ads === true">
+  <div *ngIf="ads === false">
     <div *ngFor="let ad of soldProducts[0]; let i = index" class="card">
       <div class="image">
         <img class="image__sold" [src]="ad.image[0]" />
