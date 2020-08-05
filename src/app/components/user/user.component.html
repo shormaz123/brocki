@@ -4,12 +4,12 @@
     <div class="account">
       <div class="image">
         <div class="imageBorder">
-          <img
+          <div
             class="profil-image"
-            src="../../../assets/images/myAccount/profile picture.png"
-          />
+            [style.backgroundImage]="'url(' + userImage + ')'"
+          ></div>
         </div>
-        <span>My Account</span>
+        <span>{{ userName }}</span>
       </div>
       <div class="body">
         <!-- <div class="checkmarks">

@@ -11,5 +11,7 @@ export class AccountSoldComponent implements OnChanges {
 
   constructor() {}
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    console.log(this.soldProducts);
+  }
 }
