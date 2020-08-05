@@ -36,11 +36,29 @@ export class AdsService {
     );
   }
 
+  getAdsdBySearch(productName: string): Observable <Ads[]> {
+    return this.http.get (
+      `${this.baseUrl}/mybrocki/ads/search?productName=${productName}`
+    );
+  }
+
   getAdsBySubGroupParam(adssubgroup: number): Observable<Ads[]> {
     return this.http.get(
       `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}`
     );
   }
+
+  getAdsByActiveStatus(): Observable<Ads[]> {
+    return this.http.get(
+      `${this.baseUrl}/mybrocki/ads/filter?stats=ACTIVE`
+    );
+  }
+
+  // getAdsByNonActiveStatus() {
+  //   return this.http.get(
+  //     // `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}`
+  //   );
+  // }
 
   newAd(ad: CreateAd): Observable<Ads> {
     return this.http.post(`${this.baseUrl}/mybrocki/auth/ads/create`, ad);

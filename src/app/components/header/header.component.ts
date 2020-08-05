@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   user;
   userId;
 
+
   private loginNameSubscription: Subscription;
 
   constructor(

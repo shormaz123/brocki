@@ -59,6 +59,9 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+        span {
+            font-size: 14pt;
+        }
     }
 }
 
@@ -87,7 +90,7 @@
     justify-content: center;
     width: 33%;
     height: 100%;
-    font-size: 14pt !important;
+    font-size: 13pt !important;
     align-items: flex-end;
     .textContainer {
         height: 100%;
@@ -96,9 +99,9 @@
         justify-content: space-evenly;
         text-align: justify;
         word-break: break-all;
-        width: 270px;
+        width: 293px;
         span {
-            font-size: 14pt;
+            font-size: 13pt;
         }
     }
 }

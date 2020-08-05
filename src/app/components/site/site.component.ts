@@ -49,6 +49,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   filteredAds = [];
   showItems = 16;
   userRequest: UserAddAdsRequest;
+  searchProductName: string;
 
   state;
   selected: boolean;
@@ -305,7 +306,7 @@ export class SiteComponent implements OnInit, OnDestroy {
 
       }
     } else {
-      this.adsService.getAllVisibleAds().subscribe((response) => {
+      this.adsService.getAdsByActiveStatus().subscribe((response) => {
         this.ads = response;
         console.log('ads', this.ads)
         this.randomAds = this.shuffle(response);
@@ -322,6 +323,17 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   }
 
+
+  getAdsBySearch() {
+    this.adsService.getAdsdBySearch(this.searchProductName).subscribe( x=> {
+      this.favAds = x;
+    },
+    error => {
+      console.log('error')
+    })
+
+
+  }
 
 
   getUserAndFavAd() {
