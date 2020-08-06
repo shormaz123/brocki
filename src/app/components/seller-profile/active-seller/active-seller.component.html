@@ -1,26 +1,34 @@
 <div class="container">
-  <div *ngFor="let ad of ads" class="card">
-    <div class="image">
-      <img src="../../../../assets/images/myAccount/Image car _ delete.png">
+  <div class="ads">
+    <div class="ads__text" *ngIf="ads === false">
+      You have not active ads
     </div>
-    <div class="text">
-      <div style="height: 10%;font-size: 14pt;">
-        <span>{{ad.title}}</span>
+  </div>
+  <div class="ads__body" *ngIf="ads === true">
+    <div *ngFor="let active of activeProducts[0]; let i = index" class="card">
+      <div class="image">
+        <img class="image__image" [src]="active.image[0]" />
       </div>
-      <hr>
-      <div style="height: 70%;overflow: overlay;">
-        <span class="description">{{ad.text}}</span>
+      <div class="text">
+        <div class="text__link">
+          <div class="text__title">{{ active.productName }}</div>
+        </div>
+        <hr />
+        <div class="text__link">
+          <div class="text__body">{{ active.description }}</div>
+        </div>
+        <div class="text__body-price">
+          <div class="text__price">
+            <div>{{ active.price | number: ".2-2" }} CHF</div>
+          </div>
+          <div class="text__day">
+            <div>{{ active.adsDate | date: "medium" }}</div>
+          </div>
+        </div>
       </div>
-      <div class="priceBox">
-        <div class="price">
-        <span>{{ad.price}}</span>
+      <div class="amount">
+        <img src="../../../../assets/images/update-info-bussines/email.png" />
       </div>
-        <span style="padding-left: 10px;">{{ad.days}}</span>
-      </div>
-
-    </div>
-    <div class="amount">
-      <img src="../../../../assets/images/update-info-bussines/email.png">
     </div>
   </div>
 </div>

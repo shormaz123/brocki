@@ -4,7 +4,7 @@
       You have not active ads
     </div>
   </div>
-  <div *ngIf="ads === true">
+  <div class="ads__body" *ngIf="ads === true">
     <div *ngFor="let active of activeProducts[0]; let i = index" class="card">
       <div class="image">
         <img class="image__image" [src]="active.image[0]" />
