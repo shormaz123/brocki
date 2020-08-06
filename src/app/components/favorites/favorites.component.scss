@@ -273,3 +273,13 @@ p-carousel {
 .mat-icon {
     color: $red;
 }
+
+.bodyLabel {
+    text-align: center;
+    display: flex;
+    width: 98%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    justify-content: center;
+}

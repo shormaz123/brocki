@@ -16,8 +16,8 @@
             <div class="search">
                 <button class="filters" routerLink="/filters">Filters</button>
                 <div class="searchBox">
-                    <input type="text" class="searchTerm" placeholder="Search" />
-                    <button type="submit" class="searchButton">
+                    <input type="text" class="searchTerm" placeholder="Search" [(ngModel)]="searchProductName" />
+                    <button type="submit" class="searchButton" (click)="getAdsBySearch()">
           <i class="fa fa-search"></i>
         </button>
                 </div>
@@ -95,9 +95,11 @@
                                         <img src="Card" [src]="ad.image[0]" />
                                     </div>
                                     <div class="cardBody" [routerLink]="['/ad', ad.id]">
-                                        <label style="font-size: 20px; font-weight: bolder;">{{
+                                        <div class="bodyLabel">
+                                            <label style="font-size: 20px; font-weight: bolder;">{{
                   ad.productName
                 }}</label>
+                                        </div>
                                         <div class="adLine"></div>
                                         <div class="description">
                                             <label style="font-size: 12px;">{{ ad.description }}</label>
@@ -147,9 +149,11 @@
                                         <img src="Card" [src]="card.image[0]" />
                                     </div>
                                     <div class="cardBody" [routerLink]="['/ad', card.id]">
-                                        <label style="font-size: 20px; font-weight: bolder;">{{
+                                        <div class="bodyLabel">
+                                            <label style="font-size: 20px; font-weight: bolder;">{{
                   card.productName
                 }}</label>
+                                        </div>
                                         <div class="adLine"></div>
                                         <div class="description">
                                             <label style="font-size: 12px;">{{ card.description }}</label>
@@ -197,9 +201,11 @@
                                 <img src="Card" [src]="card.image[0]" />
                             </div>
                             <div class="cardBody" [routerLink]="['/ad', card.id]">
-                                <label style="font-size: 20px; font-weight: bolder;">{{
+                                <div class="bodyLabel">
+                                    <label style="font-size: 20px; font-weight: bolder;">{{
               card.productName
             }}</label>
+                                </div>
                                 <div class="adLine"></div>
                                 <div class="description">
                                     <label style="font-size: 12px;">{{ card.description }}</label>

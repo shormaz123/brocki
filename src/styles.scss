@@ -219,3 +219,9 @@ p-carousel {
     transform: translateX(0);
     overflow: scroll;
 }
+
+body .ui-accordion .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+    background-color: $red !important;
+    border: 1px solid $red !important;
+    color: #ffffff;
+}
