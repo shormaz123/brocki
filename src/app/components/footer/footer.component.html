@@ -1,42 +1,67 @@
-<div class="container">
-  <div class="firstContainer">
-    <div><img src="assets/images/footer/line 2px.png" /></div>
-    <div class="leftContainer">
-      <span class="text" (click)="goTo('/ad')">Home</span>
-      <span class="text" (click)="goTo('/user')">My Account</span>
-      <span class="text">About us</span>
-      <span class="text">Contact</span>
+<div class="footer">
+  <div class="footer__list">
+    <img class="footer__image" src="assets/images/footer/line 2px.png" />
+    <div class="footer__links">
+      <div class="footer__text" (click)="goTo('/site')">Home</div>
+      <div class="footer__text" (click)="goTo('/user/userId')">My Account</div>
+      <div class="footer__text">About us</div>
+      <div class="footer__text" (click)="goTo('contact-us')">Contact</div>
     </div>
   </div>
-  <div class="secondContainer">
-    <div class="first">
-      <span><img src="assets/images/footer/minibrocki logo footer.png" /></span>
+  <div class="footer__links footer__links--center">
+    <img
+      class="footer__logo"
+      src="assets/images/footer/minibrocki logo footer.png"
+    />
+    <div class="footer__icons">
+      <a href="https://www.facebook.com" target="_blank"
+        ><div
+          class="footer__icon"
+          [inlineSVG]="'../../../assets/images/footer/facebook.svg'"
+        ></div>
+      </a>
+      <a href="https://www.instagram.com" target="_blank"
+        ><div
+          class="footer__icon"
+          [inlineSVG]="'../../../assets/images/footer/instagram.svg'"
+        ></div
+      ></a>
+      <a href="https://www.linkedin.com" target="_blank"
+        ><div
+          class="footer__icon"
+          [inlineSVG]="'../../../assets/images/footer/linkedin.svg'"
+        ></div
+      ></a>
+      <a href="https://www.youtube.com" target="_blank"
+        ><div
+          class="footer__icon"
+          [inlineSVG]="'../../../assets/images/footer/youtube.svg'"
+        ></div
+      ></a>
     </div>
-    <div class="second">
-      <span class="img"><img src="assets/images/footer/facebook.png" /></span>
-      <span class="img"><img src="assets/images/footer/instagram.png" /></span>
-      <span class="img"><img src="assets/images/footer/linkedin.png" /></span>
-      <span class="img"><img src="assets/images/footer/youtube.png" /></span>
-    </div>
-    <div class="third">
-      <span>Copyright @2020 All rights reserved</span>
-      <span>by <span style="color: #d62b1f;">MioSoftware LLC</span></span>
+    <div class="footer__copyright">
+      <p class="footer__copyright-color">
+        Copyright @2020 All rights reserved<br />
+        by<span style="color: #d62b1f; align-items: center;">
+          MioSoftware LLC
+        </span>
+      </p>
     </div>
   </div>
-  <div class="thirdContainer">
-    <div class="textContainer">
-      <span
-        >The
-        <span style="color: #d62b1f; cursor: pointer;">minibrocki®️ </span>app
-        is intended to help Swiss SME retailers as well as second-hand and
-        institutions, in today's dynamic market development. Its made to bind
-        the customer to the business, win new customers and thus increase
-        sales.</span
-      >
-      <span class="email"
-        ><img src="assets/images/footer/mail icon.png" />
-        <span> &nbsp;info@minibrocki.com</span>
-      </span>
+  <div class="footer__links footer__links--end">
+    <p class="footer__email-text">
+      The <span style="color: #d62b1f; cursor: pointer;">minibrocki®️ </span>app
+      is intended to help Swiss SME retailers as well as second-hand and
+      institutions, in today's dynamic market development. Its made to bind the
+      customer to the business, win new customers and thus increase sales.
+    </p>
+    <div class="footer__email">
+      <img
+        class="footer__icon footer__icon--email"
+        src="assets/images/footer/mail icon.png"
+      />
+      <p class="footer__email-email">&nbsp;info@minibrocki.com</p>
     </div>
   </div>
+  <div></div>
 </div>
