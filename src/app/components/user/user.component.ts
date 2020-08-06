@@ -29,8 +29,10 @@ export class UserComponent implements OnInit {
   defaultImage = "../../../assets/images/myAccount/profile-picture.png";
   userImage: string = this.defaultImage;
   activeProducts: Array<any> = [];
+  expiredProducts: Array<any> = [];
   soldProducts: Array<any> = [];
   adsActive: boolean;
+  adsExpired: boolean;
   adsSold: boolean;
 
   constructor(
@@ -84,6 +86,14 @@ export class UserComponent implements OnInit {
     this.expired = true;
     this.sold = false;
     this.guest = false;
+    this.adsService.getExpiredAds().subscribe((res) => {
+      this.expiredProducts.push(res);
+      if (this.expiredProducts[0].length === 0) {
+        this.adsExpired = true;
+      } else {
+        this.adsExpired = false;
+      }
+    });
   }
 
   soldButton() {

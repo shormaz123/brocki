@@ -1,27 +1,37 @@
 <div class="container">
-  <div *ngFor="let ad of ads" class="card">
-    <div class="image">
-      <img src="../../../../assets/images/myAccount/Image car _ delete.png" />
+  <div class="ads">
+    <div class="ads__text" *ngIf="ads === true">
+      You have no ads that have expired
     </div>
-    <div class="text">
-      <div class="text__link">
-        <div class="text__title">{{ ad.title }}</div>
+  </div>
+  <div *ngIf="ads === false">
+    <div *ngFor="let expired of expiredProducts[0]; let i = index" class="card">
+      <div class="image">
+        <img class="image__expired" [src]="expired.image[0]" />
       </div>
-      <hr />
-      <div class="text__link">
-        <div class="text__body">{{ ad.text }}</div>
-      </div>
-      <div class="text__body-price">
-        <div class="text__price">
-          <div>{{ ad.price | number: ".2-2" }} CHF</div>
+      <div class="text">
+        <div class="text__link">
+          <div class="text__title">{{ expired.productName }}</div>
         </div>
-        <div class="text__day">
-          <div>{{ ad.days }}</div>
+        <hr />
+        <div class="text__link">
+          <div class="text__body">{{ expired.description }}</div>
+        </div>
+        <div class="text__body-price">
+          <div class="text__price">
+            <div>{{ expired.price | number: ".2-2" }} CHF</div>
+          </div>
+          <div class="text__day">
+            <div>{{ expired.expiredDate }}</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="expired">
-      expired
+      <div (click)="reactivate(expired, i)" class="expired">
+        <div class="tooltip">
+          reactivate
+          <span class="tooltiptext">Reactivate the ad?</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

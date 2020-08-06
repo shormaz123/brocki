@@ -3,7 +3,9 @@
     <img class="footer__image" src="assets/images/footer/line 2px.png" />
     <div class="footer__links">
       <div class="footer__text" (click)="goTo('/site')">Home</div>
-      <div class="footer__text" (click)="goTo('/user/userId')">My Account</div>
+      <div class="footer__text" (click)="goTo('/user/' + userId)">
+        My Account
+      </div>
       <div class="footer__text">About us</div>
       <div class="footer__text" (click)="goTo('contact-us')">Contact</div>
     </div>
@@ -63,5 +65,4 @@
       <p class="footer__email-email">&nbsp;info@minibrocki.com</p>
     </div>
   </div>
-  <div></div>
 </div>

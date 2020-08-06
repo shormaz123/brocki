@@ -98,7 +98,11 @@
       [ads]="adsSold"
       *ngIf="sold"
     ></app-account-sold>
-    <app-account-expired *ngIf="expired"></app-account-expired>
+    <app-account-expired
+      [expiredProducts]="expiredProducts"
+      [ads]="adsExpired"
+      *ngIf="expired"
+    ></app-account-expired>
     <app-account-active
       [activeProducts]="activeProducts"
       [ads]="adsActive"
