@@ -58,7 +58,6 @@ export class AuthService {
   //Logout
 
   logout() {
-    localStorage.removeItem(AuthConst.roleName);
-    localStorage.removeItem(AuthConst.token);
+    localStorage.clear();
   }
 }

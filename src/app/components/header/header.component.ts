@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   user;
   userId;
 
+
   private loginNameSubscription: Subscription;
 
   constructor(
@@ -30,7 +31,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.loginNameSubscription = this.helpers.$loginName.subscribe((filter) => {
       this.getUser();
-      console.log("getUser function");
     });
     if (localStorage.getItem(AuthConst.token) == null) {
     } else {
@@ -52,7 +52,6 @@ export class HeaderComponent implements OnInit {
           this.accountName = user.userName;
           this.createAd = true;
           this.userId = user.id;
-          // console.log(user);
           localStorage.setItem(AuthConst.userId, user.id.toString());
         }
       },

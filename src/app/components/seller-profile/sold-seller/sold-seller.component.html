@@ -1,30 +1,34 @@
 <div class="container">
-  <div *ngFor="let ad of ads" class="card">
-    <div class="image">
-      <img src="../../../../assets/images/myAccount/Image car _ delete.png">
+  <div class="ads" *ngIf="ads === false">
+    <div class="ads__text">
+      This user has no ads sold
     </div>
-    <div class="text">
-      <div style="height: 10%;font-size: 14pt;">
-        <span>{{ad.title}}</span>
+  </div>
+  <div *ngIf="ads === true">
+    <div *ngFor="let sold of soldProducts[0]; let i = index" class="card">
+      <div class="image">
+        <img class="image__sold" [src]="sold.image[0]" />
       </div>
-      <hr>
-      <div style="height: 70%;overflow: overlay;">
-        <span class="description">{{ad.text}}</span>
-      </div>
-      <div class="priceBox">
-        <div class="price">
-        <span>{{ad.price}}</span>
-      </div>
-        <span style="padding-left: 10px;">{{ad.days}}</span>
-        <div class="amount">
-          <div class="sold">
-            <span>SOLD</span>
+      <div class="text">
+        <div class="text__link">
+          <div class="text__title">{{ sold.productName }}</div>
+        </div>
+        <hr />
+        <div class="text__link">
+          <div class="text__body">{{ sold.description }}</div>
+        </div>
+        <div class="text__body-price">
+          <div class="text__price">
+            <div>{{ sold.price | number: ".2-2" }} CHF</div>
+          </div>
+          <div class="text__day">
+            <div>{{ sold.soldDate | date: "medium" }}</div>
           </div>
         </div>
       </div>
-
+      <div class="sold">
+        sold
+      </div>
     </div>
-
   </div>
 </div>
-

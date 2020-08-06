@@ -108,20 +108,19 @@ export class AdComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((params) => {
       this.adId = params["id"];
-      this.getNewAd(this.adId)
+      this.getNewAd(this.adId);
     });
-
-
   }
 
   getNewAd(id: number) {
+    console.log(id);
     this.galleryImages = [];
     this.adsService.getAdById(id).subscribe((response) => {
       this.userSellerId = response.userId;
       this.ad = response;
       this.adGroupId = response.adsgroupId;
       console.log(this.userSellerId);
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
 
       for (let i = 0; i < response.image.length; i++)
         this.galleryImages.push({
@@ -151,7 +150,7 @@ export class AdComponent implements OnInit {
       });
     });
 
-    this.adsService.getAdsByParam(this.adGroupId).subscribe((x) => {
+    this.adsService.getAdsByParamToFilter(this.adGroupId).subscribe((x) => {
       if (x == null) {
         this.categoryImagesAvailable = false;
       } else {
@@ -159,8 +158,5 @@ export class AdComponent implements OnInit {
         this.adsByCategory = x;
       }
     });
-
   }
-
-
 }

@@ -1,6 +1,4 @@
-export interface adsGroup {
-
-  groupName: string,
-  id: number
-
+export class adsGroup {
+  groupName: string;
+  id: number;
 }

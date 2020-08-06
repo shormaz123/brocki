@@ -1,4 +1,4 @@
-export interface CreateAd {
+export class CreateAd {
   adsType: string;
   adsGroupId: number;
   adsSubGroupId: number;

@@ -1,0 +1,110 @@
+@import "../../../scss/variables";
+@import "../../../scss/mixin.scss";
+
+.container {
+  background-color: $lightgrey;
+  width: 100vw;
+}
+
+::placeholder {
+  color: $text-gray;
+}
+
+.contact-us {
+  width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 60px 0 90px;
+  font-size: 20px;
+
+  @include rwd(1600) {
+    width: 985px;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 24pt;
+    padding: 0 50px 25px 0;
+  }
+
+  &__body {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__image {
+    display: flex;
+    padding: 0 50px 20px 0;
+  }
+
+  &__photo {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__text {
+    padding: 8px 0 0 15px;
+    text-align: start;
+    width: 200px;
+    font-size: 16px;
+  }
+
+  .form {
+    &__flex {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__inputItem {
+      text-align: start;
+      margin: 0 0 25px;
+    }
+
+    &__input-tight,
+    &__input-wide {
+      width: 240px;
+      padding: 5px 0 5px 10px;
+      border: 1px solid #e6e6e6;
+      border-radius: 25px;
+      color: $text-gray;
+      font-size: 16px;
+      height: 40px;
+    }
+
+    &__input-wide {
+      width: 500px;
+      padding: 5px 15px 5px 15px;
+
+      &--textarea {
+        height: 175px;
+        resize: none;
+        padding: 5px 15px;
+      }
+    }
+    &__sendMessage {
+      background-color: $red;
+      height: 35px;
+      padding: 0 35px;
+      border: 1px solid;
+      border-radius: 25px;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+
+      &:disabled {
+        cursor: default;
+        &:hover {
+          -ms-transform: scale(1); /* IE 9 */
+          -webkit-transform: scale(1); /* Safari 3-8 */
+          transform: scale(1);
+        }
+      }
+
+      &:hover {
+        -ms-transform: scale(1.5); /* IE 9 */
+        -webkit-transform: scale(1.5); /* Safari 3-8 */
+        transform: scale(1.1);
+      }
+    }
+  }
+}

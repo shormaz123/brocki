@@ -1,10 +1,21 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/mixin.scss";
+
 .container {
-  width: 100%;
+  width: 1280px;
   height: 600px;
   display: flex;
   flex-direction: row;
   background-color: white;
   padding: 20px;
+
+  @include rwdm(1600) {
+    width: 1280px;
+  }
+
+  @include rwd(1600) {
+    width: 985px;
+  }
 
   .left {
     width: 50%;

@@ -62,6 +62,7 @@ import { NgxGalleryModule } from "ngx-gallery";
 import { ImageUploadComponent } from "./image-upload/image-upload.component";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
+import { ContactUsComponent } from "./components/contact-us/contact-us.component";
 import { HelpersService } from "./@core/services/helpers.service";
 import { AuthGuardService } from "./@core/services/authGuard.service";
 import { FavoritesComponent } from "./components/favorites/favorites.component";
@@ -104,6 +105,7 @@ registerLocaleData(en);
     AdComponent,
     ImageUploadComponent,
     FavoritesComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,
@@ -133,6 +135,7 @@ registerLocaleData(en);
     MatButtonModule,
     SidebarModule,
     AccordionModule,
+    InlineSVGModule,
     TooltipModule,
     NzDropDownModule,
     MatMenuModule,

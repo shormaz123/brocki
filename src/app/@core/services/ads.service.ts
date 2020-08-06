@@ -16,6 +16,7 @@ import {
 } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { AdsParam } from "src/app/shared/models/adParams.model";
+import { FilterAds } from "src/app/shared/models/filterAds.model";
 
 @Injectable({
   providedIn: "root",
@@ -29,9 +30,15 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/brocki/ads`);
   }
 
-  getAdsByParam(data: AdsParam): Observable<Ads[]> {
+  getAdsByParamToFilter(data: FilterAds): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${data.adsGroupId}&adsType=${data.adsType}&adssubgroup=${data.adssubgroup}&bussinesType=${data.bussinesType}&fixedPrice=${data.fixedPrice}&freeDelivery=${data.freeDelivery}&fromPrice=${data.fromPrice}&hasImage=${data.hasImage}&productWarranty=${data.productWarranty}&region=${data.region}&status=${data.status}&toPrice=${data.toPrice}&urgentSales=${data.urgentSales}&userId=${data.userId}`
+      `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${data.adsGroupId}&fixedPrice=${data.fixedPrice}&freeDelivery=${data.freeDelivery}&fromPrice=${data.fromPrice}&hasImage=${data.hasImage}&productWarranty=${data.productWarranty}&region=${data.region}&toPrice=${data.toPrice}&urgentSales=${data.urgentSales}`
+    );
+  }
+
+  getAdsdBySearch(productName: string): Observable <Ads[]> {
+    return this.http.get (
+      `${this.baseUrl}/mybrocki/ads/search?productName=${productName}`
     );
   }
 
@@ -40,6 +47,18 @@ export class AdsService {
       `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}`
     );
   }
+
+  getAdsByActiveStatus(): Observable<Ads[]> {
+    return this.http.get(
+      `${this.baseUrl}/mybrocki/ads/filter?stats=ACTIVE`
+    );
+  }
+
+  // getAdsByNonActiveStatus() {
+  //   return this.http.get(
+  //     // `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}`
+  //   );
+  // }
 
   newAd(ad: CreateAd): Observable<Ads> {
     return this.http.post(`${this.baseUrl}/mybrocki/auth/ads/create`, ad);
@@ -73,6 +92,26 @@ export class AdsService {
 
   getAllVisibleAds(): Observable<Ads[]> {
     return this.http.get(`${this.baseUrl}/mybrocki/ads/visible`);
+  }
+
+  changeStatusOfAds(ads: Ads, id: number): Observable<Ads> {
+    let query = new HttpParams();
+    query = query.append("status", ads.status);
+    return this.http.put<Ads>(
+      `${this.baseUrl}/mybrocki/auth/ads/status/${id}`,
+      ads
+    );
+  }
+
+  getSoldAds(data: AdsParam): Observable<Ads> {
+    let query = new HttpParams();
+    query = query.append("status", data.status);
+    query = query.append("userId", data.userId.toString());
+    return this.http.get<Ads>(`${this.baseUrl}/mybrocki/ads/filter?${query}`);
+  }
+
+  getExpiredAds(): Observable<Ads> {
+    return this.http.get<Ads>(`${this.baseUrl}/mybrocki/auth/ads/expired`);
   }
 
   uploadImageInStorage(formData) {
