@@ -84,6 +84,8 @@
     }
 
     &--email {
+      width: 30px;
+      height: 30px;
       &:hover {
         -ms-transform: scale(1);
         /* IE 9 */
@@ -107,18 +109,18 @@
 
   &__email {
     display: flex;
-    padding: 0px 53px 5px 0;
+    padding: 0px 43px 5px 0;
   }
 
   &__email-text {
     margin: 0 0 5px 0;
     font-size: 18px;
-    width: 302px;
+    width: 276px;
     text-align: justify;
   }
 
   &__email-email {
     margin: 0;
-    line-height: 45px;
+    line-height: 28px;
   }
 }
