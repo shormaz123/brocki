@@ -3,14 +3,14 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" #myForm="ngForm">
         <div class="mainContainer">
             <div class="titleDiv">
-                <span class="title">Sign <span style="color: #d62b1f;">up</span></span>
+                <span class="title">{{'translate.signup' | translate}}</span>
             </div>
             <div class="roleButton">
                 <button class="roleButtons" (click)="privateButton(3)" [ngClass]="{ red: private, grey: !private }">
-          Private
+                  {{'translate.private' | translate}}
         </button>
                 <button class="roleButtons" (click)="businessButton(2)" [ngClass]="{ red: business, grey: !business }">
-          Business
+                  {{'translate.business' | translate}}
         </button>
             </div>
             <div class="bussinesButton" *ngIf="business">
@@ -23,19 +23,19 @@
             </div>
             <div class="input">
                 <div class="inputItem">
-                    <label>Email</label>
+                    <label>{{'translate.email' | translate}}</label>
                     <input formControlName="email" />
                 </div>
                 <div class="inputItem2">
-                    <label>Password </label>
+                    <label>{{'translate.password' | translate}} </label>
                     <input formControlName="password" />
                 </div>
                 <div class="inputItem3">
-                    <label>Username</label>
+                    <label>{{'translate.username' | translate}}</label>
                     <input formControlName="userName" />
                 </div>
                 <div class="inputItem4">
-                    <label>City</label>
+                    <label>{{'translate.city' | translate}}</label>
                     <select name="contactMethod" id="contactMethod" class="form-control" required formControlName="city">
         <option *ngFor="let city of cities" [value]="city[0]" >{{
           city
@@ -43,7 +43,7 @@
       </select>
                 </div>
                 <div class="inputItem5">
-                    <label>Canton</label>
+                    <label>{{'translate.canton' | translate}}</label>
                     <select name="contactMethod" id="contactMethod" class="form-control" required formControlName="region">
                       <option *ngFor="let region of cantons" [value]="region" >{{
                         region
@@ -53,15 +53,15 @@
             </div>
             <div class="lastDiv1">
                 <div class="textPassword">
-                    <mat-checkbox class="example-margin" formControlName="terms">Please confirm that you agree to <br />our terms & conditions.
+                    <mat-checkbox class="example-margin" formControlName="terms">{{'translate.confirmTermsAndConditionsOne' | translate}}<br />{{'translate.confirmTermsAndConditionsTwo' | translate}}.
                     </mat-checkbox>
                 </div>
             </div>
             <nz-alert nzType="error" [nzMessage]="errorMessage" nzShowIcon *ngIf="error" style="margin-bottom: 20px; margin-left: 1.5%;"></nz-alert>
-            <button class="signInButton" type="submit">Create account</button>
+            <button class="signInButton" type="submit">{{'translate.createAccount' | translate}}</button>
             <div class="lastDiv">
                 <div class="textPassword">
-                    <button class="signUpButton" routerLink="/login">Sign in</button>
+                    <button class="signUpButton" routerLink="/login">{{'translate.signin' | translate}}</button>
                 </div>
             </div>
         </div>

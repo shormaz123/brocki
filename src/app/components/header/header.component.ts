@@ -5,6 +5,7 @@ import { Subscription } from "rxjs";
 import { HelpersService } from "src/app/@core/services/helpers.service";
 import { NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: "app-header",
@@ -25,7 +26,8 @@ export class HeaderComponent implements OnInit {
     private userService: UserService,
     private helpers: HelpersService,
     private modal: NzModalService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -36,10 +38,15 @@ export class HeaderComponent implements OnInit {
     } else {
       this.getUser();
     }
+    this.change('de')
   }
 
   ngOnDestroy() {
     this.loginNameSubscription.unsubscribe();
+  }
+
+  change(code: string) {
+    this.translate.use(code);
   }
 
   getUser(): void {

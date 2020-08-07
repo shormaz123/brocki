@@ -1,49 +1,48 @@
 <app-header class="header"></app-header>
 <div class="loginContainer">
-  <div class="mainContainer">
-    <div class="titleDiv">
-      <span class="title"
-        >Update <span style="color: #d62b1f;">info</span></span
+    <div class="mainContainer">
+        <div class="titleDiv">
+            <span class="title">{{'translate.updateInfo' | translate}}</span
       >
     </div>
     <div class="inputItem">
       <img src="../../../assets/images/update-info-bussines/company.png" />
-      <input placeholder="Company" [(ngModel)]="newUser.company" />
+      <input placeholder="{{'translate.company' | translate}}" [(ngModel)]="newUser.company" />
     </div>
     <div class="inputItem">
       <img src="../../../assets/images/update-info-bussines/name.png" />
-      <input placeholder="Name" [(ngModel)]="newUser.name" />
+      <input placeholder="{{'translate.firstName' | translate}}" [(ngModel)]="newUser.name" />
     </div>
     <div class="inputItem">
       <img src="../../../assets/images/update-info-bussines/surname.png" />
-      <input placeholder="Surname" [(ngModel)]="newUser.surname" />
+      <input placeholder="{{'translate.surname' | translate}}" [(ngModel)]="newUser.surname" />
     </div>
     <div class="inputItem">
       <img src="../../../assets/images/update-info-bussines/email.png" />
-      <input placeholder="Email" [(ngModel)]="newUser.email" />
+      <input placeholder="{{'translate.email' | translate}}" [(ngModel)]="newUser.email" />
     </div>
     <div class="inputItem">
       <img src="../../../assets/images/update-info-bussines/website.png" />
-      <input placeholder="Website" [(ngModel)]="newUser.website" />
+      <input placeholder="{{'translate.website' | translate}}" [(ngModel)]="newUser.website" />
     </div>
     <div class="inputItem">
       <img src="../../../assets/images/update-info-bussines/phone.png" />
-      <input placeholder="Phone" [(ngModel)]="newUser.phone" />
+      <input placeholder="{{'translate.phone' | translate}}" [(ngModel)]="newUser.phone" />
     </div>
     <div class="inputItem">
       <img src="../../../assets/images/update-info-bussines/mobile.png" />
-      <input placeholder="Mobile" [(ngModel)]="newUser.mobile" />
+      <input placeholder="{{'translate.mobile' | translate}}" [(ngModel)]="newUser.mobile" />
     </div>
     <div class="inputItem">
       <img src="../../../assets/images/update-info-bussines/address.png" />
-      <input placeholder="Address" [(ngModel)]="newUser.address" />
+      <input placeholder="{{'translate.address' | translate}}" [(ngModel)]="newUser.address" />
     </div>
     <div class="textItem">
-      <label>About us:</label>
+      <label>{{'translate.aboutUs' | translate}}:</label>
       <textarea rows="8" [(ngModel)]="newUser.aboutUs"></textarea>
     </div>
     <div class="imagesDiv">
-      <label>Pictures of company:</label>
+      <label>{{'translate.picturesOfCompany' | translate}}:</label>
       <div class="clearfix">
         <nz-upload
           nzAction="https://jsonplaceholder.typicode.com/posts/"
@@ -79,5 +78,5 @@
       </nz-form-control>
     </div>
   </div>
-  <button class="signInButton" (click)="onSubmit()">Save changes</button>
+  <button class="signInButton" (click)="onSubmit()">{{'translate.saveChanges' | translate}}</button>
 </div>

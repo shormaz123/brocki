@@ -4,24 +4,24 @@
         <div class="addImage">
             <img class="image" src="../../../assets/images/header/create ad.svg" />
         </div>
-        <span class="createAd" *ngIf="createAd">&nbsp; Create ad</span>
+        <span class="createAd" *ngIf="createAd">&nbsp;{{'translate.createAd' | translate}}</span>
     </div>
     <div class="secondContainer">
         <img src="../../../assets/images/header/minibrocki.svg" routerLink="/site" />
     </div>
     <div class="thirdContainer">
         <div class="languageFlags">
-            <img class="flags" src="../../../assets/images/header/EN.png" />
-            <img class="flags" src="../../../assets/images/header/GE.png" />
-            <img class="flags" src="../../../assets/images/header/IT.png" />
-            <img class="flags" src="../../../assets/images/header/FR.png" />
+            <img class="flags" src="../../../assets/images/header/EN.png" (click)="change('en')" />
+            <img class="flags" src="../../../assets/images/header/GE.png" (click)="change('de')" />
+            <img class="flags" src="../../../assets/images/header/IT.png" (click)="change('it')" />
+            <img class="flags" src="../../../assets/images/header/FR.png" (click)="change('fr')" />
         </div>
         <div class="account">
-            <span class="accountAd" routerLink="/login" *ngIf="!accountName">Login&nbsp;</span
+            <span class="accountAd" routerLink="/login" *ngIf="!accountName">{{'translate.login' | translate}}&nbsp;</span
       >
       <button mat-button [routerLink]="['/user', userId]" *ngIf="accountName">{{ accountName }}</button>
       <mat-menu #menu="matMenu" >
-        <button mat-menu-item (click)="create()" *ngIf="!accountName">Create profile</button>
+        <button mat-menu-item (click)="create()" *ngIf="!accountName">{{'translate.createAccount' | translate}}</button>
         <button mat-menu-item (click)="logout()" *ngIf="accountName">Logout</button>
       </mat-menu>
       <!--

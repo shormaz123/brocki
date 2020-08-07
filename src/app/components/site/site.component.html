@@ -2,7 +2,7 @@
 <div class="mainContainer">
     <div class="sidebar">
         <p-sidebar [(visible)]="displaySideNav" [baseZIndex]="10000">
-            <h1 style="text-align: center;">All categories</h1>
+            <h1 style="text-align: center;">{{'translate.allCategories' | translate}}</h1>
             <p-accordion>
                 <p-accordionTab header="{{category.groupName}}" *ngFor="let category of categoriesGroup" (click)="selectDropDown(category.id)">
                     <div *ngFor="let subCategory of subCategories" class="accordationDiv">
@@ -14,7 +14,7 @@
     <div class="container">
         <div class="navBar">
             <div class="search">
-                <button class="filters" routerLink="/filters">Filters</button>
+                <button class="filters" routerLink="/filters">{{'translate.filters' | translate}}</button>
                 <div class="searchBox">
                     <input type="text" class="searchTerm" placeholder="Search" [(ngModel)]="searchProductName" />
                     <button type="submit" class="searchButton" (click)="getAdsBySearch()">
@@ -22,7 +22,7 @@
         </button>
                 </div>
                 <button class="favorite" routerLink="/favorite">
-        Favorite <span *ngIf="numberOfFavorites">({{numberOfFavorites}})</span>
+                  {{'translate.favorite' | translate}} <span *ngIf="numberOfFavorites">({{numberOfFavorites}})</span>
       </button>
             </div>
             <div class="navigation">
@@ -50,7 +50,7 @@
               src="../../../assets/images/navigation/red/Listofcategories.png"
               (click)="hideSide()"
             />
-            <span style="text-align: center;">All categories</span>
+            <span style="text-align: center;">{{'translate.allCategories' | translate}}</span>
           </div>
         </button>
                 </div>
@@ -70,12 +70,12 @@
         </div>
         <div class="siteButtons">
             <!-- <button class="siteButton">Around me</button> -->
-            <button class="siteButton" pTooltip="Will be available soon !!!" tooltipPosition="top">Freshly advertised</button>
-            <button class="siteButton" pTooltip="Will be available soon !!!" tooltipPosition="top">Unused</button>
-            <button class="siteButton" pTooltip="Will be available soon !!!" tooltipPosition="top">Most Wanted</button>
+            <button class="siteButton" pTooltip="Will be available soon !!!" tooltipPosition="top">{{'translate.freshlyAdvertised' | translate}}</button>
+            <button class="siteButton" pTooltip="Will be available soon !!!" tooltipPosition="top">{{'translate.unused' | translate}}</button>
+            <button class="siteButton" pTooltip="Will be available soon !!!" tooltipPosition="top">{{'translate.mostWanted' | translate}}</button>
         </div>
         <div class="suggestions">
-            <span class="suggText"> Suggestions for you:</span>
+            <span class="suggText"> {{'translate.suggestionsForYou' | translate}}:</span>
             <div class="bodySuggestions2">
                 <div class="cards">
                     <p-carousel [value]="favAds" [numVisible]="3" [numScroll]="1">
@@ -234,7 +234,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="increaseButton" mat-button (click)="increaseShow()" *ngIf="showItems < randomAds?.length">Show more</button>
+                        <button class="increaseButton" mat-button (click)="increaseShow()" *ngIf="showItems < favAds?.length">{{'translate.mostWanted' | translate}}</button>
                     </div>
                 </div>
             </div>

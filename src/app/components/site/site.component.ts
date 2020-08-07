@@ -326,7 +326,13 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   getAdsBySearch() {
     this.adsService.getAdsdBySearch(this.searchProductName).subscribe( x=> {
-      this.favAds = x;
+
+
+      if (this.token) {
+        this.favAds = x.map(obj => this.favoriteAds.find(o => o.id === obj.id) || obj);
+      } else {
+        this.favAds = x;
+      }
     },
     error => {
       console.log('error')

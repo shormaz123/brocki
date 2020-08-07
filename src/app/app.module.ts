@@ -70,6 +70,8 @@ import { AccordionModule } from "primeng/accordion";
 import { InlineSVGModule } from "ng-inline-svg";
 import { TooltipModule } from "primeng/tooltip";
 import { MatMenuModule } from "@angular/material/menu";
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import { CustomTranslateLoader } from './@core/custom-translate-loader';
 
 registerLocaleData(en);
 
@@ -139,6 +141,11 @@ registerLocaleData(en);
     TooltipModule,
     NzDropDownModule,
     MatMenuModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useClass: CustomTranslateLoader
+      }})
   ],
   providers: [
     HttpBaseService,
