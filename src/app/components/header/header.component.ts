@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   roleName;
   user;
   userId;
+  dropdownBoolean = true;
 
 
   private loginNameSubscription: Subscription;
@@ -82,5 +83,10 @@ export class HeaderComponent implements OnInit {
 
     create() {
       this.router.navigate(['/registration']);
+    }
+
+     dropdown() {
+       this.dropdownBoolean = !this.dropdownBoolean;
+      document.getElementById("myDropdown").classList.toggle("show");
     }
 }

@@ -225,3 +225,8 @@ body .ui-accordion .ui-accordion-header:not(.ui-state-disabled).ui-state-active 
     border: 1px solid $red !important;
     color: #ffffff;
 }
+
+.mat-button-wrapper {
+    display: flex;
+    align-items: center;
+}
