@@ -17,6 +17,7 @@ import { UserService } from "./@core/services/user.service";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { InlineSVGModule } from "ng-inline-svg";
 
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
@@ -67,10 +68,9 @@ import { AuthGuardService } from "./@core/services/authGuard.service";
 import { FavoritesComponent } from "./components/favorites/favorites.component";
 import { SidebarModule } from "primeng/sidebar";
 import { AccordionModule } from "primeng/accordion";
-import { InlineSVGModule } from "ng-inline-svg";
 import { TooltipModule } from "primeng/tooltip";
 import { MatMenuModule } from "@angular/material/menu";
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { CustomTranslateLoader } from './@core/custom-translate-loader';
 
 registerLocaleData(en);
@@ -145,7 +145,9 @@ registerLocaleData(en);
       loader: {
         provide: TranslateLoader,
         useClass: CustomTranslateLoader
-      }})
+      }
+    }),
+    InlineSVGModule.forRoot(),
   ],
   providers: [
     HttpBaseService,
@@ -163,4 +165,4 @@ registerLocaleData(en);
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

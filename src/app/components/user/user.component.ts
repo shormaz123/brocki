@@ -25,9 +25,14 @@ export class UserComponent implements OnInit {
   path: string;
   uploadingUrl: string;
   userId: number;
+  userName: string;
+  defaultImage = "../../../assets/images/myAccount/profile-picture.png";
+  userImage: string = this.defaultImage;
   activeProducts: Array<any> = [];
+  expiredProducts: Array<any> = [];
   soldProducts: Array<any> = [];
   adsActive: boolean;
+  adsExpired: boolean;
   adsSold: boolean;
 
   constructor(
@@ -42,6 +47,10 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.userService.getUser().subscribe((res) => {
       this.path = res.bussinesType;
+      this.userName = res.userName;
+      res.companyImage[0]
+        ? (this.userImage = res.companyImage[0])
+        : (this.userImage = this.defaultImage);
     });
     this.guest = true;
     this.activatedRoute.params.subscribe(
@@ -77,6 +86,14 @@ export class UserComponent implements OnInit {
     this.expired = true;
     this.sold = false;
     this.guest = false;
+    this.adsService.getExpiredAds().subscribe((res) => {
+      this.expiredProducts.push(res);
+      if (this.expiredProducts[0].length === 0) {
+        this.adsExpired = true;
+      } else {
+        this.adsExpired = false;
+      }
+    });
   }
 
   soldButton() {

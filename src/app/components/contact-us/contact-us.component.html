@@ -2,36 +2,52 @@
 </app-header>
 <div class="container">
     <div class="contact-us">
+        <div class="contact-us__title">
+            Contact
+        </div>
         <div class="contact-us__body">
-            <div class="contact-us__title">
-                mini<span class="contact-us__color">brocki.ch</span>
-            </div>
-            <div class="contact-us__image">
-                <img class="contact-us__photo" src="../../../assets/images/update-info-bussines/company.png" />
-                <div class="contact-us__text">
-                    Mio Software GmbH
+            <div class="contact-us__pictures">
+                <div class="contact-us__image">
+                    <img class="contact-us__photo" src="../../../assets/images/filters/location icon.png" />
+                    <div class="contact-us__text">
+                        Mio Software GmbH Route de la Plaine 28, 1580 Avenches, Suisse
+                    </div>
+                </div>
+                <div class="contact-us__image">
+                    <img class="contact-us__photo" src="../../../assets/images/ad/icon phone.png" />
+                    <div class="contact-us__text">
+                        +41 27 923 88 88
+                    </div>
+                </div>
+                <div class="contact-us__image">
+                    <img class="contact-us__photo" src="../../../assets/images/ad/icon mail.png" />
+                    <div class="contact-us__text">
+                        info@minibrocki.ch
+                    </div>
                 </div>
             </div>
-            <div class="contact-us__image">
-                <img class="contact-us__photo" src="../../../assets/images/filters/location icon.png" />
-                <div class="contact-us__text">
-                    <strong>Route de la Plaine 28, 1580 Avenches, </strong>Switzerland
+            <form class="form" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+                <div class="form__flex">
+                    <div class="form__inputItem">
+                        <input class="form__input-tight" placeholder="Name" formControlName="name" />
+                    </div>
+                    <div class="form__inputItem">
+                        <input class="form__input-tight" placeholder="Email" formControlName="email" />
+                    </div>
                 </div>
-            </div>
+                <div class="form__inputItem">
+                    <input class="form__input-wide" placeholder="Subject" formControlName="subject" />
+                </div>
+                <div class="form__inputItem">
+                    <textarea class="form__input-wide form__input-wide--textarea" placeholder="Message" formControlName="message"></textarea>
+                </div>
+                <div class="form__inputItem">
+                    <button class="form__sendMessage" type="submit">
+            Send message
+          </button>
+                </div>
+            </form>
         </div>
-        <div class="contact-images">
-            <div class="contact-images contact-images--image">
-                <img class="contact-images__picture" src="../../../assets/images/ad/icon phone.png" />
-                <div class="contact-images__text">+41/27-923-88-88</div>
-            </div>
-            <div class="contact-images contact-images--image">
-                <img class="contact-images__picture" src="../../../assets/images/ad/icon mail.png" />
-                <div class="contact-images__text">
-                    <a class="contact-images__email" href="mailto:info@minibrocki.ch" target="_blank" rel="noopener noreferrer">
-            info@minibrocki.ch</a
-          >
-        </div>
-      </div>
+        <iframe width="790px" height="400px" id="gmap_canvas" src="https://maps.google.com/maps?q=Route%20de%20la%20Plaine%2028&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no"></iframe>
     </div>
-  </div>
 </div>

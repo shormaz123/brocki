@@ -110,6 +110,10 @@ export class AdsService {
     return this.http.get<Ads>(`${this.baseUrl}/mybrocki/ads/filter?${query}`);
   }
 
+  getExpiredAds(): Observable<Ads> {
+    return this.http.get<Ads>(`${this.baseUrl}/mybrocki/auth/ads/expired`);
+  }
+
   uploadImageInStorage(formData) {
     return this.httpClient.post<any>(
       `${this.baseUrl}/mybrocki/auth/image/upload`,

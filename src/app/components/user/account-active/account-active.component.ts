@@ -83,7 +83,7 @@ export class AccountActiveComponent implements OnChanges {
         ads.status = "SOLD";
         ads.urgentSales = null;
         ads.userId = null;
-        this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
+        this.adsService.changeStatusOfAds(ads, ads.id).subscribe((res) => {
           this.notification.success("", "The ad is moved to sold");
         });
       },

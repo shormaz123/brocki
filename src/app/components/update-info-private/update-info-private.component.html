@@ -5,7 +5,7 @@
             <span class="title">{{'translate.updateInfo' | translate}}</span
       >
     </div>
-    <form (ngSubmit)="onSubmit()" [formGroup]="itemForm">
+    <form (ngSubmit)="onSubmit()" [formGroup]="privateForm">
       <div class="inputItem">
         <img src="../../../assets/images/update-info-bussines/name.png" />
         <input placeholder="{{'translate.nameFirst' | translate}}" formControlName="name" />
@@ -54,8 +54,17 @@
       </div>
 
       <div class="inputItem">
+<<<<<<< HEAD
         <button class="signInButton" type="submit" [disabled]="!itemForm.dirty">
           {{'translate.saveChanges' | translate}}
+=======
+        <button
+          class="signInButton"
+          type="submit"
+          [disabled]="!privateForm.dirty"
+        >
+          Save changes
+>>>>>>> d9f40be3433833f6eefcbeb38a02e1950e16c15f
         </button>
       </div>
     </form>
