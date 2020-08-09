@@ -25,7 +25,7 @@ export class AdComponent implements OnInit {
   userSeller: User;
   productName;
   adsByUser;
-  adGroupId;
+  adGroupId?;
   adsByCategory;
 
   usersImagesAvailabe: boolean;

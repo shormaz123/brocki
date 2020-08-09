@@ -75,8 +75,12 @@ export class HeaderComponent implements OnInit {
        localStorage.removeItem(AuthConst.roleName);
        localStorage.removeItem(AuthConst.token);
        localStorage.removeItem(AuthConst.userId);
+       if(this.router.url === '/site')
+       {
+        window.location.reload();
+
+      }
        this.router.navigate(['/site']);
-       window.location.reload();
       }
       });
   }

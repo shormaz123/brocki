@@ -325,6 +325,10 @@ export class SiteComponent implements OnInit, OnDestroy {
 
 
   getAdsBySearch() {
+    if (this.searchProductName == undefined) {
+      return
+    } else {
+
     this.adsService.getAdsdBySearch(this.searchProductName).subscribe( x=> {
 
 
@@ -337,7 +341,7 @@ export class SiteComponent implements OnInit, OnDestroy {
     error => {
       console.log('error')
     })
-
+  }
 
   }
 

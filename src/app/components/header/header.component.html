@@ -26,8 +26,8 @@
           <img *ngIf="!dropdownBoolean" src="../../../assets/images/ad/keyboard-up-arrow.svg" style="height:25px;margin-left: 5px;">
         </button>
         <div class="dropdown-content" id="myDropdown">
-        <a href="#" style="height: 50px;" [routerLink]="['/user', userId]"><img src="../../../assets/images/ad/pencil-edit-button.svg" style="height:25px;margin-right: 10px;">Edit</a>
-        <a href="#" style="height: 50px;" (click)="logout()"><img src="../../../assets/images/ad/logout.svg" style="height:25px;margin-right: 10px;">Logout</a>
+        <div href="#" style="height: 50px;" [routerLink]="['/user', userId]"><img src="../../../assets/images/ad/pencil-edit-button.svg" style="height:25px;margin-right: 10px;">Edit</div>
+        <div href="#" style="height: 50px;" (click)="logout()"><img src="../../../assets/images/ad/logout.svg" style="height:25px;margin-right: 10px;">Logout</div>
         </div>
       </div>
       <!-- <button mat-button [routerLink]="['/user', userId]" *ngIf="accountName">{{ accountName }}</button>
