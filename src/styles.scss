@@ -230,3 +230,17 @@ body .ui-accordion .ui-accordion-header:not(.ui-state-disabled).ui-state-active 
     display: flex;
     align-items: center;
 }
+
+.ngx-gallery-icon .ngx-gallery-icon-content {
+    display: block;
+    color: $red;
+}
+
+.ngx-gallery-animation-slide .ngx-gallery-image.ngx-gallery-active {
+    left: 0px;
+    background-size: contain !important;
+}
+
+.ngx-gallery-thumbnail-size-cover[_ngcontent-bet-c8] .ngx-gallery-thumbnails[_ngcontent-bet-c8] .ngx-gallery-thumbnail[_ngcontent-bet-c8] {
+    background-size: contain !important;
+}
