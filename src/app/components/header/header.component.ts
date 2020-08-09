@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from "@angular/core";
-import { UserService } from "src/app/@core/services/user.service";
-import { AuthConst } from "src/app/@core/consts/auth.const";
+import { UserService } from "../../@core/services/user.service";
+import { AuthConst } from "../../@core/consts/auth.const";
 import { Subscription } from "rxjs";
-import { HelpersService } from "src/app/@core/services/helpers.service";
+import { HelpersService } from "../../@core/services/helpers.service";
 import { NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';

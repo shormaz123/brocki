@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { environment } from "src/environments/environment";
+import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { HttpBaseService } from "./http-base.service";
 import { AuthResponse } from "../../shared/models/responses/auth.response";
 import { Observable } from "rxjs";
 import { AuthConst } from "../consts/auth.const";
-import { UserRegistration } from "src/app/shared/models/userRegistration.model";
+import { UserRegistration } from "../../shared/models/userRegistration.model";
 
 @Injectable({
   providedIn: "root",

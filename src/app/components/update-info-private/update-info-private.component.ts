@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { User } from "src/app/shared/models/user.model";
-import { UserService } from "src/app/@core/services/user.service";
+import { User } from "../../shared/models/user.model";
+import { UserService } from "../../@core/services/user.service";
 import { NzModalService } from "ng-zorro-antd/modal";
 import { NzNotificationService } from "ng-zorro-antd";
 import { Router } from "@angular/router";

@@ -72,6 +72,7 @@ import { TooltipModule } from "primeng/tooltip";
 import { MatMenuModule } from "@angular/material/menu";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { CustomTranslateLoader } from './@core/custom-translate-loader';
+import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
 registerLocaleData(en);
 
@@ -141,6 +142,7 @@ registerLocaleData(en);
     TooltipModule,
     NzDropDownModule,
     MatMenuModule,
+    JwSocialButtonsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

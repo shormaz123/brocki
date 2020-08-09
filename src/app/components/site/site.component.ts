@@ -8,16 +8,16 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
-import { AdsService } from 'src/app/@core/services/ads.service';
-import { Ads } from 'src/app/shared/models/ads.model';
-import { AuthConst } from 'src/app/@core/consts/auth.const';
-import { UserService } from 'src/app/@core/services/user.service';
-import { User } from 'src/app/shared/models/user.model';
-import { HelpersService } from 'src/app/@core/services/helpers.service';
+import { AdsService } from '../../@core/services/ads.service';
+import { Ads } from '../../shared/models/ads.model';
+import { AuthConst } from '../../@core/consts/auth.const';
+import { UserService } from '../../@core/services/user.service';
+import { User } from '../../shared/models/user.model';
+import { HelpersService } from '../..//@core/services/helpers.service';
 import { Subscription, Observable } from 'rxjs';
-import { AdsParam } from 'src/app/shared/models/adParams.model';
+import { AdsParam } from '../../shared/models/adParams.model';
 import { Router } from '@angular/router';
-import { UserAddAdsRequest } from 'src/app/shared/models/useraddAdsRequest.model';
+import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 
 @Component({
   selector: 'app-site',

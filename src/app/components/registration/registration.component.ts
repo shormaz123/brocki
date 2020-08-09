@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { UserRegistration } from "src/app/shared/models/userRegistration.model";
-import { AuthService } from "src/app/@core/services/auth.service";
+import { UserRegistration } from "../../shared/models/userRegistration.model";
+import { AuthService } from "../../@core/services/auth.service";
 import {
   FormGroup,
   FormControl,

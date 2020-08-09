@@ -1,4 +1,4 @@
-import { AuthConst } from "src/app/@core/consts/auth.const";
+import { AuthConst } from "../../@core/consts/auth.const";
 import { CanActivate } from "@angular/router";
 import { Injectable } from "@angular/core";
 import {

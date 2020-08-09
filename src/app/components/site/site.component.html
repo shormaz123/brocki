@@ -110,6 +110,9 @@
                                             <label>{{ ad.price }} CHF</label>
                                         </div>
                                         <div>
+                                            <mat-icon *ngIf="!token" pTooltip="Please login before adding this ad to favorite section!!!" tooltipPosition="bottom" aria-label="Example icon-button with a heart icon">
+                                                favorite_border
+                                            </mat-icon>
                                             <button mat-icon-button (click)="ad.favourite = !ad.favourite" *ngIf="token">
 
                                             <mat-icon
@@ -164,6 +167,9 @@
                                             <label>{{ card.price }} CHF</label>
                                         </div>
                                         <div>
+                                            <mat-icon *ngIf="!token" pTooltip="Please login before adding this ad to favorite section!!!" tooltipPosition="bottom" aria-label="Example icon-button with a heart icon">
+                                                favorite_border
+                                            </mat-icon>
                                             <button mat-icon-button (click)="card.favourite = !card.favourite" *ngIf="token">
 
                                           <mat-icon
@@ -216,6 +222,9 @@
                                     <label>{{ card.price }} CHF</label>
                                 </div>
                                 <div>
+                                    <mat-icon *ngIf="!token" pTooltip="Please login before adding this ad to favorite section!!!" tooltipPosition="bottom" aria-label="Example icon-button with a heart icon">
+                                        favorite_border
+                                    </mat-icon>
                                     <button mat-icon-button (click)="card.favourite = !card.favourite" *ngIf="token">
 
                                     <mat-icon

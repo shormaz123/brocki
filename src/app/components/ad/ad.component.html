@@ -9,8 +9,13 @@
     <div class="socialMedia">
         <div style="width:10%;"><label>{{'translate.shareVia' | translate}}:</label></div>
         <div class="social">
-            <div class="socialButton"><img src="../../../assets/images/ad/logoOne.png">twitter</div>
-            <div class="socialButton"><img src="../../../assets/images/ad/logoTwo.png">facebook</div>
+
+
+            <!-- <div class="socialButton"><img src="../../../assets/images/footer/instagram.svg">instagram</div>
+            <a href="https://www.facebook.com" target="_blank">
+                <div class="socialButton"><img src="../../../assets/images/ad/logoTwo.png">facebook</div>
+            </a> -->
+            <fb-like></fb-like>
             <div class="socialButton"><img src="../../../assets/images/ad/logoThree.png">copy link</div>
         </div>
     </div>
@@ -20,27 +25,27 @@
     <div class="info">
         <div class="left">
             <div class="card">
-                <div class="cardColumn">{{ad?.price}}</div>
+                <div class="cardColumn">{{ad?.price}} CHF</div>
                 <div class="cardColumn">{{ad?.adsType}}</div>
-                <div class="cardColumn">ZURICH</div>
+                <div class="cardColumn">{{userSeller?.city}}</div>
                 <div class="cardColumn2">{{ad?.adsDate | date}}</div>
             </div>
         </div>
         <div class="right">
-            <div class="profile" [routerLink]="['/seller',userSellerId]">
-                <img src="../../../assets/images/myAccount/profile picture.png">
+            <div class="profile">
+                <img src="../../../assets/images/myAccount/profile-picture.png" [routerLink]="['/seller',userSellerId]" pTooltip="Click here to see sellers info!" tooltipPosition="top" style="cursor: pointer;">
                 <label>{{userSeller?.name}}</label>
             </div>
             <div class="contact">
                 <div class="phone">
-                    <img src="../../../assets/images/ad/icon phone.png">
+                    <img src="../../../assets/images/ad/icon phone.png" *ngIf="userSeller?.phone || userSeller?.mobile">
                     <div class="numbers">
                         <label>{{userSeller?.phone}}</label>
                         <label>{{userSeller?.mobile}}</label>
                     </div>
                 </div>
                 <div class="mail">
-                    <img src="../../../assets/images/ad/icon mail.png">
+                    <img src="../../../assets/images/ad/icon mail.png" *ngIf="userSeller?.email" style="cursor: pointer;">
                     <label>{{userSeller?.email}}</label>
                 </div>
             </div>
@@ -48,7 +53,7 @@
     </div>
     <div class="des">
         <div class="description">
-            <label>{{'translate.description' | translate}}</label>
+            <label>{{'translate.description' |  translate}}</label>
             <div><label style="color: black;">{{ad?.description}}</label></div>
         </div>
     </div>
@@ -56,21 +61,54 @@
         <label>{{'translate.allArticlesOfThisSeller' | translate}}</label>
         <div class="bodySuggestions">
             <div class="cards">
-                <p-carousel [value]="adsByUser" [numVisible]="3" [numScroll]="1" styleClass="width">
+                <p-carousel [value]="adsByUser" [numVisible]="3" [numScroll]="1">
                     <ng-template let-adByUser pTemplate="item">
-                        <div style="width: '200px'; height:'250px'; padding: '5px'; background-color: white; padding: 10px !important;" (click)="getNewAd(adByUser.id)">
-                            <div class="image">
-                                <img src="Card" [src]="adByUser?.image[0]" style="width: 100%;">
-                            </div>
-                            <div class="cardBody">
-                                <label style="font-size: 16px; font-weight: bolder;">{{adByUser?.productName}}</label>
-                                <div class="description">
-                                    <label style="font-size: 10px;">{{adByUser?.description}}</label>
+                        <div style="
+           width: 80%;
+           height: 100%;
+        padding: '5px';
+        background-color: #f6f6f6;
+        padding: 10px !important;
+ ">
+                            <div style="background-color: white;
+                              cursor: pointer;
+                              padding:10px" class="cardHover">
+                                <div class="image" [routerLink]="['/ad', adByUser.id]">
+                                    <img src="Card" [src]="adByUser.image[0]" />
                                 </div>
-                            </div>
-                            <div class="footer">
-                                <div class="pricetag"><label>{{adByUser?.price}} CHF</label></div>
-                                <span style="color: black;">{{adByUser?.adsDate | date}}</span>
+                                <div class="cardBody" [routerLink]="['/ad', adByUser.id]">
+                                    <div class="bodyLabel">
+                                        <label style="font-size: 20px; font-weight: bolder;">{{
+                                      adByUser.productName
+        }}</label>
+                                    </div>
+                                    <div class="adLine"></div>
+                                    <div class="description">
+                                        <label style="font-size: 12px;">{{ adByUser.description }}</label>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <div class="pricetag">
+                                        <label>{{ adByUser.price }} CHF</label>
+                                    </div>
+                                    <div>
+                                        <mat-icon *ngIf="!token" pTooltip="Please login before adding this ad to favorite section!" tooltipPosition="bottom" aria-label="Example icon-button with a heart icon">
+                                            favorite_border
+                                        </mat-icon>
+                                        <button mat-icon-button (click)="card.favourite = !adByUser.favourite" *ngIf="token">
+                                  <mat-icon
+                                    *ngIf="adByUser.favourite" (click)="removeFromWishlist(adByUser.id)"
+                                    aria-label="Example icon-button with a heart icon">
+                                    favorite
+                                  </mat-icon>
+                                    <mat-icon *ngIf="!adByUser.favourite" (click)="addToWishlist(adByUser.id)"
+                                      aria-label="Example icon-button with a heart icon">
+                                      favorite_border
+                                    </mat-icon>
+                                  </button>
+                                    </div>
+                                    <span style="color: black;">{{ adByUser.adsDate | date }}</span>
+                                </div>
                             </div>
                         </div>
                     </ng-template>
@@ -80,21 +118,54 @@
         <label>{{'translate.similarProducts' | translate}}:</label>
         <div class="bodySuggestions">
             <div class="cards">
-                <p-carousel [value]="adsByCategory" [numVisible]="3" [numScroll]="1">
+                <p-carousel [value]="adsByUser" [numVisible]="3" [numScroll]="1">
                     <ng-template let-adByCat pTemplate="item">
-                        <div style="width: '200px'; height:'250px'; padding: '5px'; background-color: white; padding: 10px !important;" (click)="getNewAd(adByCat.id)">
-                            <div class="image">
-                                <img src="Card" [src]="adByCat?.image[0]" style="width: 100%;">
-                            </div>
-                            <div class="cardBody">
-                                <label style="font-size: 16px; font-weight: bolder;">{{adByCat?.productName}}</label>
-                                <div class="description">
-                                    <label style="font-size: 10px;">{{adByCat?.description}}</label>
+                        <div style="
+       width: 80%;
+       height: 100%;
+    padding: '5px';
+    background-color: #f6f6f6;
+    padding: 10px !important;
+">
+                            <div style="background-color: white;
+                          cursor: pointer;
+                          padding:10px" class="cardHover">
+                                <div class="image" [routerLink]="['/ad', adByCat.id]">
+                                    <img src="Card" [src]="adByCat.image[0]" />
                                 </div>
-                            </div>
-                            <div class="footer">
-                                <div class="pricetag"><label>{{adByCat?.price}} CHF</label></div>
-                                <span style="color: black;">{{adByCat?.adsDate | date}}</span>
+                                <div class="cardBody" [routerLink]="['/ad', adByCat.id]">
+                                    <div class="bodyLabel">
+                                        <label style="font-size: 20px; font-weight: bolder;">{{
+                                      adByCat.productName
+    }}</label>
+                                    </div>
+                                    <div class="adLine"></div>
+                                    <div class="description">
+                                        <label style="font-size: 12px;">{{ adByCat.description }}</label>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <div class="pricetag">
+                                        <label>{{ adByCat.price }} CHF</label>
+                                    </div>
+                                    <div>
+                                        <mat-icon *ngIf="!token" pTooltip="Please login before adding this ad to favorite section!" tooltipPosition="bottom" aria-label="Example icon-button with a heart icon">
+                                            favorite_border
+                                        </mat-icon>
+                                        <button mat-icon-button (click)="card.favourite = !adByCat.favourite" *ngIf="token">
+                              <mat-icon
+                                *ngIf="adByCat.favourite" (click)="removeFromWishlist(adByCat.id)"
+                                aria-label="Example icon-button with a heart icon">
+                                favorite
+                              </mat-icon>
+                                <mat-icon *ngIf="!adByCat.favourite" (click)="addToWishlist(adByCat.id)"
+                                  aria-label="Example icon-button with a heart icon">
+                                  favorite_border
+                                </mat-icon>
+                              </button>
+                                    </div>
+                                    <span style="color: black;">{{ adByCat.adsDate | date }}</span>
+                                </div>
                             </div>
                         </div>
                     </ng-template>

@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { User } from "src/app/shared/models/user.model";
+import { User } from "../../shared/models/user.model";
 import { UserService } from "../../@core/services/user.service";
 import { AdsService } from "../../@core/services/ads.service";
 import { AuthService } from "../../@core/services/auth.service";
 import { Ads } from "../../shared/models/ads.model";
-import { AuthConst } from "src/app/@core/consts/auth.const";
+import { AuthConst } from "../../@core/consts/auth.const";
 import { AdsParam } from "../../shared/models/adParams.model";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NzModalService } from "ng-zorro-antd";

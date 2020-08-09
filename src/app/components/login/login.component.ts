@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthConst } from "src/app/@core/consts/auth.const";
-import { AuthService } from "src/app/@core/services/auth.service";
+import { AuthConst } from "../../@core/consts/auth.const";
+import { AuthService } from "../../@core/services/auth.service";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
-import { HelpersService } from "src/app/@core/services/helpers.service";
+import { HelpersService } from "../../@core/services/helpers.service";
 
 @Component({
   selector: "app-login",

@@ -10,12 +10,12 @@
     background-color: $lightgrey;
     display: flex;
     align-items: flex-start;
-    justify-content: center;
     min-height: 80vh;
     height: auto;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     .underContainer {
         width: 70%;
         display: flex;

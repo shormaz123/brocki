@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { map } from "rxjs/operators";
-import { UserService } from "src/app/@core/services/user.service";
-import { AuthService } from "src/app/@core/services/auth.service";
+import { UserService } from "../../@core/services/user.service";
+import { AuthService } from "../../@core/services/auth.service";
 import { NzNotificationService, NzModalService } from "ng-zorro-antd";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 

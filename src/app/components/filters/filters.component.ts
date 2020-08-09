@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FilterAds } from 'src/app/shared/models/filterAds.model';
-import { Ads } from 'src/app/shared/models/ads.model';
+import { FilterAds } from '../../shared/models/filterAds.model';
+import { Ads } from '../../shared/models/ads.model';
 import cantons from "../../shared/cantons.json";
-import { AdsService } from 'src/app/@core/services/ads.service';
+import { AdsService } from '../../@core/services/ads.service';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
-import { HelpersService } from 'src/app/@core/services/helpers.service';
+import { HelpersService } from '../../@core/services/helpers.service';
 
 @Component({
   selector: 'app-filters',

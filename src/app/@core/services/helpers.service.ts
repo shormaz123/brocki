@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { Ads } from 'src/app/shared/models/ads.model';
+import { Ads } from '../../shared/models/ads.model';
 import { UserService } from './user.service';
 
 

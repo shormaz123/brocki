@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpBaseService } from "./http-base.service";
-import { environment } from "src/environments/environment";
+import { environment } from "../../../environments/environment";
 import { Observable } from "rxjs";
-import { Ads } from "src/app/shared/models/ads.model";
-import { adsGroup } from "src/app/shared/models/adsGroup.model";
-import { adsSubGroup } from "src/app/shared/models/adsSubGroup.model";
-import { User } from "src/app/shared/models/user.model";
-import { CreateAd } from "src/app/shared/models/create-ad.model";
+import { Ads } from "../../shared/models/ads.model";
+import { adsGroup } from "../../shared/models/adsGroup.model";
+import { adsSubGroup } from "../../shared/models/adsSubGroup.model";
+import { User } from "../../shared/models/user.model";
+import { CreateAd } from "../../shared/models/create-ad.model";
 import {
   HttpClient,
   HttpEvent,
@@ -15,8 +15,8 @@ import {
   HttpParams,
 } from "@angular/common/http";
 import { map } from "rxjs/operators";
-import { AdsParam } from "src/app/shared/models/adParams.model";
-import { FilterAds } from "src/app/shared/models/filterAds.model";
+import { AdsParam } from "../../shared/models/adParams.model";
+import { FilterAds } from "../../shared/models/filterAds.model";
 
 @Injectable({
   providedIn: "root",

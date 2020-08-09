@@ -9,12 +9,12 @@ import {
 } from '@angular/core';
 import { NguCarouselConfig } from '@ngu/carousel';
 import { NzCarouselBaseStrategy, NzCarouselComponent } from 'ng-zorro-antd';
-import { AdsService } from 'src/app/@core/services/ads.service';
-import { Ads } from 'src/app/shared/models/ads.model';
-import { UserService } from 'src/app/@core/services/user.service';
-import { AuthConst } from 'src/app/@core/consts/auth.const';
-import { HelpersService } from 'src/app/@core/services/helpers.service';
-import { UserAddAdsRequest } from 'src/app/shared/models/useraddAdsRequest.model';
+import { AdsService } from '../../../@core/services/ads.service';
+import { Ads } from '../../../shared/models/ads.model';
+import { UserService } from '../../../@core/services/user.service';
+import { AuthConst } from '../../../@core/consts/auth.const';
+import { HelpersService } from '../../../@core/services/helpers.service';
+import { UserAddAdsRequest } from '../../../shared/models/useraddAdsRequest.model';
 
 @Component({
   selector: 'app-ad-single-carousel',

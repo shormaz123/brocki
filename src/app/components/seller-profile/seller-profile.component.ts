@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { UserService } from "src/app/@core/services/user.service";
+import { UserService } from "../../@core/services/user.service";
 import { AdsService } from "../../@core/services/ads.service";
 import { AdsParam } from "../../shared/models/adParams.model";
 import { ConnectionPositionPair } from "@angular/cdk/overlay";

@@ -1,6 +1,6 @@
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { AuthConst } from 'src/app/@core/consts/auth.const';
+import { AuthConst } from '../../@core/consts/auth.const';
 
 export class HttpRequestInterceptor implements HttpInterceptor {
 

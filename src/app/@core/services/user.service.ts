@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { environment } from "src/environments/environment";
+import { environment } from "../../../environments/environment";
 import { HttpBaseService } from "./http-base.service";
-import { User } from "src/app/shared/models/user.model";
+import { User } from "../../shared/models/user.model";
 import { Observable } from "rxjs";
 import { HttpClient } from '@angular/common/http';
-import { UserFavorite } from 'src/app/shared/models/userFavorite.model';
-import { UserAddAdsRequest } from 'src/app/shared/models/useraddAdsRequest.model';
+import { UserFavorite } from '../../shared/models/userFavorite.model';
+import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 
 @Injectable({
   providedIn: "root",
