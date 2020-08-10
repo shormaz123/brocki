@@ -12,6 +12,8 @@ import {
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { HelpersService } from '../../@core/services/helpers.service';
+import { CeiboShare } from 'ng2-social-share';
+
 
 @Component({
   selector: "app-ad",
@@ -30,9 +32,13 @@ export class AdComponent implements OnInit {
   adsByUser;
   adGroupId?;
   adsByCategory;
+  currentUrl = document.URL;
 
   usersImagesAvailabe: boolean;
   categoryImagesAvailable: boolean;
+
+  public repoUrl = 'https://github.com/Epotignano/ng2-social-share';
+  public imageUrl = 'https://avatars2.githubusercontent.com/u/10674541?v=3&s=200';
 
   cards = [
     {
@@ -201,5 +207,27 @@ export class AdComponent implements OnInit {
         console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
+  }
+
+  goToFaceBook() {
+    document.getElementById("shareFB").setAttribute("href","https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(document.URL));
+  }
+
+  goToFaceInstagram() {
+
+  }
+
+  copyLink() {
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.currentUrl;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
   }
 }

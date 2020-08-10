@@ -74,6 +74,8 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
   ];
 
+
+
   public categories = [
     {
       id: 1,

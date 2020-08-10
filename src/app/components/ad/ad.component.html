@@ -9,14 +9,13 @@
     <div class="socialMedia">
         <div style="width:10%;"><label>{{'translate.shareVia' | translate}}:</label></div>
         <div class="social">
+            <div class="socialButton" [socialShare]="'tw'"><img src="../../../assets/images/ad/logoOne.png"> Twitter
+            </div>
 
+            <div class="socialButton" [socialShare]="'fb'"><img src="../../../assets/images/ad/logoTwo.png"> Facebook
+            </div>
 
-            <!-- <div class="socialButton"><img src="../../../assets/images/footer/instagram.svg">instagram</div>
-            <a href="https://www.facebook.com" target="_blank">
-                <div class="socialButton"><img src="../../../assets/images/ad/logoTwo.png">facebook</div>
-            </a> -->
-            <fb-like></fb-like>
-            <div class="socialButton"><img src="../../../assets/images/ad/logoThree.png">copy link</div>
+            <div class="socialButton" (click)="copyLink()"><img src="../../../assets/images/ad/logoThree.png">copy link</div>
         </div>
     </div>
     <div class="title">
