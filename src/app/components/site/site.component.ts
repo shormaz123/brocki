@@ -18,6 +18,7 @@ import { Subscription, Observable } from 'rxjs';
 import { AdsParam } from '../../shared/models/adParams.model';
 import { Router } from '@angular/router';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
+import { de } from 'assets/i18n/de';
 
 @Component({
   selector: 'app-site',
@@ -53,6 +54,7 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   state;
   selected: boolean;
+  currentLang = 'de';
 
   private numberOfFavs: Subscription;
 
@@ -279,6 +281,8 @@ export class SiteComponent implements OnInit, OnDestroy {
   ];
 
 
+
+
   constructor(private cdr: ChangeDetectorRef,
     private adsService: AdsService,
     private userService: UserService,
@@ -295,6 +299,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.adsService.getAllAdsGroups().subscribe(x => {
       this.categoriesGroup = x;
+      console.log(this.categoriesGroup)
     });
     this.token = localStorage.getItem(AuthConst.token);
     this.selectCategory(1);
@@ -323,6 +328,10 @@ export class SiteComponent implements OnInit, OnDestroy {
       this.getNumOfFavs();
     });
 
+  }
+
+  receiveNotification(notification: any) {
+    this.currentLang = notification;
   }
 
 

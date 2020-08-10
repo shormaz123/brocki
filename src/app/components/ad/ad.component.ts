@@ -134,13 +134,11 @@ export class AdComponent implements OnInit {
   }
 
   getNewAd(id: number) {
-    console.log(id);
     this.galleryImages = [];
     this.adsService.getAdById(id).subscribe((response) => {
       this.userSellerId = response.userId;
       this.ad = response;
       this.adGroupId = response.adsgroupId;
-      console.log(this.userSellerId);
       window.scrollTo(0, 0);
 
       for (let i = 0; i < response.image.length; i++)
@@ -149,9 +147,6 @@ export class AdComponent implements OnInit {
           medium: response.image[i],
           big: response.image[i],
         });
-
-      console.log(this.galleryImages);
-
       this.userService.getUserById(this.userSellerId).subscribe((x) => {
         if (x == null) {
           this.usersImagesAvailabe = false;
@@ -210,7 +205,7 @@ export class AdComponent implements OnInit {
   }
 
   goToFaceBook() {
-    document.getElementById("shareFB").setAttribute("href","https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(document.URL));
+    document.getElementById("shareFB").setAttribute("href", "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(document.URL));
   }
 
   goToFaceInstagram() {

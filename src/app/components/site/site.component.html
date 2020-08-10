@@ -1,12 +1,12 @@
-<app-header class="header"></app-header>
+<app-header class="header" (notify)="receiveNotification($event)"></app-header>
 <div class="mainContainer">
     <div class="sidebar">
         <p-sidebar [(visible)]="displaySideNav" [baseZIndex]="10000">
             <h1 style="text-align: center;">{{'translate.allCategories' | translate}}</h1>
             <p-accordion>
-                <p-accordionTab header="{{category.groupName}}" *ngFor="let category of categoriesGroup" (click)="selectDropDown(category.id)">
+                <p-accordionTab header="{{category.groupName[currentLang]}}" *ngFor="let category of categoriesGroup" (click)="selectDropDown(category.id)">
                     <div *ngFor="let subCategory of subCategories" class="accordationDiv">
-                        <span class="accordationSpan" (click)="getAdsByParams(subCategory.id)">{{subCategory.subGroupName}}</span></div>
+                        <span class="accordationSpan" (click)="getAdsByParams(subCategory.id)">{{subCategory.subGroupName[currentLang]}}</span></div>
                 </p-accordionTab>
             </p-accordion>
         </p-sidebar>

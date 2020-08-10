@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from "@angular/core";
 import { UserService } from "../../@core/services/user.service";
 import { AuthConst } from "../../@core/consts/auth.const";
 import { Subscription } from "rxjs";
@@ -6,6 +6,7 @@ import { HelpersService } from "../../@core/services/helpers.service";
 import { NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { TranslateServiceRest } from '../../@core/services/translateREST.service';
 
 @Component({
   selector: "app-header",
@@ -19,6 +20,13 @@ export class HeaderComponent implements OnInit {
   user;
   userId;
   dropdownBoolean = true;
+  de;
+  it;
+  fr;
+  en;
+  chosenLanguage;
+
+  @Output() notify = new EventEmitter<any>();
 
 
   private loginNameSubscription: Subscription;
@@ -28,7 +36,8 @@ export class HeaderComponent implements OnInit {
     private helpers: HelpersService,
     private modal: NzModalService,
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private translateBackend: TranslateServiceRest
   ) {}
 
   ngOnInit() {
@@ -48,6 +57,9 @@ export class HeaderComponent implements OnInit {
 
   change(code: string) {
     this.translate.use(code);
+    this.translateBackend.setLanguage('ita');
+    this.notify.emit(code)
+
   }
 
   getUser(): void {

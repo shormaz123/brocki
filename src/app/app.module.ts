@@ -73,6 +73,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { CustomTranslateLoader } from './@core/custom-translate-loader';
 import { NgxSocialShareModule } from 'ngx-social-share';
+import { TranslateServiceRest } from './@core/services/translateREST.service';
 
 registerLocaleData(en);
 
@@ -158,6 +159,7 @@ registerLocaleData(en);
     UserService,
     AdsService,
     AuthGuardService,
+    TranslateServiceRest,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,

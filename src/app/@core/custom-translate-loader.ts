@@ -5,8 +5,15 @@ import { it } from "../../assets/i18n/it";
 
 import { TranslateLoader } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { Ads } from '../shared/models/ads.model';
+
+
+
 
 export class CustomTranslateLoader implements TranslateLoader {
+
+
+
 public getTranslation(lang: string): Observable<any> {
   return Observable.create(observer => {
     switch (lang) {
@@ -26,4 +33,6 @@ public getTranslation(lang: string): Observable<any> {
     observer.complete();
    })
   }
+
+
 }
