@@ -22,7 +22,7 @@ export const de = {
     "fixedPrice": "Fixpreis",
     "onlyProductsWithPictures": "Nur Produkte mit Bildern",
     "productWarranty": "Produktgarantie",
-    "UrgentSales": "Dringende Verkäufe",
+    "urgentSales": "Dringende Verkäufe",
     "confirm": "Bestätigen ",
     "email": "E-Mail-Adresse",
     "password": "Passwort",
@@ -77,6 +77,8 @@ export const de = {
     "mobile": "Handy",
     "address": "Adresse",
     "picturesOfCompany": "Bilder der Firma",
-    "save": "Speichern "
+    "save": "Speichern ",
+    "logout": "Ausloggen",
+    "edit": "Bearbeiten",
   }
 }

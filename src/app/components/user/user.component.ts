@@ -26,7 +26,7 @@ export class UserComponent implements OnInit {
   uploadingUrl: string;
   userId: number;
   userName: string;
-  defaultImage = "../../../assets/images/myAccount/profile-picture.png";
+  defaultImage = '../../../assets/images/myAccount/profile-picture.png';
   userImage: string = this.defaultImage;
   activeProducts: Array<any> = [];
   expiredProducts: Array<any> = [];

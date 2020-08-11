@@ -26,19 +26,19 @@
                 <div class="boxes">
                     <div class="boxes__link">
                         <div (click)="updateInfo()" class="boxes__image" [inlineSVG]="'./../../assets/images/myAccount/update-info.svg'"></div>
-                        <div class="boxes__text">update info</div>
+                        <div class="boxes__text">{{'translate.updateInfo' | translate}}</div>
                     </div>
                     <div class="boxes__link" (click)="goTo('/pricing')">
                         <div class="boxes__image" [inlineSVG]="'../../../assets/images/myAccount/credits.svg'"></div>
-                        <div class="boxes__text">credits</div>
+                        <div class="boxes__text">{{'translate.credits' | translate}}</div>
                     </div>
                     <div class="boxes__link" (click)="goTo('/contact-us')">
                         <div class="boxes__image" [inlineSVG]="'../../../assets/images/myAccount/contact-us.svg'"></div>
-                        <div class="boxes__text">contact us</div>
+                        <div class="boxes__text">{{'translate.contactUs' | translate}}</div>
                     </div>
                     <div class="boxes__link" (click)="logout()">
                         <div class="boxes__image" [inlineSVG]="'../../../assets/images/logout/logout.svg'"></div>
-                        <div class="boxes__text">Logout</div>
+                        <div class="boxes__text">{{'translate.logout' | translate}}</div>
                     </div>
                 </div>
                 <div class="navigation">

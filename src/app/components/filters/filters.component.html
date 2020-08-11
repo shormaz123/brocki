@@ -4,7 +4,7 @@
         <span class="title" style="padding-bottom: 40px;">{{'translate.filters' | translate}}</span>
         <div class="location" style="padding-bottom: 20px;">
             <img src="../../../assets/images/filters/location icon.png" />
-            <select name="contactMethod" id="contactMethod" class="form-control" [(ngModel)]="reg">
+            <select name="contactMethod"  class="form-control" [(ngModel)]="reg">
                     <option [value]="noRegion">All cantons</option>
                     <option *ngFor="let region of cantons" [value]="region" [selected]="true">{{
                       region
@@ -13,10 +13,10 @@
         </div>
         <div class="location" style="padding-bottom: 20px;">
             <img src="../../../assets/icon3 2.png" />
-            <select name="contactMethod" id="contactMethod" class="form-control" [(ngModel)]="category.id">
+            <select name="contactMethod"  class="form-control" [(ngModel)]="category.id">
               <option  [value]="noCategory" >{{'translate.allCategories' | translate}}</option>
                   <option *ngFor="let category of categoriesGroup" [value]="category.id" [selected]="true">{{
-                    category.groupName
+                    category.groupName[currentLang.text]
                   }}</option>
                 </select>
         </div>
@@ -24,7 +24,7 @@
             <img src="../../../assets/images/filters/CHF.png" />
             <span>{{'translate.from' | translate}}:&nbsp;</span>
             <input [(ngModel)]="fromPrice" type="number" />
-            <span> &nbsp;{{'translate.to' | translate}}&nbsp;</span>
+            <span> &nbsp;{{'translate.to' | translate}}:&nbsp;</span>
             <input [(ngModel)]="toPrice" type="number" />
         </div>
         <!-- <div class="buttons" style="padding-bottom: 20px;">

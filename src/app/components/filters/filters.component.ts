@@ -1,18 +1,20 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 import { FilterAds } from '../../shared/models/filterAds.model';
 import { Ads } from '../../shared/models/ads.model';
-import cantons from "../../shared/cantons.json";
+import cantons from '../../shared/cantons.json';
 import { AdsService } from '../../@core/services/ads.service';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import { HelpersService } from '../../@core/services/helpers.service';
+import {TranslateServiceRest} from '../../@core/services/translateREST.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss']
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent implements OnInit, OnDestroy  {
 
 
   fixedPrice = false;
@@ -39,27 +41,38 @@ export class FiltersComponent implements OnInit {
   category = {
     id: 0,
     groupName: ''
-  }
+  };
 
-  noCategory="";
-  noRegion="";
+  noCategory = '';
+  noRegion = '';
+  currentLang = 'de';
+  subscriptionLang: Subscription;
 
 
   constructor(
     private adsService: AdsService,
     private router: Router,
-    private helpers: HelpersService) { }
+    private translateBackend: TranslateServiceRest) {
+
+    this.subscriptionLang = this.translateBackend.getLanguage().subscribe(message => { this.currentLang = message; });
+  }
 
   ngOnInit() {
     this.fromPrice = 1;
     this.toPrice = 100;
     this.adsService.getAllAdsGroups().subscribe(x => {
       this.categoriesGroup = x;
-      this.category.groupName = this.categoriesGroup[0].groupName
-      this.category.id = this.categoriesGroup[0].id
+      this.category.groupName = this.categoriesGroup[0].groupName;
+      this.category.id = this.categoriesGroup[0].id;
     });
-    this.reg = cantons[0]
+    this.reg = cantons[0];
     this.all = true;
+  }
+
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.subscriptionLang.unsubscribe();
   }
 
 
@@ -87,7 +100,7 @@ export class FiltersComponent implements OnInit {
 
   confirmButton() {
     if (this.toPrice < this.fromPrice) {
-      this.errorMessage = "Max price cannot be bigger than minimum price";
+      this.errorMessage = 'Max price cannot be bigger than minimum price';
       this.error = true;
       setTimeout(() => this.error = false, 5000);
     } else {
@@ -106,7 +119,7 @@ export class FiltersComponent implements OnInit {
         if (x.length < 1) {
           this.error = true;
           setTimeout(() => this.error = false, 5000);
-          this.errorMessage = "No available ads to filter"
+          this.errorMessage = 'No available ads to filter';
         } else {
         this.router.navigateByUrl('/site', { state: { data: x } });
         }

@@ -20,10 +20,6 @@ export class HeaderComponent implements OnInit {
   user;
   userId;
   dropdownBoolean = true;
-  de;
-  it;
-  fr;
-  en;
   chosenLanguage;
 
   @Output() notify = new EventEmitter<any>();
@@ -51,15 +47,20 @@ export class HeaderComponent implements OnInit {
     this.change('de')
   }
 
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnDestroy() {
     this.loginNameSubscription.unsubscribe();
+  }
+
+  sendLangThruObservable(lang: string): void {
+    // send message to subscribers via observable subject
   }
 
   change(code: string) {
     this.translate.use(code);
     this.translateBackend.setLanguage('ita');
-    this.notify.emit(code)
-
+    this.notify.emit(code);
+    this.translateBackend.sendLanguage(code);
   }
 
   getUser(): void {

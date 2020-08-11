@@ -22,7 +22,7 @@ export const en = {
     "fixedPrice": "Fixed price",
     "onlyProductsWithPictures": "Only products with pictures",
     "productWarranty": "Product warranty",
-    "UrgentSales": "Urgent sales",
+    "urgentSales": "Urgent sales",
     "confirm": "Confirm",
     "email": "Email",
     "password": "Password",
@@ -77,6 +77,8 @@ export const en = {
     "mobile": "Mobile",
     "address": "Address",
     "picturesOfCompany": "Pictures of company",
-    "save": "Save"
+    "save": "Save",
+    "logout": "Logout",
+    "edit": "Edit",
   }
 }
