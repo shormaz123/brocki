@@ -1,4 +1,4 @@
 export class UserAddAdsRequest {
-  adsId:number;
-  userId:number;
- }
+  adsId: number;
+  userId: number;
+}

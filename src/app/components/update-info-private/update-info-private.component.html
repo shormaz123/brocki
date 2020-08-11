@@ -1,35 +1,52 @@
 <app-header class="header"></app-header>
 <div class="loginContainer">
-    <div class="mainContainer">
-        <div class="titleDiv">
-            <span class="title">{{'translate.updateInfo' | translate}}</span
-      >
+  <div class="mainContainer">
+    <div class="titleDiv">
+      <span class="title">{{ 'translate.updateInfo' | translate }}</span>
     </div>
     <form (ngSubmit)="onSubmit()" [formGroup]="privateForm">
       <div class="inputItem">
         <img src="../../../assets/images/update-info-bussines/name.png" />
-        <input placeholder="{{'translate.nameFirst' | translate}}" formControlName="name" />
+        <input
+          placeholder="{{ 'translate.nameFirst' | translate }}"
+          formControlName="name"
+        />
       </div>
       <div class="inputItem">
         <img src="../../../assets/images/update-info-bussines/surname.png" />
-        <input placeholder="{{'translate.surname' | translate}}" formControlName="surname" />
+        <input
+          placeholder="{{ 'translate.surname' | translate }}"
+          formControlName="surname"
+        />
       </div>
       <div class="inputItem">
         <img src="../../../assets/images/update-info-bussines/email.png" />
-        <input placeholder="{{'translate.email' | translate}}" formControlName="email" />
+        <input
+          placeholder="{{ 'translate.email' | translate }}"
+          formControlName="email"
+        />
       </div>
 
       <div class="inputItem">
         <img src="../../../assets/images/update-info-bussines/phone.png" />
-        <input placeholder="{{'translate.phone' | translate}}" formControlName="phone" />
+        <input
+          placeholder="{{ 'translate.phone' | translate }}"
+          formControlName="phone"
+        />
       </div>
       <div class="inputItem">
         <img src="../../../assets/images/update-info-bussines/mobile.png" />
-        <input placeholder="{{'translate.mobile' | translate}}" formControlName="mobile" />
+        <input
+          placeholder="{{ 'translate.mobile' | translate }}"
+          formControlName="mobile"
+        />
       </div>
       <div class="inputItem">
         <img src="../../../assets/images/update-info-bussines/address.png" />
-        <input placeholder="{{'translate.address' | translate}}" formControlName="address" />
+        <input
+          placeholder="{{ 'translate.address' | translate }}"
+          formControlName="address"
+        />
       </div>
       <div class="inputItem">
         <div class="locationInput locationInput--margin">

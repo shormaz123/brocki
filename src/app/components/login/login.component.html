@@ -1,27 +1,37 @@
 <app-header class="header"></app-header>
 <div class="loginContainer">
-    <div style="padding-left: 4%;">
-        <span class="title">{{'translate.signin' | translate}}</span>
+  <div style="padding-left: 4%;">
+    <span class="title">{{ 'translate.signin' | translate }}</span>
+  </div>
+  <div class="data">
+    <div class="labels">
+      <span>{{ 'translate.email' | translate }}</span>
+      <span>{{ 'translate.password' | translate }}</span>
     </div>
-    <div class="data">
-        <div class="labels">
-            <span>{{'translate.email' | translate}}</span>
-            <span>{{'translate.password' | translate}}</span>
-        </div>
-        <div class="input">
-            <input [(ngModel)]="email" />
-            <input [(ngModel)]="password" type="password" />
-        </div>
+    <div class="input">
+      <input [(ngModel)]="email" />
+      <input [(ngModel)]="password" type="password" />
     </div>
-    <nz-alert nzType="error" nzMessage="{{ errorMessage }}" nzShowIcon *ngIf="errorBoolean" style="margin-bottom: 20px; margin-left: 4.5%;"></nz-alert>
-    <button class="signInButton" (click)="submitForm()">
-      {{'translate.submit' | translate}}
+  </div>
+  <nz-alert
+    nzType="error"
+    nzMessage="{{ errorMessage }}"
+    nzShowIcon
+    *ngIf="errorBoolean"
+    style="margin-bottom: 20px; margin-left: 4.5%;"
+  ></nz-alert>
+  <button class="signInButton" (click)="submitForm()">
+    {{ 'translate.submit' | translate }}
   </button>
-    <div class="lastDiv">
-        <div class="emptyDiv"></div>
-        <div class="textPassword">
-            <button class="signUpButton" routerLink="/registration">{{'translate.signup' | translate}}</button>
-            <span class="forPassword" routerLink="/forgetPassword">{{'translate.forgotPassword' | translate}}?</span>
-        </div>
+  <div class="lastDiv">
+    <div class="emptyDiv"></div>
+    <div class="textPassword">
+      <button class="signUpButton" routerLink="/registration">
+        {{ 'translate.signup' | translate }}
+      </button>
+      <span class="forPassword" routerLink="/forgetPassword"
+        >{{ 'translate.forgotPassword' | translate }}?</span
+      >
     </div>
+  </div>
 </div>

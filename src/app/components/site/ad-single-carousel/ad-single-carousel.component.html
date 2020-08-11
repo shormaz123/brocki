@@ -1,31 +1,38 @@
 <div class="container">
-    <div class="mainContainer">
-        <div (click)="pre()">
-            <img src="../../../../assets/images/buttons/arrow round left.png" style="cursor: pointer;" />
-        </div>
-        <div class="carousel">
-            <nz-carousel [nzEffect]="'fade'" nzArrows="true" nzDots="false">
-                <div nz-carousel-content *ngFor="let ad of favAds">
-                    <div class="containers">
-                        <div class="leftContainer" [routerLink]="['/ad', ad.id]">
-                            <img [src]="ad.image[0]" />
-                        </div>
-                        <div class="rightContainer">
-                            <div class="title">
-                                <label>
-                                    {{ ad.productName }}
-                                </label>
-                            </div>
+  <div class="mainContainer">
+    <div (click)="pre()">
+      <img
+        src="../../../../assets/images/buttons/arrow round left.png"
+        style="cursor: pointer;"
+      />
+    </div>
+    <div class="carousel">
+      <nz-carousel [nzEffect]="'fade'" nzArrows="true" nzDots="false">
+        <div nz-carousel-content *ngFor="let ad of favAds">
+          <div class="containers">
+            <div class="leftContainer" [routerLink]="['/ad', ad.id]">
+              <img [src]="ad.image[0]" />
+            </div>
+            <div class="rightContainer">
+              <div class="title">
+                <label>
+                  {{ ad.productName }}
+                </label>
+              </div>
 
-                            <div class="text">
-                                <div style="width: 100%; height: 80%;">
-                                    <label style="color: #4d4d4d; line-height: normal;">{{
+              <div class="text">
+                <div style="width: 100%; height: 80%;">
+                  <label style="color: #4d4d4d; line-height: normal;">{{
                     ad.description
                   }}</label>
-                                </div>
+                </div>
 
-                                <div style="width: 100%; height: 10%; display: flex;">
-                                    <button mat-icon-button (click)="ad.favourite = !ad.favourite" *ngIf="token">
+                <div style="width: 100%; height: 10%; display: flex;">
+                  <button
+                    mat-icon-button
+                    (click)="ad.favourite = !ad.favourite"
+                    *ngIf="token"
+                  >
                     <mat-icon
                       *ngIf="ad.favourite"
                       (click)="removeFromWishlist(ad.id)"
@@ -41,21 +48,24 @@
                       favorite_border
                     </mat-icon>
                   </button>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <div class="pricetag">
-                                    <label>{{ ad.price }} CHF</label>
-                                </div>
-                                <span style="color: black;">{{ ad.adsDate | date }}</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </nz-carousel>
+              </div>
+              <div class="price">
+                <div class="pricetag">
+                  <label>{{ ad.price }} CHF</label>
+                </div>
+                <span style="color: black;">{{ ad.adsDate | date }}</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div (click)="next()">
-            <img src="../../../../assets/images/buttons/arrow round right.png" style="cursor: pointer;" />
-        </div>
+      </nz-carousel>
     </div>
+    <div (click)="next()">
+      <img
+        src="../../../../assets/images/buttons/arrow round right.png"
+        style="cursor: pointer;"
+      />
+    </div>
+  </div>
 </div>

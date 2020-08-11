@@ -1,22 +1,18 @@
-import { Injectable } from "@angular/core";
-import { throwError, Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { throwError, Observable } from 'rxjs';
 import {
   HttpHeaders,
   HttpErrorResponse,
-  HttpClient
-} from "@angular/common/http";
-import { catchError } from "rxjs/operators";
+  HttpClient,
+} from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
-import { AuthConst } from "../consts/auth.const";
+import { AuthConst } from '../consts/auth.const';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class HttpBaseService {
-
-
   // TODO Get rid of the Http and use HttpClient instead
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   delete<T>(url: string, options?: RequestOptions): Observable<T> {
     options = this.setOptionHeaders(options);
@@ -45,7 +41,7 @@ export class HttpBaseService {
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-      console.error("An error occurred:", error.error.message);
+      console.error('An error occurred:', error.error.message);
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
@@ -75,10 +71,10 @@ export class HttpBaseService {
       options = new RequestOptions();
     }
 
-    options.headers.append("Content-Type", "application/json");
-    options.headers.append("Cache-Control", "no-cache");
-    options.headers.append("Pragma", "no-cache");
-    options.headers.append("Expires", "Sat, 01 Dec 2001 00:00:00 GMT");
+    options.headers.append('Content-Type', 'application/json');
+    options.headers.append('Cache-Control', 'no-cache');
+    options.headers.append('Pragma', 'no-cache');
+    options.headers.append('Expires', 'Sat, 01 Dec 2001 00:00:00 GMT');
 
     return options;
   }
@@ -89,6 +85,6 @@ export class RequestOptions {
   params: {
     [param: string]: string | string[];
   };
-  responseType = "json" as "json";
+  responseType = 'json' as 'json';
   body = {};
 }

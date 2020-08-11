@@ -1,20 +1,20 @@
-import { Injectable } from "@angular/core";
-import { environment } from "../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
-import { HttpBaseService } from "./http-base.service";
-import { AuthResponse } from "../../shared/models/responses/auth.response";
-import { Observable } from "rxjs";
-import { AuthConst } from "../consts/auth.const";
-import { UserRegistration } from "../../shared/models/userRegistration.model";
+import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { HttpBaseService } from './http-base.service';
+import { AuthResponse } from '../../shared/models/responses/auth.response';
+import { Observable } from 'rxjs';
+import { AuthConst } from '../consts/auth.const';
+import { UserRegistration } from '../../shared/models/userRegistration.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AuthService {
   private readonly baseUrl = environment.apiUrlBase;
   constructor(private http: HttpBaseService) {}
 
-  //Login user
+  // Login user
 
   login(email: string, password: string): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseUrl}/mybrocki/login`, {
@@ -23,7 +23,7 @@ export class AuthService {
     });
   }
 
-  //Register user
+  // Register user
 
   register(registration: UserRegistration): Observable<UserRegistration> {
     return this.http.post<UserRegistration>(
@@ -32,7 +32,7 @@ export class AuthService {
     );
   }
 
-  //New password
+  // New password
 
   resetPassword(email: string, password: string): Observable<String> {
     return this.http.put<String>(`${this.baseUrl}/mybrocki/forgot-password`, {
@@ -52,10 +52,10 @@ export class AuthService {
    * Is user signed in?
    */
   isSignedIn(): boolean {
-    return localStorage.getItem("brocki_token") !== null;
+    return localStorage.getItem('brocki_token') !== null;
   }
 
-  //Logout
+  // Logout
 
   logout() {
     localStorage.clear();
