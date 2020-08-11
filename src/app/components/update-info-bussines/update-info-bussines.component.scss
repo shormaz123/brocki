@@ -1,4 +1,4 @@
-@import "../../../scss/variables";
+@import '../../../scss/variables';
 
 * {
   font-family: $header-font-family;
@@ -161,9 +161,9 @@ textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;
-    text-overflow: "";
+    text-overflow: '';
     cursor: pointer;
-    background-image: url("../../../assets/images/update-info-bussines/arrow menu.png");
+    background-image: url('../../../assets/images/update-info-bussines/arrow menu.png');
     background-repeat: no-repeat;
     background-position: 440px 8px;
   }

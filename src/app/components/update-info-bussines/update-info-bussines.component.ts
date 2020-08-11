@@ -1,18 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { User } from "../../shared/models/user.model";
-import { UserService } from "../../@core/services/user.service";
-import { AdsService } from "../../@core/services/ads.service";
-import { NzNotificationService, NzModalService } from "ng-zorro-antd";
-import { Router } from "@angular/router";
-import cantons from "../../shared/cantons.json";
-import cities from "../../shared/cities.json";
-import { getMatIconFailedToSanitizeLiteralError } from "@angular/material/icon";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../../shared/models/user.model';
+import { UserService } from '../../@core/services/user.service';
+import { AdsService } from '../../@core/services/ads.service';
+import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
+import { Router } from '@angular/router';
+import cantons from '../../shared/cantons.json';
+import cities from '../../shared/cities.json';
+import { getMatIconFailedToSanitizeLiteralError } from '@angular/material/icon';
 
 @Component({
-  selector: "app-update-info-bussines",
-  templateUrl: "./update-info-bussines.component.html",
-  styleUrls: ["./update-info-bussines.component.scss"],
+  selector: 'app-update-info-bussines',
+  templateUrl: './update-info-bussines.component.html',
+  styleUrls: ['./update-info-bussines.component.scss'],
 })
 export class UpdateInfoBussinesComponent implements OnInit {
   formData = new FormData();
@@ -40,17 +40,17 @@ export class UpdateInfoBussinesComponent implements OnInit {
 
   ngOnInit() {
     this.businessForm = this.fb.group({
-      company: [""],
-      name: [""],
-      surname: [""],
-      email: [{ value: "", disabled: true }],
-      website: [""],
-      phone: [""],
-      mobile: [""],
-      address: [""],
-      canton: [""],
-      city: [""],
-      aboutUs: ["", [Validators.maxLength(1000)]],
+      company: [''],
+      name: [''],
+      surname: [''],
+      email: [{ value: '', disabled: true }],
+      website: [''],
+      phone: [''],
+      mobile: [''],
+      address: [''],
+      canton: [''],
+      city: [''],
+      aboutUs: ['', [Validators.maxLength(1000)]],
     });
 
     this.userService.getUser().subscribe((res) => {
@@ -105,7 +105,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
     }
     if (this.uploadPhoto.length > 0) {
       for (const picture of this.uploadPhoto) {
-        this.formData.append("file", picture);
+        this.formData.append('file', picture);
       }
       this.adsService.uploadImageInStorage(this.formData).subscribe((res) => {
         this.res = res;
@@ -125,8 +125,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
 
   onSubmit() {
     this.modal.confirm({
-      nzTitle: "Are you sure you want to change your info?",
-      nzContent: "",
+      nzTitle: 'Are you sure you want to change your info?',
+      nzContent: '',
       nzOnOk: () => {
         const updateBusiness = new User();
         updateBusiness.name = this.businessForm.value.name;
@@ -138,7 +138,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
         updateBusiness.city = this.businessForm.value.city;
         updateBusiness.region = this.businessForm.value.canton;
         updateBusiness.aboutUs = this.businessForm.value.aboutUs;
-        updateBusiness.location = "";
+        updateBusiness.location = '';
         updateBusiness.company = this.businessForm.value.company;
         updateBusiness.companyImage = this.photos.concat(this.companyPhotos);
         updateBusiness.bussinesType = this.bussinesType;
@@ -148,12 +148,12 @@ export class UpdateInfoBussinesComponent implements OnInit {
         updateBusiness.website = this.businessForm.value.website;
         this.userService.updateUser(updateBusiness).subscribe(
           (user) => {
-            this.notification.success("", "User updated");
+            this.notification.success('', 'User updated');
             this.router.navigate([`/user/${this.userId}`]);
           },
           (error) => {
             this.modal.error({
-              nzTitle: "Ops, something went wrong!",
+              nzTitle: 'Ops, something went wrong!',
             });
           }
         );

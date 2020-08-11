@@ -27,7 +27,6 @@ import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 export class SiteComponent implements OnInit, OnDestroy {
   encapsulation: ViewEncapsulation.None;
 
-
   searchText;
   items: Array<any> = [];
   categoryImage: any;
@@ -73,8 +72,6 @@ export class SiteComponent implements OnInit, OnDestroy {
       numScroll: 1,
     },
   ];
-
-
 
   public categories = [
     {
@@ -231,42 +228,48 @@ export class SiteComponent implements OnInit, OnDestroy {
       id: 11,
       title: 'Batteries & Chargers',
       image: '../../../assets/images/navigation/batteries & chargers 2.png',
-      selectedImage: '../../../assets/images/navigation/red/batteries & chargers.png',
+      selectedImage:
+        '../../../assets/images/navigation/red/batteries & chargers.png',
       imageTo: '',
     },
     {
       id: 2,
       title: 'Knives & Tools',
       image: '../../../assets/images/navigation/knives & tools.png',
-      selectedImage: '../../../assets/images/navigation/red/knives & tools 2.png',
+      selectedImage:
+        '../../../assets/images/navigation/red/knives & tools 2.png',
       imageTo: '',
     },
     {
       id: 10,
       title: 'Lamps & Illuminants',
       image: '../../../assets/images/navigation/lamps & illuminants.png',
-      selectedImage: '../../../assets/images/navigation/red/lamps & illuminants 2.png',
+      selectedImage:
+        '../../../assets/images/navigation/red/lamps & illuminants 2.png',
       imageTo: '',
     },
     {
       id: 14,
       title: 'Modelling',
       image: '../../../assets/images/navigation/rc toy - modelling.png',
-      selectedImage: '../../../assets/images/navigation/red/rc toy - modelling 2.png',
+      selectedImage:
+        '../../../assets/images/navigation/red/rc toy - modelling 2.png',
       imageTo: '',
     },
     {
       id: 22,
       title: 'Sold by kg',
       image: '../../../assets/images/navigation/sold by the kg.png',
-      selectedImage: '../../../assets/images/navigation/red/sold by the kg 2.png',
+      selectedImage:
+        '../../../assets/images/navigation/red/sold by the kg 2.png',
       imageTo: '',
     },
     {
       id: 21,
       title: 'Sold by meter',
       image: '../../../assets/images/navigation/sold by the meter 2.png',
-      selectedImage: '../../../assets/images/navigation/red/sold by the meter.png',
+      selectedImage:
+        '../../../assets/images/navigation/red/sold by the meter.png',
       imageTo: '',
     },
     {
@@ -278,39 +281,37 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
   ];
 
-
-  constructor(private cdr: ChangeDetectorRef,
+  constructor(
+    private cdr: ChangeDetectorRef,
     private adsService: AdsService,
     private userService: UserService,
     private helpersService: HelpersService,
-    private router: Router,
+    private router: Router
   ) {
-
     if (this.router.getCurrentNavigation().extras.state) {
       this.filteredAds = this.router.getCurrentNavigation().extras.state.data;
-      console.log('filteredads', this.filteredAds)
+      console.log('filteredads', this.filteredAds);
     }
   }
 
   ngOnInit() {
-    this.adsService.getAllAdsGroups().subscribe(x => {
+    this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
     });
     this.token = localStorage.getItem(AuthConst.token);
     this.selectCategory(1);
     if (this.filteredAds.length > 0) {
-      this.ads = this.filteredAds
+      this.ads = this.filteredAds;
       this.randomAds = this.shuffle(this.filteredAds);
       if (this.token) {
         this.getUserAndFavAd();
       } else {
         this.favAds = this.ads;
-
       }
     } else {
       this.adsService.getAdsByActiveStatus().subscribe((response) => {
         this.ads = response;
-        console.log('ads', this.ads)
+        console.log('ads', this.ads);
         this.randomAds = this.shuffle(response);
         if (this.token) {
           this.getUserAndFavAd();
@@ -319,60 +320,57 @@ export class SiteComponent implements OnInit, OnDestroy {
         }
       });
     }
-    this.numberOfFavs = this.helpersService.$numOfFavs.subscribe(response => {
+    this.numberOfFavs = this.helpersService.$numOfFavs.subscribe((response) => {
       this.getNumOfFavs();
     });
-
   }
-
 
   getAdsBySearch() {
     if (this.searchProductName == undefined) {
-      return
+      return;
     } else {
-
-    this.adsService.getAdsdBySearch(this.searchProductName).subscribe( x=> {
-
-
-      if (this.token) {
-        this.favAds = x.map(obj => this.favoriteAds.find(o => o.id === obj.id) || obj);
-      } else {
-        this.favAds = x;
-      }
-    },
-    error => {
-      console.log('error')
-    })
+      this.adsService.getAdsdBySearch(this.searchProductName).subscribe(
+        (x) => {
+          if (this.token) {
+            this.favAds = x.map(
+              (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+            );
+          } else {
+            this.favAds = x;
+          }
+        },
+        (error) => {
+          console.log('error');
+        }
+      );
+    }
   }
-
-  }
-
 
   getUserAndFavAd() {
-    this.userService.getUser().subscribe(response => {
+    this.userService.getUser().subscribe((response) => {
       this.userId = response.id;
-      this.userService.getFavourites(response.id).subscribe(x => {
+      this.userService.getFavourites(response.id).subscribe((x) => {
         if (this.token) {
           this.favoriteAds = x;
           this.numberOfFavorites = x.length;
 
           // Replace objects between two arrays.
-          this.favAds = this.ads.map(obj => this.favoriteAds.find(o => o.id === obj.id) || obj);
-        };
-      }
-      );
+          this.favAds = this.ads.map(
+            (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+          );
+        }
+      });
     });
   }
 
   getNumOfFavs() {
-    this.userService.getUser().subscribe(response => {
+    this.userService.getUser().subscribe((response) => {
       this.userId = response.id;
-      this.userService.getFavourites(response.id).subscribe(x => {
+      this.userService.getFavourites(response.id).subscribe((x) => {
         if (this.token) {
           this.numberOfFavorites = x.length;
-        };
-      }
-      );
+        }
+      });
     });
   }
 
@@ -392,7 +390,6 @@ export class SiteComponent implements OnInit, OnDestroy {
       imageToShow.imageTo = imageToShow.selectedImage;
     }
   }
-
 
   shuffle(array) {
     let counter = array.length;
@@ -427,13 +424,13 @@ export class SiteComponent implements OnInit, OnDestroy {
   }
 
   selectDropDown(id: number) {
-    this.adsService.getAllAdsSubGroup(id).subscribe(response => {
+    this.adsService.getAllAdsSubGroup(id).subscribe((response) => {
       this.subCategories = response;
     });
   }
 
   getAdsByParams(adssubgroup: number) {
-    this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe(response => {
+    this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe((response) => {
       this.ads = response;
       this.randomAds = this.shuffle(response);
       this.getUserAndFavAd();
@@ -446,29 +443,25 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   addToWishlist(adId: number) {
     this.userRequest = {
-          adsId: adId,
-          userId: this.userId
-        };
-    this.userService.updateUserFavourites(this.userRequest).subscribe(
-      _x => {
-        console.log('add update to favorite', _x);
-      }
-    ),
-      _error => {
+      adsId: adId,
+      userId: this.userId,
+    };
+    this.userService.updateUserFavourites(this.userRequest).subscribe((_x) => {
+      console.log('add update to favorite', _x);
+    }),
+      (_error) => {
         console.log('not to favorite');
       };
-      this.helpersService.$numOfFavs.next();
+    this.helpersService.$numOfFavs.next();
   }
 
-removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe(
-      _x => {
-        console.log('delete update to favorite', _x);
-      }
-    ),
-      _error => {
+  removeFromWishlist(adId: number) {
+    this.userService.deleteUserFavourite(adId, this.userId).subscribe((_x) => {
+      console.log('delete update to favorite', _x);
+    }),
+      (_error) => {
         console.log('not delete to favorite');
       };
-      this.helpersService.$numOfFavs.next();
+    this.helpersService.$numOfFavs.next();
   }
 }

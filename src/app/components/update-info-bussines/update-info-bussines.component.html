@@ -1,62 +1,63 @@
 <app-header class="header"></app-header>
 <div class="container">
-    <div class="business">
-        <div class="business__title">
-            <span>Update <span style="color: #d62b1f;">info</span></span>
-        </div>
-        <form class="form" (ngSubmit)="onSubmit()" [formGroup]="businessForm">
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/company.png" />
-                <input placeholder="Company" formControlName="company" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/name.png" />
-                <input placeholder="Name" formControlName="name" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/surname.png" />
-                <input placeholder="Surname" formControlName="surname" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/email.png" />
-                <input placeholder="Email" formControlName="email" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/website.png" />
-                <input placeholder="Website" formControlName="website" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/phone.png" />
-                <input placeholder="Phone" formControlName="phone" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/mobile.png" />
-                <input placeholder="Mobile" formControlName="mobile" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/address.png" />
-                <input placeholder="Address" formControlName="address" />
-            </div>
-            <div class="form__inputItem form__inputItem--margin">
-                <div class="form__location">
-                    <select class="form__select" formControlName="canton">
+  <div class="business">
+    <div class="business__title">
+      <span>Update <span style="color: #d62b1f;">info</span></span>
+    </div>
+    <form class="form" (ngSubmit)="onSubmit()" [formGroup]="businessForm">
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/company.png" />
+        <input placeholder="Company" formControlName="company" />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/name.png" />
+        <input placeholder="Name" formControlName="name" />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/surname.png" />
+        <input placeholder="Surname" formControlName="surname" />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/email.png" />
+        <input placeholder="Email" formControlName="email" />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/website.png" />
+        <input placeholder="Website" formControlName="website" />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/phone.png" />
+        <input placeholder="Phone" formControlName="phone" />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/mobile.png" />
+        <input placeholder="Mobile" formControlName="mobile" />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/address.png" />
+        <input placeholder="Address" formControlName="address" />
+      </div>
+      <div class="form__inputItem form__inputItem--margin">
+        <div class="form__location">
+          <select class="form__select" formControlName="canton">
             <option *ngFor="let canton of cantons" [value]="canton">
               {{ canton }}
             </option>
           </select>
-                </div>
-            </div>
-            <div class="form__inputItem form__inputItem--margin">
-                <div class="locationInput locationInput--margin">
-                    <select class="form__select" formControlName="city">
+        </div>
+      </div>
+      <div class="form__inputItem form__inputItem--margin">
+        <div class="locationInput locationInput--margin">
+          <select class="form__select" formControlName="city">
             <option *ngFor="let city of cities" [value]="city">{{
               city
             }}</option>
           </select>
-                </div>
-            </div>
-            <div class="form__inputItem">
-                <a class="form__password" (click)="goTo('/change-password')">Change password?</a
+        </div>
+      </div>
+      <div class="form__inputItem">
+        <a class="form__password" (click)="goTo('/change-password')"
+          >Change password?</a
         >
       </div>
       <div class="form__inputItem">

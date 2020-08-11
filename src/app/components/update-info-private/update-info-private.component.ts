@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { User } from "../../shared/models/user.model";
-import { UserService } from "../../@core/services/user.service";
-import { NzModalService } from "ng-zorro-antd/modal";
-import { NzNotificationService } from "ng-zorro-antd";
-import { Router } from "@angular/router";
-import cantons from "../../shared/cantons.json";
-import cities from "../../shared/cities.json";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { User } from '../../shared/models/user.model';
+import { UserService } from '../../@core/services/user.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzNotificationService } from 'ng-zorro-antd';
+import { Router } from '@angular/router';
+import cantons from '../../shared/cantons.json';
+import cities from '../../shared/cities.json';
 
 @Component({
-  selector: "app-update-info-private",
-  templateUrl: "./update-info-private.component.html",
-  styleUrls: ["./update-info-private.component.scss"],
+  selector: 'app-update-info-private',
+  templateUrl: './update-info-private.component.html',
+  styleUrls: ['./update-info-private.component.scss'],
 })
 export class UpdateInfoPrivateComponent implements OnInit {
   privateForm: FormGroup;
@@ -31,14 +31,14 @@ export class UpdateInfoPrivateComponent implements OnInit {
 
   ngOnInit() {
     this.privateForm = this.fb.group({
-      name: [""],
-      surname: [""],
-      email: [{ value: "", disabled: true }],
-      phone: [""],
-      mobile: [""],
-      address: [""],
-      city: [""],
-      canton: [""],
+      name: [''],
+      surname: [''],
+      email: [{ value: '', disabled: true }],
+      phone: [''],
+      mobile: [''],
+      address: [''],
+      city: [''],
+      canton: [''],
     });
 
     this.userService.getUser().subscribe((res) => {
@@ -85,8 +85,8 @@ export class UpdateInfoPrivateComponent implements OnInit {
 
   onSubmit() {
     this.modal.confirm({
-      nzTitle: "Are you sure you want to change your info?",
-      nzContent: "",
+      nzTitle: 'Are you sure you want to change your info?',
+      nzContent: '',
       nzOnOk: () => {
         const updateUserInfo = new User();
         updateUserInfo.name = this.privateForm.value.name;
@@ -97,23 +97,23 @@ export class UpdateInfoPrivateComponent implements OnInit {
         updateUserInfo.address = this.privateForm.value.address;
         updateUserInfo.city = this.privateForm.value.city;
         updateUserInfo.region = this.privateForm.value.canton;
-        updateUserInfo.aboutUs = "";
-        updateUserInfo.location = "";
-        updateUserInfo.company = "";
+        updateUserInfo.aboutUs = '';
+        updateUserInfo.location = '';
+        updateUserInfo.company = '';
         updateUserInfo.companyImage = [];
-        updateUserInfo.bussinesType = "PRIVATE";
-        updateUserInfo.roleName = "private";
+        updateUserInfo.bussinesType = 'PRIVATE';
+        updateUserInfo.roleName = 'private';
         updateUserInfo.userName = this.userName;
         updateUserInfo.visible = true;
-        updateUserInfo.website = "";
+        updateUserInfo.website = '';
         this.userService.updateUser(updateUserInfo).subscribe(
           (user) => {
-            this.notification.success("", "User updated");
+            this.notification.success('', 'User updated');
             this.router.navigate([`/user/${this.userId}`]);
           },
           (error) => {
             this.modal.error({
-              nzTitle: "Ops, something went wrong!",
+              nzTitle: 'Ops, something went wrong!',
             });
           }
         );
@@ -122,6 +122,6 @@ export class UpdateInfoPrivateComponent implements OnInit {
   }
 
   changePassword() {
-    this.router.navigateByUrl("/change-password", { state: this.newUser });
+    this.router.navigateByUrl('/change-password', { state: this.newUser });
   }
 }

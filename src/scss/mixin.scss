@@ -23,13 +23,13 @@
 }
 
 @mixin rwd($screen) {
-  @media (max-width: $screen+"px") {
+  @media (max-width: $screen+'px') {
     @content;
   }
 }
 
 @mixin rwdm($screen) {
-  @media (min-width: $screen+"px") {
+  @media (min-width: $screen+'px') {
     @content;
   }
 }

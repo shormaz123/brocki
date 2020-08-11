@@ -6,7 +6,7 @@
         <div class="imageBorder">
           <img class="profil-image" [src]="userImage" />
         </div>
-        <span>{{ "translate.myAccount" | translate }}</span>
+        <span>{{ 'translate.myAccount' | translate }}</span>
       </div>
       <div class="body">
         <!-- <div class="checkmarks">
@@ -62,7 +62,7 @@
           (click)="activeButton()"
           [ngClass]="{ active: active, focus: !active }"
         >
-          <span>{{ "translate.active" | translate }}</span>
+          <span>{{ 'translate.active' | translate }}</span>
         </div>
       </div>
       <div class="navItem">
@@ -70,12 +70,12 @@
           (click)="expiredButton()"
           [ngClass]="{ active: expired, focus: !expired }"
         >
-          <span>{{ "translate.expired" | translate }}</span>
+          <span>{{ 'translate.expired' | translate }}</span>
         </div>
       </div>
       <div class="navItem">
         <div (click)="soldButton()" [ngClass]="{ active: sold, focus: !sold }">
-          <span>{{ "translate.sold" | translate }}</span>
+          <span>{{ 'translate.sold' | translate }}</span>
         </div>
       </div>
       <div class="navItem">
@@ -83,7 +83,7 @@
           (click)="guestButton()"
           [ngClass]="{ active: guest, focus: !guest }"
         >
-          <span>{{ "translate.guestBook" | translate }}</span>
+          <span>{{ 'translate.guestBook' | translate }}</span>
         </div>
       </div>
     </div>
