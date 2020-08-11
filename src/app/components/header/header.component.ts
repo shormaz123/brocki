@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
 
   @Output() notify = new EventEmitter<any>();
 
-
   private loginNameSubscription: Subscription;
 
   constructor(
@@ -44,7 +43,7 @@ export class HeaderComponent implements OnInit {
     } else {
       this.getUser();
     }
-    this.change('de')
+    this.change("de");
   }
 
   // tslint:disable-next-line:use-lifecycle-interface
@@ -85,25 +84,23 @@ export class HeaderComponent implements OnInit {
       nzTitle: "Are you sure you want to logout?",
       nzContent: "",
       nzOnOk: () => {
-       localStorage.removeItem(AuthConst.roleName);
-       localStorage.removeItem(AuthConst.token);
-       localStorage.removeItem(AuthConst.userId);
-       if(this.router.url === '/site')
-       {
-        window.location.reload();
-
-      }
-       this.router.navigate(['/site']);
-      }
-      });
+        localStorage.removeItem(AuthConst.roleName);
+        localStorage.removeItem(AuthConst.token);
+        localStorage.removeItem(AuthConst.userId);
+        if (this.router.url === "/site") {
+          window.location.reload();
+        }
+        this.router.navigate(["/site"]);
+      },
+    });
   }
 
-    create() {
-      this.router.navigate(['/registration']);
-    }
+  create() {
+    this.router.navigate(["/registration"]);
+  }
 
-     dropdown() {
-       this.dropdownBoolean = !this.dropdownBoolean;
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
+  dropdown() {
+    this.dropdownBoolean = !this.dropdownBoolean;
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
 }

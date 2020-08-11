@@ -1,17 +1,17 @@
 <div class="container">
-  <div class="rate">
+  <form class="form" (ngSubmit)="onSubmit()" [formGroup]="ratingForm">
     <span>Rate the seller</span>
-    <nz-rate [ngModel]="3"></nz-rate>
+    <nz-rate formControlName="rating"></nz-rate>
     <span>Please provide any additional feedback:</span>
-    <textarea rows="4"></textarea>
+    <textarea formControlName="comment" rows="4"></textarea>
     <div class="button">
-      <button>Submit</button>
+      <button type="submit">Submit</button>
     </div>
-  </div>
+  </form>
   <div *ngFor="let guest of guests" class="card">
-    <span>{{guest.useraName}}</span>
+    <span>{{ guest.useraName }}</span>
     <nz-rate [ngModel]="3" nzDisabled></nz-rate>
-    <span>{{guest.comment}}</span>
-    <hr>
+    <span>{{ guest.comment }}</span>
+    <hr />
   </div>
 </div>

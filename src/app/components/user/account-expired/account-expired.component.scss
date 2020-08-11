@@ -70,15 +70,26 @@
   width: 125px;
   font-size: 14px;
   text-transform: lowercase;
-  background-color: #d62b1f;
+  background-color: $red;
   color: #fff;
   text-align: center;
   border-radius: 10px;
   padding: 3px 0;
   position: absolute;
-  top: -32px;
+  top: -35px;
   right: -28px;
   z-index: 1;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 10px;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: $red transparent transparent transparent;
 }
 
 .tooltip:hover .tooltiptext {
@@ -131,15 +142,17 @@ hr {
   margin: 0;
 }
 
-.ads__text {
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  width: 1280px;
-  font-size: 20px;
-  color: #d62b1f;
-  font-weight: 500;
-  margin: 10px 0 0 0;
-  cursor: pointer;
+.ads {
+  &__text {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 1280px;
+    font-size: 20px;
+    color: #d62b1f;
+    font-weight: 500;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+  }
 }

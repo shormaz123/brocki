@@ -4,9 +4,9 @@
         <div class="account">
             <div class="image">
                 <div class="imageBorder">
-                    <img class="profil-image" src="../../../assets/images/myAccount/profile picture.png" />
+                    <img class="profil-image" [src]="userImage" />
                 </div>
-                <span>{{'translate.myAccount' | translate}}</span>
+                <span>{{ "translate.myAccount" | translate }}</span>
             </div>
             <div class="body">
                 <!-- <div class="checkmarks">
@@ -65,10 +65,16 @@
                 </div>
             </div>
         </div>
-        <div class="secondContainer">
-            <app-guest-book *ngIf="guest"></app-guest-book>
-            <app-account-sold [soldProducts]="soldProducts" [ads]="adsSold" *ngIf="sold"></app-account-sold>
-            <app-account-expired [expiredProducts]="expiredProducts" [ads]="adsExpired" *ngIf="expired"></app-account-expired>
-            <app-account-active [activeProducts]="activeProducts" [ads]="adsActive" *ngIf="active"></app-account-active>
+    </div>
+    <div class="navItem">
+        <div (click)="guestButton()" [ngClass]="{ active: guest, focus: !guest }">
+            <span>{{ "translate.guestBook" | translate }}</span>
         </div>
     </div>
+</div>
+<div class="secondContainer">
+    <app-guest-book *ngIf="guest"></app-guest-book>
+    <app-account-sold [soldProducts]="soldProducts" [ads]="adsSold" *ngIf="sold"></app-account-sold>
+    <app-account-expired [expiredProducts]="expiredProducts" [ads]="adsExpired" *ngIf="expired"></app-account-expired>
+    <app-account-active [activeProducts]="activeProducts" [ads]="adsActive" *ngIf="active"></app-account-active>
+</div>

@@ -127,7 +127,7 @@ hr {
   width: 80px;
   font-size: 14px;
   text-transform: lowercase;
-  background-color: #d62b1f;
+  background-color: $red;
   color: #fff;
   text-align: center;
   border-radius: 10px;
@@ -136,6 +136,17 @@ hr {
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent $red transparent transparent;
 }
 
 .tooltip:hover .tooltiptext {

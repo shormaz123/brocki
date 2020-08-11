@@ -47,23 +47,17 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.userService.getUser().subscribe((res) => {
       this.path = res.bussinesType;
-      this.userName = res.userName;
       res.companyImage[0]
         ? (this.userImage = res.companyImage[0])
         : (this.userImage = this.defaultImage);
     });
     this.guest = true;
-    this.activatedRoute.params.subscribe(
-      (params) => {
-        this.userId = params["id"];
-        this.userService.getUserById(this.userId).subscribe((user) => {
-          this.user = user;
-        });
-      },
-      (error) => {
-        console.log("user not found");
-      }
-    );
+    this.activatedRoute.params.subscribe((params) => {
+      this.userId = params["id"];
+      this.userService.getUserById(this.userId).subscribe((user) => {
+        this.user = user;
+      });
+    });
   }
 
   activeButton() {
