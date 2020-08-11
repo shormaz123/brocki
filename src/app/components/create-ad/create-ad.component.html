@@ -23,7 +23,7 @@
                 <select class="form__select" formControlName="category" (change)="findCategory($event)">
           <option selected disabled value="">{{'translate.selectCategory' | translate}}</option>
           <option *ngFor="let category of categories" [value]="category.id">
-            {{ category.groupName[currentLang.text] }}
+            {{ category.groupName[currentLang] }}
           </option>
         </select>
             </div>
@@ -34,7 +34,7 @@
             *ngFor="let subcategory of subcategories"
             [value]="subcategory.id"
           >
-            {{ subcategory.subGroupName[currentLang.text] }}
+            {{ subcategory.subGroupName[currentLang] }}
           </option>
         </select>
             </div>

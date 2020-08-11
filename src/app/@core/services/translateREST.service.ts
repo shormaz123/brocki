@@ -21,7 +21,7 @@ export class TranslateServiceRest {
   }
 
   sendLanguage(message: string) {
-    this.language.next({ text: message });
+    this.language.next(message);
   }
 
   getLanguage(): Observable<any> {
