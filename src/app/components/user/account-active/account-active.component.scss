@@ -1,5 +1,5 @@
-@import "../../../../scss/variables";
-@import "../../../../scss/mixin.scss";
+@import '../../../../scss/variables';
+@import '../../../../scss/mixin.scss';
 
 .container {
   width: 1280px;
@@ -139,7 +139,7 @@ hr {
 }
 
 .tooltip .tooltiptext::after {
-  content: " ";
+  content: ' ';
   position: absolute;
   top: 50%;
   right: 100%;

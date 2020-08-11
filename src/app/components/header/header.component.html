@@ -1,33 +1,82 @@
 <div class="container">
-    <div class="firstContainer" *ngIf="!createAd"></div>
-    <div class="firstContainer" routerLink="/create-ad" *ngIf="createAd">
-        <div class="addImage">
-            <img class="image" src="../../../assets/images/header/create ad.svg" />
-        </div>
-        <span class="createAd" *ngIf="createAd">&nbsp;{{'translate.createAd' | translate}}</span>
+  <div class="firstContainer" *ngIf="!createAd"></div>
+  <div class="firstContainer" routerLink="/create-ad" *ngIf="createAd">
+    <div class="addImage">
+      <img class="image" src="../../../assets/images/header/create ad.svg" />
     </div>
-    <div class="secondContainer">
-        <img src="../../../assets/images/header/minibrocki.svg" routerLink="/site" />
+    <span class="createAd" *ngIf="createAd"
+      >&nbsp;{{ 'translate.createAd' | translate }}</span
+    >
+  </div>
+  <div class="secondContainer">
+    <img
+      src="../../../assets/images/header/minibrocki.svg"
+      routerLink="/site"
+    />
+  </div>
+  <div class="thirdContainer">
+    <div class="languageFlags">
+      <img
+        class="flags"
+        src="../../../assets/images/header/EN.png"
+        (click)="change('en')"
+      />
+      <img
+        class="flags"
+        src="../../../assets/images/header/GE.png"
+        (click)="change('de')"
+      />
+      <img
+        class="flags"
+        src="../../../assets/images/header/IT.png"
+        (click)="change('it')"
+      />
+      <img
+        class="flags"
+        src="../../../assets/images/header/FR.png"
+        (click)="change('fr')"
+      />
     </div>
-    <div class="thirdContainer">
-        <div class="languageFlags">
-            <img class="flags" src="../../../assets/images/header/EN.png" (click)="change('en')" />
-            <img class="flags" src="../../../assets/images/header/GE.png" (click)="change('de')" />
-            <img class="flags" src="../../../assets/images/header/IT.png" (click)="change('it')" />
-            <img class="flags" src="../../../assets/images/header/FR.png" (click)="change('fr')" />
-        </div>
-        <div class="account">
-            <span class="accountAd" routerLink="/login" *ngIf="!accountName">{{'translate.login' | translate}}&nbsp;</span
-      ><div class="dropdown">
-        <button class="dropbtn" mat-button  *ngIf="accountName" (click)="dropdown()">
-          <img src="../../../assets/images/ad/User_font_awesome.svg" style="height:25px;margin-right: 10px;">
+    <div class="account">
+      <span class="accountAd" routerLink="/login" *ngIf="!accountName"
+        >{{ 'translate.login' | translate }}&nbsp;</span
+      >
+      <div class="dropdown">
+        <button
+          class="dropbtn"
+          mat-button
+          *ngIf="accountName"
+          (click)="dropdown()"
+        >
+          <img
+            src="../../../assets/images/ad/User_font_awesome.svg"
+            style="height: 25px; margin-right: 10px;"
+          />
           {{ accountName }}
-          <img *ngIf="dropdownBoolean" src="../../../assets/images/ad/keyboard-down-arrow.svg" style="height:25px;margin-left: 5px;">
-          <img *ngIf="!dropdownBoolean" src="../../../assets/images/ad/keyboard-up-arrow.svg" style="height:25px;margin-left: 5px;">
+          <img
+            *ngIf="dropdownBoolean"
+            src="../../../assets/images/ad/keyboard-down-arrow.svg"
+            style="height: 25px; margin-left: 5px;"
+          />
+          <img
+            *ngIf="!dropdownBoolean"
+            src="../../../assets/images/ad/keyboard-up-arrow.svg"
+            style="height: 25px; margin-left: 5px;"
+          />
         </button>
         <div class="dropdown-content" id="myDropdown">
-        <div href="#" style="height: 50px;" [routerLink]="['/user', userId]"><img src="../../../assets/images/ad/pencil-edit-button.svg" style="height:25px;margin-right: 10px;">Edit</div>
-        <div href="#" style="height: 50px;" (click)="logout()"><img src="../../../assets/images/ad/logout.svg" style="height:25px;margin-right: 10px;">Logout</div>
+          <div href="#" style="height: 50px;" [routerLink]="['/user', userId]">
+            <img
+              src="../../../assets/images/ad/pencil-edit-button.svg"
+              style="height: 25px; margin-right: 10px;"
+            />Edit
+          </div>
+          <div href="#" style="height: 50px;" (click)="logout()">
+            <img
+              src="../../../assets/images/ad/logout.svg"
+              style="height: 25px; margin-right: 10px;"
+            />Logout
+          </div>
         </div>
       </div>
       <!-- <button mat-button [routerLink]="['/user', userId]" *ngIf="accountName">{{ accountName }}</button>
@@ -45,7 +94,7 @@
       >
       -->
       <img
-      style="cursor: pointer;"
+        style="cursor: pointer;"
         class="accountLogo"
         src="../../../assets/images/header/my account.svg"
       />

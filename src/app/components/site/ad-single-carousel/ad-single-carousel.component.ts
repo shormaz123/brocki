@@ -22,8 +22,6 @@ import { UserAddAdsRequest } from '../../../shared/models/useraddAdsRequest.mode
   styleUrls: ['./ad-single-carousel.component.scss'],
 })
 export class AdSingleCarouselComponent implements OnInit {
-
-
   @Input() userId;
   @Input() favAds: Ads;
   @ViewChild(NzCarouselComponent, { static: false })
@@ -35,22 +33,23 @@ export class AdSingleCarouselComponent implements OnInit {
   userRequest: UserAddAdsRequest;
   token;
 
-  constructor(private adsService: AdsService, private userService: UserService, private helpersService: HelpersService) { }
+  constructor(
+    private adsService: AdsService,
+    private userService: UserService,
+    private helpersService: HelpersService
+  ) {}
 
   ngOnInit() {
     this.token = localStorage.getItem(AuthConst.token);
     if (this.userId) {
-      this.userService.getUser().subscribe(user => {
+      this.userService.getUser().subscribe((user) => {
         this.userId = user.id;
       });
     }
   }
 
-
-
   next() {
     this.myCarousel.next();
-
   }
 
   pre() {
@@ -60,29 +59,24 @@ export class AdSingleCarouselComponent implements OnInit {
   addToWishlist(adId: number) {
     this.userRequest = {
       adsId: adId,
-      userId: this.userId
+      userId: this.userId,
     };
-    this.userService.updateUserFavourites(this.userRequest).subscribe(
-      _x => {
-        console.log('add update to favorite', _x);
-      }
-    ),
-      _error => {
+    this.userService.updateUserFavourites(this.userRequest).subscribe((_x) => {
+      console.log('add update to favorite', _x);
+    }),
+      (_error) => {
         console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
 
   removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe(
-      _x => {
-        console.log('delete update to favorite', _x);
-      }
-    ),
-      _error => {
+    this.userService.deleteUserFavourite(adId, this.userId).subscribe((_x) => {
+      console.log('delete update to favorite', _x);
+    }),
+      (_error) => {
         console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
-
 }

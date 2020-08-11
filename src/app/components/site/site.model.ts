@@ -1,11 +1,11 @@
-class RouterStub{
-  getCurrentNavigation(){
+class RouterStub {
+  getCurrentNavigation() {
     return {
-       extras: {
-          state:{
-            filteredAds: []
-          }
-        }
-      }
-    }
- }
+      extras: {
+        state: {
+          filteredAds: [],
+        },
+      },
+    };
+  }
+}

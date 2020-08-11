@@ -1,12 +1,12 @@
-import { Component, OnChanges, Input } from "@angular/core";
-import { Ads } from "../../../shared/models/ads.model";
-import { NzNotificationService, NzModalService } from "ng-zorro-antd";
-import { AdsService } from "../../../@core/services/ads.service";
+import { Component, OnChanges, Input } from '@angular/core';
+import { Ads } from '../../../shared/models/ads.model';
+import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
+import { AdsService } from '../../../@core/services/ads.service';
 
 @Component({
-  selector: "app-account-expired",
-  templateUrl: "./account-expired.component.html",
-  styleUrls: ["./account-expired.component.scss"],
+  selector: 'app-account-expired',
+  templateUrl: './account-expired.component.html',
+  styleUrls: ['./account-expired.component.scss'],
 })
 export class AccountExpiredComponent implements OnChanges {
   @Input() expiredProducts: Ads;
@@ -21,8 +21,8 @@ export class AccountExpiredComponent implements OnChanges {
 
   reactivate(expired: Ads, index: number): void {
     this.modal.confirm({
-      nzTitle: "Are you sure you want to reactivate this ad?",
-      nzContent: "",
+      nzTitle: 'Are you sure you want to reactivate this ad?',
+      nzContent: '',
       nzOnOk: () => {
         this.expiredProducts[0].splice(index, 1);
         if (this.expiredProducts[0].length === 0) {
@@ -43,11 +43,11 @@ export class AccountExpiredComponent implements OnChanges {
         ads.price = null;
         ads.productName = null;
         ads.productWarranty = null;
-        ads.status = "ACTIVE";
+        ads.status = 'ACTIVE';
         ads.urgentSales = null;
         ads.userId = null;
         this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
-          this.notification.success("", "The ad has been reactivated");
+          this.notification.success('', 'The ad has been reactivated');
         });
       },
     });

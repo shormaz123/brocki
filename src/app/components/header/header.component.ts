@@ -1,17 +1,24 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from "@angular/core";
-import { UserService } from "../../@core/services/user.service";
-import { AuthConst } from "../../@core/consts/auth.const";
-import { Subscription } from "rxjs";
-import { HelpersService } from "../../@core/services/helpers.service";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import { UserService } from '../../@core/services/user.service';
+import { AuthConst } from '../../@core/consts/auth.const';
+import { Subscription } from 'rxjs';
+import { HelpersService } from '../../@core/services/helpers.service';
 import { NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
 
 @Component({
-  selector: "app-header",
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   accountName: string;
@@ -43,7 +50,7 @@ export class HeaderComponent implements OnInit {
     } else {
       this.getUser();
     }
-    this.change("de");
+    this.change('de');
   }
 
   // tslint:disable-next-line:use-lifecycle-interface
@@ -75,32 +82,32 @@ export class HeaderComponent implements OnInit {
           localStorage.setItem(AuthConst.userId, user.id.toString());
         }
       },
-      (error) => console.log("User not logged in")
+      (error) => console.log('User not logged in')
     );
   }
 
   logout() {
     this.modal.confirm({
-      nzTitle: "Are you sure you want to logout?",
-      nzContent: "",
+      nzTitle: 'Are you sure you want to logout?',
+      nzContent: '',
       nzOnOk: () => {
         localStorage.removeItem(AuthConst.roleName);
         localStorage.removeItem(AuthConst.token);
         localStorage.removeItem(AuthConst.userId);
-        if (this.router.url === "/site") {
+        if (this.router.url === '/site') {
           window.location.reload();
         }
-        this.router.navigate(["/site"]);
+        this.router.navigate(['/site']);
       },
     });
   }
 
   create() {
-    this.router.navigate(["/registration"]);
+    this.router.navigate(['/registration']);
   }
 
   dropdown() {
     this.dropdownBoolean = !this.dropdownBoolean;
-    document.getElementById("myDropdown").classList.toggle("show");
+    document.getElementById('myDropdown').classList.toggle('show');
   }
 }

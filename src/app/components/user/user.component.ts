@@ -1,18 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { User } from "../../shared/models/user.model";
-import { UserService } from "../../@core/services/user.service";
-import { AdsService } from "../../@core/services/ads.service";
-import { AuthService } from "../../@core/services/auth.service";
-import { Ads } from "../../shared/models/ads.model";
-import { AuthConst } from "../../@core/consts/auth.const";
-import { AdsParam } from "../../shared/models/adParams.model";
-import { Router, ActivatedRoute } from "@angular/router";
-import { NzModalService } from "ng-zorro-antd";
+import { Component, OnInit } from '@angular/core';
+import { User } from '../../shared/models/user.model';
+import { UserService } from '../../@core/services/user.service';
+import { AdsService } from '../../@core/services/ads.service';
+import { AuthService } from '../../@core/services/auth.service';
+import { Ads } from '../../shared/models/ads.model';
+import { AuthConst } from '../../@core/consts/auth.const';
+import { AdsParam } from '../../shared/models/adParams.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
-  selector: "app-user",
-  templateUrl: "./user.component.html",
-  styleUrls: ["./user.component.scss"],
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
   expression: boolean;
@@ -53,7 +53,7 @@ export class UserComponent implements OnInit {
     });
     this.guest = true;
     this.activatedRoute.params.subscribe((params) => {
-      this.userId = params["id"];
+      this.userId = params['id'];
       this.userService.getUserById(this.userId).subscribe((user) => {
         this.user = user;
       });
@@ -96,7 +96,7 @@ export class UserComponent implements OnInit {
     this.sold = true;
     this.guest = false;
     const soldAds = new AdsParam();
-    soldAds.status = "SOLD";
+    soldAds.status = 'SOLD';
     soldAds.userId = this.userId;
     this.adsService.getSoldAds(soldAds).subscribe((res) => {
       this.soldProducts = [];
@@ -117,10 +117,10 @@ export class UserComponent implements OnInit {
   }
 
   updateInfo() {
-    if (this.path === "PRIVATE") {
-      this.router.navigate(["/update-info-private"]);
+    if (this.path === 'PRIVATE') {
+      this.router.navigate(['/update-info-private']);
     } else {
-      this.router.navigate(["/update-info-bussines"]);
+      this.router.navigate(['/update-info-bussines']);
     }
   }
   goTo(route: string): void {
@@ -129,11 +129,11 @@ export class UserComponent implements OnInit {
 
   logout(): void {
     this.modal.confirm({
-      nzTitle: "Are you sure you want to logout?",
-      nzContent: "",
+      nzTitle: 'Are you sure you want to logout?',
+      nzContent: '',
       nzOnOk: () => {
         this.authService.logout();
-        this.router.navigate(["/site"]);
+        this.router.navigate(['/site']);
       },
     });
   }

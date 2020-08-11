@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { map } from "rxjs/operators";
-import { UserService } from "../../@core/services/user.service";
-import { AuthService } from "../../@core/services/auth.service";
-import { NzNotificationService, NzModalService } from "ng-zorro-antd";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { UserService } from '../../@core/services/user.service';
+import { AuthService } from '../../@core/services/auth.service';
+import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: "app-change-password",
-  templateUrl: "./change-password.component.html",
-  styleUrls: ["./change-password.component.scss"],
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.scss'],
 })
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
@@ -26,7 +26,7 @@ export class ChangePasswordComponent implements OnInit {
     private fb: FormBuilder,
     private modal: NzModalService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.userService.getUser().subscribe((response) => {
@@ -34,32 +34,32 @@ export class ChangePasswordComponent implements OnInit {
     });
 
     this.changePasswordForm = this.fb.group({
-      oldPassword: ["", [Validators.required]],
-      newPassword: ["", [Validators.required]],
-      reTypePassword: ["", [Validators.required]],
+      oldPassword: ['', [Validators.required]],
+      newPassword: ['', [Validators.required]],
+      reTypePassword: ['', [Validators.required]],
     });
   }
 
   onSubmit() {
     this.modal.confirm({
-      nzTitle: "Are you sure you want to change your password?",
-      nzContent: "",
+      nzTitle: 'Are you sure you want to change your password?',
+      nzContent: '',
       nzOnOk: () => {
         (this.oldPassword = this.changePasswordForm.value.oldPassword),
           (this.newPassword = this.changePasswordForm.value.newPassword),
           this.authService
             .newPassword(this.oldPassword, this.newPassword)
             .subscribe(
-              (res) => { },
+              (res) => {},
               (error) => {
-                this.notification.success("", "Password successfully changed!");
+                this.notification.success('', 'Password successfully changed!');
                 this.router.navigate([`/user/${this.userId}`]);
                 // this.modal.error({
                 //   nzTitle: "Ops, something went wrong!",
                 // });
               }
             );
-      }
-      });
+      },
+    });
   }
 }

@@ -1,18 +1,30 @@
-
-<div style="text-align:center;"><mat-card style="margin-top:10px; ">
-
-  <mat-card-content>
-
+<div style="text-align: center;">
+  <mat-card style="margin-top: 10px;">
+    <mat-card-content>
       <ul>
-          <li *ngFor="let image of imagesList" style="margin-bottom: 20px;">
-              <img style="width: 50%;" [src]="image">
-          </li>
+        <li *ngFor="let image of imagesList" style="margin-bottom: 20px;">
+          <img style="width: 50%;" [src]="image" />
+        </li>
       </ul>
-  </mat-card-content>
-  <mat-card-actions>
-      <button mat-button color="warn" (click)="onClick()" *ngIf="imagesList.length < 7">
-          <mat-icon>file_upload</mat-icon>
-          Upload
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-button
+        color="warn"
+        (click)="onClick()"
+        *ngIf="imagesList.length < 7"
+      >
+        <mat-icon>file_upload</mat-icon>
+        Upload
       </button>
-  </mat-card-actions>
-</mat-card><input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" /></div>
+    </mat-card-actions> </mat-card
+  ><input
+    type="file"
+    #fileUpload
+    id="fileUpload"
+    name="fileUpload"
+    multiple="multiple"
+    accept="image/*"
+    style="display: none;"
+  />
+</div>

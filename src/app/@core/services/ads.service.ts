@@ -1,25 +1,25 @@
-import { Injectable } from "@angular/core";
-import { HttpBaseService } from "./http-base.service";
-import { environment } from "../../../environments/environment";
-import { Observable } from "rxjs";
-import { Ads } from "../../shared/models/ads.model";
-import { adsGroup } from "../../shared/models/adsGroup.model";
-import { adsSubGroup } from "../../shared/models/adsSubGroup.model";
-import { User } from "../../shared/models/user.model";
-import { CreateAd } from "../../shared/models/create-ad.model";
+import { Injectable } from '@angular/core';
+import { HttpBaseService } from './http-base.service';
+import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import { Ads } from '../../shared/models/ads.model';
+import { adsGroup } from '../../shared/models/adsGroup.model';
+import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
+import { User } from '../../shared/models/user.model';
+import { CreateAd } from '../../shared/models/create-ad.model';
 import {
   HttpClient,
   HttpEvent,
   HttpErrorResponse,
   HttpEventType,
   HttpParams,
-} from "@angular/common/http";
-import { map } from "rxjs/operators";
-import { AdsParam } from "../../shared/models/adParams.model";
-import { FilterAds } from "../../shared/models/filterAds.model";
+} from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { AdsParam } from '../../shared/models/adParams.model';
+import { FilterAds } from '../../shared/models/filterAds.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AdsService {
   private readonly baseUrl = environment.apiUrlBase;
@@ -36,8 +36,8 @@ export class AdsService {
     );
   }
 
-  getAdsdBySearch(productName: string): Observable <Ads[]> {
-    return this.http.get (
+  getAdsdBySearch(productName: string): Observable<Ads[]> {
+    return this.http.get(
       `${this.baseUrl}/mybrocki/ads/search?productName=${productName}`
     );
   }
@@ -49,9 +49,7 @@ export class AdsService {
   }
 
   getAdsByActiveStatus(): Observable<Ads[]> {
-    return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?stats=ACTIVE`
-    );
+    return this.http.get(`${this.baseUrl}/mybrocki/ads/filter?stats=ACTIVE`);
   }
 
   // getAdsByNonActiveStatus() {
@@ -80,7 +78,7 @@ export class AdsService {
     return this.http.post(`${this.baseUrl}/mybrocki/companyimage/${id}`, file);
   }
 
-  //Public Controller
+  // Public Controller
 
   getAdById(id: number): Observable<Ads> {
     return this.http.get(`${this.baseUrl}/mybrocki/ads/${id}`);
@@ -96,7 +94,7 @@ export class AdsService {
 
   changeStatusOfAds(ads: Ads, id: number): Observable<Ads> {
     let query = new HttpParams();
-    query = query.append("status", ads.status);
+    query = query.append('status', ads.status);
     return this.http.put<Ads>(
       `${this.baseUrl}/mybrocki/auth/ads/status/${id}`,
       ads
@@ -105,8 +103,8 @@ export class AdsService {
 
   getSoldAds(data: AdsParam): Observable<Ads> {
     let query = new HttpParams();
-    query = query.append("status", data.status);
-    query = query.append("userId", data.userId.toString());
+    query = query.append('status', data.status);
+    query = query.append('userId', data.userId.toString());
     return this.http.get<Ads>(`${this.baseUrl}/mybrocki/ads/filter?${query}`);
   }
 

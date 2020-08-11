@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: "app-guestbook-seller",
-  templateUrl: "./guestbook-seller.component.html",
-  styleUrls: ["./guestbook-seller.component.scss"],
+  selector: 'app-guestbook-seller',
+  templateUrl: './guestbook-seller.component.html',
+  styleUrls: ['./guestbook-seller.component.scss'],
 })
 export class GuestbookSellerComponent implements OnInit {
   ratingForm: FormGroup;
@@ -13,8 +13,8 @@ export class GuestbookSellerComponent implements OnInit {
 
   ngOnInit() {
     this.ratingForm = this.fb.group({
-      rating: [""],
-      comment: [""],
+      rating: [''],
+      comment: [''],
     });
   }
 

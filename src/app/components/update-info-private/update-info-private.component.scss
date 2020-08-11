@@ -1,4 +1,4 @@
-@import "../../../scss/variables";
+@import '../../../scss/variables';
 
 * {
   font-family: $header-font-family;
@@ -143,19 +143,19 @@ button:focus {
 
 //Checkbox
 
-input[type="checkbox"] + label {
+input[type='checkbox'] + label {
   display: block;
   margin: 0.2em;
   cursor: pointer;
   padding: 0.2em;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   display: none;
 }
 
-input[type="checkbox"] + label:before {
-  content: "\2714";
+input[type='checkbox'] + label:before {
+  content: '\2714';
   border: 0.1em solid #000;
   border-radius: 0.2em;
   display: inline-block;
@@ -169,22 +169,22 @@ input[type="checkbox"] + label:before {
   transition: 0.2s;
 }
 
-input[type="checkbox"] + label:active:before {
+input[type='checkbox'] + label:active:before {
   transform: scale(0);
 }
 
-input[type="checkbox"]:checked + label:before {
+input[type='checkbox']:checked + label:before {
   background-color: MediumSeaGreen;
   border-color: MediumSeaGreen;
   color: #fff;
 }
 
-input[type="checkbox"]:disabled + label:before {
+input[type='checkbox']:disabled + label:before {
   transform: scale(1);
   border-color: #aaa;
 }
 
-input[type="checkbox"]:checked:disabled + label:before {
+input[type='checkbox']:checked:disabled + label:before {
   transform: scale(1);
   background-color: #bfb;
   border-color: #bfb;
@@ -408,9 +408,9 @@ img {
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 1px;
-  text-overflow: "";
+  text-overflow: '';
   cursor: pointer;
-  background-image: url("../../../assets/images/update-info-bussines/arrow menu.png");
+  background-image: url('../../../assets/images/update-info-bussines/arrow menu.png');
   background-repeat: no-repeat;
   background-position: 402px 8px;
 }
