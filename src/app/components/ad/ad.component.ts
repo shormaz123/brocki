@@ -1,24 +1,23 @@
-import { Component, OnInit } from "@angular/core";
-import { AdsService } from "../../@core/services/ads.service";
-import { UserService } from "../../@core/services/user.service";
-import { ActivatedRoute } from "@angular/router";
-import { Ads } from "../../shared/models/ads.model";
-import { User } from "../../shared/models/user.model";
+import { Component, OnInit } from '@angular/core';
+import { AdsService } from '../../@core/services/ads.service';
+import { UserService } from '../../@core/services/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { Ads } from '../../shared/models/ads.model';
+import { User } from '../../shared/models/user.model';
 import {
   NgxGalleryOptions,
   NgxGalleryImage,
   NgxGalleryAnimation,
-} from "ngx-gallery";
+} from 'ngx-gallery';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { HelpersService } from '../../@core/services/helpers.service';
 import { CeiboShare } from 'ng2-social-share';
 
-
 @Component({
-  selector: "app-ad",
-  templateUrl: "./ad.component.html",
-  styleUrls: ["./ad.component.scss"],
+  selector: 'app-ad',
+  templateUrl: './ad.component.html',
+  styleUrls: ['./ad.component.scss'],
 })
 export class AdComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
@@ -38,45 +37,46 @@ export class AdComponent implements OnInit {
   categoryImagesAvailable: boolean;
 
   public repoUrl = 'https://github.com/Epotignano/ng2-social-share';
-  public imageUrl = 'https://avatars2.githubusercontent.com/u/10674541?v=3&s=200';
+  public imageUrl =
+    'https://avatars2.githubusercontent.com/u/10674541?v=3&s=200';
 
   cards = [
     {
-      title: "Smart Sizzling BBQ",
+      title: 'Smart Sizzling BBQ',
       descriptiopn:
-        "This is description about product of this seller yipi yo yipi yo, This is description about product of this seller yipi yo yipi yo, This is description about product of this seller yipi yo yipi yo",
+        'This is description about product of this seller yipi yo yipi yo, This is description about product of this seller yipi yo yipi yo, This is description about product of this seller yipi yo yipi yo',
       price: 49000.0,
-      date: "6 days ago",
+      date: '6 days ago',
     },
     {
-      title: "Smart Sizzling BBQ 2",
-      descriptiopn: "",
+      title: 'Smart Sizzling BBQ 2',
+      descriptiopn: '',
       price: 49.0,
-      date: "6 days ago",
+      date: '6 days ago',
     },
     {
-      title: "Smart Sizzling BBQ 3",
-      descriptiopn: "",
+      title: 'Smart Sizzling BBQ 3',
+      descriptiopn: '',
       price: 49.0,
-      date: "6 days ago",
+      date: '6 days ago',
     },
     {
-      title: "Smart Sizzling BBQ 4",
-      descriptiopn: "",
+      title: 'Smart Sizzling BBQ 4',
+      descriptiopn: '',
       price: 49.0,
-      date: "6 days ago",
+      date: '6 days ago',
     },
     {
-      title: "Smart Sizzling BBQ 5",
-      descriptiopn: "",
+      title: 'Smart Sizzling BBQ 5',
+      descriptiopn: '',
       price: 49.0,
-      date: "6 days ago",
+      date: '6 days ago',
     },
     {
-      title: "Smart Sizzling BBQ 6",
-      descriptiopn: "",
+      title: 'Smart Sizzling BBQ 6',
+      descriptiopn: '',
       price: 49.0,
-      date: "6 days ago",
+      date: '6 days ago',
     },
   ];
 
@@ -90,28 +90,28 @@ export class AdComponent implements OnInit {
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private helpersService: HelpersService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.token = localStorage.getItem(AuthConst.token);
     if (this.token) {
-      this.userService.getUser().subscribe(response => {
+      this.userService.getUser().subscribe((response) => {
         this.userId = response.id;
-      })
+      });
     }
 
     this.galleryOptions = [
       {
-        width: "600px",
-        height: "400px",
+        width: '600px',
+        height: '400px',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
       },
       // max-width 800
       {
         breakpoint: 800,
-        width: "100%",
-        height: "600px",
+        width: '100%',
+        height: '600px',
         imagePercent: 80,
         thumbnailsPercent: 20,
         thumbnailsMargin: 20,
@@ -124,11 +124,10 @@ export class AdComponent implements OnInit {
       },
     ];
 
-
     this.images = [];
 
     this.activatedRoute.params.subscribe((params) => {
-      this.adId = params["id"];
+      this.adId = params.id;
       this.getNewAd(this.adId);
     });
   }
@@ -141,12 +140,13 @@ export class AdComponent implements OnInit {
       this.adGroupId = response.adsgroupId;
       window.scrollTo(0, 0);
 
-      for (let i = 0; i < response.image.length; i++)
+      for (const picture of response.image) {
         this.galleryImages.push({
-          small: response.image[i],
-          medium: response.image[i],
-          big: response.image[i],
+          small: picture,
+          medium: picture,
+          big: picture,
         });
+      }
       this.userService.getUserById(this.userSellerId).subscribe((x) => {
         if (x == null) {
           this.usersImagesAvailabe = false;
@@ -179,41 +179,41 @@ export class AdComponent implements OnInit {
   addToWishlist(adId: number) {
     this.userRequest = {
       adsId: adId,
-      userId: this.userId
+      userId: this.userId,
     };
-    this.userService.updateUserFavourites(this.userRequest).subscribe(
-      _x => {
-        console.log('add update to favorite', _x);
-      }
-    ),
-      _error => {
+    this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
+      console.log('add update to favorite', x);
+    }),
+      (error) => {
         console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
 
   removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe(
-      _x => {
-        console.log('delete update to favorite', _x);
-      }
-    ),
-      _error => {
+    this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
+      console.log('delete update to favorite', x);
+    }),
+      (error) => {
         console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
 
   goToFaceBook() {
-    document.getElementById("shareFB").setAttribute("href", "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(document.URL));
+    document
+      .getElementById('shareFB')
+      .setAttribute(
+        'href',
+        'https://www.facebook.com/sharer/sharer.php?u=' +
+          encodeURIComponent(document.URL)
+      );
   }
 
-  goToFaceInstagram() {
-
-  }
+  goToFaceInstagram() {}
 
   copyLink() {
-    let selBox = document.createElement('textarea');
+    const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';

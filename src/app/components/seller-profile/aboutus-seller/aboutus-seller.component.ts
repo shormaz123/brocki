@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { UserService } from "../../../@core/services/user.service";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../@core/services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: "app-aboutus-seller",
-  templateUrl: "./aboutus-seller.component.html",
-  styleUrls: ["./aboutus-seller.component.scss"],
+  selector: 'app-aboutus-seller',
+  templateUrl: './aboutus-seller.component.html',
+  styleUrls: ['./aboutus-seller.component.scss'],
 })
 export class AboutusSellerComponent implements OnInit {
   noImages: boolean;
@@ -21,7 +21,7 @@ export class AboutusSellerComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-      this.sellerParamId = params["id"];
+      this.sellerParamId = params.id;
       this.userService.getUserById(this.sellerParamId).subscribe((seller) => {
         this.sellerId = seller.id;
         this.sellersImages = seller.companyImage;

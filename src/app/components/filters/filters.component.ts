@@ -114,7 +114,7 @@ export class FiltersComponent implements OnInit, OnDestroy  {
         productWarranty: this.productWarranty,
         urgentSales: this.urgentSales,
         adsGroupId: this.category.id
-      }
+      };
       this.adsService.getAdsByParamToFilter(this.filterAd).subscribe(x => {
         if (x.length < 1) {
           this.error = true;

@@ -1,5 +1,4 @@
 export interface UserRegistration {
-
   bussinesType: string;
   city: string;
   credit: number;
@@ -9,5 +8,4 @@ export interface UserRegistration {
   role_id: number;
   terms: boolean;
   userName: string;
-
 }

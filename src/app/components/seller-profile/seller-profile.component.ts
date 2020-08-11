@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { UserService } from "../../@core/services/user.service";
-import { AdsService } from "../../@core/services/ads.service";
-import { AdsParam } from "../../shared/models/adParams.model";
-import { ConnectionPositionPair } from "@angular/cdk/overlay";
-import { NzInputNumberComponent } from "ng-zorro-antd";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../@core/services/user.service';
+import { AdsService } from '../../@core/services/ads.service';
+import { AdsParam } from '../../shared/models/adParams.model';
+import { ConnectionPositionPair } from '@angular/cdk/overlay';
+import { NzInputNumberComponent } from 'ng-zorro-antd';
 
 @Component({
-  selector: "app-seller-profile",
-  templateUrl: "./seller-profile.component.html",
-  styleUrls: ["./seller-profile.component.scss"],
+  selector: 'app-seller-profile',
+  templateUrl: './seller-profile.component.html',
+  styleUrls: ['./seller-profile.component.scss'],
 })
 export class SellerProfileComponent implements OnInit {
   active: boolean;
@@ -24,7 +24,7 @@ export class SellerProfileComponent implements OnInit {
   sellerPhone: string;
   sellerMobile: string;
   sellerEmail: string;
-  defaultImage = "../../../assets/images/myAccount/profile-picture.png";
+  defaultImage = '../../../assets/images/myAccount/profile-picture.png';
   sellerImage: string = this.defaultImage;
   sellerindex: number;
   activeProducts: Array<any> = [];
@@ -41,7 +41,7 @@ export class SellerProfileComponent implements OnInit {
   ngOnInit() {
     this.active = true;
     this.activatedRoute.params.subscribe((params) => {
-      this.sellerId = params["id"];
+      this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
         this.sellerindex = seller.id;
         this.sellerName = seller.userName;
@@ -79,7 +79,7 @@ export class SellerProfileComponent implements OnInit {
     this.active = false;
     this.sold = true;
     const soldAds = new AdsParam();
-    soldAds.status = "SOLD";
+    soldAds.status = 'SOLD';
     soldAds.userId = this.sellerindex;
     this.adsService.getSoldAds(soldAds).subscribe((res) => {
       this.soldProducts.push(res);

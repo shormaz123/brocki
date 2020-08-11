@@ -1,253 +1,378 @@
 <app-header class="header" (notify)="receiveNotification($event)"></app-header>
 <div class="mainContainer">
-    <div class="sidebar">
-        <p-sidebar [(visible)]="displaySideNav" [baseZIndex]="10000">
-            <h1 style="text-align: center;">{{'translate.allCategories' | translate}}</h1>
-            <p-accordion>
-                <p-accordionTab header="{{category.groupName[currentLang]}}" *ngFor="let category of categoriesGroup" (click)="selectDropDown(category.id)">
-                    <div *ngFor="let subCategory of subCategories" class="accordationDiv">
-                        <span class="accordationSpan" (click)="getAdsByParams(subCategory.id)">{{subCategory.subGroupName[currentLang]}}</span></div>
-                </p-accordionTab>
-            </p-accordion>
-        </p-sidebar>
-    </div>
-    <div class="container">
-        <div class="navBar">
-            <div class="search">
-                <button class="filters" routerLink="/filters">{{'translate.filters' | translate}}</button>
-                <div class="searchBox">
-                    <input type="text" class="searchTerm" placeholder="Search" [(ngModel)]="searchProductName" />
-                    <button type="submit" class="searchButton" (click)="getAdsBySearch()">
-          <i class="fa fa-search"></i>
-        </button>
-                </div>
-                <button class="favorite" routerLink="/favorite">
-                  {{'translate.favorite' | translate}} <span *ngIf="numberOfFavorites">({{numberOfFavorites}})</span>
-      </button>
-            </div>
-            <div class="navigation">
-                <div class="category">
-                    <button style="height: 100%; background: none; border: none;">
-          <div class="tab-icon"
-          style="display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-between;
-          height: 100%;
-          padding-top: 30px;
-          padding-left: 0%;
-          padding-right: 0%;
-          padding-bottom: 0%;
-          "
-          (click)="displaySideNav = true">
-            <img
-              class="icon-not-active"
-              src="../../../assets/images/navigation/Listofcategories.png"
-
-            />
-            <img
-              class="icon-active"
-              src="../../../assets/images/navigation/red/Listofcategories.png"
-              (click)="hideSide()"
-            />
-            <span style="text-align: center;">{{'translate.allCategories' | translate}}</span>
+  <div class="sidebar">
+    <p-sidebar [(visible)]="displaySideNav" [baseZIndex]="10000">
+      <h1 style="text-align: center;">
+        {{ 'translate.allCategories' | translate }}
+      </h1>
+      <p-accordion>
+        <p-accordionTab
+          header="{{ category.groupName[currentLang] }}"
+          *ngFor="let category of categoriesGroup"
+          (click)="selectDropDown(category.id)"
+        >
+          <div *ngFor="let subCategory of subCategories" class="accordationDiv">
+            <span
+              class="accordationSpan"
+              (click)="getAdsByParams(subCategory.id)"
+              >{{ subCategory.subGroupName[currentLang] }}</span
+            >
           </div>
+        </p-accordionTab>
+      </p-accordion>
+    </p-sidebar>
+  </div>
+  <div class="container">
+    <div class="navBar">
+      <div class="search">
+        <button class="filters" routerLink="/filters">
+          {{ 'translate.filters' | translate }}
         </button>
-                </div>
-                <p-carousel [value]="categories" [circular]="false" [numVisible]="8" [numScroll]="1" [responsiveOptions]="responsiveOptions">
-                    <ng-template let-category pTemplate="item">
-                        <div class="categoryItem" style="cursor: pointer;" (click)="selectCategory(category.id)">
-                            <img src="{{ category.imageTo }}" />
-                            <span style="text-align: center;">{{ category.title }}</span>
-                        </div>
-                    </ng-template>
-                </p-carousel>
+        <div class="searchBox">
+          <input
+            type="text"
+            class="searchTerm"
+            placeholder="Search"
+            [(ngModel)]="searchProductName"
+          />
+          <button type="submit" class="searchButton" (click)="getAdsBySearch()">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+        <button class="favorite" routerLink="/favorite">
+          {{ 'translate.favorite' | translate }}
+          <span *ngIf="numberOfFavorites">({{ numberOfFavorites }})</span>
+        </button>
+      </div>
+      <div class="navigation">
+        <div class="category">
+          <button style="height: 100%; background: none; border: none;">
+            <div
+              class="tab-icon"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                padding-top: 30px;
+                padding-left: 0%;
+                padding-right: 0%;
+                padding-bottom: 0%;
+              "
+              (click)="displaySideNav = true"
+            >
+              <img
+                class="icon-not-active"
+                src="../../../assets/images/navigation/Listofcategories.png"
+              />
+              <img
+                class="icon-active"
+                src="../../../assets/images/navigation/red/Listofcategories.png"
+                (click)="hideSide()"
+              />
+              <span style="text-align: center;">{{
+                'translate.allCategories' | translate
+              }}</span>
             </div>
+          </button>
         </div>
-        <app-ad-single-carousel [favAds]="favAds" [userId]="userId"></app-ad-single-carousel>
-        <div class="advertise">
-            <img src="../../../assets/images/brocki-adv-image.png" routerLink="/contact-us" style="cursor: pointer;" />
-        </div>
-        <div class="siteButtons">
-            <!-- <button class="siteButton">Around me</button> -->
-            <button class="siteButton" pTooltip="Will be available soon !!!" tooltipPosition="top">{{'translate.freshlyAdvertised' | translate}}</button>
-            <button class="siteButton" pTooltip="Will be available soon !!!" tooltipPosition="top">{{'translate.unused' | translate}}</button>
-            <button class="siteButton" pTooltip="Will be available soon !!!" tooltipPosition="top">{{'translate.mostWanted' | translate}}</button>
-        </div>
-        <div class="suggestions">
-            <span class="suggText"> {{'translate.suggestionsForYou' | translate}}:</span>
-            <div class="bodySuggestions2">
-                <div class="cards">
-                    <p-carousel [value]="favAds" [numVisible]="3" [numScroll]="1">
-                        <ng-template let-ad pTemplate="item">
-                            <div style="
-
-                padding: '5px';
-                background-color: #f6f6f6;
-                padding: 10px !important;
-                width: 80%;
-    height: 100%;
-              ">
-                                <div style="background-color: white;
-                                      cursor: pointer;
-                                      padding:10px" class="cardHover">
-                                    <div class="image" [routerLink]="['/ad', ad.id]">
-                                        <img src="Card" [src]="ad.image[0]" />
-                                    </div>
-                                    <div class="cardBody" [routerLink]="['/ad', ad.id]">
-                                        <div class="bodyLabel">
-                                            <label style="font-size: 20px; font-weight: bolder;">{{
-                  ad.productName
-                }}</label>
-                                        </div>
-                                        <div class="adLine"></div>
-                                        <div class="description">
-                                            <label style="font-size: 12px;">{{ ad.description }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <div class="pricetag">
-                                            <label>{{ ad.price }} CHF</label>
-                                        </div>
-                                        <div>
-                                            <mat-icon *ngIf="!token" pTooltip="Please login before adding this ad to favorite section!!!" tooltipPosition="bottom" aria-label="Example icon-button with a heart icon">
-                                                favorite_border
-                                            </mat-icon>
-                                            <button mat-icon-button (click)="ad.favourite = !ad.favourite" *ngIf="token">
-
-                                            <mat-icon
-                                              *ngIf="ad.favourite" (click)="removeFromWishlist(ad.id)"
-                                              aria-label="Example icon-button with a heart icon">
-                                              favorite
-                                            </mat-icon>
-                                              <mat-icon *ngIf="!ad.favourite" (click)="addToWishlist(ad.id)"
-                                                aria-label="Example icon-button with a heart icon">
-                                                favorite_border
-                                              </mat-icon>
-                                            </button>
-                                        </div>
-                                        <span style="color: black;">{{ ad.adsDate | date }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </p-carousel>
-                </div>
+        <p-carousel
+          [value]="categories"
+          [circular]="false"
+          [numVisible]="8"
+          [numScroll]="1"
+          [responsiveOptions]="responsiveOptions"
+        >
+          <ng-template let-category pTemplate="item">
+            <div
+              class="categoryItem"
+              style="cursor: pointer;"
+              (click)="selectCategory(category.id)"
+            >
+              <img src="{{ category.imageTo }}" />
+              <span style="text-align: center;">{{ category.title }}</span>
             </div>
-            <div class="bodySuggestions2" style="margin-bottom: 50px;">
-                <div class="cards">
-                    <p-carousel [value]="favAds" [numVisible]="3" [numScroll]="1">
-                        <ng-template let-card pTemplate="item">
-                            <div style="
-                   width: 80%;
-                   height: 100%;
-                padding: '5px';
-                background-color: #f6f6f6;
-                padding: 10px !important;
-         ">
-                                <div style="background-color: white;
-                                      cursor: pointer;
-                                      padding:10px" class="cardHover">
-                                    <div class="image" [routerLink]="['/ad', card.id]">
-                                        <img src="Card" [src]="card.image[0]" />
-                                    </div>
-                                    <div class="cardBody" [routerLink]="['/ad', card.id]">
-                                        <div class="bodyLabel">
-                                            <label style="font-size: 20px; font-weight: bolder;">{{
-                  card.productName
-                }}</label>
-                                        </div>
-                                        <div class="adLine"></div>
-                                        <div class="description">
-                                            <label style="font-size: 12px;">{{ card.description }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <div class="pricetag">
-                                            <label>{{ card.price }} CHF</label>
-                                        </div>
-                                        <div>
-                                            <mat-icon *ngIf="!token" pTooltip="Please login before adding this ad to favorite section!!!" tooltipPosition="bottom" aria-label="Example icon-button with a heart icon">
-                                                favorite_border
-                                            </mat-icon>
-                                            <button mat-icon-button (click)="card.favourite = !card.favourite" *ngIf="token">
-
-                                          <mat-icon
-                                            *ngIf="card.favourite" (click)="removeFromWishlist(card.id)"
-                                            aria-label="Example icon-button with a heart icon">
-                                            favorite
-                                          </mat-icon>
-                                            <mat-icon *ngIf="!card.favourite" (click)="addToWishlist(card.id)"
-                                              aria-label="Example icon-button with a heart icon">
-                                              favorite_border
-                                            </mat-icon>
-                                          </button>
-                                        </div>
-                                        <span style="color: black;">{{ card.adsDate | date }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </p-carousel>
-                </div>
-                <div class="line"></div>
-                <div class="lineCard">
-
-                    <div style="
-            padding: '5px';
-            padding: 10px !important;
-            width: 25%;
-            background-color: #f6f6f6;
-    box-sizing: border-box;
-          " *ngFor="let card of favAds | slice: 0:showItems; let i=index">
-                        <div style="background-color: white;
-                                cursor: pointer;
-                                padding:10px" class="cardHover">
-                            <div class="image" [routerLink]="['/ad', card.id]">
-                                <img src="Card" [src]="card.image[0]" />
-                            </div>
-                            <div class="cardBody" [routerLink]="['/ad', card.id]">
-                                <div class="bodyLabel">
-                                    <label style="font-size: 20px; font-weight: bolder;">{{
-              card.productName
-            }}</label>
-                                </div>
-                                <div class="adLine"></div>
-                                <div class="description">
-                                    <label style="font-size: 12px;">{{ card.description }}</label>
-                                </div>
-                            </div>
-                            <div class="footer">
-                                <div class="pricetag">
-                                    <label>{{ card.price }} CHF</label>
-                                </div>
-                                <div>
-                                    <mat-icon *ngIf="!token" pTooltip="Please login before adding this ad to favorite section!!!" tooltipPosition="bottom" aria-label="Example icon-button with a heart icon">
-                                        favorite_border
-                                    </mat-icon>
-                                    <button mat-icon-button (click)="card.favourite = !card.favourite" *ngIf="token">
-
-                                    <mat-icon
-                                      *ngIf="card.favourite"  (click)="removeFromWishlist(card.id)"
-                                      aria-label="Example icon-button with a heart icon">
-                                      favorite
-                                    </mat-icon>
-                                      <mat-icon *ngIf="!card.favourite" (click)="addToWishlist(card.id) "
-                                        aria-label="Example icon-button with a heart icon">
-                                        favorite_border
-                                      </mat-icon>
-                                    </button>
-                                </div>
-                                <span style="color: black;">{{ card.adsDate | date }}</span>
-                            </div>
-                        </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+    </div>
+    <app-ad-single-carousel
+      [favAds]="favAds"
+      [userId]="userId"
+    ></app-ad-single-carousel>
+    <div class="advertise">
+      <img
+        src="../../../assets/images/brocki-adv-image.png"
+        routerLink="/contact-us"
+        style="cursor: pointer;"
+      />
+    </div>
+    <div class="siteButtons">
+      <!-- <button class="siteButton">Around me</button> -->
+      <button
+        class="siteButton"
+        pTooltip="Will be available soon !!!"
+        tooltipPosition="top"
+      >
+        {{ 'translate.freshlyAdvertised' | translate }}
+      </button>
+      <button
+        class="siteButton"
+        pTooltip="Will be available soon !!!"
+        tooltipPosition="top"
+      >
+        {{ 'translate.unused' | translate }}
+      </button>
+      <button
+        class="siteButton"
+        pTooltip="Will be available soon !!!"
+        tooltipPosition="top"
+      >
+        {{ 'translate.mostWanted' | translate }}
+      </button>
+    </div>
+    <div class="suggestions">
+      <span class="suggText">
+        {{ 'translate.suggestionsForYou' | translate }}:</span
+      >
+      <div class="bodySuggestions2">
+        <div class="cards">
+          <p-carousel [value]="favAds" [numVisible]="3" [numScroll]="1">
+            <ng-template let-ad pTemplate="item">
+              <div
+                style="
+                  padding: '5px';
+                  background-color: #f6f6f6;
+                  padding: 10px !important;
+                  width: 80%;
+                  height: 100%;
+                "
+              >
+                <div
+                  style="
+                    background-color: white;
+                    cursor: pointer;
+                    padding: 10px;
+                  "
+                  class="cardHover"
+                >
+                  <div class="image" [routerLink]="['/ad', ad.id]">
+                    <img src="Card" [src]="ad.image[0]" />
+                  </div>
+                  <div class="cardBody" [routerLink]="['/ad', ad.id]">
+                    <div class="bodyLabel">
+                      <label style="font-size: 20px; font-weight: bolder;">{{
+                        ad.productName
+                      }}</label>
+                    </div>
+                    <div class="adLine"></div>
+                    <div class="description">
+                      <label style="font-size: 12px;">{{
+                        ad.description
+                      }}</label>
+                    </div>
+                  </div>
+                  <div class="footer">
+                    <div class="pricetag">
+                      <label>{{ ad.price }} CHF</label>
                     </div>
                     <div>
-                        <button class="increaseButton" mat-button (click)="increaseShow()" *ngIf="showItems < favAds?.length">{{'translate.mostWanted' | translate}}</button>
+                      <mat-icon
+                        *ngIf="!token"
+                        pTooltip="Please login before adding this ad to favorite section!!!"
+                        tooltipPosition="bottom"
+                        aria-label="Example icon-button with a heart icon"
+                      >
+                        favorite_border
+                      </mat-icon>
+                      <button
+                        mat-icon-button
+                        (click)="ad.favourite = !ad.favourite"
+                        *ngIf="token"
+                      >
+                        <mat-icon
+                          *ngIf="ad.favourite"
+                          (click)="removeFromWishlist(ad.id)"
+                          aria-label="Example icon-button with a heart icon"
+                        >
+                          favorite
+                        </mat-icon>
+                        <mat-icon
+                          *ngIf="!ad.favourite"
+                          (click)="addToWishlist(ad.id)"
+                          aria-label="Example icon-button with a heart icon"
+                        >
+                          favorite_border
+                        </mat-icon>
+                      </button>
                     </div>
+                    <span style="color: black;">{{ ad.adsDate | date }}</span>
+                  </div>
                 </div>
-            </div>
+              </div>
+            </ng-template>
+          </p-carousel>
         </div>
-
+      </div>
+      <div class="bodySuggestions2" style="margin-bottom: 50px;">
+        <div class="cards">
+          <p-carousel [value]="favAds" [numVisible]="3" [numScroll]="1">
+            <ng-template let-card pTemplate="item">
+              <div
+                style="
+                  width: 80%;
+                  height: 100%;
+                  padding: '5px';
+                  background-color: #f6f6f6;
+                  padding: 10px !important;
+                "
+              >
+                <div
+                  style="
+                    background-color: white;
+                    cursor: pointer;
+                    padding: 10px;
+                  "
+                  class="cardHover"
+                >
+                  <div class="image" [routerLink]="['/ad', card.id]">
+                    <img src="Card" [src]="card.image[0]" />
+                  </div>
+                  <div class="cardBody" [routerLink]="['/ad', card.id]">
+                    <div class="bodyLabel">
+                      <label style="font-size: 20px; font-weight: bolder;">{{
+                        card.productName
+                      }}</label>
+                    </div>
+                    <div class="adLine"></div>
+                    <div class="description">
+                      <label style="font-size: 12px;">{{
+                        card.description
+                      }}</label>
+                    </div>
+                  </div>
+                  <div class="footer">
+                    <div class="pricetag">
+                      <label>{{ card.price }} CHF</label>
+                    </div>
+                    <div>
+                      <mat-icon
+                        *ngIf="!token"
+                        pTooltip="Please login before adding this ad to favorite section!!!"
+                        tooltipPosition="bottom"
+                        aria-label="Example icon-button with a heart icon"
+                      >
+                        favorite_border
+                      </mat-icon>
+                      <button
+                        mat-icon-button
+                        (click)="card.favourite = !card.favourite"
+                        *ngIf="token"
+                      >
+                        <mat-icon
+                          *ngIf="card.favourite"
+                          (click)="removeFromWishlist(card.id)"
+                          aria-label="Example icon-button with a heart icon"
+                        >
+                          favorite
+                        </mat-icon>
+                        <mat-icon
+                          *ngIf="!card.favourite"
+                          (click)="addToWishlist(card.id)"
+                          aria-label="Example icon-button with a heart icon"
+                        >
+                          favorite_border
+                        </mat-icon>
+                      </button>
+                    </div>
+                    <span style="color: black;">{{ card.adsDate | date }}</span>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+        <div class="line"></div>
+        <div class="lineCard">
+          <div
+            style="
+              padding: '5px';
+              padding: 10px !important;
+              width: 25%;
+              background-color: #f6f6f6;
+              box-sizing: border-box;
+            "
+            *ngFor="let card of favAds | slice: 0:showItems; let i = index"
+          >
+            <div
+              style="background-color: white; cursor: pointer; padding: 10px;"
+              class="cardHover"
+            >
+              <div class="image" [routerLink]="['/ad', card.id]">
+                <img src="Card" [src]="card.image[0]" />
+              </div>
+              <div class="cardBody" [routerLink]="['/ad', card.id]">
+                <div class="bodyLabel">
+                  <label style="font-size: 20px; font-weight: bolder;">{{
+                    card.productName
+                  }}</label>
+                </div>
+                <div class="adLine"></div>
+                <div class="description">
+                  <label style="font-size: 12px;">{{ card.description }}</label>
+                </div>
+              </div>
+              <div class="footer">
+                <div class="pricetag">
+                  <label>{{ card.price }} CHF</label>
+                </div>
+                <div>
+                  <mat-icon
+                    *ngIf="!token"
+                    pTooltip="Please login before adding this ad to favorite section!!!"
+                    tooltipPosition="bottom"
+                    aria-label="Example icon-button with a heart icon"
+                  >
+                    favorite_border
+                  </mat-icon>
+                  <button
+                    mat-icon-button
+                    (click)="card.favourite = !card.favourite"
+                    *ngIf="token"
+                  >
+                    <mat-icon
+                      *ngIf="card.favourite"
+                      (click)="removeFromWishlist(card.id)"
+                      aria-label="Example icon-button with a heart icon"
+                    >
+                      favorite
+                    </mat-icon>
+                    <mat-icon
+                      *ngIf="!card.favourite"
+                      (click)="addToWishlist(card.id)"
+                      aria-label="Example icon-button with a heart icon"
+                    >
+                      favorite_border
+                    </mat-icon>
+                  </button>
+                </div>
+                <span style="color: black;">{{ card.adsDate | date }}</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button
+              class="increaseButton"
+              mat-button
+              (click)="increaseShow()"
+              *ngIf="showItems < favAds?.length"
+            >
+              {{ 'translate.mostWanted' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

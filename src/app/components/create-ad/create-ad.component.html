@@ -1,35 +1,52 @@
 <app-header></app-header>
 <div class="container">
-    <div class="create">
-        <div class="create__ad-title">
-            <div class="create__title">
-                {{'translate.createAd' | translate}}
-            </div>
+  <div class="create">
+    <div class="create__ad-title">
+      <div class="create__title">
+        {{ 'translate.createAd' | translate }}
+      </div>
+    </div>
+    <form class="form" (ngSubmit)="onSubmit()" [formGroup]="createForm">
+      <div class="form__input">
+        <label class="form__label">{{ 'translate.title' | translate }}</label>
+        <div>
+          <input formControlName="productName" />
         </div>
-        <form class="form" (ngSubmit)="onSubmit()" [formGroup]="createForm">
-            <div class="form__input">
-                <label class="form__label">{{'translate.title' | translate}}</label>
-                <div>
-                    <input formControlName="productName" />
-                </div>
-            </div>
-            <div class="form__input">
-                <label class="form__label">{{'translate.description' | translate}}</label>
-                <div>
-                    <textarea class="form__textarea" formControlName="description"></textarea>
-                </div>
-            </div>
-            <div class="form__input">
-                <select class="form__select" formControlName="category" (change)="findCategory($event)">
-          <option selected disabled value="">{{'translate.selectCategory' | translate}}</option>
+      </div>
+      <div class="form__input">
+        <label class="form__label">{{
+          'translate.description' | translate
+        }}</label>
+        <div>
+          <textarea
+            class="form__textarea"
+            formControlName="description"
+          ></textarea>
+        </div>
+      </div>
+      <div class="form__input">
+        <select
+          class="form__select"
+          formControlName="category"
+          (change)="findCategory($event)"
+        >
+          <option selected disabled value="">{{
+            'translate.selectCategory' | translate
+          }}</option>
           <option *ngFor="let category of categories" [value]="category.id">
             {{ category.groupName[currentLang.text] }}
           </option>
         </select>
-            </div>
-            <div class="form__input">
-                <select class="form__select" formControlName="subcategory" (change)="findsubcategory($event)">
-          <option selected disabled value="">{{'translate.selectSubCategory' | translate}}</option>
+      </div>
+      <div class="form__input">
+        <select
+          class="form__select"
+          formControlName="subcategory"
+          (change)="findsubcategory($event)"
+        >
+          <option selected disabled value="">{{
+            'translate.selectSubCategory' | translate
+          }}</option>
           <option
             *ngFor="let subcategory of subcategories"
             [value]="subcategory.id"
@@ -37,73 +54,131 @@
             {{ subcategory.subGroupName[currentLang.text] }}
           </option>
         </select>
-            </div>
-            <div class="form__buttons">
-                <div class="form__button">
-                    <button class="form__used" value="USED" [class.active]="statusOfProduct === 'USED'" type="button" (click)="statusProduct($event)">
-          {{'translate.used' | translate}}
+      </div>
+      <div class="form__buttons">
+        <div class="form__button">
+          <button
+            class="form__used"
+            value="USED"
+            [class.active]="statusOfProduct === 'USED'"
+            type="button"
+            (click)="statusProduct($event)"
+          >
+            {{ 'translate.used' | translate }}
           </button>
-                </div>
-                <div class="form__button">
-                    <button class="form__new" [ngClass]="{
+        </div>
+        <div class="form__button">
+          <button
+            class="form__new"
+            [ngClass]="{
               active: statusOfProduct === 'NEW'
-            }" value="NEW" type="button" (click)="statusProduct($event)">
-          {{'translate.new' | translate}}
+            }"
+            value="NEW"
+            type="button"
+            (click)="statusProduct($event)"
+          >
+            {{ 'translate.new' | translate }}
           </button>
-                </div>
+        </div>
+      </div>
+      <div class="form__input">
+        <label class="form__label"
+          >{{ 'translate.picturesOfCompany' | translate }}:</label
+        >
+        <div class="form__picture">
+          <div
+            class="form__upload--image"
+            *ngFor="let photo of photos; let i = index"
+          >
+            <img [src]="photo" class="form__image" />
+            <div class="form__delete" (click)="deletePhoto(i)">
+              <label class="form__delete-label">delete photo X</label>
             </div>
-            <div class="form__input">
-                <label class="form__label">{{'translate.picturesOfCompany' | translate}}:</label>
-                <div class="form__picture">
-                    <div class="form__upload--image" *ngFor="let photo of photos; let i = index">
-                        <img [src]="photo" class="form__image" />
-                        <div class="form__delete" (click)="deletePhoto(i)">
-                            <label class="form__delete-label">delete photo X</label>
-                        </div>
-                    </div>
-                    <div class="form__svg" *ngIf="photos.length < 6">
-                        <input formControlName="image" class="form__upload--image form__upload--image--image-input" (change)="uploadImage($event)" accept="image/*" type="file" multiple="multiple" />
-                        <div class="form__svg--image" [inlineSVG]="
+          </div>
+          <div class="form__svg" *ngIf="photos.length < 6">
+            <input
+              formControlName="image"
+              class="form__upload--image form__upload--image--image-input"
+              (change)="uploadImage($event)"
+              accept="image/*"
+              type="file"
+              multiple="multiple"
+            />
+            <div
+              class="form__svg--image"
+              [inlineSVG]="
                 '../../../assets/images/update-info-bussines/add-photo.svg'
-              "></div>
-                    </div>
-                </div>
-            </div>
-            <div class="form__checkboxes">
-                <label class="form__label form__label--padding">{{'translate.otherFilters' | translate}}</label>
-                <div class="form__box-body">
-                    <div class="form__checkbox">
-                        <mat-checkbox class="example-margin" formControlName="fixedPrice"></mat-checkbox>
-                        <span class="form__box-check-text">{{'translate.fixedPrice' | translate}}</span>
-                    </div>
-                    <div class="form__checkbox">
-                        <mat-checkbox class="example-margin" formControlName="freeDelivery"></mat-checkbox>
-                        <span class="form__box-check-text">{{'translate.freeDelivery' | translate}}</span>
-                    </div>
-                    <div class="form__checkbox">
-                        <mat-checkbox class="example-margin" formControlName="productWarranty"></mat-checkbox>
-                        <span class="form__box-check-text">{{'translate.productWarranty' | translate}}</span>
-                    </div>
-                    <div class="form__checkbox">
-                        <mat-checkbox class="example-margin" formControlName="urgentSales"></mat-checkbox>
-                        <span class="form__box-check-text">{{'translate.UrgentSales' | translate}}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="form__input">
-                <label class="form__label">{{'translate.price' | translate}}</label>
-                <div class="form__price">
-                    <input class="form__input form__input--price" formControlName="price" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="7" />
-                    <p class="form__currency">CHF</p>
-                </div>
-            </div>
-            <div class="form__token">
-                <label class="form__label">{{'translate.adWillBreCharged' | translate}}:</label>
-                <div class="form__credit">
-                    <img src="../../../assets/images/credits icon.png" />
-                    <div class="form__creditCount">
-                        <span style="color: #d62b1f;"><span style="color: #d62b1f; font-weight: bold;">6 </span
-              >&nbsp;{{'translate.credits' | translate}}</span
+              "
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="form__checkboxes">
+        <label class="form__label form__label--padding">{{
+          'translate.otherFilters' | translate
+        }}</label>
+        <div class="form__box-body">
+          <div class="form__checkbox">
+            <mat-checkbox
+              class="example-margin"
+              formControlName="fixedPrice"
+            ></mat-checkbox>
+            <span class="form__box-check-text">{{
+              'translate.fixedPrice' | translate
+            }}</span>
+          </div>
+          <div class="form__checkbox">
+            <mat-checkbox
+              class="example-margin"
+              formControlName="freeDelivery"
+            ></mat-checkbox>
+            <span class="form__box-check-text">{{
+              'translate.freeDelivery' | translate
+            }}</span>
+          </div>
+          <div class="form__checkbox">
+            <mat-checkbox
+              class="example-margin"
+              formControlName="productWarranty"
+            ></mat-checkbox>
+            <span class="form__box-check-text">{{
+              'translate.productWarranty' | translate
+            }}</span>
+          </div>
+          <div class="form__checkbox">
+            <mat-checkbox
+              class="example-margin"
+              formControlName="urgentSales"
+            ></mat-checkbox>
+            <span class="form__box-check-text">{{
+              'translate.UrgentSales' | translate
+            }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="form__input">
+        <label class="form__label">{{ 'translate.price' | translate }}</label>
+        <div class="form__price">
+          <input
+            class="form__input form__input--price"
+            formControlName="price"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type="number"
+            maxlength="7"
+          />
+          <p class="form__currency">CHF</p>
+        </div>
+      </div>
+      <div class="form__token">
+        <label class="form__label"
+          >{{ 'translate.adWillBreCharged' | translate }}:</label
+        >
+        <div class="form__credit">
+          <img src="../../../assets/images/credits icon.png" />
+          <div class="form__creditCount">
+            <span style="color: #d62b1f;"
+              ><span style="color: #d62b1f; font-weight: bold;">6 </span
+              >&nbsp;{{ 'translate.credits' | translate }}</span
             >
           </div>
         </div>
@@ -114,7 +189,7 @@
           type="submit"
           [disabled]="!createForm.valid"
         >
-        {{'translate.saveChanges' | translate}}
+          {{ 'translate.saveChanges' | translate }}
         </button>
       </div>
     </form>

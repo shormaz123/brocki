@@ -1,4 +1,4 @@
 export class UserFavorite {
- adsId:number;
- userId:number;
+  adsId: number;
+  userId: number;
 }
