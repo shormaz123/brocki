@@ -21,7 +21,7 @@ export class AboutusSellerComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-      this.sellerParamId = params['id'];
+      this.sellerParamId = params.id;
       this.userService.getUserById(this.sellerParamId).subscribe((seller) => {
         this.sellerId = seller.id;
         this.sellersImages = seller.companyImage;

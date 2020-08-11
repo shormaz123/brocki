@@ -5,6 +5,8 @@ import { adsGroup } from '../../shared/models/adsGroup.model';
 import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
 import { AdsService } from '../../@core/services/ads.service';
 import { Router } from '@angular/router';
+import { TranslateServiceRest } from '../../@core/services/translateREST.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-create-ad',
   templateUrl: './create-ad.component.html',
@@ -13,7 +15,7 @@ import { Router } from '@angular/router';
 export class CreateAdComponent implements OnInit, OnDestroy {
   createForm: FormGroup;
   formData = new FormData();
-  statusOfProduct: string = 'NEW';
+  statusOfProduct = 'NEW';
   categories: Array<adsGroup> = [];
   subcategories: Array<adsSubGroup> = [];
   uploadPhoto: Array<any> = [];
@@ -139,6 +141,3 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     });
   }
 }
-import { TranslateServiceRest } from '../../@core/services/translateREST.service';
-
-import { Subscription } from 'rxjs';

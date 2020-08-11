@@ -127,7 +127,7 @@ export class AdComponent implements OnInit {
     this.images = [];
 
     this.activatedRoute.params.subscribe((params) => {
-      this.adId = params['id'];
+      this.adId = params.id;
       this.getNewAd(this.adId);
     });
   }
@@ -140,12 +140,13 @@ export class AdComponent implements OnInit {
       this.adGroupId = response.adsgroupId;
       window.scrollTo(0, 0);
 
-      for (let i = 0; i < response.image.length; i++)
+      for (const picture of response.image) {
         this.galleryImages.push({
-          small: response.image[i],
-          medium: response.image[i],
-          big: response.image[i],
+          small: picture,
+          medium: picture,
+          big: picture,
         });
+      }
       this.userService.getUserById(this.userSellerId).subscribe((x) => {
         if (x == null) {
           this.usersImagesAvailabe = false;
@@ -180,20 +181,20 @@ export class AdComponent implements OnInit {
       adsId: adId,
       userId: this.userId,
     };
-    this.userService.updateUserFavourites(this.userRequest).subscribe((_x) => {
-      console.log('add update to favorite', _x);
+    this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
+      console.log('add update to favorite', x);
     }),
-      (_error) => {
+      (error) => {
         console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
 
   removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe((_x) => {
-      console.log('delete update to favorite', _x);
+    this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
+      console.log('delete update to favorite', x);
     }),
-      (_error) => {
+      (error) => {
         console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
@@ -212,7 +213,7 @@ export class AdComponent implements OnInit {
   goToFaceInstagram() {}
 
   copyLink() {
-    let selBox = document.createElement('textarea');
+    const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';

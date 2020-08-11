@@ -1,47 +1,69 @@
 <div class="footer">
-    <div class="footer__list">
-        <img class="footer__image" src="assets/images/footer/line 2px.png" />
-        <div class="footer__links">
-            <div class="footer__text" (click)="goTo('/site')">Home</div>
-            <div class="footer__text" (click)="goTo('/user/' + userId)">
-                My Account
-            </div>
-            <div class="footer__text">About us</div>
-            <div class="footer__text" (click)="goTo('contact-us')">Contact</div>
-        </div>
+  <div class="footer__list">
+    <img class="footer__image" src="assets/images/footer/line 2px.png" />
+    <div class="footer__links">
+      <div class="footer__text" (click)="goTo('/site')">Home</div>
+      <div class="footer__text" (click)="goTo('/user/' + userId)">
+        My Account
+      </div>
+      <div class="footer__text">About us</div>
+      <div class="footer__text" (click)="goTo('contact-us')">Contact</div>
     </div>
-    <div class="footer__links footer__links--center">
-        <img class="footer__logo" src="assets/images/footer/minibrocki logo footer.png" />
-        <div class="footer__icons">
-            <a href="https://www.facebook.com" target="_blank">
-                <div class="footer__icon" [inlineSVG]="'../../../assets/images/footer/facebook.svg'"></div>
-            </a>
-            <a href="https://www.instagram.com" target="_blank">
-                <div class="footer__icon" [inlineSVG]="'../../../assets/images/footer/instagram.svg'"></div>
-            </a>
-            <a href="https://www.linkedin.com" target="_blank">
-                <div class="footer__icon" [inlineSVG]="'../../../assets/images/footer/linkedin.svg'"></div>
-            </a>
-            <a href="https://www.youtube.com" target="_blank">
-                <div class="footer__icon" [inlineSVG]="'../../../assets/images/footer/youtube.svg'"></div>
-            </a>
-        </div>
-        <div class="footer__copyright">
-            <p class="footer__copyright-color">
-              {{'translate.copyrightOne' | translate}}<br /> {{'translate.copyrightTwo' | translate}}
-                <span style="color: #d62b1f; align-items: center;">
-          {{'translate.copyrightThree' | translate}}
+  </div>
+  <div class="footer__links footer__links--center">
+    <div
+      class="footer__logo"
+      [inlineSVG]="'../../../assets/images/footer/minibrocki-logo.svg'"
+    ></div>
+    <div class="footer__icons">
+      <a href="https://www.facebook.com" target="_blank">
+        <div
+          class="footer__icon"
+          [inlineSVG]="'../../../assets/images/footer/facebook.svg'"
+        ></div>
+      </a>
+      <a href="https://www.instagram.com" target="_blank">
+        <div
+          class="footer__icon"
+          [inlineSVG]="'../../../assets/images/footer/instagram.svg'"
+        ></div>
+      </a>
+      <!-- <a href="https://www.linkedin.com" target="_blank">
+        <div
+          class="footer__icon"
+          [inlineSVG]="'../../../assets/images/footer/linkedin.svg'"
+        ></div>
+      </a>
+      <a href="https://www.youtube.com" target="_blank">
+        <div
+          class="footer__icon"
+          [inlineSVG]="'../../../assets/images/footer/youtube.svg'"
+        ></div>
+      </a> -->
+    </div>
+    <div class="footer__copyright">
+      <p class="footer__copyright-color">
+        {{ 'translate.copyrightOne' | translate }}<br />
+        {{ 'translate.copyrightTwo' | translate }}
+        <span style="color: #d62b1f; align-items: center;">
+          {{ 'translate.copyrightThree' | translate }}
         </span>
-            </p>
-        </div>
+      </p>
     </div>
-    <div class="footer__links footer__links--end">
-        <p class="footer__email-text">
-          {{'translate.minibrockiDescriptionOne' | translate}} <span style="color: #d62b1f; cursor: pointer;">{{'translate.minibrockiDescriptionTwo' | translate}}️ </span>{{'translate.minibrockiDescriptionThree' | translate}}
-        </p>
-        <div class="footer__email">
-            <img class="footer__icon footer__icon--email" src="assets/images/footer/mail icon.png" />
-            <p class="footer__email-email">&nbsp;info@minibrocki.com</p>
-        </div>
+  </div>
+  <div class="footer__links footer__links--end">
+    <p class="footer__email-text">
+      {{ 'translate.minibrockiDescriptionOne' | translate }}
+      <span style="color: #d62b1f; cursor: pointer;"
+        >{{ 'translate.minibrockiDescriptionTwo' | translate }}️ </span
+      >{{ 'translate.minibrockiDescriptionThree' | translate }}
+    </p>
+    <div class="footer__email">
+      <img
+        class="footer__icon footer__icon--email"
+        src="assets/images/footer/mail icon.png"
+      />
+      <p class="footer__email-email">&nbsp;info@minibrocki.com</p>
     </div>
+  </div>
 </div>

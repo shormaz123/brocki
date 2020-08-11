@@ -61,20 +61,20 @@ export class AdSingleCarouselComponent implements OnInit {
       adsId: adId,
       userId: this.userId,
     };
-    this.userService.updateUserFavourites(this.userRequest).subscribe((_x) => {
-      console.log('add update to favorite', _x);
+    this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
+      console.log('add update to favorite', x);
     }),
-      (_error) => {
+      (error) => {
         console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
 
   removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe((_x) => {
-      console.log('delete update to favorite', _x);
+    this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
+      console.log('delete update to favorite', x);
     }),
-      (_error) => {
+      (error) => {
         console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();

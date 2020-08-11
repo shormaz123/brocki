@@ -23,7 +23,7 @@ export const fr = {
     fixedPrice: 'Prix fixe',
     onlyProductsWithPictures: 'Produits avec images uniquement',
     productWarranty: 'Garantie produit',
-    UrgentSales: 'Ventes urgentes',
+    urgentSales: 'Ventes urgentes',
     confirm: 'Confirmer ',
     email: 'Adresse e-mail',
     password: 'Mot de passe',
@@ -80,5 +80,7 @@ export const fr = {
     address: 'Adresse',
     picturesOfCompany: "Photos de l'entreprise",
     save: 'Sauver ',
+    logout: 'Se déconnecter',
+    edit: 'Éditer',
   },
 };

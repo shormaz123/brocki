@@ -11,7 +11,7 @@ import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
 export class AccountActiveComponent implements OnChanges {
   @Input() activeProducts: Ads;
   @Input() ads: boolean;
-  Ads: Boolean;
+  Ads: boolean;
   userId: number;
 
   constructor(

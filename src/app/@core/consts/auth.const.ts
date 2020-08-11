@@ -1,4 +1,4 @@
-//Login Atuhenticate Consts
+// Login Atuhenticate Consts
 
 export class AuthConst {
   static readonly roleName: string = 'brocki_roleName';

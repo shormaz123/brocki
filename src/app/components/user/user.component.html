@@ -58,64 +58,56 @@
             <div class="boxes__text">{{ 'translate.logout' | translate }}</div>
           </div>
         </div>
-        <div class="navigation">
-          <div class="navItem">
-            <div
-              (click)="activeButton()"
-              [ngClass]="{ active: active, focus: !active }"
-            >
-              <span>{{ 'translate.active' | translate }}</span>
-            </div>
-          </div>
-          <div class="navItem">
-            <div
-              (click)="expiredButton()"
-              [ngClass]="{ active: expired, focus: !expired }"
-            >
-              <span>{{ 'translate.expired' | translate }}</span>
-            </div>
-          </div>
-          <div class="navItem">
-            <div
-              (click)="soldButton()"
-              [ngClass]="{ active: sold, focus: !sold }"
-            >
-              <span>{{ 'translate.sold' | translate }}</span>
-            </div>
-          </div>
-          <div class="navItem">
-            <div
-              (click)="guestButton()"
-              [ngClass]="{ active: guest, focus: !guest }"
-            >
-              <span>{{ 'translate.guestBook' | translate }}</span>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="navigation">
+      <div class="navItem">
+        <div
+          (click)="activeButton()"
+          [ngClass]="{ active: active, focus: !active }"
+        >
+          <span>{{ 'translate.active' | translate }}</span>
+        </div>
+      </div>
+      <div class="navItem">
+        <div
+          (click)="expiredButton()"
+          [ngClass]="{ active: expired, focus: !expired }"
+        >
+          <span>{{ 'translate.expired' | translate }}</span>
+        </div>
+      </div>
+      <div class="navItem">
+        <div (click)="soldButton()" [ngClass]="{ active: sold, focus: !sold }">
+          <span>{{ 'translate.sold' | translate }}</span>
+        </div>
+      </div>
+      <div class="navItem">
+        <div
+          (click)="guestButton()"
+          [ngClass]="{ active: guest, focus: !guest }"
+        >
+          <span>{{ 'translate.guestBook' | translate }}</span>
         </div>
       </div>
     </div>
   </div>
-  <div class="navItem">
-    <div (click)="guestButton()" [ngClass]="{ active: guest, focus: !guest }">
-      <span>{{ 'translate.guestBook' | translate }}</span>
-    </div>
+  <div class="secondContainer">
+    <app-guest-book *ngIf="guest"></app-guest-book>
+    <app-account-sold
+      [soldProducts]="soldProducts"
+      [ads]="adsSold"
+      *ngIf="sold"
+    ></app-account-sold>
+    <app-account-expired
+      [expiredProducts]="expiredProducts"
+      [ads]="adsExpired"
+      *ngIf="expired"
+    ></app-account-expired>
+    <app-account-active
+      [activeProducts]="activeProducts"
+      [ads]="adsActive"
+      *ngIf="active"
+    ></app-account-active>
   </div>
-</div>
-<div class="secondContainer">
-  <app-guest-book *ngIf="guest"></app-guest-book>
-  <app-account-sold
-    [soldProducts]="soldProducts"
-    [ads]="adsSold"
-    *ngIf="sold"
-  ></app-account-sold>
-  <app-account-expired
-    [expiredProducts]="expiredProducts"
-    [ads]="adsExpired"
-    *ngIf="expired"
-  ></app-account-expired>
-  <app-account-active
-    [activeProducts]="activeProducts"
-    [ads]="adsActive"
-    *ngIf="active"
-  ></app-account-active>
 </div>

@@ -20,8 +20,8 @@ export class ImageUploadComponent implements OnInit {
   @ViewChild('fileUpload', { static: false }) fileUpload: ElementRef;
 
   files = [];
-  pending: boolean = false;
-  status: string = 'init';
+  pending = false;
+  status = 'init';
   imagesList = [];
   imagePreview;
   imagesPreview = [];
@@ -46,8 +46,8 @@ export class ImageUploadComponent implements OnInit {
     const fileUpload = this.fileUpload.nativeElement;
 
     fileUpload.onchange = () => {
-      for (let index = 0; index < fileUpload.files.length; index++) {
-        const file = fileUpload.files[index];
+      for (const picture of fileUpload.files) {
+        const file = picture;
         const formData = new FormData();
         formData.append('file', file);
         this.uploadFile(formData);

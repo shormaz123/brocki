@@ -60,7 +60,9 @@
           *ngFor="let category of categoriesGroup"
           [value]="category.id"
           [selected]="true"
-          >{{ category.groupName[currentLang.text] }}</option
+          >{{
+          <!-- category.groupName[currentLang.text] -->
+          }}</option
         >
       </select>
     </div>

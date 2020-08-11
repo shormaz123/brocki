@@ -1,56 +1,22 @@
 <app-header class="header" (notify)="receiveNotification($event)"></app-header>
 <div class="mainContainer">
-    <div class="sidebar">
-        <p-sidebar [(visible)]="displaySideNav" [baseZIndex]="10000">
-            <h1 style="text-align: center;">{{'translate.allCategories' | translate}}</h1>
-            <p-accordion>
-                <p-accordionTab header="{{category.groupName[currentLang]}}" *ngFor="let category of categoriesGroup" (click)="selectDropDown(category.id)">
-                    <div *ngFor="let subCategory of subCategories" class="accordationDiv">
-                        <span class="accordationSpan" (click)="getAdsByParams(subCategory.id)">{{subCategory.subGroupName[currentLang]}}</span></div>
-                </p-accordionTab>
-            </p-accordion>
-        </p-sidebar>
-    </div>
-    <div class="container">
-        <div class="navBar">
-            <div class="search">
-                <button class="filters" routerLink="/filters">{{'translate.filters' | translate}}</button>
-                <div class="searchBox">
-                    <input type="text" class="searchTerm" placeholder="Search" [(ngModel)]="searchProductName" />
-                    <button type="submit" class="searchButton" (click)="getAdsBySearch()">
-          <i class="fa fa-search"></i>
-        </button>
-                </div>
-                <button class="favorite" routerLink="/favorite">
-                  {{'translate.favorite' | translate}} <span *ngIf="numberOfFavorites">({{numberOfFavorites}})</span>
-      </button>
-            </div>
-            <div class="navigation">
-                <div class="category">
-                    <button style="height: 100%; background: none; border: none;">
-          <div class="tab-icon"
-          style="display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-between;
-          height: 100%;
-          padding-top: 30px;
-          padding-left: 0%;
-          padding-right: 0%;
-          padding-bottom: 0%;
-          "
-          (click)="displaySideNav = true">
-            <img
-              class="icon-not-active"
-              src="../../../assets/images/navigation/Listofcategories.png"
-
-            />
-            <img
-              class="icon-active"
-              src="../../../assets/images/navigation/red/Listofcategories.png"
-              (click)="hideSide()"
-            />
-            <span style="text-align: center;">{{'translate.allCategories' | translate}}</span>
+  <div class="sidebar">
+    <p-sidebar [(visible)]="displaySideNav" [baseZIndex]="10000">
+      <h1 style="text-align: center;">
+        {{ 'translate.allCategories' | translate }}
+      </h1>
+      <p-accordion>
+        <p-accordionTab
+          header="{{ category.groupName[currentLang] }}"
+          *ngFor="let category of categoriesGroup"
+          (click)="selectDropDown(category.id)"
+        >
+          <div *ngFor="let subCategory of subCategories" class="accordationDiv">
+            <span
+              class="accordationSpan"
+              (click)="getAdsByParams(subCategory.id)"
+              >{{ subCategory.subGroupName[currentLang] }}</span
+            >
           </div>
         </p-accordionTab>
       </p-accordion>

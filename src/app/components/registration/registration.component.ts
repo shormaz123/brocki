@@ -63,7 +63,7 @@ export class RegistrationComponent implements OnInit {
     this.private = true;
     this.business = false;
 
-    this.registerForm.controls['role_id'].setValue(3);
+    this.registerForm.controls.role_id.setValue(3);
   }
 
   // convenience getter for easy access to form fields
@@ -104,26 +104,26 @@ export class RegistrationComponent implements OnInit {
   brockButton(string: string) {
     this.brockenstube = true;
     this.institution = false;
-    this.registerForm.controls['bussinesType'].setValue(string);
+    this.registerForm.controls.bussinesType.setValue(string);
   }
 
   instButton(string: string) {
     this.institution = true;
     this.brockenstube = false;
-    this.registerForm.controls['bussinesType'].setValue(string);
+    this.registerForm.controls.bussinesType.setValue(string);
   }
 
   privateButton(value) {
     this.private = true;
     this.business = false;
-    this.registerForm.controls['role_id'].setValue(value);
-    this.registerForm.controls['bussinesType'].setValue('PRIVATE');
+    this.registerForm.controls.role_id.setValue(value);
+    this.registerForm.controls.bussinesType.setValue('PRIVATE');
   }
 
   businessButton(value) {
     this.private = false;
     this.business = true;
-    this.registerForm.controls['role_id'].setValue(value);
-    this.registerForm.controls['bussinesType'].setValue('INSTITUTION');
+    this.registerForm.controls.role_id.setValue(value);
+    this.registerForm.controls.bussinesType.setValue('INSTITUTION');
   }
 }

@@ -31,7 +31,7 @@ export class InfoSellerComponent implements OnInit {
       address: [{ value: '', disabled: true }],
     });
     this.activatedRoute.params.subscribe((params) => {
-      this.sellerId = params['id'];
+      this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
         this.sellerindex = seller.id;
         this.infoForm.patchValue({

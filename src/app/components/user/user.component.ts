@@ -53,7 +53,7 @@ export class UserComponent implements OnInit {
     });
     this.guest = true;
     this.activatedRoute.params.subscribe((params) => {
-      this.userId = params['id'];
+      this.userId = params.id;
       this.userService.getUserById(this.userId).subscribe((user) => {
         this.user = user;
       });
