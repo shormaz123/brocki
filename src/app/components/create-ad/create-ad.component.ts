@@ -60,8 +60,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       .subscribe((message) => {
         this.currentLang = message;
       });
-    console.log(this.currentLang);
-    console.log(JSON.stringify(this.currentLang));
   }
 
   ngOnDestroy() {

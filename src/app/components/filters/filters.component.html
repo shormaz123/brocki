@@ -1,35 +1,6 @@
 <app-header class="header"></app-header>
 <div class="container">
-<<<<<<< HEAD
-    <div class="underContainer">
-        <span class="title" style="padding-bottom: 40px;">{{'translate.filters' | translate}}</span>
-        <div class="location" style="padding-bottom: 20px;">
-            <img src="../../../assets/images/filters/location icon.png" />
-            <select name="contactMethod" class="form-control" [(ngModel)]="reg">
-                    <option [value]="noRegion">All cantons</option>
-                    <option *ngFor="let region of cantons" [value]="region" [selected]="true">{{
-                      region
-                    }}</option>
-                  </select>
-        </div>
-        <div class="location" style="padding-bottom: 20px;">
-            <img src="../../../assets/icon3 2.png" />
-            <select name="contactMethod" class="form-control" [(ngModel)]="category.id">
-              <option  [value]="noCategory" >{{'translate.allCategories' | translate}}</option>
-                  <option *ngFor="let category of categoriesGroup" [value]="category.id" [selected]="true">{{
-                    category.groupName[currentLang]
-                  }}</option>
-                </select>
-        </div>
-        <div class="amount" style="padding-bottom: 20px;">
-            <img src="../../../assets/images/filters/CHF.png" />
-            <span>{{'translate.from' | translate}}:&nbsp;</span>
-            <input [(ngModel)]="fromPrice" type="number" />
-            <span> &nbsp;{{'translate.to' | translate}}:&nbsp;</span>
-            <input [(ngModel)]="toPrice" type="number" />
-        </div>
-        <!-- <div class="buttons" style="padding-bottom: 20px;">
-=======
+
   <div class="underContainer">
     <span class="title" style="padding-bottom: 40px;">{{
       'translate.filters' | translate
@@ -61,9 +32,8 @@
           [value]="category.id"
           [selected]="true"
           >{{
-          <!-- category.groupName[currentLang.text] -->
-          }}</option
-        >
+           category.groupName[currentLang]
+          }}</option>
       </select>
     </div>
     <div class="amount" style="padding-bottom: 20px;">
@@ -127,16 +97,6 @@
         <span>{{ 'translate.urgentSales' | translate }}</span>
       </div>
     </div>
-<<<<<<< HEAD
-</div>
-=======
-    <nz-alert
-      nzType="error"
-      [nzMessage]="errorMessage"
-      nzShowIcon
-      *ngIf="error"
-      style="margin-bottom: 20px; margin-left: 1.5%;"
-    ></nz-alert>
     <button
       class="confirmButton"
       style="margin-bottom: 20px;"
@@ -144,7 +104,14 @@
     >
       {{ 'translate.confirm' | translate }}
     </button>
+</div>
+    <nz-alert
+      nzType="error"
+      [nzMessage]="errorMessage"
+      nzShowIcon
+      *ngIf="error"
+      style="margin-bottom: 20px; margin-left: 1.5%;"
+    ></nz-alert>
+
     <!-- <button class="resetButton">Reset filters</button> -->
   </div>
-</div>
->>>>>>> 2b1306a35bd13760242328da57ae5224d06c7d53

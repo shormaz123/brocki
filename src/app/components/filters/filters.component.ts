@@ -67,6 +67,12 @@ export class FiltersComponent implements OnInit, OnDestroy  {
     });
     this.reg = cantons[0];
     this.all = true;
+
+    this.subscriptionLang = this.translateBackend
+      .getLanguage()
+      .subscribe((message) => {
+        this.currentLang = message;
+      });
   }
 
   // tslint:disable-next-line:use-lifecycle-interface
@@ -114,7 +120,7 @@ export class FiltersComponent implements OnInit, OnDestroy  {
         productWarranty: this.productWarranty,
         urgentSales: this.urgentSales,
         adsGroupId: this.category.id
-      }
+      };
       this.adsService.getAdsByParamToFilter(this.filterAd).subscribe(x => {
         if (x.length < 1) {
           this.error = true;
