@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "../../shared/models/user.model";
 import { UserService } from "../../@core/services/user.service";
 import { AdsService } from "../../@core/services/ads.service";
@@ -50,7 +50,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
       address: [""],
       canton: [""],
       city: [""],
-      aboutUs: [""],
+      aboutUs: ["", [Validators.maxLength(1000)]],
     });
 
     this.userService.getUser().subscribe((res) => {

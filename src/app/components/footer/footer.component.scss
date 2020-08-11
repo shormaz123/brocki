@@ -1,110 +1,110 @@
 @import "../../../scss/variables";
 @import "../../../scss/mixin.scss";
 * {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16pt;
-    color: #959595;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16pt;
+  color: #959595;
 }
 
 .footer {
-    width: 1280px;
+  width: 1280px;
+  height: 320px;
+  background-color: $white;
+  padding: 30px 0;
+  display: flex;
+  @include rwd(1600) {
+    width: 985px;
     height: 320px;
-    background-color: $white;
-    padding: 30px 0;
+  }
+  &__image {
+    padding: 7px 15px 8px 0;
+  }
+  &__list {
     display: flex;
-    @include rwd(1600) {
-        width: 985px;
-        height: 320px;
+    flex: 1;
+  }
+  &__text {
+    cursor: pointer;
+    color: $darkgrey;
+    width: 130px;
+    &:hover {
+      color: black;
+      -ms-transform: scale(1.1);
+      /* IE 9 */
+      -webkit-transform: scale(1.1);
+      /* Safari 3-8 */
+      transform: scale(1.1);
+      padding-left: 5px;
     }
-    &__image {
-        padding: 7px 15px 8px 0;
+  }
+  &__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 325px;
+    &--center {
+      align-items: center;
+      flex: 1;
     }
-    &__list {
-        display: flex;
-        flex: 1;
+    &--end {
+      align-items: flex-end;
+      flex: 1;
     }
-    &__text {
+  }
+  &__logo {
+    width: 180px;
+    height: 80px;
+  }
+  &__icons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 290px;
+    padding: 20px 0 10px 0;
+  }
+  &__icon {
+    width: 45px;
+    height: 45px;
+    &:hover {
+      -ms-transform: scale(1.5);
+      /* IE 9 */
+      -webkit-transform: scale(1.5);
+      /* Safari 3-8 */
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+    &--email {
+      width: 30px;
+      height: 30px;
+      &:hover {
+        -ms-transform: scale(1);
+        /* IE 9 */
+        -webkit-transform: scale(1);
+        /* Safari 3-8 */
+        transform: scale(1);
         cursor: pointer;
-        color: $darkgrey;
-        width: 130px;
-        &:hover {
-            color: black;
-            -ms-transform: scale(1.1);
-            /* IE 9 */
-            -webkit-transform: scale(1.1);
-            /* Safari 3-8 */
-            transform: scale(1.1);
-            padding-left: 5px;
-        }
+      }
     }
-    &__links {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 325px;
-        &--center {
-            align-items: center;
-            flex: 1;
-        }
-        &--end {
-            align-items: flex-end;
-            flex: 1;
-        }
-    }
-    &__logo {
-        width: 180px;
-        height: 80px;
-    }
-    &__icons {
-        display: flex;
-        justify-content: space-between;
-        width: 290px;
-        padding: 20px 0 10px 0;
-    }
-    &__icon {
-        width: 45px;
-        height: 45px;
-        &:hover {
-            -ms-transform: scale(1.5);
-            /* IE 9 */
-            -webkit-transform: scale(1.5);
-            /* Safari 3-8 */
-            transform: scale(1.2);
-            cursor: pointer;
-        }
-        &--email {
-            width: 30px;
-            height: 30px;
-            &:hover {
-                -ms-transform: scale(1);
-                /* IE 9 */
-                -webkit-transform: scale(1);
-                /* Safari 3-8 */
-                transform: scale(1);
-                cursor: pointer;
-            }
-        }
-    }
-    &__copyright {
-        width: 290px;
-        text-align: center;
-    }
-    &__copyright-color {
-        font-size: 18px;
-        margin: 0;
-    }
-    &__email {
-        display: flex;
-        padding: 0px 43px 5px 0;
-    }
-    &__email-text {
-        margin: 0 0 5px 0;
-        font-size: 18px;
-        width: 276px;
-        text-align: justify;
-    }
-    &__email-email {
-        margin: 0;
-        line-height: 28px;
-    }
+  }
+  &__copyright {
+    width: 290px;
+    text-align: center;
+  }
+  &__copyright-color {
+    font-size: 18px;
+    margin: 0;
+  }
+  &__email {
+    display: flex;
+    padding: 0px 43px 5px 0;
+  }
+  &__email-text {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    width: 276px;
+    text-align: justify;
+  }
+  &__email-email {
+    margin: 0;
+    line-height: 28px;
+  }
 }

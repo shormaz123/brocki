@@ -1,27 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
-  selector: 'app-guestbook-seller',
-  templateUrl: './guestbook-seller.component.html',
-  styleUrls: ['./guestbook-seller.component.scss']
+  selector: "app-guestbook-seller",
+  templateUrl: "./guestbook-seller.component.html",
+  styleUrls: ["./guestbook-seller.component.scss"],
 })
 export class GuestbookSellerComponent implements OnInit {
+  ratingForm: FormGroup;
 
-  guests = [{
-    useraName: 'Aleksandar',
-    ratioStar: '2,5',
-    comment: 'This is comment about product,This is comment about product,This is comment about product,This is comment about product,This is comment about product,This is comment about product,This is comment about product,This is comment about product,This is comment about product,This is comment about product,This is comment about product,'
-  },
-  {
-    useraName: 'Milan',
-    ratioStar: '3,5',
-    comment: 'This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,This is comment about another product,'
-  }
-]
-
-  constructor() { }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.ratingForm = this.fb.group({
+      rating: [""],
+      comment: [""],
+    });
   }
 
+  onSubmit(): void {}
 }

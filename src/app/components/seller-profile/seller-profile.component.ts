@@ -4,6 +4,7 @@ import { UserService } from "../../@core/services/user.service";
 import { AdsService } from "../../@core/services/ads.service";
 import { AdsParam } from "../../shared/models/adParams.model";
 import { ConnectionPositionPair } from "@angular/cdk/overlay";
+import { NzInputNumberComponent } from "ng-zorro-antd";
 
 @Component({
   selector: "app-seller-profile",
@@ -20,6 +21,9 @@ export class SellerProfileComponent implements OnInit {
   sellerId;
   seller;
   sellerName: string;
+  sellerPhone: string;
+  sellerMobile: string;
+  sellerEmail: string;
   defaultImage = "../../../assets/images/myAccount/profile-picture.png";
   sellerImage: string = this.defaultImage;
   sellerindex: number;
@@ -41,6 +45,9 @@ export class SellerProfileComponent implements OnInit {
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
         this.sellerindex = seller.id;
         this.sellerName = seller.userName;
+        this.sellerPhone = seller.phone;
+        this.sellerMobile = seller.mobile;
+        this.sellerEmail = seller.email;
         seller.companyImage[0]
           ? (this.sellerImage = seller.companyImage[0])
           : (this.sellerImage = this.defaultImage);

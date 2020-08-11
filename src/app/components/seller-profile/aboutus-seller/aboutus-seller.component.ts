@@ -11,6 +11,7 @@ export class AboutusSellerComponent implements OnInit {
   noImages: boolean;
   sellerParamId: number;
   sellerId: number;
+  aboutUs: string;
   sellersImages: Array<string> = [];
 
   constructor(
@@ -24,6 +25,7 @@ export class AboutusSellerComponent implements OnInit {
       this.userService.getUserById(this.sellerParamId).subscribe((seller) => {
         this.sellerId = seller.id;
         this.sellersImages = seller.companyImage;
+        this.aboutUs = seller.aboutUs;
         if (this.sellersImages) {
           this.noImages = true;
         } else {
