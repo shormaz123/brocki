@@ -82,5 +82,11 @@ export const fr = {
     save: 'Sauver ',
     logout: 'Se déconnecter',
     edit: 'Éditer',
+    youHaveNoSoldAds: 'Vous n\'avez pas d\'annonces vendues',
+    youHaveNoExpiredAds: 'Vous n\'avez aucune annonce expirée',
+    reactivate: 'Réactiver',
+    reactivateThisAd: 'Réactiver cette annonce?',
+    youHaveNotActiveAds: 'Vous n\'avez pas d\'annonces actives',
+    soldAd: 'Annonce vendue?'
   },
 };

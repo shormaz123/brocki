@@ -81,5 +81,11 @@ export const en = {
     save: 'Save',
     logout: 'Logout',
     edit: 'Edit',
+    youHaveNoSoldAds: 'You have not any sold ads',
+    youHaveNoExpiredAds: 'You have no ads that have expired',
+    reactivate: 'Reactivate',
+    reactivateThisAd: 'Reactivate this ad?',
+    youHaveNotActiveAds: 'You have not active ads',
+    soldAd: 'Sold ad?'
   },
 };

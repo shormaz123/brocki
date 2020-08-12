@@ -83,5 +83,11 @@ export const de = {
     save: 'Speichern ',
     logout: 'Ausloggen',
     edit: 'Bearbeiten',
+    youHaveNoSoldAds: 'Sie haben keine Inserate verkauft',
+    youHaveNoExpiredAds: 'Sie haben keine abgelaufenen Inserate',
+    reactivate: 'Reaktivieren',
+    reactivateThisAd: 'Dieses Inserat reaktivieren?',
+    youHaveNotActiveAds: 'Sie haben keine aktiven Inserate',
+    soldAd: 'Artikel verkauft?'
   },
 };

@@ -78,9 +78,15 @@ export const it = {
     phone: 'Téléphone',
     mobile: 'Mobile',
     address: 'Indirizzo',
-    picturesOfCompany: "Foto dell'azienda",
+    picturesOfCompany: 'Foto dell\'azienda',
     save: 'Salva',
     logout: 'Disconnettersi',
     edit: 'Modificare',
+    youHaveNoSoldAds: 'Non hai annunci venduti',
+    youHaveNoExpiredAds: 'Non hai annunci scaduti',
+    reactivate: 'Riattiva',
+    reactivateThisAd: 'Riattivare questo annuncio?',
+    youHaveNotActiveAds: 'Non hai annunci attivi',
+    soldAd: 'Annuncio venduto?'
   },
 };
