@@ -18,6 +18,7 @@ import { AdComponent } from './components/ad/ad.component';
 import { AuthGuardService } from './@core/services/authGuard.service';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import {ConfirmLoginComponent} from './components/confirm-login/confirm-login.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'user/:id',
         component: UserComponent,
+      },
+      {
+        path: 'confirm-login',
+        component: ConfirmLoginComponent,
       },
       {
         path: 'seller/:id',

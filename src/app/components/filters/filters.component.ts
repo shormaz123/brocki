@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
-import { FilterAds } from '../../shared/models/filterAds.model';
-import { Ads } from '../../shared/models/ads.model';
+import {FilterAds} from '../../shared/models/filterAds.model';
+import {Ads} from '../../shared/models/ads.model';
 import cantons from '../../shared/cantons.json';
-import { AdsService } from '../../@core/services/ads.service';
-import { NzNotificationService } from 'ng-zorro-antd';
-import { Router } from '@angular/router';
-import { HelpersService } from '../../@core/services/helpers.service';
+import {AdsService} from '../../@core/services/ads.service';
+import {NzNotificationService} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
+import {HelpersService} from '../../@core/services/helpers.service';
 import {TranslateServiceRest} from '../../@core/services/translateREST.service';
 import {Subscription} from 'rxjs';
 
@@ -14,7 +14,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss']
 })
-export class FiltersComponent implements OnInit, OnDestroy  {
+export class FiltersComponent implements OnInit, OnDestroy {
 
 
   fixedPrice = false;
@@ -54,7 +54,9 @@ export class FiltersComponent implements OnInit, OnDestroy  {
     private router: Router,
     private translateBackend: TranslateServiceRest) {
 
-    this.subscriptionLang = this.translateBackend.getLanguage().subscribe(message => { this.currentLang = message; });
+    this.subscriptionLang = this.translateBackend.getLanguage().subscribe(message => {
+      this.currentLang = message;
+    });
   }
 
   ngOnInit() {
@@ -80,7 +82,6 @@ export class FiltersComponent implements OnInit, OnDestroy  {
     // unsubscribe to ensure no memory leaks
     this.subscriptionLang.unsubscribe();
   }
-
 
 
   allButton() {
@@ -127,7 +128,7 @@ export class FiltersComponent implements OnInit, OnDestroy  {
           setTimeout(() => this.error = false, 5000);
           this.errorMessage = 'No available ads to filter';
         } else {
-        this.router.navigateByUrl('/site', { state: { data: x } });
+          this.router.navigateByUrl('/site', {state: {data: x}});
         }
       });
     }
