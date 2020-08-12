@@ -2,12 +2,12 @@
   <div class="footer__list">
     <img class="footer__image" src="assets/images/footer/line 2px.png" />
     <div class="footer__links">
-      <div class="footer__text" (click)="goTo('/site')">Home</div>
+      <div class="footer__text" (click)="goTo('/site')">{{'translate.home' | translate}}</div>
       <div class="footer__text" (click)="goTo('/user/' + userId)">
-        My Account
+        {{'translate.myAccount' | translate}}
       </div>
-      <div class="footer__text">About us</div>
-      <div class="footer__text" (click)="goTo('contact-us')">Contact</div>
+      <div class="footer__text">{{'translate.aboutUs' | translate}}</div>
+      <div class="footer__text" (click)="goTo('contact-us')">{{'translate.contactUs' | translate}}</div>
     </div>
   </div>
   <div class="footer__links footer__links--center">

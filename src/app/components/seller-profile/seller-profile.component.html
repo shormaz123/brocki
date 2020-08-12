@@ -55,17 +55,17 @@
     <div class="navigation">
       <div class="navItem" (click)="activeButton()">
         <div [ngClass]="{ active: active, focus: !active }">
-          <span>Active</span>
+          <span>{{'translate.active' | translate}}</span>
         </div>
       </div>
       <div class="navItem" (click)="soldButton()">
         <div [ngClass]="{ active: sold, focus: !sold }">
-          <span>Sold</span>
+          <span>{{'translate.sold' | translate}}</span>
         </div>
       </div>
       <div class="navItem" (click)="aboutButton()">
         <div [ngClass]="{ active: about, focus: !about }">
-          <span>About us </span>
+          <span>{{'translate.aboutUs' | translate}} </span>
         </div>
       </div>
       <div class="navItem" (click)="infoButton()">
@@ -75,7 +75,7 @@
       </div>
       <div class="navItem" (click)="guestButton()">
         <div [ngClass]="{ active: guest, focus: !guest }">
-          <span>Guest book</span>
+          <span>{{'translate.guestBook' | translate}}</span>
         </div>
       </div>
     </div>

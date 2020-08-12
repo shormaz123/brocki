@@ -49,7 +49,7 @@ export class AdsService {
   }
 
   getAdsByActiveStatus(): Observable<Ads[]> {
-    return this.http.get(`${this.baseUrl}/mybrocki/ads/filter?stats=ACTIVE`);
+    return this.http.get(`${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE`);
   }
 
   // getAdsByNonActiveStatus() {

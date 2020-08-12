@@ -8,7 +8,7 @@
     <div class="location" style="padding-bottom: 20px;">
       <img src="../../../assets/images/filters/location icon.png" />
       <select name="contactMethod" class="form-control" [(ngModel)]="reg">
-        <option [value]="noRegion">All cantons</option>
+        <option [value]="noRegion">{{ 'translate.allCantons' | translate }}</option>
         <option
           *ngFor="let region of cantons"
           [value]="region"
@@ -80,7 +80,7 @@
           class="example-margin"
           [(ngModel)]="freeDelivery"
         ></mat-checkbox>
-        <span>Free delivery </span>
+        <span>{{ 'translate.freeDelivery' | translate }}</span>
       </div>
       <div class="checkbox">
         <mat-checkbox

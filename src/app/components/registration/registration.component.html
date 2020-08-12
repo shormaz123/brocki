@@ -27,14 +27,14 @@
           (click)="brockButton('BROCKENSTUBE')"
           [ngClass]="{ red: brockenstube, grey: !brockenstube }"
         >
-          Brockenstube
+          {{ 'translate.brockenstube' | translate }}
         </button>
         <button
           class="bussinesButtons"
           (click)="instButton('INSTITUTION')"
           [ngClass]="{ red: institution, grey: !institution }"
         >
-          Institution
+          {{ 'translate.institution' | translate }}
         </button>
       </div>
       <div class="input">

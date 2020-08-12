@@ -1,7 +1,7 @@
 <div class="container">
   <div class="ads">
     <div class="ads__text" *ngIf="ads === true">
-      You have no ads that have expired
+      {{'translate.youHaveNoExpiredAds' | translate}}
     </div>
   </div>
   <div *ngIf="ads === false">
@@ -28,8 +28,8 @@
       </div>
       <div (click)="reactivate(expired, i)" class="expired">
         <div class="tooltip">
-          reactivate
-          <span class="tooltiptext">Reactivate the ad?</span>
+          {{'translate.reactivate' | translate}}
+          <span class="tooltiptext">{{'translate.reactivateThisAd' | translate}}</span>
         </div>
       </div>
     </div>
