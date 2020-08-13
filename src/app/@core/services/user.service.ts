@@ -71,4 +71,8 @@ export class UserService {
       `${this.baseUrl}/mybrocki/auth/users/favourites/delete?adsId=${adId}&userId=${userId}`
     );
   }
+
+  confirmAccount(token: any) {
+    return this.http.post(`${this.baseUrl}/mybrocki/confirm-account`, token);
+  }
 }

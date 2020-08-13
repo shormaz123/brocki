@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit {
 
   change(code: string) {
     this.translate.use(code);
-    this.translateBackend.setLanguage('ita');
+    this.translateBackend.setLanguage(code);
     this.notify.emit(code);
     this.translateBackend.sendLanguage(code);
   }

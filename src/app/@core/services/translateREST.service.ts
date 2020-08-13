@@ -29,7 +29,7 @@ export class TranslateServiceRest {
 
   sendLanguage(message: string) {
     this.language.next(message);
-    if (localStorage){
+    if (localStorage) {
       localStorage['language'] = message;
     }
   }

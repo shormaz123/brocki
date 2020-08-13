@@ -34,7 +34,7 @@ const routes: Routes = [
         component: UserComponent,
       },
       {
-        path: 'confirm-account',
+        path: 'confirm-account/:token',
         component: ConfirmLoginComponent,
       },
       {

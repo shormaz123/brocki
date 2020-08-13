@@ -1,12 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CreateAd } from '../../shared/models/create-ad.model';
-import { adsGroup } from '../../shared/models/adsGroup.model';
-import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
-import { AdsService } from '../../@core/services/ads.service';
-import { Router } from '@angular/router';
-import { TranslateServiceRest } from '../../@core/services/translateREST.service';
-import { Subscription } from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CreateAd} from '../../shared/models/create-ad.model';
+import {adsGroup} from '../../shared/models/adsGroup.model';
+import {adsSubGroup} from '../../shared/models/adsSubGroup.model';
+import {AdsService} from '../../@core/services/ads.service';
+import {Router} from '@angular/router';
+import {TranslateServiceRest} from '../../@core/services/translateREST.service';
+import {Subscription} from 'rxjs';
+
 @Component({
   selector: 'app-create-ad',
   templateUrl: './create-ad.component.html',
@@ -31,7 +32,8 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     private router: Router,
     private adsService: AdsService,
     private translateBackend: TranslateServiceRest
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.createForm = this.fb.group({
@@ -66,6 +68,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     // unsubscribe to ensure no memory leaks
     this.subscriptionLang.unsubscribe();
   }
+
   statusProduct(event: any): void {
     this.statusOfProduct = event.target.value;
   }
