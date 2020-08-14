@@ -1,11 +1,12 @@
 @import '../../../../scss/variables';
 @import '../../../../scss/mixin.scss';
 
-.container {
+.guest-book {
   width: 1280px;
   height: auto;
   background-color: white;
-  padding: 10px;
+  padding: 10px 50px 100px;
+  margin-bottom: 30px;
 
   @include rwdm(1600) {
     width: 1280px;
@@ -15,15 +16,52 @@
     width: 985px;
   }
 
-  .form {
-    display: flex;
-    flex-direction: column;
+  &__name {
+    font-size: 20px;
+    color: $black;
+  }
+
+  &__comments {
+    padding: 5px 40px 0px 50px;
+  }
+
+  &__comment {
+    padding: 0 0 5px;
+    color: $text-gray;
+  }
+
+  hr {
+    background-color: $red;
     width: 100%;
-    padding: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
-    margin-bottom: 20px;
-    height: auto;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 40px;
+  height: auto;
+
+  &__heading {
+    padding: 0 0 0 10px;
+    margin: 0 0 10px 0;
+  }
+
+  &__rate {
+    padding: 5px 0;
+  }
+
+  &__textarea {
+    height: 220px;
+    resize: none;
+    padding: 5px 10px 5px 18px;
+    font-size: 16px;
+    color: $text-gray;
+  }
+
+  &__title {
+    font-size: 17px;
   }
 }
 
@@ -64,7 +102,7 @@ textarea {
     border-radius: 15px;
     color: white;
     font-size: 17px;
-    margin-left: 30px;
+    margin: 20px 0 0 30px;
     cursor: pointer;
   }
 }

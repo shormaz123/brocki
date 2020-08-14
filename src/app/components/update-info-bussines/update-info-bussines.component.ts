@@ -21,6 +21,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
   uploadPhoto: Array<any> = [];
   photos: Array<string> = [];
   companyPhotos: Array<string> = [];
+  deletedImage: boolean;
   res: Array<string> = [];
   userId: number;
   userName: string;
@@ -67,6 +68,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
       user.dateOfBirth = res.dateOfBirth;
       user.email = res.email;
       user.id = res.id;
+      this.userId = user.id;
       user.location = res.location;
       user.mobile = res.mobile;
       user.name = res.name;
@@ -79,6 +81,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
       this.userName = res.userName;
       user.visible = res.visible;
       user.website = res.website;
+      console.log('companyPhotos', this.companyPhotos);
       this.businessUser.push(user);
 
       this.businessForm.patchValue({
@@ -114,9 +117,10 @@ export class UpdateInfoBussinesComponent implements OnInit {
     }
   }
 
-  deleteStoragedPhoto(index: number): void {
+  deleteStoragedPhoto(photo: string, index: number): void {
     this.companyPhotos.splice(index, 1);
-    console.log(this.companyPhotos);
+    this.adsService.deleteImage(photo).subscribe();
+    this.deletedImage = true;
   }
 
   deletePhoto(index: number): void {
@@ -124,6 +128,12 @@ export class UpdateInfoBussinesComponent implements OnInit {
   }
 
   onSubmit() {
+    // if (this.uploadPhoto.length === 0) {
+    //   this.modal.error({
+    //     nzTitle: 'You must add a picture!',
+    //   });
+    //   return;
+    // }
     this.modal.confirm({
       nzTitle: 'Are you sure you want to change your info?',
       nzContent: '',

@@ -87,7 +87,11 @@
       *ngIf="active"
     ></app-active-seller>
     <app-aboutus-seller *ngIf="about"></app-aboutus-seller>
-    <app-guestbook-seller *ngIf="guest"></app-guestbook-seller>
+    <app-guestbook-seller
+      [CommentsOfUser]="CommentsOfUser"
+      (guestBook)="guestBook()"
+      *ngIf="guest"
+    ></app-guestbook-seller>
     <app-sold-seller
       [soldProducts]="soldProducts"
       [ads]="adsSold"

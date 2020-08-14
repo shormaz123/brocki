@@ -8,6 +8,7 @@
   flex-direction: row;
   background-color: white;
   padding: 20px;
+  margin-bottom: 30px;
 
   @include rwdm(1600) {
     width: 1280px;
