@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="inputItem">
-        <a (click)="changePassword()">Change password?</a>
+        <a (click)="changePassword()">{{'translate.changePassword' | translate}}?</a>
       </div>
 
       <div class="inputItem">
@@ -76,7 +76,7 @@
           type="submit"
           [disabled]="!privateForm.dirty"
         >
-          Save changes
+          {{'translate.saveChanges' | translate}}
         </button>
       </div>
     </form>

@@ -135,6 +135,7 @@ export class UserComponent implements OnInit {
       this.router.navigate(['/update-info-bussines']);
     }
   }
+
   goTo(route: string): void {
     this.router.navigate([route]);
   }

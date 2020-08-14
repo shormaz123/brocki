@@ -7,35 +7,35 @@
     <form class="form" (ngSubmit)="onSubmit()" [formGroup]="businessForm">
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/company.png" />
-        <input placeholder="Company" formControlName="company" />
+        <input placeholder="{{ 'translate.company' | translate }}" formControlName="company" />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/name.png" />
-        <input placeholder="Name" formControlName="name" />
+        <input placeholder="{{ 'translate.nameFirst' | translate }}" formControlName="name" />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/surname.png" />
-        <input placeholder="Surname" formControlName="surname" />
+        <input placeholder="{{ 'translate.surname' | translate }}" formControlName="surname" />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/email.png" />
-        <input placeholder="Email" formControlName="email" />
+        <input placeholder="{{ 'translate.email' | translate }}" formControlName="email" />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/website.png" />
-        <input placeholder="Website" formControlName="website" />
+        <input placeholder="{{ 'translate.website' | translate }}" formControlName="website" />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/phone.png" />
-        <input placeholder="Phone" formControlName="phone" />
+        <input placeholder="{{ 'translate.phone' | translate }}" formControlName="phone" />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/mobile.png" />
-        <input placeholder="Mobile" formControlName="mobile" />
+        <input placeholder="{{ 'translate.mobile' | translate }}" formControlName="mobile" />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/address.png" />
-        <input placeholder="Address" formControlName="address" />
+        <input placeholder="{{ 'translate.address' | translate }}" formControlName="address" />
       </div>
       <div class="form__inputItem form__inputItem--margin">
         <div class="form__location">
@@ -57,11 +57,11 @@
       </div>
       <div class="form__inputItem">
         <a class="form__password" (click)="goTo('/change-password')"
-          >Change password?</a
+          >{{'translate.changePassword' | translate}}?</a
         >
       </div>
       <div class="form__inputItem">
-        <label class="form__label">About us:</label>
+        <label class="form__label">{{ 'translate.aboutUs' | translate }}:</label>
         <textarea
           class="form__textarea"
           formControlName="aboutUs"
@@ -69,7 +69,7 @@
         ></textarea>
       </div>
       <div class="form__inputItem">
-        <label class="form__label">Pictures of company:</label>
+        <label class="form__label">{{ 'translate.picturesOfCompany' | translate }}:</label>
         <div class="form__picture">
           <div
             class="form__upload--image"
@@ -120,7 +120,7 @@
           type="submit"
           [disabled]="!businessForm.dirty && !deletedImage && photos"
         >
-          Save changes
+          {{'translate.saveChanges' | translate}}
         </button>
       </div>
     </form>

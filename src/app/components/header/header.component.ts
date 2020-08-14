@@ -6,14 +6,14 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { UserService } from '../../@core/services/user.service';
-import { AuthConst } from '../../@core/consts/auth.const';
-import { Subscription } from 'rxjs';
-import { HelpersService } from '../../@core/services/helpers.service';
-import { NzModalService } from 'ng-zorro-antd';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { TranslateServiceRest } from '../../@core/services/translateREST.service';
+import {UserService} from '../../@core/services/user.service';
+import {AuthConst} from '../../@core/consts/auth.const';
+import {Subscription} from 'rxjs';
+import {HelpersService} from '../../@core/services/helpers.service';
+import {NzModalService} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+import {TranslateServiceRest} from '../../@core/services/translateREST.service';
 
 @Component({
   selector: 'app-header',
@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
   user;
   userId;
   dropdownBoolean = true;
+  userLang;
   chosenLanguage;
 
   @Output() notify = new EventEmitter<any>();
@@ -40,9 +41,17 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private translateBackend: TranslateServiceRest
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
+    this.chosenLanguage = this.translateBackend.getChoosenLanguage();
+    if (this.chosenLanguage !== '') {
+      this.userLang = this.chosenLanguage;
+      this.change(this.userLang);
+    } else {
+      this.translate.use('de');
+    }
     this.loginNameSubscription = this.helpers.$loginName.subscribe((filter) => {
       this.getUser();
     });
@@ -50,7 +59,7 @@ export class HeaderComponent implements OnInit {
     } else {
       this.getUser();
     }
-    this.change('de');
+    // this.change(this.userLang);
   }
 
   // tslint:disable-next-line:use-lifecycle-interface
@@ -64,9 +73,9 @@ export class HeaderComponent implements OnInit {
 
   change(code: string) {
     this.translate.use(code);
-    this.translateBackend.setLanguage('ita');
-    this.notify.emit(code);
+    this.translateBackend.setLanguage(code);
     this.translateBackend.sendLanguage(code);
+    this.notify.emit(code);
   }
 
   getUser(): void {

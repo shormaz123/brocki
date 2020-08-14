@@ -93,7 +93,7 @@ export class RegistrationComponent implements OnInit {
         },
         (error) => {
           this.error = true;
-          setTimeout(() => (this.error = false), 5000);
+          setTimeout(() => (this.error = false), 2000);
           this.errorMessage = error.message;
           console.log(this.errorMessage);
         }

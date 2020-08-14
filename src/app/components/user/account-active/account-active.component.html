@@ -1,7 +1,7 @@
 <div class="container">
   <div class="ads">
     <div class="ads__text" *ngIf="ads === false">
-      You have not active ads
+      {{'translate.youHaveNotActiveAds' | translate}}
     </div>
   </div>
   <div class="ads__body" *ngIf="ads === true">
@@ -30,7 +30,7 @@
       <div class="amount" (click)="soldAd(active, i)">
         <div class="tooltip">
           <img src="../../../../assets/images/myAccount/money icon.png" />
-          <span class="tooltiptext">Sold ad?</span>
+          <span class="tooltiptext">{{'translate.soldAd' | translate}}</span>
         </div>
       </div>
     </div>

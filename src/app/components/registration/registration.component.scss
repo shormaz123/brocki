@@ -247,10 +247,10 @@ input[type='checkbox']:checked:disabled + label:before {
 }
 
 .inputItem {
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding-left: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 500px;
   input {
     width: 500px;
     height: 25px;
@@ -261,8 +261,10 @@ input[type='checkbox']:checked:disabled + label:before {
 }
 
 .inputItem2 {
-  width: 100%;
-  padding-left: 175px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 500px;
   input {
     width: 500px;
     height: 25px;
@@ -273,8 +275,10 @@ input[type='checkbox']:checked:disabled + label:before {
 }
 
 .inputItem3 {
-  width: 100%;
-  padding-left: 172px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 500px;
   input {
     width: 500px;
     height: 25px;
@@ -285,8 +289,10 @@ input[type='checkbox']:checked:disabled + label:before {
 }
 
 .inputItem4 {
-  width: 100%;
-  padding-left: 211px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 500px;
   input {
     width: 500px;
     height: 25px;
@@ -297,8 +303,10 @@ input[type='checkbox']:checked:disabled + label:before {
 }
 
 .inputItem5 {
-  width: 100%;
-  padding-left: 192px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 500px;
   input {
     width: 500px;
     height: 25px;
@@ -335,6 +343,7 @@ mat-checkbox-label {
 
 .input {
   margin-bottom: 20px;
+  height: auto;
 }
 
 select {

@@ -1,5 +1,6 @@
 <app-header class="header"></app-header>
 <div class="container">
+
   <div class="underContainer">
     <span class="title" style="padding-bottom: 40px;">{{
       'translate.filters' | translate
@@ -7,7 +8,7 @@
     <div class="location" style="padding-bottom: 20px;">
       <img src="../../../assets/images/filters/location icon.png" />
       <select name="contactMethod" class="form-control" [(ngModel)]="reg">
-        <option [value]="noRegion">All cantons</option>
+        <option [value]="noRegion">{{ 'translate.allCantons' | translate }}</option>
         <option
           *ngFor="let region of cantons"
           [value]="region"
@@ -31,9 +32,8 @@
           [value]="category.id"
           [selected]="true"
           >{{
-          <!-- category.groupName[currentLang.text] -->
-          }}</option
-        >
+           category.groupName[currentLang]
+          }}</option>
       </select>
     </div>
     <div class="amount" style="padding-bottom: 20px;">
@@ -44,6 +44,7 @@
       <input [(ngModel)]="toPrice" type="number" />
     </div>
     <!-- <div class="buttons" style="padding-bottom: 20px;">
+>>>>>>> 2b1306a35bd13760242328da57ae5224d06c7d53
         <button
           [ngClass]="{ selected: all, deselected: !all }"
           (click)="allButton()"
@@ -79,7 +80,7 @@
           class="example-margin"
           [(ngModel)]="freeDelivery"
         ></mat-checkbox>
-        <span>Free delivery </span>
+        <span>{{ 'translate.freeDelivery' | translate }}</span>
       </div>
       <div class="checkbox">
         <mat-checkbox
@@ -96,13 +97,6 @@
         <span>{{ 'translate.urgentSales' | translate }}</span>
       </div>
     </div>
-    <nz-alert
-      nzType="error"
-      [nzMessage]="errorMessage"
-      nzShowIcon
-      *ngIf="error"
-      style="margin-bottom: 20px; margin-left: 1.5%;"
-    ></nz-alert>
     <button
       class="confirmButton"
       style="margin-bottom: 20px;"
@@ -110,6 +104,14 @@
     >
       {{ 'translate.confirm' | translate }}
     </button>
+</div>
+    <nz-alert
+      nzType="error"
+      [nzMessage]="errorMessage"
+      nzShowIcon
+      *ngIf="error"
+      style="margin-bottom: 20px; margin-left: 1.5%;"
+    ></nz-alert>
+
     <!-- <button class="resetButton">Reset filters</button> -->
   </div>
-</div>

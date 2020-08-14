@@ -18,7 +18,11 @@ import { Subscription, Observable } from 'rxjs';
 import { AdsParam } from '../../shared/models/adParams.model';
 import { Router } from '@angular/router';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
+import { en } from 'assets/i18n/en';
 import { de } from 'assets/i18n/de';
+import { fr } from 'assets/i18n/fr';
+import { it } from 'assets/i18n/it';
+import {TranslateServiceRest} from '../../@core/services/translateREST.service';
 
 @Component({
   selector: 'app-site',
@@ -53,7 +57,6 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   state;
   selected: boolean;
-  currentLang = 'de';
 
   private numberOfFavs: Subscription;
 
@@ -78,7 +81,12 @@ export class SiteComponent implements OnInit, OnDestroy {
   public categories = [
     {
       id: 1,
-      title: 'Antiquities & Art',
+      title:  {
+        de: 'Antiquitäten & Kunst',
+        en: 'Antiques & Art',
+        fr: 'Antiquités et Art',
+        it: 'Antiquariato e arte',
+      },
       image: '../../../assets/images/navigation/Antiquities & Art.png',
       selectedImage:
         '../../../assets/images/navigation/red/Antiquities & Art.png',
@@ -86,84 +94,144 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 15,
-      title: 'Books',
+      title:  {
+        de: 'Bücher und Zeitschriften',
+        en: 'Books and Magazines',
+        fr: 'Livres et magazines',
+        it: 'Libri e riviste',
+      },
       image: '../../../assets/images/navigation/Books.png',
       selectedImage: '../../../assets/images/navigation/red/Books.png',
       imageTo: '',
     },
     {
       id: 9,
-      title: 'CD',
+      title:  {
+        de: 'CDs',
+        en: 'CDs',
+        fr: 'CDs',
+        it: 'CDs',
+      },
       image: '../../../assets/images/navigation/CD.png',
       selectedImage: '../../../assets/images/navigation/red/CD.png',
       imageTo: '',
     },
     {
       id: 28,
-      title: 'Collection',
+      title:  {
+        de: 'Sammlung',
+        en: 'Collection',
+        fr: 'Collection',
+        it: 'Collezione',
+      },
       image: '../../../assets/images/navigation/Collection.png',
       selectedImage: '../../../assets/images/navigation/red/Collection.png',
       imageTo: '',
     },
     {
       id: 3,
-      title: 'Trade & Craftrcial',
+      title:  {
+        de: 'Gewerbe & Handwerk',
+        en: 'Trade & Craft',
+        fr: 'Commerce et artisanat',
+        it: 'Commercio e artigianato',
+      },
       image: '../../../assets/images/navigation/Commercial.png',
       selectedImage: '../../../assets/images/navigation/red/Commercial.png',
       imageTo: '',
     },
     {
       id: 6,
-      title: 'Fashion',
+      title: {
+        de: 'Mode & Accessoires',
+        en: 'Fashion & Accessories',
+        fr: 'Accessoires de mode',
+        it: 'Accessori alla moda',
+      },
       image: '../../../assets/images/navigation/Fashion.png',
       selectedImage: '../../../assets/images/navigation/red/Fashion.png',
       imageTo: '',
     },
     {
       id: 4,
-      title: 'Garden',
+      title: {
+        de: 'Garten & Zubehör',
+        en: 'Garden & Accessories',
+        fr: 'Jardin & Accessoires',
+        it: 'Giardino e accessori',
+      },
       image: '../../../assets/images/navigation/Garden.png',
       selectedImage: '../../../assets/images/navigation/red/Garden.png',
       imageTo: '',
     },
     {
       id: 20,
-      title: 'Handmade',
+      title: {
+        de: 'Handgemacht',
+        en: 'Handmade',
+        fr: 'Fait main',
+        it: 'Fatto a mano',
+      },
       image: '../../../assets/images/navigation/Handcrafted.png',
       selectedImage: '../../../assets/images/navigation/red/Handcrafted.png',
       imageTo: '',
     },
     {
       id: 5,
-      title: 'Household & Living',
+      title: {
+        de: 'Haushalt & Wohnen',
+        en: 'Household & Living',
+        fr: 'Ménage et vie',
+        it: 'Famiglia e vita',
+      },
       image: '../../../assets/images/navigation/Household.png',
       selectedImage: '../../../assets/images/navigation/red/Household.png',
       imageTo: '',
     },
     {
       id: 18,
-      title: 'Instruments & studio',
+      title: {
+        de: 'Instrumente & Studio',
+        en: 'Instruments & studio',
+        fr: 'Instruments et studio',
+        it: 'Strumenti e studio',
+      },
       image: '../../../assets/images/navigation/Instruments.png',
       selectedImage: '../../../assets/images/navigation/red/Instruments.png',
       imageTo: '',
     },
     {
       id: 27,
-      title: 'Good to use & Lifehacks',
+      title: {
+        de: 'Gut zu gebrauchen & Lifehacks',
+        en: 'Good to use & lifehacks',
+        fr: 'Bon à utiliser et lifehacks',
+        it: 'Buono da usare e salvagenti',
+      },
       image: '../../../assets/images/navigation/Lifehacks.png',
       selectedImage: '../../../assets/images/navigation/red/Lifehacks.png',
       imageTo: '',
     },
     {
       id: 23,
-      title: 'Luxurious',
+      title: {
+        de: 'Luxuriös',
+        en: 'Luxurious',
+        fr: 'Luxueux',
+        it: 'Lussuoso',
+      },
       image: '../../../assets/images/navigation/Luxury.png',
       selectedImage: '../../../assets/images/navigation/red/Luxury.png',
       imageTo: '',
     },
     {
       id: 19,
-      title: 'Motors & Wheels',
+      title: {
+        de: 'Motoren & Räder',
+        en: 'Motors & Wheels',
+        fr: 'Moteurs et roues',
+        it: 'Motori e ruote',
+      },
       image: '../../../assets/images/navigation/Motors & Wheels.png',
       selectedImage:
         '../../../assets/images/navigation/red/Motors & Wheels.png',
@@ -171,49 +239,84 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 16,
-      title: 'Office Supplies and Stationery',
+      title: {
+        de: 'Bürobedarf & Schreibwaren',
+        en: 'Office Supplies and Stationery',
+        fr: 'Fournitures de bureau et papeterie',
+        it: 'Forniture per ufficio e cancelleria',
+      },
       image: '../../../assets/images/navigation/Office.png',
       selectedImage: '../../../assets/images/navigation/red/Office.png',
       imageTo: '',
     },
     {
       id: 17,
-      title: 'Pet Supplies',
+      title: {
+        de: 'Tierbedarf',
+        en: 'Pet Supplies',
+        fr: 'Fournitures pour animaux',
+        it: 'Prodotti per animali',
+      },
       image: '../../../assets/images/navigation/Pets.png',
       selectedImage: '../../../assets/images/navigation/red/Pets.png',
       imageTo: '',
     },
     {
       id: 13,
-      title: 'Sport, Hobby and Leisure',
+      title: {
+        de: 'Sport, Hobby & Freizeit',
+        en: 'Sport, Hobby & Leisure',
+        fr: 'Sport, passe-temps et loisirs',
+        it: 'Sport, hobby e tempo libero',
+      },
       image: '../../../assets/images/navigation/Sport.png',
       selectedImage: '../../../assets/images/navigation/red/Sport.png',
       imageTo: '',
     },
     {
       id: 24,
-      title: 'Toys',
+      title: {
+        de: 'Spielzeug',
+        en: 'Toy',
+        fr: 'Jouet',
+        it: 'Giocattolo',
+      },
       image: '../../../assets/images/navigation/Toys.png',
       selectedImage: '../../../assets/images/navigation/red/Toys.png',
       imageTo: '',
     },
     {
       id: 20,
-      title: 'Handmade',
+      title: {
+        de: 'Handgemacht',
+        en: 'Handmade',
+        fr: 'Fait main',
+        it: 'fatto a mano',
+      },
       image: '../../../assets/images/navigation/traditionally.png',
       selectedImage: '../../../assets/images/navigation/red/traditionally.png',
       imageTo: '',
     },
     {
       id: 25,
-      title: 'Unique',
+      title: {
+        de: 'Einzigartig',
+        en: 'Unique',
+        fr: 'Unique',
+        it: 'Unico',
+      },
       image: '../../../assets/images/navigation/Unique.png',
       selectedImage: '../../../assets/images/navigation/red/Unique.png',
       imageTo: '',
     },
     {
       id: 12,
-      title: 'Watches & Jewlery',
+      title: {
+        de: 'Uhren & Schmuck',
+        en: 'Watches & Jewellery',
+        fr: 'Montres & Bijoux',
+        it: 'Orologi e gioielli',
+      },
       image: '../../../assets/images/navigation/Watches & Jewlery.png',
       selectedImage:
         '../../../assets/images/navigation/red/Watches & Jewlery.png',
@@ -221,14 +324,24 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 26,
-      title: 'Wooden',
+      title: {
+        de: 'Aus Holz',
+        en: 'Wooden',
+        fr: 'En bois',
+        it: 'Di legno',
+      },
       image: '../../../assets/images/navigation/Wooden.png',
       selectedImage: '../../../assets/images/navigation/red/Wooden.png',
       imageTo: '',
     },
     {
       id: 11,
-      title: 'Batteries & Chargers',
+      title: {
+        de: 'Batterien und Ladegeräte',
+        en: 'Batteries & chargers',
+        fr: 'Batteries et chargeurs',
+        it: 'Batterie e caricabatterie',
+      },
       image: '../../../assets/images/navigation/batteries & chargers 2.png',
       selectedImage:
         '../../../assets/images/navigation/red/batteries & chargers.png',
@@ -236,7 +349,12 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 2,
-      title: 'Knives & Tools',
+      title: {
+        de: 'Messer & Werkzeuge',
+        en: 'Knives & Tools',
+        fr: 'Couteaux et outils',
+        it: 'Coltelli e strumenti',
+      },
       image: '../../../assets/images/navigation/knives & tools.png',
       selectedImage:
         '../../../assets/images/navigation/red/knives & tools 2.png',
@@ -244,7 +362,12 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 10,
-      title: 'Lamps & Illuminants',
+      title: {
+        de: 'Lampen & Leuchtmittel',
+        en: 'Lamps & Illuminants',
+        fr: 'Lampes et illuminants',
+        it: 'Lampade e illuminanti',
+      },
       image: '../../../assets/images/navigation/lamps & illuminants.png',
       selectedImage:
         '../../../assets/images/navigation/red/lamps & illuminants 2.png',
@@ -252,7 +375,12 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 14,
-      title: 'Modelling',
+      title: {
+        de: 'Modellbau',
+        en: 'Modelling',
+        fr: 'La modélisation',
+        it: 'Modellismo',
+      },
       image: '../../../assets/images/navigation/rc toy - modelling.png',
       selectedImage:
         '../../../assets/images/navigation/red/rc toy - modelling 2.png',
@@ -260,7 +388,12 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 22,
-      title: 'Sold by kg',
+      title: {
+        de: 'Kilo Ware',
+        en: 'Sold by the Kilo',
+        fr: 'Vendu au kilo',
+        it: 'Venduto da Kilo',
+      },
       image: '../../../assets/images/navigation/sold by the kg.png',
       selectedImage:
         '../../../assets/images/navigation/red/sold by the kg 2.png',
@@ -268,7 +401,12 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 21,
-      title: 'Sold by meter',
+      title: {
+        de: 'Meter Ware',
+        en: 'Sold by the Meter',
+        fr: 'Vendu au mètre',
+        it: 'Venduto al metro',
+      },
       image: '../../../assets/images/navigation/sold by the meter 2.png',
       selectedImage:
         '../../../assets/images/navigation/red/sold by the meter.png',
@@ -276,19 +414,27 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 8,
-      title: 'IT',
+      title: {
+        de: 'Computer & Software',
+        en: 'Computer & Software',
+        fr: 'Logiciel',
+        it: 'Software per il computer',
+      },
       image: '../../../assets/images/navigation/IT.png',
       selectedImage: '../../../assets/images/navigation/red/IT.png',
       imageTo: '',
     },
   ];
+  subscriptionLang: Subscription;
+  currentLang = 'de';
 
   constructor(
     private cdr: ChangeDetectorRef,
     private adsService: AdsService,
     private userService: UserService,
     private helpersService: HelpersService,
-    private router: Router
+    private router: Router,
+    private translateBackend: TranslateServiceRest
   ) {
     if (this.router.getCurrentNavigation().extras.state) {
       this.filteredAds = this.router.getCurrentNavigation().extras.state.data;
@@ -326,6 +472,11 @@ export class SiteComponent implements OnInit, OnDestroy {
     this.numberOfFavs = this.helpersService.$numOfFavs.subscribe((response) => {
       this.getNumOfFavs();
     });
+    this.subscriptionLang = this.translateBackend
+      .getLanguage()
+      .subscribe((message) => {
+        this.currentLang = message;
+      });
   }
 
   receiveNotification(notification: any) {
@@ -420,6 +571,7 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.numberOfFavs.unsubscribe();
+    this.subscriptionLang.unsubscribe();
   }
 
   displaySide() {

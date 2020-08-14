@@ -88,4 +88,8 @@ export class UserService {
       params
     );
   }
+
+  confirmAccount(token: any) {
+    return this.http.post(`${this.baseUrl}/mybrocki/confirm-account`, token);
+  }
 }

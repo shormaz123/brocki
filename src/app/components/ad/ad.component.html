@@ -23,7 +23,7 @@
       </div>
 
       <div class="socialButton" (click)="copyLink()">
-        <img src="../../../assets/images/ad/logoThree.png" />copy link
+        <img src="../../../assets/images/ad/logoThree.png" />{{'translate.copyLink' | translate}}
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@
         <img
           src="../../../assets/images/myAccount/profile-picture.png"
           [routerLink]="['/seller', userSellerId]"
-          pTooltip="Click here to see sellers info!"
+          pTooltip="{{'translate.clickHereToSeeSellersInfo' | translate}}!"
           tooltipPosition="top"
           style="cursor: pointer;"
         />

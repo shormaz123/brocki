@@ -1,15 +1,17 @@
 <app-header class="header"></app-header>
 <div class="loginContainer">
-  <div style="padding-left: 4%;">
+  <div >
     <span class="title">{{ 'translate.signin' | translate }}</span>
   </div>
   <div class="data">
     <div class="labels">
       <span>{{ 'translate.email' | translate }}</span>
-      <span>{{ 'translate.password' | translate }}</span>
+      <input [(ngModel)]="email" />
+
     </div>
     <div class="input">
-      <input [(ngModel)]="email" />
+      <span>{{ 'translate.password' | translate }}</span>
+
       <input [(ngModel)]="password" type="password" />
     </div>
   </div>
@@ -24,7 +26,6 @@
     {{ 'translate.submit' | translate }}
   </button>
   <div class="lastDiv">
-    <div class="emptyDiv"></div>
     <div class="textPassword">
       <button class="signUpButton" routerLink="/registration">
         {{ 'translate.signup' | translate }}
