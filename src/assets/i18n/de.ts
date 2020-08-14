@@ -47,7 +47,7 @@ export const de = {
     credits: 'Credits',
     saveChanges: 'Änderungen speichern',
     private: 'Privat',
-    busines: 'Unternehmen',
+    business: 'Unternehmen',
     city: 'Stadt',
     canton: 'Kanton',
     createAccount: 'Konto erstellen',

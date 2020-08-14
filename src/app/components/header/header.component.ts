@@ -74,8 +74,8 @@ export class HeaderComponent implements OnInit {
   change(code: string) {
     this.translate.use(code);
     this.translateBackend.setLanguage(code);
-    this.notify.emit(code);
     this.translateBackend.sendLanguage(code);
+    this.notify.emit(code);
   }
 
   getUser(): void {

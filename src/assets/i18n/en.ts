@@ -47,7 +47,7 @@ export const en = {
     credits: 'Credits',
     saveChanges: 'Save changes',
     private: 'Private',
-    busines: 'Business',
+    business: 'Business',
     city: 'City',
     canton: 'Canton',
     createAccount: 'Create account',
