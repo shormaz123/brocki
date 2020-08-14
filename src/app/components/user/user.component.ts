@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from '../../shared/models/user.model';
-import {UserService} from '../../@core/services/user.service';
-import {AdsService} from '../../@core/services/ads.service';
-import {AuthService} from '../../@core/services/auth.service';
-import {Ads} from '../../shared/models/ads.model';
-import {AuthConst} from '../../@core/consts/auth.const';
-import {AdsParam} from '../../shared/models/adParams.model';
-import {Router, ActivatedRoute} from '@angular/router';
-import {NzModalService} from 'ng-zorro-antd';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../../shared/models/user.model';
+import { UserService } from '../../@core/services/user.service';
+import { AdsService } from '../../@core/services/ads.service';
+import { AuthService } from '../../@core/services/auth.service';
+import { Ads } from '../../shared/models/ads.model';
+import { AuthConst } from '../../@core/consts/auth.const';
+import { AdsParam } from '../../shared/models/adParams.model';
+import { Comment } from '../../shared/models/createComment.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-user',
@@ -31,9 +32,11 @@ export class UserComponent implements OnInit {
   activeProducts: Array<any> = [];
   expiredProducts: Array<any> = [];
   soldProducts: Array<any> = [];
+  guestBook: Array<any> = [];
   adsActive: boolean;
   adsExpired: boolean;
   adsSold: boolean;
+  comment: boolean;
 
   constructor(
     private userService: UserService,
@@ -42,8 +45,7 @@ export class UserComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private adsService: AdsService,
     private modal: NzModalService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.userService.getUser().subscribe((res) => {
@@ -58,6 +60,15 @@ export class UserComponent implements OnInit {
       this.userService.getUserById(this.userId).subscribe((user) => {
         this.user = user;
       });
+    });
+
+    this.adsService.getCommentByUser(this.userId).subscribe((res) => {
+      this.guestBook.push(res);
+      if (this.guestBook[0].length === 0) {
+        this.comment = true;
+      } else {
+        this.comment = false;
+      }
     });
   }
 

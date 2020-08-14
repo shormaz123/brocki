@@ -8,6 +8,7 @@
   align-items: center;
   flex-direction: column;
   padding: 20px 60px;
+  margin-bottom: 30px;
   height: 700px;
 
   @include rwdm(1600) {

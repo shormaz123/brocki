@@ -76,7 +76,10 @@
             *ngFor="let companyPhoto of companyPhotos; let i = index"
           >
             <img [src]="companyPhoto" class="form__image" />
-            <div class="form__delete" (click)="deleteStoragedPhoto(i)">
+            <div
+              class="form__delete"
+              (click)="deleteStoragedPhoto(companyPhoto, i)"
+            >
               <label class="form__delete-label">delete photo X</label>
             </div>
           </div>
@@ -115,7 +118,7 @@
         <button
           class="form__button"
           type="submit"
-          [disabled]="!businessForm.dirty && photos.length === 0"
+          [disabled]="!businessForm.dirty && !deletedImage && photos"
         >
           {{'translate.saveChanges' | translate}}
         </button>

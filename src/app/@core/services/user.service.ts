@@ -3,9 +3,10 @@ import { environment } from '../../../environments/environment';
 import { HttpBaseService } from './http-base.service';
 import { User } from '../../shared/models/user.model';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserFavorite } from '../../shared/models/userFavorite.model';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
+import { Email } from '../../shared/models/email.model';
 
 @Injectable({
   providedIn: 'root',
@@ -69,6 +70,22 @@ export class UserService {
   deleteUserFavourite(adId: number, userId: number) {
     return this.http.delete<UserFavorite>(
       `${this.baseUrl}/mybrocki/auth/users/favourites/delete?adsId=${adId}&userId=${userId}`
+    );
+  }
+
+  /**
+   * send email
+   *
+   */
+  contactUs(email: Email) {
+    let params = new HttpParams();
+    params = params.append('email', email.email);
+    params = params.append('name', email.name);
+    params = params.append('subject', email.subject);
+    params = params.append('message', email.message);
+    return this.httpClient.post<Email>(
+      `${this.baseUrl}/mybrocki/contactus`,
+      params
     );
   }
 

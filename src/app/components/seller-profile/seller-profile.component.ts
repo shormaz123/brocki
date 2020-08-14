@@ -3,8 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
 import { AdsParam } from '../../shared/models/adParams.model';
-import { ConnectionPositionPair } from '@angular/cdk/overlay';
-import { NzInputNumberComponent } from 'ng-zorro-antd';
+import { Comment } from '../../shared/models/createComment.model';
 
 @Component({
   selector: 'app-seller-profile',
@@ -31,6 +30,7 @@ export class SellerProfileComponent implements OnInit {
   adsActive: boolean;
   soldProducts: Array<any> = [];
   adsSold: boolean;
+  CommentsOfUser: Array<Comment> = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -113,9 +113,18 @@ export class SellerProfileComponent implements OnInit {
     this.about = false;
     this.info = false;
     this.guest = true;
+    this.adsService.getCommentByUser(this.sellerId).subscribe((res) => {
+      this.CommentsOfUser = [];
+      this.CommentsOfUser.push(res);
+    });
   }
 
   toggleEmail(): void {
     this.email = !this.email;
+  }
+
+  guestBook(): void {
+    this.guest = false;
+    this.active = true;
   }
 }

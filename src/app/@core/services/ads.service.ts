@@ -7,6 +7,7 @@ import { adsGroup } from '../../shared/models/adsGroup.model';
 import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
 import { User } from '../../shared/models/user.model';
 import { CreateAd } from '../../shared/models/create-ad.model';
+import { Comment } from '../../shared/models/createComment.model';
 import {
   HttpClient,
   HttpEvent,
@@ -118,10 +119,34 @@ export class AdsService {
     return this.http.get<Ads>(`${this.baseUrl}/mybrocki/auth/ads/expired`);
   }
 
+  /**
+   * Upload photo
+   *
+   */
   uploadImageInStorage(formData) {
     return this.httpClient.post<any>(
       `${this.baseUrl}/mybrocki/auth/image/upload`,
       formData
     );
+  }
+
+  /**
+   * Delete photo
+   *
+   */
+  deleteImage(image: string): Observable<string> {
+    const params = new HttpParams().set('companyImage', JSON.stringify(image));
+    return this.http.post(
+      `${this.baseUrl}/mybrocki/auth/image/destroy`,
+      params
+    );
+  }
+
+  createComment(comment: Comment): Observable<Comment> {
+    return this.http.post(`${this.baseUrl}/mybrocki/comment/create`, comment);
+  }
+
+  getCommentByUser(userId: number): Observable<Comment> {
+    return this.http.get(`${this.baseUrl}/mybrocki/comment/user/${userId}`);
   }
 }

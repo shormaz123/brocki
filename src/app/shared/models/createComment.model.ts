@@ -1,6 +1,8 @@
 export class Comment {
-  adsId: number;
+  userId: number;
   authorName: string;
   comments: string;
   rate: number;
+  id: null;
+  commentDate: string;
 }

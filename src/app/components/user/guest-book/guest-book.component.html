@@ -1,8 +1,13 @@
 <div class="container">
-  <div *ngFor="" class="card">
-    <div class="card__title"></div>
-    <nz-rate [ngClass]="'active'" nzDisabled></nz-rate>
-    <div class="card__comment"></div>
-    <hr />
+  <div class="message" *ngIf="comments === true">
+    <div class="message__text">You don't have any comments yet.</div>
+  </div>
+  <div *ngIf="comments === false">
+    <div class="card" *ngFor="let comment of guestBook[0]">
+      <div class="card__title">{{ comment.authorName }}</div>
+      <nz-rate [(ngModel)]="comment.rate" nzDisabled></nz-rate>
+      <div class="card__comment">{{ comment.comments }}</div>
+      <hr />
+    </div>
   </div>
 </div>

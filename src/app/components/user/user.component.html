@@ -93,7 +93,11 @@
     </div>
   </div>
   <div class="secondContainer">
-    <app-guest-book *ngIf="guest"></app-guest-book>
+    <app-guest-book
+      [guestBook]="guestBook"
+      [comments]="comment"
+      *ngIf="guest"
+    ></app-guest-book>
     <app-account-sold
       [soldProducts]="soldProducts"
       [ads]="adsSold"

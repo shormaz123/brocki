@@ -1,11 +1,31 @@
-<div class="container">
-  <form class="form" (ngSubmit)="onSubmit()" [formGroup]="ratingForm">
-    <span>Rate the seller</span>
-    <nz-rate formControlName="rating"></nz-rate>
-    <span>Please provide any additional feedback:</span>
-    <textarea formControlName="comment" rows="4"></textarea>
+<div class="guest-book">
+  <form
+    class="form"
+    *ngIf="isLogin"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="ratingForm"
+  >
+    <div class="form__heading">
+      <div class="form__title">Rate the seller:</div>
+      <div class="form__rate"><nz-rate formControlName="rating"></nz-rate></div>
+      <div class="form__title">
+        Please provide any additional feedback:
+      </div>
+    </div>
+    <textarea
+      maxlength="2000"
+      class="form__textarea"
+      formControlName="comment"
+      rows="4"
+    ></textarea>
     <div class="button">
       <button type="submit">{{'translate.submit' | translate}}</button>
     </div>
   </form>
+  <div class="guest-book__comments" *ngFor="let comment of CommentsOfUser[0]">
+    <div class="guest-book__name">{{ comment.authorName }}</div>
+    <nz-rate [disabled]="comment.rate" [(ngModel)]="comment.rate"></nz-rate>
+    <div class="guest-book__comment">{{ comment.comments }}</div>
+    <hr />
+  </div>
 </div>
