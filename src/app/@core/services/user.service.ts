@@ -23,6 +23,8 @@ export class UserService {
     );
   }
 
+
+
   deleteUser(id: number): Observable<String> {
     return this.http.delete<String>(`${this.baseUrl}/brocki/users/${id}`);
   }
@@ -89,7 +91,9 @@ export class UserService {
     );
   }
 
-  confirmAccount(token: any) {
-    return this.http.post(`${this.baseUrl}/mybrocki/confirm-account`, token);
+  confirmAccount(token: any): Observable<any>  {
+    return this.http.post(`${this.baseUrl}/mybrocki/confirm-account?token=${token}`, token);
   }
+
+
 }

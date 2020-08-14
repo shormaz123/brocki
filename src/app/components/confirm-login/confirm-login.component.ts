@@ -21,15 +21,21 @@ export class ConfirmLoginComponent implements OnInit {
     });
   }
 
-  goTo(route: string): void {
-    this.userService.confirmAccount(this.confirmToken).subscribe( x => {
-        this.router.navigate(['/site']);
+  goTo(): void {
+    this.userService.confirmAccount(this.confirmToken).subscribe(
+      (x) => {
+        if (x) {
+          console.log(x);
+        }
     },
-      error => {
-        this.errorBoolean = true;
-        this.errorMessage = 'No token!';
-        console.log(this.errorMessage);
-        console.log(error);
+      (error) => {
+        console.log(error.text)
+        if (error.text === 'OK') {
+          this.router.navigate(['/site']);
+        } else {
+          this.errorBoolean = true;
+          this.errorMessage = 'No token!';
+        }
       });
   }
 
