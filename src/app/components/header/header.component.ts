@@ -67,13 +67,14 @@ export class HeaderComponent implements OnInit {
     this.loginNameSubscription.unsubscribe();
   }
 
-  sendLangThruObservable(lang: string): void {
-    // send message to subscribers via observable subject
-  }
+
+
 
   change(code: string) {
     this.translate.use(code);
-    this.translateBackend.setLanguage(code);
+    this.translateBackend.setLanguage(code).subscribe( x => {
+      console.log(x);
+    });
     this.translateBackend.sendLanguage(code);
     this.notify.emit(code);
   }

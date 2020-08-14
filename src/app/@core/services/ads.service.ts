@@ -130,6 +130,7 @@ export class AdsService {
     );
   }
 
+
   /**
    * Delete photo
    *

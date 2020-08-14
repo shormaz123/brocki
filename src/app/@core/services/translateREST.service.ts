@@ -21,11 +21,13 @@ export class TranslateServiceRest {
   private readonly baseUrl = environment.apiUrlBase;
   private language = new Subject<any>();
 
+  /**
+   * setLanguage
+   *
+   */
   setLanguage(lan: string): Observable<string> {
     return this.http.post(`${this.baseUrl}/mybrocki/language?lang=${lan}`, lan);
   }
-
-
 
   sendLanguage(message: string) {
     this.language.next(message);
