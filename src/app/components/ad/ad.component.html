@@ -99,7 +99,7 @@
                 style="background-color: white; cursor: pointer; padding: 10px;"
                 class="cardHover"
               >
-                <div class="image" [routerLink]="['/ad', adByUser.id]">
+                <div class="image" (click)="getNewAd(adByUser.id)">
                   <img src="Card" [src]="adByUser.image[0]" />
                 </div>
                 <div class="cardBody" [routerLink]="['/ad', adByUser.id]">
@@ -128,9 +128,9 @@
                     >
                       favorite_border
                     </mat-icon>
-                    <!-- <button
+                     <button
                       mat-icon-button
-                      (click)="card.favourite = !adByUser.favourite"
+                      (click)="adByUser.favourite = !adByUser.favourite"
                       *ngIf="token"
                     >
                       <mat-icon
@@ -147,7 +147,7 @@
                       >
                         favorite_border
                       </mat-icon>
-                    </button> -->
+                    </button>
                   </div>
                   <span style="color: black;">{{
                     adByUser.adsDate | date
@@ -177,7 +177,7 @@
                 style="background-color: white; cursor: pointer; padding: 10px;"
                 class="cardHover"
               >
-                <div class="image" [routerLink]="['/ad', adByCat.id]">
+                <div class="image" (click)="getNewAd(adByCat.id)">
                   <img src="Card" [src]="adByCat.image[0]" />
                 </div>
                 <div class="cardBody" [routerLink]="['/ad', adByCat.id]">
@@ -206,9 +206,9 @@
                     >
                       favorite_border
                     </mat-icon>
-                    <!-- <button
+                     <button
                       mat-icon-button
-                      (click)="card.favourite = !adByCat.favourite"
+                      (click)="adByCat.favourite = !adByCat.favourite"
                       *ngIf="token"
                     >
                       <mat-icon
@@ -225,7 +225,7 @@
                       >
                         favorite_border
                       </mat-icon>
-                    </button> -->
+                    </button>
                   </div>
                   <span style="color: black;">{{
                     adByCat.adsDate | date

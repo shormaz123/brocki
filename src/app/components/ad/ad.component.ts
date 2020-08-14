@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AdsService } from '../../@core/services/ads.service';
 import { UserService } from '../../@core/services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import { Ads } from '../../shared/models/ads.model';
 import { User } from '../../shared/models/user.model';
 import {
@@ -40,56 +40,20 @@ export class AdComponent implements OnInit {
   public imageUrl =
     'https://avatars2.githubusercontent.com/u/10674541?v=3&s=200';
 
-  cards = [
-    {
-      title: 'Smart Sizzling BBQ',
-      descriptiopn:
-        'This is description about product of this seller yipi yo yipi yo, This is description about product of this seller yipi yo yipi yo, This is description about product of this seller yipi yo yipi yo',
-      price: 49000.0,
-      date: '6 days ago',
-    },
-    {
-      title: 'Smart Sizzling BBQ 2',
-      descriptiopn: '',
-      price: 49.0,
-      date: '6 days ago',
-    },
-    {
-      title: 'Smart Sizzling BBQ 3',
-      descriptiopn: '',
-      price: 49.0,
-      date: '6 days ago',
-    },
-    {
-      title: 'Smart Sizzling BBQ 4',
-      descriptiopn: '',
-      price: 49.0,
-      date: '6 days ago',
-    },
-    {
-      title: 'Smart Sizzling BBQ 5',
-      descriptiopn: '',
-      price: 49.0,
-      date: '6 days ago',
-    },
-    {
-      title: 'Smart Sizzling BBQ 6',
-      descriptiopn: '',
-      price: 49.0,
-      date: '6 days ago',
-    },
-  ];
-
   images;
   userRequest: UserAddAdsRequest;
   token;
   userId: number;
 
+  mySubscription: any;
+
+
   constructor(
     private adsService: AdsService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private helpersService: HelpersService
+    private helpersService: HelpersService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -137,8 +101,18 @@ export class AdComponent implements OnInit {
     this.adsService.getAdById(id).subscribe((response) => {
       this.userSellerId = response.userId;
       this.ad = response;
-      this.adGroupId = response.adsgroupId;
-      window.scrollTo(0, 0);
+      this.adGroupId = response.adsGroupId;
+      console.log(response)
+      // window.scrollTo(0, 0);
+      this.adsService.getAdsByGroupId(this.adGroupId).subscribe((x) => {
+        if (x == null) {
+          this.categoryImagesAvailable = false;
+        } else {
+          this.categoryImagesAvailable = true;
+          this.adsByCategory = x;
+          console.log(this.adsByCategory);
+        }
+      });
 
       for (const picture of response.image) {
         this.galleryImages.push({
@@ -166,14 +140,7 @@ export class AdComponent implements OnInit {
       });
     });
 
-    this.adsService.getAdsByParamToFilter(this.adGroupId).subscribe((x) => {
-      if (x == null) {
-        this.categoryImagesAvailable = false;
-      } else {
-        this.categoryImagesAvailable = true;
-        this.adsByCategory = x;
-      }
-    });
+
   }
 
   addToWishlist(adId: number) {
@@ -209,8 +176,6 @@ export class AdComponent implements OnInit {
           encodeURIComponent(document.URL)
       );
   }
-
-  goToFaceInstagram() {}
 
   copyLink() {
     const selBox = document.createElement('textarea');

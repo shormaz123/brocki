@@ -35,8 +35,8 @@ export class AccountActiveComponent implements OnChanges {
         ads.adsDate = null;
         ads.adsLocation = null;
         ads.adsType = null;
-        ads.adsgroupId = null;
-        ads.adssubgropuId = null;
+        ads.adsGroupId = null;
+        ads.adsSubGroupId = null;
         ads.description = null;
         ads.favourite = null;
         ads.fixedPrice = null;
@@ -69,8 +69,8 @@ export class AccountActiveComponent implements OnChanges {
         ads.adsDate = null;
         ads.adsLocation = null;
         ads.adsType = null;
-        ads.adsgroupId = null;
-        ads.adssubgropuId = null;
+        ads.adsGroupId = null;
+        ads.adsSubGroupId = null;
         ads.description = null;
         ads.favourite = null;
         ads.fixedPrice = null;

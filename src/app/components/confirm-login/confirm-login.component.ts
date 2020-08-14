@@ -21,7 +21,7 @@ export class ConfirmLoginComponent implements OnInit {
 
   goTo(route: string): void {
     this.userService.confirmAccount(this.confirmToken).subscribe( x => {
-      this.router.navigate([route]);
+        this.router.navigate(['/site']);
     },
       error => {
         console.log(error);

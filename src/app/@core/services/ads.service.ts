@@ -36,6 +36,12 @@ export class AdsService {
     );
   }
 
+  getAdsByGroupId(id: number): Observable<Ads[]> {
+    return this.http.get(
+      `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${id}`
+    );
+  }
+
   getAdsdBySearch(productName: string): Observable<Ads[]> {
     return this.http.get(
       `${this.baseUrl}/mybrocki/ads/search?productName=${productName}`

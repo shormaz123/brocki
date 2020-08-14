@@ -6,8 +6,8 @@ export class Ads {
   image: string[];
   status: string;
   userId: number;
-  adssubgropuId: number;
-  adsgroupId: number;
+  adsSubGroupId: number;
+  adsGroupId: number;
   adsType: string;
   fixedPrice: boolean;
   freeDelivery: boolean;
