@@ -107,6 +107,13 @@ export const it = {
     sendNewPassword: 'Invia nuova password',
     favoriteAds: 'Annunci preferiti',
     ad: 'Ad',
-    ads: 'Annunci'
+    ads: 'Annunci',
+    rateSeller: 'Valuta questo venditore',
+    provideFeedback: 'Si prega di fornire eventuali commenti aggiuntivi',
+    userNoSoldAds: 'Questo utente non ha annunci venduti',
+    userNoActiveAds: 'l\'utente non ha annunci attivi',
+    deletePhoto: 'Elimina foto',
+    confirmRegistration: 'Per favore, conferma la tua registrazione',
+    confirmAccount: 'Confermare l\'account'
   },
 };

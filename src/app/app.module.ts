@@ -75,6 +75,7 @@ import {CustomTranslateLoader} from './@core/custom-translate-loader';
 import {NgxSocialShareModule} from 'ngx-social-share';
 import {TranslateServiceRest} from './@core/services/translateREST.service';
 import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.component';
+import { AdsComponent } from './components/ads/ads.component';
 
 registerLocaleData(en);
 
@@ -112,6 +113,7 @@ registerLocaleData(en);
     FavoritesComponent,
     ContactUsComponent,
     ConfirmLoginComponent,
+    AdsComponent,
   ],
   imports: [
     BrowserModule,

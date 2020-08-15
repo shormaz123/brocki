@@ -106,6 +106,13 @@ export const en = {
     sendNewPassword: 'Send new password',
     favoriteAds: 'Favorite Ads',
     ad: 'Ad',
-    ads: 'Ads'
+    ads: 'Ads',
+    rateSeller: 'Rate this seller',
+    provideFeedback: 'Please provide any additional feedback',
+    userNoSoldAds: 'This user has no sold ads',
+    userNoActiveAds: 'User doesn`t have active ads',
+    deletePhoto: 'Delete photo',
+    confirmRegistration: 'Please, confirm your registration',
+    confirmAccount: 'Confirm account'
   },
 };

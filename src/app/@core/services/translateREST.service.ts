@@ -26,7 +26,7 @@ export class TranslateServiceRest {
    *
    */
   setLanguage(lan: string): Observable<string> {
-    return this.http.post(`${this.baseUrl}/mybrocki/language?lang=${lan}`, null);
+    return this.http.post(`${this.baseUrl}/mybrocki/language?lang=${lan}`, lan);
   }
 
   sendLanguage(message: string) {

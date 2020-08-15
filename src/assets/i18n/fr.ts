@@ -107,6 +107,13 @@ export const fr = {
     sendNewPassword: 'Envoyer un nouveau mot de passe',
     favoriteAds: 'Annonces favorites',
     ad: 'Annonce',
-    ads: 'Annonces'
+    ads: 'Annonces',
+    rateSeller: 'Évaluer ce vendeur',
+    provideFeedback: 'Veuillez écrire des commentaires supplémentaires',
+    userNoSoldAds: 'Cet utilisateur n\'a aucune annonce vendue',
+    userNoActiveAds: 'L\'utilisateur n\'a pas d\'annonces actives',
+    deletePhoto: 'Supprimer la photo',
+    confirmRegistration: 'Veuillez confirmer votre inscription',
+    confirmAccount: 'Confirmer le compte'
   },
 };

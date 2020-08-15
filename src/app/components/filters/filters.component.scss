@@ -10,9 +10,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   .underContainer {
     width: 1000px;
-    height: 90vh;
+    height: 90%;
     display: flex;
     align-items: center;
     flex-direction: column;

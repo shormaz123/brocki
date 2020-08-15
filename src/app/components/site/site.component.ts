@@ -7,7 +7,6 @@ import {
   OnChanges,
   OnDestroy,
 } from '@angular/core';
-import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
 import { AdsService } from '../../@core/services/ads.service';
 import { Ads } from '../../shared/models/ads.model';
 import { AuthConst } from '../../@core/consts/auth.const';
