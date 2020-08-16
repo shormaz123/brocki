@@ -128,10 +128,10 @@ export class AdsService {
    * Delete photo
    *
    */
-  deleteImage(image: string): Observable<any> {
-    const params = new HttpParams().set('companyImage', image);
+  deleteImage(companyImage: string): Observable<any> {
+    // const params = new HttpParams().set('companyImage', image);
     return this.httpClient.post(`${this.baseUrl}/mybrocki/auth/image/destroy`, {
-      params,
+      companyImage,
     });
   }
 

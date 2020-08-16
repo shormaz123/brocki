@@ -129,48 +129,42 @@ export class UpdateInfoBussinesComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (this.uploadPhoto.length === 0) {
-    //   this.modal.error({
-    //     nzTitle: 'You must add a picture!',
-    //   });
-    //   return;
-    // }
-    this.modal.confirm({
-      nzTitle: 'Are you sure you want to change your info?',
-      nzContent: '',
-      nzOnOk: () => {
-        const updateBusiness = new User();
-        updateBusiness.name = this.businessForm.value.name;
-        updateBusiness.surname = this.businessForm.value.surname;
-        updateBusiness.email = this.businessForm.value.email;
-        updateBusiness.phone = this.businessForm.value.phone;
-        updateBusiness.mobile = this.businessForm.value.mobile;
-        updateBusiness.address = this.businessForm.value.address;
-        updateBusiness.city = this.businessForm.value.city;
-        updateBusiness.region = this.businessForm.value.canton;
-        updateBusiness.aboutUs = this.businessForm.value.aboutUs;
-        updateBusiness.location = '';
-        updateBusiness.company = this.businessForm.value.company;
-        updateBusiness.companyImage = this.photos.concat(this.companyPhotos);
-        updateBusiness.bussinesType = this.bussinesType;
-        updateBusiness.roleName = this.roleName;
-        updateBusiness.userName = this.userName;
-        updateBusiness.visible = true;
-        updateBusiness.website = this.businessForm.value.website;
-        this.userService.updateUser(updateBusiness).subscribe(
-          (user) => {
-            this.notification.success('', 'User updated');
-            this.router.navigate([`/user/${this.userId}`]);
-            window.scrollTo({ top: 0 });
-          },
-          (error) => {
-            this.modal.error({
-              nzTitle: 'Ops, something went wrong!',
-            });
-          }
-        );
+    // this.modal.confirm({
+    //   nzTitle: 'Are you sure you want to change your info?',
+    //   nzContent: '',
+    //   nzOnOk: () => {
+    const updateBusiness = new User();
+    updateBusiness.name = this.businessForm.value.name;
+    updateBusiness.surname = this.businessForm.value.surname;
+    updateBusiness.email = this.businessForm.value.email;
+    updateBusiness.phone = this.businessForm.value.phone;
+    updateBusiness.mobile = this.businessForm.value.mobile;
+    updateBusiness.address = this.businessForm.value.address;
+    updateBusiness.city = this.businessForm.value.city;
+    updateBusiness.region = this.businessForm.value.canton;
+    updateBusiness.aboutUs = this.businessForm.value.aboutUs;
+    updateBusiness.location = '';
+    updateBusiness.company = this.businessForm.value.company;
+    updateBusiness.companyImage = this.photos.concat(this.companyPhotos);
+    updateBusiness.bussinesType = this.bussinesType;
+    updateBusiness.roleName = this.roleName;
+    updateBusiness.userName = this.userName;
+    updateBusiness.visible = true;
+    updateBusiness.website = this.businessForm.value.website;
+    this.userService.updateUser(updateBusiness).subscribe(
+      (user) => {
+        this.notification.success('', 'User updated');
+        this.router.navigate([`/user/${this.userId}`]);
+        window.scrollTo({ top: 0 });
       },
-    });
+      (error) => {
+        this.modal.error({
+          nzTitle: 'Ops, something went wrong!',
+        });
+      }
+    );
+    // },
+    // });
   }
 
   goTo(route: string): void {
