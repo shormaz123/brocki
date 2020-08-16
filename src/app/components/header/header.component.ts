@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
   dropdownBoolean = true;
   userLang;
   chosenLanguage;
+  header;
 
   @Output() notify = new EventEmitter<any>();
 
