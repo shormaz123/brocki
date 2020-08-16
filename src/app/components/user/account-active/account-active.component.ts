@@ -13,6 +13,7 @@ export class AccountActiveComponent implements OnChanges {
   @Input() ads: boolean;
   Ads: boolean;
   userId: number;
+  lang: string;
 
   constructor(
     private modal: NzModalService,
@@ -20,7 +21,10 @@ export class AccountActiveComponent implements OnChanges {
     private adsService: AdsService
   ) {}
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    this.lang = localStorage.getItem('language');
+    console.log(this.lang);
+  }
 
   deleteAd(active: Ads, index: number): void {
     this.modal.confirm({

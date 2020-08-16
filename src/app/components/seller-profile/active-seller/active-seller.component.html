@@ -1,7 +1,7 @@
 <div class="container">
   <div class="ads">
     <div class="ads__text" *ngIf="ads === false">
-      {{'translate.youHaveNotActiveAds' | translate}}
+      {{ 'translate.youHaveNotActiveAds' | translate }}
     </div>
   </div>
   <div class="ads__body" *ngIf="ads === true">
@@ -26,7 +26,7 @@
           </div>
         </div>
       </div>
-      <div class="amount">
+      <div class="amount" *ngIf="hide === false">
         <img src="../../../../assets/images/update-info-bussines/email.png" />
       </div>
     </div>

@@ -7,35 +7,59 @@
     <form class="form" (ngSubmit)="onSubmit()" [formGroup]="businessForm">
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/company.png" />
-        <input placeholder="{{ 'translate.company' | translate }}" formControlName="company" />
+        <input
+          placeholder="{{ 'translate.company' | translate }}"
+          formControlName="company"
+        />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/name.png" />
-        <input placeholder="{{ 'translate.nameFirst' | translate }}" formControlName="name" />
+        <input
+          placeholder="{{ 'translate.nameFirst' | translate }}"
+          formControlName="name"
+        />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/surname.png" />
-        <input placeholder="{{ 'translate.surname' | translate }}" formControlName="surname" />
+        <input
+          placeholder="{{ 'translate.surname' | translate }}"
+          formControlName="surname"
+        />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/email.png" />
-        <input placeholder="{{ 'translate.email' | translate }}" formControlName="email" />
+        <input
+          placeholder="{{ 'translate.email' | translate }}"
+          formControlName="email"
+        />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/website.png" />
-        <input placeholder="{{ 'translate.website' | translate }}" formControlName="website" />
+        <input
+          placeholder="{{ 'translate.website' | translate }}"
+          formControlName="website"
+        />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/phone.png" />
-        <input placeholder="{{ 'translate.phone' | translate }}" formControlName="phone" />
+        <input
+          placeholder="{{ 'translate.phone' | translate }}"
+          formControlName="phone"
+        />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/mobile.png" />
-        <input placeholder="{{ 'translate.mobile' | translate }}" formControlName="mobile" />
+        <input
+          placeholder="{{ 'translate.mobile' | translate }}"
+          formControlName="mobile"
+        />
       </div>
       <div class="form__inputItem">
         <img src="../../../assets/images/update-info-bussines/address.png" />
-        <input placeholder="{{ 'translate.address' | translate }}" formControlName="address" />
+        <input
+          placeholder="{{ 'translate.address' | translate }}"
+          formControlName="address"
+        />
       </div>
       <div class="form__inputItem form__inputItem--margin">
         <div class="form__location">
@@ -57,19 +81,23 @@
       </div>
       <div class="form__inputItem">
         <a class="form__password" (click)="goTo('/change-password')"
-          >{{'translate.changePassword' | translate}}?</a
+          >{{ 'translate.changePassword' | translate }}?</a
         >
       </div>
       <div class="form__inputItem">
-        <label class="form__label">{{ 'translate.aboutUs' | translate }}:</label>
+        <label class="form__label"
+          >{{ 'translate.aboutUs' | translate }}:</label
+        >
         <textarea
           class="form__textarea"
           formControlName="aboutUs"
-          maxlength="600"
+          maxlength="2000"
         ></textarea>
       </div>
       <div class="form__inputItem">
-        <label class="form__label">{{ 'translate.picturesOfCompany' | translate }}:</label>
+        <label class="form__label"
+          >{{ 'translate.picturesOfCompany' | translate }}:</label
+        >
         <div class="form__picture">
           <div
             class="form__upload--image"
@@ -118,9 +146,11 @@
         <button
           class="form__button"
           type="submit"
-          [disabled]="!businessForm.dirty && !deletedImage && photos"
+          [disabled]="
+            !businessForm.dirty && !deletedImage && photos.length === 0
+          "
         >
-          {{'translate.saveChanges' | translate}}
+          {{ 'translate.saveChanges' | translate }}
         </button>
       </div>
     </form>

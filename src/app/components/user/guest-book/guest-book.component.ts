@@ -12,7 +12,5 @@ export class GuestBookComponent implements OnChanges {
 
   constructor() {}
 
-  ngOnChanges() {
-    console.log(this.guestBook);
-  }
+  ngOnChanges() {}
 }

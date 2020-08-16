@@ -22,7 +22,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
   photos: Array<string> = [];
   companyPhotos: Array<string> = [];
   deletedImage: boolean;
-  res: Array<string> = [];
+  uploadedImage: Array<string> = [];
   userId: number;
   userName: string;
   bussinesType: string;
@@ -51,7 +51,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
       address: [''],
       canton: [''],
       city: [''],
-      aboutUs: ['', [Validators.maxLength(1000)]],
+      aboutUs: ['', [Validators.maxLength(2)]],
     });
 
     this.userService.getUser().subscribe((res) => {
@@ -102,7 +102,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
 
   uploadImage(event: any): void {
     this.uploadPhoto = [];
-    if (event.target.files || event.target.files.length) {
+    if (event.target.files) {
       this.formData = new FormData();
       this.uploadPhoto.push(...event.target.files);
     }
@@ -111,8 +111,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
         this.formData.append('file', picture);
       }
       this.adsService.uploadImageInStorage(this.formData).subscribe((res) => {
-        this.res = res;
-        this.photos.push(...this.res);
+        this.uploadedImage = res;
+        this.photos.push(...this.uploadedImage);
       });
     }
   }
@@ -120,6 +120,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
   deleteStoragedPhoto(photo: string, index: number): void {
     this.companyPhotos.splice(index, 1);
     this.adsService.deleteImage(photo).subscribe();
+    console.log('deletedCompanyPhotos', this.companyPhotos);
     this.deletedImage = true;
   }
 
@@ -160,6 +161,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
           (user) => {
             this.notification.success('', 'User updated');
             this.router.navigate([`/user/${this.userId}`]);
+            window.scrollTo({ top: 0 });
           },
           (error) => {
             this.modal.error({

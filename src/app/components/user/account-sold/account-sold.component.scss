@@ -118,14 +118,17 @@ hr {
   cursor: pointer;
 }
 
-.ads__text {
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  width: 1280px;
-  font-size: 20px;
-  color: #d62b1f;
-  font-weight: 500;
-  margin: 10px 0 0 0;
+.ads {
+  height: 110px;
+  &__text {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 1280px;
+    font-size: 20px;
+    color: #d62b1f;
+    font-weight: 500;
+    margin: 10px 0 0 0;
+  }
 }

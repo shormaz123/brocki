@@ -128,12 +128,11 @@ export class AdsService {
    * Delete photo
    *
    */
-  deleteImage(image: string): Observable<string> {
-    const params = new HttpParams().set('companyImage', JSON.stringify(image));
-    return this.http.post(
-      `${this.baseUrl}/mybrocki/auth/image/destroy`,
-      params
-    );
+  deleteImage(image: string): Observable<any> {
+    const params = new HttpParams().set('companyImage', image);
+    return this.httpClient.post(`${this.baseUrl}/mybrocki/auth/image/destroy`, {
+      params,
+    });
   }
 
   createComment(comment: Comment): Observable<Comment> {
