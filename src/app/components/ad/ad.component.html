@@ -99,7 +99,7 @@
                 style="background-color: white; cursor: pointer; padding: 10px;"
                 class="cardHover"
               >
-                <div class="image" (click)="getNewAd(adByUser.id)" (scroll)="onScroll($event)" [scrollTop]="spt" [scrollLeft]="spl">
+                <div class="image" (click)="getNewAd(adByUser.id)">
                   <img src="Card" [src]="adByUser.image[0]" />
                 </div>
                 <div class="cardBody" [routerLink]="['/ad', adByUser.id]">
