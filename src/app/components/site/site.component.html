@@ -39,9 +39,16 @@
             <i class="fa fa-search"></i>
           </button>
         </div>
-        <button class="favorite" routerLink="/favorite">
+        <button class="favorite" routerLink="/favorite" *ngIf="token">
           {{ 'translate.favorite' | translate }}
           <span *ngIf="numberOfFavorites">({{ numberOfFavorites }})</span>
+        </button>
+        <button class="favorite" *ngIf="!token"
+                pTooltip="{{
+                          'translate.pleaseLoginBeforeYouAddThisAd' | translate
+                        }}!"
+                tooltipPosition="bottom">
+          {{ 'translate.favorite' | translate }}
         </button>
       </div>
       <div class="navigation">

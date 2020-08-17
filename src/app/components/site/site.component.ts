@@ -504,10 +504,9 @@ export class SiteComponent implements OnInit, OnDestroy {
     }
   }
 
-  getUserAndFavAd(input?: any) {
-    this.userService.getUser().subscribe((response) => {
-      this.userId = response.id;
-      this.userService.getFavourites(response.id).subscribe((x) => {
+  getUserAndFavAd() {
+  if (this.token) {
+      this.userService.getFavourites(this.userId).subscribe((x) => {
         if (this.token) {
           this.favoriteAds = x;
           this.numberOfFavorites = x.length;
@@ -518,7 +517,9 @@ export class SiteComponent implements OnInit, OnDestroy {
           );
         }
       });
-    });
+  } else  {
+    this.favAds = this.ads;
+  }
   }
 
   getNumOfFavs() {
@@ -594,13 +595,10 @@ export class SiteComponent implements OnInit, OnDestroy {
 
 
   getAdsByParams(adssubgroup: number) {
-    this.favAds = [];
     this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe((response) => {
-      this.adsByParams = response;
-      this.favAds = this.adsByParams.map(
-      (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-      );
-      console.log(this.favAds);
+      this.ads = response;
+      this.randomAds = this.shuffle(response);
+      this.getUserAndFavAd();
     });
 
   }

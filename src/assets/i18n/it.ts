@@ -142,5 +142,6 @@ export const it = {
       "Invia la fattura via e-mail (Paypal, Twint, fattura) o per posta e non appena l'oggetto è stato pagato, prenotalo o invialo.",
     pricingEleven: '-\tNon inviare nulla senza aver prima ricevuto il denaro.',
     pricingList: 'Listino prezzi',
+    freeMonths: '3 mesi gratuiti'
   },
 };
