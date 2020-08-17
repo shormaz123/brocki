@@ -20,12 +20,16 @@ export const en = {
     copyrightThree: 'Mio Software LLC',
     from: 'From',
     to: 'To',
+    change: 'Change',
     fixedPrice: 'Fixed price',
     onlyProductsWithPictures: 'Only products with pictures',
     productWarranty: 'Product warranty',
     urgentSales: 'Urgent sales',
     confirm: 'Confirm',
     email: 'Email',
+    subject: 'Subject',
+    message: 'Message',
+    sendMassage: 'Send message',
     password: 'Password',
     signup: 'Sign up',
     forgotPassword: 'Forgot password',
@@ -65,6 +69,8 @@ export const en = {
     sold: 'Sold',
     guestBook: 'Guest book',
     shareVia: 'Share Via',
+    update: 'Update',
+    info: 'info',
     allArticlesOfThisSeller: 'All articles of this seller',
     similarProducts: 'Similar products',
     allCategories: 'All categories',
@@ -87,7 +93,8 @@ export const en = {
     reactivateThisAd: 'Reactivate this ad?',
     youHaveNotActiveAds: 'You have not active ads',
     soldAd: 'Sold ad?',
-    pleaseLoginBeforeYouAddThisAd: 'Please login before you add this ad to favorite section',
+    pleaseLoginBeforeYouAddThisAd:
+      'Please login before you add this ad to favorite section',
     noAvailableAds: 'No available ads!',
     clickHereToSeeSellersInfo: 'Click here to see sellers info!',
     willBeAvailableSoon: 'Will be available soon!',
@@ -115,17 +122,24 @@ export const en = {
     confirmRegistration: 'Please, confirm your registration',
     confirmAccount: 'Confirm account',
     pricingOne: 'Fees',
-    pricingTwo: 'The advertising and posting of offers up to a value of CHF 9.95 are free.',
-    pricingThree: 'We only charge 5% of the sales price for all offers from CHF 10.',
+    pricingTwo:
+      'The advertising and posting of offers up to a value of CHF 9.95 are free.',
+    pricingThree:
+      'We only charge 5% of the sales price for all offers from CHF 10.',
     pricingFour: 'The directory (membership) and profile are free.',
-    pricingFive: 'Minibrocki.ch also serves as a company directory so that you can get in touch with like-minded people. Together we can design projects and events and publish them on minibrocki.ch. So that as many people as possible can be inspired by sustainable thinking.',
-    pricingSix: 'Do not hesitate to involve us in your projects, together we can design and organize newsletters, flyers, mailing, social media and many other publication channels. Write to us at projektleitung@minibrocki.ch.',
+    pricingFive:
+      'Minibrocki.ch also serves as a company directory so that you can get in touch with like-minded people. Together we can design projects and events and publish them on minibrocki.ch. So that as many people as possible can be inspired by sustainable thinking.',
+    pricingSix:
+      'Do not hesitate to involve us in your projects, together we can design and organize newsletters, flyers, mailing, social media and many other publication channels. Write to us at projektleitung@minibrocki.ch.',
     pricingSeven: 'To sell',
-    pricingEight: 'Does the buyer live in the same city? For payment and handover, it is best to lure the interested parties into your premises.',
-    pricingNine: 'Click on "Send invoice" for your advertised item, insert the buyer\'s email address and write the final price to be paid.',
-    pricingTen: 'Send the invoice by email (Paypal, Twint, invoice) or post and as soon as the item has been paid for, reserve or send it.',
-    pricingEleven: 'Do not send anything without having received the money first.',
-    pricingList: 'Pricing list'
-
+    pricingEight:
+      'Does the buyer live in the same city? For payment and handover, it is best to lure the interested parties into your premises.',
+    pricingNine:
+      'Click on "Send invoice" for your advertised item, insert the buyer\'s email address and write the final price to be paid.',
+    pricingTen:
+      'Send the invoice by email (Paypal, Twint, invoice) or post and as soon as the item has been paid for, reserve or send it.',
+    pricingEleven:
+      'Do not send anything without having received the money first.',
+    pricingList: 'Pricing list',
   },
 };

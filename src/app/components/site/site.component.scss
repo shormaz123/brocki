@@ -50,6 +50,7 @@
   background-color: $red;
   color: white;
   border-radius: 20px;
+  border: 1px solid $border-gray;
   width: 12%;
   height: 40px;
   &:hover {
@@ -61,6 +62,7 @@
   background-color: white;
   color: $red;
   border-radius: 20px;
+  border: 1px solid $border-gray;
   width: 12%;
   height: 40px;
   &:hover {
@@ -96,7 +98,6 @@
   position: relative;
   display: flex;
   overflow: hidden;
-  padding-left: 10px;
 }
 
 .searchTerm {
@@ -203,15 +204,16 @@ p-carousel {
 .siteButtons {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  width: 70%;
+  width: 900px;
   height: 40px;
   margin-bottom: 50px;
   .siteButton {
     background-color: $red;
     border-radius: 15px;
-    width: 150px !important;
+    border: 1px solid $border-gray;
+    width: 180px !important;
     height: 30px;
     width: auto;
     color: white;
@@ -517,7 +519,6 @@ p-sidebar {
   }
 }
 
-
 .adLine {
   border: 0 0 1px 0;
   border-bottom: 1px solid $red;
@@ -563,5 +564,3 @@ p-sidebar {
     width: 100%;
   }
 }
-
-

@@ -2,7 +2,7 @@
 <div class="container">
   <div class="contact-us">
     <div class="contact-us__title">
-      Contact
+      {{ 'translate.contactUs' | translate }}
     </div>
     <div class="contact-us__body">
       <div class="contact-us__pictures">
@@ -40,14 +40,14 @@
           <div class="form__inputItem">
             <input
               class="form__input-tight"
-              placeholder="Name"
+              placeholder="{{ 'translate.nameFirst' | translate }}"
               formControlName="name"
             />
           </div>
           <div class="form__inputItem">
             <input
               class="form__input-tight"
-              placeholder="Email"
+              placeholder="{{ 'translate.email' | translate }}"
               formControlName="email"
             />
           </div>
@@ -55,20 +55,20 @@
         <div class="form__inputItem">
           <input
             class="form__input-wide"
-            placeholder="Subject"
+            placeholder="{{ 'translate.subject' | translate }}"
             formControlName="subject"
           />
         </div>
         <div class="form__inputItem">
           <textarea
             class="form__input-wide form__input-wide--textarea"
-            placeholder="Message"
+            placeholder="{{ 'translate.message' | translate }}"
             formControlName="message"
           ></textarea>
         </div>
         <div class="form__inputItem">
           <button class="form__sendMessage" type="submit">
-            Send message
+            {{ 'translate.sendMassage' | translate }}
           </button>
         </div>
       </form>

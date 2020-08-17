@@ -61,6 +61,13 @@ export class AuthService {
     return localStorage.getItem('brocki_roleName');
   }
 
+  /**
+   * Get language
+   */
+  getLanguuage(): any {
+    return localStorage.getItem('language');
+  }
+
   // Logout
 
   logout() {

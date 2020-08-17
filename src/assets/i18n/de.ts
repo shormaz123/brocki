@@ -20,12 +20,16 @@ export const de = {
     copyrightThree: 'Mio Software GmbH',
     from: 'Von',
     to: 'Bis',
+    change: 'Veränderung',
     fixedPrice: 'Fixpreis',
     onlyProductsWithPictures: 'Nur Produkte mit Bildern',
     productWarranty: 'Produktgarantie',
     urgentSales: 'Dringende Verkäufe',
     confirm: 'Bestätigen ',
     email: 'E-Mail-Adresse',
+    subject: 'Gegenstand',
+    message: 'Botschaft',
+    sendMassage: 'Nachricht senden',
     password: 'Passwort',
     signup: 'Registrieren',
     forgotPassword: 'Passwort vergessen ',
@@ -66,6 +70,8 @@ export const de = {
     sold: 'Verkauft',
     guestBook: 'Gästebuch',
     shareVia: 'Teilen per',
+    update: 'Aktualisieren',
+    info: 'die Info',
     allArticlesOfThisSeller: 'Alle Artikel dieses Verkäufers',
     similarProducts: 'Ähnliche Produkte',
     allCategories: 'Alle Kategorien',
@@ -89,9 +95,11 @@ export const de = {
     reactivateThisAd: 'Dieses Inserat reaktivieren?',
     youHaveNotActiveAds: 'Sie haben keine aktiven Inserate',
     soldAd: 'Artikel verkauft?',
-    pleaseLoginBeforeYouAddThisAd: 'Bitte melden Sie sich an, bevor Sie diese Anzeige zum Favoritenbereich hinzufügen',
+    pleaseLoginBeforeYouAddThisAd:
+      'Bitte melden Sie sich an, bevor Sie diese Anzeige zum Favoritenbereich hinzufügen',
     noAvailableAds: 'Keine verfügbaren Anzeigen!',
-    clickHereToSeeSellersInfo: 'Klicken Sie hier, um Informationen zum Verkäufer anzuzeigen!',
+    clickHereToSeeSellersInfo:
+      'Klicken Sie hier, um Informationen zum Verkäufer anzuzeigen!',
     willBeAvailableSoon: 'Wird bald verfügbar sein!',
     showMore: 'Mehr anzeigen',
     brockenstube: 'Brockenstube',
@@ -117,19 +125,25 @@ export const de = {
     confirmRegistration: 'Bitte bestätigen Sie Ihre Registrierung',
     confirmAccount: 'Konto bestätigen',
     pricingOne: 'Gebühren',
-    pricingTwo: 'Das Inserieren und Einstellen von Angeboten bis 9.95 CHF Warenwert sind gratis.',
-    pricingThree: 'Für alle Angebote ab 10.- CHF Warenwert verrechnen wir nur 5% des Verkaufspreises.',
-    pricingFour: 'Das Verzeichnis (Mitgliedschaft) und das Profil sind kostenlos.',
-    pricingFive: 'Minibrocki.ch dient Ihnen auch als Firmen-Verzeichnis damit Sie sich mit gleichdenkenden Menschen in Verbindung bringen können. Gemeinsam können wir Projekte und Events gestalten und diese auf minibrocki.ch publizieren. Damit möglichst viele Menschen vom nachhaltigen Denken inspiriert werden.',
-    pricingSix: 'Zögern Sie nicht uns mit in Ihre Projekte ein zu beziehen, gemeinsam können wir Newsletter, Flyer, Postversand, Sozial-Media und viele andere Publikationskanäle gestalten und organisieren. Schreiben Sie uns auf projektleitung@minibrocki.ch.',
+    pricingTwo:
+      'Das Inserieren und Einstellen von Angeboten bis 9.95 CHF Warenwert sind gratis.',
+    pricingThree:
+      'Für alle Angebote ab 10.- CHF Warenwert verrechnen wir nur 5% des Verkaufspreises.',
+    pricingFour:
+      'Das Verzeichnis (Mitgliedschaft) und das Profil sind kostenlos.',
+    pricingFive:
+      'Minibrocki.ch dient Ihnen auch als Firmen-Verzeichnis damit Sie sich mit gleichdenkenden Menschen in Verbindung bringen können. Gemeinsam können wir Projekte und Events gestalten und diese auf minibrocki.ch publizieren. Damit möglichst viele Menschen vom nachhaltigen Denken inspiriert werden.',
+    pricingSix:
+      'Zögern Sie nicht uns mit in Ihre Projekte ein zu beziehen, gemeinsam können wir Newsletter, Flyer, Postversand, Sozial-Media und viele andere Publikationskanäle gestalten und organisieren. Schreiben Sie uns auf projektleitung@minibrocki.ch.',
     pricingSeven: 'Verkaufen',
-    pricingEight: 'Wohnt der Interessent in der gleichen Stadt? Für die Bezahlung und Übergaben, locken Sie die Interessenten am besten in Ihr Geschäft.',
-    pricingNine: 'Klicken Sie bei Ihrem inserierten Artikel auf «Rechnung verschicken», fügen Sie die E-Mail-Adresse des Käufers ein und schreiben Sie den endgültigen Preis, der bezahlt werden soll.',
-    pricingTen: 'Schicken Sie die Rechnung per E-Mail (Paypal, Twint, Rechnung) oder Post und sobald der Artikel bezahlt wurde, reservieren oder versenden Sie diesen.',
-    pricingEleven: 'Versenden Sie Nichts ohne dass Sie davor das Geld erhalten haben.',
+    pricingEight:
+      'Wohnt der Interessent in der gleichen Stadt? Für die Bezahlung und Übergaben, locken Sie die Interessenten am besten in Ihr Geschäft.',
+    pricingNine:
+      'Klicken Sie bei Ihrem inserierten Artikel auf «Rechnung verschicken», fügen Sie die E-Mail-Adresse des Käufers ein und schreiben Sie den endgültigen Preis, der bezahlt werden soll.',
+    pricingTen:
+      'Schicken Sie die Rechnung per E-Mail (Paypal, Twint, Rechnung) oder Post und sobald der Artikel bezahlt wurde, reservieren oder versenden Sie diesen.',
+    pricingEleven:
+      'Versenden Sie Nichts ohne dass Sie davor das Geld erhalten haben.',
     pricingList: 'Preisliste',
-
-
-
   },
 };

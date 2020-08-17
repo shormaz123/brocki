@@ -39,6 +39,7 @@ export class UserComponent implements OnInit {
   adsSold: boolean;
   comment: boolean;
   admin: string;
+  language: string;
 
   constructor(
     private userService: UserService,
