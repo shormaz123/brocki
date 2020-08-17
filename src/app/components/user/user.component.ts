@@ -33,10 +33,12 @@ export class UserComponent implements OnInit {
   expiredProducts: Array<any> = [];
   soldProducts: Array<any> = [];
   guestBook: Array<any> = [];
+  companyImage: string[];
   adsActive: boolean;
   adsExpired: boolean;
   adsSold: boolean;
   comment: boolean;
+  admin: string;
 
   constructor(
     private userService: UserService,
@@ -48,11 +50,20 @@ export class UserComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const admin = this.authService.getAdmin();
+    if (admin === 'admin') {
+      this.admin = admin;
+    }
+    console.log(this.admin);
+    window.scrollTo({ top: 0 });
     this.userService.getUser().subscribe((res) => {
       this.path = res.bussinesType;
-      res.companyImage[0]
-        ? (this.userImage = res.companyImage[0])
-        : (this.userImage = this.defaultImage);
+      this.companyImage = res.companyImage || [];
+      if (this.companyImage.length > 0) {
+        this.userImage = res.companyImage[0];
+      } else if (this.companyImage === []) {
+        this.userImage = this.defaultImage;
+      }
     });
     this.guest = true;
     this.activatedRoute.params.subscribe((params) => {
@@ -149,5 +160,13 @@ export class UserComponent implements OnInit {
         this.router.navigate(['/site']);
       },
     });
+  }
+
+  alert(number: number): void {
+    if (number === 1) {
+      alert('Accept ads under construction !!');
+    } else if (number === 2) {
+      alert('Acceptance of business accounts under construction !!');
+    }
   }
 }

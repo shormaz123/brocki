@@ -12,4 +12,12 @@ export class AccountSoldComponent implements OnChanges {
   constructor() {}
 
   ngOnChanges() {}
+
+  style() {
+    if (this.soldProducts[0] > 0) {
+      return { height: '0px' };
+    } else {
+      return { height: '100' };
+    }
+  }
 }

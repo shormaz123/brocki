@@ -1,11 +1,9 @@
 <div class="container">
   <div
     class="ads"
-    [ngStyle]="
-      expiredProducts[0].length === 0 ? { height: '110px' } : { height: '0' }
-    "
+    [ngStyle]="ads === false ? { height: '0px' } : { height: '110px' }"
   >
-    <div class="ads__text" *ngIf="ads === true">
+    <div class="ads__text" *ngIf="ads === true" [ngStyle]="style()">
       {{ 'translate.youHaveNoExpiredAds' | translate }}
     </div>
   </div>

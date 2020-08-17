@@ -55,6 +55,13 @@ export class AuthService {
     return localStorage.getItem('brocki_token') !== null;
   }
 
+  /**
+   * Get admin
+   */
+  getAdmin(): any {
+    return localStorage.getItem('brocki_roleName');
+  }
+
   // Logout
 
   logout() {

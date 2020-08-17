@@ -19,6 +19,14 @@ export class AccountExpiredComponent implements OnChanges {
 
   ngOnChanges() {}
 
+  style() {
+    if (this.expiredProducts[0] > 0) {
+      return { height: '0px' };
+    } else {
+      return { height: '100' };
+    }
+  }
+
   /**
    * reactivate function when backend create api for reactivate ads
    *

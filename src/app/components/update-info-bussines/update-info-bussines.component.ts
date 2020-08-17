@@ -18,7 +18,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
   formData = new FormData();
   businessForm: FormGroup;
   businessUser: Array<User> = [];
-  uploadPhoto: Array<any> = [];
+  uploadPhoto: Array<string> = [];
   photos: Array<string> = [];
   companyPhotos: Array<string> = [];
   deletedImage: boolean;
@@ -63,7 +63,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
       user.city = res.city;
       user.company = res.company;
       user.companyImage = res.companyImage;
-      this.companyPhotos = res.companyImage;
+      this.companyPhotos = res.companyImage || [];
       user.credit = res.credit;
       user.dateOfBirth = res.dateOfBirth;
       user.email = res.email;
@@ -81,7 +81,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
       this.userName = res.userName;
       user.visible = res.visible;
       user.website = res.website;
-      console.log('companyPhotos', this.companyPhotos);
       this.businessUser.push(user);
 
       this.businessForm.patchValue({
@@ -120,7 +119,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
   deleteStoragedPhoto(photo: string, index: number): void {
     this.companyPhotos.splice(index, 1);
     this.adsService.deleteImage(photo).subscribe();
-    console.log('deletedCompanyPhotos', this.companyPhotos);
     this.deletedImage = true;
   }
 
@@ -129,42 +127,42 @@ export class UpdateInfoBussinesComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.modal.confirm({
-    //   nzTitle: 'Are you sure you want to change your info?',
-    //   nzContent: '',
-    //   nzOnOk: () => {
-    const updateBusiness = new User();
-    updateBusiness.name = this.businessForm.value.name;
-    updateBusiness.surname = this.businessForm.value.surname;
-    updateBusiness.email = this.businessForm.value.email;
-    updateBusiness.phone = this.businessForm.value.phone;
-    updateBusiness.mobile = this.businessForm.value.mobile;
-    updateBusiness.address = this.businessForm.value.address;
-    updateBusiness.city = this.businessForm.value.city;
-    updateBusiness.region = this.businessForm.value.canton;
-    updateBusiness.aboutUs = this.businessForm.value.aboutUs;
-    updateBusiness.location = '';
-    updateBusiness.company = this.businessForm.value.company;
-    updateBusiness.companyImage = this.photos.concat(this.companyPhotos);
-    updateBusiness.bussinesType = this.bussinesType;
-    updateBusiness.roleName = this.roleName;
-    updateBusiness.userName = this.userName;
-    updateBusiness.visible = true;
-    updateBusiness.website = this.businessForm.value.website;
-    this.userService.updateUser(updateBusiness).subscribe(
-      (user) => {
-        this.notification.success('', 'User updated');
-        this.router.navigate([`/user/${this.userId}`]);
-        window.scrollTo({ top: 0 });
+    this.modal.confirm({
+      nzTitle: 'Are you sure you want to change your info?',
+      nzContent: '',
+      nzOnOk: () => {
+        const updateBusiness = new User();
+        updateBusiness.name = this.businessForm.value.name;
+        updateBusiness.surname = this.businessForm.value.surname;
+        updateBusiness.email = this.businessForm.value.email;
+        updateBusiness.phone = this.businessForm.value.phone;
+        updateBusiness.mobile = this.businessForm.value.mobile;
+        updateBusiness.address = this.businessForm.value.address;
+        updateBusiness.city = this.businessForm.value.city;
+        updateBusiness.region = this.businessForm.value.canton;
+        updateBusiness.aboutUs = this.businessForm.value.aboutUs;
+        updateBusiness.location = '';
+        updateBusiness.company = this.businessForm.value.company;
+        updateBusiness.companyImage = this.photos.concat(this.companyPhotos);
+        updateBusiness.bussinesType = this.bussinesType;
+        updateBusiness.roleName = this.roleName;
+        updateBusiness.userName = this.userName;
+        updateBusiness.visible = true;
+        updateBusiness.website = this.businessForm.value.website;
+        this.userService.updateUser(updateBusiness).subscribe(
+          (user) => {
+            this.notification.success('', 'User updated');
+            window.scrollTo({ top: 0 });
+            this.router.navigate([`/user/${this.userId}`]);
+          },
+          (error) => {
+            this.modal.error({
+              nzTitle: 'Ops, something went wrong!',
+            });
+          }
+        );
       },
-      (error) => {
-        this.modal.error({
-          nzTitle: 'Ops, something went wrong!',
-        });
-      }
-    );
-    // },
-    // });
+    });
   }
 
   goTo(route: string): void {
