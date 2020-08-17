@@ -40,6 +40,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    window.scrollTo({ top: 0 });
     this.businessForm = this.fb.group({
       company: [''],
       name: [''],

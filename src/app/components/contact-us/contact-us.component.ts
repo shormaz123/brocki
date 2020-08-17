@@ -20,6 +20,7 @@ export class ContactUsComponent implements OnInit {
     private notification: NzNotificationService
   ) {}
   ngOnInit() {
+    window.scrollTo({ top: 0 });
     this.contactForm = this.fb.group({
       name: [''],
       email: [''],

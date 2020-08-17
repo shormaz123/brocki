@@ -54,8 +54,7 @@ export class UserComponent implements OnInit {
     if (admin === 'admin') {
       this.admin = admin;
     }
-    console.log(this.admin);
-    window.scrollTo({ top: 0 });
+    this.scroll();
     this.userService.getUser().subscribe((res) => {
       this.path = res.bussinesType;
       this.companyImage = res.companyImage || [];
@@ -88,6 +87,7 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = false;
     this.guest = false;
+    this.scroll();
     this.adsService.getAllByUserId(this.userId).subscribe((res) => {
       this.activeProducts.push(res);
       if (this.activeProducts[0].length === 0) {
@@ -103,6 +103,7 @@ export class UserComponent implements OnInit {
     this.expired = true;
     this.sold = false;
     this.guest = false;
+    this.scroll();
     this.adsService.getExpiredAds().subscribe((res) => {
       this.expiredProducts.push(res);
       if (this.expiredProducts[0].length === 0) {
@@ -118,6 +119,7 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = true;
     this.guest = false;
+    this.scroll();
     const soldAds = new AdsParam();
     soldAds.status = 'SOLD';
     soldAds.userId = this.userId;
@@ -137,6 +139,7 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = false;
     this.guest = true;
+    this.scroll();
   }
 
   updateInfo() {
@@ -160,6 +163,10 @@ export class UserComponent implements OnInit {
         this.router.navigate(['/site']);
       },
     });
+  }
+
+  scroll(): void {
+    window.scrollTo({ top: 0 });
   }
 
   alert(number: number): void {

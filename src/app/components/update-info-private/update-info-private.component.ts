@@ -30,6 +30,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    window.scrollTo({ top: 0 });
     this.privateForm = this.fb.group({
       name: [''],
       surname: [''],
