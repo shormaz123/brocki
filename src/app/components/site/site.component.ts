@@ -466,6 +466,7 @@ export class SiteComponent implements OnInit, OnDestroy {
           this.getUserAndFavAd();
         } else {
           this.favAds = this.ads;
+          console.log('favAds', this.favAds)
         }
       });
     }
@@ -505,21 +506,18 @@ export class SiteComponent implements OnInit, OnDestroy {
   }
 
   getUserAndFavAd() {
-  if (this.token) {
-      this.userService.getFavourites(this.userId).subscribe((x) => {
-        if (this.token) {
-          this.favoriteAds = x;
-          this.numberOfFavorites = x.length;
+    this.userService.getUser().subscribe( response => {
+      this.userService.getFavourites(response.id).subscribe((x) => {
+        this.favoriteAds = x;
+        this.numberOfFavorites = x.length;
 
-          // Replace objects between two arrays.
-          this.favAds = this.ads.map(
-            (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-          );
-        }
+        // Replace objects between two arrays.
+        this.favAds = this.ads.map(
+          (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+        );
       });
-  } else  {
-    this.favAds = this.ads;
-  }
+    })
+
   }
 
   getNumOfFavs() {
