@@ -53,6 +53,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   showItems = 16;
   userRequest: UserAddAdsRequest;
   searchProductName: string;
+  adsByParams;
 
   state;
   selected: boolean;
@@ -503,7 +504,7 @@ export class SiteComponent implements OnInit, OnDestroy {
     }
   }
 
-  getUserAndFavAd() {
+  getUserAndFavAd(input?: any) {
     this.userService.getUser().subscribe((response) => {
       this.userId = response.id;
       this.userService.getFavourites(response.id).subscribe((x) => {
@@ -587,12 +588,17 @@ export class SiteComponent implements OnInit, OnDestroy {
     });
   }
 
+
   getAdsByParams(adssubgroup: number) {
+    this.favAds = [];
     this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe((response) => {
-      this.ads = response;
-      this.randomAds = this.shuffle(response);
-      this.getUserAndFavAd();
+      this.adsByParams = response;
+      this.favAds = this.adsByParams.map(
+      (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+      );
+      console.log(this.favAds);
     });
+
   }
 
   increaseShow() {

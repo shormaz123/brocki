@@ -1,4 +1,50 @@
 @import '../../../scss/variables';
+
+.adLine {
+  border: 0 0 1px 0;
+  border-bottom: 1px solid $red;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  width: 70%;
+  height: 1px;
+  margin: 0px auto;
+}
+
+.cardHover {
+  box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06),
+  1px 3px 8px rgba(39, 44, 49, 0.03);
+  transition: all 0.5s ease;
+  /* back to normal */
+  &:hover {
+    box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.07),
+    1px 6px 12px rgba(39, 44, 49, 0.04);
+    transition: all 0.4s ease;
+    // transform: translate3D(0, -1px, 0) scale(1.03);
+    // transform: translateX(-50%) translateX(-0.4px) translateY(-50%) translateY(-0.4px);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.05);
+    /* zoom in */
+  }
+}
+
+.mat-icon {
+  color: $red;
+}
+
+.bodyLabel {
+  text-align: center;
+  display: inline-block;
+  width: 98%;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  justify-content: center;
+  label {
+    width: 100%;
+  }
+}@import '../../../scss/variables';
 .container {
   height: auto;
   width: 100vw;
@@ -530,12 +576,12 @@ p-sidebar {
 
 .cardHover {
   box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06),
-    1px 3px 8px rgba(39, 44, 49, 0.03);
+  1px 3px 8px rgba(39, 44, 49, 0.03);
   transition: all 0.5s ease;
   /* back to normal */
   &:hover {
     box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.07),
-      1px 6px 12px rgba(39, 44, 49, 0.04);
+    1px 6px 12px rgba(39, 44, 49, 0.04);
     transition: all 0.4s ease;
     // transform: translate3D(0, -1px, 0) scale(1.03);
     // transform: translateX(-50%) translateX(-0.4px) translateY(-50%) translateY(-0.4px);

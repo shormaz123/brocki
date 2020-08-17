@@ -17,7 +17,7 @@ export const en = {
       'app is to maintain the upcycling and help the Swiss secondhand with the management, foundations with workshops and antiques reading, to inspire the current market development of new customers and to enable their articles on the Internet.',
     copyrightOne: 'Copyright ©2020 All rights reserved ',
     copyrightTwo: 'by ',
-    copyrightThree: 'MioSoftware LLC',
+    copyrightThree: 'Mio Software LLC',
     from: 'From',
     to: 'To',
     fixedPrice: 'Fixed price',
@@ -113,6 +113,19 @@ export const en = {
     userNoActiveAds: 'User doesn`t have active ads',
     deletePhoto: 'Delete photo',
     confirmRegistration: 'Please, confirm your registration',
-    confirmAccount: 'Confirm account'
+    confirmAccount: 'Confirm account',
+    pricingOne: 'Fees',
+    pricingTwo: 'The advertising and posting of offers up to a value of CHF 9.95 are free.',
+    pricingThree: 'We only charge 5% of the sales price for all offers from CHF 10.',
+    pricingFour: 'The directory (membership) and profile are free.',
+    pricingFive: 'Minibrocki.ch also serves as a company directory so that you can get in touch with like-minded people. Together we can design projects and events and publish them on minibrocki.ch. So that as many people as possible can be inspired by sustainable thinking.',
+    pricingSix: 'Do not hesitate to involve us in your projects, together we can design and organize newsletters, flyers, mailing, social media and many other publication channels. Write to us at projektleitung@minibrocki.ch.',
+    pricingSeven: 'To sell',
+    pricingEight: 'Does the buyer live in the same city? For payment and handover, it is best to lure the interested parties into your premises.',
+    pricingNine: 'Click on "Send invoice" for your advertised item, insert the buyer\'s email address and write the final price to be paid.',
+    pricingTen: 'Send the invoice by email (Paypal, Twint, invoice) or post and as soon as the item has been paid for, reserve or send it.',
+    pricingEleven: 'Do not send anything without having received the money first.',
+    pricingList: 'Pricing list'
+
   },
 };

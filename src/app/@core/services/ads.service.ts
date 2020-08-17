@@ -13,7 +13,7 @@ import {
   HttpEvent,
   HttpErrorResponse,
   HttpEventType,
-  HttpParams,
+  HttpParams, HttpHeaders,
 } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { AdsParam } from '../../shared/models/adParams.model';
@@ -135,12 +135,8 @@ export class AdsService {
    * Delete photo
    *
    */
-  deleteImage(image: string): Observable<string> {
-    const params = new HttpParams().set('companyImage', JSON.stringify(image));
-    return this.http.post(
-      `${this.baseUrl}/mybrocki/auth/image/destroy`,
-      params
-    );
+  deleteImage(image: string): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/mybrocki/auth/image/destroy`, image);
   }
 
   createComment(comment: Comment): Observable<Comment> {
