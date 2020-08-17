@@ -9,6 +9,8 @@ import {UserService} from '../../@core/services/user.service';
 })
 export class ConfirmLoginComponent implements OnInit {
   confirmToken;
+  errorBoolean;
+  errorMessage;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService) {
   }
@@ -19,12 +21,22 @@ export class ConfirmLoginComponent implements OnInit {
     });
   }
 
-  goTo(route: string): void {
-    this.userService.confirmAccount(this.confirmToken).subscribe( x => {
-      this.router.navigate([route]);
+  goTo(): void {
+    this.userService.confirmAccount(this.confirmToken).subscribe(
+      (x) => {
+        if (x) {
+          console.log(x);
+          this.router.navigate(['/site']);
+        }
     },
-      error => {
-        console.log(error);
+      (error) => {
+        console.log(error.text)
+        if (error.text === 'OK') {
+          this.router.navigate(['/site']);
+        } else {
+          this.errorBoolean = true;
+          this.errorMessage = 'No token!';
+        }
       });
   }
 

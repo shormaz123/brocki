@@ -7,7 +7,6 @@ import {
   OnChanges,
   OnDestroy,
 } from '@angular/core';
-import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
 import { AdsService } from '../../@core/services/ads.service';
 import { Ads } from '../../shared/models/ads.model';
 import { AuthConst } from '../../@core/consts/auth.const';
@@ -54,6 +53,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   showItems = 16;
   userRequest: UserAddAdsRequest;
   searchProductName: string;
+  adsByParams;
 
   state;
   selected: boolean;
@@ -504,7 +504,7 @@ export class SiteComponent implements OnInit, OnDestroy {
     }
   }
 
-  getUserAndFavAd() {
+  getUserAndFavAd(input?: any) {
     this.userService.getUser().subscribe((response) => {
       this.userId = response.id;
       this.userService.getFavourites(response.id).subscribe((x) => {
@@ -588,12 +588,21 @@ export class SiteComponent implements OnInit, OnDestroy {
     });
   }
 
+  goToAd(id: number) {
+    this.router.navigate(['/ad', id], { fragment: 'header' });
+  }
+
+
   getAdsByParams(adssubgroup: number) {
+    this.favAds = [];
     this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe((response) => {
-      this.ads = response;
-      this.randomAds = this.shuffle(response);
-      this.getUserAndFavAd();
+      this.adsByParams = response;
+      this.favAds = this.adsByParams.map(
+      (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+      );
+      console.log(this.favAds);
     });
+
   }
 
   increaseShow() {

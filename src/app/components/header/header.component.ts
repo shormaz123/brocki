@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
   dropdownBoolean = true;
   userLang;
   chosenLanguage;
+  header;
 
   @Output() notify = new EventEmitter<any>();
 
@@ -67,13 +68,17 @@ export class HeaderComponent implements OnInit {
     this.loginNameSubscription.unsubscribe();
   }
 
-  sendLangThruObservable(lang: string): void {
-    // send message to subscribers via observable subject
-  }
+
+
 
   change(code: string) {
     this.translate.use(code);
-    this.translateBackend.setLanguage(code);
+    this.translateBackend.setLanguage(code).subscribe( x => {
+      console.log(x);
+    },
+      error =>  {
+      console.log(error)
+      });
     this.translateBackend.sendLanguage(code);
     this.notify.emit(code);
   }

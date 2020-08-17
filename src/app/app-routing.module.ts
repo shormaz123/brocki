@@ -19,6 +19,7 @@ import { AuthGuardService } from './@core/services/authGuard.service';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.component';
+import { AdsComponent } from './components/ads/ads.component';
 
 const routes: Routes = [
   {
@@ -96,13 +97,17 @@ const routes: Routes = [
         path: 'ad/:id',
         component: AdComponent,
       },
+      {
+        path: 'ads',
+        component: AdsComponent,
+      },
     ],
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'disabled' }),
   ],
   exports: [RouterModule],
 })

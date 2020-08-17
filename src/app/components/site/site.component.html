@@ -112,21 +112,21 @@
       <!-- <button class="siteButton">Around me</button> -->
       <button
         class="siteButton"
-        pTooltip="Will be available soon !!!"
+        pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}"
         tooltipPosition="top"
       >
         {{ 'translate.freshlyAdvertised' | translate }}
       </button>
       <button
         class="siteButton"
-        pTooltip="Will be available soon !!!"
+        pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}"
         tooltipPosition="top"
       >
         {{ 'translate.unused' | translate }}
       </button>
       <button
         class="siteButton"
-        pTooltip="Will be available soon !!!"
+        pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}"
         tooltipPosition="top"
       >
         {{ 'translate.mostWanted' | translate }}
@@ -138,14 +138,15 @@
       >
       <div class="bodySuggestions2">
         <div class="cards">
-          <p-carousel [value]="favAds" [numVisible]="3" [numScroll]="1">
+          <app-ads-carousel [ads]="favAds" [userId]="userId"></app-ads-carousel>
+          <p-carousel [value]="favAds" [numVisible]="3" [numScroll]="1" [circular]="false">
             <ng-template let-ad pTemplate="item">
               <div
                 style="
                   padding: '5px';
                   background-color: #f6f6f6;
                   padding: 10px !important;
-                  width: 80%;
+                  width: 300px;
                   height: 100%;
                 "
               >
@@ -217,11 +218,11 @@
       </div>
       <div class="bodySuggestions2" style="margin-bottom: 50px;">
         <div class="cards">
-          <p-carousel [value]="favAds" [numVisible]="3" [numScroll]="1">
+          <p-carousel [value]="favAds" [numVisible]="3" [numScroll]="1" [circular]="false">
             <ng-template let-card pTemplate="item">
               <div
                 style="
-                  width: 80%;
+                      width: 300px;
                   height: 100%;
                   padding: '5px';
                   background-color: #f6f6f6;
@@ -309,10 +310,10 @@
               style="background-color: white; cursor: pointer; padding: 10px;"
               class="cardHover"
             >
-              <div class="image" [routerLink]="['/ad', card.id]">
+              <div class="image" (click)="goToAd(card.id)">
                 <img src="Card" [src]="card.image[0]" />
               </div>
-              <div class="cardBody" [routerLink]="['/ad', card.id]">
+              <div class="cardBody" (click)="goToAd(card.id)">
                 <div class="bodyLabel">
                   <label style="font-size: 20px; font-weight: bolder;">{{
                     card.productName
@@ -361,7 +362,7 @@
               </div>
             </div>
           </div>
-          <div>
+          <div class="increaseButtonClass">
             <button
               class="increaseButton"
               mat-button

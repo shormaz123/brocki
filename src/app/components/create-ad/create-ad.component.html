@@ -30,7 +30,7 @@
           formControlName="category"
           (change)="findCategory($event)"
         >
-          <option selected disabled value="">{{
+          <option value="">{{
             'translate.selectCategory' | translate
           }}</option>
           <option *ngFor="let category of categories" [value]="category.id">
@@ -44,7 +44,7 @@
           formControlName="subcategory"
           (change)="findsubcategory($event)"
         >
-          <option selected disabled value="">{{
+          <option value="">{{
             'translate.selectSubCategory' | translate
           }}</option>
           <option
@@ -92,7 +92,7 @@
           >
             <img [src]="photo" class="form__image" />
             <div class="form__delete" (click)="deletePhoto(i)">
-              <label class="form__delete-label">delete photo X</label>
+              <label class="form__delete-label">{{'translate.deletePhoto' | translate }}</label>
             </div>
           </div>
           <div class="form__svg" *ngIf="photos.length < 6">

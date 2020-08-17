@@ -71,7 +71,7 @@
               style="height: 25px; margin-right: 10px;"
             />{{'translate.edit' | translate}}
           </div>
-          <div href="#" style="height: 50px;" (click)="logout()">
+          <div href="#" style="height: auto;" (click)="logout()">
             <img
               src="../../../assets/images/ad/logout.svg"
               style="height: 25px; margin-right: 10px;"
@@ -82,7 +82,7 @@
       <!-- <button mat-button [routerLink]="['/user', userId]" *ngIf="accountName">{{ accountName }}</button>
       <mat-menu #menu="matMenu" >
         <button mat-menu-item (click)="create()" *ngIf="!accountName">{{'translate.createAccount' | translate}}</button>
-        <button mat-menu-item (click)="logout()" *ngIf="accountName">Logout</button>
+        <button mat-menu-item (click)="logout()" >Logout</button>
       </mat-menu> -->
       <!--
       <span

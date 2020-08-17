@@ -108,7 +108,7 @@
               class="form__delete"
               (click)="deleteStoragedPhoto(companyPhoto, i)"
             >
-              <label class="form__delete-label">delete photo X</label>
+              <label class="form__delete-label">{{'translate.deletePhoto' | translate }}</label>
             </div>
           </div>
           <div
@@ -117,7 +117,7 @@
           >
             <img [src]="photo" class="form__image" />
             <div class="form__delete" (click)="deletePhoto(j)">
-              <label class="form__delete-label">delete photo X</label>
+              <label class="form__delete-label">{{'translate.deletePhoto' | translate }}</label>
             </div>
           </div>
           <div

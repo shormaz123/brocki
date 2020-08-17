@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         this.errorBoolean = true;
-        this.errorMessage = 'User not found!';
+        setTimeout(() => (this.errorBoolean = false), 2000);
+        this.errorMessage = error.message;
         console.log(this.errorMessage);
       }
     );

@@ -1,4 +1,12 @@
 <app-header></app-header>
 <div class="container">
-  <button (click)="goTo('login')">CONFIRM ACCOUNT</button>
+  <label>{{'translate.confirmRegistration' | translate}}</label>
+  <button (click)="goTo()">{{'translate.confirmAccount' | translate}}</button>
+  <nz-alert
+    nzType="error"
+    nzMessage="{{ errorMessage }}"
+    nzShowIcon
+    *ngIf="errorBoolean"
+    style="margin-bottom: 20px; margin-left: 4.5%;"
+  ></nz-alert>
 </div>
