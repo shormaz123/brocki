@@ -125,7 +125,8 @@ export const en = {
     pricingNine: 'Click on "Send invoice" for your advertised item, insert the buyer\'s email address and write the final price to be paid.',
     pricingTen: 'Send the invoice by email (Paypal, Twint, invoice) or post and as soon as the item has been paid for, reserve or send it.',
     pricingEleven: 'Do not send anything without having received the money first.',
-    pricingList: 'Pricing list'
+    pricingList: 'Pricing list',
+    freeMonths: '3 months free use'
 
   },
 };

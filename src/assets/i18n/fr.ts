@@ -127,5 +127,6 @@ export const fr = {
     pricingTen: 'Envoyez la facture par email (Paypal, Twint, facture) ou par courrier et dès que l\'article a été payé, réservez ou envoyez-le.',
     pricingEleven: 'N\'envoyez rien sans avoir d\'abord reçu l\'argent.',
     pricingList: 'Liste de prix',
+    freeMonths: '3 mois gratuits'
   },
 };

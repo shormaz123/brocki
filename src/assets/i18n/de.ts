@@ -128,6 +128,7 @@ export const de = {
     pricingTen: 'Schicken Sie die Rechnung per E-Mail (Paypal, Twint, Rechnung) oder Post und sobald der Artikel bezahlt wurde, reservieren oder versenden Sie diesen.',
     pricingEleven: 'Versenden Sie Nichts ohne dass Sie davor das Geld erhalten haben.',
     pricingList: 'Preisliste',
+    freeMonths: '3 Monate kostenlos'
 
 
 
