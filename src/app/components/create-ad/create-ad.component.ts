@@ -25,7 +25,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   categoryId: number;
   subcategoryId: number;
   subscriptionLang: Subscription;
-  currentLang;
+  currentLang = 'de';
 
   constructor(
     private fb: FormBuilder,
