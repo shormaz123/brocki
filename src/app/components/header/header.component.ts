@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit {
       console.log(x);
     },
       error =>  {
-      console.log(error)
+      console.log(error);
       });
     this.translateBackend.sendLanguage(code);
     this.notify.emit(code);
