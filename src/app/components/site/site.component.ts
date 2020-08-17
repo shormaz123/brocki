@@ -588,6 +588,10 @@ export class SiteComponent implements OnInit, OnDestroy {
     });
   }
 
+  goToAd(id: number) {
+    this.router.navigate(['/ad', id], { fragment: 'header' });
+  }
+
 
   getAdsByParams(adssubgroup: number) {
     this.favAds = [];

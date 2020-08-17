@@ -310,10 +310,10 @@
               style="background-color: white; cursor: pointer; padding: 10px;"
               class="cardHover"
             >
-              <div class="image" [routerLink]="['/ad', card.id]">
+              <div class="image" (click)="goToAd(card.id)">
                 <img src="Card" [src]="card.image[0]" />
               </div>
-              <div class="cardBody" [routerLink]="['/ad', card.id]">
+              <div class="cardBody" (click)="goToAd(card.id)">
                 <div class="bodyLabel">
                   <label style="font-size: 20px; font-weight: bolder;">{{
                     card.productName

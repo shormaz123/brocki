@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { AdsService } from '../../@core/services/ads.service';
 import { UserService } from '../../@core/services/user.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
@@ -12,7 +12,10 @@ import {
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { HelpersService } from '../../@core/services/helpers.service';
-import { CeiboShare } from 'ng2-social-share';
+import {ViewportScroller} from '@angular/common';
+
+
+
 
 @Component({
   selector: 'app-ad',
@@ -23,7 +26,7 @@ export class AdComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
 
-  adId: number;
+    adId: number;
   userSellerId: number;
   ad: Ads;
   userSeller: User;
@@ -44,6 +47,8 @@ export class AdComponent implements OnInit {
   userRequest: UserAddAdsRequest;
   token;
   userId: number;
+  public spt: any;
+  public spl: any;
 
   mySubscription: any;
 
@@ -54,9 +59,11 @@ export class AdComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private helpersService: HelpersService,
     private router: Router,
+
   ) {}
 
   ngOnInit() {
+    window.scrollTo({ top: 0 });
     this.token = localStorage.getItem(AuthConst.token);
     if (this.token) {
       this.userService.getUser().subscribe((response) => {
@@ -89,21 +96,21 @@ export class AdComponent implements OnInit {
     ];
 
     this.images = [];
-
     this.activatedRoute.params.subscribe((params) => {
       this.adId = params.id;
       this.getNewAd(this.adId);
     });
+
   }
 
   getNewAd(id: number) {
+    window.scrollTo({ top: 0 });
     this.galleryImages = [];
     this.adsService.getAdById(id).subscribe((response) => {
       this.userSellerId = response.userId;
       this.ad = response;
       this.adGroupId = response.adsGroupId;
-      console.log(response)
-      // window.scrollTo(0, 0);
+      console.log(response);
       this.adsService.getAdsByGroupId(this.adGroupId).subscribe((x) => {
         if (x == null) {
           this.categoryImagesAvailable = false;
@@ -139,7 +146,6 @@ export class AdComponent implements OnInit {
         }
       });
     });
-
 
   }
 
