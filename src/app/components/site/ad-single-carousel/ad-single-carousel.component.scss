@@ -87,6 +87,19 @@ nz-carousel {
   }
 }
 
+.title-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 0 0 10px;
+}
+
+.desc-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .price {
   height: 30px;
   display: flex;

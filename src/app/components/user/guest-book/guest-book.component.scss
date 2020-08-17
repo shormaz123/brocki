@@ -5,7 +5,6 @@
   width: 100%;
   height: auto;
   background-color: white;
-  padding: 0 0 100px;
 
   @include rwdm(1600) {
     width: 1280px;
@@ -55,6 +54,10 @@
 .active {
   fill: red;
   color: red;
+}
+
+.wrapper {
+  padding: 0 0 100px;
 }
 
 hr {

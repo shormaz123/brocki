@@ -8,5 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PricingListComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    window.scrollTo({ top: 0 });
+  }
 }

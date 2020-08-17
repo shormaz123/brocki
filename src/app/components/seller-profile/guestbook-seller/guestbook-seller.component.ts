@@ -5,7 +5,7 @@ import { AdsService } from '../../../@core/services/ads.service';
 import { AuthService } from '.././../../@core/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Comment } from '../../../shared/models/createComment.model';
-import { NzModalService } from 'ng-zorro-antd';
+import { NzModalService, NzNotificationService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-guestbook-seller',
@@ -28,7 +28,8 @@ export class GuestbookSellerComponent implements OnInit {
     private userService: UserService,
     private adsService: AdsService,
     private authService: AuthService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private notification: NzNotificationService
   ) {}
 
   ngOnInit() {
@@ -53,7 +54,14 @@ export class GuestbookSellerComponent implements OnInit {
 
   onSubmit(): void {
     const comment = new Comment();
-    comment.rate = this.ratingForm.value.rating;
+    if (this.ratingForm.value.rating === '') {
+      this.modal.error({
+        nzTitle: 'To post a comment you must rate the seller!',
+      });
+      return;
+    } else {
+      comment.rate = this.ratingForm.value.rating;
+    }
     if (this.ratingForm.value.comment === '') {
       this.modal.error({
         nzTitle: 'To post a comment, please leave a comment in text area!',
@@ -64,17 +72,9 @@ export class GuestbookSellerComponent implements OnInit {
     }
     comment.userId = this.sellerId;
     comment.authorName = this.nameOfCommentator;
-    this.adsService.createComment(comment).subscribe(
-      (res) => {
-        this.ratingForm.reset();
-        this.guestBook.emit();
-      },
-      (error) => {
-        this.modal.error({
-          nzTitle: 'To post a comment you must rate the seller!',
-        });
-        this.ratingForm.reset();
-      }
-    );
+    this.adsService.createComment(comment).subscribe(() => {
+      this.notification.success('', 'You have successfully posted a comment');
+      this.guestBook.emit();
+    });
   }
 }

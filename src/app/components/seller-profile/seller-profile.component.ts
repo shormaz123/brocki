@@ -70,6 +70,7 @@ export class SellerProfileComponent implements OnInit {
     this.info = false;
     this.guest = false;
     this.active = true;
+    this.scroll();
   }
 
   soldButton() {
@@ -78,6 +79,7 @@ export class SellerProfileComponent implements OnInit {
     this.guest = false;
     this.active = false;
     this.sold = true;
+    this.scroll();
     const soldAds = new AdsParam();
     soldAds.status = 'SOLD';
     soldAds.userId = this.sellerindex;
@@ -97,6 +99,7 @@ export class SellerProfileComponent implements OnInit {
     this.active = false;
     this.sold = false;
     this.about = true;
+    this.scroll();
   }
 
   infoButton() {
@@ -105,6 +108,7 @@ export class SellerProfileComponent implements OnInit {
     this.sold = false;
     this.about = false;
     this.info = true;
+    this.scroll();
   }
 
   guestButton() {
@@ -113,6 +117,7 @@ export class SellerProfileComponent implements OnInit {
     this.about = false;
     this.info = false;
     this.guest = true;
+    this.scroll();
     this.adsService.getCommentByUser(this.sellerId).subscribe((res) => {
       this.CommentsOfUser = [];
       this.CommentsOfUser.push(res);
@@ -126,5 +131,9 @@ export class SellerProfileComponent implements OnInit {
   guestBook(): void {
     this.guest = false;
     this.active = true;
+  }
+
+  scroll(): void {
+    window.scrollTo({ top: 0 });
   }
 }

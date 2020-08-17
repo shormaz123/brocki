@@ -1,7 +1,10 @@
 <div class="container">
-  <div class="ads">
-    <div class="ads__text" *ngIf="ads === true">
-      {{'translate.youHaveNoExpiredAds' | translate}}
+  <div
+    class="ads"
+    [ngStyle]="ads === false ? { height: '0px' } : { height: '110px' }"
+  >
+    <div class="ads__text" *ngIf="ads === true" [ngStyle]="style()">
+      {{ 'translate.youHaveNoExpiredAds' | translate }}
     </div>
   </div>
   <div *ngIf="ads === false">
@@ -26,10 +29,10 @@
           </div>
         </div>
       </div>
-      <div (click)="reactivate(expired, i)" class="expired">
+      <div class="expired">
         <div class="tooltip">
-          {{'translate.reactivate' | translate}}
-          <span class="tooltiptext">{{'translate.reactivateThisAd' | translate}}</span>
+          {{ 'translate.reactivate' | translate }}
+          <!-- <span class="tooltiptext">{{'translate.reactivateThisAd' | translate}}</span> -->
         </div>
       </div>
     </div>

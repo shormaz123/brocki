@@ -33,10 +33,12 @@ export class UserComponent implements OnInit {
   expiredProducts: Array<any> = [];
   soldProducts: Array<any> = [];
   guestBook: Array<any> = [];
+  companyImage: string[];
   adsActive: boolean;
   adsExpired: boolean;
   adsSold: boolean;
   comment: boolean;
+  admin: string;
 
   constructor(
     private userService: UserService,
@@ -48,11 +50,19 @@ export class UserComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const admin = this.authService.getAdmin();
+    if (admin === 'admin') {
+      this.admin = admin;
+    }
+    this.scroll();
     this.userService.getUser().subscribe((res) => {
       this.path = res.bussinesType;
-      res.companyImage[0]
-        ? (this.userImage = res.companyImage[0])
-        : (this.userImage = this.defaultImage);
+      this.companyImage = res.companyImage || [];
+      if (this.companyImage.length > 0) {
+        this.userImage = res.companyImage[0];
+      } else if (this.companyImage === []) {
+        this.userImage = this.defaultImage;
+      }
     });
     this.guest = true;
     this.activatedRoute.params.subscribe((params) => {
@@ -77,6 +87,7 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = false;
     this.guest = false;
+    this.scroll();
     this.adsService.getAllByUserId(this.userId).subscribe((res) => {
       this.activeProducts.push(res);
       if (this.activeProducts[0].length === 0) {
@@ -92,6 +103,7 @@ export class UserComponent implements OnInit {
     this.expired = true;
     this.sold = false;
     this.guest = false;
+    this.scroll();
     this.adsService.getExpiredAds().subscribe((res) => {
       this.expiredProducts.push(res);
       if (this.expiredProducts[0].length === 0) {
@@ -107,6 +119,7 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = true;
     this.guest = false;
+    this.scroll();
     const soldAds = new AdsParam();
     soldAds.status = 'SOLD';
     soldAds.userId = this.userId;
@@ -126,6 +139,7 @@ export class UserComponent implements OnInit {
     this.expired = false;
     this.sold = false;
     this.guest = true;
+    this.scroll();
   }
 
   updateInfo() {
@@ -149,5 +163,17 @@ export class UserComponent implements OnInit {
         this.router.navigate(['/site']);
       },
     });
+  }
+
+  scroll(): void {
+    window.scrollTo({ top: 0 });
+  }
+
+  alert(number: number): void {
+    if (number === 1) {
+      alert('Accept ads under construction !!');
+    } else if (number === 2) {
+      alert('Acceptance of business accounts under construction !!');
+    }
   }
 }

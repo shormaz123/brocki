@@ -26,15 +26,16 @@
   &__text {
     cursor: pointer;
     color: $darkgrey;
-    width: 130px;
+    width: 250px;
     &:hover {
       color: black;
+      width: 260px;
       -ms-transform: scale(1.1);
       /* IE 9 */
       -webkit-transform: scale(1.1);
       /* Safari 3-8 */
       transform: scale(1.1);
-      padding-left: 5px;
+      padding-left: 11px;
     }
   }
   &__links {

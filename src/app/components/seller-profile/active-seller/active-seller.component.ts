@@ -9,6 +9,7 @@ import { Ads } from '../../../shared/models/ads.model';
 export class ActiveSellerComponent implements OnChanges {
   @Input() activeProducts: Ads;
   @Input() ads: boolean;
+  hide: boolean = true;
   constructor() {}
 
   ngOnChanges() {}

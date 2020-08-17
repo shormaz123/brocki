@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../@core/services/user.service';
-import {AuthConst} from '../../@core/consts/auth.const';
+import { AuthConst } from '../../@core/consts/auth.const';
 
 @Component({
   selector: 'app-footer',
@@ -24,5 +24,6 @@ export class FooterComponent implements OnInit {
 
   goTo(route: string): void {
     this.router.navigate([route]);
+    window.scrollTo({ top: 0 });
   }
 }

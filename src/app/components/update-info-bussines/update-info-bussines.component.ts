@@ -18,11 +18,11 @@ export class UpdateInfoBussinesComponent implements OnInit {
   formData = new FormData();
   businessForm: FormGroup;
   businessUser: Array<User> = [];
-  uploadPhoto: Array<any> = [];
+  uploadPhoto: Array<string> = [];
   photos: Array<string> = [];
   companyPhotos: Array<string> = [];
   deletedImage: boolean;
-  res: Array<string> = [];
+  uploadedImage: Array<string> = [];
   userId: number;
   userName: string;
   bussinesType: string;
@@ -40,6 +40,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    window.scrollTo({ top: 0 });
     this.businessForm = this.fb.group({
       company: [''],
       name: [''],
@@ -51,7 +52,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
       address: [''],
       canton: [''],
       city: [''],
-      aboutUs: ['', [Validators.maxLength(1000)]],
+      aboutUs: ['', [Validators.maxLength(2)]],
     });
 
     this.userService.getUser().subscribe((res) => {
@@ -63,7 +64,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
       user.city = res.city;
       user.company = res.company;
       user.companyImage = res.companyImage;
-      this.companyPhotos = res.companyImage;
+      this.companyPhotos = res.companyImage || [];
       user.credit = res.credit;
       user.dateOfBirth = res.dateOfBirth;
       user.email = res.email;
@@ -81,7 +82,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
       this.userName = res.userName;
       user.visible = res.visible;
       user.website = res.website;
-      console.log('companyPhotos', this.companyPhotos);
       this.businessUser.push(user);
 
       this.businessForm.patchValue({
@@ -102,7 +102,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
 
   uploadImage(event: any): void {
     this.uploadPhoto = [];
-    if (event.target.files || event.target.files.length) {
+    if (event.target.files) {
       this.formData = new FormData();
       this.uploadPhoto.push(...event.target.files);
     }
@@ -111,8 +111,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
         this.formData.append('file', picture);
       }
       this.adsService.uploadImageInStorage(this.formData).subscribe((res) => {
-        this.res = res;
-        this.photos.push(...this.res);
+        this.uploadedImage = res;
+        this.photos.push(...this.uploadedImage);
       });
     }
   }
@@ -128,12 +128,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (this.uploadPhoto.length === 0) {
-    //   this.modal.error({
-    //     nzTitle: 'You must add a picture!',
-    //   });
-    //   return;
-    // }
     this.modal.confirm({
       nzTitle: 'Are you sure you want to change your info?',
       nzContent: '',
@@ -159,6 +153,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
         this.userService.updateUser(updateBusiness).subscribe(
           (user) => {
             this.notification.success('', 'User updated');
+            window.scrollTo({ top: 0 });
             this.router.navigate([`/user/${this.userId}`]);
           },
           (error) => {

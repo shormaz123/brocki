@@ -1,11 +1,24 @@
-<div class="about-us">
+<div
+  class="about-us"
+  [ngStyle]="
+    sellersImages.length < 4 ? { height: '630px' } : { height: '850px' }
+  "
+>
   <div class="about-us__title">
-    {{'translate.aboutUs' | translate}}
+    {{ 'translate.aboutUs' | translate }}
   </div>
   <div class="about-us__text">
     {{ aboutUs }}
   </div>
-  <div class="company-picture">
+  <div
+    class="company-picture"
+    [ngClass]="{ display: sellersImages.length === 2 }"
+    [ngStyle]="
+      sellersImages.length === 1
+        ? { display: 'flex', 'justify-content': 'center' }
+        : { display: 'flex' }
+    "
+  >
     <div *ngFor="let image of sellersImages">
       <div class="company-picture__images" *ngIf="noImages">
         <img class="company-picture__image" [src]="image" />

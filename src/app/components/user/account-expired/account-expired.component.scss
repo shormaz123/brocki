@@ -51,7 +51,7 @@
   padding: 3px 30px;
   text-transform: uppercase;
   font-size: 16px;
-  cursor: pointer;
+  // cursor: pointer;
 
   @include rwd(1600) {
     position: absolute;
@@ -60,41 +60,44 @@
   }
 }
 
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
+/**
+   * tooltip when backend create api for reactivate ads
+   *
+   */
+// .tooltip {
+//   position: relative;
+//   display: inline-block;
+// }
+// .tooltip .tooltiptext {
+//   visibility: hidden;
+//   width: 125px;
+//   font-size: 14px;
+//   text-transform: lowercase;
+//   background-color: $red;
+//   color: #fff;
+//   text-align: center;
+//   border-radius: 10px;
+//   padding: 3px 0;
+//   position: absolute;
+//   top: -35px;
+//   right: -28px;
+//   z-index: 1;
+// }
 
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 125px;
-  font-size: 14px;
-  text-transform: lowercase;
-  background-color: $red;
-  color: #fff;
-  text-align: center;
-  border-radius: 10px;
-  padding: 3px 0;
-  position: absolute;
-  top: -35px;
-  right: -28px;
-  z-index: 1;
-}
+// .tooltip .tooltiptext::after {
+//   content: '';
+//   position: absolute;
+//   top: 100%;
+//   right: 10px;
+//   margin-left: -5px;
+//   border-width: 5px;
+//   border-style: solid;
+//   border-color: $red transparent transparent transparent;
+// }
 
-.tooltip .tooltiptext::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  right: 10px;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: $red transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
+// .tooltip:hover .tooltiptext {
+//   visibility: visible;
+// }
 
 .text {
   width: 60%;
@@ -143,6 +146,7 @@ hr {
 }
 
 .ads {
+  height: 110px;
   &__text {
     height: 100px;
     display: flex;

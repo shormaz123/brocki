@@ -89,4 +89,12 @@ export class AccountActiveComponent implements OnChanges {
       },
     });
   }
+
+  style() {
+    if (this.activeProducts[0] > 0) {
+      return { height: '0px' };
+    } else {
+      return { height: '100' };
+    }
+  }
 }
