@@ -6,7 +6,7 @@
         <div class="imageBorder">
           <img class="profil-image" [src]="userImage" />
         </div>
-        <span>{{ 'translate.myAccount' | translate }}</span>
+        <span *ngIf="userName">{{ userName }}</span>
       </div>
       <div class="body">
         <!-- <div class="checkmarks">

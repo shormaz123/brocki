@@ -68,6 +68,14 @@ export class HeaderComponent implements OnInit {
     this.loginNameSubscription.unsubscribe();
   }
 
+  goToUserProfie(id: number) {
+    if( localStorage.getItem(AuthConst.token) == null) {
+      this.router.navigate(['/login']);
+    } else {
+      this.router.navigate(['/user', id],);
+    }
+  }
+
 
 
 

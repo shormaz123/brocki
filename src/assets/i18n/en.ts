@@ -143,5 +143,6 @@ export const en = {
       'Do not send anything without having received the money first.',
     pricingList: 'Pricing list',
     freeMonths: '3 months free use',
+    copied: 'Copied'
   },
 };

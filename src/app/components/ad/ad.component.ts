@@ -1,7 +1,13 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { AdsService } from '../../@core/services/ads.service';
 import { UserService } from '../../@core/services/user.service';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Ads } from '../../shared/models/ads.model';
 import { User } from '../../shared/models/user.model';
 import {
@@ -13,9 +19,6 @@ import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { HelpersService } from '../../@core/services/helpers.service';
 
-
-
-
 @Component({
   selector: 'app-ad',
   templateUrl: './ad.component.html',
@@ -25,7 +28,7 @@ export class AdComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
 
-    adId: number;
+  adId: number;
   userSellerId: number;
   ad: Ads;
   userSeller: User;
@@ -34,6 +37,9 @@ export class AdComponent implements OnInit {
   adGroupId?;
   adsByCategory;
   currentUrl = document.URL;
+  defaultImage = '../../../assets/images/myAccount/profile-picture.png';
+  userImage: string = this.defaultImage;
+  companyImage: string[];
 
   usersImagesAvailabe: boolean;
   categoryImagesAvailable: boolean;
@@ -48,17 +54,16 @@ export class AdComponent implements OnInit {
   userId: number;
   public spt: any;
   public spl: any;
+  copied = false;
 
   mySubscription: any;
-
 
   constructor(
     private adsService: AdsService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private helpersService: HelpersService,
-    private router: Router,
-
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -99,8 +104,8 @@ export class AdComponent implements OnInit {
       this.adId = params.id;
       this.getNewAd(this.adId);
     });
-
   }
+  toogleCopied() {}
 
   getNewAd(id: number) {
     window.scrollTo({ top: 0 });
@@ -128,6 +133,13 @@ export class AdComponent implements OnInit {
         });
       }
       this.userService.getUserById(this.userSellerId).subscribe((x) => {
+        this.companyImage = x.companyImage || [];
+        if (this.companyImage.length > 0) {
+          this.userImage = x.companyImage[0];
+        } else if (this.companyImage === []) {
+          this.userImage = this.defaultImage;
+        }
+        console.log(x);
         if (x == null) {
           this.usersImagesAvailabe = false;
         } else {
@@ -145,7 +157,6 @@ export class AdComponent implements OnInit {
         }
       });
     });
-
   }
 
   addToWishlist(adId: number) {
@@ -194,5 +205,7 @@ export class AdComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
+    this.copied = true;
+    setTimeout(() => (this.copied = false), 2000);
   }
 }

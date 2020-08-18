@@ -58,6 +58,7 @@ export class UserComponent implements OnInit {
     this.scroll();
     this.userService.getUser().subscribe((res) => {
       this.path = res.bussinesType;
+      this.userName = res.userName;
       this.companyImage = res.companyImage || [];
       if (this.companyImage.length > 0) {
         this.userImage = res.companyImage[0];

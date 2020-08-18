@@ -23,7 +23,12 @@
       </div>
 
       <div class="socialButton" (click)="copyLink()">
-        <img src="../../../assets/images/ad/logoThree.png" />{{'translate.copyLink' | translate}}
+        <img src="../../../assets/images/ad/logoThree.png" />{{
+          'translate.copyLink' | translate
+        }}
+        <div class="copiedTooltip" *ngIf="copied">
+          {{ 'translate.copied' | translate }}!
+        </div>
       </div>
     </div>
   </div>
@@ -42,9 +47,10 @@
     <div class="right">
       <div class="profile">
         <img
-          src="../../../assets/images/myAccount/profile-picture.png"
+          class="seller-image"
+          [src]="userImage"
           [routerLink]="['/seller', userSellerId]"
-          pTooltip="{{'translate.clickHereToSeeSellersInfo' | translate}}!"
+          pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!"
           tooltipPosition="top"
           style="cursor: pointer;"
         />
@@ -128,7 +134,7 @@
                     >
                       favorite_border
                     </mat-icon>
-                     <button
+                    <button
                       mat-icon-button
                       (click)="adByUser.favourite = !adByUser.favourite"
                       *ngIf="token"
@@ -206,7 +212,7 @@
                     >
                       favorite_border
                     </mat-icon>
-                     <button
+                    <button
                       mat-icon-button
                       (click)="adByCat.favourite = !adByCat.favourite"
                       *ngIf="token"

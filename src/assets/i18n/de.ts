@@ -147,5 +147,6 @@ export const de = {
       'Versenden Sie Nichts ohne dass Sie davor das Geld erhalten haben.',
     pricingList: 'Preisliste',
     freeMonths: '3 Monate kostenlos',
+    copied: 'Kopiert'
   },
 };

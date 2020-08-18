@@ -144,5 +144,6 @@ export const fr = {
     pricingEleven: "N'envoyez rien sans avoir d'abord reçu l'argent.",
     pricingList: 'Liste de prix',
     freeMonths: '3 mois gratuits',
+    copied: 'Copié',
   },
 };
