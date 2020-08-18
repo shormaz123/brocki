@@ -23,7 +23,8 @@
       </div>
 
       <div class="socialButton" (click)="copyLink()">
-        <img src="../../../assets/images/ad/logoThree.png" />{{'translate.copyLink' | translate}}
+        <img src="../../../assets/images/ad/logoThree.png">{{'translate.copyLink' | translate}}
+        <div class="copiedTooltip" *ngIf="copied">{{'translate.copied' | translate}}!</div>
       </div>
     </div>
   </div>

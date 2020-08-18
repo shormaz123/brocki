@@ -48,6 +48,7 @@ export class AdComponent implements OnInit {
   userId: number;
   public spt: any;
   public spl: any;
+  copied = false;
 
   mySubscription: any;
 
@@ -100,6 +101,8 @@ export class AdComponent implements OnInit {
       this.getNewAd(this.adId);
     });
 
+  }
+  toogleCopied() {
   }
 
   getNewAd(id: number) {
@@ -194,5 +197,7 @@ export class AdComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
+    this.copied = true;
+    setTimeout(() => (this.copied = false), 2000);
   }
 }
