@@ -32,7 +32,7 @@ export class TranslateServiceRest {
   sendLanguage(message: string) {
     this.language.next(message);
     if (localStorage) {
-      localStorage['language'] = message;
+      localStorage.language = message;
     }
   }
 
@@ -42,7 +42,7 @@ export class TranslateServiceRest {
 
   getChoosenLanguage() {
     if (localStorage) {
-      return localStorage['language'] || '';
+      return localStorage.language || '';
     } else {
       return '';
     }
