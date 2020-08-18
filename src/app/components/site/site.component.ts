@@ -294,7 +294,7 @@ export class SiteComponent implements OnInit, OnDestroy {
         it: 'fatto a mano',
       },
       image: '../../../assets/images/navigation/traditionally.png',
-      selectedImage: '../../../assets/images/navigation/red/traditionally.png',
+      selectedImage: 'src/assets/images/navigation/red/traditionally.png',
       imageTo: '',
     },
     {

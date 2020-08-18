@@ -34,7 +34,7 @@ export class AuthService {
 
   // New password
 
-  resetPassword(email: string): Observable<String> {
+  resetPassword(email: string): Observable<string> {
     return this.http.put<string>(`${this.baseUrl}/mybrocki/forgot-password`, {
       email,
     });
