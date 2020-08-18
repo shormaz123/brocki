@@ -65,6 +65,7 @@ button:focus {
   color: white;
   font-size: 17px;
   cursor: pointer;
+
   &:hover {
     -ms-transform: scale(1.5);
     /* IE 9 */
@@ -101,6 +102,8 @@ button:focus {
   font-size: 17px;
   margin-left: 4.5%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   &:hover {
     color: $red;
   }
