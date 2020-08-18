@@ -77,6 +77,7 @@ import {TranslateServiceRest} from './@core/services/translateREST.service';
 import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.component';
 import { AdsComponent } from './components/ads/ads.component';
 import { AdsCarouselComponent } from './components/ads-carousel/ads-carousel.component';
+import { AcceptAdsComponent } from './components/user/accept-ads/accept-ads.component';
 
 registerLocaleData(en);
 
@@ -116,6 +117,7 @@ registerLocaleData(en);
     ConfirmLoginComponent,
     AdsComponent,
     AdsCarouselComponent,
+    AcceptAdsComponent,
   ],
   imports: [
     BrowserModule,

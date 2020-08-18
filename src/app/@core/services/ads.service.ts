@@ -120,6 +120,12 @@ export class AdsService {
     return this.http.get<Ads>(`${this.baseUrl}/mybrocki/auth/ads/expired`);
   }
 
+  readyForReviewAds(): Observable<Ads> {
+    return this.http.get<Ads>(
+      `${this.baseUrl}/mybrocki/auth/ads/readyforreview`
+    );
+  }
+
   /**
    * Upload photo
    *

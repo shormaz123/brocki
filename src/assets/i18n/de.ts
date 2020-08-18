@@ -73,6 +73,8 @@ export const de = {
     shareVia: 'Teilen per',
     update: 'Aktualisieren',
     info: 'die Info',
+    accept: 'Akzeptieren',
+    reject: 'ablehnen',
     allArticlesOfThisSeller: 'Alle Artikel dieses Verkäufers',
     similarProducts: 'Ähnliche Produkte',
     allCategories: 'Alle Kategorien',
@@ -118,6 +120,7 @@ export const de = {
     favoriteAds: 'Lieblingsanzeigen',
     ad: 'Ad',
     ads: 'Anzeigen',
+    adsAdmin: 'anzeigen',
     rateSeller: 'Bewerten Sie diesen Verkäufer',
     provideFeedback: 'Bitte schreiben Sie zusätzliche Kommentare',
     userNoSoldAds: 'Dieser Nutzer hat keine Artikel verkauft',
@@ -147,6 +150,6 @@ export const de = {
       'Versenden Sie Nichts ohne dass Sie davor das Geld erhalten haben.',
     pricingList: 'Preisliste',
     freeMonths: '3 Monate kostenlos',
-    copied: 'Kopiert'
+    copied: 'Kopiert',
   },
 };
