@@ -1,7 +1,10 @@
 <div class="container">
-  <div class="ads" *ngIf="ads === false">
-    <div class="ads__text">
-      {{'translate.userNoSoldAds' | translate}}
+  <div
+    class="ads"
+    [ngStyle]="ads === true ? { height: '0px' } : { height: '260px' }"
+  >
+    <div class="ads__text" *ngIf="ads === false">
+      {{ 'translate.userNoSoldAds' | translate }}
     </div>
   </div>
   <div *ngIf="ads === true">
@@ -27,7 +30,7 @@
         </div>
       </div>
       <div class="sold">
-        {{'translate.sold' | translate}}
+        {{ 'translate.sold' | translate }}
       </div>
     </div>
   </div>

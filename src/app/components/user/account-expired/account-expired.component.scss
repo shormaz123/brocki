@@ -158,5 +158,8 @@ hr {
     font-weight: 500;
     margin: 10px 0 0 0;
     cursor: pointer;
+    @include rwd(1600) {
+      width: 985px;
+    }
   }
 }

@@ -9,6 +9,9 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  @include rwd(1600) {
+    width: 985px;
+  }
 }
 
 .card {
@@ -117,7 +120,7 @@ hr {
 }
 
 .ads__text {
-  height: 100px;
+  height: 250px;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -126,4 +129,7 @@ hr {
   color: #d62b1f;
   font-weight: 500;
   margin: 10px 0 0 0;
+  @include rwd(1600) {
+    width: 985px;
+  }
 }

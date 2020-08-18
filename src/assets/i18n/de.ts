@@ -11,6 +11,7 @@ export const de = {
     home: 'Startseite',
     myAccount: 'Mein Konto',
     aboutUs: 'Über uns',
+    noComments: 'Sie haben noch keine Kommentare',
     minibrockiDescriptionOne: 'Die ',
     minibrockiDescriptionTwo: 'minibrocki® ',
     minibrockiDescriptionThree:
@@ -28,7 +29,7 @@ export const de = {
     confirm: 'Bestätigen ',
     email: 'E-Mail-Adresse',
     subject: 'Gegenstand',
-    message: 'Botschaft',
+    message: 'Nachricht',
     sendMassage: 'Nachricht senden',
     password: 'Passwort',
     signup: 'Registrieren',

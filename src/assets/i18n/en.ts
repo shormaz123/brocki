@@ -11,6 +11,7 @@ export const en = {
     home: 'Home',
     myAccount: 'My account',
     aboutUs: 'About us',
+    noComments: "You don't have any comments yet",
     minibrockiDescriptionOne: 'The ',
     minibrockiDescriptionTwo: 'minibrocki® ',
     minibrockiDescriptionThree:

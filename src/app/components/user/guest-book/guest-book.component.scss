@@ -48,6 +48,9 @@
     font-weight: 500;
     margin: 10px 0 0 0;
     background-color: #f6f6f6;
+    @include rwd(1600) {
+      width: 985px;
+    }
   }
 }
 

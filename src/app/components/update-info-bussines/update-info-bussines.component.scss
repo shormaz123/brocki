@@ -1,4 +1,5 @@
 @import '../../../scss/variables';
+@import '../../../scss/mixin.scss';
 
 * {
   font-family: $header-font-family;
@@ -40,6 +41,9 @@ textarea {
   margin: 0 auto;
   text-align: center;
   padding: 60px 0;
+  @include rwd(1600) {
+    width: 985px;
+  }
 
   &__title {
     font-size: 24pt;

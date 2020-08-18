@@ -11,6 +11,7 @@ export const it = {
     home: 'Pagina iniziale',
     myAccount: 'Il mio account',
     aboutUs: 'Riguardo a noi',
+    noComments: 'Non hai ancora commenti',
     minibrockiDescriptionOne: "L'app ",
     minibrockiDescriptionTwo: 'minibrocki® ',
     minibrockiDescriptionThree:
@@ -142,6 +143,6 @@ export const it = {
       "Invia la fattura via e-mail (Paypal, Twint, fattura) o per posta e non appena l'oggetto è stato pagato, prenotalo o invialo.",
     pricingEleven: '-\tNon inviare nulla senza aver prima ricevuto il denaro.',
     pricingList: 'Listino prezzi',
-    freeMonths: '3 mesi gratuiti'
+    freeMonths: '3 mesi gratuiti',
   },
 };

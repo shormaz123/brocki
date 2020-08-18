@@ -2,7 +2,12 @@
 <div class="loginContainer">
   <div class="mainContainer">
     <div class="titleDiv">
-      <span class="title">{{ 'translate.updateInfo' | translate }}</span>
+      <span class="title"
+        >{{ 'translate.update' | translate }}
+        <span style="color: #d62b1f;">{{
+          'translate.info' | translate
+        }}</span></span
+      >
     </div>
     <form (ngSubmit)="onSubmit()" [formGroup]="privateForm">
       <div class="inputItem">
@@ -66,8 +71,10 @@
           </select>
         </div>
       </div>
-      <div class="inputItem">
-        <a (click)="changePassword()">{{'translate.changePassword' | translate}}?</a>
+      <div class="inputItem inputItem--margin">
+        <a (click)="changePassword()"
+          >{{ 'translate.changePassword' | translate }}?</a
+        >
       </div>
 
       <div class="inputItem">
@@ -76,7 +83,7 @@
           type="submit"
           [disabled]="!privateForm.dirty"
         >
-          {{'translate.saveChanges' | translate}}
+          {{ 'translate.saveChanges' | translate }}
         </button>
       </div>
     </form>

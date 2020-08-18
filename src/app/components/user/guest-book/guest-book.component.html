@@ -1,6 +1,6 @@
 <div class="container">
   <div class="message" *ngIf="comments === true">
-    <div class="message__text">You don't have any comments yet.</div>
+    <div class="message__text">{{ 'translate.noComments' | translate }}</div>
   </div>
   <div class="wrapper" *ngIf="comments === false">
     <div class="card" *ngFor="let comment of guestBook[0]">
