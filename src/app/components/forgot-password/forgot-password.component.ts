@@ -19,10 +19,13 @@ export class ForgotPasswordComponent implements OnInit {
     this.authService.resetPassword(this.email).subscribe(
       (response) => {
         console.log(response);
-        this.router.navigate(['/site']);
       },
       (error) => {
-        console.log(error.message);
+
+        if (error.status === 200) {
+          this.router.navigate(['/site']);
+        }
+        console.log(error.status);
       }
     );
   }
