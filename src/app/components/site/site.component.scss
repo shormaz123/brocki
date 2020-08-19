@@ -502,6 +502,8 @@ p-sidebar {
   }
 }
 
+
+
 .accordationDiv {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -550,6 +552,12 @@ p-sidebar {
 
 .mat-icon {
   color: $red;
+}
+.dropbtn {
+  height: 100%;
+  .mat-button-wrapper {
+    height: 100%;
+  }
 }
 
 .bodyLabel {

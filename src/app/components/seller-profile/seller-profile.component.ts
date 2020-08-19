@@ -19,6 +19,7 @@ export class SellerProfileComponent implements OnInit {
   email: boolean;
   sellerId;
   seller;
+  sellerCompany: string;
   sellerName: string;
   sellerPhone: string;
   sellerMobile: string;
@@ -30,6 +31,7 @@ export class SellerProfileComponent implements OnInit {
   adsActive: boolean;
   soldProducts: Array<any> = [];
   adsSold: boolean;
+  role: string;
   CommentsOfUser: Array<Comment> = [];
 
   constructor(
@@ -48,6 +50,8 @@ export class SellerProfileComponent implements OnInit {
         this.sellerPhone = seller.phone;
         this.sellerMobile = seller.mobile;
         this.sellerEmail = seller.email;
+        this.sellerCompany = seller.company;
+
         seller.companyImage[0]
           ? (this.sellerImage = seller.companyImage[0])
           : (this.sellerImage = this.defaultImage);

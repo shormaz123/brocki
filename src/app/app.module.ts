@@ -78,6 +78,7 @@ import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.
 import { AdsComponent } from './components/ads/ads.component';
 import { AdsCarouselComponent } from './components/ads-carousel/ads-carousel.component';
 import { AcceptAdsComponent } from './components/user/accept-ads/accept-ads.component';
+import {StrictNumberOnlyDirective} from './utils/StrictNumberOnlyDirective';
 
 registerLocaleData(en);
 
@@ -118,6 +119,7 @@ registerLocaleData(en);
     AdsComponent,
     AdsCarouselComponent,
     AcceptAdsComponent,
+    StrictNumberOnlyDirective
   ],
   imports: [
     BrowserModule,

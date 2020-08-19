@@ -1,8 +1,11 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
+  HostListener,
   OnDestroy,
   OnInit,
+  Renderer2,
   ViewChild,
   Input,
 } from '@angular/core';
@@ -25,7 +28,7 @@ import { HelpersService } from '../../@core/services/helpers.service';
   templateUrl: './ad.component.html',
   styleUrls: ['./ad.component.scss'],
 })
-export class AdComponent implements OnInit {
+export class AdComponent implements OnInit, AfterViewInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
   reviewAdsImages: NgxGalleryImage[] = [];
@@ -62,6 +65,11 @@ export class AdComponent implements OnInit {
   public spt: any;
   public spl: any;
   copied = false;
+  role: string;
+  private: boolean;
+  business: boolean;
+
+  @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
 
   mySubscription: any;
 
@@ -69,8 +77,7 @@ export class AdComponent implements OnInit {
     private adsService: AdsService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private helpersService: HelpersService,
-    private router: Router
+    private helpersService: HelpersService
   ) {}
 
   ngOnInit() {
@@ -88,6 +95,8 @@ export class AdComponent implements OnInit {
         height: '400px',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
+        previewCloseOnClick: true,
+        previewCloseOnEsc: true,
       },
       // max-width 800
       {
@@ -133,7 +142,7 @@ export class AdComponent implements OnInit {
       });
     }
   }
-  toogleCopied() {}
+  ngAfterViewInit() {}
 
   getNewAd(id: number) {
     window.scrollTo({ top: 0 });

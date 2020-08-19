@@ -135,10 +135,18 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     if (this.createForm.value.urgentSales === '') {
       create.urgentSales = false;
     }
-    create.price = Number(this.createForm.value.price);
+    create.price = Number((Math.round(this.createForm.value.price * 100) / 100).toFixed(2));
     create.adsType = this.statusOfProduct;
     this.adsService.newAd(create).subscribe(() => {
       this.router.navigate(['/site']);
     });
   }
+
+  checkDec(el) {
+    const ex = /^[0-9]+\.?[0-9]*$/;
+    if (ex.test(el.value) === false) {
+      el.value = el.value.substring(0, el.value.length - 1);
+    }
+  }
+
 }

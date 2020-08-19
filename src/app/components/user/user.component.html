@@ -44,15 +44,14 @@
           <div *ngIf="admin" class="boxes__link" (click)="goTo('/accept-ads')">
             <div
               class="boxes__image"
-              [inlineSVG]="'../../../assets/images/myAccount/credits.svg'"
+              [inlineSVG]="'../../../assets/images/myAccount/accept.svg'"
             ></div>
-            <div class="boxes__text">Accept Ads</div>
+            <div class="boxes__text">
+              {{ 'translate.acceptAds' | translate }}
+            </div>
           </div>
           <div *ngIf="!admin" class="boxes__link" (click)="goTo('/contact-us')">
-            <div
-              class="boxes__image"
-              [inlineSVG]="'../../../assets/images/myAccount/contact-us.svg'"
-            ></div>
+            <div class="boxes__image"></div>
             <div class="boxes__text">
               {{ 'translate.contactUs' | translate }}
             </div>
