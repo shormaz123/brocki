@@ -40,6 +40,9 @@ export class UserComponent implements OnInit {
   comment: boolean;
   admin: string;
   language: string;
+  private: boolean;
+  business: boolean
+  companyName: string;
 
   constructor(
     private userService: UserService,
@@ -57,8 +60,19 @@ export class UserComponent implements OnInit {
     }
     this.scroll();
     this.userService.getUser().subscribe((res) => {
+      this.companyName = res.company
+      console.log(res)
+      if (res.roleName === 'bussines') {
+        this.private = false;
+        this.business = true;
+      } else {
+        this.private = true;
+        this.business = false;
+      }
+
       this.path = res.bussinesType;
       this.userName = res.userName;
+
       this.companyImage = res.companyImage || [];
       if (this.companyImage.length > 0) {
         this.userImage = res.companyImage[0];

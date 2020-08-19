@@ -6,7 +6,8 @@
         <div class="imageBorder">
           <img class="profil-image" [src]="userImage" />
         </div>
-        <span *ngIf="userName">{{ userName }}</span>
+        <span *ngIf="private">{{ userName }}</span>
+        <span *ngIf="business">{{ companyName }}</span>
       </div>
       <div class="body">
         <!-- <div class="checkmarks">
