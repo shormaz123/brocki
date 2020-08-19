@@ -54,7 +54,8 @@
           tooltipPosition="top"
           style="cursor: pointer;"
         />
-        <label>{{ userSeller?.name }}</label>
+        <label *ngIf="private">{{ userSeller?.name }}</label>
+        <label *ngIf="business">{{ userSeller?.company}}</label>
       </div>
       <div class="contact">
         <div class="phone">

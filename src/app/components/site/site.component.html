@@ -43,7 +43,7 @@
           {{ 'translate.favorite' | translate }}
           <span *ngIf="numberOfFavorites">({{ numberOfFavorites }})</span>
         </button>
-        <button class="favorite" *ngIf="!token"
+        <button class="favorite" *ngIf="!token" routerLink="/login"
                 pTooltip="{{
                           'translate.pleaseLoginBeforeYouAddThisAd' | translate
                         }}!"
