@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdsService } from '../../../@core/services/ads.service';
 import { Ads } from '../../../shared/models/ads.model';
 import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
@@ -11,10 +12,13 @@ import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
 export class AcceptAdsComponent implements OnInit {
   readyForReviewAds: Array<any> = [];
   message: boolean;
+  card: Ads;
+  reviewCard: boolean;
   constructor(
     private adsService: AdsService,
     private modal: NzModalService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -91,5 +95,19 @@ export class AcceptAdsComponent implements OnInit {
         });
       },
     });
+  }
+
+  goTo(route: string): void {
+    this.router.navigate([route]);
+    window.scrollTo({ top: 0 });
+  }
+
+  /**
+   * Detailed overview of the individual ad
+   *
+   */
+  SingleAd(card: Ads): void {
+    this.card = card;
+    this.reviewCard = true;
   }
 }

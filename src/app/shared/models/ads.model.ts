@@ -15,6 +15,7 @@ export class Ads {
   urgentSales: boolean;
   adsDate: string;
   favourite: boolean;
+  soldDate: string;
   adsLocation: string;
   visibleAds: true;
 }

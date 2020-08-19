@@ -4,6 +4,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  Input,
 } from '@angular/core';
 import { AdsService } from '../../@core/services/ads.service';
 import { UserService } from '../../@core/services/user.service';
@@ -27,6 +28,12 @@ import { HelpersService } from '../../@core/services/helpers.service';
 export class AdComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
+  reviewAdsImages: NgxGalleryImage[] = [];
+  @Input() card: Ads;
+  reviewUser: User;
+  reviewUserId: number;
+  reviewUserActiveAds: Ads;
+  allOfreviewer: boolean;
 
   adId: number;
   userSellerId: number;
@@ -104,61 +111,86 @@ export class AdComponent implements OnInit {
       this.adId = params.id;
       this.getNewAd(this.adId);
     });
+
+    /**
+     * Get user for review Ad
+     *
+     **/
+    if (this.card) {
+      this.userService.getUserById(this.card.userId).subscribe((res) => {
+        this.reviewUser = res;
+        this.reviewUserId = res.id;
+        this.adsService.getAllByUserId(this.reviewUserId).subscribe((res) => {
+          this.reviewUserActiveAds = res;
+          for (const picture of this.card.image) {
+            this.reviewAdsImages.push({
+              small: picture,
+              medium: picture,
+              big: picture,
+            });
+          }
+        });
+      });
+    }
   }
   toogleCopied() {}
 
   getNewAd(id: number) {
     window.scrollTo({ top: 0 });
     this.galleryImages = [];
-    this.adsService.getAdById(id).subscribe((response) => {
-      this.userSellerId = response.userId;
-      this.ad = response;
-      this.adGroupId = response.adsGroupId;
-      console.log(response);
-      this.adsService.getAdsByGroupId(this.adGroupId).subscribe((x) => {
-        if (x == null) {
-          this.categoryImagesAvailable = false;
-        } else {
-          this.categoryImagesAvailable = true;
-          this.adsByCategory = x;
-          console.log(this.adsByCategory);
-        }
-      });
-
-      for (const picture of response.image) {
-        this.galleryImages.push({
-          small: picture,
-          medium: picture,
-          big: picture,
+    if (id) {
+      this.adsService.getAdById(id).subscribe((response) => {
+        this.userSellerId = response.userId;
+        this.ad = response;
+        this.adGroupId = response.adsGroupId;
+        console.log(response);
+        this.allOfreviewer = true;
+        this.adsService.getAdsByGroupId(this.adGroupId).subscribe((x) => {
+          if (x == null) {
+            this.categoryImagesAvailable = false;
+          } else {
+            this.categoryImagesAvailable = true;
+            this.adsByCategory = x;
+            console.log(this.adsByCategory);
+          }
         });
-      }
-      this.userService.getUserById(this.userSellerId).subscribe((x) => {
-        this.companyImage = x.companyImage || [];
-        if (this.companyImage.length > 0) {
-          this.userImage = x.companyImage[0];
-        } else if (this.companyImage === []) {
-          this.userImage = this.defaultImage;
-        }
-        if (x == null) {
-          this.usersImagesAvailabe = false;
-        } else {
-          this.usersImagesAvailabe = true;
-          this.userSeller = x;
-        }
-      });
 
-      this.adsService.getAllByUserId(this.userSellerId).subscribe((x) => {
-        if (x == null) {
-          this.usersImagesAvailabe = false;
-        } else {
-          this.usersImagesAvailabe = true;
-          this.adsByUser = x;
+        for (const picture of response.image) {
+          this.galleryImages.push({
+            small: picture,
+            medium: picture,
+            big: picture,
+          });
         }
+        this.userService.getUserById(this.userSellerId).subscribe((x) => {
+          this.companyImage = x.companyImage || [];
+          if (this.companyImage.length > 0) {
+            this.userImage = x.companyImage[0];
+          } else if (this.companyImage === []) {
+            this.userImage = this.defaultImage;
+          }
+          if (x == null) {
+            this.usersImagesAvailabe = false;
+          } else {
+            this.usersImagesAvailabe = true;
+            this.userSeller = x;
+          }
+        });
+
+        this.adsService.getAllByUserId(this.userSellerId).subscribe((x) => {
+          if (x == null) {
+            this.usersImagesAvailabe = false;
+          } else {
+            this.usersImagesAvailabe = true;
+            this.adsByUser = x;
+          }
+        });
       });
-    });
+    }
   }
 
   addToWishlist(adId: number) {
+    console.log(adId);
     this.userRequest = {
       adsId: adId,
       userId: this.userId,

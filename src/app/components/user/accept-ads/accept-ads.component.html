@@ -1,11 +1,8 @@
-<app-header class="header"></app-header>
-<div class="container">
+<app-header *ngIf="!reviewCard" class="header"></app-header>
+<div *ngIf="!reviewCard" class="container">
   <div class="accept-ads">
     <div class="accept-ads__title">
-      {{ 'translate.accept' | translate }}
-      <span style="color: #d62b1f;">{{
-        'translate.adsAdmin' | translate
-      }}</span>
+      {{ 'translate.acceptAds' | translate }}
     </div>
     <div *ngIf="!message" class="message">No Ads for review</div>
     <div class="wrapper-card" *ngIf="message">
@@ -14,7 +11,9 @@
         *ngFor="let card of readyForReviewAds[0]; let i = index"
       >
         <div class="cardHover">
-          <div><img class="card__image" [src]="card.image[0]" /></div>
+          <div style="width: 270px;" (click)="SingleAd(card)">
+            <img class="card__image" [src]="card.image[0]" />
+          </div>
           <div class="card__name">{{ card.productName }}</div>
           <hr class="card__line" />
           <div class="card__description">{{ card.description }}</div>
@@ -35,3 +34,4 @@
     </div>
   </div>
 </div>
+<app-ad *ngIf="reviewCard" [card]="card"></app-ad>

@@ -1,4 +1,6 @@
 @import '../../../scss/variables';
+@import '../../../scss/mixin.scss';
+
 .container {
   width: 100vw;
   height: auto;
@@ -113,6 +115,8 @@
       flex-direction: column;
       align-items: center;
       img {
+        width: 260px;
+        height: 175px;
         border: 1px solid;
         border-radius: 15px;
         border-color: $red;
@@ -215,7 +219,7 @@
   color: white;
   padding-left: 5px;
   background-color: $red;
-  padding-right: 5px;
+  padding: 2px 10px;
   border-radius: 15px;
   label {
     font-size: 14px;
@@ -232,11 +236,22 @@
 }
 
 .footer {
+  width: 260px;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 10px;
   align-items: center;
+  @include rwd(1680) {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include rwd(1350) {
+    width: 135px;
+  }
 }
 
 .image {
@@ -260,8 +275,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 260px;
   height: 60px;
+  margin: 0 auto;
+  @include rwd(1680) {
+    width: 200px;
+  }
+
+  @include rwd(1350) {
+    width: 125px;
+  }
   .description {
     display: block;
     max-width: 98%;
@@ -358,4 +381,13 @@ p-carousel {
   color: white;
   margin-top: 10px;
   position: absolute;
+}
+
+.mat-icon-button {
+  padding: 0;
+  min-width: 0;
+  height: 40px;
+  flex-shrink: 0;
+  line-height: 40px;
+  border-radius: 50%;
 }
