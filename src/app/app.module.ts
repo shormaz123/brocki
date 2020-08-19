@@ -79,6 +79,7 @@ import { AdsComponent } from './components/ads/ads.component';
 import { AdsCarouselComponent } from './components/ads-carousel/ads-carousel.component';
 import { AcceptAdsComponent } from './components/user/accept-ads/accept-ads.component';
 import {StrictNumberOnlyDirective} from './utils/StrictNumberOnlyDirective';
+import {ToastrModule} from 'ngx-toastr';
 
 registerLocaleData(en);
 
@@ -153,6 +154,7 @@ registerLocaleData(en);
     TooltipModule,
     NzDropDownModule,
     MatMenuModule,
+    ToastrModule.forRoot(),
     NgxSocialShareModule,
     TranslateModule.forRoot({
       loader: {

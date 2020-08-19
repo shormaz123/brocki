@@ -37,7 +37,8 @@
               "node_modules/primeng/resources/themes/nova-light/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "src/theme.less",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },

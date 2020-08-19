@@ -54,7 +54,7 @@
               </div>
               <div class="price">
                 <div class="pricetag">
-                  <label>{{ ad.price }} CHF</label>
+                  <label>{{ ad.price | number:'1.2-2':'en-US'   }} CHF</label>
                 </div>
                 <span style="color: black;">{{ ad.adsDate | date }}</span>
               </div>

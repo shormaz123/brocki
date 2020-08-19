@@ -623,6 +623,7 @@ export class SiteComponent implements OnInit, OnDestroy {
     this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
       console.log('delete update to favorite', x);
     }),
+      // tslint:disable-next-line:no-unused-expression
       (error) => {
         console.log('not delete to favorite');
       };
