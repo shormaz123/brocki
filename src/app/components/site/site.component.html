@@ -189,7 +189,7 @@
                   </div>
                   <div class="footer">
                     <div class="pricetag">
-                      <label>{{ ad.price }} CHF</label>
+                      <label>{{ ad.price | number:'1.0':'en-US' }} CHF</label>
                     </div>
                     <div>
                       <mat-icon
@@ -275,7 +275,7 @@
                   </div>
                   <div class="footer">
                     <div class="pricetag">
-                      <label>{{ card.price }} CHF</label>
+                      <label>{{ card.price | number:'1.0':'en-US'  }} CHF</label>
                     </div>
                     <div>
                       <mat-icon
@@ -348,7 +348,7 @@
               </div>
               <div class="footer">
                 <div class="pricetag">
-                  <label>{{ card.price }} CHF</label>
+                  <label>{{ card.price | number:'1.2-2':'en-US'  }} CHF</label>
                 </div>
                 <div>
                   <mat-icon

@@ -160,12 +160,13 @@
         <label class="form__label">{{ 'translate.price' | translate }}</label>
         <div class="form__price">
           <input
-            min=0
+            placeholder="0.00"
             class="form__input form__input--price"
             formControlName="price"
-            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            type="number"
             maxlength="7"
+            type="number"
+            NumberOnly
+            min="0.00"
           />
           <p class="form__currency">CHF</p>
         </div>
