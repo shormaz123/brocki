@@ -1,8 +1,9 @@
 import {
+  AfterViewInit,
   Component,
-  ElementRef,
+  ElementRef, HostListener,
   OnDestroy,
-  OnInit,
+  OnInit, Renderer2,
   ViewChild,
 } from '@angular/core';
 import { AdsService } from '../../@core/services/ads.service';
@@ -24,7 +25,7 @@ import { HelpersService } from '../../@core/services/helpers.service';
   templateUrl: './ad.component.html',
   styleUrls: ['./ad.component.scss'],
 })
-export class AdComponent implements OnInit {
+export class AdComponent implements OnInit, AfterViewInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
 
@@ -56,6 +57,8 @@ export class AdComponent implements OnInit {
   public spl: any;
   copied = false;
 
+  @ViewChild('ngx-gallery', {static: false}) gallery: ElementRef;
+
   mySubscription: any;
 
   constructor(
@@ -63,10 +66,12 @@ export class AdComponent implements OnInit {
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private helpersService: HelpersService,
-    private router: Router
+    private elementRef: ElementRef,
   ) {}
 
+
   ngOnInit() {
+
     window.scrollTo({ top: 0 });
     this.token = localStorage.getItem(AuthConst.token);
     if (this.token) {
@@ -81,6 +86,8 @@ export class AdComponent implements OnInit {
         height: '400px',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
+        previewCloseOnClick: true,
+        previewCloseOnEsc: true,
       },
       // max-width 800
       {
@@ -105,7 +112,8 @@ export class AdComponent implements OnInit {
       this.getNewAd(this.adId);
     });
   }
-  toogleCopied() {}
+  ngAfterViewInit() {
+  }
 
   getNewAd(id: number) {
     window.scrollTo({ top: 0 });
@@ -191,6 +199,7 @@ export class AdComponent implements OnInit {
           encodeURIComponent(document.URL)
       );
   }
+
 
   copyLink() {
     const selBox = document.createElement('textarea');

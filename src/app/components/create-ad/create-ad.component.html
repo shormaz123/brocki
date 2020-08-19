@@ -160,6 +160,7 @@
         <label class="form__label">{{ 'translate.price' | translate }}</label>
         <div class="form__price">
           <input
+            min=0
             class="form__input form__input--price"
             formControlName="price"
             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
