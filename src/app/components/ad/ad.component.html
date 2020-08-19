@@ -38,7 +38,7 @@
   <div class="info">
     <div class="left">
       <div class="card">
-        <div class="cardColumn">{{ ad?.price }} CHF</div>
+        <div class="cardColumn">{{ ad?.price | number:'1.2-2':'en-US'   }} CHF</div>
         <div class="cardColumn">{{ ad?.adsType }}</div>
         <div class="cardColumn">{{ userSeller?.city }}</div>
         <div class="cardColumn2">{{ ad?.adsDate | date }}</div>
@@ -124,7 +124,7 @@
                 </div>
                 <div class="footer">
                   <div class="pricetag">
-                    <label>{{ adByUser.price }} CHF</label>
+                    <label>{{ adByUser.price | number:'1.2-2':'en-US'   }} CHF</label>
                   </div>
                   <div>
                     <mat-icon
@@ -202,7 +202,7 @@
                 </div>
                 <div class="footer">
                   <div class="pricetag">
-                    <label>{{ adByCat.price }} CHF</label>
+                    <label>{{ adByCat.price | number:'1.2-2':'en-US'   }} CHF</label>
                   </div>
                   <div>
                     <mat-icon
