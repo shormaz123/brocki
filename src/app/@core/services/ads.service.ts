@@ -97,7 +97,7 @@ export class AdsService {
   }
 
   getAllVisibleAds(): Observable<Ads[]> {
-    return this.http.get(`${this.baseUrl}/mybrocki/ads/visible`);
+    return this.http.get(`${this.baseUrl}/mybrocki/auth/ads/visible`);
   }
 
   changeStatusOfAds(ads: Ads, id: number): Observable<Ads> {
