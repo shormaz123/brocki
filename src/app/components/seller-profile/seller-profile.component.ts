@@ -33,6 +33,8 @@ export class SellerProfileComponent implements OnInit {
   adsSold: boolean;
   role: string;
   CommentsOfUser: Array<Comment> = [];
+  private: boolean;
+  business: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -45,12 +47,20 @@ export class SellerProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
+        this.sellerCompany = seller.company;
+        if (seller.roleName === 'bussines') {
+          this.private = false;
+          this.business = true;
+        } else {
+          this.private = true;
+          this.business = false;
+        }
         this.sellerindex = seller.id;
         this.sellerName = seller.userName;
         this.sellerPhone = seller.phone;
         this.sellerMobile = seller.mobile;
         this.sellerEmail = seller.email;
-        this.sellerCompany = seller.company;
+
 
         seller.companyImage[0]
           ? (this.sellerImage = seller.companyImage[0])
