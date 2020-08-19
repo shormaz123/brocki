@@ -20,6 +20,7 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.component';
 import { AdsComponent } from './components/ads/ads.component';
+import { AcceptAdsComponent } from './components/user/accept-ads/accept-ads.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path: 'user/:id',
         component: UserComponent,
+      },
+      {
+        path: 'accept-ads',
+        component: AcceptAdsComponent,
       },
       {
         path: 'confirm-account',

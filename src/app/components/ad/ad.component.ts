@@ -139,7 +139,6 @@ export class AdComponent implements OnInit {
         } else if (this.companyImage === []) {
           this.userImage = this.defaultImage;
         }
-        console.log(x);
         if (x == null) {
           this.usersImagesAvailabe = false;
         } else {

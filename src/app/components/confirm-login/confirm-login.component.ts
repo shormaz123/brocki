@@ -30,7 +30,7 @@ export class ConfirmLoginComponent implements OnInit {
         }
     },
       (error) => {
-        console.log(error.text)
+        console.log(error.text);
         if (error.text === 'OK') {
           this.router.navigate(['/site']);
         } else {

@@ -466,7 +466,7 @@ export class SiteComponent implements OnInit, OnDestroy {
           this.getUserAndFavAd();
         } else {
           this.favAds = this.ads;
-          console.log('favAds', this.favAds)
+          console.log('favAds', this.favAds);
         }
       });
     }
@@ -516,7 +516,7 @@ export class SiteComponent implements OnInit, OnDestroy {
           (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
         );
       });
-    })
+    });
 
   }
 

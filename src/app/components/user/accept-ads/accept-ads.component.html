@@ -1,0 +1,37 @@
+<app-header class="header"></app-header>
+<div class="container">
+  <div class="accept-ads">
+    <div class="accept-ads__title">
+      {{ 'translate.accept' | translate }}
+      <span style="color: #d62b1f;">{{
+        'translate.adsAdmin' | translate
+      }}</span>
+    </div>
+    <div *ngIf="!message" class="message">No Ads for review</div>
+    <div class="wrapper-card" *ngIf="message">
+      <div
+        class="card"
+        *ngFor="let card of readyForReviewAds[0]; let i = index"
+      >
+        <div class="cardHover">
+          <div><img class="card__image" [src]="card.image[0]" /></div>
+          <div class="card__name">{{ card.productName }}</div>
+          <hr class="card__line" />
+          <div class="card__description">{{ card.description }}</div>
+          <div class="card__footer">
+            <div class="card__price">{{ card.price | number: '.2-2' }} CHF</div>
+            <div class="card__date">{{ card.adsDate | date }}</div>
+          </div>
+          <div class="card__buttons">
+            <button class="card__accept" (click)="acceptAds(card, i)">
+              {{ 'translate.accept' | translate }}
+            </button>
+            <button class="card__decline" (click)="declineAds(card, i)">
+              {{ 'translate.reject' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

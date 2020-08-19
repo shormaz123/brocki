@@ -41,12 +41,12 @@
             ></div>
             <div class="boxes__text">{{ 'translate.credits' | translate }}</div>
           </div>
-          <div *ngIf="admin" class="boxes__link" (click)="alert(1)">
+          <div *ngIf="admin" class="boxes__link" (click)="goTo('/accept-ads')">
             <div
               class="boxes__image"
               [inlineSVG]="'../../../assets/images/myAccount/credits.svg'"
             ></div>
-            <div class="boxes__text">Aceept Ads</div>
+            <div class="boxes__text">Accept Ads</div>
           </div>
           <div *ngIf="!admin" class="boxes__link" (click)="goTo('/contact-us')">
             <div

@@ -69,10 +69,10 @@ export class HeaderComponent implements OnInit {
   }
 
   goToUserProfie(id: number) {
-    if( localStorage.getItem(AuthConst.token) == null) {
+    if ( localStorage.getItem(AuthConst.token) == null) {
       this.router.navigate(['/login']);
     } else {
-      this.router.navigate(['/user', id],);
+      this.router.navigate(['/user', id], );
     }
   }
 

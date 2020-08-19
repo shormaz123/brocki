@@ -11,7 +11,7 @@ export const en = {
     home: 'Home',
     myAccount: 'My account',
     aboutUs: 'About us',
-    noComments: "You don't have any comments yet",
+    noComments: 'You don\'t have any comments yet',
     minibrockiDescriptionOne: 'The ',
     minibrockiDescriptionTwo: 'minibrocki® ',
     minibrockiDescriptionThree:
@@ -72,6 +72,8 @@ export const en = {
     shareVia: 'Share Via',
     update: 'Update',
     info: 'info',
+    accept: 'Accept',
+    reject: 'reject',
     allArticlesOfThisSeller: 'All articles of this seller',
     similarProducts: 'Similar products',
     allCategories: 'All categories',
@@ -115,6 +117,7 @@ export const en = {
     favoriteAds: 'Favorite Ads',
     ad: 'Ad',
     ads: 'Ads',
+    adsAdmin: 'ads',
     rateSeller: 'Rate this seller',
     provideFeedback: 'Please provide any additional feedback',
     userNoSoldAds: 'This user has no sold ads',
@@ -143,6 +146,6 @@ export const en = {
       'Do not send anything without having received the money first.',
     pricingList: 'Pricing list',
     freeMonths: '3 months free use',
-    copied: 'Copied'
+    copied: 'Copied',
   },
 };
