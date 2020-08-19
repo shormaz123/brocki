@@ -81,7 +81,6 @@
         display: flex;
         &:hover {
           color: black;
-          cursor: pointer;
         }
       }
     }
@@ -106,6 +105,8 @@
 }
 
 .dropbtn {
+  justify-content: flex-end;
+  width: 100%;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -113,10 +114,9 @@
     height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-    .mat-button-wrapper {
-      height: 100%;
-    }
+      span {
+        height: 100%;
+      }
 
 }
 
