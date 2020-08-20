@@ -74,7 +74,8 @@
           [src]="reviewUser.companyImage[0]"
           [routerLink]="['/seller/', reviewUser.id]"
         />
-        <label>{{ userSeller?.name || reviewUser?.name }}</label>
+        <label *ngIf="private">{{ userSeller?.name || reviewUser?.name }}</label>
+        <label *ngIf="business">{{ companyName }}</label>
       </div>
       <div class="contact">
         <div class="phone">
