@@ -30,7 +30,7 @@
 }
 
 .image {
-  width: 30%;
+  width: 384px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,6 +38,15 @@
   &__image {
     width: 200px;
     height: 200px;
+    position: relative;
+
+    &--label {
+      position: absolute;
+      width: 230px;
+      padding: 0 10px;
+      -ms-transform: skew(170deg, 170deg); /* IE 9 */
+      transform: skew(170deg, 170deg);
+    }
   }
 }
 
@@ -121,6 +130,10 @@ hr {
   border-color: $red;
   width: 100%;
   margin: 0;
+
+  @include rwd(1600) {
+    width: 80%;
+  }
 }
 .tooltip {
   position: relative;

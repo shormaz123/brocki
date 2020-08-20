@@ -11,8 +11,17 @@ import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
 export class AccountActiveComponent implements OnChanges {
   @Input() activeProducts: Ads;
   @Input() ads: boolean;
+  @Input() language: string;
   Ads: boolean;
   userId: number;
+  itReject = '../../../../assets/images/adsLabel/it-reject.svg';
+  itReview = '../../../../assets/images/adsLabel/it-ready-for-review.svg';
+  frReject = '../../../../assets/images/adsLabel/fr-reject.svg';
+  frReview = '../../../../assets/images/adsLabel/fr-ready-for-review.svg';
+  deReject = '../../../../assets/images/adsLabel/de-reject2.svg';
+  deReview = '../../../../assets/images/adsLabel/de-ready-for-review.svg';
+  enReject = '../../../../assets/images/adsLabel/en-accept.svg';
+  enReview = '../../../../assets/images/adsLabel/en-ready-for-review.svg';
 
   constructor(
     private modal: NzModalService,
@@ -21,6 +30,26 @@ export class AccountActiveComponent implements OnChanges {
   ) {}
 
   ngOnChanges() {}
+
+  languageLabel(status: string) {
+    if (this.language === 'en' && status === 'READY_FOR_REVIEW') {
+      return this.enReview;
+    } else if (this.language === 'en' && status === 'NOT_ACCEPTED') {
+      return this.enReject;
+    } else if (this.language === 'de' && status === 'READY_FOR_REVIEW') {
+      return this.deReview;
+    } else if (this.language === 'de' && status === 'NOT_ACCEPTED') {
+      return this.deReject;
+    } else if (this.language === 'fr' && status === 'READY_FOR_REVIEW') {
+      return this.frReview;
+    } else if (this.language === 'fr' && status === 'NOT_ACCEPTED') {
+      return this.frReject;
+    } else if (this.language === 'it' && status === 'READY_FOR_REVIEW') {
+      return this.itReview;
+    } else if (this.language === 'it' && status === 'NOT_ACCEPTED') {
+      return this.itReject;
+    }
+  }
 
   deleteAd(active: Ads, index: number): void {
     this.modal.confirm({

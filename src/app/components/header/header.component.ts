@@ -6,14 +6,14 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import {UserService} from '../../@core/services/user.service';
-import {AuthConst} from '../../@core/consts/auth.const';
-import {Subscription} from 'rxjs';
-import {HelpersService} from '../../@core/services/helpers.service';
-import {NzModalService} from 'ng-zorro-antd';
-import {Router} from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
-import {TranslateServiceRest} from '../../@core/services/translateREST.service';
+import { UserService } from '../../@core/services/user.service';
+import { AuthConst } from '../../@core/consts/auth.const';
+import { Subscription } from 'rxjs';
+import { HelpersService } from '../../@core/services/helpers.service';
+import { NzModalService } from 'ng-zorro-antd';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslateServiceRest } from '../../@core/services/translateREST.service';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +21,7 @@ import {TranslateServiceRest} from '../../@core/services/translateREST.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Output() getLanguage = new EventEmitter<any>();
   accountName: string;
   createAd: boolean;
   roleName;
@@ -42,8 +43,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private translateBackend: TranslateServiceRest
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.chosenLanguage = this.translateBackend.getChoosenLanguage();
@@ -69,24 +69,24 @@ export class HeaderComponent implements OnInit {
   }
 
   goToUserProfie(id: number) {
-    if ( localStorage.getItem(AuthConst.token) == null) {
+    if (localStorage.getItem(AuthConst.token) == null) {
       this.router.navigate(['/login']);
     } else {
-      this.router.navigate(['/user', id], );
+      this.router.navigate(['/user', id]);
     }
   }
 
-
-
-
   change(code: string) {
+    this.getLanguage.emit(code);
     this.translate.use(code);
-    this.translateBackend.setLanguage(code).subscribe( x => {
-      console.log(x);
-    },
-      error =>  {
-      console.log(error);
-      });
+    this.translateBackend.setLanguage(code).subscribe(
+      (x) => {
+        console.log(x);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
     this.translateBackend.sendLanguage(code);
     this.notify.emit(code);
   }

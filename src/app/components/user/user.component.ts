@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../shared/models/user.model';
 import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
@@ -16,6 +16,7 @@ import { NzModalService } from 'ng-zorro-antd';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
+  getLang: string;
   expression: boolean;
   active: boolean;
   expired: boolean;
@@ -84,13 +85,17 @@ export class UserComponent implements OnInit {
     });
   }
 
+  getLanguage(event: any): void {
+    this.getLang = event;
+  }
+
   activeButton() {
     this.active = true;
     this.expired = false;
     this.sold = false;
     this.guest = false;
     this.scroll();
-    this.adsService.getAllByUserId(this.userId).subscribe((res) => {
+    this.adsService.getAllVisibleAds().subscribe((res) => {
       this.activeProducts.push(res);
       if (this.activeProducts[0].length === 0) {
         this.adsActive = false;
