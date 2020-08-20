@@ -163,10 +163,9 @@
             placeholder="0.00"
             class="form__input form__input--price"
             formControlName="price"
-            maxlength="7"
-            type="number"
+            type="text"
             NumberOnly
-            min="0.00"
+            [appInputMaxLength]="10"
           />
           <p class="form__currency">CHF</p>
         </div>

@@ -80,6 +80,7 @@ import { AdsCarouselComponent } from './components/ads-carousel/ads-carousel.com
 import { AcceptAdsComponent } from './components/user/accept-ads/accept-ads.component';
 import {StrictNumberOnlyDirective} from './utils/StrictNumberOnlyDirective';
 import {ToastrModule} from 'ngx-toastr';
+import {InputMaxLengthDirective} from './utils/input-max-length.directive';
 
 registerLocaleData(en);
 
@@ -120,7 +121,8 @@ registerLocaleData(en);
     AdsComponent,
     AdsCarouselComponent,
     AcceptAdsComponent,
-    StrictNumberOnlyDirective
+    StrictNumberOnlyDirective,
+    InputMaxLengthDirective
   ],
   imports: [
     BrowserModule,

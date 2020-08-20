@@ -9,8 +9,8 @@
             [style.backgroundImage]="'url(' + sellerImage + ')'"
           ></div>
         </div>
-        <span class="profil-name">{{ sellerCompany }}</span>
-        <span class="profil-name">{{ sellerName }}</span>
+        <span class="profil-name" *ngIf="business">{{ sellerCompany }}</span>
+        <span class="profil-name" *ngIf="private">{{ sellerName }}</span>
       </div>
       <div class="body">
         <!-- <div class="checkmarks">

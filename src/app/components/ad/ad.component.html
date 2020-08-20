@@ -64,7 +64,7 @@
           *ngIf="!reviewUser"
           class="seller-image"
           [src]="userImage"
-          [routerLink]="['/seller' + userSellerId]"
+          [routerLink]="['/seller', userSellerId]"
           pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!"
           tooltipPosition="top"
           style="cursor: pointer;"
@@ -72,7 +72,7 @@
         <img
           *ngIf="reviewUser"
           [src]="reviewUser.companyImage[0]"
-          [routerLink]="['/seller/' + reviewUser.id]"
+          [routerLink]="['/seller/', reviewUser.id]"
         />
         <label>{{ userSeller?.name || reviewUser?.name }}</label>
       </div>

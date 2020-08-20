@@ -115,12 +115,14 @@
       flex-direction: column;
       align-items: center;
       img {
+        background-repeat: no-repeat;
+        background-position: 50%;
+        background-size: 160px 160px;
+        width: 160px;
+        height: 160px;
+        border-radius: 17px;
+        border: 2px solid #d62b1f;
         cursor: pointer;
-        width: 260px;
-        height: 175px;
-        border: 1px solid;
-        border-radius: 15px;
-        border-color: $red;
       }
     }
     .contact {
