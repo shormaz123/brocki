@@ -64,40 +64,40 @@ export class AcceptUsersComponent implements OnInit {
     });
   }
 
-  // rejectUser(userForAccept: User, index: number) {
-  //   this.modal.confirm({
-  //     nzTitle: 'Are you sure you want to accept this user?',
-  //     nzContent: '',
-  //     nzOnOk: () => {
-  //       this.usersForReview[0].splice(index, 1);
-  //       const user = new User();
-  //       user.aboutUs = userForAccept.aboutUs;
-  //       user.address = userForAccept.address;
-  //       user.bussinesType = userForAccept.bussinesType;
-  //       user.city = userForAccept.city;
-  //       user.company = userForAccept.company;
-  //       user.companyImage = userForAccept.companyImage;
-  //       user.credit = userForAccept.credit;
-  //       user.dateOfBirth = userForAccept.dateOfBirth;
-  //       user.email = userForAccept.email;
-  //       user.id = userForAccept.id;
-  //       user.location = userForAccept.location;
-  //       user.mobile = userForAccept.mobile;
-  //       user.name = userForAccept.name;
-  //       user.password = userForAccept.password;
-  //       user.phone = userForAccept.phone;
-  //       user.region = userForAccept.region;
-  //       user.roleName = userForAccept.roleName;
-  //       user.surname = userForAccept.surname;
-  //       user.userName = userForAccept.userName;
-  //       user.visible = false;
-  //       user.website = userForAccept.website;
-  // this.userService.acceptUsers(user.visible, user.id).subscribe(() => {
-  // this.toastr.success('the user is accepted');
-  // });
-  //   },
-  // });
-  // }
+  rejectUser(rejectUser: User, index: number) {
+    //   this.modal.confirm({
+    //     nzTitle: 'Are you sure you want to accept this user?',
+    //     nzContent: '',
+    //     nzOnOk: () => {
+    //       this.usersForReview[0].splice(index, 1);
+    //       const user = new User();
+    //       user.aboutUs = userForAccept.aboutUs;
+    //       user.address = userForAccept.address;
+    //       user.bussinesType = userForAccept.bussinesType;
+    //       user.city = userForAccept.city;
+    //       user.company = userForAccept.company;
+    //       user.companyImage = userForAccept.companyImage;
+    //       user.credit = userForAccept.credit;
+    //       user.dateOfBirth = userForAccept.dateOfBirth;
+    //       user.email = userForAccept.email;
+    //       user.id = userForAccept.id;
+    //       user.location = userForAccept.location;
+    //       user.mobile = userForAccept.mobile;
+    //       user.name = userForAccept.name;
+    //       user.password = userForAccept.password;
+    //       user.phone = userForAccept.phone;
+    //       user.region = userForAccept.region;
+    //       user.roleName = userForAccept.roleName;
+    //       user.surname = userForAccept.surname;
+    //       user.userName = userForAccept.userName;
+    //       user.visible = false;
+    //       user.website = userForAccept.website;
+    // this.userService.acceptUsers(user.visible, user.id).subscribe(() => {
+    // this.toastr.success('the user is accepted');
+    // });
+    //   },
+    // });
+  }
 
   acceptedUser() {
     if (this.lang === 'en') {

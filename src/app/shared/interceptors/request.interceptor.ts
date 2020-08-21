@@ -15,6 +15,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     request = request.clone({
       setHeaders: {
         Authorization: `${localStorage.getItem(AuthConst.token)}`,
+        'Accept-Language': `${localStorage.getItem(AuthConst.language)}`
       },
     });
 

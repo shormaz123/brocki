@@ -34,7 +34,7 @@ export const de = {
     password: 'Passwort',
     signup: 'Registrieren',
     forgotPassword: 'Passwort vergessen ',
-    submit: 'Einreichen',
+    submit: 'Anmelden',
     signin: 'Anmelden',
     userNotFound: 'Benutzer wurde nicht gefunden',
     createAd: 'Anzeige erstellen',
