@@ -23,8 +23,6 @@ export class UserService {
     );
   }
 
-
-
   deleteUser(id: number): Observable<String> {
     return this.http.delete<String>(`${this.baseUrl}/brocki/users/${id}`);
   }
@@ -91,9 +89,33 @@ export class UserService {
     );
   }
 
-  confirmAccount(token: any): Observable<any>  {
-    return this.http.post(`${this.baseUrl}/mybrocki/confirm-account?token=${token}`, token);
+  /**
+   * Users for acceptions
+   *
+   */
+  UsersForAcceptions(): Observable<User> {
+    return this.http.get<User>(
+      `${this.baseUrl}/mybrocki/auth/users/nonvisible`
+    );
   }
 
+  /**
+   * Accept User
+   *
+   */
+  acceptUsers(visible: boolean, userId: number): Observable<any> {
+    // let query = new HttpParams();
+    // query = query.append('visible', accept.toString());
+    return this.httpClient.put<User>(
+      `${this.baseUrl}/mybrocki/auth/users/updateuser/status/${userId}`,
+      { visible }
+    );
+  }
 
+  confirmAccount(token: any): Observable<any> {
+    return this.http.post(
+      `${this.baseUrl}/mybrocki/confirm-account?token=${token}`,
+      token
+    );
+  }
 }

@@ -81,6 +81,7 @@ import { AcceptAdsComponent } from './components/user/accept-ads/accept-ads.comp
 import { StrictNumberOnlyDirective } from './utils/StrictNumberOnlyDirective';
 import { ToastrModule } from 'ngx-toastr';
 import { InputMaxLengthDirective } from './utils/input-max-length.directive';
+import { AcceptUsersComponent } from './components/user/accept-users/accept-users.component';
 
 registerLocaleData(en);
 
@@ -123,6 +124,7 @@ registerLocaleData(en);
     AcceptAdsComponent,
     StrictNumberOnlyDirective,
     InputMaxLengthDirective,
+    AcceptUsersComponent,
   ],
   imports: [
     BrowserModule,

@@ -42,7 +42,7 @@ export class UserComponent implements OnInit {
   admin: string;
   language: string;
   private: boolean;
-  business: boolean
+  business: boolean;
   companyName: string;
 
   constructor(
@@ -61,8 +61,8 @@ export class UserComponent implements OnInit {
     }
     this.scroll();
     this.userService.getUser().subscribe((res) => {
-      this.companyName = res.company
-      console.log(res)
+      this.companyName = res.company;
+      console.log(res);
       if (res.roleName === 'bussines') {
         this.private = false;
         this.business = true;
@@ -188,13 +188,5 @@ export class UserComponent implements OnInit {
 
   scroll(): void {
     window.scrollTo({ top: 0 });
-  }
-
-  alert(number: number): void {
-    if (number === 1) {
-      alert('Accept ads under construction !!');
-    } else if (number === 2) {
-      alert('Acceptance of business accounts under construction !!');
-    }
   }
 }

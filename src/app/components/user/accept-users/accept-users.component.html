@@ -1,0 +1,57 @@
+<app-header class="header" (getLanguage)="getLanguage($event)"></app-header>
+<div class="container">
+  <div class="accept-ads">
+    <div class="accept-ads__title">
+      {{ 'translate.acceptAds' | translate }}
+    </div>
+    <!-- <div *ngIf="!message" class="message">No Ads for review</div> -->
+    <div class="wrapper-card">
+      <div class="card" *ngFor="let user of usersForReview[0]; let i = index">
+        <div class="cardHover">
+          <div class="card__name">{{ user.bussinesType }}</div>
+          <hr class="card__line" />
+          <div class="card__label">
+            <div class="card__label-title">
+              {{ 'translate.email' | translate }}
+            </div>
+            <div class="card__label-text">
+              {{ user.email }}
+            </div>
+          </div>
+          <div class="card__label">
+            <div class="card__label-title">
+              {{ 'translate.nameFirst' | translate }}
+            </div>
+            <div class="card__label-text">
+              {{ user.userName }}
+            </div>
+          </div>
+          <div class="card__label">
+            <div class="card__label-title">
+              {{ 'translate.city' | translate }}
+            </div>
+            <div class="card__label-text">
+              {{ user.city }}
+            </div>
+          </div>
+          <div class="card__label">
+            <div class="card__label-title">
+              {{ 'translate.canton' | translate }}
+            </div>
+            <div class="card__label-text">
+              {{ user.region }}
+            </div>
+          </div>
+          <div class="card__buttons">
+            <button class="card__accept" (click)="acceptUser(user, i)">
+              {{ 'translate.accept' | translate }}
+            </button>
+            <button class="card__decline" (click)="rejectUser(user, i)">
+              {{ 'translate.reject' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

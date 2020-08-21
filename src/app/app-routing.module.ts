@@ -21,6 +21,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.component';
 import { AdsComponent } from './components/ads/ads.component';
 import { AcceptAdsComponent } from './components/user/accept-ads/accept-ads.component';
+import { AcceptUsersComponent } from './components/user/accept-users/accept-users.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'user/:id',
         component: UserComponent,
+      },
+      {
+        path: 'accept-users',
+        component: AcceptUsersComponent,
       },
       {
         path: 'accept-ads',
