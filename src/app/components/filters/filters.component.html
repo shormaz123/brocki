@@ -23,6 +23,7 @@
         name="contactMethod"
         class="form-control"
         [(ngModel)]="category.id"
+        (change)="findCategory($event)"
       >
         <option [value]="noCategory">{{
           'translate.allCategories' | translate
@@ -33,6 +34,25 @@
           [selected]="true"
           >{{
            category.groupName[currentLang]
+          }}</option>
+      </select>
+    </div>
+    <div class="location" style="padding-bottom: 20px;">
+      <img src="../../../assets/icon3 2.png" />
+      <select
+        name="contactMethod"
+        class="form-control"
+        [(ngModel)]="subCategory.id"
+      >
+        <option [value]="noSubCategory">{{
+          'translate.selectSubCategory' | translate
+          }}</option>
+        <option
+          *ngFor="let subCategory of subCategoriesGroup"
+          [value]="subCategory.id"
+          [selected]="true"
+        >{{
+          subCategory.subGroupName[currentLang]
           }}</option>
       </select>
     </div>

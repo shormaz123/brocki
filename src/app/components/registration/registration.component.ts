@@ -55,7 +55,7 @@ export class RegistrationComponent implements OnInit {
       region: ['', [Validators.required]],
       bussinesType: ['PRIVATE', [Validators.required]],
       role_id: [3, [Validators.required]],
-      terms: [true, [Validators.required]],
+      terms: [false, [Validators.required]],
     });
 
     this.brockenstube = true;

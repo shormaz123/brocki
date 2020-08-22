@@ -50,19 +50,23 @@
           <label>{{ 'translate.username' | translate }}</label>
           <input formControlName="userName" />
         </div>
-        <div class="inputItem4">
+        <div class="inputItem3">
           <label>{{ 'translate.city' | translate }}</label>
-          <select
-            name="contactMethod"
-            class="form-control"
-            required
-            formControlName="city"
-          >
-            <option *ngFor="let city of cities" [value]="city">{{
-              city
-            }}</option>
-          </select>
+          <input formControlName="city" />
         </div>
+<!--        <div class="inputItem4">-->
+<!--          <label>{{ 'translate.city' | translate }}</label>-->
+<!--          <select-->
+<!--            name="contactMethod"-->
+<!--            class="form-control"-->
+<!--            required-->
+<!--            formControlName="city"-->
+<!--          >-->
+<!--            <option *ngFor="let city of cities" [value]="city">{{-->
+<!--              city-->
+<!--            }}</option>-->
+<!--          </select>-->
+<!--        </div>-->
         <div class="inputItem5">
           <label>{{ 'translate.canton' | translate }}</label>
           <select
