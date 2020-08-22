@@ -4,6 +4,7 @@ import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
 import { AdsParam } from '../../shared/models/adParams.model';
 import { Comment } from '../../shared/models/createComment.model';
+import { isBuffer } from 'util';
 
 @Component({
   selector: 'app-seller-profile',
@@ -61,7 +62,6 @@ export class SellerProfileComponent implements OnInit {
         this.sellerMobile = seller.mobile;
         this.sellerEmail = seller.email;
 
-
         seller.companyImage[0]
           ? (this.sellerImage = seller.companyImage[0])
           : (this.sellerImage = this.defaultImage);
@@ -88,23 +88,25 @@ export class SellerProfileComponent implements OnInit {
   }
 
   soldButton() {
+    this.scroll();
+    if (!this.sold) {
+      const soldAds = new AdsParam();
+      soldAds.status = 'SOLD';
+      soldAds.userId = this.sellerindex;
+      this.adsService.getSoldAds(soldAds).subscribe((res) => {
+        this.soldProducts.push(res);
+        if (this.soldProducts[0].length === 0) {
+          this.adsSold = false;
+        } else {
+          this.adsSold = true;
+        }
+      });
+    }
     this.about = false;
     this.info = false;
     this.guest = false;
     this.active = false;
     this.sold = true;
-    this.scroll();
-    const soldAds = new AdsParam();
-    soldAds.status = 'SOLD';
-    soldAds.userId = this.sellerindex;
-    this.adsService.getSoldAds(soldAds).subscribe((res) => {
-      this.soldProducts.push(res);
-      if (this.soldProducts[0].length === 0) {
-        this.adsSold = false;
-      } else {
-        this.adsSold = true;
-      }
-    });
   }
 
   aboutButton() {
@@ -126,16 +128,18 @@ export class SellerProfileComponent implements OnInit {
   }
 
   guestButton() {
+    this.scroll();
+    if (!this.guest) {
+      this.adsService.getCommentByUser(this.sellerId).subscribe((res) => {
+        this.CommentsOfUser = [];
+        this.CommentsOfUser.push(res);
+      });
+    }
     this.active = false;
     this.sold = false;
     this.about = false;
     this.info = false;
     this.guest = true;
-    this.scroll();
-    this.adsService.getCommentByUser(this.sellerId).subscribe((res) => {
-      this.CommentsOfUser = [];
-      this.CommentsOfUser.push(res);
-    });
   }
 
   toggleEmail(): void {

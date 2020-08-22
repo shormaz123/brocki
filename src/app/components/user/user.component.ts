@@ -111,56 +111,62 @@ export class UserComponent implements OnInit {
   }
 
   expiredButton() {
+    this.scroll();
+    if (!this.expired) {
+      this.adsService.getExpiredAds().subscribe((res) => {
+        this.expiredProducts.push(res);
+        if (this.expiredProducts[0].length === 0) {
+          this.adsExpired = true;
+        } else {
+          this.adsExpired = false;
+        }
+      });
+    }
     this.active = false;
     this.expired = true;
     this.sold = false;
     this.guest = false;
-    this.scroll();
-    this.adsService.getExpiredAds().subscribe((res) => {
-      this.expiredProducts.push(res);
-      if (this.expiredProducts[0].length === 0) {
-        this.adsExpired = true;
-      } else {
-        this.adsExpired = false;
-      }
-    });
   }
 
   soldButton() {
+    this.scroll();
+    if (!this.sold) {
+      const soldAds = new AdsParam();
+      soldAds.status = 'SOLD';
+      soldAds.userId = this.userId;
+      this.adsService.getSoldAds(soldAds).subscribe((res) => {
+        this.soldProducts = [];
+        this.soldProducts.push(res);
+        if (this.soldProducts[0].length === 0) {
+          this.adsSold = true;
+        } else {
+          this.adsSold = false;
+        }
+      });
+    }
     this.active = false;
     this.expired = false;
     this.sold = true;
     this.guest = false;
-    this.scroll();
-    const soldAds = new AdsParam();
-    soldAds.status = 'SOLD';
-    soldAds.userId = this.userId;
-    this.adsService.getSoldAds(soldAds).subscribe((res) => {
-      this.soldProducts = [];
-      this.soldProducts.push(res);
-      if (this.soldProducts[0].length === 0) {
-        this.adsSold = true;
-      } else {
-        this.adsSold = false;
-      }
-    });
   }
 
   guestButton() {
+    this.scroll();
+    if (!this.guest) {
+      this.adsService.getCommentByUser(this.userId).subscribe((res) => {
+        this.guestBook = [];
+        this.guestBook.push(res);
+        if (this.guestBook[0].length === 0) {
+          this.comment = true;
+        } else {
+          this.comment = false;
+        }
+      });
+    }
     this.active = false;
     this.expired = false;
     this.sold = false;
     this.guest = true;
-    this.scroll();
-    this.adsService.getCommentByUser(this.userId).subscribe((res) => {
-      this.guestBook = [];
-      this.guestBook.push(res);
-      if (this.guestBook[0].length === 0) {
-        this.comment = true;
-      } else {
-        this.comment = false;
-      }
-    });
   }
 
   updateInfo() {
