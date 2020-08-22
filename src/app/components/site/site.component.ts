@@ -55,7 +55,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   searchProductName: string;
   adsByParams;
 
-  @ViewChild('panel', { read: ElementRef }) public panel: ElementRef<any>;
+  @ViewChild('panel', { read: ElementRef, static: false }) public panel: ElementRef<any>;
 
 
   state;
