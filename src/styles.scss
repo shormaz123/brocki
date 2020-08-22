@@ -66,6 +66,10 @@ body {
   height: 30px;
   width: 30px;
 }
+.anticon svg {
+  display: inline-block;
+  fill: red !important;
+}
 
 .mat-checkbox-inner-container {
   /* display: inline-block; */
