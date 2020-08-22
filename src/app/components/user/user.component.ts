@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../shared/models/user.model';
 import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
@@ -16,6 +16,7 @@ import { NzModalService } from 'ng-zorro-antd';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
+  getLang: string;
   expression: boolean;
   active: boolean;
   expired: boolean;
@@ -41,7 +42,7 @@ export class UserComponent implements OnInit {
   admin: string;
   language: string;
   private: boolean;
-  business: boolean
+  business: boolean;
   companyName: string;
 
   constructor(
@@ -60,8 +61,8 @@ export class UserComponent implements OnInit {
     }
     this.scroll();
     this.userService.getUser().subscribe((res) => {
-      this.companyName = res.company
-      console.log(res)
+      this.companyName = res.company;
+      console.log(res);
       if (res.roleName === 'bussines') {
         this.private = false;
         this.business = true;
@@ -80,7 +81,7 @@ export class UserComponent implements OnInit {
         this.userImage = this.defaultImage;
       }
     });
-    this.guest = true;
+    this.active = true;
     this.activatedRoute.params.subscribe((params) => {
       this.userId = params.id;
       this.userService.getUserById(this.userId).subscribe((user) => {
@@ -88,14 +89,18 @@ export class UserComponent implements OnInit {
       });
     });
 
-    this.adsService.getCommentByUser(this.userId).subscribe((res) => {
-      this.guestBook.push(res);
-      if (this.guestBook[0].length === 0) {
-        this.comment = true;
+    this.adsService.getAllVisibleAds().subscribe((res) => {
+      this.activeProducts.push(res);
+      if (this.activeProducts[0].length === 0) {
+        this.adsActive = false;
       } else {
-        this.comment = false;
+        this.adsActive = true;
       }
     });
+  }
+
+  getLanguage(event: any): void {
+    this.getLang = event;
   }
 
   activeButton() {
@@ -104,14 +109,6 @@ export class UserComponent implements OnInit {
     this.sold = false;
     this.guest = false;
     this.scroll();
-    this.adsService.getAllByUserId(this.userId).subscribe((res) => {
-      this.activeProducts.push(res);
-      if (this.activeProducts[0].length === 0) {
-        this.adsActive = false;
-      } else {
-        this.adsActive = true;
-      }
-    });
   }
 
   expiredButton() {
@@ -156,6 +153,15 @@ export class UserComponent implements OnInit {
     this.sold = false;
     this.guest = true;
     this.scroll();
+    this.adsService.getCommentByUser(this.userId).subscribe((res) => {
+      this.guestBook = [];
+      this.guestBook.push(res);
+      if (this.guestBook[0].length === 0) {
+        this.comment = true;
+      } else {
+        this.comment = false;
+      }
+    });
   }
 
   updateInfo() {
@@ -183,13 +189,5 @@ export class UserComponent implements OnInit {
 
   scroll(): void {
     window.scrollTo({ top: 0 });
-  }
-
-  alert(number: number): void {
-    if (number === 1) {
-      alert('Accept ads under construction !!');
-    } else if (number === 2) {
-      alert('Acceptance of business accounts under construction !!');
-    }
   }
 }

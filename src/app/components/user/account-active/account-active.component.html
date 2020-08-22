@@ -9,31 +9,55 @@
   </div>
   <div class="ads__body" *ngIf="ads === true">
     <div *ngFor="let active of activeProducts[0]; let i = index" class="card">
-      <div class="image">
-        <img class="image__image" [src]="active.image[0]" />
-      </div>
-      <div class="text">
-        <div class="text__link">
-          <div class="text__title">{{ active.productName }}</div>
+      <div class="card">
+        <div class="image">
+          <img
+            [ngStyle]="{
+              opacity:
+                active.status === 'NOT_ACCEPTED' ||
+                active.status === 'READY_FOR_REVIEW'
+                  ? '0.1'
+                  : '1'
+            }"
+            class="image__image"
+            [src]="active.image[0]"
+          />
+          <img
+            *ngIf="
+              active.status === 'NOT_ACCEPTED' ||
+              active.status === 'READY_FOR_REVIEW'
+            "
+            class="image__image image__image--label"
+            [src]="languageLabel(active.status)"
+          />
         </div>
-        <hr />
-        <div class="text__link">
-          <div class="text__body">{{ active.description }}</div>
-        </div>
-        <div class="text__body-price">
-          <div class="text__price">
-            <div>{{ active.price | number: '.2-2' }} CHF</div>
+        <div class="text">
+          <div class="text__link">
+            <div class="text__title">{{ active.productName }}</div>
           </div>
-          <div class="text__day">
-            <div>{{ active.adsDate | date: 'medium' }}</div>
+          <hr />
+          <div class="text__link">
+            <div class="text__body">{{ active.description }}</div>
+          </div>
+          <div class="text__body-price">
+            <div class="text__price">
+              <div>{{ active.price | number: '.2-2' }} CHF</div>
+            </div>
+            <div class="text__day">
+              <div>{{ active.adsDate | date: 'medium' }}</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="delete-ad" (click)="deleteAd(active, i)">X</div>
-      <div class="amount" (click)="soldAd(active, i)">
-        <div class="tooltip">
-          <img src="../../../../assets/images/myAccount/money icon.png" />
-          <span class="tooltiptext">{{ 'translate.soldAd' | translate }}</span>
+        <div class="delete-ad" (click)="deleteAd(active, i)">
+          X
+        </div>
+        <div class="amount" (click)="soldAd(active, i)">
+          <div class="tooltip">
+            <img src="../../../../assets/images/myAccount/money icon.png" />
+            <span class="tooltiptext">{{
+              'translate.soldAd' | translate
+            }}</span>
+          </div>
         </div>
       </div>
     </div>

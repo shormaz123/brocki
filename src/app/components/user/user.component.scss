@@ -102,7 +102,7 @@
   padding: 123px 170px 0 180px;
 
   @include rwd(1600) {
-    padding: 116px 140px 0 130px;
+    padding: 116px 90px 0 110px;
   }
 
   &__image {
@@ -130,6 +130,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 155px;
+
+  @include rwd(1600) {
+    padding: 0 90px 0 90px;
+  }
 
   .navItem {
     width: 20% !important;

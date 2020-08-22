@@ -1,4 +1,4 @@
-<app-header class="header"></app-header>
+<app-header class="header" (getLanguage)="getLanguage($event)"></app-header>
 <div class="mainContainer">
   <div class="container">
     <div class="account">
@@ -52,15 +52,22 @@
             </div>
           </div>
           <div *ngIf="!admin" class="boxes__link" (click)="goTo('/contact-us')">
-            <div class="boxes__image"></div>
+            <div
+              class="boxes__image"
+              [inlineSVG]="'../../../assets/images/myAccount/contact-us.svg'"
+            ></div>
             <div class="boxes__text">
               {{ 'translate.contactUs' | translate }}
             </div>
           </div>
-          <div *ngIf="admin" class="boxes__link" (click)="alert(2)">
+          <div
+            *ngIf="admin"
+            class="boxes__link"
+            (click)="goTo('/accept-users')"
+          >
             <div
               class="boxes__image"
-              [inlineSVG]="'../../../assets/images/myAccount/credits.svg'"
+              [inlineSVG]="'../../../assets/images/myAccount/addUsers.svg'"
             ></div>
             <div class="boxes__text">Business accounts</div>
           </div>
@@ -123,6 +130,7 @@
       *ngIf="expired"
     ></app-account-expired>
     <app-account-active
+      [language]="getLang"
       [activeProducts]="activeProducts"
       [ads]="adsActive"
       *ngIf="active"

@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Ads } from '../../../shared/models/ads.model';
 import { AdsService } from '../../../@core/services/ads.service';
-import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-account-active',
@@ -11,16 +12,47 @@ import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
 export class AccountActiveComponent implements OnChanges {
   @Input() activeProducts: Ads;
   @Input() ads: boolean;
+  @Input() language: string;
   Ads: boolean;
   userId: number;
+  itReject = '../../../../assets/images/adsLabel/it-reject.svg';
+  itReview = '../../../../assets/images/adsLabel/it-ready-for-review.svg';
+  frReject = '../../../../assets/images/adsLabel/fr-reject.svg';
+  frReview = '../../../../assets/images/adsLabel/fr-ready-for-review.svg';
+  deReject = '../../../../assets/images/adsLabel/de-reject.svg';
+  deReview = '../../../../assets/images/adsLabel/de-ready-for-review.svg';
+  // enReject = '../../../../assets/images/adsLabel/en-accept.svg';
+  enReview = '../../../../assets/images/adsLabel/en-ready-for-review.svg';
 
   constructor(
     private modal: NzModalService,
-    private notification: NzNotificationService,
-    private adsService: AdsService
+    private adsService: AdsService,
+    private toastr: ToastrService
   ) {}
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    console.log(this.activeProducts);
+  }
+
+  languageLabel(status: string) {
+    if (this.language === 'en' && status === 'READY_FOR_REVIEW') {
+      return this.enReview;
+    } else if (this.language === 'en' && status === 'NOT_ACCEPTED') {
+      return this.enReview;
+    } else if (this.language === 'de' && status === 'READY_FOR_REVIEW') {
+      return this.deReview;
+    } else if (this.language === 'de' && status === 'NOT_ACCEPTED') {
+      return this.deReject;
+    } else if (this.language === 'fr' && status === 'READY_FOR_REVIEW') {
+      return this.frReview;
+    } else if (this.language === 'fr' && status === 'NOT_ACCEPTED') {
+      return this.frReject;
+    } else if (this.language === 'it' && status === 'READY_FOR_REVIEW') {
+      return this.itReview;
+    } else if (this.language === 'it' && status === 'NOT_ACCEPTED') {
+      return this.itReject;
+    }
+  }
 
   deleteAd(active: Ads, index: number): void {
     this.modal.confirm({
@@ -50,7 +82,7 @@ export class AccountActiveComponent implements OnChanges {
         ads.urgentSales = null;
         ads.userId = null;
         this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
-          this.notification.success('', 'The ad is deleted');
+          this.successDelete();
         });
       },
     });
@@ -83,11 +115,35 @@ export class AccountActiveComponent implements OnChanges {
         ads.status = 'SOLD';
         ads.urgentSales = null;
         ads.userId = null;
-        this.adsService.changeStatusOfAds(ads, ads.id).subscribe((res) => {
-          this.notification.success('', 'The ad is moved to sold');
+        this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
+          this.successSold();
         });
       },
     });
+  }
+
+  successDelete() {
+    if (this.language === 'en') {
+      return this.toastr.success('The ad is deleted!');
+    } else if (this.language === 'fr') {
+      return this.toastr.success("L'annonce est supprimée");
+    } else if (this.language === 'de') {
+      return this.toastr.success('Die Anzeige wird gelöscht');
+    } else if (this.language === 'it') {
+      return this.toastr.success("L'annuncio viene eliminato");
+    }
+  }
+
+  successSold() {
+    if (this.language === 'en') {
+      return this.toastr.success('The ad is moved to sold');
+    } else if (this.language === 'fr') {
+      return this.toastr.success("L'annonce est déplacée vers vendue");
+    } else if (this.language === 'de') {
+      return this.toastr.success('Die Anzeige wird in "Verkauft" verschoben');
+    } else if (this.language === 'it') {
+      return this.toastr.success("L'annuncio viene spostato in Venduto");
+    }
   }
 
   style() {
