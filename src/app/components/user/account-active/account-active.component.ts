@@ -30,7 +30,9 @@ export class AccountActiveComponent implements OnChanges {
     private toastr: ToastrService
   ) {}
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    console.log(this.activeProducts);
+  }
 
   languageLabel(status: string) {
     if (this.language === 'en' && status === 'READY_FOR_REVIEW') {

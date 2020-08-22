@@ -39,8 +39,10 @@
     width: 200px;
     height: 200px;
     position: relative;
+    // border: 1px solid red;
 
     &--label {
+      border: none;
       position: absolute;
       width: 220px;
       padding: 0 10px;

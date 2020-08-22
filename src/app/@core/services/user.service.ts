@@ -104,8 +104,6 @@ export class UserService {
    *
    */
   acceptUsers(visible: boolean, userId: number): Observable<any> {
-    // let query = new HttpParams();
-    // query = query.append('visible', accept.toString());
     return this.httpClient.put<User>(
       `${this.baseUrl}/mybrocki/auth/users/updateuser/status/${userId}`,
       { visible }

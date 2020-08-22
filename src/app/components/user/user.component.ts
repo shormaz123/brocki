@@ -81,7 +81,7 @@ export class UserComponent implements OnInit {
         this.userImage = this.defaultImage;
       }
     });
-    this.guest = true;
+    this.active = true;
     this.activatedRoute.params.subscribe((params) => {
       this.userId = params.id;
       this.userService.getUserById(this.userId).subscribe((user) => {
@@ -89,12 +89,12 @@ export class UserComponent implements OnInit {
       });
     });
 
-    this.adsService.getCommentByUser(this.userId).subscribe((res) => {
-      this.guestBook.push(res);
-      if (this.guestBook[0].length === 0) {
-        this.comment = true;
+    this.adsService.getAllVisibleAds().subscribe((res) => {
+      this.activeProducts.push(res);
+      if (this.activeProducts[0].length === 0) {
+        this.adsActive = false;
       } else {
-        this.comment = false;
+        this.adsActive = true;
       }
     });
   }
@@ -109,14 +109,6 @@ export class UserComponent implements OnInit {
     this.sold = false;
     this.guest = false;
     this.scroll();
-    this.adsService.getAllVisibleAds().subscribe((res) => {
-      this.activeProducts.push(res);
-      if (this.activeProducts[0].length === 0) {
-        this.adsActive = false;
-      } else {
-        this.adsActive = true;
-      }
-    });
   }
 
   expiredButton() {
@@ -161,6 +153,15 @@ export class UserComponent implements OnInit {
     this.sold = false;
     this.guest = true;
     this.scroll();
+    this.adsService.getCommentByUser(this.userId).subscribe((res) => {
+      this.guestBook = [];
+      this.guestBook.push(res);
+      if (this.guestBook[0].length === 0) {
+        this.comment = true;
+      } else {
+        this.comment = false;
+      }
+    });
   }
 
   updateInfo() {
