@@ -6,6 +6,7 @@ export interface FilterAds {
   hasImage: boolean;
   freeDelivery: boolean;
   productWarranty: boolean;
-  urgentSales: boolean;
+  urgentSales?: boolean;
   adsGroupId: any;
+  subCategory: number;
 }

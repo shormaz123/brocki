@@ -8,6 +8,8 @@ import {Router} from '@angular/router';
 import {HelpersService} from '../../@core/services/helpers.service';
 import {TranslateServiceRest} from '../../@core/services/translateREST.service';
 import {Subscription} from 'rxjs';
+import {response} from 'express';
+import {adsSubGroup} from '../../shared/models/adsSubGroup.model';
 
 @Component({
   selector: 'app-filters',
@@ -38,12 +40,18 @@ export class FiltersComponent implements OnInit, OnDestroy {
   formattedAmount;
   amount;
   categoriesGroup;
+  subCategoriesGroup;
   category = {
     id: 0,
     groupName: ''
   };
+  subCategory = {
+    id: 0,
+    subGroupName: ''
+  };
 
   noCategory = '';
+  noSubCategory = '';
   noRegion = '';
   currentLang = 'de';
   subscriptionLang: Subscription;
@@ -77,7 +85,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
       });
   }
 
-  // tslint:disable-next-line:use-lifecycle-interface
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
     this.subscriptionLang.unsubscribe();
@@ -105,6 +112,17 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   }
 
+  findCategory(event: any): void {
+    this.subCategoriesGroup = [];
+    this.category.id = Number(event.target.value);
+    // tslint:disable-next-line:no-shadowed-variable
+    this.adsService.getAllAdsSubGroup(this.category.id).subscribe(response => {
+      this.subCategoriesGroup = response;
+      // this.subCategory.subGroupName = this.subCategoriesGroup[0].subGroupName;
+      this.subCategory.id = this.subCategoriesGroup[0].id;
+    });
+  }
+
   confirmButton() {
     if (this.toPrice < this.fromPrice) {
       this.errorMessage = 'Max price cannot be bigger than minimum price';
@@ -120,7 +138,8 @@ export class FiltersComponent implements OnInit, OnDestroy {
         freeDelivery: this.freeDelivery,
         productWarranty: this.productWarranty,
         urgentSales: this.urgentSales,
-        adsGroupId: this.category.id
+        adsGroupId: this.category.id,
+        subCategory: this.subCategory.id,
       };
       this.adsService.getAdsByParamToFilter(this.filterAd).subscribe(x => {
         if (x.length < 1) {

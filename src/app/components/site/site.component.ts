@@ -507,6 +507,8 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   getUserAndFavAd() {
     this.userService.getUser().subscribe( response => {
+      this.userId = response.id;
+      console.log(this.userId)
       this.userService.getFavourites(response.id).subscribe((x) => {
         this.favoriteAds = x;
         this.numberOfFavorites = x.length;
