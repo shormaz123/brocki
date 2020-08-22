@@ -53,7 +53,7 @@ export const de = {
     saveChanges: 'Inserat erstellen',
     private: 'Privat',
     business: 'Unternehmen',
-    city: 'Stadt',
+    city: 'Ortschaft',
     canton: 'Kanton',
     createAccount: 'Konto erstellen',
     username: 'Benutzername ',
