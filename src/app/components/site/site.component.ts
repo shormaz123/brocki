@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
   Input,
   OnChanges,
-  OnDestroy,
+  OnDestroy, ViewChild, ElementRef,
 } from '@angular/core';
 import { AdsService } from '../../@core/services/ads.service';
 import { Ads } from '../../shared/models/ads.model';
@@ -54,6 +54,9 @@ export class SiteComponent implements OnInit, OnDestroy {
   userRequest: UserAddAdsRequest;
   searchProductName: string;
   adsByParams;
+
+  @ViewChild('panel', { read: ElementRef }) public panel: ElementRef<any>;
+
 
   state;
   selected: boolean;
@@ -427,6 +430,8 @@ export class SiteComponent implements OnInit, OnDestroy {
   ];
   subscriptionLang: Subscription;
   currentLang = 'de';
+  startPage: number;
+  paginationLimit: number;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -443,6 +448,8 @@ export class SiteComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.startPage = 0;
+    this.paginationLimit = 3;
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
       console.log(this.categoriesGroup);
@@ -483,6 +490,8 @@ export class SiteComponent implements OnInit, OnDestroy {
   receiveNotification(notification: any) {
     this.currentLang = notification;
   }
+
+
 
   getAdsBySearch() {
     if (this.searchProductName === undefined) {
@@ -605,6 +614,12 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   increaseShow() {
     this.showItems += 16;
+    this.panel.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'start' });
+  }
+
+  showMoreItems()
+  {
+    this.paginationLimit = Number(this.paginationLimit) + 3;
   }
 
   addToWishlist(adId: number) {
@@ -631,4 +646,7 @@ export class SiteComponent implements OnInit, OnDestroy {
       };
     this.helpersService.$numOfFavs.next();
   }
+
+
+
 }
