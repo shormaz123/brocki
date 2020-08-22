@@ -20,7 +20,9 @@
                   : '1'
             }"
             class="image__image"
+            [class.wrapper]="active.status === 'ACTIVE'"
             [src]="active.image[0]"
+            (click)="ad(active)"
           />
           <img
             *ngIf="
