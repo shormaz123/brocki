@@ -39,7 +39,6 @@
     width: 200px;
     height: 200px;
     position: relative;
-    // border: 1px solid red;
 
     &--label {
       border: none;
@@ -50,6 +49,15 @@
       transform: skew(210deg, 150deg);
     }
   }
+}
+
+.wrapper {
+  width: 201px;
+  height: 200px;
+  border: 3px solid red;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
 }
 
 .ads {

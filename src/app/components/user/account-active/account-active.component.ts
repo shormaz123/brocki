@@ -146,6 +146,10 @@ export class AccountActiveComponent implements OnChanges {
     }
   }
 
+  ad(selectedAd: Ads) {
+    console.log(selectedAd);
+  }
+
   style() {
     if (this.activeProducts[0] > 0) {
       return { height: '0px' };
