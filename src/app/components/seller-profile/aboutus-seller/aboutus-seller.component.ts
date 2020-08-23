@@ -13,6 +13,7 @@ export class AboutusSellerComponent implements OnInit {
   sellerId: number;
   aboutUs: string;
   sellersImages: Array<string> = [];
+  chosenImage: any = false;
 
   constructor(
     private userService: UserService,
@@ -33,5 +34,13 @@ export class AboutusSellerComponent implements OnInit {
         }
       });
     });
+  }
+
+  showImage(image: string) {
+    this.chosenImage = image;
+  }
+
+  closeImage() {
+    this.chosenImage = false;
   }
 }
