@@ -146,7 +146,7 @@ export const it = {
       'Clicca su "Invia fattura" per il tuo articolo pubblicizzato, inserisci l\'indirizzo email dell\'acquirente e scrivi il prezzo finale da pagare.',
     pricingTen:
       "Invia la fattura via e-mail (Paypal, Twint, fattura) o per posta e non appena l'oggetto è stato pagato, prenotalo o invialo.",
-    pricingEleven: '-\tNon inviare nulla senza aver prima ricevuto il denaro.',
+    pricingEleven: '\tNon inviare nulla senza aver prima ricevuto il denaro.',
     pricingList: 'Listino prezzi',
     freeMonths: '3 mesi gratuiti',
     copied: 'Copiato',

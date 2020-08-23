@@ -56,6 +56,10 @@
     color: $black;
   }
 
+  &__second-text {
+    margin: 0 0 0 10px;
+  }
+
   &__image-box {
     padding: 20px 0 0;
   }
@@ -68,6 +72,14 @@
     &--b2b {
       width: 70px;
       height: 70px;
+    }
+  }
+
+  &__margin {
+    display: flex;
+
+    &--flex {
+      margin: 0 5px 0 0;
     }
   }
 }
