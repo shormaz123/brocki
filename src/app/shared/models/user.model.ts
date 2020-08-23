@@ -18,6 +18,6 @@ export class User {
   roleName: string;
   surname: string;
   userName: string;
-  visible: boolean;
+  userStatus: string;
   website: string;
 }

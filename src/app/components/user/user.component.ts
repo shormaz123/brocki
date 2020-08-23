@@ -9,6 +9,7 @@ import { AdsParam } from '../../shared/models/adParams.model';
 import { Comment } from '../../shared/models/createComment.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
+import { UserStatus } from '../../shared/enums/userStatus';
 
 @Component({
   selector: 'app-user',
@@ -132,7 +133,7 @@ export class UserComponent implements OnInit {
     this.scroll();
     if (!this.sold) {
       const soldAds = new AdsParam();
-      soldAds.status = 'SOLD';
+      soldAds.status = UserStatus.SOLD;
       soldAds.userId = this.userId;
       this.adsService.getSoldAds(soldAds).subscribe((res) => {
         this.soldProducts = [];

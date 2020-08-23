@@ -103,10 +103,10 @@ export class UserService {
    * Accept User
    *
    */
-  acceptUsers(visible: boolean, userId: number): Observable<any> {
+  acceptUsers(userStatus: string, userId: number): Observable<any> {
     return this.httpClient.put<User>(
       `${this.baseUrl}/mybrocki/auth/users/updateuser/status/${userId}`,
-      { visible }
+      { userStatus }
     );
   }
 

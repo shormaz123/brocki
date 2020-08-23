@@ -3,6 +3,7 @@ import { Ads } from '../../../shared/models/ads.model';
 import { AdsService } from '../../../@core/services/ads.service';
 import { NzModalService } from 'ng-zorro-antd';
 import { ToastrService } from 'ngx-toastr';
+import { UserStatus } from '../../../shared/enums/userStatus';
 
 @Component({
   selector: 'app-account-active',
@@ -30,9 +31,7 @@ export class AccountActiveComponent implements OnChanges {
     private toastr: ToastrService
   ) {}
 
-  ngOnChanges() {
-    console.log(this.activeProducts);
-  }
+  ngOnChanges() {}
 
   languageLabel(status: string) {
     if (this.language === 'en' && status === 'READY_FOR_REVIEW') {
@@ -78,7 +77,7 @@ export class AccountActiveComponent implements OnChanges {
         ads.price = null;
         ads.productName = null;
         ads.productWarranty = null;
-        ads.status = 'DELETE';
+        ads.status = UserStatus.DELETE;
         ads.urgentSales = null;
         ads.userId = null;
         this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
@@ -112,7 +111,7 @@ export class AccountActiveComponent implements OnChanges {
         ads.price = null;
         ads.productName = null;
         ads.productWarranty = null;
-        ads.status = 'SOLD';
+        ads.status = UserStatus.SOLD;
         ads.urgentSales = null;
         ads.userId = null;
         this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {

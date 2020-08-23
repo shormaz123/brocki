@@ -7,6 +7,7 @@ import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
+import { UserStatus } from '../../shared/enums/userStatus';
 import { getMatIconFailedToSanitizeLiteralError } from '@angular/material/icon';
 
 @Component({
@@ -80,7 +81,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
       user.surname = res.surname;
       user.userName = res.userName;
       this.userName = res.userName;
-      user.visible = res.visible;
+      user.userStatus = res.userStatus;
       user.website = res.website;
       this.businessUser.push(user);
 
@@ -148,7 +149,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
         updateBusiness.bussinesType = this.bussinesType;
         updateBusiness.roleName = this.roleName;
         updateBusiness.userName = this.userName;
-        updateBusiness.visible = true;
+        updateBusiness.userStatus = UserStatus.APPROVED;
         updateBusiness.website = this.businessForm.value.website;
         this.userService.updateUser(updateBusiness).subscribe(
           (user) => {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../@core/services/user.service';
 import { User } from '../../../shared/models/user.model';
 import { NzModalService } from 'ng-zorro-antd';
+import { UserStatus } from '../../../shared/enums/userStatus';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -55,9 +56,9 @@ export class AcceptUsersComponent implements OnInit {
         user.roleName = userForAccept.roleName;
         user.surname = userForAccept.surname;
         user.userName = userForAccept.userName;
-        user.visible = true;
+        user.userStatus = UserStatus.APPROVED;
         user.website = userForAccept.website;
-        this.userService.acceptUsers(user.visible, user.id).subscribe(() => {
+        this.userService.acceptUsers(user.userStatus, user.id).subscribe(() => {
           this.acceptedUser();
         });
       },
@@ -65,38 +66,38 @@ export class AcceptUsersComponent implements OnInit {
   }
 
   rejectUser(rejectUser: User, index: number) {
-    //   this.modal.confirm({
-    //     nzTitle: 'Are you sure you want to accept this user?',
-    //     nzContent: '',
-    //     nzOnOk: () => {
-    //       this.usersForReview[0].splice(index, 1);
-    //       const user = new User();
-    //       user.aboutUs = userForAccept.aboutUs;
-    //       user.address = userForAccept.address;
-    //       user.bussinesType = userForAccept.bussinesType;
-    //       user.city = userForAccept.city;
-    //       user.company = userForAccept.company;
-    //       user.companyImage = userForAccept.companyImage;
-    //       user.credit = userForAccept.credit;
-    //       user.dateOfBirth = userForAccept.dateOfBirth;
-    //       user.email = userForAccept.email;
-    //       user.id = userForAccept.id;
-    //       user.location = userForAccept.location;
-    //       user.mobile = userForAccept.mobile;
-    //       user.name = userForAccept.name;
-    //       user.password = userForAccept.password;
-    //       user.phone = userForAccept.phone;
-    //       user.region = userForAccept.region;
-    //       user.roleName = userForAccept.roleName;
-    //       user.surname = userForAccept.surname;
-    //       user.userName = userForAccept.userName;
-    //       user.visible = false;
-    //       user.website = userForAccept.website;
-    // this.userService.acceptUsers(user.visible, user.id).subscribe(() => {
-    // this.toastr.success('the user is accepted');
-    // });
-    //   },
-    // });
+    this.modal.confirm({
+      nzTitle: 'Are you sure you do not want to accept this user?',
+      nzContent: '',
+      nzOnOk: () => {
+        this.usersForReview[0].splice(index, 1);
+        const user = new User();
+        user.aboutUs = rejectUser.aboutUs;
+        user.address = rejectUser.address;
+        user.bussinesType = rejectUser.bussinesType;
+        user.city = rejectUser.city;
+        user.company = rejectUser.company;
+        user.companyImage = rejectUser.companyImage;
+        user.credit = rejectUser.credit;
+        user.dateOfBirth = rejectUser.dateOfBirth;
+        user.email = rejectUser.email;
+        user.id = rejectUser.id;
+        user.location = rejectUser.location;
+        user.mobile = rejectUser.mobile;
+        user.name = rejectUser.name;
+        user.password = rejectUser.password;
+        user.phone = rejectUser.phone;
+        user.region = rejectUser.region;
+        user.roleName = rejectUser.roleName;
+        user.surname = rejectUser.surname;
+        user.userName = rejectUser.userName;
+        user.userStatus = UserStatus.DECLINE;
+        user.website = rejectUser.website;
+        this.userService.acceptUsers(user.userStatus, user.id).subscribe(() => {
+          this.toastr.success('the user is declined');
+        });
+      },
+    });
   }
 
   acceptedUser() {

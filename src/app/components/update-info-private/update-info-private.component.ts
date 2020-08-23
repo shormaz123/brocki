@@ -7,6 +7,7 @@ import { NzNotificationService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
+import { UserStatus } from '../../shared/enums/userStatus';
 
 @Component({
   selector: 'app-update-info-private',
@@ -67,7 +68,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
       user.surname = res.surname;
       user.userName = res.userName;
       this.userName = res.userName;
-      user.visible = res.visible;
+      user.userStatus = res.userStatus;
       user.website = res.website;
       this.newUser.push(user);
 
@@ -105,7 +106,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
         updateUserInfo.bussinesType = 'PRIVATE';
         updateUserInfo.roleName = 'private';
         updateUserInfo.userName = this.userName;
-        updateUserInfo.visible = true;
+        updateUserInfo.userStatus = UserStatus.APPROVED;
         updateUserInfo.website = '';
         this.userService.updateUser(updateUserInfo).subscribe(
           (user) => {

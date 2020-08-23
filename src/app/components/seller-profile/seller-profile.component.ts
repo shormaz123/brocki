@@ -5,6 +5,7 @@ import { AdsService } from '../../@core/services/ads.service';
 import { AdsParam } from '../../shared/models/adParams.model';
 import { Comment } from '../../shared/models/createComment.model';
 import { isBuffer } from 'util';
+import { UserStatus } from '../../shared/enums/userStatus';
 
 @Component({
   selector: 'app-seller-profile',
@@ -91,7 +92,7 @@ export class SellerProfileComponent implements OnInit {
     this.scroll();
     if (!this.sold) {
       const soldAds = new AdsParam();
-      soldAds.status = 'SOLD';
+      soldAds.status = UserStatus.SOLD;
       soldAds.userId = this.sellerindex;
       this.adsService.getSoldAds(soldAds).subscribe((res) => {
         this.soldProducts.push(res);

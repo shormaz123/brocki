@@ -100,6 +100,10 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/auth/ads/visible`);
   }
 
+  /**
+   * change status of Ads
+   *
+   */
   changeStatusOfAds(ads: Ads, id: number): Observable<Ads> {
     let query = new HttpParams();
     query = query.append('status', ads.status);
@@ -109,6 +113,10 @@ export class AdsService {
     );
   }
 
+  /**
+   * Sold Ads
+   *
+   */
   getSoldAds(data: AdsParam): Observable<Ads> {
     let query = new HttpParams();
     query = query.append('status', data.status);
@@ -116,10 +124,18 @@ export class AdsService {
     return this.http.get<Ads>(`${this.baseUrl}/mybrocki/ads/filter?${query}`);
   }
 
+  /**
+   * Expired Ads
+   *
+   */
   getExpiredAds(): Observable<Ads> {
     return this.http.get<Ads>(`${this.baseUrl}/mybrocki/auth/ads/expired`);
   }
 
+  /**
+   * Ads for review
+   *
+   */
   readyForReviewAds(): Observable<Ads> {
     return this.http.get<Ads>(
       `${this.baseUrl}/mybrocki/auth/ads/readyforreview`
@@ -150,10 +166,18 @@ export class AdsService {
     );
   }
 
+  /**
+   * Create a new comment
+   *
+   */
   createComment(comment: Comment): Observable<Comment> {
     return this.http.post(`${this.baseUrl}/mybrocki/comment/create`, comment);
   }
 
+  /**
+   * Get comments of user
+   *
+   */
   getCommentByUser(userId: number): Observable<Comment> {
     return this.http.get(`${this.baseUrl}/mybrocki/comment/user/${userId}`);
   }
