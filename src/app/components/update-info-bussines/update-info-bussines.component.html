@@ -108,6 +108,7 @@
             class="form__upload--image"
             *ngFor="let companyPhoto of companyPhotos; let i = index"
           >
+            <div class="form__index">{{ i + 1 }}</div>
             <img [src]="companyPhoto" class="form__image" />
             <div
               class="form__delete"
