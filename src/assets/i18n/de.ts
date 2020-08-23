@@ -74,6 +74,7 @@ export const de = {
     update: 'Aktualisieren',
     info: 'die Info',
     acceptAds: 'Inserate zulassen',
+    acceptProfile: 'Profil akzeptieren',
     accept: 'Akzeptieren',
     reject: 'Ablehnen',
     allArticlesOfThisSeller: 'Alle Artikel dieses Verkäufers',

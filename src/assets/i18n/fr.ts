@@ -73,6 +73,7 @@ export const fr = {
     update: 'Mettre à jour',
     info: 'info',
     acceptAds: 'Contrôle des annonces',
+    acceptProfile: 'Accepter le profil',
     accept: "J'accepte",
     reject: 'Rejeter',
     allArticlesOfThisSeller: 'Tous les articles de ce vendeur',

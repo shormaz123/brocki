@@ -73,6 +73,7 @@ export const en = {
     update: 'Update',
     info: 'info',
     acceptAds: 'Accept Ads',
+    acceptProfile: 'Accept profile',
     accept: 'Accept',
     reject: 'Reject',
     allArticlesOfThisSeller: 'All articles of this seller',

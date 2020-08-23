@@ -73,6 +73,7 @@ export const it = {
     update: 'Aggiornare',
     info: 'Informazioni',
     acceptAds: 'Controllo degli annunci',
+    acceptProfile: 'Accetta il profilo',
     accept: 'Accettare',
     reject: 'Rifiutare',
     allArticlesOfThisSeller: 'Tutti gli articoli di questo venditore',
