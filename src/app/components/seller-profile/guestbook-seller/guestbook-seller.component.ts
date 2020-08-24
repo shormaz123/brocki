@@ -6,6 +6,7 @@ import { AuthService } from '.././../../@core/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Comment } from '../../../shared/models/createComment.model';
 import { NzModalService, NzNotificationService } from 'ng-zorro-antd';
+import {AuthConst} from '../../../@core/consts/auth.const';
 
 @Component({
   selector: 'app-guestbook-seller',
@@ -72,9 +73,16 @@ export class GuestbookSellerComponent implements OnInit {
     }
     comment.userId = this.sellerId;
     comment.authorName = this.nameOfCommentator;
-    this.adsService.createComment(comment).subscribe(() => {
-      this.notification.success('', 'You have successfully posted a comment');
-      this.guestBook.emit();
+    this.modal.confirm({
+      nzTitle: 'Are you sure you want to post comment?',
+      nzContent: '',
+      nzOnOk: () => {
+        this.adsService.createComment(comment).subscribe(() => {
+          this.notification.success('', 'You have successfully posted a comment');
+          this.guestBook.emit();
+        });
+        // this.router.navigate(['/site']);
+      },
     });
   }
 }
