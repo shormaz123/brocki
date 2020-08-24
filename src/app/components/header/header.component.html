@@ -4,7 +4,7 @@
     <div class="addImage">
       <img class="image" src="../../../assets/images/header/create ad.svg" />
     </div>
-    <span class="createAd" *ngIf="createAd"
+    <span class="createAd" *ngIf="createAd && !privateUser"
       >&nbsp;{{ 'translate.createAd' | translate }}</span
     >
   </div>

@@ -15,12 +15,14 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
 
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   @Output() getLanguage = new EventEmitter<any>();
   accountName: string;
   createAd: boolean;
@@ -31,6 +33,7 @@ export class HeaderComponent implements OnInit {
   userLang;
   chosenLanguage;
   header;
+  privateUser;
 
   @Output() notify = new EventEmitter<any>();
 
@@ -60,10 +63,9 @@ export class HeaderComponent implements OnInit {
     } else {
       this.getUser();
     }
-    // this.change(this.userLang);
   }
 
-  // tslint:disable-next-line:use-lifecycle-interface
+
   ngOnDestroy() {
     this.loginNameSubscription.unsubscribe();
   }
@@ -92,6 +94,12 @@ export class HeaderComponent implements OnInit {
   getUser(): void {
     this.userService.getUser().subscribe(
       (user) => {
+        console.log(user)
+        if (user.bussinesType === 'PRIVATE') {
+          this.privateUser = true;
+        } else {
+          this.privateUser = false;
+        }
         if (user == null) {
           this.accountName = null;
           this.createAd = false;
