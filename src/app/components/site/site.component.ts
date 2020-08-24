@@ -607,7 +607,8 @@ export class SiteComponent implements OnInit, OnDestroy {
     this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe((response) => {
       this.ads = response;
       this.randomAds = this.shuffle(response);
-      this.getUserAndFavAd();
+      // this.getUserAndFavAd();
+      console.log(response, 'ads with params')
     });
 
   }
@@ -615,11 +616,6 @@ export class SiteComponent implements OnInit, OnDestroy {
   increaseShow() {
     this.showItems += 16;
     this.panel.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'start' });
-  }
-
-  showMoreItems()
-  {
-    this.paginationLimit = Number(this.paginationLimit) + 3;
   }
 
   addToWishlist(adId: number) {
