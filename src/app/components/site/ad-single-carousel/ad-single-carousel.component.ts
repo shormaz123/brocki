@@ -28,8 +28,6 @@ export class AdSingleCarouselComponent implements OnInit {
   myCarousel: NzCarouselComponent;
   public favoriteAds;
   selected: boolean;
-  receivedAds = this.favAds;
-  numberOfFavorites?: number;
   userRequest: UserAddAdsRequest;
   token;
 
