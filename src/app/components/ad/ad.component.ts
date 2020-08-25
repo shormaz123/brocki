@@ -69,6 +69,8 @@ export class AdComponent implements OnInit, AfterViewInit {
   private: boolean;
   business: boolean;
   companyName: string;
+  adminName: string;
+  adminBoolean: boolean;
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
 
@@ -175,10 +177,15 @@ export class AdComponent implements OnInit, AfterViewInit {
         }
         this.userService.getUserById(this.userSellerId).subscribe((x) => {
           this.companyName = x.company;
-          console.log(this.companyName);
+          console.log(x.roleName);
           if ( x.roleName === 'bussines') {
             this.private = false;
             this.business = true;
+          } else if (x.roleName === 'admin') {
+            this.adminName = x.company,
+            this.private = false;
+            this.business = false;
+            this.adminBoolean = true;
           } else {
             this.private = true;
             this.business = false;

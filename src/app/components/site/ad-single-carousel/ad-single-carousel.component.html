@@ -30,6 +30,17 @@
                 </div>
 
                 <div style="width: 100%; height: 10%; display: flex;">
+                  <button mat-icon-button *ngIf="!token"
+                          pTooltip="{{
+                          'translate.pleaseLoginBeforeYouAddThisAd' | translate
+                        }}!"
+                          tooltipPosition="bottom">
+                  <mat-icon
+                    aria-label="Example icon-button with a heart icon"
+                  >
+                    favorite_border
+                  </mat-icon>
+                  </button>
                   <button
                     mat-icon-button
                     (click)="ad.favourite = !ad.favourite"

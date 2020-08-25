@@ -54,6 +54,13 @@
         />
       </div>
       <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/address.png" />
+        <input
+          placeholder="{{ 'translate.city' | translate }}"
+          formControlName="city"
+        />
+      </div>
+      <div class="inputItem">
         <div class="locationInput locationInput--margin">
           <select class="select-city" formControlName="canton">
             <option *ngFor="let canton of cantons" [value]="canton">
@@ -62,15 +69,15 @@
           </select>
         </div>
       </div>
-      <div class="inputItem">
-        <div class="locationInput locationInput--margin">
-          <select class="select-city" formControlName="city">
-            <option *ngFor="let city of cities" [value]="city">{{
-              city
-            }}</option>
-          </select>
-        </div>
-      </div>
+<!--      <div class="inputItem">-->
+<!--        <div class="locationInput locationInput&#45;&#45;margin">-->
+<!--          <select class="select-city" formControlName="city">-->
+<!--            <option *ngFor="let city of cities" [value]="city">{{-->
+<!--              city-->
+<!--            }}</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="inputItem inputItem--margin">
         <a (click)="changePassword()"
           >{{ 'translate.changePassword' | translate }}?</a

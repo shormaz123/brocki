@@ -76,6 +76,7 @@
         />
         <label *ngIf="private">{{ userSeller?.name || reviewUser?.name }}</label>
         <label *ngIf="business">{{ companyName }}</label>
+        <label *ngIf="adminBoolean">{{ adminName }}</label>
       </div>
       <div class="contact">
         <div class="phone">

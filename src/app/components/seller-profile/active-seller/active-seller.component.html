@@ -7,7 +7,9 @@
   <div class="ads__body" *ngIf="ads === true">
     <div *ngFor="let active of activeProducts[0]; let i = index" class="card">
       <div class="image">
-        <img class="image__image" [src]="active.image[0]" />
+        <div class="image__imageBody">
+        <img class="image__imageBody__image" [src]="active.image[0]" />
+        </div>
       </div>
       <div class="text">
         <div class="text__link">

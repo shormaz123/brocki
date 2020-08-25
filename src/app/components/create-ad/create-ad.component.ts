@@ -135,12 +135,19 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     if (this.createForm.value.urgentSales === '') {
       create.urgentSales = false;
     }
-    create.price = Number((Math.round(this.createForm.value.price * 100) / 100).toFixed(2));
+    create.price = this.roundUp(Number((Math.round(this.createForm.value.price * 100) / 100).toFixed(2)), 1);
     create.adsType = this.statusOfProduct;
     this.adsService.newAd(create).subscribe(() => {
       this.router.navigate(['/site']);
     });
+    console.log(create.price);
   }
+
+   roundUp(num, precision) {
+    precision = Math.pow(20, precision)
+    return Math.ceil(num * precision) / precision
+  }
+
 
   checkDec(el) {
     const ex = /^[0-9]+\.?[0-9]*$/;

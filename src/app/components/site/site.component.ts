@@ -54,6 +54,8 @@ export class SiteComponent implements OnInit, OnDestroy {
   userRequest: UserAddAdsRequest;
   searchProductName: string;
   adsByParams;
+  randomAdsA;
+  randomAdsB;
 
   @ViewChild('panel', { read: ElementRef, static: false }) public panel: ElementRef<any>;
 
@@ -458,7 +460,8 @@ export class SiteComponent implements OnInit, OnDestroy {
     this.selectCategory(1);
     if (this.filteredAds.length > 0) {
       this.ads = this.filteredAds;
-      this.randomAds = this.shuffle(this.filteredAds);
+      this.randomAdsA = this.shuffle(this.filteredAds);
+      this.randomAdsB = this.shuffle(this.filteredAds);
       if (this.token) {
         this.getUserAndFavAd();
       } else {
@@ -468,7 +471,8 @@ export class SiteComponent implements OnInit, OnDestroy {
       this.adsService.getAdsByActiveStatus().subscribe((response) => {
         this.ads = response;
         console.log('ads', this.ads);
-        this.randomAds = this.shuffle(response);
+        this.randomAdsA = this.shuffle(this.ads);
+        this.randomAdsB = this.shuffle(this.ads);
         if (this.token) {
           this.getUserAndFavAd();
         } else {
@@ -526,6 +530,8 @@ export class SiteComponent implements OnInit, OnDestroy {
         this.favAds = this.ads.map(
           (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
         );
+        this.randomAdsA = this.shuffle(this.favAds);
+        this.randomAdsB = this.shuffle(this.favAds);
       });
     });
 
@@ -560,23 +566,12 @@ export class SiteComponent implements OnInit, OnDestroy {
   }
 
   shuffle(array) {
-    let counter = array.length;
-
-    // While there are elements in the array
-    while (counter > 0) {
-      // Pick a random index
-      const index = Math.floor(Math.random() * counter);
-
-      // Decrease counter by 1
-      counter--;
-
-      // And swap the last element with it
-      const temp = array[counter];
-      array[counter] = array[index];
-      array[index] = temp;
+    const newArr = array.slice();
+    for (let i = newArr.length - 1; i > 0; i--) {
+      const rand = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[rand]] = [newArr[rand], newArr[i]];
     }
-
-    return array;
+    return newArr;
   }
 
   ngOnDestroy() {
@@ -606,8 +601,10 @@ export class SiteComponent implements OnInit, OnDestroy {
   getAdsByParams(adssubgroup: number) {
     this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe((response) => {
       this.ads = response;
-      this.randomAds = this.shuffle(response);
-      this.getUserAndFavAd();
+      this.randomAdsA = this.shuffle(response);
+      this.randomAdsB = this.shuffle(response);
+      // this.getUserAndFavAd();
+      console.log(response, 'ads with params')
     });
 
   }
@@ -615,11 +612,6 @@ export class SiteComponent implements OnInit, OnDestroy {
   increaseShow() {
     this.showItems += 16;
     this.panel.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'start' });
-  }
-
-  showMoreItems()
-  {
-    this.paginationLimit = Number(this.paginationLimit) + 3;
   }
 
   addToWishlist(adId: number) {
