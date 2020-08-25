@@ -30,9 +30,7 @@
           formControlName="category"
           (change)="findCategory($event)"
         >
-          <option value="">{{
-            'translate.selectCategory' | translate
-          }}</option>
+          <option value="">{{ 'translate.selectCategory' | translate }}</option>
           <option *ngFor="let category of categories" [value]="category.id">
             {{ category.groupName[currentLang] }}
           </option>
@@ -85,31 +83,41 @@
         <label class="form__label"
           >{{ 'translate.picturesOfCompany' | translate }}:</label
         >
-        <div class="form__picture">
+        <div
+          class="form__picture"
+          cdkDropList
+          (cdkDropListDropped)="onDrop($event)"
+        >
           <div
+            cdkDrag
             class="form__upload--image"
             *ngFor="let photo of photos; let i = index"
           >
+            <div class="form__index">{{ i + 1 }}</div>
             <img [src]="photo" class="form__image" />
             <div class="form__delete" (click)="deletePhoto(i)">
-              <label class="form__delete-label">{{'translate.deletePhoto' | translate }}</label>
+              <label class="form__delete-label">{{
+                'translate.deletePhoto' | translate
+              }}</label>
             </div>
           </div>
           <div class="form__svg" *ngIf="photos.length < 6">
-            <input
-              formControlName="image"
-              class="form__upload--image form__upload--image--image-input"
-              (change)="uploadImage($event)"
-              accept="image/*"
-              type="file"
-              multiple="multiple"
-            />
             <div
               class="form__svg--image"
               [inlineSVG]="
                 '../../../assets/images/update-info-bussines/add-photo.svg'
               "
             ></div>
+            <div>
+              <input
+                formControlName="image"
+                class="form__upload--image form__upload--image--image-input"
+                (change)="uploadImage($event)"
+                accept="image/*"
+                type="file"
+                multiple="multiple"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -178,18 +186,16 @@
         <div class="form__credit">
           <img src="../../../assets/images/credits icon.png" />
           <div class="form__creditCount">
-            <span style="color: #595959"
-              >0 {{ 'translate.credits' | translate }} - ({{ 'translate.freeMonths' | translate }}) </span
-            >
+            <span style="color: #595959;"
+              >0 {{ 'translate.credits' | translate }} - ({{
+                'translate.freeMonths' | translate
+              }})
+            </span>
           </div>
         </div>
       </div>
       <div class="form__input">
-        <button
-          class="form__saveButton"
-          type="submit"
-          [disabled]="!createForm.valid"
-        >
+        <button class="form__saveButton" type="submit">
           {{ 'translate.saveChanges' | translate }}
         </button>
       </div>

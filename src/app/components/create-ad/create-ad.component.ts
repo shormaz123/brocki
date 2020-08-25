@@ -1,12 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CreateAd} from '../../shared/models/create-ad.model';
-import {adsGroup} from '../../shared/models/adsGroup.model';
-import {adsSubGroup} from '../../shared/models/adsSubGroup.model';
-import {AdsService} from '../../@core/services/ads.service';
-import {Router} from '@angular/router';
-import {TranslateServiceRest} from '../../@core/services/translateREST.service';
-import {Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CreateAd } from '../../shared/models/create-ad.model';
+import { adsGroup } from '../../shared/models/adsGroup.model';
+import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
+import { AdsService } from '../../@core/services/ads.service';
+import { Router } from '@angular/router';
+import { TranslateServiceRest } from '../../@core/services/translateREST.service';
+import { Subscription } from 'rxjs';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-ad',
@@ -31,9 +33,9 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private adsService: AdsService,
-    private translateBackend: TranslateServiceRest
-  ) {
-  }
+    private translateBackend: TranslateServiceRest,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.createForm = this.fb.group({
@@ -97,11 +99,19 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       for (const picture of this.uploadPhoto) {
         this.formData.append('file', picture);
       }
+
       this.adsService.uploadImageInStorage(this.formData).subscribe((res) => {
         this.picture = res;
         this.photos.push(...this.picture);
+        if (this.photos.length > 5) {
+          this.toastr.warning('You can add up to 6 images');
+        }
       });
     }
+  }
+
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.photos, event.previousIndex, event.currentIndex);
   }
 
   deletePhoto(index: number): void {
@@ -115,7 +125,14 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   onSubmit() {
     const create = new CreateAd();
     create.productName = this.createForm.value.productName;
+    if (create.productName.length === 0) {
+      this.toastr.warning('You must add an ad name');
+    }
     create.description = this.createForm.value.description;
+    if (create.description.length === 0) {
+      this.toastr.warning('You must add an ad description');
+      return;
+    }
     create.fixedPrice = this.createForm.value.fixedPrice;
     if (this.createForm.value.fixedPrice === '') {
       create.fixedPrice = false;
@@ -125,8 +142,20 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       create.freeDelivery = false;
     }
     create.adsGroupId = this.categoryId;
+    if (create.adsGroupId === undefined) {
+      this.toastr.warning('You must select a category');
+      return;
+    }
     create.adsSubGroupId = this.subcategoryId;
+    if (create.adsSubGroupId === undefined) {
+      this.toastr.warning('You must select a subcategory');
+      return;
+    }
     create.image = this.photos;
+    if (create.image.length === 0) {
+      this.toastr.warning('You must add an image');
+      return;
+    }
     create.productWarranty = this.createForm.value.productWarranty;
     if (this.createForm.value.productWarranty === '') {
       create.productWarranty = false;
@@ -135,19 +164,25 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     if (this.createForm.value.urgentSales === '') {
       create.urgentSales = false;
     }
-    create.price = this.roundUp(Number((Math.round(this.createForm.value.price * 100) / 100).toFixed(2)), 1);
+    create.price = this.roundUp(
+      Number((Math.round(this.createForm.value.price * 100) / 100).toFixed(2)),
+      1
+    );
+    if (create.price === 0) {
+      this.toastr.warning('You have to set a price');
+      return;
+    }
     create.adsType = this.statusOfProduct;
+
     this.adsService.newAd(create).subscribe(() => {
       this.router.navigate(['/site']);
     });
-    console.log(create.price);
   }
 
-   roundUp(num, precision) {
-    precision = Math.pow(20, precision)
-    return Math.ceil(num * precision) / precision
+  roundUp(num, precision) {
+    precision = Math.pow(20, precision);
+    return Math.ceil(num * precision) / precision;
   }
-
 
   checkDec(el) {
     const ex = /^[0-9]+\.?[0-9]*$/;
@@ -155,5 +190,4 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       el.value = el.value.substring(0, el.value.length - 1);
     }
   }
-
 }

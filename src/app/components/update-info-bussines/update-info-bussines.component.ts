@@ -9,6 +9,7 @@ import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
 import { UserStatus } from '../../shared/enums/userStatus';
 import { getMatIconFailedToSanitizeLiteralError } from '@angular/material/icon';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-info-bussines',
@@ -40,7 +41,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
     private modal: NzModalService,
     private router: Router,
     private fb: FormBuilder,
-    private adsService: AdsService
+    private adsService: AdsService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -70,7 +72,11 @@ export class UpdateInfoBussinesComponent implements OnInit {
       user.companyImage = res.companyImage;
       this.companyPhotos = res.companyImage || [];
       this.companyPhoto = this.companyPhotos[0];
-      this.photoValue = res.companyImage.length;
+      if (res.companyImage) {
+        this.photoValue = res.companyImage.length;
+      } else {
+        this.photoValue = 0;
+      }
       user.credit = res.credit;
       user.dateOfBirth = res.dateOfBirth;
       user.email = res.email;
@@ -104,8 +110,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
         aboutUs: user.aboutUs,
       });
     });
-
-    // this.photoValue = this.companyPhotos.length;
   }
 
   uploadImage(event: any): void {
@@ -121,6 +125,9 @@ export class UpdateInfoBussinesComponent implements OnInit {
       this.adsService.uploadImageInStorage(this.formData).subscribe((res) => {
         this.uploadedImage = res;
         this.photos.push(...this.uploadedImage);
+        if (this.photos.length > 5) {
+          this.toastr.warning('You can add up to 6 images');
+        }
       });
     }
   }
@@ -139,6 +146,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
     this.companyPhotos.splice(index, 1);
     this.adsService.deleteImage(photo).subscribe();
     this.deletedImage = true;
+    this.photoValue = -this.photoValue;
   }
 
   deletePhoto(index: number): void {
