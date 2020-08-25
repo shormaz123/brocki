@@ -11,19 +11,23 @@
     <div *ngFor="let active of activeProducts[0]; let i = index" class="card">
       <div class="card">
         <div class="image">
-          <img
-            [ngStyle]="{
-              opacity:
-                active.status === 'NOT_ACCEPTED' ||
-                active.status === 'READY_FOR_REVIEW'
-                  ? '0.1'
-                  : '1'
-            }"
-            class="image__image"
+          <div
+            class="image__photo"
             [class.wrapper]="active.status === 'ACTIVE'"
-            [src]="active.image[0]"
-            (click)="ad(active)"
-          />
+          >
+            <img
+              [ngStyle]="{
+                opacity:
+                  active.status === 'NOT_ACCEPTED' ||
+                  active.status === 'READY_FOR_REVIEW'
+                    ? '0.1'
+                    : '1'
+              }"
+              [class.activeImg]="active.status === 'ACTIVE'"
+              [src]="active.image[0]"
+              (click)="ad(active)"
+            />
+          </div>
           <img
             *ngIf="
               active.status === 'NOT_ACCEPTED' ||

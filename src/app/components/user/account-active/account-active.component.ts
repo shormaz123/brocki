@@ -22,7 +22,7 @@ export class AccountActiveComponent implements OnChanges {
   frReview = '../../../../assets/images/adsLabel/fr-ready-for-review.svg';
   deReject = '../../../../assets/images/adsLabel/de-reject.svg';
   deReview = '../../../../assets/images/adsLabel/de-ready-for-review.svg';
-  // enReject = '../../../../assets/images/adsLabel/en-accept.svg';
+  enReject = '../../../../assets/images/adsLabel/en-reject.svg';
   enReview = '../../../../assets/images/adsLabel/en-ready-for-review.svg';
 
   constructor(
@@ -37,7 +37,7 @@ export class AccountActiveComponent implements OnChanges {
     if (this.language === 'en' && status === 'READY_FOR_REVIEW') {
       return this.enReview;
     } else if (this.language === 'en' && status === 'NOT_ACCEPTED') {
-      return this.enReview;
+      return this.enReject;
     } else if (this.language === 'de' && status === 'READY_FOR_REVIEW') {
       return this.deReview;
     } else if (this.language === 'de' && status === 'NOT_ACCEPTED') {

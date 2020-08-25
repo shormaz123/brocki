@@ -84,10 +84,12 @@ textarea {
     top: 11px;
     right: 11px;
     font-weight: bolder;
-    color: #d62b1f;
-    width: 15px;
-    height: 18px;
-    background-color: $white;
+    color: $white;
+    width: 20px;
+    height: 20px;
+    background-color: $red;
+    cursor: pointer;
+    z-index: 100;
   }
 
   &__label {
@@ -111,9 +113,12 @@ textarea {
   }
 
   &__image {
-    height: 152px;
-    width: 152px;
-    padding: 10px;
+    width: 132px;
+    height: 132px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 10px;
   }
 
   &__upload--image {

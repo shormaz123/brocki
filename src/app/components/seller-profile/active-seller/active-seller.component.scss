@@ -37,11 +37,10 @@
       justify-content: center;
 
       &__imageBody {
-
         display: flex;
         width: 201px;
         height: 200px;
-        border: 3px solid red;
+        border: 3px solid $accept;
         position: relative;
         cursor: pointer;
         border-radius: 17px;
@@ -49,9 +48,9 @@
         align-items: center;
         overflow: hidden;
 
-      &__image {
-         width: 100%;
-         }
+        &__image {
+          width: 100%;
+        }
       }
     }
   }

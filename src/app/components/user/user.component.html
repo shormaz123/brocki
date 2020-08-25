@@ -45,7 +45,7 @@
           <div *ngIf="admin" class="boxes__link" (click)="goTo('/accept-ads')">
             <div
               class="boxes__image"
-              [inlineSVG]="'../../../assets/images/myAccount/accept.svg'"
+              [inlineSVG]="'../../../assets/images/myAccount/accept-ads.svg'"
             ></div>
             <div class="boxes__text">
               {{ 'translate.acceptAds' | translate }}
@@ -67,7 +67,9 @@
           >
             <div
               class="boxes__image"
-              [inlineSVG]="'../../../assets/images/myAccount/addUsers.svg'"
+              [inlineSVG]="
+                '../../../assets/images/myAccount/business-accounts.svg'
+              "
             ></div>
             <div class="boxes__text">Business accounts</div>
           </div>

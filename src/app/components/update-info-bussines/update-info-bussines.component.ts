@@ -30,6 +30,9 @@ export class UpdateInfoBussinesComponent implements OnInit {
   roleName: string;
   cantons = cantons;
   cities = cities;
+  companyPhoto: string;
+  photoValue: number;
+  photo: string;
 
   constructor(
     private notification: NzNotificationService,
@@ -66,6 +69,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
       user.company = res.company;
       user.companyImage = res.companyImage;
       this.companyPhotos = res.companyImage || [];
+      this.companyPhoto = this.companyPhotos[0];
+      this.photoValue = res.companyImage.length;
       user.credit = res.credit;
       user.dateOfBirth = res.dateOfBirth;
       user.email = res.email;
@@ -99,6 +104,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
         aboutUs: user.aboutUs,
       });
     });
+
+    // this.photoValue = this.companyPhotos.length;
   }
 
   uploadImage(event: any): void {
@@ -116,6 +123,16 @@ export class UpdateInfoBussinesComponent implements OnInit {
         this.photos.push(...this.uploadedImage);
       });
     }
+  }
+
+  changeImage(photo: any, i: number) {
+    this.companyPhotos[i] = this.companyPhotos[0];
+    this.companyPhotos[0] = photo;
+  }
+
+  changeUploadedImage(photo: any, i: number) {
+    this.photos[i] = this.companyPhotos[0];
+    this.companyPhotos[0] = photo;
   }
 
   deleteStoragedPhoto(photo: string, index: number): void {
