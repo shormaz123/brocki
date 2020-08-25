@@ -67,9 +67,9 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   responsiveOptions = [
     {
-      breakpoint: '1024px',
-      numVisible: 4,
-      numScroll: 3,
+      breakpoint: '1400px',
+      numVisible: 5,
+      numScroll: 1,
     },
     {
       breakpoint: '768px',
