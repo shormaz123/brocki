@@ -164,7 +164,7 @@ export class AdComponent implements OnInit, AfterViewInit {
           } else {
             this.categoryImagesAvailable = true;
             this.adsByCategory = x;
-            console.log(this.adsByCategory);
+            console.log('adsByCat',this.adsByCategory);
           }
         });
 
@@ -210,6 +210,7 @@ export class AdComponent implements OnInit, AfterViewInit {
           } else {
             this.usersImagesAvailabe = true;
             this.adsByUser = x;
+            console.log('adsByUser', this.adsByUser)
           }
         });
       });

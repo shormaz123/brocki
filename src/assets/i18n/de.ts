@@ -57,9 +57,9 @@ export const de = {
     canton: 'Kanton',
     createAccount: 'Konto erstellen',
     username: 'Benutzername ',
-    confirmTermsAndConditionsOne: 'Bitte bestätigen Sie, ',
+    confirmTermsAndConditionsOne: 'Bitte bestätigen Sie, dass Sie unseren Allgemeinen',
     confirmTermsAndConditionsTwo:
-      'dass Sie unseren Allgemeinen Geschäftsbedingungen zustimmen',
+      'Geschäftsbedingungen zustimmen.',
     checkedUser: 'Überprüfter Benutzer',
     approvedContact: 'Überprüfter Kontakt',
     successfulSales: 'Erfolgreicher Verkauf',
