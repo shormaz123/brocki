@@ -460,8 +460,8 @@ export class SiteComponent implements OnInit, OnDestroy {
     this.selectCategory(1);
     if (this.filteredAds.length > 0) {
       this.ads = this.filteredAds;
-      this.randomAdsA = this.shuffle(this.filteredAds);
-      this.randomAdsB = this.shuffle(this.filteredAds);
+      this.randomAdsA = this.shuffle(this.filteredAds.slice(0, Math.floor(this.filteredAds.length / 2)));
+      this.randomAdsB = this.shuffle(this.filteredAds.slice(Math.floor(this.filteredAds.length / 2), this.filteredAds.length ));
       if (this.token) {
         this.getUserAndFavAd();
       } else {
@@ -471,8 +471,8 @@ export class SiteComponent implements OnInit, OnDestroy {
       this.adsService.getAdsByActiveStatus().subscribe((response) => {
         this.ads = response;
         console.log('ads', this.ads);
-        this.randomAdsA = this.shuffle(this.ads);
-        this.randomAdsB = this.shuffle(this.ads);
+        this.randomAdsA = this.shuffle(this.ads.slice(0, Math.floor(this.ads.length / 2)));
+        this.randomAdsB = this.shuffle(this.ads.slice(Math.floor(this.ads.length / 2), this.ads.length ));
         if (this.token) {
           this.getUserAndFavAd();
         } else {
@@ -530,8 +530,8 @@ export class SiteComponent implements OnInit, OnDestroy {
         this.favAds = this.ads.map(
           (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
         );
-        this.randomAdsA = this.shuffle(this.favAds);
-        this.randomAdsB = this.shuffle(this.favAds);
+        this.randomAdsA = this.shuffle(this.favAds.slice(0, Math.floor(this.favAds.length / 2)));
+        this.randomAdsB = this.shuffle(this.favAds.slice(Math.floor(this.favAds.length / 2), this.favAds.length ));
       });
     });
 
@@ -601,10 +601,10 @@ export class SiteComponent implements OnInit, OnDestroy {
   getAdsByParams(adssubgroup: number) {
     this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe((response) => {
       this.ads = response;
-      this.randomAdsA = this.shuffle(response);
-      this.randomAdsB = this.shuffle(response);
+      this.randomAdsA = this.shuffle(response.slice(0, Math.floor(response.length / 2)));
+      this.randomAdsB = this.shuffle(response.slice(Math.floor(response.length / 2), response.length ));
       // this.getUserAndFavAd();
-      console.log(response, 'ads with params')
+      console.log(response, 'ads with params');
     });
 
   }
