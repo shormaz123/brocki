@@ -65,6 +65,10 @@
   }
 }
 
+.seller-image {
+  width: 100%;
+}
+
 .profil-image {
   background-repeat: no-repeat;
   background-position: 50%;
@@ -73,6 +77,8 @@
   height: 160px;
   border-radius: 17px;
   border: 2px solid $red;
+  display: flex;
+  align-items: center;
 }
 
 .profil-name {

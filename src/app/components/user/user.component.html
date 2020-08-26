@@ -4,7 +4,9 @@
     <div class="account">
       <div class="image">
         <div class="imageBorder">
-          <img class="profil-image" [src]="userImage" />
+          <div class="profil-image">
+            <img class="user-image" [src]="userImage" />
+          </div>
         </div>
         <span *ngIf="private">{{ userName }}</span>
         <span *ngIf="business">{{ companyName }}</span>

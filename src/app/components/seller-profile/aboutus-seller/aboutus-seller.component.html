@@ -2,12 +2,14 @@
   class="about-us"
   [ngStyle]="
     sellersImages.length < 4 || chosenImage
-      ? { height: '630px' }
-      : { height: '850px' }
+      ? { height: 'auto' }
+      : { height: 'auto' }
   "
 >
   <div class="chosen-image" *ngIf="chosenImage">
-    <img class="chosen-image__image" [src]="chosenImage" />
+    <div class="chosen-image__image">
+      <img style="width: 100%" [src]="chosenImage" />
+    </div>
     <div
       class="chosen-image__close"
       (click)="closeImage()"
@@ -34,11 +36,9 @@
     >
       <div *ngFor="let image of sellersImages">
         <div class="company-picture__images" *ngIf="noImages">
-          <img
-            class="company-picture__image"
-            [src]="image"
-            (click)="showImage(image)"
-          />
+          <div class="company-picture__image">
+            <img style="width: 100%" [src]="image" (click)="showImage(image)" />
+          </div>
         </div>
       </div>
     </div>

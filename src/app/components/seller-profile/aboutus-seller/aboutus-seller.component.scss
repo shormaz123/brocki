@@ -10,7 +10,7 @@
   justify-content: center;
   padding: 20px 60px;
   margin-bottom: 30px;
-  height: 630px;
+  // height: 630px;
 
   @include rwdm(1600) {
     width: 1280px;
@@ -27,7 +27,8 @@
   &__text {
     padding: 30px 0 60px;
     text-align: justify;
-    word-break: break-all;
+    word-break: break-word;
+    white-space: pre-line;
   }
 
   .company-picture {
@@ -40,9 +41,11 @@
       height: 200px;
       margin: 10px;
       cursor: pointer;
-      border: 2px solid $red;
-      border-radius: 17px;
       padding: 5px;
+      display: flex;
+      align-items: center;
+      border: 3px solid $red;
+      border-radius: 17px;
     }
   }
 
@@ -53,12 +56,17 @@
 
   .chosen-image {
     position: relative;
+    background-color: rgba(246, 246, 246, 0.8);
+    border-radius: 17px;
+
     &__image {
       width: 550px;
       height: 590px;
       border: 2px solid $red;
       border-radius: 15px;
       padding: 5px;
+      display: flex;
+      align-items: center;
     }
 
     &__close {

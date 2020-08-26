@@ -56,6 +56,10 @@
           margin-top: 10px;
         }
       }
+
+      .user-image {
+        width: 100%;
+      }
     }
 
     .navigation {
@@ -73,6 +77,8 @@
   height: 160px;
   border-radius: 17px;
   border: 2px solid $red;
+  display: flex;
+  align-items: center;
 }
 
 .profil-name {
