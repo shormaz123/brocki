@@ -1,10 +1,10 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Ads } from '../../../shared/models/ads.model';
 import { AdsService } from '../../../@core/services/ads.service';
 import { NzModalService } from 'ng-zorro-antd';
 import { ToastrService } from 'ngx-toastr';
 import { UserStatus } from '../../../shared/enums/userStatus';
-import {AuthConst} from '../../../@core/consts/auth.const';
+import { AuthConst } from '../../../@core/consts/auth.const';
 
 @Component({
   selector: 'app-account-active',
@@ -35,22 +35,25 @@ export class AccountActiveComponent implements OnInit, OnChanges {
     this.language = localStorage.getItem(AuthConst.language);
   }
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    console.log(this.activeProducts);
+  }
 
   languageLabel(status: string) {
-    if (this.language === 'en' && status === 'READY_FOR_REVIEW') {
+    this.language = localStorage.getItem(AuthConst.language);
+    if (this.language === 'en' && status === 'READYFORREVIEW') {
       return this.enReview;
     } else if (this.language === 'en' && status === 'NOT_ACCEPTED') {
       return this.enReject;
-    } else if (this.language === 'de' && status === 'READY_FOR_REVIEW') {
+    } else if (this.language === 'de' && status === 'READYFORREVIEW') {
       return this.deReview;
     } else if (this.language === 'de' && status === 'NOT_ACCEPTED') {
       return this.deReject;
-    } else if (this.language === 'fr' && status === 'READY_FOR_REVIEW') {
+    } else if (this.language === 'fr' && status === 'READYFORREVIEW') {
       return this.frReview;
     } else if (this.language === 'fr' && status === 'NOT_ACCEPTED') {
       return this.frReject;
-    } else if (this.language === 'it' && status === 'READY_FOR_REVIEW') {
+    } else if (this.language === 'it' && status === 'READYFORREVIEW') {
       return this.itReview;
     } else if (this.language === 'it' && status === 'NOT_ACCEPTED') {
       return this.itReject;

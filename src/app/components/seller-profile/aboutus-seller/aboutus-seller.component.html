@@ -8,7 +8,7 @@
 >
   <div class="chosen-image" *ngIf="chosenImage">
     <div class="chosen-image__image">
-      <img style="width: 100%" [src]="chosenImage" />
+      <img style="width: 100%; border-radius: 3px" [src]="chosenImage" />
     </div>
     <div
       class="chosen-image__close"
@@ -37,7 +37,11 @@
       <div *ngFor="let image of sellersImages">
         <div class="company-picture__images" *ngIf="noImages">
           <div class="company-picture__image">
-            <img style="width: 100%" [src]="image" (click)="showImage(image)" />
+            <img
+              class="chosen-image__img"
+              [src]="image"
+              (click)="showImage(image)"
+            />
           </div>
         </div>
       </div>

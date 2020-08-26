@@ -19,7 +19,7 @@
               [ngStyle]="{
                 opacity:
                   active.status === 'NOT_ACCEPTED' ||
-                  active.status === 'READY_FOR_REVIEW'
+                  active.status === 'READYFORREVIEW'
                     ? '0.1'
                     : '1'
               }"
@@ -31,7 +31,7 @@
           <img
             *ngIf="
               active.status === 'NOT_ACCEPTED' ||
-              active.status === 'READY_FOR_REVIEW'
+              active.status === 'READYFORREVIEW'
             "
             class="image__image image__image--label"
             [src]="languageLabel(active.status)"
