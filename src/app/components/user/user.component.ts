@@ -10,6 +10,7 @@ import { Comment } from '../../shared/models/createComment.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { UserStatus } from '../../shared/enums/userStatus';
+import {HelpersService} from '../../@core/services/helpers.service';
 
 @Component({
   selector: 'app-user',
@@ -52,7 +53,8 @@ export class UserComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private adsService: AdsService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private helpersService: HelpersService
   ) {}
 
   ngOnInit() {
@@ -197,7 +199,9 @@ export class UserComponent implements OnInit {
       nzContent: '',
       nzOnOk: () => {
         this.authService.logout();
+        this.helpersService.$loginName.next();
         this.router.navigate(['/site']);
+
       },
     });
   }

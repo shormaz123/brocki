@@ -68,9 +68,13 @@ export class AuthService {
     return localStorage.getItem('language');
   }
 
-  // Logout
+  /**
+   * Logout
+   */
 
   logout() {
-    localStorage.clear();
+    localStorage.removeItem(AuthConst.roleName);
+    localStorage.removeItem(AuthConst.token);
+    localStorage.removeItem(AuthConst.userId);
   }
 }
