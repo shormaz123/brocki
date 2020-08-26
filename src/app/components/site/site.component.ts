@@ -452,10 +452,6 @@ export class SiteComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.startPage = 0;
     this.paginationLimit = 3;
-    this.adsService.getAllAdsGroups().subscribe((x) => {
-      this.categoriesGroup = x;
-      console.log(this.categoriesGroup);
-    });
     this.token = localStorage.getItem(AuthConst.token);
     this.selectCategory(1);
     if (this.filteredAds.length > 0) {
@@ -587,27 +583,14 @@ export class SiteComponent implements OnInit, OnDestroy {
     this.displaySideNav = false;
   }
 
-  selectDropDown(id: number) {
-    this.adsService.getAllAdsSubGroup(id).subscribe((response) => {
-      this.subCategories = response;
-    });
-  }
+
 
   goToAd(id: number) {
     this.router.navigate(['/ad', id], { fragment: 'header' });
   }
 
 
-  getAdsByParams(adssubgroup: number) {
-    this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe((response) => {
-      this.ads = response;
-      this.randomAdsA = this.shuffle(response.slice(0, Math.floor(response.length / 2)));
-      this.randomAdsB = this.shuffle(response.slice(Math.floor(response.length / 2), response.length ));
-      // this.getUserAndFavAd();
-      console.log(response, 'ads with params');
-    });
 
-  }
 
   increaseShow() {
     this.showItems += 16;

@@ -14,6 +14,8 @@ import { NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
+import {AdsService} from '../../@core/services/ads.service';
+import {Ads} from '../../shared/models/ads.model';
 
 
 
@@ -34,6 +36,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   chosenLanguage;
   header;
   privateUser;
+  displaySideNav;
+  ads: Ads[];
+  subCategories;
+  currentLang;
+  categoriesGroup;
 
   @Output() notify = new EventEmitter<any>();
 
@@ -45,10 +52,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private modal: NzModalService,
     private router: Router,
     private translate: TranslateService,
-    private translateBackend: TranslateServiceRest
+    private translateBackend: TranslateServiceRest,
+    private adsService: AdsService
   ) {}
 
   ngOnInit() {
+    this.currentLang = localStorage.getItem(AuthConst.language)
     this.chosenLanguage = this.translateBackend.getChoosenLanguage();
     if (this.chosenLanguage !== '') {
       this.userLang = this.chosenLanguage;
@@ -63,12 +72,38 @@ export class HeaderComponent implements OnInit, OnDestroy {
     } else {
       this.getUser();
     }
+    this.adsService.getAllAdsGroups().subscribe((x) => {
+      this.categoriesGroup = x;
+      console.log(this.categoriesGroup);
+    });
   }
+
+  accordation() {
+    this.currentLang = localStorage.getItem(AuthConst.language)
+  this.displaySideNav = !this.displaySideNav
+}
 
 
   ngOnDestroy() {
     this.loginNameSubscription.unsubscribe();
   }
+
+  selectDropDown(id: number) {
+    this.adsService.getAllAdsSubGroup(id).subscribe((response) => {
+      this.subCategories = response;
+    });
+  }
+
+
+  getAdsByParams(adssubgroup: number) {
+    this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe((response) => {
+      this.ads = response;
+      // this.getUserAndFavAd();
+      console.log(response, 'subgroupAds');
+    });
+
+  }
+
 
   goToUserProfie(id: number) {
     if (localStorage.getItem(AuthConst.token) == null) {

@@ -162,3 +162,29 @@
 .accountAd {
   cursor: pointer;
 }
+
+p-sidebar {
+}
+
+.accordationSpan {
+  display: inline-block;
+  color: #4d4d4d;
+  font-size: 16px;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  &:hover {
+    cursor: pointer;
+    color: $red;
+  }
+}
+
+p-accordionTab {
+  font-size: 14px !important;
+}
+
+
+.accordationDiv {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 40px;
+}
+

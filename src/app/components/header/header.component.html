@@ -1,4 +1,24 @@
 <div class="container">
+  <p-sidebar [(visible)]="displaySideNav" [baseZIndex]="10000">
+    <h1 style="text-align: center;">
+      {{ 'translate.allCategories' | translate }}
+    </h1>
+    <p-accordion>
+      <p-accordionTab
+        header="{{ category.groupName[currentLang] }}"
+        *ngFor="let category of categoriesGroup"
+        (click)="selectDropDown(category.id)"
+      >
+        <div *ngFor="let subCategory of subCategories" class="accordationDiv">
+            <span
+              class="accordationSpan"
+              (click)="getAdsByParams(subCategory.id)"
+            >{{ subCategory.subGroupName[currentLang] }}</span
+            >
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+  </p-sidebar>
   <div class="firstContainer" *ngIf="!createAd"></div>
   <div class="firstContainer" routerLink="/create-ad" *ngIf="createAd">
     <div class="addImage">
@@ -12,6 +32,7 @@
     <img
       src="../../../assets/images/header/minibrocki.svg"
       routerLink="/site"
+      (click)="accordation()"
     />
   </div>
   <div class="thirdContainer">
