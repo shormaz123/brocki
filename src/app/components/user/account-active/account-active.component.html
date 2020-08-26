@@ -25,7 +25,7 @@
               }"
               [class.activeImg]="active.status === 'ACTIVE'"
               [src]="active.image[0]"
-              (click)="ad(active)"
+              [routerLink]="['/ad/', active.id]"
             />
           </div>
           <img
