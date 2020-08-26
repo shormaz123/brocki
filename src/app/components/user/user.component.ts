@@ -100,10 +100,6 @@ export class UserComponent implements OnInit {
     });
   }
 
-  getLanguage(event: any): void {
-    this.getLang = event;
-  }
-
   activeButton() {
     this.active = true;
     this.expired = false;

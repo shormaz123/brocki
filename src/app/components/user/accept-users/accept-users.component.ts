@@ -4,6 +4,7 @@ import { User } from '../../../shared/models/user.model';
 import { NzModalService } from 'ng-zorro-antd';
 import { UserStatus } from '../../../shared/enums/userStatus';
 import { ToastrService } from 'ngx-toastr';
+import {AuthConst} from '../../../@core/consts/auth.const';
 
 @Component({
   selector: 'app-accept-users',
@@ -21,13 +22,10 @@ export class AcceptUsersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.lang = localStorage.getItem(AuthConst.language)
     this.userService.UsersForAcceptions().subscribe((res) => {
       this.usersForReview.push(res);
     });
-  }
-
-  getLanguage(event: any) {
-    this.lang = event;
   }
 
   acceptUser(userForAccept: User, index: number) {

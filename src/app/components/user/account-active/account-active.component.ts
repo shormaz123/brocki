@@ -1,19 +1,20 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import { Ads } from '../../../shared/models/ads.model';
 import { AdsService } from '../../../@core/services/ads.service';
 import { NzModalService } from 'ng-zorro-antd';
 import { ToastrService } from 'ngx-toastr';
 import { UserStatus } from '../../../shared/enums/userStatus';
+import {AuthConst} from '../../../@core/consts/auth.const';
 
 @Component({
   selector: 'app-account-active',
   templateUrl: './account-active.component.html',
   styleUrls: ['./account-active.component.scss'],
 })
-export class AccountActiveComponent implements OnChanges {
+export class AccountActiveComponent implements OnInit, OnChanges {
   @Input() activeProducts: Ads;
   @Input() ads: boolean;
-  @Input() language: string;
+  language: string;
   Ads: boolean;
   userId: number;
   itReject = '../../../../assets/images/adsLabel/it-reject.svg';
@@ -30,6 +31,9 @@ export class AccountActiveComponent implements OnChanges {
     private adsService: AdsService,
     private toastr: ToastrService
   ) {}
+  ngOnInit() {
+    this.language = localStorage.getItem(AuthConst.language);
+  }
 
   ngOnChanges() {}
 
