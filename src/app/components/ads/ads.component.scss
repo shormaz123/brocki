@@ -17,13 +17,30 @@
   align-items: center;
   justify-content: flex-start;
   .underContainer {
-    width: 70%;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding-right: 10%;
     .title {
       font-size: 24pt;
     }
+  }
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+
+  .categoriesContainer {
+    width: 10%;
+
+  }
+
+  .titleContainer {
+    width: 90%;
+
   }
 }
 
@@ -284,4 +301,30 @@ p-carousel {
   overflow: hidden !important;
   text-overflow: ellipsis;
   justify-content: center;
+}
+
+button {
+  .tab-icon {
+    padding: 5px 25px;
+    padding-bottom: 5px;
+
+  }
+  &:focus {
+    .icon-not-active {
+      display: none;
+    }
+    .icon-active {
+      display: inline;
+    }
+  }
+  .icon-not-active {
+    display: inline;
+  }
+  .icon-active {
+    display: none;
+  }
+
+  span {
+    margin-top: 20px;
+  }
 }

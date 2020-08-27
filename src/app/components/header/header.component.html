@@ -12,7 +12,7 @@
         <div *ngFor="let subCategory of subCategories" class="accordationDiv">
             <span
               class="accordationSpan"
-              (click)="getAdsByParams(subCategory.id)"
+              [routerLink]="['/ads', subCategory.id, category.id]"
             >{{ subCategory.subGroupName[currentLang] }}</span
             >
         </div>

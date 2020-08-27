@@ -78,6 +78,10 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/ads/group/${id}`);
   }
 
+  getSubBySubGroupId(id: number): Observable<adsSubGroup[]> {
+    return this.http.get(`${this.baseUrl}/mybrocki/ads/group/${id}`);
+  }
+
   uploadAdImage(id: number, file: FormData): Observable<Ads> {
     return this.http.post(`${this.baseUrl}/mybrocki/adsimage/${id}`, file);
   }

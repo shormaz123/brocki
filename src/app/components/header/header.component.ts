@@ -97,11 +97,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
   getAdsByParams(adssubgroup: number) {
-    this.adsService.getAdsBySubGroupParam(adssubgroup).subscribe((response) => {
-      this.ads = response;
-      // this.getUserAndFavAd();
-      console.log(response, 'subgroupAds');
-    });
+
 
   }
 

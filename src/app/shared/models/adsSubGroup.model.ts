@@ -1,5 +1,11 @@
+// tslint:disable-next-line:class-name
 export class adsSubGroup {
-  adsgroup: number;
+  adsGroup: number;
   id: number;
-  subGroupName: string;
+  subGroupName: {
+    de: string,
+    en: string,
+    fr: string,
+    it: string
+  };
 }

@@ -108,7 +108,7 @@ const routes: Routes = [
         component: AdComponent,
       },
       {
-        path: 'ads',
+        path: 'ads/:subGroupId/:groupId',
         component: AdsComponent,
       },
     ],

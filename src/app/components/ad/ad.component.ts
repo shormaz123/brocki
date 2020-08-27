@@ -71,6 +71,8 @@ export class AdComponent implements OnInit, AfterViewInit {
   companyName: string;
   adminName: string;
   adminBoolean: boolean;
+  displaySideNav = true;
+
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
 
@@ -147,6 +149,10 @@ export class AdComponent implements OnInit, AfterViewInit {
     }
   }
   ngAfterViewInit() {}
+
+  displaySideBar() {
+    this.helpersService.displaySideBar(this.displaySideNav);
+  }
 
   getNewAd(id: number) {
     window.scrollTo({ top: 0 });

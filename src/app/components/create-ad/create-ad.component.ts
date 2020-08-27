@@ -79,7 +79,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     this.adsService.getAllAdsSubGroup(this.categoryId).subscribe((res) => {
       for (const element of res) {
         const subCategory = new adsSubGroup();
-        subCategory.adsgroup = element.adsgroup;
+        subCategory.adsGroup = element.adsGroup;
         subCategory.id = element.id;
         subCategory.subGroupName = element.subGroupName;
         this.subcategories.push(subCategory);
