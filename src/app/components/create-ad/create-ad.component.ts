@@ -17,7 +17,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreateAdComponent implements OnInit, OnDestroy {
   createForm: FormGroup;
-  formData = new FormData();
   statusOfProduct = 'NEW';
   categories: Array<adsGroup> = [];
   subcategories: Array<adsSubGroup> = [];
