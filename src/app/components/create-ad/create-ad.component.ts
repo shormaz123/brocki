@@ -16,8 +16,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./create-ad.component.scss'],
 })
 export class CreateAdComponent implements OnInit, OnDestroy {
+  currentPhotos: Array<any> = [];
   createForm: FormGroup;
-  formData = new FormData();
   statusOfProduct = 'NEW';
   categories: Array<adsGroup> = [];
   subcategories: Array<adsSubGroup> = [];
@@ -90,24 +90,23 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   }
 
   uploadImage(event: any): void {
-    this.uploadPhoto = [];
-    if (event.target.files || event.target.files.length) {
-      this.formData = new FormData();
-      this.uploadPhoto.push(...event.target.files);
-    }
-    if (this.uploadPhoto.length > 0) {
-      for (const picture of this.uploadPhoto) {
-        this.formData.append('file', picture);
-      }
+    event.preventDefault();
 
-      this.adsService.uploadImageInStorage(this.formData).subscribe((res) => {
-        this.picture = res;
-        this.photos.push(...this.picture);
-        if (this.photos.length > 5) {
-          this.toastr.warning('You can add up to 6 images');
-        }
-      });
+    if (event.target.files.length < 1) {
+      return;
     }
+
+    const formData = new FormData();
+
+    const newPhotos = Object.values(event.target.files);
+
+    this.currentPhotos = [...this.currentPhotos, ...newPhotos].slice(0, 6);
+
+    this.currentPhotos.forEach(photo => formData.append('file', photo));
+
+    this.adsService.uploadImageInStorage(formData).subscribe((res) => {
+      this.photos = res;
+    });
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
