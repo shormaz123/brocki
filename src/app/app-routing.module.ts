@@ -22,6 +22,7 @@ import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.
 import { AdsComponent } from './components/ads/ads.component';
 import { AcceptAdsComponent } from './components/user/accept-ads/accept-ads.component';
 import { AcceptUsersComponent } from './components/user/accept-users/accept-users.component';
+import {FiltersAdsComponent} from './components/filters-ads/filters-ads.component';
 
 const routes: Routes = [
   {
@@ -102,6 +103,10 @@ const routes: Routes = [
       {
         path: 'change-password',
         component: ChangePasswordComponent,
+      },
+      {
+        path: 'filters-ads',
+        component: FiltersAdsComponent,
       },
       {
         path: 'ad/:id',

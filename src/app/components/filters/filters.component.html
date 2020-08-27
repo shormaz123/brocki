@@ -83,42 +83,70 @@
           NEW
         </button>
       </div> -->
-    <div class="checkboxes" style="padding-bottom: 20px;">
-      <!-- <span style="padding-right: 25%; padding-bottom: 5px;"
-          >Other filters:</span
-        > -->
-      <div class="checkbox">
-        <mat-checkbox
-          class="example-margin"
-          [(ngModel)]="fixedPrice"
-        ></mat-checkbox>
-        <span>{{ 'translate.fixedPrice' | translate }}</span>
-      </div>
-      <div class="checkbox">
-        <mat-checkbox
-          class="example-margin"
-          [(ngModel)]="freeDelivery"
-        ></mat-checkbox>
-        <span>{{ 'translate.freeDelivery' | translate }}</span>
-      </div>
-      <div class="checkbox">
-        <mat-checkbox
-          class="example-margin"
-          [(ngModel)]="productWarranty"
-        ></mat-checkbox>
-        <span>{{ 'translate.productWarranty' | translate }}</span>
-      </div>
-      <div class="checkbox">
-        <mat-checkbox
-          class="example-margin"
-          [(ngModel)]="urgentSales"
-        ></mat-checkbox>
-        <span>{{ 'translate.urgentSales' | translate }}</span>
-      </div>
+<!--    <div class="checkboxes" style="padding-bottom: 20px;">-->
+<!--      &lt;!&ndash; <span style="padding-right: 25%; padding-bottom: 5px;"-->
+<!--          >Other filters:</span-->
+<!--        > &ndash;&gt;-->
+<!--      <div class="checkbox">-->
+<!--        <mat-checkbox-->
+<!--          class="example-margin"-->
+<!--          [(ngModel)]="fixedPrice"-->
+<!--        ></mat-checkbox>-->
+<!--        <span>{{ 'translate.fixedPrice' | translate }}</span>-->
+<!--      </div>-->
+<!--      <div class="checkbox">-->
+<!--        <mat-checkbox-->
+<!--          class="example-margin"-->
+<!--          [(ngModel)]="freeDelivery"-->
+<!--        ></mat-checkbox>-->
+<!--        <span>{{ 'translate.freeDelivery' | translate }}</span>-->
+<!--      </div>-->
+<!--      <div class="checkbox">-->
+<!--        <mat-checkbox-->
+<!--          class="example-margin"-->
+<!--          [(ngModel)]="productWarranty"-->
+<!--        ></mat-checkbox>-->
+<!--        <span>{{ 'translate.productWarranty' | translate }}</span>-->
+<!--      </div>-->
+<!--      <div class="checkbox">-->
+<!--        <mat-checkbox-->
+<!--          class="example-margin"-->
+<!--          [(ngModel)]="urgentSales"-->
+<!--        ></mat-checkbox>-->
+<!--        <span>{{ 'translate.urgentSales' | translate }}</span>-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="location" style="padding-bottom: 20px;">
+    <select name="cars" id="fixedPrice" [(ngModel)]="fixedPrice">
+      <option value="">All</option>
+      <option value="false">No fixed price</option>
+      <option value="true">{{ 'translate.fixedPrice' | translate }}</option>
+    </select>
+    </div>
+    <div class="location" style="padding-bottom: 20px;">
+      <select name="cars" id="freeDelivery" [(ngModel)]="freeDelivery">
+        <option value="">All</option>
+        <option value="false">No free delivery</option>
+        <option value="true">{{ 'translate.freeDelivery' | translate }}</option>
+      </select>
+    </div>
+    <div class="location" style="padding-bottom: 20px;">
+      <select name="cars" id="productWarranty" [(ngModel)]="productWarranty">
+        <option value="">All</option>
+        <option value="false">No product warranty</option>
+        <option value="true">{{ 'translate.productWarranty' | translate }}</option>
+      </select>
+    </div>
+    <div class="location" style="padding-bottom: 20px;">
+      <select name="cars" id="urgentSales" [(ngModel)]="urgentSales">
+        <option value="">All</option>
+        <option value="false">No urgent sales</option>
+        <option value="true">{{ 'translate.urgentSales' | translate }}</option>
+      </select>
     </div>
     <button
       class="confirmButton"
-      style="margin-bottom: 20px;"
+      style="margin-bottom: 50px;"
       (click)="confirmButton()"
     >
       {{ 'translate.confirm' | translate }}

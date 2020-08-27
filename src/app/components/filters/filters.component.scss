@@ -58,6 +58,10 @@ input {
   input {
     width: 86%;
   }
+
+  select {
+    width: 100%;
+  }
 }
 
 .amount {
@@ -65,7 +69,7 @@ input {
   align-items: center;
   width: 500px;
   input {
-    width: 35%;
+    width: 40%;
   }
 }
 

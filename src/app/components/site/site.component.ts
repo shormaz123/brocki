@@ -443,10 +443,7 @@ export class SiteComponent implements OnInit, OnDestroy {
     private router: Router,
     private translateBackend: TranslateServiceRest
   ) {
-    if (this.router.getCurrentNavigation().extras.state) {
-      this.filteredAds = this.router.getCurrentNavigation().extras.state.data;
-      console.log('filteredads', this.filteredAds);
-    }
+
   }
 
   ngOnInit() {

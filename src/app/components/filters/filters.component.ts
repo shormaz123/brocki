@@ -55,6 +55,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   noRegion = '';
   currentLang = 'de';
   subscriptionLang: Subscription;
+  nullValue = null;
 
 
   constructor(
@@ -147,7 +148,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
           setTimeout(() => this.error = false, 5000);
           this.errorMessage = 'No available ads to filter';
         } else {
-          this.router.navigateByUrl('/site', {state: {data: x}});
+          this.router.navigateByUrl('/filters-ads', {state: {data: x}});
         }
       });
     }
