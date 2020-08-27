@@ -43,7 +43,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   numberOfFavorites: number;
   token;
   userId;
-  displaySideNav: boolean;
+  displaySideNav = true;
   categoriesGroup: any;
   subCategories: any;
   categortGroupId: number;
@@ -487,11 +487,9 @@ export class SiteComponent implements OnInit, OnDestroy {
       });
   }
 
-  receiveNotification(notification: any) {
-    this.currentLang = notification;
+  displaySideBar() {
+    this.helpersService.displaySideBar(this.displaySideNav);
   }
-
-
 
   getAdsBySearch() {
     if (this.searchProductName === undefined) {
@@ -573,14 +571,6 @@ export class SiteComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.numberOfFavs.unsubscribe();
     this.subscriptionLang.unsubscribe();
-  }
-
-  displaySide() {
-    this.displaySideNav = true;
-  }
-
-  hideSide() {
-    this.displaySideNav = false;
   }
 
 

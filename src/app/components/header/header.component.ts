@@ -45,6 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Output() notify = new EventEmitter<any>();
 
   private loginNameSubscription: Subscription;
+  private displaySideBarSubscription: Subscription;
 
   constructor(
     private userService: UserService,
@@ -76,16 +77,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.categoriesGroup = x;
       console.log(this.categoriesGroup);
     });
+    this.displaySideBarSubscription = this.helpers.getDisplaySideBar().subscribe( response => {
+      this.currentLang = localStorage.getItem(AuthConst.language);
+      this.displaySideNav = response;
+    });
   }
-
-  accordation() {
-    this.currentLang = localStorage.getItem(AuthConst.language)
-  this.displaySideNav = !this.displaySideNav
-}
 
 
   ngOnDestroy() {
     this.loginNameSubscription.unsubscribe();
+    this.displaySideBarSubscription.unsubscribe();
   }
 
   selectDropDown(id: number) {

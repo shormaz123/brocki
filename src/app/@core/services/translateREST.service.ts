@@ -17,7 +17,6 @@ export class TranslateServiceRest {
   }
 
 
-  private readonly baseUrl = environment.apiUrlBase;
   private language = new Subject<any>();
 
   /**
