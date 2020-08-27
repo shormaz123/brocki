@@ -82,6 +82,7 @@ import { StrictNumberOnlyDirective } from './utils/StrictNumberOnlyDirective';
 import { ToastrModule } from 'ngx-toastr';
 import { InputMaxLengthDirective } from './utils/input-max-length.directive';
 import { AcceptUsersComponent } from './components/user/accept-users/accept-users.component';
+import { FiltersAdsComponent } from './components/filters-ads/filters-ads.component';
 
 registerLocaleData(en);
 
@@ -125,6 +126,7 @@ registerLocaleData(en);
     StrictNumberOnlyDirective,
     InputMaxLengthDirective,
     AcceptUsersComponent,
+    FiltersAdsComponent,
   ],
   imports: [
     BrowserModule,
