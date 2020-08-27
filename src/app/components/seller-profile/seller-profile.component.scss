@@ -42,7 +42,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 0 0 0 160px;
+        padding: 0 0 0 128px;
 
         @include rwd(1600) {
           padding: 0 0 0 150px;
@@ -84,7 +84,11 @@
 }
 
 .profil-name {
+  margin-top: 10px;
   height: 36px;
+  width: 260px;
+  text-align: center;
+  font-size: 18pt;
 }
 
 .body {

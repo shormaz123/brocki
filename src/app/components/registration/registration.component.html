@@ -43,29 +43,29 @@
         </div>
         <div class="inputItem2">
           <label>{{ 'translate.password' | translate }} </label>
-          <input formControlName="password" type="password"/>
+          <input formControlName="password" type="password" />
         </div>
         <div class="inputItem3">
           <label>{{ 'translate.username' | translate }}</label>
-          <input formControlName="userName" />
+          <input formControlName="userName" maxlength="20" />
         </div>
         <div class="inputItem3">
           <label>{{ 'translate.city' | translate }}</label>
           <input formControlName="city" />
         </div>
-<!--        <div class="inputItem4">-->
-<!--          <label>{{ 'translate.city' | translate }}</label>-->
-<!--          <select-->
-<!--            name="contactMethod"-->
-<!--            class="form-control"-->
-<!--            required-->
-<!--            formControlName="city"-->
-<!--          >-->
-<!--            <option *ngFor="let city of cities" [value]="city">{{-->
-<!--              city-->
-<!--            }}</option>-->
-<!--          </select>-->
-<!--        </div>-->
+        <!--        <div class="inputItem4">-->
+        <!--          <label>{{ 'translate.city' | translate }}</label>-->
+        <!--          <select-->
+        <!--            name="contactMethod"-->
+        <!--            class="form-control"-->
+        <!--            required-->
+        <!--            formControlName="city"-->
+        <!--          >-->
+        <!--            <option *ngFor="let city of cities" [value]="city">{{-->
+        <!--              city-->
+        <!--            }}</option>-->
+        <!--          </select>-->
+        <!--        </div>-->
         <div class="inputItem5">
           <label>{{ 'translate.canton' | translate }}</label>
           <select
@@ -74,9 +74,9 @@
             required
             formControlName="region"
           >
-            <option *ngFor="let region of cantons" [value]="region">{{
-              region
-            }}</option>
+            <option *ngFor="let region of cantons" [value]="region">
+              {{ region }}
+            </option>
           </select>
         </div>
       </div>
@@ -94,7 +94,7 @@
         [nzMessage]="errorMessage"
         nzShowIcon
         *ngIf="error"
-        style="margin-bottom: 20px; margin-left: 1.5%;"
+        style="margin-bottom: 20px; margin-left: 1.5%"
       ></nz-alert>
       <button class="signInButton" type="submit">
         {{ 'translate.createAccount' | translate }}

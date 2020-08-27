@@ -41,9 +41,9 @@
           formControlName="subcategory"
           (change)="findsubcategory($event)"
         >
-          <option value="">{{
-            'translate.selectSubCategory' | translate
-          }}</option>
+          <option value="">
+            {{ 'translate.selectSubCategory' | translate }}
+          </option>
           <option
             *ngFor="let subcategory of subcategories"
             [value]="subcategory.id"
@@ -185,7 +185,7 @@
         <div class="form__credit">
           <img src="../../../assets/images/credits icon.png" />
           <div class="form__creditCount">
-            <span style="color: #595959;"
+            <span style="color: #595959"
               >0 {{ 'translate.credits' | translate }} - ({{
                 'translate.freeMonths' | translate
               }})

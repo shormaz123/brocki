@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="socialMedia">
-    <div style="width: 10%;">
+    <div style="width: 10%">
       <label>{{ 'translate.shareVia' | translate }}:</label>
     </div>
     <div class="social">
@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="title">
-    <label style="font-size: 16pt;">{{
+    <label style="font-size: 16pt">{{
       ad?.productName || card?.productName
     }}</label>
   </div>
@@ -59,21 +59,24 @@
     </div>
     <div class="right">
       <div class="profile">
-        <img
-          *ngIf="!reviewUser"
-          class="seller-image"
-          [src]="userImage"
-          [routerLink]="['/seller', userSellerId]"
-          pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!"
-          tooltipPosition="top"
-          style="cursor: pointer;"
-        />
-        <img
-          *ngIf="reviewUser"
-          [src]="reviewUser.companyImage[0]"
-          [routerLink]="['/seller/', reviewUser.id]"
-        />
-        <label *ngIf="private">{{ userSeller?.name || reviewUser?.name }}</label>
+        <div class="seller-image">
+          <img
+            *ngIf="!reviewUser"
+            [src]="userImage"
+            [routerLink]="['/seller', userSellerId]"
+            pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!"
+            tooltipPosition="top"
+            style="cursor: pointer"
+          />
+          <img
+            *ngIf="reviewUser"
+            [src]="reviewUser.companyImage[0]"
+            [routerLink]="['/seller/', reviewUser.id]"
+          />
+        </div>
+        <label *ngIf="private">{{
+          userSeller?.name || reviewUser?.name
+        }}</label>
         <label *ngIf="business">{{ companyName }}</label>
         <label *ngIf="adminBoolean">{{ adminName }}</label>
       </div>
@@ -92,7 +95,7 @@
           <img
             src="../../../assets/images/ad/icon mail.png"
             *ngIf="userSeller?.email || reviewUser?.email"
-            style="cursor: pointer;"
+            style="cursor: pointer"
           />
           <label>{{ userSeller?.email || reviewUser?.email }}</label>
         </div>
@@ -103,7 +106,7 @@
     <div class="description">
       <label>{{ 'translate.description' | translate }}</label>
       <div>
-        <label style="color: black;">{{
+        <label style="color: black">{{
           ad?.description || card?.description
         }}</label>
       </div>
@@ -125,7 +128,7 @@
               "
             >
               <div
-                style="background-color: white; cursor: pointer; padding: 10px;"
+                style="background-color: white; cursor: pointer; padding: 10px"
                 class="cardHover"
               >
                 <div class="image" (click)="getNewAd(adByUser.id)">
@@ -133,13 +136,13 @@
                 </div>
                 <div class="cardBody" [routerLink]="['/ad', adByUser.id]">
                   <div class="bodyLabel">
-                    <label style="font-size: 20px; font-weight: bolder;">{{
+                    <label style="font-size: 20px; font-weight: bolder">{{
                       adByUser.productName
                     }}</label>
                   </div>
                   <div class="adLine"></div>
                   <div class="description">
-                    <label style="font-size: 12px;">{{
+                    <label style="font-size: 12px">{{
                       adByUser.description
                     }}</label>
                   </div>
@@ -180,7 +183,7 @@
                       </mat-icon>
                     </button>
                   </div>
-                  <span style="color: black;">{{
+                  <span style="color: black">{{
                     adByUser.adsDate | date
                   }}</span>
                 </div>
@@ -208,7 +211,7 @@
               "
             >
               <div
-                style="background-color: white; cursor: pointer; padding: 10px;"
+                style="background-color: white; cursor: pointer; padding: 10px"
                 class="cardHover"
               >
                 <div class="image" (click)="getNewAd(reviewUserActiveAds.id)">
@@ -219,13 +222,13 @@
                   [routerLink]="['/seller/' + reviewUserActiveAds.id]"
                 >
                   <div class="bodyLabel">
-                    <div style="font-size: 20px; font-weight: bolder;">
+                    <div style="font-size: 20px; font-weight: bolder">
                       {{ reviewUserActiveAds.productName }}
                     </div>
                   </div>
                   <div class="adLine"></div>
                   <div class="description">
-                    <label style="font-size: 12px;">{{
+                    <label style="font-size: 12px">{{
                       reviewUserActiveAds.description
                     }}</label>
                   </div>
@@ -271,7 +274,7 @@
                       </mat-icon>
                     </button>
                   </div>
-                  <div style="color: black;">
+                  <div style="color: black">
                     {{ reviewUserActiveAds.adsDate | date }}
                   </div>
                 </div>
@@ -298,7 +301,7 @@
               "
             >
               <div
-                style="background-color: white; cursor: pointer; padding: 10px;"
+                style="background-color: white; cursor: pointer; padding: 10px"
                 class="cardHover"
               >
                 <div class="image" (click)="getNewAd(adByCat.id)">
@@ -306,13 +309,13 @@
                 </div>
                 <div class="cardBody" [routerLink]="['/ad', adByCat.id]">
                   <div class="bodyLabel">
-                    <label style="font-size: 20px; font-weight: bolder;">{{
+                    <label style="font-size: 20px; font-weight: bolder">{{
                       adByCat.productName
                     }}</label>
                   </div>
                   <div class="adLine"></div>
                   <div class="description">
-                    <label style="font-size: 12px;">{{
+                    <label style="font-size: 12px">{{
                       adByCat.description
                     }}</label>
                   </div>
@@ -353,9 +356,7 @@
                       </mat-icon>
                     </button>
                   </div>
-                  <span style="color: black;">{{
-                    adByCat.adsDate | date
-                  }}</span>
+                  <span style="color: black">{{ adByCat.adsDate | date }}</span>
                 </div>
               </div>
             </div>
