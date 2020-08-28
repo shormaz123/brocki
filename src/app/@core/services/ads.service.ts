@@ -185,4 +185,12 @@ export class AdsService {
   getCommentByUser(userId: number): Observable<Comment> {
     return this.http.get(`${this.baseUrl}/mybrocki/comment/user/${userId}`);
   }
+
+  getCategoryById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/mybrocki/group/${id}`);
+  }
+
+  getSubCategoryById(id: number): Observable<any>  {
+    return this.http.get(`${this.baseUrl}/mybrocki/subgroup/${id}`);
+  }
 }

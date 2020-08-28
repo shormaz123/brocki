@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AdsService} from '../../@core/services/ads.service';
 import {Ads} from '../../shared/models/ads.model';
@@ -7,13 +7,15 @@ import {HelpersService} from '../../@core/services/helpers.service';
 import {AuthService} from '../../@core/services/auth.service';
 import {UserAddAdsRequest} from '../../shared/models/useraddAdsRequest.model';
 import {AuthConst} from '../../@core/consts/auth.const';
+import {TranslateServiceRest} from '../../@core/services/translateREST.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-ads',
   templateUrl: './ads.component.html',
   styleUrls: ['./ads.component.scss']
 })
-export class AdsComponent implements OnInit {
+export class AdsComponent implements OnInit, OnDestroy {
   subGroupId: number;
   groupId: number;
   ads: Ads[];
@@ -21,19 +23,20 @@ export class AdsComponent implements OnInit {
   userRequest: UserAddAdsRequest;
   userId;
   currentLang;
-  subCategoryTitle: string;
-  categoryTitle: string;
   favAds: Ads[];
   favoriteAds: Ads[];
   numberOfFavorites: number;
   displaySideNav = true;
+  categoryName: string;
+  subCategoryName: string;
+  subscriptionLang: Subscription;
 
 
   constructor(private activatedRoute: ActivatedRoute,
               private adsService: AdsService,
               private userService: UserService,
               private helpersService: HelpersService,
-              private authService: AuthService) {
+              private translateBackend: TranslateServiceRest) {
   }
 
   ngOnInit() {
@@ -48,6 +51,12 @@ export class AdsComponent implements OnInit {
       this.subGroupId = params.subGroupId;
       this.groupId = params.groupId;
       console.log(this.subGroupId);
+      this.adsService.getSubCategoryById(params.subGroupId).subscribe( subTitle => {
+        this.subCategoryName = subTitle.subGroupName[this.currentLang]
+      });
+      this.adsService.getCategoryById(params.groupId).subscribe( categoryTitle => {
+        this.categoryName = categoryTitle.groupName[this.currentLang]
+      })
       this.adsService.getSubBySubGroupId(params.subGroupId).subscribe( x => {
         console.log(x, 'x')
       })
@@ -60,10 +69,23 @@ export class AdsComponent implements OnInit {
         }
         // this.getUserAndFavAd();
         console.log(this.subGroupId, 'subgroupAds');
-
-
       });
     });
+    this.subscriptionLang = this.translateBackend
+      .getLanguage()
+      .subscribe((message) => {
+        this.currentLang = message;
+        this.adsService.getSubCategoryById(this.subGroupId).subscribe( subTitle => {
+          this.subCategoryName = subTitle.subGroupName[this.currentLang]
+        });
+        this.adsService.getCategoryById(this.groupId).subscribe( categoryTitle => {
+          this.categoryName = categoryTitle.groupName[this.currentLang]
+        })
+      });
+  }
+
+  ngOnDestroy() {
+    this.subscriptionLang.unsubscribe();
   }
 
   displaySideBar() {

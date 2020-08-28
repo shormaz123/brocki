@@ -15,6 +15,7 @@
                 padding-left: 0%;
                 padding-right: 0%;
                 padding-bottom: 0%;
+                cursor:pointer;
               "
             (click)="displaySideBar()"
           >
@@ -36,12 +37,12 @@
   <div class="titleContainer">
   <div class="underContainer">
     <span class="title" style="padding-bottom: 40px;"
-    >Category Title</span
+    >{{categoryName}}</span
     >
   </div>
   <div class="underContainer">
     <span class="title" style="padding-bottom: 40px;"
-    >Subcategory title</span
+    >{{subCategoryName}}</span
     >
   </div>
   </div>
