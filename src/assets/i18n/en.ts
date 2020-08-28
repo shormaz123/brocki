@@ -149,5 +149,6 @@ export const en = {
     pricingList: 'Pricing list',
     freeMonths: '3 months free use',
     copied: 'Copied',
+    companyName: 'Company name'
   },
 };

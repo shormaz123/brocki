@@ -153,5 +153,6 @@ export const de = {
     pricingList: 'Preisliste',
     freeMonths: '3 Monate kostenlos',
     copied: 'Kopiert',
+    companyName: 'Name der Firma'
   },
 };
