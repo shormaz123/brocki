@@ -8,7 +8,11 @@
     <div *ngFor="let active of activeProducts[0]; let i = index" class="card">
       <div class="image">
         <div class="image__imageBody">
-        <img class="image__imageBody__image" [src]="active.image[0]" />
+          <img
+            class="image__imageBody__image"
+            [src]="active.image[0]"
+            [routerLink]="['/ad/', active.id]"
+          />
         </div>
       </div>
       <div class="text">

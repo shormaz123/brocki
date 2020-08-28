@@ -64,12 +64,24 @@ export class UserComponent implements OnInit {
     }
     this.scroll();
     this.userService.getUser().subscribe((res) => {
-      this.companyName = res.company;
-      console.log(res.roleName)
-      if (res.roleName === 'bussines') {
+      if (res.roleName === 'bussines' || 'admin') {
+        this.companyName = res.company;
+
         this.private = false;
         this.business = true;
       } else {
+        this.private = true;
+        this.business = false;
+      }
+
+      if (res.roleName === 'admin' && res.company === '') {
+        this.userName = res.userName;
+        this.private = true;
+        this.business = false;
+      }
+
+      if (res.roleName === 'bussines' && res.company === '') {
+        this.userName = res.userName;
         this.private = true;
         this.business = false;
       }

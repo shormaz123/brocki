@@ -49,11 +49,24 @@ export class SellerProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
-        this.sellerCompany = seller.company;
-        if (seller.roleName === 'bussines') {
+        if (seller.roleName === 'bussines' || 'admin') {
+          this.sellerCompany = seller.company;
+
           this.private = false;
           this.business = true;
         } else {
+          this.private = true;
+          this.business = false;
+        }
+
+        if (seller.roleName === 'admin' && seller.company === '') {
+          this.sellerName = seller.userName;
+          this.private = true;
+          this.business = false;
+        }
+
+        if (seller.roleName === 'bussines' && seller.company === '') {
+          this.sellerName = seller.userName;
           this.private = true;
           this.business = false;
         }

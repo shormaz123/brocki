@@ -83,6 +83,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { InputMaxLengthDirective } from './utils/input-max-length.directive';
 import { AcceptUsersComponent } from './components/user/accept-users/accept-users.component';
 import { FiltersAdsComponent } from './components/filters-ads/filters-ads.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 registerLocaleData(en);
 
@@ -160,7 +162,9 @@ registerLocaleData(en);
     TooltipModule,
     NzDropDownModule,
     MatMenuModule,
+    DragDropModule,
     ToastrModule.forRoot({
+      preventDuplicates: true,
       closeButton: true,
       tapToDismiss: false,
       timeOut: 3000,

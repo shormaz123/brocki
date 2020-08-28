@@ -23,6 +23,7 @@ export class AcceptAdsComponent implements OnInit {
 
   ngOnInit() {
     this.adsService.readyForReviewAds().subscribe((res) => {
+      // console.log(res);
       this.readyForReviewAds.push(res);
       if (this.readyForReviewAds[0].length === 0) {
         this.message = false;

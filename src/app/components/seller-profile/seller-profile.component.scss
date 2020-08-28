@@ -42,7 +42,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 0 0 0 160px;
+        padding: 0 0 0 128px;
 
         @include rwd(1600) {
           padding: 0 0 0 150px;
@@ -65,6 +65,12 @@
   }
 }
 
+.seller-image {
+  width: 100%;
+  height: 85%;
+  border-radius: 3px;
+}
+
 .profil-image {
   background-repeat: no-repeat;
   background-position: 50%;
@@ -72,11 +78,17 @@
   width: 160px;
   height: 160px;
   border-radius: 17px;
-  border: 2px solid $red;
+  border: 3px solid $red;
+  display: flex;
+  align-items: center;
 }
 
 .profil-name {
+  margin-top: 10px;
   height: 36px;
+  width: 260px;
+  text-align: center;
+  font-size: 18pt;
 }
 
 .body {

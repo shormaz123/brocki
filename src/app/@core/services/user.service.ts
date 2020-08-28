@@ -93,10 +93,8 @@ export class UserService {
    * Users for acceptions
    *
    */
-  UsersForAcceptions(): Observable<User> {
-    return this.http.get<User>(
-      `${this.baseUrl}/mybrocki/auth/users/nonvisible`
-    );
+  UsersForAcceptions(status: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/mybrocki/auth/users/${status}`);
   }
 
   /**
