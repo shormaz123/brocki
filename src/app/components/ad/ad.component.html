@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="title">
-    <label style="font-size: 16pt">{{
+    <label>{{
       ad?.productName || card?.productName
     }}</label>
   </div>
@@ -57,29 +57,31 @@
         </div>
       </div>
     </div>
-    <div class="right">
+    <div class="center">
       <div class="profile">
-        <div class="seller-image">
-          <img
-            *ngIf="!reviewUser"
-            [src]="userImage"
-            [routerLink]="['/seller', userSellerId]"
-            pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!"
-            tooltipPosition="top"
-            style="cursor: pointer"
-          />
-          <img
-            *ngIf="reviewUser"
-            [src]="reviewUser.companyImage[0]"
-            [routerLink]="['/seller/', reviewUser.id]"
-          />
-        </div>
-        <label *ngIf="private">{{
-          userSeller?.name || reviewUser?.name
-        }}</label>
-        <label *ngIf="business">{{ companyName }}</label>
-        <label *ngIf="adminBoolean">{{ adminName }}</label>
+      <div class="seller-image">
+        <img
+          *ngIf="!reviewUser"
+          [src]="userImage"
+          [routerLink]="['/seller', userSellerId]"
+          pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!"
+          tooltipPosition="top"
+          style="cursor: pointer"
+        />
+        <img
+          *ngIf="reviewUser"
+          [src]="reviewUser.companyImage[0]"
+          [routerLink]="['/seller/', reviewUser.id]"
+        />
       </div>
+      <label *ngIf="private">{{
+        userSeller?.name || reviewUser?.name
+        }}</label>
+      <label *ngIf="business">{{ companyName }}</label>
+      <label *ngIf="adminBoolean">{{ adminName }}</label>
+    </div>
+    </div>
+    <div class="right">
       <div class="contact">
         <div class="phone">
           <img
@@ -93,11 +95,12 @@
         </div>
         <div class="mail">
           <img
+            (click)="toogleMail()"
             src="../../../assets/images/ad/icon mail.png"
             *ngIf="userSeller?.email || reviewUser?.email"
             style="cursor: pointer"
           />
-          <label>{{ userSeller?.email || reviewUser?.email }}</label>
+          <label *ngIf="mailBoolean">{{ userSeller?.email || reviewUser?.email }}</label>
         </div>
       </div>
     </div>
