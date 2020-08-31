@@ -102,13 +102,8 @@
         <label class="form__label"
           >{{ 'translate.picturesOfCompany' | translate }}:</label
         >
-        <div
-          class="form__picture"
-          cdkDropList
-          (cdkDropListDropped)="onDrop($event)"
-        >
+        <div class="form__picture">
           <div
-            cdkDrag
             class="form__upload--image"
             *ngFor="let companyPhoto of companyPhotos; let i = index"
           >
@@ -119,10 +114,7 @@
               [style.backgroundImage]="'url(' + companyPhoto + ')'"
               class="form__image"
             ></div>
-            <div
-              class="form__delete"
-              (click)="deleteStoragedPhoto(companyPhoto, i)"
-            >
+            <div class="form__delete" (click)="deleteStoragedPhoto(i)">
               <label class="form__delete-label">{{
                 'translate.deletePhoto' | translate
               }}</label>
@@ -130,7 +122,6 @@
           </div>
 
           <div
-            cdkDrag
             class="form__upload--image"
             *ngFor="let photo of photos; let j = index"
           >
@@ -179,7 +170,7 @@
       </div>
       <div class="form__inputItem">
         <button class="form__button" type="submit">
-          {{ 'translate.saveChanges' | translate }}
+          {{ 'translate.saveUpdate' | translate }}
         </button>
       </div>
     </form>

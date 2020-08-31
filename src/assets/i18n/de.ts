@@ -51,15 +51,16 @@ export const de = {
     adWillBreCharged: 'Anzeige wird verechnet',
     credits: 'Credits',
     saveChanges: 'Inserat erstellen',
+    saveUpdate: 'Änderungen speichern',
     private: 'Privat',
     business: 'Unternehmen',
     city: 'Ortschaft',
     canton: 'Kanton',
     createAccount: 'Konto erstellen',
     username: 'Benutzername ',
-    confirmTermsAndConditionsOne: 'Bitte bestätigen Sie, dass Sie unseren Allgemeinen',
-    confirmTermsAndConditionsTwo:
-      'Geschäftsbedingungen zustimmen.',
+    confirmTermsAndConditionsOne:
+      'Bitte bestätigen Sie, dass Sie unseren Allgemeinen',
+    confirmTermsAndConditionsTwo: 'Geschäftsbedingungen zustimmen.',
     checkedUser: 'Überprüfter Benutzer',
     approvedContact: 'Überprüfter Kontakt',
     successfulSales: 'Erfolgreicher Verkauf',
@@ -71,7 +72,7 @@ export const de = {
     sold: 'Verkauft',
     guestBook: 'Gästebuch',
     shareVia: 'Teilen per',
-    update: 'Aktualisieren',
+    update: 'Aktualisieren Sie',
     info: 'die Info',
     acceptAds: 'Inserate zulassen',
     acceptProfile: 'Profil akzeptieren',
@@ -153,6 +154,6 @@ export const de = {
     pricingList: 'Preisliste',
     freeMonths: '3 Monate kostenlos',
     copied: 'Kopiert',
-    companyName: 'Name der Firma'
+    companyName: 'Name der Firma',
   },
 };

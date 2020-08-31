@@ -9,11 +9,7 @@ import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
 import { UserStatus } from '../../shared/enums/userStatus';
 import { getMatIconFailedToSanitizeLiteralError } from '@angular/material/icon';
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
+// import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -126,7 +122,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
     const formData = new FormData();
 
     const newPhotos = Object.values(event.target.files);
-    console.log(newPhotos);
 
     this.currentPhotos = [...this.currentPhotos, ...newPhotos].slice(0, 6);
     if (this.currentPhotos.length > 5) {
@@ -141,9 +136,9 @@ export class UpdateInfoBussinesComponent implements OnInit {
     });
   }
 
-  onDrop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.photos, event.previousIndex, event.currentIndex);
-  }
+  // onDrop(event: CdkDragDrop<string[]>) {
+  //   moveItemInArray(this.photos, event.previousIndex, event.currentIndex);
+  // }
 
   changeImage(photo: any, i: number) {
     this.companyPhotos[i] = this.companyPhotos[0];
@@ -155,17 +150,15 @@ export class UpdateInfoBussinesComponent implements OnInit {
     this.companyPhotos[0] = photo;
   }
 
-  deleteStoragedPhoto(photo: string, index: number): void {
+  deleteStoragedPhoto(index: number): void {
     this.companyPhotos.splice(index, 1);
-    this.adsService.deleteImage(photo).subscribe();
     this.deletedImage = true;
-    this.photoValue = -this.photoValue;
+    this.photoValue = this.photoValue - 1;
   }
 
   deletePhoto(index: number): void {
     this.photos.splice(index, 1);
     this.currentPhotos.splice(index, 1);
-    console.log(this.currentPhotos);
   }
 
   onSubmit() {

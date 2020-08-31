@@ -51,13 +51,15 @@ export const fr = {
     adWillBreCharged: "L'annonce est en cours de calcul",
     credits: 'Crédits',
     saveChanges: 'Sauvegarder les modifications',
+    saveUpdate: 'Enregistrer les changements',
     private: 'Privé',
     business: 'Entreprises',
     city: 'Ville',
     canton: 'Canton',
     createAccount: 'Créer un compte',
     username: "Nom d'utilisateur",
-    confirmTermsAndConditionsOne: 'Veuillez confirmer que vous acceptez nos termes et conditions.',
+    confirmTermsAndConditionsOne:
+      'Veuillez confirmer que vous acceptez nos termes et conditions.',
     confirmTermsAndConditionsTwo: '',
     checkedUser: 'Utilisateur vérifié',
     approvedContact: 'Contact vérifié',
@@ -150,6 +152,6 @@ export const fr = {
     pricingList: 'Liste de prix',
     freeMonths: '3 mois gratuits',
     copied: 'Copié',
-    companyName: 'Nom de la compagnie'
+    companyName: 'Nom de la compagnie',
   },
 };
