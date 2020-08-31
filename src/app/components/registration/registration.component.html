@@ -6,6 +6,7 @@
       </div>
       <div class="roleButton">
         <button
+          type="button"
           class="roleButtons"
           (click)="privateButton(3)"
           [ngClass]="{ red: private, grey: !private }"
@@ -13,6 +14,7 @@
           {{ 'translate.private' | translate }}
         </button>
         <button
+          type="button"
           class="roleButtons"
           (click)="businessButton(2)"
           [ngClass]="{ red: business, grey: !business }"
@@ -23,6 +25,7 @@
       <div class="bussinesButton" *ngIf="business">
         <button
           class="bussinesButtons"
+          type="button"
           (click)="brockButton('BROCKENSTUBE')"
           [ngClass]="{ red: brockenstube, grey: !brockenstube }"
         >
@@ -31,6 +34,7 @@
         <button
           class="bussinesButtons"
           (click)="instButton('INSTITUTION')"
+          type="button"
           [ngClass]="{ red: institution, grey: !institution }"
         >
           {{ 'translate.institution' | translate }}
@@ -46,7 +50,8 @@
           <input formControlName="password" type="password" />
         </div>
         <div class="inputItem3">
-          <label>{{ 'translate.username' | translate }}</label>
+          <label *ngIf="private">{{ 'translate.username' | translate }}</label>
+          <label *ngIf="business">{{ 'translate.companyName' | translate }}</label>
           <input formControlName="userName" maxlength="20" />
         </div>
         <div class="inputItem3">

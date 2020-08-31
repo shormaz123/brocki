@@ -44,7 +44,6 @@ export class RegistrationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('cantons', this.cantons);
 
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -53,8 +52,8 @@ export class RegistrationComponent implements OnInit {
       city: ['', [Validators.required]],
       credit: [0, [Validators.required]],
       region: ['', [Validators.required]],
-      bussinesType: ['PRIVATE', [Validators.required]],
-      role_id: [3, [Validators.required]],
+      bussinesType: ['PRIVATE'],
+      role_id: [3,],
       terms: [false, [Validators.required]],
     });
 
@@ -75,15 +74,8 @@ export class RegistrationComponent implements OnInit {
     this.submitted = true;
     console.log(this.registerForm.value);
 
-    if (this.registerForm.invalid) {
-      this.errorMessage = 'Please, fill every field in accurate way';
-      this.error = true;
-      setTimeout(() => (this.error = false), 5000);
-      // return  console.log("form invalid");
-    } else if (
-      this.registerForm.valid &&
-      this.registerForm.value.terms === true
-    ) {
+    if (this.registerForm.valid &&
+    this.registerForm.value.terms === true) {
       this.registration = this.registerForm.value;
       // console.log(this.registerForm.value)
       this.authService.register(this.registration).subscribe(
@@ -98,6 +90,12 @@ export class RegistrationComponent implements OnInit {
           console.log(this.errorMessage);
         }
       );
+    } else {
+      // this.registerForm.invalid
+      this.errorMessage = 'Please, fill every field in accurate way';
+      this.error = true;
+      setTimeout(() => (this.error = false), 5000);
+      // return  console.log("form invalid");
     }
   }
 
