@@ -100,7 +100,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
         updateUserInfo.city = this.privateForm.value.city;
         updateUserInfo.region = this.privateForm.value.canton;
         updateUserInfo.aboutUs = '';
-        updateUserInfo.location = '';
+        // updateUserInfo.location = '';
         updateUserInfo.company = '';
         updateUserInfo.companyImage = [];
         updateUserInfo.bussinesType = 'PRIVATE';

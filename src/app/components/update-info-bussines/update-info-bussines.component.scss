@@ -88,8 +88,8 @@ textarea {
     width: 20px;
     height: 20px;
     background-color: $red;
-    cursor: pointer;
     z-index: 100;
+    cursor: pointer;
   }
 
   &__label {
@@ -125,10 +125,13 @@ textarea {
     height: 152px;
     width: 152px;
     position: relative;
+    cursor: move;
+
     &--image-input {
       height: 100px;
       width: 100px;
       opacity: 0;
+      cursor: pointer;
     }
   }
 
@@ -151,6 +154,7 @@ textarea {
     left: 10px;
     width: 132px;
     height: 132px;
+    // cursor: pointer;
     &:hover {
       position: absolute;
       width: 132px;
@@ -160,6 +164,7 @@ textarea {
       justify-content: center;
       align-items: center;
       color: white;
+      // cursor: pointer;
     }
 
     &:hover .form__delete-label {
@@ -170,6 +175,7 @@ textarea {
   &__delete-label {
     display: none;
     color: white;
+    cursor: move;
   }
 
   &__input--upload {

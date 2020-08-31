@@ -102,8 +102,13 @@
         <label class="form__label"
           >{{ 'translate.picturesOfCompany' | translate }}:</label
         >
-        <div class="form__picture">
+        <div
+          class="form__picture"
+          cdkDropList
+          (cdkDropListDropped)="onDrop($event)"
+        >
           <div
+            cdkDrag
             class="form__upload--image"
             *ngFor="let companyPhoto of companyPhotos; let i = index"
           >
@@ -123,7 +128,9 @@
               }}</label>
             </div>
           </div>
+
           <div
+            cdkDrag
             class="form__upload--image"
             *ngFor="let photo of photos; let j = index"
           >

@@ -9,6 +9,11 @@ import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
 import { UserStatus } from '../../shared/enums/userStatus';
 import { getMatIconFailedToSanitizeLiteralError } from '@angular/material/icon';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -17,14 +22,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./update-info-bussines.component.scss'],
 })
 export class UpdateInfoBussinesComponent implements OnInit {
-  formData = new FormData();
   businessForm: FormGroup;
   businessUser: Array<User> = [];
-  uploadPhoto: Array<string> = [];
   photos: Array<string> = [];
   companyPhotos: Array<string> = [];
   deletedImage: boolean;
-  uploadedImage: Array<string> = [];
   userId: number;
   userName: string;
   bussinesType: string;
@@ -34,6 +36,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
   companyPhoto: string;
   photoValue: number;
   photo: string;
+  currentPhotos: Array<any> = [];
+  uploadPhotos: Array<string> = [];
 
   constructor(
     private notification: NzNotificationService,
@@ -113,23 +117,32 @@ export class UpdateInfoBussinesComponent implements OnInit {
   }
 
   uploadImage(event: any): void {
-    this.uploadPhoto = [];
-    if (event.target.files) {
-      this.formData = new FormData();
-      this.uploadPhoto.push(...event.target.files);
+    event.preventDefault();
+
+    if (event.target.files.length < 1) {
+      return;
     }
-    if (this.uploadPhoto.length > 0) {
-      for (const picture of this.uploadPhoto) {
-        this.formData.append('file', picture);
-      }
-      this.adsService.uploadImageInStorage(this.formData).subscribe((res) => {
-        this.uploadedImage = res;
-        this.photos.push(...this.uploadedImage);
-        if (this.photos.length > 5) {
-          this.toastr.warning('You can add up to 6 images');
-        }
-      });
+
+    const formData = new FormData();
+
+    const newPhotos = Object.values(event.target.files);
+    console.log(newPhotos);
+
+    this.currentPhotos = [...this.currentPhotos, ...newPhotos].slice(0, 6);
+    if (this.currentPhotos.length > 5) {
+      this.toastr.warning('You can add up to 6 images');
     }
+    this.uploadPhotos = this.companyPhotos
+      .concat(this.currentPhotos)
+      .slice(0, 6);
+    this.uploadPhotos.forEach((photo) => formData.append('file', photo));
+    this.adsService.uploadImageInStorage(formData).subscribe((res) => {
+      this.photos = res;
+    });
+  }
+
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.photos, event.previousIndex, event.currentIndex);
   }
 
   changeImage(photo: any, i: number) {
@@ -151,6 +164,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
 
   deletePhoto(index: number): void {
     this.photos.splice(index, 1);
+    this.currentPhotos.splice(index, 1);
+    console.log(this.currentPhotos);
   }
 
   onSubmit() {
@@ -168,7 +183,10 @@ export class UpdateInfoBussinesComponent implements OnInit {
         updateBusiness.city = this.businessForm.value.city;
         updateBusiness.region = this.businessForm.value.canton;
         updateBusiness.aboutUs = this.businessForm.value.aboutUs;
-        updateBusiness.location = '';
+        updateBusiness.location = {
+          latitude: 44.81449634,
+          longitude: 20.41442005,
+        };
         updateBusiness.company = this.businessForm.value.company;
         updateBusiness.companyImage = this.photos.concat(this.companyPhotos);
         updateBusiness.bussinesType = this.bussinesType;
