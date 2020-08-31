@@ -150,8 +150,9 @@ export class UpdateInfoBussinesComponent implements OnInit {
     this.companyPhotos[0] = photo;
   }
 
-  deleteStoragedPhoto(index: number): void {
+  deleteStoragedPhoto(photo: string, index: number): void {
     this.companyPhotos.splice(index, 1);
+    this.adsService.deleteImage(photo).subscribe();
     this.deletedImage = true;
     this.photoValue = this.photoValue - 1;
   }

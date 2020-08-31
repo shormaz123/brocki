@@ -114,7 +114,10 @@
               [style.backgroundImage]="'url(' + companyPhoto + ')'"
               class="form__image"
             ></div>
-            <div class="form__delete" (click)="deleteStoragedPhoto(i)">
+            <div
+              class="form__delete"
+              (click)="deleteStoragedPhoto(companyPhoto, i)"
+            >
               <label class="form__delete-label">{{
                 'translate.deletePhoto' | translate
               }}</label>
