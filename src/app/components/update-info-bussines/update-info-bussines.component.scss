@@ -88,8 +88,8 @@ textarea {
     width: 20px;
     height: 20px;
     background-color: $red;
-    cursor: pointer;
     z-index: 100;
+    cursor: pointer;
   }
 
   &__label {
@@ -125,10 +125,12 @@ textarea {
     height: 152px;
     width: 152px;
     position: relative;
+
     &--image-input {
       height: 100px;
       width: 100px;
       opacity: 0;
+      cursor: pointer;
     }
   }
 

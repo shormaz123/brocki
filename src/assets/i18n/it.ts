@@ -51,13 +51,15 @@ export const it = {
     adWillBreCharged: "L'annuncio è in fase di calcolo",
     credits: 'Crediti',
     saveChanges: 'Salvare le modifiche',
+    saveUpdate: 'Salvare le modifiche',
     private: 'Privato',
     business: 'Aziende',
     city: 'Città',
     canton: 'Cantone',
     createAccount: 'Creare un profilo',
     username: 'Nome utente',
-    confirmTermsAndConditionsOne: 'Conferma di accettare i nostri termini e condizioni.',
+    confirmTermsAndConditionsOne:
+      'Conferma di accettare i nostri termini e condizioni.',
     confirmTermsAndConditionsTwo: '',
     checkedUser: 'Utente verificato',
     approvedContact: 'Contatto verificato',
@@ -150,6 +152,6 @@ export const it = {
     pricingList: 'Listino prezzi',
     freeMonths: '3 mesi gratuiti',
     copied: 'Copiato',
-    companyName: 'Nome della ditta'
+    companyName: 'Nome della ditta',
   },
 };

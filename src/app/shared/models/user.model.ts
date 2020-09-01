@@ -9,7 +9,10 @@ export class User {
   dateOfBirth: string;
   email: string;
   id: number;
-  location: string;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
   mobile: string;
   name: string;
   password: string;

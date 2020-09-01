@@ -101,9 +101,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     const newPhotos = Object.values(event.target.files);
 
     this.currentPhotos = [...this.currentPhotos, ...newPhotos].slice(0, 6);
-
     this.currentPhotos.forEach((photo) => formData.append('file', photo));
-
     this.adsService.uploadImageInStorage(formData).subscribe((res) => {
       this.photos = res;
     });

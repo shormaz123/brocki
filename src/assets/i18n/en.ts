@@ -51,13 +51,15 @@ export const en = {
     adWillBreCharged: 'Ad will be charged',
     credits: 'Credits',
     saveChanges: 'Save changes',
+    saveUpdate: 'Save changes',
     private: 'Private',
     business: 'Business',
     city: 'City',
     canton: 'Canton',
     createAccount: 'Create account',
     username: 'Username',
-    confirmTermsAndConditionsOne: 'Please confirm that you agree to our terms and conditions.',
+    confirmTermsAndConditionsOne:
+      'Please confirm that you agree to our terms and conditions.',
     confirmTermsAndConditionsTwo: '',
     checkedUser: 'Checked user',
     approvedContact: 'Approved contact',
@@ -149,6 +151,6 @@ export const en = {
     pricingList: 'Pricing list',
     freeMonths: '3 months free use',
     copied: 'Copied',
-    companyName: 'Company name'
+    companyName: 'Company name',
   },
 };
