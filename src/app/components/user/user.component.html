@@ -78,6 +78,15 @@
             ></div>
             <div class="boxes__text">Business accounts</div>
           </div>
+          <div class="boxes__link" routerLink="/favorite">
+            <div
+              class="boxes__image boxes__image--favorites"
+              [inlineSVG]="'../../../assets/images/myAccount/favorite.svg'"
+            ></div>
+            <div class="boxes__text">
+              {{ 'translate.favorite' | translate }}
+            </div>
+          </div>
           <div class="boxes__link" (click)="logout()">
             <div
               class="boxes__image"
