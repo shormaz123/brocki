@@ -38,9 +38,13 @@
           </div>
           <div *ngIf="!admin" class="boxes__link" (click)="goTo('/pricing')">
             <div
-              class="boxes__image"
-              [inlineSVG]="'../../../assets/images/myAccount/credits.svg'"
-            ></div>
+              class="boxes__image boxes__image--background"
+              [ngStyle]="
+                credit > 99 ? { fontSize: '20px' } : { fontSize: '32px' }
+              "
+            >
+              {{ credit }}
+            </div>
             <div class="boxes__text">{{ 'translate.credits' | translate }}</div>
           </div>
           <div *ngIf="admin" class="boxes__link" (click)="goTo('/accept-ads')">
