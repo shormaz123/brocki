@@ -88,8 +88,6 @@ textarea {
     width: 20px;
     height: 20px;
     background-color: $red;
-    z-index: 100;
-    cursor: pointer;
   }
 
   &__label {
@@ -125,6 +123,7 @@ textarea {
     height: 152px;
     width: 152px;
     position: relative;
+    cursor: move;
 
     &--image-input {
       height: 100px;
@@ -172,6 +171,7 @@ textarea {
   &__delete-label {
     display: none;
     color: white;
+    cursor: move;
   }
 
   &__input--upload {

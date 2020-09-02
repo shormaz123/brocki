@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../shared/models/user.model';
 import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
-import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
 import { UserStatus } from '../../shared/enums/userStatus';
 import { getMatIconFailedToSanitizeLiteralError } from '@angular/material/icon';
-// import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -20,8 +20,6 @@ import { ToastrService } from 'ngx-toastr';
 export class UpdateInfoBussinesComponent implements OnInit {
   businessForm: FormGroup;
   businessUser: Array<User> = [];
-  photos: Array<string> = [];
-  companyPhotos: Array<string> = [];
   deletedImage: boolean;
   userId: number;
   userName: string;
@@ -31,12 +29,11 @@ export class UpdateInfoBussinesComponent implements OnInit {
   cities = cities;
   companyPhoto: string;
   photoValue: number;
-  photo: string;
   currentPhotos: Array<any> = [];
   uploadPhotos: Array<string> = [];
+  allImages: Array<any> = [];
 
   constructor(
-    private notification: NzNotificationService,
     private userService: UserService,
     private modal: NzModalService,
     private router: Router,
@@ -70,8 +67,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
       user.city = res.city;
       user.company = res.company;
       user.companyImage = res.companyImage;
-      this.companyPhotos = res.companyImage || [];
-      this.companyPhoto = this.companyPhotos[0];
+      this.allImages = res.companyImage || [];
+      this.companyPhoto = this.allImages[0];
       if (res.companyImage) {
         this.photoValue = res.companyImage.length;
       } else {
@@ -120,46 +117,29 @@ export class UpdateInfoBussinesComponent implements OnInit {
     }
 
     const formData = new FormData();
-
     const newPhotos = Object.values(event.target.files);
-
-    this.currentPhotos = [...this.currentPhotos, ...newPhotos].slice(0, 6);
-    if (this.currentPhotos.length > 5) {
+    if (newPhotos.length > 6) {
       this.toastr.warning('You can add up to 6 images');
     }
-    this.uploadPhotos = this.companyPhotos
-      .concat(this.currentPhotos)
-      .slice(0, 6);
+
+    this.currentPhotos = [...this.allImages, ...newPhotos].slice(0, 6);
+
+    this.uploadPhotos = this.currentPhotos.slice(0, 6);
     this.uploadPhotos.forEach((photo) => formData.append('file', photo));
     this.adsService.uploadImageInStorage(formData).subscribe((res) => {
-      this.photos = res;
+      this.allImages = [...this.allImages.concat(res)];
     });
   }
 
-  // onDrop(event: CdkDragDrop<string[]>) {
-  //   moveItemInArray(this.photos, event.previousIndex, event.currentIndex);
-  // }
-
-  changeImage(photo: any, i: number) {
-    this.companyPhotos[i] = this.companyPhotos[0];
-    this.companyPhotos[0] = photo;
+  // Drag and drop
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.allImages, event.previousIndex, event.currentIndex);
   }
 
-  changeUploadedImage(photo: any, i: number) {
-    this.photos[i] = this.companyPhotos[0];
-    this.companyPhotos[0] = photo;
-  }
-
-  deleteStoragedPhoto(photo: string, index: number): void {
-    this.companyPhotos.splice(index, 1);
-    this.adsService.deleteImage(photo).subscribe();
+  deleteImage(index: number): void {
+    this.allImages.splice(index, 1);
     this.deletedImage = true;
     this.photoValue = this.photoValue - 1;
-  }
-
-  deletePhoto(index: number): void {
-    this.photos.splice(index, 1);
-    this.currentPhotos.splice(index, 1);
   }
 
   onSubmit() {
@@ -182,7 +162,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
           longitude: 20.41442005,
         };
         updateBusiness.company = this.businessForm.value.company;
-        updateBusiness.companyImage = this.photos.concat(this.companyPhotos);
+        updateBusiness.companyImage = this.allImages;
         updateBusiness.bussinesType = this.bussinesType;
         updateBusiness.roleName = this.roleName;
         updateBusiness.userName = this.userName;
@@ -190,7 +170,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
         updateBusiness.website = this.businessForm.value.website;
         this.userService.updateUser(updateBusiness).subscribe(
           (user) => {
-            this.notification.success('', 'User updated');
+            this.toastr.success('User updated');
             window.scrollTo({ top: 0 });
             this.router.navigate([`/user/${this.userId}`]);
           },
