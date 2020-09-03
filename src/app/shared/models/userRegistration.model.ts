@@ -8,4 +8,8 @@ export interface UserRegistration {
   role_id: number;
   terms: boolean;
   userName: string;
+  location: {
+    latitude: number,
+    longitude: number
+  };
 }

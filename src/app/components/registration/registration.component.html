@@ -55,8 +55,23 @@
           <input formControlName="userName" maxlength="20" />
         </div>
         <div class="inputItem3">
-          <label>{{ 'translate.city' | translate }}</label>
-          <input formControlName="city" />
+          <label>Please, type and select your address:</label>
+          <input formControlName="city" [value]="selectedAddress" (keypress)="search($event)" type="text" [matAutocomplete]="auto"/>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let address of addresses, let i = index" [value]="responseLocationObject[i]" (click)="onSelect(address, i)">
+              {{address}}
+            </mat-option>
+          </mat-autocomplete>
+
+<!--            <select id="menace">-->
+<!--              <option *ngFor="let address of addresses" (click)="onSelect(address)"> {{ address }} </option>-->
+<!--            </select>-->
+<!--            <select lines="none" *ngIf="addresses.length > 0">-->
+<!--              <option button *ngFor="let address of addresses" (click)="onSelect(address)">-->
+<!--                {{ address }}-->
+<!--              </option>-->
+<!--            </select>-->
+
         </div>
         <!--        <div class="inputItem4">-->
         <!--          <label>{{ 'translate.city' | translate }}</label>-->

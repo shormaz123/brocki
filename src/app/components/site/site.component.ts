@@ -56,6 +56,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   adsByParams;
   randomAdsA;
   randomAdsB;
+  paginationAds: Ads[];
 
   @ViewChild('panel', { read: ElementRef, static: false }) public panel: ElementRef<any>;
 
@@ -433,7 +434,8 @@ export class SiteComponent implements OnInit, OnDestroy {
   subscriptionLang: Subscription;
   currentLang = 'de';
   startPage: number;
-  paginationLimit: number;
+  paginationNumber = 1;
+
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -448,7 +450,6 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.startPage = 0;
-    this.paginationLimit = 3;
     this.token = localStorage.getItem(AuthConst.token);
     this.selectCategory(1);
     if (this.filteredAds.length > 0) {
@@ -461,7 +462,7 @@ export class SiteComponent implements OnInit, OnDestroy {
         this.favAds = this.ads;
       }
     } else {
-      this.adsService.getAdsByActiveStatus().subscribe((response) => {
+      this.adsService.getAdsByPagination(this.paginationNumber).subscribe((response) => {
         this.ads = response;
         console.log('ads', this.ads);
         this.randomAdsA = this.shuffle(this.ads.slice(0, Math.floor(this.ads.length / 2)));
@@ -486,6 +487,10 @@ export class SiteComponent implements OnInit, OnDestroy {
 
   displaySideBar() {
     this.helpersService.displaySideBar(this.displaySideNav);
+  }
+
+  onMouseWheel(e) {
+    this.enableScrolling();
   }
 
   getAdsBySearch() {
@@ -577,11 +582,34 @@ export class SiteComponent implements OnInit, OnDestroy {
   }
 
 
-
-
   increaseShow() {
-    this.showItems += 16;
-    this.panel.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'start' });
+    this.paginationNumber += 1,
+      this.adsService.getAdsByPagination(this.paginationNumber).subscribe( response => {
+        this.paginationAds = response;
+        console.log(this.paginationAds, this.paginationNumber);
+        if (this.token) {
+          this.getUserAndFavAd();
+        } else {
+          this.favAds.push(...this.paginationAds);
+          console.log('favAds', this.favAds);
+          this.disableScrolling()
+        }
+        // this.enableScrolling()
+      });
+
+    // this.panel.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'start' });
+  }
+
+   disableScrolling() {
+    const x = window.scrollX;
+    const y = window.scrollY;
+     // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function() {window.scrollTo(x, y); };
+  }
+
+   enableScrolling() {
+     // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function() {};
   }
 
   addToWishlist(adId: number) {

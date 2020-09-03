@@ -11,6 +11,7 @@ import { UserStatus } from '../../shared/enums/userStatus';
 import { getMatIconFailedToSanitizeLiteralError } from '@angular/material/icon';
 // import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
+import {Feature, MapboxServiceService} from '../../@core/services/mapbox-service.service';
 
 @Component({
   selector: 'app-update-info-bussines',
@@ -34,6 +35,11 @@ export class UpdateInfoBussinesComponent implements OnInit {
   photo: string;
   currentPhotos: Array<any> = [];
   uploadPhotos: Array<string> = [];
+  addresses: string[] = [];
+  selectedAddress = null;
+  selectedLocation: any;
+  responseLocationObject;
+  updateBusiness = new User();
 
   constructor(
     private notification: NzNotificationService,
@@ -42,7 +48,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private adsService: AdsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private mapboxService: MapboxServiceService
   ) {}
 
   ngOnInit() {
@@ -59,9 +66,16 @@ export class UpdateInfoBussinesComponent implements OnInit {
       canton: [''],
       city: [''],
       aboutUs: ['', [Validators.maxLength(2)]],
+      location: [
+        {
+          longitude: 0,
+          latitude: 0
+        }
+      ]
     });
 
     this.userService.getUser().subscribe((res) => {
+      this.selectedLocation = res.location;
       const user = new User();
       user.aboutUs = res.aboutUs;
       user.address = res.address;
@@ -82,7 +96,11 @@ export class UpdateInfoBussinesComponent implements OnInit {
       user.email = res.email;
       user.id = res.id;
       this.userId = user.id;
-      user.location = res.location;
+      user.location = {
+        longitude: res.location.longitude,
+        latitude: res.location.latitude
+      };
+
       user.mobile = res.mobile;
       user.name = res.name;
       user.phone = res.phone;
@@ -108,6 +126,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
         city: user.city,
         canton: user.region,
         aboutUs: user.aboutUs,
+        location: user.location,
       });
     });
   }
@@ -134,6 +153,35 @@ export class UpdateInfoBussinesComponent implements OnInit {
     this.adsService.uploadImageInStorage(formData).subscribe((res) => {
       this.photos = res;
     });
+  }
+
+  search(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    if (searchTerm && searchTerm.length > 0) {
+      this.mapboxService
+        .search_word(searchTerm)
+        .subscribe((features: any) => {
+          this.addresses = features.map(feat => feat.place_name);
+          this.responseLocationObject = features.map(feat => feat.geometry);
+          console.log( 'objekat', features);
+
+        });
+    } else {
+      this.addresses = [];
+    }
+  }
+
+  onSelect(address: string, i: number) {
+    this.selectedAddress = address;
+    this.addresses = [];
+    this.selectedLocation = this.responseLocationObject[i];
+    console.log( 'koordinate', this.selectedLocation);
+    this.businessForm.patchValue( {
+        location: {
+          longitude: this.selectedLocation.coordinates[0],
+          latitude: this.selectedLocation.coordinates[1],
+        },
+      });
   }
 
   // onDrop(event: CdkDragDrop<string[]>) {
@@ -167,28 +215,25 @@ export class UpdateInfoBussinesComponent implements OnInit {
       nzTitle: 'Are you sure you want to change your info?',
       nzContent: '',
       nzOnOk: () => {
-        const updateBusiness = new User();
-        updateBusiness.name = this.businessForm.value.name;
-        updateBusiness.surname = this.businessForm.value.surname;
-        updateBusiness.email = this.businessForm.value.email;
-        updateBusiness.phone = this.businessForm.value.phone;
-        updateBusiness.mobile = this.businessForm.value.mobile;
-        updateBusiness.address = this.businessForm.value.address;
-        updateBusiness.city = this.businessForm.value.city;
-        updateBusiness.region = this.businessForm.value.canton;
-        updateBusiness.aboutUs = this.businessForm.value.aboutUs;
-        updateBusiness.location = {
-          latitude: 44.81449634,
-          longitude: 20.41442005,
-        };
-        updateBusiness.company = this.businessForm.value.company;
-        updateBusiness.companyImage = this.photos.concat(this.companyPhotos);
-        updateBusiness.bussinesType = this.bussinesType;
-        updateBusiness.roleName = this.roleName;
-        updateBusiness.userName = this.userName;
-        updateBusiness.userStatus = UserStatus.APPROVED;
-        updateBusiness.website = this.businessForm.value.website;
-        this.userService.updateUser(updateBusiness).subscribe(
+
+        this.updateBusiness.name = this.businessForm.value.name;
+        this.updateBusiness.surname = this.businessForm.value.surname;
+        this.updateBusiness.email = this.businessForm.value.email;
+        this.updateBusiness.phone = this.businessForm.value.phone;
+        this.updateBusiness.mobile = this.businessForm.value.mobile;
+        this.updateBusiness.address = this.businessForm.value.address;
+        this.updateBusiness.city = this.businessForm.value.city;
+        this.updateBusiness.region = this.businessForm.value.canton;
+        this.updateBusiness.aboutUs = this.businessForm.value.aboutUs;
+        this.updateBusiness.location = this.businessForm.value.location;
+        this.updateBusiness.company = this.businessForm.value.company;
+        this.updateBusiness.companyImage = this.photos.concat(this.companyPhotos);
+        this.updateBusiness.bussinesType = this.bussinesType;
+        this.updateBusiness.roleName = this.roleName;
+        this.updateBusiness.userName = this.userName;
+        this.updateBusiness.userStatus = UserStatus.APPROVED;
+        this.updateBusiness.website = this.businessForm.value.website;
+        this.userService.updateUser(this.updateBusiness).subscribe(
           (user) => {
             this.notification.success('', 'User updated');
             window.scrollTo({ top: 0 });
