@@ -37,6 +37,8 @@ export class SellerProfileComponent implements OnInit {
   CommentsOfUser: Array<Comment> = [];
   private: boolean;
   business: boolean;
+  address: string;
+  checked: boolean = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -49,6 +51,7 @@ export class SellerProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
+        this.address = seller.address;
         if (seller.roleName === 'bussines' || 'admin') {
           this.sellerCompany = seller.company;
 

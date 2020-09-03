@@ -29,7 +29,7 @@ export class AdsService {
   constructor(private http: HttpBaseService, private httpClient: HttpClient) {}
 
   getAllAds(): Observable<Ads[]> {
-    return this.http.get(`${this.baseUrl}/mybrocki/brocki/ads`);
+    return this.http.get(`${this.baseUrl}/mybrocki/auth/ads`);
   }
 
   getAdsByParamToFilter(data: FilterAds): Observable<Ads[]> {
@@ -190,7 +190,7 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/group/${id}`);
   }
 
-  getSubCategoryById(id: number): Observable<any>  {
+  getSubCategoryById(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/mybrocki/subgroup/${id}`);
   }
 }

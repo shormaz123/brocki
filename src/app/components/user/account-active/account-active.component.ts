@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Ads } from '../../../shared/models/ads.model';
 import { AdsService } from '../../../@core/services/ads.service';
 import { NzModalService } from 'ng-zorro-antd';
@@ -16,6 +23,9 @@ export class AccountActiveComponent implements OnInit, OnChanges {
   @Input() ads: boolean;
   language: string;
   Ads: boolean;
+  ad: string;
+  @Output() changeStatusSold = new EventEmitter();
+  @Output() changeStatusDelete = new EventEmitter();
   userId: number;
   itReject = '../../../../assets/images/adsLabel/it-reject.svg';
   itReview = '../../../../assets/images/adsLabel/it-ready-for-review.svg';
@@ -35,9 +45,7 @@ export class AccountActiveComponent implements OnInit, OnChanges {
     this.language = localStorage.getItem(AuthConst.language);
   }
 
-  ngOnChanges() {
-    console.log(this.activeProducts);
-  }
+  ngOnChanges() {}
 
   languageLabel(status: string) {
     this.language = localStorage.getItem(AuthConst.language);
@@ -89,6 +97,8 @@ export class AccountActiveComponent implements OnInit, OnChanges {
         ads.userId = null;
         this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
           this.successDelete();
+          this.ad = '1';
+          this.changeStatusDelete.emit(this.ad);
         });
       },
     });
@@ -123,6 +133,8 @@ export class AccountActiveComponent implements OnInit, OnChanges {
         ads.userId = null;
         this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
           this.successSold();
+          this.ad = '1';
+          this.changeStatusSold.emit(this.ad);
         });
       },
     });
@@ -151,10 +163,6 @@ export class AccountActiveComponent implements OnInit, OnChanges {
       return this.toastr.success("L'annuncio viene spostato in Venduto");
     }
   }
-
-  // ad(selectedAd: Ads) {
-  //   console.log(selectedAd);
-  // }
 
   style() {
     if (this.activeProducts[0] > 0) {
