@@ -13,6 +13,7 @@ import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
 import { MessageService } from 'primeng/api';
 import { NzNotificationService } from 'ng-zorro-antd';
+import {Feature, MapboxServiceService} from '../../@core/services/mapbox-service.service';
 
 @Component({
   selector: 'app-registration',
@@ -35,12 +36,21 @@ export class RegistrationComponent implements OnInit {
   cities = cities;
   selectedRegion = 'Aargau (Argovia)';
   errorMessage: string;
+  addresses: String[] = [];
+  selectedAddress = null;
+  location = {
+    longitude: 0,
+    latitude: 0,
+  };
+  responseLocationObject;
+  selectedLocation;
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private mapboxService: MapboxServiceService
   ) {}
 
   ngOnInit() {
@@ -49,12 +59,13 @@ export class RegistrationComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       userName: ['', [Validators.required]],
-      city: ['', [Validators.required]],
+      address: ['', [Validators.required]],
       credit: [0, [Validators.required]],
       region: ['', [Validators.required]],
       bussinesType: ['PRIVATE'],
       role_id: [3,],
       terms: [false, [Validators.required]],
+      location: ['', [Validators.required]]
     });
 
     this.brockenstube = true;
@@ -65,9 +76,38 @@ export class RegistrationComponent implements OnInit {
     this.registerForm.controls.role_id.setValue(3);
   }
 
-  // convenience getter for easy access to form fields
   get f() {
     return this.registerForm.controls;
+  }
+
+  search(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    if (searchTerm && searchTerm.length > 0) {
+      this.mapboxService
+        .search_word(searchTerm)
+        .subscribe((features: any) => {
+          this.addresses = features.map(feat => feat.place_name);
+          this.responseLocationObject = features.map(feat => feat.geometry);
+          console.log( 'objekat', features);
+
+        });
+    } else {
+      this.addresses = [];
+    }
+  }
+
+  onSelect(address: string, i: number) {
+    this.selectedAddress = address;
+    this.registerForm.controls.address.setValue(address);
+    this.addresses = [];
+    this.selectedLocation = this.responseLocationObject[i];
+    console.log( 'koordinate', this.selectedLocation);
+    this.registerForm.patchValue( {
+      location: {
+        longitude: this.selectedLocation.coordinates[0],
+        latitude: this.selectedLocation.coordinates[1],
+      },
+    });
   }
 
   onSubmit() {
@@ -77,7 +117,7 @@ export class RegistrationComponent implements OnInit {
     if (this.registerForm.valid &&
     this.registerForm.value.terms === true) {
       this.registration = this.registerForm.value;
-      // console.log(this.registerForm.value)
+      console.log(this.registerForm.value)
       this.authService.register(this.registration).subscribe(
         (response) => {
           this.notification.success('', 'Profile successfully created!'),

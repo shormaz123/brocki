@@ -38,6 +38,11 @@ export class AdsService {
     );
   }
 
+  getAdsByPagination(page: number): Observable<Ads[]> {
+    return this.http.get(`${this.baseUrl}/mybrocki/ads/active?page=${page}`
+    );
+  }
+
   getAdsByGroupId(id: number): Observable<Ads[]> {
     return this.http.get(
       `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${id}`

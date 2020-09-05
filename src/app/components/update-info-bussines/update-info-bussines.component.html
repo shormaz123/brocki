@@ -66,14 +66,21 @@
         <input
           placeholder="{{ 'translate.address' | translate }}"
           formControlName="address"
+          [value]="selectedAddress"
+          (keypress)="search($event)"
+          type="text"
+          [matAutocomplete]="auto"
         />
-      </div>
-      <div class="form__inputItem">
-        <img src="../../../assets/images/update-info-bussines/address.png" />
-        <input
-          placeholder="{{ 'translate.city' | translate }}"
-          formControlName="city"
-        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let address of addresses; let i = index"
+            [value]="address"
+            (click)="onSelect(address, i)"
+            formControlName="address"
+          >
+            {{ address }}
+          </mat-option>
+        </mat-autocomplete>
       </div>
       <div class="form__inputItem form__inputItem--margin">
         <div class="form__location">

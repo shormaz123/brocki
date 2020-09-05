@@ -44,13 +44,6 @@
               >
                 favorite
               </mat-icon>
-              <mat-icon
-                *ngIf="!card.favourite"
-                (click)="addToWishlist(card.id)"
-                aria-label="Example icon-button with a heart icon"
-              >
-                favorite_border
-              </mat-icon>
             </button>
           </div>
           <span style="color: black;">{{ card.adsDate | date }}</span>

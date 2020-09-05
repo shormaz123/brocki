@@ -72,6 +72,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   adminName: string;
   adminBoolean: boolean;
   displaySideNav = true;
+  mailBoolean = false;
 
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
@@ -149,6 +150,10 @@ export class AdComponent implements OnInit, AfterViewInit {
     }
   }
   ngAfterViewInit() {}
+
+  toogleMail() {
+    this.mailBoolean = !this.mailBoolean
+  }
 
   displaySideBar() {
     this.helpersService.displaySideBar(this.displaySideNav);

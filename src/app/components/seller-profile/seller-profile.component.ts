@@ -39,6 +39,8 @@ export class SellerProfileComponent implements OnInit {
   business: boolean;
   address: string;
   checked: boolean = true;
+  sellerLocationLong;
+  sellerLocationLat;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -52,6 +54,7 @@ export class SellerProfileComponent implements OnInit {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
         this.address = seller.address;
+
         if (seller.roleName === 'bussines' || 'admin') {
           this.sellerCompany = seller.company;
 
@@ -78,7 +81,6 @@ export class SellerProfileComponent implements OnInit {
         this.sellerPhone = seller.phone;
         this.sellerMobile = seller.mobile;
         this.sellerEmail = seller.email;
-
         seller.companyImage[0]
           ? (this.sellerImage = seller.companyImage[0])
           : (this.sellerImage = this.defaultImage);

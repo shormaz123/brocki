@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../../@core/services/user.service';
 import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-info-seller',
@@ -12,6 +13,9 @@ export class InfoSellerComponent implements OnInit {
   infoForm: FormGroup;
   sellerId: number;
   sellerindex: number;
+  sellerLocationLong;
+  sellerLocationLat;
+  sellerAddress;
 
   constructor(
     private fb: FormBuilder,
@@ -33,6 +37,9 @@ export class InfoSellerComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
+        this.sellerLocationLong = seller.location.longitude;
+        this.sellerLocationLat = seller.location.latitude;
+        this.sellerAddress = seller.address
         this.sellerindex = seller.id;
         this.infoForm.patchValue({
           company: seller.company,
@@ -43,6 +50,7 @@ export class InfoSellerComponent implements OnInit {
           phone: seller.phone,
           mobile: seller.mobile,
           address: seller.address,
+          locationAddress: seller.address
         });
       });
     });

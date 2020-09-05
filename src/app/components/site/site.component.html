@@ -1,4 +1,4 @@
-<div class="mainContainer">
+<div class="mainContainer" (wheel)="onMouseWheel($event)">
   <div class="sidebar">
 
   </div>
@@ -306,7 +306,7 @@
               background-color: #f6f6f6;
               box-sizing: border-box;
             "
-            *ngFor="let card of favAds | slice: 0:showItems; let i = index"
+            *ngFor="let card of favAds, let i = index"
           >
             <div
               style="background-color: white; cursor: pointer; padding: 10px;"
@@ -373,7 +373,6 @@
             class="increaseButton"
             mat-button
             (click)="increaseShow()"
-            *ngIf="showItems < favAds?.length"
           >
             {{ 'translate.showMore' | translate }}
           </button>
