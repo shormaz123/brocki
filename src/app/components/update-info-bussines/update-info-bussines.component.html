@@ -105,57 +105,30 @@
         <label class="form__label"
           >{{ 'translate.picturesOfCompany' | translate }}:</label
         >
-        <div class="form__picture">
+        <div
+          class="form__picture"
+          cdkDropList
+          (cdkDropListDropped)="onDrop($event)"
+        >
           <div
+            cdkDrag
             class="form__upload--image"
-            *ngFor="let companyPhoto of companyPhotos; let i = index"
+            *ngFor="let companyPhoto of allImages; let i = index"
           >
-            <div class="form__index" (click)="changeImage(companyPhoto, i)">
+            <div class="form__index">
               {{ i + 1 }}
             </div>
             <div
               [style.backgroundImage]="'url(' + companyPhoto + ')'"
               class="form__image"
             ></div>
-            <div
-              class="form__delete"
-              (click)="deleteStoragedPhoto(companyPhoto, i)"
-            >
-              <label class="form__delete-label">{{
-                'translate.deletePhoto' | translate
-              }}</label>
+            <div class="form__delete" (click)="deleteImage(i)">
+              <label class="form__delete-label">
+                {{ 'translate.deletePhoto' | translate }}
+              </label>
             </div>
           </div>
-
-          <div
-            class="form__upload--image"
-            *ngFor="let photo of photos; let j = index"
-          >
-            <div
-              [ngStyle]="
-                j
-                  ? { 'background-color': '#d62b1f', color: 'white' }
-                  : { 'background-color': '#d62b1f', color: 'white' }
-              "
-              class="form__index"
-              (click)="changeUploadedImage(photo, j)"
-            >
-              {{ photoValue + (j + 1) }}
-            </div>
-            <div
-              [style.backgroundImage]="'url(' + photo + ')'"
-              class="form__image"
-            ></div>
-            <div class="form__delete" (click)="deletePhoto(j)">
-              <label class="form__delete-label">{{
-                'translate.deletePhoto' | translate
-              }}</label>
-            </div>
-          </div>
-          <div
-            class="form__svg"
-            *ngIf="photos.length + companyPhotos.length < 6"
-          >
+          <div class="form__svg" *ngIf="allImages.length < 6">
             <div
               class="form__svg-image"
               [inlineSVG]="

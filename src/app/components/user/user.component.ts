@@ -10,7 +10,7 @@ import { Comment } from '../../shared/models/createComment.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { UserStatus } from '../../shared/enums/userStatus';
-import {HelpersService} from '../../@core/services/helpers.service';
+import { HelpersService } from '../../@core/services/helpers.service';
 
 @Component({
   selector: 'app-user',
@@ -46,6 +46,7 @@ export class UserComponent implements OnInit {
   private: boolean;
   business: boolean;
   companyName: string;
+  credit: number;
 
   constructor(
     private userService: UserService,
@@ -88,6 +89,7 @@ export class UserComponent implements OnInit {
 
       this.path = res.bussinesType;
       this.userName = res.userName;
+      this.credit = res.credit;
 
       this.companyImage = res.companyImage || [];
       if (this.companyImage.length > 0) {
@@ -201,7 +203,6 @@ export class UserComponent implements OnInit {
         this.authService.logout();
         this.helpersService.$loginName.next();
         this.router.navigate(['/site']);
-
       },
     });
   }
