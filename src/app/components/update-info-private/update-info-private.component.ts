@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
 import { UserStatus } from '../../shared/enums/userStatus';
-import {MapboxServiceService} from '../../@core/services/mapbox-service.service';
 
 @Component({
   selector: 'app-update-info-private',
@@ -22,18 +21,13 @@ export class UpdateInfoPrivateComponent implements OnInit {
   userName: string;
   newUser: Array<User> = [];
   userId: number;
-  addresses: string[] = [];
-  selectedAddress = null;
-  selectedLocation: any;
-  responseLocationObject;
 
   constructor(
     private notification: NzNotificationService,
     private userService: UserService,
     private modal: NzModalService,
     private router: Router,
-    private fb: FormBuilder,
-    private mapboxService: MapboxServiceService
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -45,13 +39,8 @@ export class UpdateInfoPrivateComponent implements OnInit {
       phone: [''],
       mobile: [''],
       address: [''],
+      city: [''],
       canton: [''],
-      location: [
-        {
-          longitude: 0,
-          latitude: 0
-        }
-      ]
     });
 
     this.userService.getUser().subscribe((res) => {
@@ -60,11 +49,6 @@ export class UpdateInfoPrivateComponent implements OnInit {
 
     this.userService.getUser().subscribe((res) => {
       const user = new User();
-      this.selectedLocation = res.location;
-      user.location = {
-        longitude: res.location.longitude,
-        latitude: res.location.latitude
-      };
       user.aboutUs = res.aboutUs;
       user.address = res.address;
       user.bussinesType = res.bussinesType;
@@ -97,37 +81,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
         address: user.address,
         city: user.city,
         canton: user.region,
-        location: user.location,
       });
-    });
-  }
-
-  search(event: any) {
-    const searchTerm = event.target.value.toLowerCase();
-    if (searchTerm && searchTerm.length > 0) {
-      this.mapboxService
-        .search_word(searchTerm)
-        .subscribe((features: any) => {
-          this.addresses = features.map(feat => feat.place_name);
-          this.responseLocationObject = features.map(feat => feat.geometry);
-          console.log( 'objekat', features);
-
-        });
-    } else {
-      this.addresses = [];
-    }
-  }
-
-  onSelect(address: string, i: number) {
-    this.selectedAddress = address;
-    this.addresses = [];
-    this.selectedLocation = this.responseLocationObject[i];
-    console.log( 'koordinate', this.selectedLocation);
-    this.privateForm.patchValue( {
-      location: {
-        longitude: this.selectedLocation.coordinates[0],
-        latitude: this.selectedLocation.coordinates[1],
-      },
     });
   }
 
@@ -146,7 +100,6 @@ export class UpdateInfoPrivateComponent implements OnInit {
         updateUserInfo.city = this.privateForm.value.city;
         updateUserInfo.region = this.privateForm.value.canton;
         updateUserInfo.aboutUs = '';
-        updateUserInfo.location = this.privateForm.value.location;
         // updateUserInfo.location = '';
         updateUserInfo.company = '';
         updateUserInfo.companyImage = [];

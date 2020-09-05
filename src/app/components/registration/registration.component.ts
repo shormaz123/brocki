@@ -59,7 +59,7 @@ export class RegistrationComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       userName: ['', [Validators.required]],
-      address: ['', [Validators.required]],
+      city: ['', [Validators.required]],
       credit: [0, [Validators.required]],
       region: ['', [Validators.required]],
       bussinesType: ['PRIVATE'],
@@ -98,7 +98,6 @@ export class RegistrationComponent implements OnInit {
 
   onSelect(address: string, i: number) {
     this.selectedAddress = address;
-    this.registerForm.controls.address.setValue(address);
     this.addresses = [];
     this.selectedLocation = this.responseLocationObject[i];
     console.log( 'koordinate', this.selectedLocation);
@@ -114,29 +113,29 @@ export class RegistrationComponent implements OnInit {
     this.submitted = true;
     console.log(this.registerForm.value);
 
-    if (this.registerForm.valid &&
-    this.registerForm.value.terms === true) {
-      this.registration = this.registerForm.value;
-      console.log(this.registerForm.value)
-      this.authService.register(this.registration).subscribe(
-        (response) => {
-          this.notification.success('', 'Profile successfully created!'),
-            this.router.navigate(['/site']);
-        },
-        (error) => {
-          this.error = true;
-          setTimeout(() => (this.error = false), 2000);
-          this.errorMessage = error.message;
-          console.log(this.errorMessage);
-        }
-      );
-    } else {
-      // this.registerForm.invalid
-      this.errorMessage = 'Please, fill every field in accurate way';
-      this.error = true;
-      setTimeout(() => (this.error = false), 5000);
-      // return  console.log("form invalid");
-    }
+    // if (this.registerForm.valid &&
+    // this.registerForm.value.terms === true) {
+    //   this.registration = this.registerForm.value;
+    //   console.log(this.registerForm.value)
+    //   this.authService.register(this.registration).subscribe(
+    //     (response) => {
+    //       this.notification.success('', 'Profile successfully created!'),
+    //         this.router.navigate(['/site']);
+    //     },
+    //     (error) => {
+    //       this.error = true;
+    //       setTimeout(() => (this.error = false), 2000);
+    //       this.errorMessage = error.message;
+    //       console.log(this.errorMessage);
+    //     }
+    //   );
+    // } else {
+    //   // this.registerForm.invalid
+    //   this.errorMessage = 'Please, fill every field in accurate way';
+    //   this.error = true;
+    //   setTimeout(() => (this.error = false), 5000);
+    //   // return  console.log("form invalid");
+    // }
   }
 
   brockButton(string: string) {
