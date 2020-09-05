@@ -71,7 +71,7 @@
 <!--        <label>{{ 'translate.city' | translate }}</label>-->
         <input placeholder="{{ 'translate.address' | translate }}" formControlName="address" [value]="selectedAddress" (keypress)="search($event)" type="text" [matAutocomplete]="auto"/>
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let address of addresses, let i = index" [value]="address" (click)="onSelect(address,i)" formControlName="address">
+          <mat-option *ngFor="let address of addresses, let i = index" [value]="address" (click)="onSelect(address,i)" >
             {{address}}
           </mat-option>
         </mat-autocomplete>
@@ -101,52 +101,52 @@
           maxlength="2000"
         ></textarea>
       </div>
-      <div class="form__inputItem">
-        <label class="form__label"
-          >{{ 'translate.picturesOfCompany' | translate }}:</label
-        >
-        <div
-          class="form__picture"
-          cdkDropList
-          (cdkDropListDropped)="onDrop($event)"
-        >
-          <div
-            cdkDrag
-            class="form__upload--image"
-            *ngFor="let companyPhoto of allImages; let i = index"
-          >
-            <div class="form__index">
-              {{ i + 1 }}
-            </div>
-            <div
-              [style.backgroundImage]="'url(' + companyPhoto + ')'"
-              class="form__image"
-            ></div>
-            <div class="form__delete" (click)="deleteImage(i)">
-              <label class="form__delete-label">
-                {{ 'translate.deletePhoto' | translate }}
-              </label>
-            </div>
-          </div>
-          <div class="form__svg" *ngIf="allImages.length < 6">
-            <div
-              class="form__svg-image"
-              [inlineSVG]="
-                '../../../assets/images/update-info-bussines/add-photo.svg'
-              "
-            ></div>
-            <div>
-              <input
-                class="form__upload--image form__upload--image--image-input"
-                (change)="uploadImage($event)"
-                accept="image/*"
-                type="file"
-                multiple="multiple"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+<!--      <div class="form__inputItem">-->
+<!--        <label class="form__label"-->
+<!--          >{{ 'translate.picturesOfCompany' | translate }}:</label-->
+<!--        >-->
+<!--        <div-->
+<!--          class="form__picture"-->
+<!--          cdkDropList-->
+<!--          (cdkDropListDropped)="onDrop($event)"-->
+<!--        >-->
+<!--          <div-->
+<!--            cdkDrag-->
+<!--            class="form__upload&#45;&#45;image"-->
+<!--            *ngFor="let companyPhoto of allImages; let i = index"-->
+<!--          >-->
+<!--            <div class="form__index">-->
+<!--              {{ i + 1 }}-->
+<!--            </div>-->
+<!--            <div-->
+<!--              [style.backgroundImage]="'url(' + companyPhoto + ')'"-->
+<!--              class="form__image"-->
+<!--            ></div>-->
+<!--            <div class="form__delete" (click)="deleteImage(i)">-->
+<!--              <label class="form__delete-label">-->
+<!--                {{ 'translate.deletePhoto' | translate }}-->
+<!--              </label>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="form__svg" *ngIf="allImages.length < 6">-->
+<!--            <div-->
+<!--              class="form__svg-image"-->
+<!--              [inlineSVG]="-->
+<!--                '../../../assets/images/update-info-bussines/add-photo.svg'-->
+<!--              "-->
+<!--            ></div>-->
+<!--            <div>-->
+<!--              <input-->
+<!--                class="form__upload&#45;&#45;image form__upload&#45;&#45;image&#45;&#45;image-input"-->
+<!--                (change)="uploadImage($event)"-->
+<!--                accept="image/*"-->
+<!--                type="file"-->
+<!--                multiple="multiple"-->
+<!--              />-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="form__inputItem">
         <button class="form__button" type="submit">
           {{ 'translate.saveUpdate' | translate }}
