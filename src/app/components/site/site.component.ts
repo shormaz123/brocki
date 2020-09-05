@@ -590,10 +590,8 @@ export class SiteComponent implements OnInit, OnDestroy {
         if (this.token) {
           this.favAds.push(...this.paginationAds);
           this.disableScrolling();
-          console.log('favAdsToken', this.favAds);
         } else {
           this.favAds.push(...this.paginationAds);
-          console.log('favAds', this.favAds);
           this.disableScrolling();
         }
         // this.enableScrolling()

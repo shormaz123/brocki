@@ -56,7 +56,7 @@
         </div>
         <div class="inputItem3">
           <label>Please, type and select your address:</label>
-          <input formControlName="city" [value]="selectedAddress" (keypress)="search($event)" type="text" [matAutocomplete]="auto"/>
+          <input formControlName="location" [value]="selectedAddress" (keypress)="search($event)" type="text" [matAutocomplete]="auto"/>
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let address of addresses, let i = index" [value]="responseLocationObject[i]" (click)="onSelect(address, i)">
               {{address}}
