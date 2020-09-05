@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../shared/models/user.model';
 import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
-import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
@@ -46,7 +46,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
   allImages: Array<any> = [];
 
   constructor(
-    private notification: NzNotificationService,
     private userService: UserService,
     private modal: NzModalService,
     private router: Router,
@@ -163,7 +162,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
       this.mapboxService.search_word(searchTerm).subscribe((features: any) => {
         this.addresses = features.map((feat) => feat.place_name);
         this.responseLocationObject = features.map((feat) => feat.geometry);
-        console.log('objekat', features);
+        // console.log('objekat', features);
       });
     } else {
       this.addresses = [];
@@ -174,7 +173,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
     this.selectedAddress = address;
     this.addresses = [];
     this.selectedLocation = this.responseLocationObject[i];
-    console.log('koordinate', this.selectedLocation);
+    // console.log('koordinate', this.selectedLocation);
     this.businessForm.patchValue({
       location: {
         longitude: this.selectedLocation.coordinates[0],
@@ -218,14 +217,12 @@ export class UpdateInfoBussinesComponent implements OnInit {
         this.updateBusiness.website = this.businessForm.value.website;
         this.userService.updateUser(this.updateBusiness).subscribe(
           (user) => {
-            this.notification.success('', 'User updated');
+            this.toastr.success('User updated');
             window.scrollTo({ top: 0 });
             this.router.navigate([`/user/${this.userId}`]);
           },
           (error) => {
-            this.modal.error({
-              nzTitle: 'Ops, something went wrong!',
-            });
+            this.toastr.error('Ops, something went wrong!');
           }
         );
       },

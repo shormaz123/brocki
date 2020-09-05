@@ -76,7 +76,6 @@
             *ngFor="let address of addresses; let i = index"
             [value]="address"
             (click)="onSelect(address, i)"
-            formControlName="address"
           >
             {{ address }}
           </mat-option>

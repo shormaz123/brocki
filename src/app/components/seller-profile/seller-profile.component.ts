@@ -161,8 +161,8 @@ export class SellerProfileComponent implements OnInit {
     this.guest = true;
   }
 
-  toggleEmail(): void {
-    this.email = !this.email;
+  alert(msg: string): void {
+    alert(msg);
   }
 
   guestBook(): void {
