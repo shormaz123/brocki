@@ -37,6 +37,8 @@ export class SellerProfileComponent implements OnInit {
   CommentsOfUser: Array<Comment> = [];
   private: boolean;
   business: boolean;
+  address: string;
+  checked: boolean = true;
   sellerLocationLong;
   sellerLocationLat;
 
@@ -51,6 +53,7 @@ export class SellerProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
+        this.address = seller.address;
 
         if (seller.roleName === 'bussines' || 'admin') {
           this.sellerCompany = seller.company;
@@ -158,8 +161,8 @@ export class SellerProfileComponent implements OnInit {
     this.guest = true;
   }
 
-  toggleEmail(): void {
-    this.email = !this.email;
+  alert(msg: string): void {
+    alert(msg);
   }
 
   guestBook(): void {

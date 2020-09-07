@@ -1,6 +1,6 @@
 <div class="container">
   <p-sidebar [(visible)]="displaySideNav" [baseZIndex]="10000">
-    <h1 style="text-align: center;">
+    <h1 style="text-align: center">
       {{ 'translate.allCategories' | translate }}
     </h1>
     <p-accordion>
@@ -10,18 +10,18 @@
         (click)="selectDropDown(category.id)"
       >
         <div *ngFor="let subCategory of subCategories" class="accordationDiv">
-            <span
-              class="accordationSpan"
-              [routerLink]="['/ads', subCategory.id, category.id]"
+          <span
+            class="accordationSpan"
+            [routerLink]="['/ads', subCategory.id, category.id]"
             >{{ subCategory.subGroupName[currentLang] }}</span
-            >
+          >
         </div>
       </p-accordionTab>
     </p-accordion>
   </p-sidebar>
   <div class="firstContainer" *ngIf="!createAd"></div>
   <div class="firstContainer" routerLink="/create-ad" *ngIf="createAd">
-    <div class="addImage">
+    <div class="addImage" *ngIf="createAd && !privateUser">
       <img class="image" src="../../../assets/images/header/create ad.svg" />
     </div>
     <span class="createAd" *ngIf="createAd && !privateUser"
@@ -30,7 +30,7 @@
   </div>
   <div class="secondContainer">
     <img
-      style="cursor:pointer;"
+      style="cursor: pointer"
       src="../../../assets/images/header/minibrocki.svg"
       routerLink="/site"
     />
@@ -66,7 +66,7 @@
       <div class="dropbtn" mat-button *ngIf="accountName">
         <img
           src="../../../assets/images/ad/User_font_awesome.svg"
-          style="height: 25px; margin-right: 10px;"
+          style="height: 25px; margin-right: 10px"
         />
         <span>{{ accountName }}</span>
       </div>
@@ -112,7 +112,7 @@
       -->
       <img
         (click)="goToUserProfie(userId)"
-        style="cursor: pointer;"
+        style="cursor: pointer"
         class="accountLogo"
         src="../../../assets/images/header/my account.svg"
       />

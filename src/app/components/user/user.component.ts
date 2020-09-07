@@ -47,6 +47,10 @@ export class UserComponent implements OnInit {
   business: boolean;
   companyName: string;
   credit: number;
+  totalAds: Array<Ads> = [];
+  totalAdsLength: number;
+  activeAds: Array<Ads> = [];
+  activeAdsLength: number;
 
   constructor(
     private userService: UserService,
@@ -62,6 +66,31 @@ export class UserComponent implements OnInit {
     const admin = this.authService.getAdmin();
     if (admin === 'admin') {
       this.admin = admin;
+      this.adsService.getAllAds().subscribe((res) => {
+        const total = res;
+        total.forEach(
+          (ad) => {
+            if (
+              ad.status === 'ACTIVE' ||
+              ad.status === 'SOLD' ||
+              ad.status === 'READYFORREVIEW' ||
+              ad.status === 'EXPIRED'
+            ) {
+              const ads = new Ads();
+              this.totalAds.push(ads);
+              this.totalAdsLength = this.totalAds.length;
+            }
+          },
+
+          total.forEach((ad) => {
+            if (ad.status === 'ACTIVE') {
+              const ads = new Ads();
+              this.activeAds.push(ads);
+              this.activeAdsLength = this.activeAds.length;
+            }
+          })
+        );
+      });
     }
     this.scroll();
     this.userService.getUser().subscribe((res) => {
@@ -209,5 +238,13 @@ export class UserComponent implements OnInit {
 
   scroll(): void {
     window.scrollTo({ top: 0 });
+  }
+
+  soldAds(event: any) {
+    this.activeAdsLength = this.activeAdsLength - Number(event);
+  }
+
+  deleteAds(event: any) {
+    this.activeAdsLength = this.activeAdsLength - Number(event);
   }
 }

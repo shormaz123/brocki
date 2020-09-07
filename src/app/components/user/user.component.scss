@@ -42,10 +42,10 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 0 0 0 160px;
+        padding: 0 0 0 67px;
 
         @include rwd(1600) {
-          padding: 0 0 0 150px;
+          padding: 0 0 0 67px;
         }
 
         .imageBorder {
@@ -103,6 +103,43 @@
   }
 }
 
+.counter {
+  width: 900px;
+  margin: 25px auto 0;
+  display: flex;
+  justify-content: space-around;
+
+  @include rwd(1600) {
+    width: 750px;
+    justify-content: space-between;
+    padding: 0 100px 0 140px;
+  }
+}
+
+.ads-counter {
+  border-radius: 50px;
+  font-weight: bold;
+  color: #fff;
+  background-color: $red;
+  padding: 20px 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 30px;
+
+  &--active {
+    background-color: $accept;
+  }
+}
+
+.admin {
+  padding: 58px 170px 0 170px !important;
+  @include rwd(1600) {
+    padding: 58px 90px 0 140px !important;
+  }
+}
+
 .boxes {
   display: flex;
   justify-content: space-between;
@@ -110,7 +147,7 @@
   padding: 123px 170px 0 180px;
 
   @include rwd(1600) {
-    padding: 116px 90px 0 110px;
+    padding: 123px 90px 0 80px;
   }
 
   &__image {
@@ -126,6 +163,10 @@
       align-items: center;
       border-radius: 13px;
       font-size: 32px;
+    }
+
+    &--favorites {
+      background-color: $red;
     }
   }
 

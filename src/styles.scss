@@ -68,9 +68,9 @@ body {
 }
 .anticon svg {
   display: inline-block;
-
 }
-.ant-modal-confirm-confirm .ant-modal-confirm-body>.anticon, .ant-modal-confirm-warning .ant-modal-confirm-body>.anticon {
+.ant-modal-confirm-confirm .ant-modal-confirm-body > .anticon,
+.ant-modal-confirm-warning .ant-modal-confirm-body > .anticon {
   color: $red !important;
 }
 
@@ -91,7 +91,7 @@ body {
 }
 
 .mat-checkbox-layout {
-  width: 30px;
+  width: 150px;
   height: 30px;
 }
 

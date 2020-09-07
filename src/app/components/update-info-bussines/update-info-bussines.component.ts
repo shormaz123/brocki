@@ -3,15 +3,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../shared/models/user.model';
 import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
-import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
 import { UserStatus } from '../../shared/enums/userStatus';
 import { getMatIconFailedToSanitizeLiteralError } from '@angular/material/icon';
-// import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
-import {Feature, MapboxServiceService} from '../../@core/services/mapbox-service.service';
+import {
+  Feature,
+  MapboxServiceService,
+} from '../../@core/services/mapbox-service.service';
 
 @Component({
   selector: 'app-update-info-bussines',
@@ -40,9 +43,9 @@ export class UpdateInfoBussinesComponent implements OnInit {
   selectedLocation: any;
   responseLocationObject;
   updateBusiness = new User();
+  allImages: Array<any> = [];
 
   constructor(
-    private notification: NzNotificationService,
     private userService: UserService,
     private modal: NzModalService,
     private router: Router,
@@ -69,9 +72,9 @@ export class UpdateInfoBussinesComponent implements OnInit {
       location: [
         {
           longitude: 0,
-          latitude: 0
-        }
-      ]
+          latitude: 0,
+        },
+      ],
     });
 
     this.userService.getUser().subscribe((res) => {
@@ -84,8 +87,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
       user.city = res.city;
       user.company = res.company;
       user.companyImage = res.companyImage;
-      this.companyPhotos = res.companyImage || [];
-      this.companyPhoto = this.companyPhotos[0];
+      this.allImages = res.companyImage || [];
+      this.companyPhoto = this.allImages[0];
       if (res.companyImage) {
         this.photoValue = res.companyImage.length;
       } else {
@@ -98,7 +101,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
       this.userId = user.id;
       user.location = {
         longitude: res.location.longitude,
-        latitude: res.location.latitude
+        latitude: res.location.latitude,
       };
 
       user.mobile = res.mobile;
@@ -139,33 +142,28 @@ export class UpdateInfoBussinesComponent implements OnInit {
     }
 
     const formData = new FormData();
-
     const newPhotos = Object.values(event.target.files);
-
-    this.currentPhotos = [...this.currentPhotos, ...newPhotos].slice(0, 6);
-    if (this.currentPhotos.length > 5) {
+    if (newPhotos.length > 6) {
       this.toastr.warning('You can add up to 6 images');
     }
-    this.uploadPhotos = this.companyPhotos
-      .concat(this.currentPhotos)
-      .slice(0, 6);
+
+    this.currentPhotos = [...this.allImages, ...newPhotos].slice(0, 6);
+
+    this.uploadPhotos = this.currentPhotos.slice(0, 6);
     this.uploadPhotos.forEach((photo) => formData.append('file', photo));
     this.adsService.uploadImageInStorage(formData).subscribe((res) => {
-      this.photos = res;
+      this.allImages = [...this.allImages.concat(res)];
     });
   }
 
   search(event: any) {
     const searchTerm = event.target.value.toLowerCase();
     if (searchTerm && searchTerm.length > 0) {
-      this.mapboxService
-        .search_word(searchTerm)
-        .subscribe((features: any) => {
-          this.addresses = features.map(feat => feat.place_name);
-          this.responseLocationObject = features.map(feat => feat.geometry);
-          console.log( 'objekat', features);
-
-        });
+      this.mapboxService.search_word(searchTerm).subscribe((features: any) => {
+        this.addresses = features.map((feat) => feat.place_name);
+        this.responseLocationObject = features.map((feat) => feat.geometry);
+        // console.log('objekat', features);
+      });
     } else {
       this.addresses = [];
     }
@@ -175,39 +173,24 @@ export class UpdateInfoBussinesComponent implements OnInit {
     this.selectedAddress = address;
     this.addresses = [];
     this.selectedLocation = this.responseLocationObject[i];
-    console.log( 'koordinate', this.selectedLocation);
-    this.businessForm.patchValue( {
-        location: {
-          longitude: this.selectedLocation.coordinates[0],
-          latitude: this.selectedLocation.coordinates[1],
-        },
-      });
+    // console.log('koordinate', this.selectedLocation);
+    this.businessForm.patchValue({
+      location: {
+        longitude: this.selectedLocation.coordinates[0],
+        latitude: this.selectedLocation.coordinates[1],
+      },
+    });
   }
 
-  // onDrop(event: CdkDragDrop<string[]>) {
-  //   moveItemInArray(this.photos, event.previousIndex, event.currentIndex);
-  // }
-
-  changeImage(photo: any, i: number) {
-    this.companyPhotos[i] = this.companyPhotos[0];
-    this.companyPhotos[0] = photo;
+  // Drag and drop
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.allImages, event.previousIndex, event.currentIndex);
   }
 
-  changeUploadedImage(photo: any, i: number) {
-    this.photos[i] = this.companyPhotos[0];
-    this.companyPhotos[0] = photo;
-  }
-
-  deleteStoragedPhoto(photo: string, index: number): void {
-    this.companyPhotos.splice(index, 1);
-    this.adsService.deleteImage(photo).subscribe();
+  deleteImage(index: number): void {
+    this.allImages.splice(index, 1);
     this.deletedImage = true;
     this.photoValue = this.photoValue - 1;
-  }
-
-  deletePhoto(index: number): void {
-    this.photos.splice(index, 1);
-    this.currentPhotos.splice(index, 1);
   }
 
   onSubmit() {
@@ -215,7 +198,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
       nzTitle: 'Are you sure you want to change your info?',
       nzContent: '',
       nzOnOk: () => {
-
         this.updateBusiness.name = this.businessForm.value.name;
         this.updateBusiness.surname = this.businessForm.value.surname;
         this.updateBusiness.email = this.businessForm.value.email;
@@ -227,7 +209,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
         this.updateBusiness.aboutUs = this.businessForm.value.aboutUs;
         this.updateBusiness.location = this.businessForm.value.location;
         this.updateBusiness.company = this.businessForm.value.company;
-        this.updateBusiness.companyImage = this.photos.concat(this.companyPhotos);
+        this.updateBusiness.companyImage = this.allImages;
         this.updateBusiness.bussinesType = this.bussinesType;
         this.updateBusiness.roleName = this.roleName;
         this.updateBusiness.userName = this.userName;
@@ -235,14 +217,12 @@ export class UpdateInfoBussinesComponent implements OnInit {
         this.updateBusiness.website = this.businessForm.value.website;
         this.userService.updateUser(this.updateBusiness).subscribe(
           (user) => {
-            this.notification.success('', 'User updated');
+            this.toastr.success('User updated');
             window.scrollTo({ top: 0 });
             this.router.navigate([`/user/${this.userId}`]);
           },
           (error) => {
-            this.modal.error({
-              nzTitle: 'Ops, something went wrong!',
-            });
+            this.toastr.error('Ops, something went wrong!');
           }
         );
       },

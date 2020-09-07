@@ -11,6 +11,14 @@
         <span *ngIf="business">{{ companyName }}</span>
       </div>
       <div class="body">
+        <div class="counter" *ngIf="admin">
+          <div class="ads-counter">
+            TOTAL ADS: {{ totalAdsLength | number: '1.0-0' }}
+          </div>
+          <div class="ads-counter ads-counter--active">
+            ACTIVE ADS: {{ activeAdsLength | number: '1.0-0' }}
+          </div>
+        </div>
         <!-- <div class="checkmarks">
           <div>
             <img src="../../../assets/images/myAccount/check box.png" />
@@ -25,7 +33,7 @@
             <span style="padding-left: 10px;">successful sales</span>
           </div>
         </div> -->
-        <div class="boxes">
+        <div class="boxes" [ngClass]="{ admin: admin }">
           <div class="boxes__link">
             <div
               (click)="updateInfo()"
@@ -77,6 +85,15 @@
               "
             ></div>
             <div class="boxes__text">Business accounts</div>
+          </div>
+          <div class="boxes__link" routerLink="/favorite">
+            <div
+              class="boxes__image boxes__image--favorites"
+              [inlineSVG]="'../../../assets/images/myAccount/favorite.svg'"
+            ></div>
+            <div class="boxes__text">
+              {{ 'translate.favorite' | translate }}
+            </div>
           </div>
           <div class="boxes__link" (click)="logout()">
             <div
@@ -137,6 +154,8 @@
       *ngIf="expired"
     ></app-account-expired>
     <app-account-active
+      (changeStatusSold)="soldAds($event)"
+      (changeStatusDelete)="deleteAds($event)"
       [activeProducts]="activeProducts"
       [ads]="adsActive"
       *ngIf="active"

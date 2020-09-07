@@ -7,28 +7,43 @@
             <img class="seller-image" [src]="sellerImage" />
           </div>
         </div>
-        <div class="profil-name" *ngIf="business">{{ sellerCompany }}</div>
-        <div class="profil-name" *ngIf="private">{{ sellerName }}</div>
       </div>
-      <div class="body">
-        <!-- <div class="checkmarks">
-          <div>
-            <img src="../../../assets/images/myAccount/check box.png" />
-            <span style="padding-left: 10px;">checked user</span>
+      <section class="body">
+        <div class="body-user-info">
+          <div class="user-info">
+            <div class="user-name-list">
+              <div class="profil-name" *ngIf="business">
+                {{ sellerCompany }}
+              </div>
+              <div class="profil-name" *ngIf="private">{{ sellerName }}</div>
+            </div>
+            <div class="user-address">{{ address }}</div>
           </div>
-          <div>
-            <img src="../../../assets/images/myAccount/check box.png" />
-            <span style="padding-left: 10px;">approved phone</span>
+          <div class="checkmarks">
+            <div class="example-section">
+              <mat-checkbox
+                [checked]="checked"
+                class="example-margin"
+                onclick="return false;"
+                >checked user</mat-checkbox
+              >
+              <mat-checkbox
+                [checked]="checked"
+                class="example-margin"
+                onclick="return false;"
+                >approved phone</mat-checkbox
+              >
+              <!-- <mat-checkbox class="example-margin" [disabled]="true"
+                >successful sales</mat-checkbox
+              > -->
+            </div>
           </div>
-          <div>
-            <img src="../../../assets/images/myAccount/check box.png" />
-            <span style="padding-left: 10px;">successful sales</span>
-          </div>
-        </div> -->
+        </div>
         <div class="boxes">
           <div class="iconBox">
             <div class="phoneImage">
               <img
+                class="photo"
                 src="../../../assets/images/update-info-bussines/phone.png"
               />
             </div>
@@ -37,7 +52,7 @@
               <div>{{ sellerMobile }}</div>
             </div>
           </div>
-          <div class="iconBox" (click)="toggleEmail()">
+          <div class="iconBox iconBox--email" (click)="alert('In progress')">
             <div class="phoneImage">
               <img
                 class="photo"
@@ -49,7 +64,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
     <div class="navigation">
       <div class="navItem" (click)="activeButton()">

@@ -42,10 +42,10 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 0 0 0 128px;
+        padding: 0 0 0 65px;
 
         @include rwd(1600) {
-          padding: 0 0 0 150px;
+          padding: 0 0 0 0;
         }
 
         .imageBorder {
@@ -84,37 +84,52 @@
 }
 
 .profil-name {
-  margin-top: 10px;
+  margin: 20px 0 5px;
   height: 36px;
   width: 260px;
-  text-align: center;
-  font-size: 18pt;
+  font-size: 20pt;
+}
+.user-address {
+  height: 20px;
+  width: 100%;
+  font-size: 11pt;
+  display: flex;
+  color: $text-gray;
+  align-items: center;
 }
 
 .body {
   width: 100%;
+  display: flex;
+  @include rwd(1600) {
+    width: 805px;
+  }
 
   .checkmarks {
     display: flex;
-    justify-content: space-between;
-    padding: 35px 150px 0 184px;
-    height: 20%;
-    align-items: center;
-
-    @include rwd(1600) {
-      padding: 35px 115px 0 120px;
-    }
+    padding: 25px 0 0;
   }
+}
+
+.body-user-info {
+  padding: 35px 0 0 50px;
+  width: 400px;
+  @include rwd(1600) {
+    padding: 35px 0 0 10px;
+  }
+}
+
+.user-info {
+  padding: 0 0 0 3px;
 }
 
 .boxes {
   display: flex;
-  justify-content: space-between;
-  height: 250px;
-  padding: 142px 170px 0 180px;
+  flex-direction: column;
+  padding: 35px 0 0 160px;
 
   @include rwd(1600) {
-    padding: 142px 140px 0 130px;
+    padding: 35px 10px 0 0px;
   }
 
   &__image {
@@ -139,12 +154,29 @@
 
 .iconBox {
   display: flex;
+  margin: 23px 0 0px 0;
+  background: $red;
+  border-radius: 15px;
+  height: 50px;
+  align-items: center;
+  color: $white;
+  padding: 2px;
+  width: 220px;
+
+  &--email {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   &__email {
     line-height: 40px;
     padding: 0 0 0 10px;
-    width: 150px;
   }
+}
+
+.phoneImage {
+  border-radius: 50%;
 }
 
 .phone {
@@ -155,6 +187,7 @@
 
 .photo {
   cursor: pointer;
+  height: 36px;
 }
 
 .navigation {
