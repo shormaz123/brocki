@@ -42,10 +42,12 @@
         <div class="boxes">
           <div class="iconBox">
             <div class="phoneImage">
-              <img
+              <div
                 class="photo"
-                src="../../../assets/images/update-info-bussines/phone.png"
-              />
+                [inlineSVG]="
+                  '../../../assets/images/update-info-bussines/phone.svg'
+                "
+              ></div>
             </div>
             <div class="phone">
               <div>{{ sellerPhone }}</div>
@@ -54,10 +56,12 @@
           </div>
           <div class="iconBox iconBox--email" (click)="sendEmail()">
             <div class="phoneImage">
-              <img
+              <div
                 class="photo"
-                src="../../../assets/images/update-info-bussines/email.png"
-              />
+                [inlineSVG]="
+                  '../../../assets/images/update-info-bussines/email.svg'
+                "
+              ></div>
             </div>
             <div class="iconBox__email"></div>
           </div>
