@@ -44,6 +44,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
   responseLocationObject;
   updateBusiness = new User();
   allImages: Array<any> = [];
+  disabled: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -194,6 +195,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
   }
 
   onSubmit() {
+    this.disabled = true;
     this.modal.confirm({
       nzTitle: 'Are you sure you want to change your info?',
       nzContent: '',

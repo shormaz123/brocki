@@ -1,0 +1,80 @@
+<div class="page">
+  <form class="email" (ngSubmit)="onSubmit()" [formGroup]="emailForm">
+    <div class="email__title">
+      {{ 'translate.messageToSeller' | translate }}
+    </div>
+    <div class="email__body">
+      <div class="email__link">
+        <img
+          class="email__photo"
+          src="../../../assets/images/update-info-bussines/name.png"
+        />
+        <div class="email__inputItem">
+          <input
+            class="email__input"
+            placeholder="{{ 'translate.nameFirst' | translate }}"
+            formControlName="name"
+            type="text"
+          />
+        </div>
+      </div>
+      <div class="email__link">
+        <img
+          class="email__photo"
+          src="../../../assets/images/update-info-bussines/email.png"
+        />
+        <div class="email__inputItem">
+          <input
+            class="email__input"
+            placeholder="{{ 'translate.email' | translate }}"
+            formControlName="email"
+            type="text"
+          />
+        </div>
+      </div>
+      <div class="email__link">
+        <img
+          class="email__photo"
+          src="../../../assets/images/update-info-bussines/phone.png"
+        />
+        <div class="email__inputItem">
+          <input
+            class="email__input"
+            placeholder="{{ 'translate.phoneNumber' | translate }}"
+            formControlName="phone"
+          />
+        </div>
+      </div>
+      <div class="email__message">
+        <label class="email__label">{{
+          'translate.message' | translate
+        }}</label>
+        <div>
+          <textarea
+            class="email__textarea"
+            type="text"
+            formControlName="message"
+          ></textarea>
+        </div>
+      </div>
+      <div class="email__copy">
+        <mat-checkbox class="example-margin" (click)="copyOfEmail()"
+          >{{ 'translate.sendCopyOfEmail' | translate }}
+        </mat-checkbox>
+      </div>
+    </div>
+    <div class="email__buttons">
+      <button class="email__button" type="button" (click)="closeImage()">
+        {{ 'translate.close' | translate }}
+      </button>
+      <button class="email__button email__button--primary" type="submit">
+        {{ 'translate.send' | translate }}
+      </button>
+    </div>
+    <div
+      class="email__close"
+      (click)="closeImage()"
+      [inlineSVG]="'../../../assets/images/buttons/close.svg'"
+    ></div>
+  </form>
+</div>

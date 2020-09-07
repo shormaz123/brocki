@@ -86,6 +86,7 @@ import { FiltersAdsComponent } from './components/filters-ads/filters-ads.compon
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AgmCoreModule } from '@agm/core';
+import { EmailComponent } from './components/email/email.component';
 
 
 registerLocaleData(en);
@@ -131,6 +132,7 @@ registerLocaleData(en);
     InputMaxLengthDirective,
     AcceptUsersComponent,
     FiltersAdsComponent,
+    EmailComponent,
   ],
   imports: [
     BrowserModule,

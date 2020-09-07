@@ -1,0 +1,116 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixin.scss';
+
+.page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.email {
+  padding: 60px 40px;
+  background-color: $lightgrey;
+  border-radius: 15px;
+  text-align: center;
+  width: 550px;
+  position: relative;
+
+  &__title {
+    padding: 0 30px 30px;
+    font-size: 20px;
+    color: $darkgrey;
+  }
+
+  &__link {
+    display: flex;
+    padding: 0 0 20px;
+  }
+
+  &__inputItem {
+    padding: 0 0 0 10px;
+  }
+
+  &__photo {
+    height: 32px;
+  }
+
+  &__input {
+    height: 32px;
+    border-radius: 15px;
+    border: 1px solid $border-gray;
+    width: 425px;
+    padding-left: 10px;
+    color: $darkgrey;
+  }
+
+  &__message {
+    display: flex;
+    flex-direction: column;
+    width: 425px;
+    margin: 0 0 0 45px;
+    padding: 0 0 20px;
+  }
+
+  &__label {
+    text-align: start;
+    margin: 0 0 10px 10px;
+    color: $darkgrey;
+  }
+
+  &__textarea {
+    width: 425px;
+    border-radius: 15px;
+    border: 1px solid $border-gray;
+    color: $text-gray;
+    font-size: 16px;
+    height: 165px;
+    resize: none;
+    padding: 5px 15px;
+  }
+
+  &__copy {
+    text-align: start;
+    padding: 0 0 20px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 0 45px;
+  }
+
+  &__button {
+    width: 200px;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 0;
+    border: 1px solid $border-gray;
+    background-color: $white;
+    color: $darkgrey;
+    cursor: pointer;
+
+    &--primary {
+      border: none;
+      color: $white;
+      background-color: $red;
+    }
+  }
+
+  &__close {
+    width: 30px;
+    position: absolute;
+    top: 9px;
+    right: 7px;
+    cursor: pointer;
+  }
+}
+
+::placeholder {
+  color: $text-gray;
+}
