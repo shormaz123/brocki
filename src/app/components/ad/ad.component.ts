@@ -87,7 +87,6 @@ export class AdComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    window.scrollTo({ top: 0 });
     this.token = localStorage.getItem(AuthConst.token);
     if (this.token) {
       this.userService.getUser().subscribe((response) => {
