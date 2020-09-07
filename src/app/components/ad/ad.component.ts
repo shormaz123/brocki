@@ -87,7 +87,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    window.scrollTo({ top: 0 });
+    this.enableScrolling();
     this.token = localStorage.getItem(AuthConst.token);
     if (this.token) {
       this.userService.getUser().subscribe((response) => {
@@ -157,6 +157,11 @@ export class AdComponent implements OnInit, AfterViewInit {
 
   displaySideBar() {
     this.helpersService.displaySideBar(this.displaySideNav);
+  }
+
+  enableScrolling() {
+    // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function() {};
   }
 
   getNewAd(id: number) {

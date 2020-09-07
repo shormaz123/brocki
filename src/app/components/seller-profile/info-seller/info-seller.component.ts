@@ -39,6 +39,8 @@ export class InfoSellerComponent implements OnInit {
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
         this.sellerLocationLong = seller.location.longitude;
         this.sellerLocationLat = seller.location.latitude;
+        console.log(this.sellerLocationLong)
+        console.log(this.sellerLocationLat)
         this.sellerAddress = seller.address
         this.sellerindex = seller.id;
         this.infoForm.patchValue({
@@ -50,7 +52,7 @@ export class InfoSellerComponent implements OnInit {
           phone: seller.phone,
           mobile: seller.mobile,
           address: seller.address,
-          locationAddress: seller.address
+          locationAddress: seller.location
         });
       });
     });
