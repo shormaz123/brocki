@@ -19,6 +19,7 @@ export const de = {
     copyrightOne: 'Urheberrecht © 2020 Alle Rechte vorbehalten ',
     copyrightTwo: 'durch ',
     copyrightThree: 'Mio Software GmbH',
+    businessAccounts: 'Geschäftskonten',
     from: 'Von',
     to: 'Bis',
     change: 'Veränderung',

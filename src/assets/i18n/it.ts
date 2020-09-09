@@ -19,6 +19,7 @@ export const it = {
     copyrightOne: 'Copyright ©2020 Tutti i diritti riservati ',
     copyrightTwo: 'da ',
     copyrightThree: 'Mio Software Sàrl',
+    businessAccounts: 'Conti aziendali',
     from: 'Dal',
     to: 'Per',
     change: 'Modificare',

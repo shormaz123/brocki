@@ -19,6 +19,7 @@ export const en = {
     copyrightOne: 'Copyright ©2020 All rights reserved ',
     copyrightTwo: 'by ',
     copyrightThree: 'Mio Software LLC',
+    businessAccounts: 'Business accounts',
     from: 'From',
     to: 'To',
     change: 'Change',
