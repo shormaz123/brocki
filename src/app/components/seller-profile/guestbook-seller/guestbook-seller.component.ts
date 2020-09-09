@@ -22,7 +22,7 @@ export class GuestbookSellerComponent implements OnInit {
   nameOfCommentator: string;
   isSignedIn: boolean;
   isLogin: boolean;
-  userId: boolean;
+  userId: number;
 
   constructor(
     private fb: FormBuilder,
