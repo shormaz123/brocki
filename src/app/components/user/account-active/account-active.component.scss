@@ -131,7 +131,7 @@
   &__price {
     background-color: #d62b1f;
     color: white;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 3px 30px;
     margin-right: 15px;
   }
@@ -140,17 +140,21 @@
     font-weight: 500;
     margin: 3px 0 0 0;
   }
+
+  &__line {
+    background-color: $red;
+    height: 1px;
+    width: 100%;
+  }
 }
 
 .delete-ad {
   position: absolute;
   top: 33px;
   right: 16px;
-  border: 1px solid $border-gray;
   color: #d62b1f;
   font-weight: 600;
-  border-radius: 25px;
-  padding: 10px 15px;
+  padding: 0px 1px;
   cursor: pointer;
 }
 .amount {
@@ -160,15 +164,6 @@
   cursor: pointer;
 }
 
-hr {
-  border-color: $red;
-  width: 100%;
-  margin: 0;
-
-  @include rwd(1600) {
-    width: 80%;
-  }
-}
 .tooltip {
   position: relative;
   display: inline-block;
@@ -187,6 +182,7 @@ hr {
   /* Position the tooltip */
   position: absolute;
   top: -10px;
+  left: 40px;
   z-index: 1;
 }
 
