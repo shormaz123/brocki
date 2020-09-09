@@ -69,6 +69,13 @@ export class AuthService {
   }
 
   /**
+   * Get ID
+   */
+  getId(): any {
+    return localStorage.getItem('brocki_id');
+  }
+
+  /**
    * Logout
    */
 

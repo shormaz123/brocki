@@ -6,7 +6,7 @@ import { AuthService } from '.././../../@core/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Comment } from '../../../shared/models/createComment.model';
 import { NzModalService, NzNotificationService } from 'ng-zorro-antd';
-import {AuthConst} from '../../../@core/consts/auth.const';
+import { AuthConst } from '../../../@core/consts/auth.const';
 
 @Component({
   selector: 'app-guestbook-seller',
@@ -22,6 +22,7 @@ export class GuestbookSellerComponent implements OnInit {
   nameOfCommentator: string;
   isSignedIn: boolean;
   isLogin: boolean;
+  userId: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -46,6 +47,8 @@ export class GuestbookSellerComponent implements OnInit {
     if (this.isSignedIn) {
       this.isLogin = true;
     }
+
+    this.userId = this.authService.getId();
 
     this.userWhoComments = Number(localStorage.getItem('brocki_id'));
     this.userService.getUserById(this.userWhoComments).subscribe((seller) => {
@@ -78,7 +81,10 @@ export class GuestbookSellerComponent implements OnInit {
       nzContent: '',
       nzOnOk: () => {
         this.adsService.createComment(comment).subscribe(() => {
-          this.notification.success('', 'You have successfully posted a comment');
+          this.notification.success(
+            '',
+            'You have successfully posted a comment'
+          );
           this.guestBook.emit();
         });
         // this.router.navigate(['/site']);
