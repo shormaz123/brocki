@@ -29,7 +29,9 @@
           formControlName="category"
           (change)="findCategory($event)"
         >
-          <option value="">{{ 'translate.selectCategory' | translate }}</option>
+          <option value="">
+            {{ 'translate.selectCategory' | translate }}
+          </option>
           <option *ngFor="let category of categories" [value]="category.id">
             {{ category.groupName[currentLang] }}
           </option>

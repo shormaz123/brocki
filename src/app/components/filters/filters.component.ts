@@ -1,35 +1,55 @@
-import {Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
-import {FilterAds} from '../../shared/models/filterAds.model';
-import {Ads} from '../../shared/models/ads.model';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+} from '@angular/core';
+import { FilterAds } from '../../shared/models/filterAds.model';
+import { Ads } from '../../shared/models/ads.model';
 import cantons from '../../shared/cantons.json';
-import {AdsService} from '../../@core/services/ads.service';
-import {NzNotificationService} from 'ng-zorro-antd';
-import {Router} from '@angular/router';
-import {HelpersService} from '../../@core/services/helpers.service';
-import {TranslateServiceRest} from '../../@core/services/translateREST.service';
-import {Subscription} from 'rxjs';
-import {response} from 'express';
-import {adsSubGroup} from '../../shared/models/adsSubGroup.model';
+import { AdsService } from '../../@core/services/ads.service';
+import { NzNotificationService } from 'ng-zorro-antd';
+import { Router } from '@angular/router';
+import { HelpersService } from '../../@core/services/helpers.service';
+import { TranslateServiceRest } from '../../@core/services/translateREST.service';
+import { Subscription } from 'rxjs';
+import { response } from 'express';
+import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
+import { Options, LabelType } from 'ng5-slider';
+import { AuthConst } from '../../@core/consts/auth.const';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.scss']
+  styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit, OnDestroy {
-
+  fromPrice: number = 0;
+  toPrice: number = 50000;
+  options: Options = {
+    floor: 0,
+    ceil: 50000,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '<b>Min:</b> CHF ' + value;
+        case LabelType.High:
+          return '<b>Max:</b> CHF ' + value;
+        default:
+          return 'CHF ' + value;
+      }
+    },
+  };
 
   fixedPrice = false;
   hasImage = false;
   freeDelivery = false;
   productWarranty = false;
   urgentSales = false;
-  reg: string;
+  region: string;
   error = false;
   errorMessage;
-
-  fromPrice: number;
-  toPrice: number;
 
   all: boolean;
   used: boolean;
@@ -43,40 +63,42 @@ export class FiltersComponent implements OnInit, OnDestroy {
   subCategoriesGroup;
   category = {
     id: 0,
-    groupName: ''
+    groupName: '',
   };
   subCategory = {
     id: 0,
-    subGroupName: ''
+    subGroupName: '',
   };
 
-  noCategory = '';
-  noSubCategory = '';
-  noRegion = '';
   currentLang = 'de';
   subscriptionLang: Subscription;
   nullValue = null;
 
+  language: string;
 
   constructor(
     private adsService: AdsService,
     private router: Router,
-    private translateBackend: TranslateServiceRest) {
-
-    this.subscriptionLang = this.translateBackend.getLanguage().subscribe(message => {
-      this.currentLang = message;
-    });
+    private translateBackend: TranslateServiceRest
+  ) {
+    this.subscriptionLang = this.translateBackend
+      .getLanguage()
+      .subscribe((message) => {
+        this.currentLang = message;
+      });
   }
 
   ngOnInit() {
-    this.fromPrice = 1;
-    this.toPrice = 100;
-    this.adsService.getAllAdsGroups().subscribe(x => {
+    this.language = localStorage.getItem(AuthConst.language);
+
+    this.fromPrice = 0;
+    this.toPrice = 50000;
+    this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
       this.category.groupName = this.categoriesGroup[0].groupName;
       this.category.id = this.categoriesGroup[0].id;
     });
-    this.reg = cantons[0];
+    // this.reg = cantons[0];
     this.all = true;
 
     this.subscriptionLang = this.translateBackend
@@ -91,47 +113,52 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.subscriptionLang.unsubscribe();
   }
 
+  getLanguage() {}
 
   allButton() {
     this.all = true;
     this.new = false;
     this.used = false;
-
   }
 
   newButton() {
     this.all = false;
     this.new = true;
     this.used = false;
-
   }
 
   usedButton() {
     this.all = false;
     this.new = false;
     this.used = true;
-
   }
 
   findCategory(event: any): void {
     this.subCategoriesGroup = [];
     this.category.id = Number(event.target.value);
     // tslint:disable-next-line:no-shadowed-variable
-    this.adsService.getAllAdsSubGroup(this.category.id).subscribe(response => {
-      this.subCategoriesGroup = response;
-      // this.subCategory.subGroupName = this.subCategoriesGroup[0].subGroupName;
-      this.subCategory.id = this.subCategoriesGroup[0].id;
-    });
+    this.adsService
+      .getAllAdsSubGroup(this.category.id)
+      .subscribe((response) => {
+        this.subCategoriesGroup = response;
+        // this.subCategory.subGroupName = this.subCategoriesGroup[0].subGroupName;
+        if (this.subCategory.id)
+          this.subCategory.id = this.subCategoriesGroup[0].id;
+      });
+  }
+
+  getCanton(event: any): void {
+    this.region = event.target.value;
   }
 
   confirmButton() {
     if (this.toPrice < this.fromPrice) {
       this.errorMessage = 'Max price cannot be bigger than minimum price';
       this.error = true;
-      setTimeout(() => this.error = false, 5000);
+      setTimeout(() => (this.error = false), 5000);
     } else {
       this.filterAd = {
-        region: this.reg,
+        region: this.region,
         fromPrice: this.fromPrice,
         toPrice: this.toPrice,
         fixedPrice: this.fixedPrice,
@@ -142,16 +169,15 @@ export class FiltersComponent implements OnInit, OnDestroy {
         adsGroupId: this.category.id,
         subCategory: this.subCategory.id,
       };
-      this.adsService.getAdsByParamToFilter(this.filterAd).subscribe(x => {
+      this.adsService.getAdsByParamToFilter(this.filterAd).subscribe((x) => {
         if (x.length < 1) {
           this.error = true;
-          setTimeout(() => this.error = false, 5000);
+          setTimeout(() => (this.error = false), 5000);
           this.errorMessage = 'No available ads to filter';
         } else {
-          this.router.navigateByUrl('/filters-ads', {state: {data: x}});
+          this.router.navigateByUrl('/filters-ads', { state: { data: x } });
         }
       });
     }
   }
-
 }

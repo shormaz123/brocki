@@ -84,10 +84,10 @@ import { InputMaxLengthDirective } from './utils/input-max-length.directive';
 import { AcceptUsersComponent } from './components/user/accept-users/accept-users.component';
 import { FiltersAdsComponent } from './components/filters-ads/filters-ads.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AgmCoreModule } from '@agm/core';
 import { EmailComponent } from './components/email/email.component';
-
+import { Ng5SliderModule } from 'ng5-slider';
 
 registerLocaleData(en);
 
@@ -167,6 +167,7 @@ registerLocaleData(en);
     NzDropDownModule,
     MatMenuModule,
     DragDropModule,
+    Ng5SliderModule,
     MatAutocompleteModule,
     ToastrModule.forRoot({
       preventDuplicates: true,
@@ -183,8 +184,8 @@ registerLocaleData(en);
     }),
     InlineSVGModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAFo8eoAunpvp47MeINO5LlMdhJkG0Pvz0'
-    })
+      apiKey: 'AIzaSyAFo8eoAunpvp47MeINO5LlMdhJkG0Pvz0',
+    }),
   ],
   providers: [
     HttpBaseService,

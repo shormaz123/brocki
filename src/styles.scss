@@ -278,3 +278,15 @@ body
 .mat-checkbox-layout .mat-checkbox-label {
   margin: 0 0 0 20px;
 }
+
+.ng5-slider .ng5-slider-pointer {
+  background-color: $red !important;
+}
+
+.ng5-slider .ng5-slider-selection {
+  background-color: $red !important;
+}
+
+.ng5-slider .ng5-slider-bar {
+  background-color: $white;
+}
