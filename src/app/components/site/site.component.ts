@@ -71,6 +71,7 @@ export class SiteComponent implements OnInit, OnDestroy {
       breakpoint: '1400px',
       numVisible: 5,
       numScroll: 1,
+      height: '100%',
     },
     {
       breakpoint: '768px',
@@ -294,13 +295,13 @@ export class SiteComponent implements OnInit, OnDestroy {
     {
       id: 20,
       title: {
-        de: 'Handgemacht',
-        en: 'Handmade',
-        fr: 'Fait main',
-        it: 'fatto a mano',
+        de: 'Outdoor & Überleben',
+        en: 'Outdoor & Survival',
+        fr: 'Extérieur et survie',
+        it: 'Outdoor e sopravvivenza',
       },
-      image: '../../../assets/images/navigation/traditionally.png',
-      selectedImage: 'src/assets/images/navigation/red/traditionally.png',
+      image: '',
+      selectedImage: '',
       imageTo: '',
     },
     {
@@ -483,6 +484,7 @@ export class SiteComponent implements OnInit, OnDestroy {
       .subscribe((message) => {
         this.currentLang = message;
       });
+    this.deselectAll();
   }
 
   displaySideBar() {
@@ -559,6 +561,15 @@ export class SiteComponent implements OnInit, OnDestroy {
     if (imageToShow) {
       imageToShow.imageTo = imageToShow.selectedImage;
     }
+    this.adsService.getAdsByGroupId(id).subscribe( x => {
+      this.favAds = x
+      if (this.token) {
+        this.getUserAndFavAd();
+      } else {
+        this.randomAdsA = this.shuffle(this.favAds.slice(0, Math.floor(this.favAds.length / 2)));
+        this.randomAdsB = this.shuffle(this.favAds.slice(Math.floor(this.favAds.length / 2), this.favAds.length ));
+      }
+    });
   }
 
   shuffle(array) {
