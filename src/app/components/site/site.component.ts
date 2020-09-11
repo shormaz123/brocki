@@ -71,6 +71,7 @@ export class SiteComponent implements OnInit, OnDestroy {
       breakpoint: '1400px',
       numVisible: 5,
       numScroll: 1,
+      height: '100%',
     },
     {
       breakpoint: '768px',

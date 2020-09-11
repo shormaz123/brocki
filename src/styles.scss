@@ -134,6 +134,14 @@ body {
     outline: none;
 }
 
+.ui-carousel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
 .ui-carousel-dots-container {
     display: none;
 }
@@ -165,6 +173,31 @@ body {
 // }
 .ui-carousel-header {
     visibility: hidden;
+}
+
+.ui-carousel-container {
+    display: flex;
+    flex-direction: row;
+    padding: 0 .1em;
+    height: 100% !important;
+    align-items: center !important;
+}
+
+.ui-carousel-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow: auto;
+    padding: 0 .5em;
+    height: 100%;
+    justify-content: center;
+}
+
+.ui-carousel-items-content {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    height: 100% !important;
 }
 
 body .ui-carousel .ui-carousel-content .ui-carousel-prev,
