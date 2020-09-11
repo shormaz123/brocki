@@ -38,13 +38,10 @@
                             "node_modules/primeng/resources/primeng.min.css",
                             "src/theme.less",
                             "src/styles.scss",
-                            "node_modules/ngx-toastr/toastr.css",
-                            "node_modules/slick-carousel/slick/slick.scss",
-                            "node_modules/slick-carousel/slick/slick-theme.scss"
+                            "node_modules/ngx-toastr/toastr.css"
                         ],
                         "scripts": [
-                            "node_modules/slick-carousel/slick/slick.scss",
-                            "node_modules/slick-carousel/slick/slick-theme.scss"
+
                         ]
                     },
                     "configurations": {
