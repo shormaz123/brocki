@@ -1,0 +1,561 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixin.scss';
+button {
+    .tab-icon {
+        padding: 5px 25px;
+        padding-bottom: 5px;
+        //img {
+        //&:hover {
+        //  cursor: pointer;
+        //    box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.07),
+        //    1px 6px 12px rgba(39, 44, 49, 0.04);
+        //    transition: all 0.4s ease;
+        //    // transform: translate3D(0, -1px, 0) scale(1.03);
+        //    // transform: translateX(-50%) translateX(-0.4px) translateY(-50%) translateY(-0.4px);
+        //    -webkit-transform: scale(1.1);
+        //    -moz-transform: scale(1.1);
+        //    -o-transform: scale(1.1);
+        //    transform: scale(1.05);
+        //    /* zoom in */
+        //}
+        //}
+    }
+    &:focus {
+        .icon-not-active {
+            display: none;
+        }
+        .icon-active {
+            display: inline;
+        }
+    }
+    .icon-not-active {
+        display: inline;
+    }
+    .icon-active {
+        display: none;
+    }
+}
+
+//Carousel
+//p-carousel {
+//  width: 100% !important;
+//  overflow: hidden !important;
+//  padding-top: 20px !important;
+//  height: auto !important;
+//}
+.categoryItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    img {
+        &:hover {
+            box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.07), 1px 6px 12px rgba(39, 44, 49, 0.04);
+            transition: all 0.4s ease;
+            // transform: translate3D(0, -1px, 0) scale(1.03);
+            // transform: translateX(-50%) translateX(-0.4px) translateY(-50%) translateY(-0.4px);
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            transform: scale(1.05);
+            /* zoom in */
+        }
+    }
+}
+
+.advertise {
+    padding-top: 50px;
+    height: 250px;
+    width: 900px;
+    padding-bottom: 50px;
+    img {
+        // display: inline;
+        width: 100%;
+    }
+}
+
+.siteButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 900px;
+    height: 40px;
+    margin-bottom: 50px;
+    .siteButton {
+        background-color: $red;
+        border-radius: 15px;
+        border: 1px solid $border-gray;
+        width: 180px !important;
+        height: 30px;
+        width: auto;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+.suggestions {
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .suggText {
+        font-size: 16pt;
+        counter-reset: $darkgrey;
+        margin-bottom: 30px;
+    }
+    .bodySuggestions {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        height: 300px;
+        margin-bottom: 50px;
+        .cards {
+            width: 80%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.bodySuggestions2 {
+    margin-bottom: 50px;
+    width: 100% !important;
+    img {
+        width: 100%;
+    }
+}
+
+.pricetag {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    color: white;
+    padding-left: 5px;
+    background-color: $red;
+    padding-right: 5px;
+    border-radius: 15px;
+}
+
+.ui-card-title {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    overflow: auto;
+    height: auto;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+    @include rwd(1480) {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    @include rwd(1350) {
+        width: 100%;
+    }
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 230px;
+    overflow: hidden;
+    img {
+        max-width: fit-content;
+        display: block;
+    }
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 60px;
+    @include rwd(1680) {
+        width: 100%;
+    }
+    @include rwd(1350) {
+        width: 100%;
+    }
+}
+
+.description {
+    display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.lineCard {
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    img {
+        width: 100%;
+    }
+}
+
+.line {
+    height: 5px;
+    width: 100%;
+    border: 0 0 0 5px solid;
+    border: 0 0 5px 0;
+    border-bottom: 2px solid $lightgray-second;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+p-carousel {
+    width: 90% !important;
+}
+
+.ui-card-title {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    overflow: auto;
+    height: auto;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    @include rwd(1480) {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    @include rwd(1350) {
+        width: 100%;
+    }
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 230px;
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    @include rwd(1680) {
+        width: 100%;
+    }
+    @include rwd(1350) {
+        width: 100%;
+    }
+}
+
+.description {
+    display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.lineCard {
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 50px;
+}
+
+.line {
+    height: 5px;
+    width: 100%;
+    border: 0 0 0 5px solid;
+    border: 0 0 5px 0;
+    border-bottom: 2px solid $lightgray-second;
+    margin-bottom: 50px;
+}
+
+p-carousel {
+    width: 90% !important;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+    .sidebar {
+        width: auto;
+    }
+}
+
+//DropDown on SideBar
+
+/* Fixed sidenav, full height */
+
+.sidenav {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: $red;
+    overflow-x: hidden;
+    padding-top: 20px;
+    .title {
+        text-align: center;
+        color: white;
+    }
+    button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+
+/* Style the sidenav links and the dropdown button */
+
+.sidenav a,
+.dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: $lightgray-second;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+
+/* On mouse-over */
+
+.sidenav a:hover,
+.dropdown-btn:hover {
+    color: #f1f1f1;
+}
+
+
+/* Main content */
+
+.main {
+    margin-left: 200px;
+    /* Same as the width of the sidenav */
+    font-size: 20px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+
+/* Add an active class to the active dropdown button */
+
+.active {
+    background-color: green;
+    color: white;
+}
+
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+
+.dropdown-container {
+    display: none;
+    background-color: #262626;
+    padding-left: 8px;
+}
+
+
+/* Optional: Style the caret down icon */
+
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+p-sidebar {
+    overflow: scroll;
+}
+
+.accordationSpan {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    &:hover {
+        cursor: pointer;
+        color: $red;
+    }
+}
+
+.accordationDiv {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.increaseButtonClass {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .increaseButton {
+        background-color: $red;
+        color: $lightgray-second;
+        margin-top: 50px;
+        border-radius: 15px;
+    }
+}
+
+.adLine {
+    border: 0 0 1px 0;
+    border-bottom: 1px solid $red;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 70%;
+    height: 1px;
+    margin: 0px auto;
+}
+
+.cardHover {
+    box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
+    transition: all 0.5s ease;
+    /* back to normal */
+    &:hover {
+        box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.07), 1px 6px 12px rgba(39, 44, 49, 0.04);
+        transition: all 0.4s ease;
+        // transform: translate3D(0, -1px, 0) scale(1.03);
+        // transform: translateX(-50%) translateX(-0.4px) translateY(-50%) translateY(-0.4px);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        transform: scale(1.05);
+        /* zoom in */
+    }
+}
+
+.mat-icon {
+    color: $red;
+}
+
+.dropbtn {
+    height: 100%;
+    .mat-button-wrapper {
+        height: 100%;
+    }
+}
+
+.bodyLabel {
+    text-align: center;
+    display: inline-block;
+    width: 98%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    justify-content: center;
+    label {
+        width: 100%;
+    }
+}
+
+.ng2-custom-carousel-container {
+    width: 100%;
+    margin: auto;
+}
+
+.ng2-custom-carousel-element {
+    padding: 0;
+    width: 300px;
+    height: 300px;
+    background-color: crimson;
+    color: #fff;
+    font-size: 50px;
+    line-height: 300px;
+    text-align: center;
+}
+
+
+/* You can add global styles to this file, and also import other style files */
+
+#container {
+    width: 100%;
+    margin: 5em auto;
+    padding: 0;
+    .ng2-carouselamos-container {
+        width: 70%;
+        margin: auto;
+    }
+    .slide-items {
+        width: 33%;
+        flex: 1 0 33.333333333333336%;
+        img {
+            width: 210px;
+        }
+    }
+}
+
+//Owl carousel
+// .owl-carousel {
+//     width: 90% !important;
+//     margin: 10% auto;
+// }
+// .owl-carousel .owl-nav {
+//     overflow: hidden;
+//     height: 0px;
+// }
+// .owl-carousel .nav-btn {
+//     height: 47px;
+//     position: absolute;
+//     width: 26px;
+//     cursor: pointer;
+//     top: 30% !important;
+// }
+// .owl-carousel .owl-prev.disabled,
+// .owl-carousel .owl-next.disabled {
+//     pointer-events: none;
+//     opacity: 0.2;
+// }
+// .owl-carousel .prev-slide {
+//     background-image: url('../../../assets/images/buttons/arrow\ round\ left.png') no-repeat scroll 0 0 !important;
+//     left: -33px;
+// }
+// .owl-carousel .next-slide {
+//     background-image: url('../../../assets/images/buttons/arrow\ round\ right.png') no-repeat scroll -24px 0px;
+//     right: -33px;
+// }
+// .owl-carousel .prev-slide:hover {
+//     background-position: 0px -53px;
+// }
+// .owl-carousel .next-slide:hover {
+//     background-position: -24px -53px;
+// }
+// .owl-carousel .owl-nav button.owl-prev,
+// .owl-carousel .owl-nav button.owl-next,
+// .owl-carousel button.owl-dot {
+//     background-image: url('../../../assets/images/buttons/arrow\ round\ left.png') no-repeat scroll 0 0 !important;
+//     color: inherit;
+//     border: none;
+//     padding: 0 !important;
+//     font: inherit;
+// }

@@ -86,7 +86,8 @@ import { FiltersAdsComponent } from './components/filters-ads/filters-ads.compon
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AgmCoreModule } from '@agm/core';
-
+import { AdsCardCarouselComponent } from './components/ads-card-carousel/ads-card-carousel.component';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 
 registerLocaleData(en);
 
@@ -131,6 +132,7 @@ registerLocaleData(en);
     InputMaxLengthDirective,
     AcceptUsersComponent,
     FiltersAdsComponent,
+    AdsCardCarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -166,6 +168,7 @@ registerLocaleData(en);
     MatMenuModule,
     DragDropModule,
     MatAutocompleteModule,
+    Ng2CarouselamosModule,
     ToastrModule.forRoot({
       preventDuplicates: true,
       closeButton: true,
