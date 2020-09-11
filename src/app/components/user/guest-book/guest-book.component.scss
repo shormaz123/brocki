@@ -33,6 +33,13 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    &__line {
+      background-color: $red;
+      height: 1px;
+      width: 100%;
+      margin: 15px 0 0 0;
+    }
   }
 }
 
@@ -54,22 +61,16 @@
   }
 }
 
-.active {
-  fill: red;
-  color: red;
-}
+// .active {
+//   fill: red;
+//   color: red;
+// }
 
 .wrapper {
   padding: 0 0 100px;
 }
 
-hr {
-  border: 1px solid;
-  border-color: $red;
-  width: 100%;
-  margin: 15px 0 0 0;
-}
-svg {
-  fill: red;
-  color: red;
-}
+// svg {
+//   fill: red;
+//   color: red;
+// }

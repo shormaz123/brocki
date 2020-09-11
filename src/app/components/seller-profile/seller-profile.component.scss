@@ -65,6 +65,11 @@
   }
 }
 
+.page {
+  display: flex;
+  justify-self: center;
+}
+
 .seller-image {
   width: 100%;
   height: 85%;
@@ -156,7 +161,7 @@
   display: flex;
   margin: 23px 0 0px 0;
   background: $red;
-  border-radius: 15px;
+  border-radius: 35px;
   height: 50px;
   align-items: center;
   color: $white;
@@ -167,6 +172,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 
   &__email {
@@ -187,7 +193,7 @@
 
 .photo {
   cursor: pointer;
-  height: 36px;
+  height: 25px;
 }
 
 .navigation {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
@@ -18,7 +18,7 @@ export class SellerProfileComponent implements OnInit {
   about: boolean;
   info: boolean;
   guest: boolean;
-  email: boolean;
+  email: boolean = false;
   sellerId;
   seller;
   sellerCompany: string;
@@ -161,8 +161,12 @@ export class SellerProfileComponent implements OnInit {
     this.guest = true;
   }
 
-  alert(msg: string): void {
-    alert(msg);
+  sendEmail(): void {
+    this.email = true;
+  }
+
+  closeEmail(): void {
+    this.email = false;
   }
 
   guestBook(): void {

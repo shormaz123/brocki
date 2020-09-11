@@ -88,6 +88,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AgmCoreModule } from '@agm/core';
 import { AdsCardCarouselComponent } from './components/ads-card-carousel/ads-card-carousel.component';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+import { EmailComponent } from './components/email/email.component';
+
 
 registerLocaleData(en);
 
@@ -133,6 +135,7 @@ registerLocaleData(en);
     AcceptUsersComponent,
     FiltersAdsComponent,
     AdsCardCarouselComponent,
+    EmailComponent,
   ],
   imports: [
     BrowserModule,

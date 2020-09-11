@@ -42,26 +42,28 @@
         <div class="boxes">
           <div class="iconBox">
             <div class="phoneImage">
-              <img
+              <div
                 class="photo"
-                src="../../../assets/images/update-info-bussines/phone.png"
-              />
+                [inlineSVG]="
+                  '../../../assets/images/update-info-bussines/phone.svg'
+                "
+              ></div>
             </div>
             <div class="phone">
               <div>{{ sellerPhone }}</div>
               <div>{{ sellerMobile }}</div>
             </div>
           </div>
-          <div class="iconBox iconBox--email" (click)="alert('In progress')">
+          <div class="iconBox iconBox--email" (click)="sendEmail()">
             <div class="phoneImage">
-              <img
+              <div
                 class="photo"
-                src="../../../assets/images/update-info-bussines/email.png"
-              />
+                [inlineSVG]="
+                  '../../../assets/images/update-info-bussines/email.svg'
+                "
+              ></div>
             </div>
-            <div class="iconBox__email">
-              <span *ngIf="email">{{ sellerEmail }}</span>
-            </div>
+            <div class="iconBox__email"></div>
           </div>
         </div>
       </section>
@@ -112,5 +114,11 @@
       *ngIf="sold"
     ></app-sold-seller>
     <app-info-seller *ngIf="info"></app-info-seller>
+  </div>
+  <div class="page" *ngIf="email">
+    <app-email
+      [sellerEmail]="sellerEmail"
+      (closeEmail)="closeEmail()"
+    ></app-email>
   </div>
 </div>

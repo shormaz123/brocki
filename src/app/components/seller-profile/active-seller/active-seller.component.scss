@@ -103,7 +103,7 @@
   &__price {
     background-color: #d62b1f;
     color: white;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 3px 30px;
     margin-right: 15px;
   }
@@ -111,6 +111,12 @@
   &__day {
     font-weight: 500;
     margin: 3px 0 0 0;
+  }
+
+  &__line {
+    background-color: #d62b1f;
+    height: 1px;
+    width: 100%;
   }
 }
 
@@ -132,11 +138,6 @@
   cursor: pointer;
 }
 
-hr {
-  border-color: $red;
-  width: 100%;
-  margin: 0;
-}
 .tooltip {
   position: relative;
   display: inline-block;
