@@ -23,6 +23,9 @@ import { AdsComponent } from './components/ads/ads.component';
 import { AcceptAdsComponent } from './components/user/accept-ads/accept-ads.component';
 import { AcceptUsersComponent } from './components/user/accept-users/accept-users.component';
 import { FiltersAdsComponent } from './components/filters-ads/filters-ads.component';
+import {
+  AuthGuardService as AuthGuard
+} from '../app/@core/services/authGuard.service';
 
 const routes: Routes = [
   {
@@ -36,6 +39,7 @@ const routes: Routes = [
       {
         path: 'user/:id',
         component: UserComponent,
+        canActivate: [AuthGuardService]
       },
       {
         path: 'accept-users',
