@@ -105,7 +105,7 @@
                     cursor: pointer;
                     padding: 10px;
                   " class="cardHover">
-                    <div class="image" [routerLink]="['/ad', item.id]">
+                    <div class="image" (mousedown)="goToAd(item.id)">
                         <img src="Card" [src]="item.image[0]" />
                     </div>
                     <div class="cardBody" [routerLink]="['/ad', item.id]">

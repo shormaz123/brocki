@@ -4,6 +4,7 @@ import {HelpersService} from '../../@core/services/helpers.service';
 import {UserAddAdsRequest} from '../../shared/models/useraddAdsRequest.model';
 import {Ads} from '../../shared/models/ads.model';
 import {AuthConst} from '../../@core/consts/auth.const';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ads-card-carousel',
@@ -23,7 +24,7 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
 
 
 
-  constructor(private userService: UserService, private helpersService: HelpersService) { }
+  constructor(private userService: UserService, private helpersService: HelpersService, private router: Router) { }
 
   ngOnInit() {
     this.token = localStorage.getItem(AuthConst.token);
@@ -64,7 +65,9 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
     this.helpersService.$numOfFavs.next();
   }
 
-
+ goToAd(id: number) {
+  this.router.navigate(['/ad', id]);
+ }
 
 
 }
