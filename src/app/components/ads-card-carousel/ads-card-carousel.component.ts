@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {UserService} from '../../@core/services/user.service';
 import {HelpersService} from '../../@core/services/helpers.service';
 import {UserAddAdsRequest} from '../../shared/models/useraddAdsRequest.model';
@@ -21,7 +21,6 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
   token;
 
   title = 'ngSlick';
-
 
 
   constructor(private userService: UserService, private helpersService: HelpersService, private router: Router) { }
@@ -65,8 +64,11 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
     this.helpersService.$numOfFavs.next();
   }
 
- goToAd(id: number) {
-  this.router.navigate(['/ad', id]);
+ goToAd(event, id: number) {
+  if(event.button === 0) {
+    this.router.navigate(['/ad', id]);
+    console.log(event.button)
+  }
  }
 
 
