@@ -5,6 +5,9 @@ import {UserAddAdsRequest} from '../../shared/models/useraddAdsRequest.model';
 import {Ads} from '../../shared/models/ads.model';
 import {AuthConst} from '../../@core/consts/auth.const';
 import { Router } from '@angular/router';
+import { NgxCarousel } from 'ngx-carousel';
+
+
 
 @Component({
   selector: 'app-ads-card-carousel',
@@ -13,6 +16,11 @@ import { Router } from '@angular/router';
 })
 export class AdsCardCarouselComponent implements OnInit, OnChanges {
 
+  public carouselTileItems: Array<any>;
+  public carouselTile: NgxCarousel;
+
+
+  public carouselOne: NgxCarousel;
   userRequest: UserAddAdsRequest;
   @Input() userId;
   @Input() randomAds: Ads[];
@@ -27,6 +35,30 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.token = localStorage.getItem(AuthConst.token);
+    this.carouselTile = {
+      grid: {xs: 2, sm: 3, md: 3, lg: 3, all: 0},
+      slide: 2,
+      speed: 400,
+      animation: 'lazy',
+      point: {
+        visible: false
+      },
+      load: 2,
+      touch: true,
+      easing: 'ease'
+    }
+  }
+
+
+  public carouselTileLoad(evt: any) {
+
+    const len = this.randomAds.length
+    if (len <= 30) {
+      for (let i = len; i < len + 10; i++) {
+        this.carouselTileItems.push(i);
+      }
+    }
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -71,5 +103,10 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
   }
  }
 
+ onEvent(event) {
+  event.stopPropagation();
+}
 
 }
+
+
