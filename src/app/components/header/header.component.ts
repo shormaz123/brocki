@@ -4,7 +4,7 @@ import {
   OnDestroy,
   Input,
   Output,
-  EventEmitter,
+  EventEmitter
 } from '@angular/core';
 import { UserService } from '../../@core/services/user.service';
 import { AuthConst } from '../../@core/consts/auth.const';
@@ -16,6 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
 import {AdsService} from '../../@core/services/ads.service';
 import {Ads} from '../../shared/models/ads.model';
+import { DOCUMENT } from '@angular/common';
 
 
 
@@ -163,5 +164,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   dropdown() {
     this.dropdownBoolean = !this.dropdownBoolean;
     document.getElementById('myDropdown').classList.toggle('show');
+  }
+
+  navigateToSite() {
+    this.router.navigate(['/site'], {queryParams: {refresh: new Date().getTime()}});
   }
 }

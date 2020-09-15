@@ -43,9 +43,9 @@ export class AdsService {
     );
   }
 
-  getAdsByGroupId(id: number): Observable<Ads[]> {
+  getAdsByGroupId(id: number, page: number): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${id}`
+      `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${id}&pageNumber=${page}`
     );
   }
 

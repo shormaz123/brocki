@@ -3,8 +3,7 @@ import {
   OnInit,
   ChangeDetectorRef,
   ViewEncapsulation,
-  Input,
-  OnChanges,
+
   OnDestroy, ViewChild, ElementRef,
 } from '@angular/core';
 import { AdsService } from '../../@core/services/ads.service';
@@ -15,12 +14,8 @@ import { User } from '../../shared/models/user.model';
 import { HelpersService } from '../..//@core/services/helpers.service';
 import { Subscription, Observable } from 'rxjs';
 import { AdsParam } from '../../shared/models/adParams.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
-import { en } from 'assets/i18n/en';
-import { de } from 'assets/i18n/de';
-import { fr } from 'assets/i18n/fr';
-import { it } from 'assets/i18n/it';
 import {TranslateServiceRest} from '../../@core/services/translateREST.service';
 
 @Component({
@@ -433,9 +428,11 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
   ];
   subscriptionLang: Subscription;
+  myRefreshSubscription: Subscription;
   currentLang = 'de';
   startPage: number;
   paginationNumber = 1;
+  refresh?;
 
 
   constructor(
@@ -444,12 +441,27 @@ export class SiteComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private helpersService: HelpersService,
     private router: Router,
-    private translateBackend: TranslateServiceRest
+    private translateBackend: TranslateServiceRest,
+    private activatedRoute: ActivatedRoute
   ) {
-
   }
 
   ngOnInit() {
+    this.activatedRoute.queryParamMap.subscribe((paramMap: ParamMap) => {
+      const refresh = paramMap.get('refresh');
+      if (refresh) {
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+          return false;
+        };
+
+        this.myRefreshSubscription = this.router.events.subscribe((event) => {
+          if (event instanceof NavigationEnd) {
+            // Trick the Router into believing it's last link wasn't previously loaded
+            this.router.navigated = false;
+          }
+        });
+      }
+    });
     this.startPage = 0;
     this.token = localStorage.getItem(AuthConst.token);
     this.selectCategory(1);
@@ -561,7 +573,7 @@ export class SiteComponent implements OnInit, OnDestroy {
     if (imageToShow) {
       imageToShow.imageTo = imageToShow.selectedImage;
     }
-    this.adsService.getAdsByGroupId(id).subscribe( x => {
+    this.adsService.getAdsByGroupId(id, this.paginationNumber).subscribe( x => {
       this.favAds = x
       if (this.token) {
         this.getUserAndFavAd();
@@ -584,6 +596,9 @@ export class SiteComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.numberOfFavs.unsubscribe();
     this.subscriptionLang.unsubscribe();
+    if (this.myRefreshSubscription) {
+      this.myRefreshSubscription.unsubscribe();
+    }
   }
 
 
@@ -647,6 +662,8 @@ export class SiteComponent implements OnInit, OnDestroy {
       };
     this.helpersService.$numOfFavs.next();
   }
+
+
 
 
 
