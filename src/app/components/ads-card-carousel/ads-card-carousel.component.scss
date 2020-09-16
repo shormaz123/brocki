@@ -125,7 +125,7 @@ button {
 
 .bodySuggestions2 {
     margin-bottom: 50px;
-    width: 100% !important;
+    width: 1240px;
     img {
         width: 100%;
     }
@@ -513,4 +513,55 @@ p-sidebar {
             width: 210px;
         }
     }
+}
+
+///Ngx carousel
+h1 {
+    min-height: 200px;
+    background-color: #ccc;
+    text-align: center;
+    line-height: 200px;
+}
+
+.leftRs {
+    background-color: $red;
+    color: white;
+    border: none !important;
+    // display: flex !important;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+    left: -100px;
+    cursor: pointer;
+}
+
+.rightRs {
+    background-color: $red;
+    color: white;
+    border: none !important;
+    // display: flex !important;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+    right: -100px;
+    cursor: pointer;
+}
+
+.carouselContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

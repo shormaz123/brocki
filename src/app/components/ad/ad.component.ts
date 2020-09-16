@@ -50,6 +50,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   defaultImage = '../../../assets/images/myAccount/profile-picture.png';
   userImage: string = this.defaultImage;
   companyImage: string[];
+  paginationNumber = 1;
 
   usersImagesAvailabe: boolean;
   categoryImagesAvailable: boolean;
@@ -174,7 +175,7 @@ export class AdComponent implements OnInit, AfterViewInit {
         this.adGroupId = response.adsGroupId;
         console.log(response);
         this.allOfreviewer = true;
-        this.adsService.getAdsByGroupId(this.adGroupId).subscribe((x) => {
+        this.adsService.getAdsByGroupId(this.adGroupId, this.paginationNumber).subscribe((x) => {
           if (x == null) {
             this.categoryImagesAvailable = false;
           } else {
