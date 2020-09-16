@@ -51,12 +51,16 @@
 
   &__label {
     display: flex;
-    padding: 0px 0 5px;
+    padding: 0px 0 5px 15px;
     font-size: 17px;
     text-transform: capitalize;
 
     &--padding {
       padding-bottom: 15px;
+    }
+
+    &--equal {
+      padding-left: 20px;
     }
   }
 

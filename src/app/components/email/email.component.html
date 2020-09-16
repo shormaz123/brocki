@@ -32,6 +32,15 @@
           />
         </div>
       </div>
+      <span
+        class="email__err"
+        *ngIf="
+          this.emailForm.get('email').touched &&
+          this.emailForm.get('email').invalid
+        "
+      >
+        {{ 'translate.InvalidEmail' | translate }}
+      </span>
       <div class="email__link">
         <img
           class="email__photo"
@@ -45,6 +54,15 @@
           />
         </div>
       </div>
+      <span
+        class="email__errNumber"
+        *ngIf="
+          this.emailForm.get('phone').touched &&
+          this.emailForm.get('phone').invalid
+        "
+      >
+        {{ 'translate.numbersOnly' | translate }}
+      </span>
       <div class="email__message">
         <label class="email__label">{{
           'translate.message' | translate
@@ -64,7 +82,7 @@
       </div>
     </div>
     <div class="email__buttons">
-      <button class="email__button" type="button" (click)="closeImage()">
+      <button class="email__button" type="button" (click)="closeModal()">
         {{ 'translate.close' | translate }}
       </button>
       <button class="email__button email__button--primary" type="submit">
@@ -73,7 +91,7 @@
     </div>
     <div
       class="email__close"
-      (click)="closeImage()"
+      (click)="closeModal()"
       [inlineSVG]="'../../../assets/images/buttons/close.svg'"
     ></div>
   </form>

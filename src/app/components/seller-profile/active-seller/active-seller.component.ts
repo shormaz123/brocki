@@ -1,4 +1,10 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Ads } from '../../../shared/models/ads.model';
 
 @Component({
@@ -7,10 +13,25 @@ import { Ads } from '../../../shared/models/ads.model';
   styleUrls: ['./active-seller.component.scss'],
 })
 export class ActiveSellerComponent implements OnChanges {
+  email: boolean = false;
   @Input() activeProducts: Ads;
   @Input() ads: boolean;
+  @Input() sellerEmail: string;
+  adForEmail: Ads;
   hide = true;
   constructor() {}
 
   ngOnChanges() {}
+
+  getAd(ad: Ads): void {
+    this.adForEmail = ad;
+  }
+
+  sendEmail(): void {
+    this.email = true;
+  }
+
+  closeEmail(): void {
+    this.email = false;
+  }
 }

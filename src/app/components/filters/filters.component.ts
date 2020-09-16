@@ -95,8 +95,8 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.toPrice = 50000;
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
-      this.category.groupName = this.categoriesGroup[0].groupName;
-      this.category.id = this.categoriesGroup[0].id;
+      //   this.category.groupName = this.categoriesGroup[0].groupName;
+      // this.category.id = this.categoriesGroup[0].id;
     });
     // this.reg = cantons[0];
     this.all = true;

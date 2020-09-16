@@ -74,7 +74,7 @@ export class UserService {
   }
 
   /**
-   * send email
+   * send email to Brockie Team
    *
    */
   contactUs(email: Email) {
@@ -86,6 +86,27 @@ export class UserService {
     return this.httpClient.post<Email>(
       `${this.baseUrl}/mybrocki/contactus`,
       params
+    );
+  }
+
+  /**
+   * send email to Seller
+   *
+   */
+  sendEmailToSeller(email: any) {
+    let query = new HttpParams();
+    if (email.ad) {
+      query = query.append('adId ', email.ad.id);
+    }
+    query = query.append('email', email.email);
+    query = query.append('name', email.name);
+    query = query.append('phone', email.phone);
+    query = query.append('message', email.message);
+    query = query.append('emailSeller', email.emailSeller);
+    query = query.append('toSender', email.toSender);
+    return this.httpClient.post<Email>(
+      `${this.baseUrl}/mybrocki/contact/seller`,
+      query
     );
   }
 

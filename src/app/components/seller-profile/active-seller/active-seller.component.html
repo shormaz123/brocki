@@ -32,9 +32,20 @@
           </div>
         </div>
       </div>
-      <div class="amount" *ngIf="hide === false">
-        <img src="../../../../assets/images/update-info-bussines/email.png" />
+      <div class="amount" (click)="getAd(active)">
+        <img
+          (click)="sendEmail()"
+          style="width: 35px"
+          src="../../../../assets/images/update-info-bussines/email.png"
+        />
       </div>
     </div>
+  </div>
+  <div class="page" *ngIf="email">
+    <app-email
+      [sellerEmail]="sellerEmail"
+      [adForEmail]="adForEmail"
+      (closeEmail)="closeEmail()"
+    ></app-email>
   </div>
 </div>

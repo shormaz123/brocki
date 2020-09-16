@@ -6,6 +6,7 @@ import { AdsParam } from '../../shared/models/adParams.model';
 import { Comment } from '../../shared/models/createComment.model';
 import { isBuffer } from 'util';
 import { UserStatus } from '../../shared/enums/userStatus';
+import { Ads } from '../../shared/models/ads.model';
 
 @Component({
   selector: 'app-seller-profile',

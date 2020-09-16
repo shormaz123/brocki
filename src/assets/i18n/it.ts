@@ -159,5 +159,8 @@ export const it = {
     freeMonths: '3 mesi gratuiti',
     copied: 'Copiato',
     companyName: 'Nome della ditta',
+    InvalidEmail: 'Indirizzo email non valido',
+    numbersOnly: 'Si prega di inserire solo numeri',
+    adPictures: "Immagini dell'annuncio",
   },
 };

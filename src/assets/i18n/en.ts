@@ -158,5 +158,8 @@ export const en = {
     freeMonths: '3 months free use',
     copied: 'Copied',
     companyName: 'Company name',
+    InvalidEmail: 'Invalid e-mail address',
+    numbersOnly: 'Please enter numbers only',
+    adPictures: 'Ad pictures',
   },
 };

@@ -113,6 +113,22 @@
     right: 7px;
     cursor: pointer;
   }
+
+  &__err {
+    position: absolute;
+    top: 205px;
+    left: 95px;
+    font-size: 10px;
+    color: $red;
+  }
+
+  &__errNumber {
+    position: absolute;
+    top: 256px;
+    left: 95px;
+    font-size: 10px;
+    color: $red;
+  }
 }
 
 ::placeholder {

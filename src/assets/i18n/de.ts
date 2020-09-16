@@ -161,5 +161,8 @@ export const de = {
     freeMonths: '3 Monate kostenlos',
     copied: 'Kopiert',
     companyName: 'Name der Firma',
+    InvalidEmail: 'Ungültige E-Mail-Adresse',
+    numbersOnly: 'Bitte geben Sie nur Zahlen ein',
+    adPictures: 'Anzeigenbilder',
   },
 };
