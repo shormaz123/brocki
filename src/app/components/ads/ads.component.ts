@@ -9,6 +9,7 @@ import {UserAddAdsRequest} from '../../shared/models/useraddAdsRequest.model';
 import {AuthConst} from '../../@core/consts/auth.const';
 import {TranslateServiceRest} from '../../@core/services/translateREST.service';
 import {Subscription} from 'rxjs';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-ads',
@@ -30,13 +31,16 @@ export class AdsComponent implements OnInit, OnDestroy {
   categoryName: string;
   subCategoryName: string;
   subscriptionLang: Subscription;
+  selectedImage: string;
+
 
 
   constructor(private activatedRoute: ActivatedRoute,
               private adsService: AdsService,
               private userService: UserService,
               private helpersService: HelpersService,
-              private translateBackend: TranslateServiceRest) {
+              private translateBackend: TranslateServiceRest,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -56,7 +60,9 @@ export class AdsComponent implements OnInit, OnDestroy {
       });
       this.adsService.getCategoryById(params.groupId).subscribe( categoryTitle => {
         this.categoryName = categoryTitle.groupName[this.currentLang]
-      })
+        this.getImage(params.groupId)
+
+      });
       this.adsService.getSubBySubGroupId(params.subGroupId).subscribe( x => {
         console.log(x, 'x')
       })
@@ -80,6 +86,7 @@ export class AdsComponent implements OnInit, OnDestroy {
         });
         this.adsService.getCategoryById(this.groupId).subscribe( categoryTitle => {
           this.categoryName = categoryTitle.groupName[this.currentLang]
+          this.getImage(this.groupId)
         })
       });
   }
@@ -90,6 +97,94 @@ export class AdsComponent implements OnInit, OnDestroy {
 
   displaySideBar() {
     this.helpersService.displaySideBar(this.displaySideNav);
+  }
+
+  getImage(groupId) {
+    switch (groupId) {
+      case '1':
+          this.selectedImage = '../../../assets/images/navigation/red/Antiquities & Art.png'
+          break;
+      case '2':
+        this.selectedImage =
+        '../../../assets/images/navigation/red/knives & tools 2.png'
+          break;
+      case '3':
+        this.selectedImage = '../../../assets/images/navigation/red/Commercial.png'
+          break;
+          case '4':
+            this.selectedImage = '../../../assets/images/navigation/red/Garden.png'
+            break;
+        case '5':
+          this.selectedImage = '../../../assets/images/navigation/red/Household.png'
+            break;
+        case '6':
+          this.selectedImage = '../../../assets/images/navigation/red/Fashion.png'
+            break;
+            case '27':
+              this.selectedImage = '../../../assets/images/navigation/red/Lifehacks.png'
+              break;
+          case '7':
+              this.selectedImage = ''
+              break;
+          case '8':
+            this.selectedImage = '../../../assets/images/navigation/red/IT.png'
+              break;
+              case '9':
+                this.selectedImage = '../../../assets/images/navigation/red/CD.png'
+                break;
+            case '10':
+              this.selectedImage = '../../../assets/images/navigation/red/lamps & illuminants 2.png'
+                break;
+            case '11':
+              this.selectedImage = '../../../assets/images/navigation/red/batteries & chargers.png'
+                break;
+                case '12':
+                  this.selectedImage = '../../../assets/images/navigation/red/Watches & Jewlery.png'
+                  break;
+              case '13':
+                this.selectedImage = '../../../assets/images/navigation/red/Sport.png'
+                  break;
+              case '14':
+                this.selectedImage = '../../../assets/images/navigation/red/rc toy - modelling 2.png'
+                  break;
+                  case '15':
+                    this.selectedImage = '../../../assets/images/navigation/red/Books.png'
+                    break;
+                case '16':
+                  this.selectedImage = '../../../assets/images/navigation/red/Office.png'
+                    break;
+                case '17':
+                  this.selectedImage = '../../../assets/images/navigation/red/Pets.png'
+                    break;
+                    case '18':
+                      this.selectedImage = '../../../assets/images/navigation/red/Instruments.png'
+                      break;
+                  case '19':
+                    this.selectedImage = '../../../assets/images/navigation/red/Motors & Wheels.png'
+                      break;
+                  case '20':
+                    this.selectedImage = '../../../assets/images/navigation/red/Handcrafted.png'
+                      break;
+                      case '21':
+                        this.selectedImage = '../../../assets/images/navigation/red/sold by the meter.png'
+                        break;
+                    case '22':
+                      this.selectedImage = '../../../assets/images/navigation/red/sold by the kg 2.png'
+                        break;
+                    case '23':
+                      this.selectedImage = '../../../assets/images/navigation/red/Luxury.png'
+                        break;
+                        case '24':
+                          this.selectedImage = '../../../assets/images/navigation/red/Toys.png'
+                          break;
+                      case '25':
+                        this.selectedImage = '../../../assets/images/navigation/red/Unique.png'
+                          break;
+                      case '26':
+                        this.selectedImage = '../../../assets/images/navigation/red/Wooden.png'
+                          break;
+  }
+
   }
 
 
@@ -127,6 +222,10 @@ export class AdsComponent implements OnInit, OnDestroy {
         console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
+  }
+
+  backClicked() {
+    this.location.back();
   }
 
 
