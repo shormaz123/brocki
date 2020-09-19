@@ -13,4 +13,5 @@ export class AdsParam {
   toPrice: number;
   urgentSales: boolean;
   userId: number;
+  pageNumber: number;
 }

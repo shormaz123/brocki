@@ -73,6 +73,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   currentLang = 'de';
   subscriptionLang: Subscription;
   nullValue = null;
+  pageNumber: number = 16;
 
   language: string;
 
@@ -95,10 +96,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.toPrice = 50000;
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
-      //   this.category.groupName = this.categoriesGroup[0].groupName;
-      // this.category.id = this.categoriesGroup[0].id;
     });
-    // this.reg = cantons[0];
     this.all = true;
 
     this.subscriptionLang = this.translateBackend
@@ -136,15 +134,25 @@ export class FiltersComponent implements OnInit, OnDestroy {
   findCategory(event: any): void {
     this.subCategoriesGroup = [];
     this.category.id = Number(event.target.value);
+
+    let index = event.target.options.selectedIndex;
+
+    this.category.groupName = event.target.options[index].label;
+
     // tslint:disable-next-line:no-shadowed-variable
     this.adsService
       .getAllAdsSubGroup(this.category.id)
       .subscribe((response) => {
         this.subCategoriesGroup = response;
-        // this.subCategory.subGroupName = this.subCategoriesGroup[0].subGroupName;
-        if (this.subCategory.id)
-          this.subCategory.id = this.subCategoriesGroup[0].id;
       });
+  }
+
+  findSubCategory(event: any): void {
+    this.subCategory.id = Number(event.target.value);
+
+    let index = event.target.options.selectedIndex;
+
+    this.subCategory.subGroupName = event.target.options[index].label;
   }
 
   getCanton(event: any): void {
@@ -168,6 +176,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
         urgentSales: this.urgentSales,
         adsGroupId: this.category.id,
         subCategory: this.subCategory.id,
+        pageNumber: this.pageNumber,
       };
       this.adsService.getAdsByParamToFilter(this.filterAd).subscribe((x) => {
         if (x.length < 1) {

@@ -34,7 +34,7 @@ export class AdsService {
 
   getAdsByParamToFilter(data: FilterAds): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${data.adsGroupId}&adssubgroup=${data.subCategory}&fixedPrice=${data.fixedPrice}&freeDelivery=${data.freeDelivery}&fromPrice=${data.fromPrice}&productWarranty=${data.productWarranty}&region=${data.region}&toPrice=${data.toPrice}&urgentSales=${data.urgentSales}`
+      `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${data.adsGroupId}&adssubgroup=${data.subCategory}&fixedPrice=${data.fixedPrice}&freeDelivery=${data.freeDelivery}&fromPrice=${data.fromPrice}&productWarranty=${data.productWarranty}&region=${data.region}&toPrice=${data.toPrice}&urgentSales=${data.urgentSales}&pageNumber=${data.pageNumber}`
     );
   }
 
@@ -129,6 +129,7 @@ export class AdsService {
     let query = new HttpParams();
     query = query.append('status', data.status);
     query = query.append('userId', data.userId.toString());
+    query = query.append('pageNumber', data.pageNumber.toString());
     return this.http.get<Ads>(`${this.baseUrl}/mybrocki/ads/filter?${query}`);
   }
 

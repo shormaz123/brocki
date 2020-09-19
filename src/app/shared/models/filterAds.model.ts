@@ -9,4 +9,5 @@ export interface FilterAds {
   urgentSales?: boolean;
   adsGroupId: any;
   subCategory: number;
+  pageNumber: number;
 }

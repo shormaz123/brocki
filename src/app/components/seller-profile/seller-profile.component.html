@@ -40,8 +40,8 @@
           </div>
         </div>
         <div class="boxes">
-          <div class="iconBox">
-            <div class="phoneImage">
+          <div class="iconBox" (click)="phonesOfSeller()">
+            <div class="phoneImage phoneImage--margin">
               <div
                 class="photo"
                 [inlineSVG]="
@@ -49,7 +49,7 @@
                 "
               ></div>
             </div>
-            <div class="phone">
+            <div class="phone" *ngIf="sellerPhones">
               <div>{{ sellerPhone }}</div>
               <div>{{ sellerMobile }}</div>
             </div>
