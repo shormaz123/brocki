@@ -73,7 +73,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   currentLang = 'de';
   subscriptionLang: Subscription;
   nullValue = null;
-  pageNumber: number = 16;
+  pageNumber: number = 1;
 
   language: string;
 
