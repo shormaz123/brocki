@@ -10,7 +10,7 @@
         class="form-control"
         (change)="getCanton($event)"
       >
-        <option [value]="">
+        <option [value]="" selected disabled>
           {{ 'translate.allCantons' | translate }}
         </option>
         <option *ngFor="let region of cantons">
@@ -58,6 +58,7 @@
       <span> &nbsp;{{ 'translate.to' | translate }}:&nbsp;</span>
       <input [(ngModel)]="toPrice" type="number" /> -->
       <ng5-slider
+        touched
         [(value)]="fromPrice"
         [(highValue)]="toPrice"
         [options]="options"

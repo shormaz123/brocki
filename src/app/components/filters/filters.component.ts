@@ -91,9 +91,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.language = localStorage.getItem(AuthConst.language);
-
-    this.fromPrice = 0;
-    this.toPrice = 50000;
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
     });
@@ -178,15 +175,20 @@ export class FiltersComponent implements OnInit, OnDestroy {
         subCategory: this.subCategory.id,
         pageNumber: this.pageNumber,
       };
-      this.adsService.getAdsByParamToFilter(this.filterAd).subscribe((x) => {
-        if (x.length < 1) {
-          this.error = true;
-          setTimeout(() => (this.error = false), 5000);
-          this.errorMessage = 'No available ads to filter';
-        } else {
-          this.router.navigateByUrl('/filters-ads', { state: { data: x } });
-        }
-      });
+      this.adsService
+        .getAdsByParamToFilter(this.filterAd)
+        .subscribe((filteredAds) => {
+          console.log(filteredAds);
+          if (Object.keys(filteredAds).length === 0) {
+            this.error = true;
+            setTimeout(() => (this.error = false), 5000);
+            this.errorMessage = 'No available ads to filter';
+          } else {
+            this.router.navigateByUrl('/filters-ads', {
+              state: { data: filteredAds },
+            });
+          }
+        });
     }
   }
 }
