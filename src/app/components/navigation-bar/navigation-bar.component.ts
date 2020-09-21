@@ -398,6 +398,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
                private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
+this.currentLang = localStorage.getItem(AuthConst.language)
     this.fakedCategoryId = Number(sessionStorage.getItem('category_id'))
     console.log(this.fakedCategoryId, 'fakedId');
 

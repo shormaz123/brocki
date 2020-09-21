@@ -39,24 +39,26 @@ export class AdsService {
   }
 
   getAdsByPagination(page: number): Observable<Ads[]> {
-    return this.http.get(`${this.baseUrl}/mybrocki/ads/active?page=${page}`);
+    return this.http.get(
+      `${this.baseUrl}/mybrocki/ads/filter?pageNumber=${page}&status=ACTIVE`
+    );
   }
 
   getAdsByGroupId(id: number, page: number): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${id}&pageNumber=${page}`
+      `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${id}&pageNumber=${page}&status=ACTIVE`
     );
   }
 
   getAdsdBySearch(productName: string): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/search?productName=${productName}`
+      `${this.baseUrl}/mybrocki/ads/search?productName=${productName}&status=ACTIVE`
     );
   }
 
-  getAdsBySubGroupParam(adssubgroup: number): Observable<Ads[]> {
+  getAdsBySubGroupParam(adssubgroup: number, page: number): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}`
+      `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}&pageNumber=${page}&status=ACTIVE`
     );
   }
 

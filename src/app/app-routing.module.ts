@@ -117,6 +117,10 @@ const routes: Routes = [
         canActivate: [AuthGuardService],
       },
       {
+        path: 'ads/:subGroupId/:groupId',
+        component: AdsComponent,
+      },
+      {
         path: 'site',
         component: SiteComponent,
         children: [

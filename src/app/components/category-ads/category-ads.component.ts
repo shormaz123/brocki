@@ -47,10 +47,15 @@ export class CategoryAdsComponent implements OnInit {
       });
       this.adsService.getAdsByGroupId(params.groupId, this.pageNumber).subscribe(
         response => {
-          this.favAds = response;
+          this.ads = response;
           console.log(response, 'category ads');
+          this.token = localStorage.getItem(AuthConst.token);
+          if (this.token) {
+            this.getFavoriteAds(Number(localStorage.getItem(AuthConst.userId)));
+          } else {
+            this.favAds = this.ads
+          }
     });
-      this.token = localStorage.getItem(AuthConst.token);
       this.currentLang = localStorage.getItem(AuthConst.language);
       this.subscriptionLang = this.translateBackend
       .getLanguage()
@@ -164,17 +169,19 @@ export class CategoryAdsComponent implements OnInit {
     this.userService.getFavourites(userId).subscribe((x) => {
       this.favoriteAds = x;
       this.numberOfFavorites = x.length;
+      console.log(this.numberOfFavorites, ' numberonClick')
       // Replace objects between two arrays.
       this.favAds = this.ads.map(
         (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
       );
     });
+    return this.favAds;
   }
 
   addToWishlist(adId: number) {
     this.userRequest = {
       adsId: adId,
-      userId: this.userId,
+      userId: Number(localStorage.getItem(AuthConst.userId))
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
       console.log('add update to favorite', x);
@@ -187,7 +194,7 @@ export class CategoryAdsComponent implements OnInit {
   }
 
   removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
+    this.userService.deleteUserFavourite(adId, Number(localStorage.getItem(AuthConst.userId))).subscribe((x) => {
       console.log('delete update to favorite', x);
       this.downAdNumber();
     }),
@@ -212,6 +219,7 @@ export class CategoryAdsComponent implements OnInit {
   }
 
   downAdNumber() {
+
     this.numberOfFavorites = this.numberOfFavorites - 1;
     this.sendNumberOfFavorites(this.numberOfFavorites);
   }

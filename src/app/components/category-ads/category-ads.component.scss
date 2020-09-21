@@ -1,4 +1,5 @@
 @import '../../../scss/variables';
+@import '../../../scss/mixin.scss';
 * {
     color: $darkgrey;
     outline: none;
@@ -71,197 +72,7 @@
     }
 }
 
-.bodySuggestions2 {
-    margin-bottom: 50px;
-    margin-bottom: 50px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    display: flex;
-    width: 70% !important;
-    img {
-        width: 100%;
-    }
-}
-
-.pricetag {
-    display: flex;
-    justify-content: center;
-    width: fit-content;
-    color: white;
-    padding-left: 5px;
-    background-color: $red;
-    padding-right: 5px;
-    border-radius: 15px;
-}
-
-.ui-card-title {
-    font-size: 11pt;
-    font-weight: bold;
-    margin-bottom: 0.5em;
-    overflow: auto;
-    height: auto;
-}
-
-.footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 10px;
-    align-items: center;
-}
-
-.image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 230px;
-    overflow: hidden;
-    img {
-        max-width: fit-content;
-        display: block;
-    }
-}
-
-.cardBody {
-    text-align: center;
-    display: inline-block;
-    width: 98%;
-    white-space: nowrap;
-    overflow: hidden!important;
-    text-overflow: ellipsis;
-    justify-content: center;
-}
-
-.description {
-    display: block;
-    max-width: 98%;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-}
-
-.lineCard {
-    display: flex;
-    height: auto;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-evenly;
-    margin-bottom: 50px;
-    flex-wrap: wrap;
-    img {
-        width: 100%;
-    }
-}
-
-.line {
-    height: 5px;
-    width: 100%;
-    border: 0 0 0 5px solid;
-    border: 0 0 5px 0;
-    border-bottom: 2px solid $lightgray-second;
-    margin-bottom: 50px;
-    margin-top: 50px;
-}
-
-p-carousel {
-    width: 90% !important;
-}
-
-.ui-card-title {
-    font-size: 11pt;
-    font-weight: bold;
-    margin-bottom: 0.5em;
-    overflow: auto;
-    height: auto;
-}
-
-.footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 230px;
-}
-
-.description {
-    display: block;
-    max-width: 98%;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-}
-
-.lineCard {
-    display: flex;
-    height: auto;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-evenly;
-    margin-bottom: 50px;
-}
-
-.line {
-    height: 5px;
-    width: 100%;
-    border: 0 0 0 5px solid;
-    border: 0 0 5px 0;
-    border-bottom: 2px solid $lightgray-second;
-    margin-bottom: 50px;
-}
-
-p-carousel {
-    width: 90% !important;
-}
-
-.mainContainer {
-    display: flex;
-    flex-direction: row;
-    .sidebar {
-        width: auto;
-    }
-}
-
-//DropDown on SideBar
-
-/* Fixed sidenav, full height */
-
-.sidenav {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: $red;
-    overflow-x: hidden;
-    padding-top: 20px;
-    .title {
-        text-align: center;
-        color: white;
-    }
-    button {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
-
-.adLine {
-    border: 0 0 1px 0;
-    border-bottom: 1px solid $red;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    width: 70%;
-    height: 1px;
-    margin: 0px auto;
-}
-
+//
 .cardHover {
     box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
     transition: all 0.5s ease;
@@ -351,4 +162,105 @@ button {
     h1 {
         color: $red;
     }
+}
+
+//@at-root
+.bodySuggestions2 {
+    margin-bottom: 50px;
+    width: 1024px;
+    img {
+        width: 100%;
+    }
+}
+
+.pricetag {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    color: white;
+    padding-left: 5px;
+    background-color: $red;
+    padding-right: 5px;
+    border-radius: 15px;
+}
+
+.ui-card-title {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    overflow: auto;
+    height: auto;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+    @include rwd(1480) {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    @include rwd(1350) {
+        width: 100%;
+    }
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 230px;
+    overflow: hidden;
+    img {
+        max-width: fit-content;
+        display: block;
+    }
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 60px;
+    @include rwd(1680) {
+        width: 100%;
+    }
+    @include rwd(1350) {
+        width: 100%;
+    }
+}
+
+.description {
+    display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.lineCard {
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    img {
+        width: 100%;
+    }
+}
+
+.line {
+    height: 5px;
+    width: 100%;
+    border: 0 0 0 5px solid;
+    border: 0 0 5px 0;
+    border-bottom: 2px solid $lightgray-second;
+    margin-bottom: 50px;
+    margin-top: 50px;
 }

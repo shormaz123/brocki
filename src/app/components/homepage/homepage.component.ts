@@ -43,7 +43,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.token = localStorage.getItem(AuthConst.token);
    this.userId = Number(localStorage.getItem('brocki_id'));
-
     this.adsService.getAdsByPagination(this.paginationNumber).subscribe((response) => {
         console.log(response, 'response')
         this.ads = response;
