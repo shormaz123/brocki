@@ -65,11 +65,14 @@ export class EmailComponent implements OnInit {
       toSender: boolean;
       ad?: Ads;
     }
+
     const email = new sendEmail();
+
     if (this.emailForm.invalid) {
       this.toastr.warning('Please fill in all fields');
       return;
     }
+
     email.ad = this.adForEmail;
     email.name = this.emailForm.value.name;
     email.email = this.emailForm.value.email;
@@ -77,7 +80,6 @@ export class EmailComponent implements OnInit {
     email.phone = this.emailForm.value.phone;
     email.message = this.emailForm.value.message;
     email.toSender = this.toSender;
-    console.log(email);
 
     this.toastr.success('An email has been sent');
 

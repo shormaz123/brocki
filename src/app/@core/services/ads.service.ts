@@ -32,10 +32,53 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/auth/ads`);
   }
 
-  getAdsByParamToFilter(data: FilterAds): Observable<Ads[]> {
-    return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${data.adsGroupId}&adssubgroup=${data.subCategory}&fixedPrice=${data.fixedPrice}&freeDelivery=${data.freeDelivery}&fromPrice=${data.fromPrice}&productWarranty=${data.productWarranty}&region=${data.region}&toPrice=${data.toPrice}&urgentSales=${data.urgentSales}`
-    );
+  getAdsByParamToFilter(data: FilterAds) {
+    let params = new HttpParams();
+
+    if (data.region) {
+      params = params.append('region', data.region.toString());
+    }
+
+    if (data.adsGroupId) {
+      params = params.append('adsGroupId', data.adsGroupId.toString());
+    }
+
+    if (data.subCategory) {
+      params = params.append('subCategory', data.subCategory.toString());
+    }
+
+    if (data.fromPrice) {
+      params = params.append('fromPrice', data.fromPrice.toString());
+    }
+
+    if (data.toPrice) {
+      params = params.append('toPrice', data.toPrice.toString());
+    }
+
+    if (data.fixedPrice) {
+      params = params.append('fixedPrice', data.fixedPrice.toString());
+    }
+
+    if (data.freeDelivery) {
+      params = params.append('freeDelivery', data.freeDelivery.toString());
+    }
+
+    if (data.productWarranty) {
+      params = params.append(
+        'productWarranty',
+        data.productWarranty.toString()
+      );
+    }
+
+    if (data.urgentSales) {
+      params = params.append('urgentSales', data.urgentSales.toString());
+    }
+
+    params = params.append('pageNumber', data.pageNumber.toString());
+
+    return this.httpClient.get(`${this.baseUrl}/mybrocki/ads/filter`, {
+      params,
+    });
   }
 
   getAdsByPagination(page: number): Observable<Ads[]> {
@@ -47,6 +90,16 @@ export class AdsService {
   getAdsByGroupId(id: number, page: number): Observable<Ads[]> {
     return this.http.get(
       `${this.baseUrl}/mybrocki/ads/filter?adsGroupId=${id}&pageNumber=${page}&status=ACTIVE`
+    );
+  }
+
+  getSoldAdsPAgination(
+    id: number,
+    page: number,
+    status: string
+  ): Observable<Ads[]> {
+    return this.http.get(
+      `${this.baseUrl}/mybrocki/ads/filter?userId=${id}&pageNumber=${page}&status=${status}`
     );
   }
 
@@ -131,6 +184,7 @@ export class AdsService {
     let query = new HttpParams();
     query = query.append('status', data.status);
     query = query.append('userId', data.userId.toString());
+    query = query.append('pageNumber', data.pageNumber.toString());
     return this.http.get<Ads>(`${this.baseUrl}/mybrocki/ads/filter?${query}`);
   }
 

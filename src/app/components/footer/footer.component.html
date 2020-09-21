@@ -12,7 +12,7 @@
         <a
           href="http://www.mio-software.com/"
           target="_blank"
-          style="color: #4d4d4d;"
+          style="color: #4d4d4d"
           >{{ 'translate.aboutUs' | translate }}</a
         >
       </div>
@@ -56,7 +56,7 @@
       <p class="footer__copyright-color">
         {{ 'translate.copyrightOne' | translate }}<br />
         {{ 'translate.copyrightTwo' | translate }}
-        <span style="color: #d62b1f; align-items: center;">
+        <span style="color: #d62b1f; align-items: center">
           {{ 'translate.copyrightThree' | translate }}
         </span>
       </p>
@@ -65,12 +65,13 @@
   <div class="footer__links footer__links--end">
     <p class="footer__email-text">
       {{ 'translate.minibrockiDescriptionOne' | translate }}
-      <span style="color: #d62b1f; cursor: pointer;"
+      <span style="color: #d62b1f; cursor: pointer"
         >{{ 'translate.minibrockiDescriptionTwo' | translate }}️ </span
       >{{ 'translate.minibrockiDescriptionThree' | translate }}
     </p>
     <div class="footer__email">
       <img
+        (click)="goTo('contact-us')"
         class="footer__icon footer__icon--email"
         src="assets/images/footer/mail icon.png"
       />

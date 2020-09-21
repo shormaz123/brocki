@@ -177,6 +177,8 @@ export class UserComponent implements OnInit {
       const soldAds = new AdsParam();
       soldAds.status = UserStatus.SOLD;
       soldAds.userId = this.userId;
+      soldAds.pageNumber = 0;
+      soldAds.pageNumber += 1;
       this.adsService.getSoldAds(soldAds).subscribe((res) => {
         this.soldProducts = [];
         this.soldProducts.push(res);

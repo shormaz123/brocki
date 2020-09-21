@@ -20,6 +20,7 @@ export class SellerProfileComponent implements OnInit {
   info: boolean;
   guest: boolean;
   email: boolean = false;
+  sellerPhones: boolean;
   sellerId;
   seller;
   sellerCompany: string;
@@ -113,7 +114,10 @@ export class SellerProfileComponent implements OnInit {
       const soldAds = new AdsParam();
       soldAds.status = UserStatus.SOLD;
       soldAds.userId = this.sellerindex;
+      soldAds.pageNumber = 0;
+      soldAds.pageNumber += 1;
       this.adsService.getSoldAds(soldAds).subscribe((res) => {
+        this.soldProducts = [];
         this.soldProducts.push(res);
         if (this.soldProducts[0].length === 0) {
           this.adsSold = false;
@@ -173,6 +177,10 @@ export class SellerProfileComponent implements OnInit {
   guestBook(): void {
     this.guest = false;
     this.active = true;
+  }
+
+  phonesOfSeller(): void {
+    this.sellerPhones = !this.sellerPhones;
   }
 
   scroll(): void {

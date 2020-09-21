@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" (wheel)="onMouseWheel($event)">
   <div
     class="ads"
     [ngStyle]="ads === true ? { height: '0px' } : { height: '260px' }"
@@ -35,5 +35,10 @@
         {{ 'translate.sold' | translate }}
       </div>
     </div>
+  </div>
+  <div class="increaseButtonClass" *ngIf="disableButton">
+    <button class="increaseButton" mat-button (click)="increaseShow()">
+      {{ 'translate.showMore' | translate }}
+    </button>
   </div>
 </div>

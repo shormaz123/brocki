@@ -148,3 +148,16 @@
     }
   }
 }
+
+.increaseButtonClass {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .increaseButton {
+    background-color: $red;
+    color: $lightgray-second;
+    margin-top: 50px;
+    border-radius: 15px;
+  }
+}

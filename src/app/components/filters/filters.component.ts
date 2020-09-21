@@ -26,10 +26,12 @@ import { AuthConst } from '../../@core/consts/auth.const';
 })
 export class FiltersComponent implements OnInit, OnDestroy {
   fromPrice: number = 0;
-  toPrice: number = 50000;
+  toPrice: number = 999999;
   options: Options = {
     floor: 0,
-    ceil: 50000,
+    ceil: 999999,
+    step: 1000,
+
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
@@ -73,6 +75,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   currentLang = 'de';
   subscriptionLang: Subscription;
   nullValue = null;
+  pageNumber: number = 1;
 
   language: string;
 
@@ -90,15 +93,9 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.language = localStorage.getItem(AuthConst.language);
-
-    this.fromPrice = 0;
-    this.toPrice = 50000;
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
-      //   this.category.groupName = this.categoriesGroup[0].groupName;
-      // this.category.id = this.categoriesGroup[0].id;
     });
-    // this.reg = cantons[0];
     this.all = true;
 
     this.subscriptionLang = this.translateBackend
@@ -136,15 +133,25 @@ export class FiltersComponent implements OnInit, OnDestroy {
   findCategory(event: any): void {
     this.subCategoriesGroup = [];
     this.category.id = Number(event.target.value);
+
+    let index = event.target.options.selectedIndex;
+
+    this.category.groupName = event.target.options[index].label;
+
     // tslint:disable-next-line:no-shadowed-variable
     this.adsService
       .getAllAdsSubGroup(this.category.id)
       .subscribe((response) => {
         this.subCategoriesGroup = response;
-        // this.subCategory.subGroupName = this.subCategoriesGroup[0].subGroupName;
-        if (this.subCategory.id)
-          this.subCategory.id = this.subCategoriesGroup[0].id;
       });
+  }
+
+  findSubCategory(event: any): void {
+    this.subCategory.id = Number(event.target.value);
+
+    let index = event.target.options.selectedIndex;
+
+    this.subCategory.subGroupName = event.target.options[index].label;
   }
 
   getCanton(event: any): void {
@@ -168,16 +175,22 @@ export class FiltersComponent implements OnInit, OnDestroy {
         urgentSales: this.urgentSales,
         adsGroupId: this.category.id,
         subCategory: this.subCategory.id,
+        pageNumber: this.pageNumber,
       };
-      this.adsService.getAdsByParamToFilter(this.filterAd).subscribe((x) => {
-        if (x.length < 1) {
-          this.error = true;
-          setTimeout(() => (this.error = false), 5000);
-          this.errorMessage = 'No available ads to filter';
-        } else {
-          this.router.navigateByUrl('/filters-ads', { state: { data: x } });
-        }
-      });
+
+      this.adsService
+        .getAdsByParamToFilter(this.filterAd)
+        .subscribe((filteredAds) => {
+          if (Object.keys(filteredAds).length === 0) {
+            this.error = true;
+            setTimeout(() => (this.error = false), 5000);
+            this.errorMessage = 'No available ads to filter';
+          } else {
+            this.router.navigateByUrl('/filters-ads', {
+              state: { data: filteredAds },
+            });
+          }
+        });
     }
   }
 }

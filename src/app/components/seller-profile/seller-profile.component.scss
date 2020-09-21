@@ -164,6 +164,7 @@
   border-radius: 35px;
   height: 50px;
   align-items: center;
+  justify-content: center;
   color: $white;
   padding: 2px;
   width: 220px;
@@ -183,6 +184,10 @@
 
 .phoneImage {
   border-radius: 50%;
+
+  &--margin {
+    margin: 0 14px 0 0;
+  }
 }
 
 .phone {

@@ -1,16 +1,14 @@
 <div class="loginContainer">
-  <div >
+  <div style="padding: 0 0 25px 0">
     <span class="title">{{ 'translate.signin' | translate }}</span>
   </div>
   <div class="data">
     <div class="labels">
-      <span>{{ 'translate.email' | translate }}</span>
+      <div class="label">{{ 'translate.email' | translate }}</div>
       <input [(ngModel)]="email" />
-
     </div>
     <div class="input">
-      <span>{{ 'translate.password' | translate }}</span>
-
+      <div class="label">{{ 'translate.password' | translate }}</div>
       <input [(ngModel)]="password" type="password" />
     </div>
   </div>

@@ -1,8 +1,9 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixin.scss';
+
 * {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16pt;
+  font-size: 20px;
   color: #959595;
 }
 
@@ -16,17 +17,21 @@
     width: 985px;
     height: 320px;
   }
+
   &__image {
     padding: 7px 15px 8px 0;
   }
+
   &__list {
     display: flex;
     flex: 1;
   }
+
   &__text {
     cursor: pointer;
     color: $darkgrey;
     width: 250px;
+
     &:hover {
       color: black;
       width: 260px;
@@ -38,24 +43,24 @@
       padding-left: 11px;
     }
   }
+
   &__links {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 325px;
+
     &--center {
       align-items: center;
       flex: 1;
     }
+
     &--end {
       align-items: flex-end;
       flex: 1;
     }
   }
-  &__logo {
-    width: 180px;
-    height: 80px;
-  }
+
   &__icons {
     display: flex;
     justify-content: space-evenly;
@@ -64,13 +69,14 @@
   }
 
   &__logo {
-    width: 175px;
+    width: 150px;
     height: 45px;
   }
 
   &__icon {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
+
     &:hover {
       -ms-transform: scale(1.5);
       /* IE 9 */
@@ -79,9 +85,11 @@
       transform: scale(1.2);
       cursor: pointer;
     }
+
     &--email {
       width: 30px;
       height: 30px;
+
       &:hover {
         -ms-transform: scale(1);
         /* IE 9 */
@@ -92,28 +100,33 @@
       }
     }
   }
+
   &__copyright {
     width: 290px;
     text-align: center;
   }
+
   &__copyright-color {
     font-size: 13px;
     margin: 0;
   }
+
   &__email {
     display: flex;
     padding: 0px 43px 5px 0;
     width: 276px;
   }
+
   &__email-text {
     margin: 0 0 5px 0;
-    font-size: 16px;
+    font-size: 15px;
     width: 276px;
     text-align: justify;
   }
+
   &__email-email {
     margin: 0;
     line-height: 28px;
-    font-size: 16px;
+    font-size: 15px;
   }
 }

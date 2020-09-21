@@ -10,7 +10,7 @@
         class="form-control"
         (change)="getCanton($event)"
       >
-        <option [value]="">
+        <option [value]="" selected disabled>
           {{ 'translate.allCantons' | translate }}
         </option>
         <option *ngFor="let region of cantons">
@@ -35,7 +35,11 @@
     </div>
     <div class="location" style="padding-bottom: 25px">
       <img src="../../../assets/icon3 2.png" />
-      <select name="contactMethod" class="form-control">
+      <select
+        name="contactMethod"
+        class="form-control"
+        (change)="findSubCategory($event)"
+      >
         <option value="">
           {{ 'translate.selectSubCategory' | translate }}
         </option>

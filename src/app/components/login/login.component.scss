@@ -24,6 +24,7 @@
   display: flex;
   justify-content: inherit;
   flex-direction: column;
+  padding: 0 0 15px 0;
 }
 
 .input {
@@ -43,10 +44,15 @@
 }
 
 input {
-  border: 1px solid darkgray;
-  border-radius: 15px;
-  padding-left: 10px;
+  border: 1px solid $border-gray;
+  border-radius: 25px;
+  padding-left: 15px;
   font-size: 20px;
+  height: 41px;
+}
+
+.label {
+  padding: 0 0 0 15px;
 }
 
 input:focus,
@@ -60,7 +66,7 @@ button:focus {
   margin-top: 20px;
   background-color: $red;
   height: 35px;
-  width: 150px;
+  width: 180px;
   border: 1px solid;
   border-radius: 15px;
   color: white;
@@ -97,13 +103,15 @@ button:focus {
 
 .signUpButton {
   background-color: white;
-  border: 1px solid;
+  border: 1px solid $border-gray;
   border-radius: 15px;
   color: $darkgrey;
   font-size: 17px;
   cursor: pointer;
   display: flex;
   align-items: center;
+  padding: 2px 30px;
+
   &:hover {
     color: $red;
   }
@@ -112,6 +120,7 @@ button:focus {
 .forPassword {
   cursor: pointer;
   color: $red;
+
   &:hover {
     text-decoration: underline;
   }

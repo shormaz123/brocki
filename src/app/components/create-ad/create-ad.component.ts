@@ -9,7 +9,7 @@ import { TranslateServiceRest } from '../../@core/services/translateREST.service
 import { Subscription } from 'rxjs';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
-import {NzModalService} from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-create-ad',
@@ -36,7 +36,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     private adsService: AdsService,
     private translateBackend: TranslateServiceRest,
     private toastr: ToastrService,
-    private modal: NzModalService,
+    private modal: NzModalService
   ) {}
 
   ngOnInit() {
@@ -169,7 +169,9 @@ export class CreateAdComponent implements OnInit, OnDestroy {
           create.urgentSales = false;
         }
         create.price = this.roundUp(
-          Number((Math.round(this.createForm.value.price * 100) / 100).toFixed(2)),
+          Number(
+            (Math.round(this.createForm.value.price * 100) / 100).toFixed(2)
+          ),
           1
         );
         if (create.price === 0) {
