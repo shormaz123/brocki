@@ -37,10 +37,6 @@ export class AccountSoldComponent implements OnChanges {
       });
   }
 
-  toTop() {
-    document.getElementById('content').scrollIntoView();
-  }
-
   disableScrolling() {
     const x = window.scrollX;
     const y = window.scrollY;

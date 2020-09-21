@@ -114,8 +114,10 @@ export class SellerProfileComponent implements OnInit {
       const soldAds = new AdsParam();
       soldAds.status = UserStatus.SOLD;
       soldAds.userId = this.sellerindex;
-      soldAds.pageNumber = 1;
+      soldAds.pageNumber = 0;
+      soldAds.pageNumber += 1;
       this.adsService.getSoldAds(soldAds).subscribe((res) => {
+        this.soldProducts = [];
         this.soldProducts.push(res);
         if (this.soldProducts[0].length === 0) {
           this.adsSold = false;
