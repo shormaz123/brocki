@@ -1,4 +1,5 @@
 import { Component, OnChanges, Input } from '@angular/core';
+import { AdsService } from '../../../@core/services/ads.service';
 
 @Component({
   selector: 'app-account-sold',
@@ -9,7 +10,11 @@ export class AccountSoldComponent implements OnChanges {
   @Input() ads: boolean;
   @Input() soldProducts: Array<any> = [];
 
-  constructor() {}
+  paginationNumber: number = 1;
+  status: string;
+  userId: number;
+
+  constructor(private adsService: AdsService) {}
 
   ngOnChanges() {}
 
@@ -19,5 +24,38 @@ export class AccountSoldComponent implements OnChanges {
     } else {
       return { height: '100' };
     }
+  }
+
+  increaseShow() {
+    (this.paginationNumber += 1), (this.status = 'SOLD'), (this.userId = 265);
+    this.adsService
+      .getSoldAdsPAgination(this.userId, this.paginationNumber, this.status)
+      .subscribe((response) => {
+        const soldAds = response;
+        this.soldProducts[0].push(...soldAds);
+        this.disableScrolling();
+      });
+  }
+
+  toTop() {
+    document.getElementById('content').scrollIntoView();
+  }
+
+  disableScrolling() {
+    const x = window.scrollX;
+    const y = window.scrollY;
+    // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function () {
+      window.scrollTo(x, y);
+    };
+  }
+
+  enableScrolling() {
+    // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function () {};
+  }
+
+  onMouseWheel(e) {
+    this.enableScrolling();
   }
 }

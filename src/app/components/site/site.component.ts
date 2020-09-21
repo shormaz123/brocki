@@ -3,8 +3,9 @@ import {
   OnInit,
   ChangeDetectorRef,
   ViewEncapsulation,
-
-  OnDestroy, ViewChild, ElementRef,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { AdsService } from '../../@core/services/ads.service';
 import { Ads } from '../../shared/models/ads.model';
@@ -14,9 +15,14 @@ import { User } from '../../shared/models/user.model';
 import { HelpersService } from '../..//@core/services/helpers.service';
 import { Subscription, Observable } from 'rxjs';
 import { AdsParam } from '../../shared/models/adParams.model';
-import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  ParamMap,
+  Router,
+} from '@angular/router';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
-import {TranslateServiceRest} from '../../@core/services/translateREST.service';
+import { TranslateServiceRest } from '../../@core/services/translateREST.service';
 
 @Component({
   selector: 'app-site',
@@ -53,8 +59,8 @@ export class SiteComponent implements OnInit, OnDestroy {
   randomAdsB;
   paginationAds: Ads[];
 
-  @ViewChild('panel', { read: ElementRef, static: false }) public panel: ElementRef<any>;
-
+  @ViewChild('panel', { read: ElementRef, static: false })
+  public panel: ElementRef<any>;
 
   state;
   selected: boolean;
@@ -83,7 +89,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   public categories = [
     {
       id: 1,
-      title:  {
+      title: {
         de: 'Antiquitäten & Kunst',
         en: 'Antiques & Art',
         fr: 'Antiquités et Art',
@@ -96,7 +102,7 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 15,
-      title:  {
+      title: {
         de: 'Bücher und Zeitschriften',
         en: 'Books and Magazines',
         fr: 'Livres et magazines',
@@ -108,7 +114,7 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 9,
-      title:  {
+      title: {
         de: 'CDs',
         en: 'CDs',
         fr: 'CDs',
@@ -120,7 +126,7 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 28,
-      title:  {
+      title: {
         de: 'Sammlung',
         en: 'Collection',
         fr: 'Collection',
@@ -132,7 +138,7 @@ export class SiteComponent implements OnInit, OnDestroy {
     },
     {
       id: 3,
-      title:  {
+      title: {
         de: 'Gewerbe & Handwerk',
         en: 'Trade & Craft',
         fr: 'Commerce et artisanat',
@@ -434,7 +440,6 @@ export class SiteComponent implements OnInit, OnDestroy {
   paginationNumber = 1;
   refresh?;
 
-
   constructor(
     private cdr: ChangeDetectorRef,
     private adsService: AdsService,
@@ -443,8 +448,7 @@ export class SiteComponent implements OnInit, OnDestroy {
     private router: Router,
     private translateBackend: TranslateServiceRest,
     private activatedRoute: ActivatedRoute
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.queryParamMap.subscribe((paramMap: ParamMap) => {
@@ -467,26 +471,39 @@ export class SiteComponent implements OnInit, OnDestroy {
     this.selectCategory(1);
     if (this.filteredAds.length > 0) {
       this.ads = this.filteredAds;
-      this.randomAdsA = this.shuffle(this.filteredAds.slice(0, Math.floor(this.filteredAds.length / 2)));
-      this.randomAdsB = this.shuffle(this.filteredAds.slice(Math.floor(this.filteredAds.length / 2), this.filteredAds.length ));
+      this.randomAdsA = this.shuffle(
+        this.filteredAds.slice(0, Math.floor(this.filteredAds.length / 2))
+      );
+      this.randomAdsB = this.shuffle(
+        this.filteredAds.slice(
+          Math.floor(this.filteredAds.length / 2),
+          this.filteredAds.length
+        )
+      );
       if (this.token) {
         this.getUserAndFavAd();
       } else {
         this.favAds = this.ads;
       }
     } else {
-      this.adsService.getAdsByPagination(this.paginationNumber).subscribe((response) => {
-        this.ads = response;
-        console.log('ads', this.ads);
-        this.randomAdsA = this.shuffle(this.ads.slice(0, Math.floor(this.ads.length / 2)));
-        this.randomAdsB = this.shuffle(this.ads.slice(Math.floor(this.ads.length / 2), this.ads.length ));
-        if (this.token) {
-          this.getUserAndFavAd();
-        } else {
-          this.favAds = this.ads;
-          console.log('favAds', this.favAds);
-        }
-      });
+      this.adsService
+        .getAdsByPagination(this.paginationNumber)
+        .subscribe((response) => {
+          this.ads = response;
+          console.log('ads', this.ads);
+          this.randomAdsA = this.shuffle(
+            this.ads.slice(0, Math.floor(this.ads.length / 2))
+          );
+          this.randomAdsB = this.shuffle(
+            this.ads.slice(Math.floor(this.ads.length / 2), this.ads.length)
+          );
+          if (this.token) {
+            this.getUserAndFavAd();
+          } else {
+            this.favAds = this.ads;
+            console.log('favAds', this.favAds);
+          }
+        });
     }
     this.numberOfFavs = this.helpersService.$numOfFavs.subscribe((response) => {
       this.getNumOfFavs();
@@ -529,9 +546,9 @@ export class SiteComponent implements OnInit, OnDestroy {
   }
 
   getUserAndFavAd() {
-    this.userService.getUser().subscribe( response => {
+    this.userService.getUser().subscribe((response) => {
       this.userId = response.id;
-      console.log(this.userId)
+      console.log(this.userId);
       this.userService.getFavourites(response.id).subscribe((x) => {
         this.favoriteAds = x;
         this.numberOfFavorites = x.length;
@@ -540,11 +557,17 @@ export class SiteComponent implements OnInit, OnDestroy {
         this.favAds = this.ads.map(
           (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
         );
-        this.randomAdsA = this.shuffle(this.favAds.slice(0, Math.floor(this.favAds.length / 2)));
-        this.randomAdsB = this.shuffle(this.favAds.slice(Math.floor(this.favAds.length / 2), this.favAds.length ));
+        this.randomAdsA = this.shuffle(
+          this.favAds.slice(0, Math.floor(this.favAds.length / 2))
+        );
+        this.randomAdsB = this.shuffle(
+          this.favAds.slice(
+            Math.floor(this.favAds.length / 2),
+            this.favAds.length
+          )
+        );
       });
     });
-
   }
 
   getNumOfFavs() {
@@ -573,15 +596,24 @@ export class SiteComponent implements OnInit, OnDestroy {
     if (imageToShow) {
       imageToShow.imageTo = imageToShow.selectedImage;
     }
-    this.adsService.getAdsByGroupId(id, this.paginationNumber).subscribe( x => {
-      this.favAds = x
-      if (this.token) {
-        this.getUserAndFavAd();
-      } else {
-        this.randomAdsA = this.shuffle(this.favAds.slice(0, Math.floor(this.favAds.length / 2)));
-        this.randomAdsB = this.shuffle(this.favAds.slice(Math.floor(this.favAds.length / 2), this.favAds.length ));
-      }
-    });
+    this.adsService
+      .getAdsByGroupId(id, this.paginationNumber)
+      .subscribe((x) => {
+        this.favAds = x;
+        if (this.token) {
+          this.getUserAndFavAd();
+        } else {
+          this.randomAdsA = this.shuffle(
+            this.favAds.slice(0, Math.floor(this.favAds.length / 2))
+          );
+          this.randomAdsB = this.shuffle(
+            this.favAds.slice(
+              Math.floor(this.favAds.length / 2),
+              this.favAds.length
+            )
+          );
+        }
+      });
   }
 
   shuffle(array) {
@@ -601,41 +633,42 @@ export class SiteComponent implements OnInit, OnDestroy {
     }
   }
 
-
-
   goToAd(id: number) {
     this.router.navigate(['/ad', id], { fragment: 'header' });
   }
 
-
   increaseShow() {
-    this.paginationNumber += 1,
-      this.adsService.getAdsByPagination(this.paginationNumber).subscribe( response => {
-        this.paginationAds = response;
-        console.log(this.paginationAds, this.paginationNumber);
-        if (this.token) {
-          this.favAds.push(...this.paginationAds);
-          this.disableScrolling();
-        } else {
-          this.favAds.push(...this.paginationAds);
-          this.disableScrolling();
-        }
-        // this.enableScrolling()
-      });
+    (this.paginationNumber += 1),
+      this.adsService
+        .getAdsByPagination(this.paginationNumber)
+        .subscribe((response) => {
+          this.paginationAds = response;
+          console.log(this.paginationAds, this.paginationNumber);
+          if (this.token) {
+            this.favAds.push(...this.paginationAds);
+            this.disableScrolling();
+          } else {
+            this.favAds.push(...this.paginationAds);
+            this.disableScrolling();
+          }
+          // this.enableScrolling()
+        });
 
     // this.panel.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'start' });
   }
 
-   disableScrolling() {
+  disableScrolling() {
     const x = window.scrollX;
     const y = window.scrollY;
-     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function() {window.scrollTo(x, y); };
+    // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function () {
+      window.scrollTo(x, y);
+    };
   }
 
-   enableScrolling() {
-     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function() {};
+  enableScrolling() {
+    // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function () {};
   }
 
   addToWishlist(adId: number) {
@@ -662,9 +695,4 @@ export class SiteComponent implements OnInit, OnDestroy {
       };
     this.helpersService.$numOfFavs.next();
   }
-
-
-
-
-
 }

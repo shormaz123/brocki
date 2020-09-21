@@ -91,6 +91,16 @@ export class AdsService {
     );
   }
 
+  getSoldAdsPAgination(
+    id: number,
+    page: number,
+    status: string
+  ): Observable<Ads[]> {
+    return this.http.get(
+      `${this.baseUrl}/mybrocki/ads/filter?userId=${id}&pageNumber=${page}&status=${status}`
+    );
+  }
+
   getAdsdBySearch(productName: string): Observable<Ads[]> {
     return this.http.get(
       `${this.baseUrl}/mybrocki/ads/search?productName=${productName}`

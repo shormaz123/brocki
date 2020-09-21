@@ -80,7 +80,6 @@ export class EmailComponent implements OnInit {
     email.phone = this.emailForm.value.phone;
     email.message = this.emailForm.value.message;
     email.toSender = this.toSender;
-    console.log(email);
 
     this.toastr.success('An email has been sent');
 

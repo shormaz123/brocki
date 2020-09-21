@@ -178,7 +178,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
       this.adsService
         .getAdsByParamToFilter(this.filterAd)
         .subscribe((filteredAds) => {
-          console.log(filteredAds);
           if (Object.keys(filteredAds).length === 0) {
             this.error = true;
             setTimeout(() => (this.error = false), 5000);
