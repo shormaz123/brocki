@@ -439,6 +439,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   startPage: number;
   paginationNumber = 1;
   refresh?;
+  disableButton: boolean = true;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -643,6 +644,10 @@ export class SiteComponent implements OnInit, OnDestroy {
         .getAdsByPagination(this.paginationNumber)
         .subscribe((response) => {
           this.paginationAds = response;
+          console.log(this.paginationAds);
+          if (this.paginationAds.length < 16) {
+            this.disableButton = false;
+          }
           console.log(this.paginationAds, this.paginationNumber);
           if (this.token) {
             this.favAds.push(...this.paginationAds);

@@ -26,10 +26,12 @@ import { AuthConst } from '../../@core/consts/auth.const';
 })
 export class FiltersComponent implements OnInit, OnDestroy {
   fromPrice: number = 0;
-  toPrice: number = 50000;
+  toPrice: number = 999999;
   options: Options = {
     floor: 0,
-    ceil: 50000,
+    ceil: 999999,
+    step: 1000,
+
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
@@ -175,6 +177,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
         subCategory: this.subCategory.id,
         pageNumber: this.pageNumber,
       };
+
       this.adsService
         .getAdsByParamToFilter(this.filterAd)
         .subscribe((filteredAds) => {

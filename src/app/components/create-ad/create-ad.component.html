@@ -169,13 +169,13 @@
         <label class="form__label">{{ 'translate.price' | translate }}</label>
         <div class="form__price">
           <input
-            placeholder="0.05"
+            placeholder="0.00"
             step="0.05"
             class="form__input form__input--price"
             formControlName="price"
             type="text"
             NumberOnly
-            [appInputMaxLength]="10"
+            [appInputMaxLength]="6"
           />
           <p class="form__currency">CHF</p>
         </div>

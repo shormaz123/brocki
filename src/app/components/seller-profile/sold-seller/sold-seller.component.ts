@@ -14,6 +14,7 @@ export class SoldSellerComponent implements OnChanges {
   paginationNumber: number = 1;
   status: string;
   userId: number;
+  disableButton: boolean = true;
 
   constructor(private adsService: AdsService) {}
 
@@ -24,7 +25,9 @@ export class SoldSellerComponent implements OnChanges {
     this.adsService
       .getSoldAdsPAgination(this.userId, this.paginationNumber, this.status)
       .subscribe((response) => {
-        console.log(response);
+        if (response.length < 4) {
+          this.disableButton = false;
+        }
         const soldAds = response;
         this.soldProducts[0].push(...soldAds);
         this.disableScrolling();

@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-  <div class="increaseButtonClass">
+  <div class="increaseButtonClass" *ngIf="disableButton">
     <button class="increaseButton" mat-button (click)="increaseShow()">
       {{ 'translate.showMore' | translate }}
     </button>
