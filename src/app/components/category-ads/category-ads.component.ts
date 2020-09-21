@@ -23,7 +23,7 @@ export class CategoryAdsComponent implements OnInit {
   currentLang = 'de';
   favoriteAds: Ads[];
   numberOfFavorites;
-  favAds: Ads[];
+  favAds: Ads[] = [];
   ads: Ads[];
   token;
   groupId;

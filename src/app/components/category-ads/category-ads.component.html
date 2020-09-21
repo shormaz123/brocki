@@ -1,4 +1,5 @@
 <div class="mainContainer">
+
     <div class="container">
         <div class="titleContainer">
             <div class="underContainer">
@@ -7,6 +8,10 @@
       }}</span>
             </div>
         </div>
+    </div>
+    <div class="noAdsContainer" *ngIf="favAds.length === 0">
+        <h1>{{ 'translate.noAvailableAds' | translate }}
+        </h1>
     </div>
     <div class="bodySuggestions2">
         <div style="

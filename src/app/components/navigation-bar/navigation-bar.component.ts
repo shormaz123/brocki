@@ -47,7 +47,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       },
       image: '../../../assets/images/navigation/Antiquities & Art.svg',
       selectedImage:
-        '../../../assets/images/navigation/red/Antiquities & Art.png',
+        '../../../assets/images/navigation/red/Antiquities & Art.svg',
       imageTo: '',
     },
     {
@@ -59,7 +59,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Libri e riviste',
       },
       image: '../../../assets/images/navigation/Books.svg',
-      selectedImage: '../../../assets/images/navigation/red/Books.png',
+      selectedImage: '../../../assets/images/navigation/red/Books.svg',
       imageTo: '',
     },
     {
@@ -71,7 +71,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'CDs',
       },
       image: '../../../assets/images/navigation/CD.svg',
-      selectedImage: '../../../assets/images/navigation/red/CD.png',
+      selectedImage: '../../../assets/images/navigation/red/CD.svg',
       imageTo: '',
     },
     {
@@ -83,7 +83,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Collezione',
       },
       image: '../../../assets/images/navigation/Collection.svg',
-      selectedImage: '../../../assets/images/navigation/red/Collection.png',
+      selectedImage: '../../../assets/images/navigation/red/Collection.svg',
       imageTo: '',
     },
     {
@@ -95,7 +95,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Commercio e artigianato',
       },
       image: '../../../assets/images/navigation/Commercial.svg',
-      selectedImage: '../../../assets/images/navigation/red/Commercial.png',
+      selectedImage: '../../../assets/images/navigation/red/Commercial.svg',
       imageTo: '',
     },
     {
@@ -107,7 +107,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Accessori alla moda',
       },
       image: '../../../assets/images/navigation/Fashion.svg',
-      selectedImage: '../../../assets/images/navigation/red/Fashion.png',
+      selectedImage: '../../../assets/images/navigation/red/Fashion.svg',
       imageTo: '',
     },
     {
@@ -119,7 +119,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Giardino e accessori',
       },
       image: '../../../assets/images/navigation/Garden.svg',
-      selectedImage: '../../../assets/images/navigation/red/Garden.png',
+      selectedImage: '../../../assets/images/navigation/red/Garden.svg',
       imageTo: '',
     },
     {
@@ -131,7 +131,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Fatto a mano',
       },
       image: '../../../assets/images/navigation/handcrafted.svg',
-      selectedImage: '../../../assets/images/navigation/red/Handcrafted.png',
+      selectedImage: '../../../assets/images/navigation/red/Handcrafted.svg',
       imageTo: '',
     },
     {
@@ -143,7 +143,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Famiglia e vita',
       },
       image: '../../../assets/images/navigation/Household.svg',
-      selectedImage: '../../../assets/images/navigation/red/Household.png',
+      selectedImage: '../../../assets/images/navigation/red/Household.svg',
       imageTo: '',
     },
     {
@@ -155,7 +155,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Strumenti e studio',
       },
       image: '../../../assets/images/navigation/Instruments.svg',
-      selectedImage: '../../../assets/images/navigation/red/Instruments.png',
+      selectedImage: '../../../assets/images/navigation/red/Instruments.svg',
       imageTo: '',
     },
     {
@@ -167,7 +167,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Buono da usare e salvagenti',
       },
       image: '../../../assets/images/navigation/lifehacks.svg',
-      selectedImage: '../../../assets/images/navigation/red/Lifehacks.png',
+      selectedImage: '../../../assets/images/navigation/red/Lifehacks.svg',
       imageTo: '',
     },
     {
@@ -179,7 +179,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Lussuoso',
       },
       image: '../../../assets/images/navigation/luxury.svg',
-      selectedImage: '../../../assets/images/navigation/red/Luxury.png',
+      selectedImage: '../../../assets/images/navigation/red/Luxury.svg',
       imageTo: '',
     },
     {
@@ -192,7 +192,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       },
       image: '../../../assets/images/navigation/Motors & wheels.svg',
       selectedImage:
-        '../../../assets/images/navigation/red/Motors & Wheels.png',
+        '../../../assets/images/navigation/red/Motors & Wheels.svg',
       imageTo: '',
     },
     {
@@ -204,7 +204,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Forniture per ufficio e cancelleria',
       },
       image: '../../../assets/images/navigation/office.svg',
-      selectedImage: '../../../assets/images/navigation/red/Office.png',
+      selectedImage: '../../../assets/images/navigation/red/Office.svg',
       imageTo: '',
     },
     {
@@ -216,7 +216,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Prodotti per animali',
       },
       image: '../../../assets/images/navigation/Pets.svg',
-      selectedImage: '../../../assets/images/navigation/red/Pets.png',
+      selectedImage: '../../../assets/images/navigation/red/Pets.svg',
       imageTo: '',
     },
     {
@@ -228,7 +228,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Sport, hobby e tempo libero',
       },
       image: '../../../assets/images/navigation/Sport.svg',
-      selectedImage: '../../../assets/images/navigation/red/Sport.png',
+      selectedImage: '../../../assets/images/navigation/red/Sport.svg',
       imageTo: '',
     },
     {
@@ -240,7 +240,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Giocattolo',
       },
       image: '../../../assets/images/navigation/Toys.svg',
-      selectedImage: '../../../assets/images/navigation/red/Toys.png',
+      selectedImage: '../../../assets/images/navigation/red/Toys.svg',
       imageTo: '',
     },
     {
@@ -264,7 +264,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Unico',
       },
       image: '../../../assets/images/navigation/Unique.svg',
-      selectedImage: '../../../assets/images/navigation/red/Unique.png',
+      selectedImage: '../../../assets/images/navigation/red/Unique.svg',
       imageTo: '',
     },
     {
@@ -277,7 +277,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       },
       image: '../../../assets/images/navigation/Watches & Jewlery.svg',
       selectedImage:
-        '../../../assets/images/navigation/red/Watches & Jewlery.png',
+        '../../../assets/images/navigation/red/Watches & Jewlery.svg',
       imageTo: '',
     },
     {
@@ -289,7 +289,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Di legno',
       },
       image: '../../../assets/images/navigation/Wooden.svg',
-      selectedImage: '../../../assets/images/navigation/red/Wooden.png',
+      selectedImage: '../../../assets/images/navigation/red/Wooden.svg',
       imageTo: '',
     },
     {
@@ -302,7 +302,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       },
       image: '../../../assets/images/navigation/batteries & chargers.svg',
       selectedImage:
-        '../../../assets/images/navigation/red/batteries & chargers.png',
+        '../../../assets/images/navigation/red/batteries & chargers.svg',
       imageTo: '',
     },
     {
@@ -315,7 +315,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       },
       image: '../../../assets/images/navigation/knives & tools.svg',
       selectedImage:
-        '../../../assets/images/navigation/red/knives & tools 2.png',
+        '../../../assets/images/navigation/red/knives & tools 2.svg',
       imageTo: '',
     },
     {
@@ -328,7 +328,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       },
       image: '../../../assets/images/navigation/Lamps & Illuminants.svg',
       selectedImage:
-        '../../../assets/images/navigation/red/lamps & illuminants 2.png',
+        '../../../assets/images/navigation/red/lamps & illuminants 2.svg',
       imageTo: '',
     },
     {
@@ -341,7 +341,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       },
       image: '../../../assets/images/navigation/rc toy - modelling.svg',
       selectedImage:
-        '../../../assets/images/navigation/red/rc toy - modelling 2.png',
+        '../../../assets/images/navigation/red/rc toy - modelling 2.svg',
       imageTo: '',
     },
     {
@@ -354,7 +354,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       },
       image: '../../../assets/images/navigation/sold by the kg.svg',
       selectedImage:
-        '../../../assets/images/navigation/red/sold by the kg 2.png',
+        '../../../assets/images/navigation/red/sold by the kg 2.svg',
       imageTo: '',
     },
     {
@@ -367,7 +367,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       },
       image: '../../../assets/images/navigation/sold by the meter.svg',
       selectedImage:
-        '../../../assets/images/navigation/red/sold by the meter.png',
+        '../../../assets/images/navigation/red/sold by the meter.svg',
       imageTo: '',
     },
     {
@@ -379,7 +379,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Software per il computer',
       },
       image: '../../../assets/images/navigation/IT.svg',
-      selectedImage: '../../../assets/images/navigation/red/IT.png',
+      selectedImage: '../../../assets/images/navigation/red/IT.svg',
       imageTo: '',
     },
   ];
