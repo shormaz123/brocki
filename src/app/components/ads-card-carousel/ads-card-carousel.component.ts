@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {UserService} from '../../@core/services/user.service';
 import {HelpersService} from '../../@core/services/helpers.service';
 import {UserAddAdsRequest} from '../../shared/models/useraddAdsRequest.model';
@@ -6,6 +6,7 @@ import {Ads} from '../../shared/models/ads.model';
 import {AuthConst} from '../../@core/consts/auth.const';
 import { Router } from '@angular/router';
 import { NgxCarousel } from 'ngx-carousel';
+import { Subscription } from 'rxjs';
 
 
 
@@ -14,7 +15,7 @@ import { NgxCarousel } from 'ngx-carousel';
   templateUrl: './ads-card-carousel.component.html',
   styleUrls: ['./ads-card-carousel.component.scss']
 })
-export class AdsCardCarouselComponent implements OnInit, OnChanges,AfterViewInit {
+export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 
   public carouselTileItems: Array<any>;
   public carouselTile: NgxCarousel;
@@ -27,6 +28,7 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges,AfterViewInit
   @Input() favoriteNumber;
   ads: Ads[];
   numberOfFavorites: number;
+  numberOfFavs: Subscription;
 
   token;
 
@@ -36,7 +38,10 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges,AfterViewInit
   constructor(private userService: UserService, private helpersService: HelpersService, private router: Router) { }
 
   ngOnInit() {
-
+    this.numberOfFavs = this.helpersService.getNumberOfFavorites().subscribe( number => {
+      this.numberOfFavorites = number;
+      console.log(this.numberOfFavorites, 'siteNumber')
+     });
     this.token = localStorage.getItem(AuthConst.token);
     this.carouselTile = {
       grid: {xs: 2, sm: 3, md: 3, lg: 3, all: 0},
@@ -79,6 +84,9 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges,AfterViewInit
     console.log(this.ads, 'carousel ads');
   }
 
+  ngOnDestroy() {
+    this.numberOfFavs.unsubscribe();
+  }
   addToWishlist(adId: number) {
     this.userRequest = {
       adsId: adId,

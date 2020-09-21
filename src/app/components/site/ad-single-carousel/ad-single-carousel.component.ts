@@ -5,7 +5,7 @@ import {
   Input,
   AfterViewInit,
   OnChanges,
-  SimpleChanges,
+  SimpleChanges, OnDestroy
 } from '@angular/core';
 import { NguCarouselConfig } from '@ngu/carousel';
 import { NzCarouselBaseStrategy, NzCarouselComponent } from 'ng-zorro-antd';
@@ -15,13 +15,14 @@ import { UserService } from '../../../@core/services/user.service';
 import { AuthConst } from '../../../@core/consts/auth.const';
 import { HelpersService } from '../../../@core/services/helpers.service';
 import { UserAddAdsRequest } from '../../../shared/models/useraddAdsRequest.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ad-single-carousel',
   templateUrl: './ad-single-carousel.component.html',
   styleUrls: ['./ad-single-carousel.component.scss'],
 })
-export class AdSingleCarouselComponent implements OnInit, OnChanges {
+export class AdSingleCarouselComponent implements OnInit, OnChanges, OnDestroy {
   @Input() userId;
   @Input() favAds: Ads;
   @Input() favoriteNumber;
@@ -32,6 +33,7 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges {
   userRequest: UserAddAdsRequest;
   token;
   numberOfFavorites;
+  numberOfFavs: Subscription;
 
   constructor(
     private adsService: AdsService,
@@ -40,6 +42,10 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
+    this.numberOfFavs = this.helpersService.getNumberOfFavorites().subscribe( number => {
+      this.numberOfFavorites = number;
+      console.log(this.numberOfFavorites, 'siteNumber')
+     });
     this.token = localStorage.getItem(AuthConst.token);
     if (this.userId) {
       this.userService.getUser().subscribe((user) => {
@@ -54,6 +60,11 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges {
 
   pre() {
     this.myCarousel.pre();
+  }
+
+  ngOnDestroy() {
+    this.numberOfFavs.unsubscribe();
+
   }
 
   addToWishlist(adId: number) {

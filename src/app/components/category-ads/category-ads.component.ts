@@ -30,7 +30,7 @@ export class CategoryAdsComponent implements OnInit {
   userRequest: UserAddAdsRequest;
   userId;
   pageNumber = 1;
-
+  numberOfFavs: Subscription;
 
   constructor(private activatedRoute: ActivatedRoute,
               private adsService: AdsService,
@@ -67,10 +67,14 @@ export class CategoryAdsComponent implements OnInit {
         });
       });
   });
+  this.numberOfFavs = this.helpersService.getNumberOfFavorites().subscribe( number => {
+    this.numberOfFavorites = number;
+   });
 }
 
   ngOnDestroy() {
     this.subscriptionLang.unsubscribe();
+    this.numberOfFavs.unsubscribe();
   }
 
   displaySideBar() {

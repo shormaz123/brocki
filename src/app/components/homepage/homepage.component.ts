@@ -62,6 +62,9 @@ export class HomepageComponent implements OnInit, OnDestroy {
       .subscribe((message) => {
         this.currentLang = message;
       });
+      this.numberOfFavs = this.helpersService.getNumberOfFavorites().subscribe( number => {
+        this.numberOfFavorites = number;
+       });
   }
 
 
@@ -82,8 +85,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.numberOfFavs.unsubscribe();
-    // this.subscriptionLang.unsubscribe();
+    this.numberOfFavs.unsubscribe();
+    this.subscriptionLang.unsubscribe();
   }
 
   shuffle(array) {
@@ -102,12 +105,10 @@ export class HomepageComponent implements OnInit, OnDestroy {
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
       console.log('add update to favorite', x);
-
+      this.raiseAdNumber();
     }),
       (error) => {
         if (error.message = 'Unexpected end of JSON input') {
-        this.raiseAdNumber();
-
         }
         console.log('not to favorite');
       };
