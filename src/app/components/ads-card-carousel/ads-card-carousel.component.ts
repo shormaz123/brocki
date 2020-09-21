@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {UserService} from '../../@core/services/user.service';
 import {HelpersService} from '../../@core/services/helpers.service';
 import {UserAddAdsRequest} from '../../shared/models/useraddAdsRequest.model';
@@ -14,7 +14,7 @@ import { NgxCarousel } from 'ngx-carousel';
   templateUrl: './ads-card-carousel.component.html',
   styleUrls: ['./ads-card-carousel.component.scss']
 })
-export class AdsCardCarouselComponent implements OnInit, OnChanges {
+export class AdsCardCarouselComponent implements OnInit, OnChanges,AfterViewInit {
 
   public carouselTileItems: Array<any>;
   public carouselTile: NgxCarousel;
@@ -24,7 +24,9 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
   userRequest: UserAddAdsRequest;
   @Input() userId;
   @Input() randomAds: Ads[];
+  @Input() favoriteNumber;
   ads: Ads[];
+  numberOfFavorites: number;
 
   token;
 
@@ -34,6 +36,7 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
   constructor(private userService: UserService, private helpersService: HelpersService, private router: Router) { }
 
   ngOnInit() {
+
     this.token = localStorage.getItem(AuthConst.token);
     this.carouselTile = {
       grid: {xs: 2, sm: 3, md: 3, lg: 3, all: 0},
@@ -61,8 +64,13 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
 
   }
 
+  ngAfterViewInit() {
+
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
+    this.numberOfFavorites = this.favoriteNumber
     this.preloadImages();
   }
 
@@ -74,10 +82,11 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
   addToWishlist(adId: number) {
     this.userRequest = {
       adsId: adId,
-      userId: this.userId,
+      userId:  Number(localStorage.getItem(AuthConst.userId)),
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
       console.log('add update to favorite', x);
+      this.raiseAdNumber();
     }),
       (error) => {
         console.log('not to favorite');
@@ -86,8 +95,9 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
   }
 
   removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
+    this.userService.deleteUserFavourite(adId,  Number(localStorage.getItem(AuthConst.userId))).subscribe((x) => {
       console.log('delete update to favorite', x);
+      this.downAdNumber();
     }),
       // tslint:disable-next-line:no-unused-expression
       (error) => {
@@ -106,6 +116,21 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges {
  onEvent(event) {
   event.stopPropagation();
 }
+
+sendNumberOfFavorites(number: number) {
+  this.helpersService.sendNumberOfFavorites(number);
+}
+
+raiseAdNumber() {
+  this.numberOfFavorites = this.numberOfFavorites + 1;
+  this.sendNumberOfFavorites(this.numberOfFavorites);
+}
+
+downAdNumber() {
+  this.numberOfFavorites = this.numberOfFavorites - 1;
+  this.sendNumberOfFavorites(this.numberOfFavorites);
+}
+
 
 }
 

@@ -71,7 +71,7 @@ export class AuthService {
   /**
    * Get ID
    */
-  getId(): any {
+  getUserId(): any {
     return localStorage.getItem('brocki_id');
   }
 

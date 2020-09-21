@@ -92,6 +92,8 @@ import { EmailComponent } from './components/email/email.component';
 import { NgxCarouselModule } from 'ngx-carousel';
 import { Ng5SliderModule } from 'ng5-slider';
 import 'hammerjs';
+import { CategoryAdsComponent } from './components/category-ads/category-ads.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 registerLocaleData(en);
 
@@ -138,6 +140,8 @@ registerLocaleData(en);
     FiltersAdsComponent,
     AdsCardCarouselComponent,
     EmailComponent,
+    CategoryAdsComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,

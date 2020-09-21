@@ -48,7 +48,7 @@ export class GuestbookSellerComponent implements OnInit {
       this.isLogin = true;
     }
 
-    this.userId = this.authService.getId();
+    this.userId = this.authService.getUserId();
 
     this.userWhoComments = Number(localStorage.getItem('brocki_id'));
     this.userService.getUserById(this.userWhoComments).subscribe((seller) => {

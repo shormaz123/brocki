@@ -26,6 +26,8 @@ import { FiltersAdsComponent } from './components/filters-ads/filters-ads.compon
 import {
   AuthGuardService as AuthGuard
 } from '../app/@core/services/authGuard.service';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { CategoryAdsComponent } from './components/category-ads/category-ads.component';
 
 const routes: Routes = [
   {
@@ -35,6 +37,20 @@ const routes: Routes = [
       {
         path: '',
         component: SiteComponent,
+        children: [
+          {
+            path: '',
+            component: HomepageComponent
+         },
+         {
+          path: 'homepage',
+          component: HomepageComponent
+        },
+        {
+          path: 'category-ads/:groupId',
+          component: CategoryAdsComponent
+        }
+        ]
       },
       {
         path: 'user/:id',
@@ -103,6 +119,22 @@ const routes: Routes = [
       {
         path: 'site',
         component: SiteComponent,
+        children: [
+            {
+              path: '',
+              component: HomepageComponent
+           },
+          {
+            path: 'homepage',
+            component: HomepageComponent
+          },
+          {
+            path: 'category-ads/:groupId',
+            component: CategoryAdsComponent
+          }
+
+        ]
+
       },
       {
         path: 'change-password',
@@ -116,17 +148,14 @@ const routes: Routes = [
         path: 'ad/:id',
         component: AdComponent,
       },
-      {
-        path: 'ads/:subGroupId/:groupId',
-        component: AdsComponent,
-      },
     ],
   },
+
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled'}),
   ],
   exports: [RouterModule],
 })

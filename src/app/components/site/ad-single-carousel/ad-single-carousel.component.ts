@@ -21,20 +21,22 @@ import { UserAddAdsRequest } from '../../../shared/models/useraddAdsRequest.mode
   templateUrl: './ad-single-carousel.component.html',
   styleUrls: ['./ad-single-carousel.component.scss'],
 })
-export class AdSingleCarouselComponent implements OnInit {
+export class AdSingleCarouselComponent implements OnInit, OnChanges {
   @Input() userId;
   @Input() favAds: Ads;
+  @Input() favoriteNumber;
   @ViewChild(NzCarouselComponent, { static: false })
   myCarousel: NzCarouselComponent;
   public favoriteAds;
   selected: boolean;
   userRequest: UserAddAdsRequest;
   token;
+  numberOfFavorites;
 
   constructor(
     private adsService: AdsService,
     private userService: UserService,
-    private helpersService: HelpersService
+    private helpersService: HelpersService,
   ) {}
 
   ngOnInit() {
@@ -57,10 +59,11 @@ export class AdSingleCarouselComponent implements OnInit {
   addToWishlist(adId: number) {
     this.userRequest = {
       adsId: adId,
-      userId: this.userId,
+      userId: Number(localStorage.getItem(AuthConst.userId))
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
       console.log('add update to favorite', x);
+      this.raiseAdNumber()
     }),
       (error) => {
         console.log('not to favorite');
@@ -69,7 +72,8 @@ export class AdSingleCarouselComponent implements OnInit {
   }
 
   removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
+    this.userService.deleteUserFavourite(adId, Number(localStorage.getItem(AuthConst.userId))).subscribe((x) => {
+      this.downAdNumber();
       console.log('delete update to favorite', x);
     }),
       (error) => {
@@ -77,4 +81,24 @@ export class AdSingleCarouselComponent implements OnInit {
       };
     this.helpersService.$numOfFavs.next();
   }
+
+  sendNumberOfFavorites(number: number) {
+    this.helpersService.sendNumberOfFavorites(number);
+  }
+
+  raiseAdNumber() {
+    this.numberOfFavorites = this.numberOfFavorites + 1;
+    this.sendNumberOfFavorites(this.numberOfFavorites);
+  }
+
+  downAdNumber() {
+    this.numberOfFavorites = this.numberOfFavorites - 1;
+    this.sendNumberOfFavorites(this.numberOfFavorites);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+    this.numberOfFavorites = this.favoriteNumber
+  }
+
 }

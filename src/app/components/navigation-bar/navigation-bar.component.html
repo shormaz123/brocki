@@ -1,1 +1,44 @@
-<p>navigation-bar works!</p>
+<div class="navigation">
+    <div class="category">
+        <button style="height: 100%; background: none; border: none;">
+  <div
+    class="tab-icon"
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      padding-top: 30px;
+      padding-left: 0%;
+      padding-right: 0%;
+      padding-bottom: 0%;
+      cursor:pointer;
+    "
+    (click)="displaySideBar()"
+  >
+    <img
+      class="icon-not-active"
+      src="../../../assets/images/navigation/Listofcategories.png"
+    />
+    <img
+      class="icon-active"
+      src="../../../assets/images/navigation/red/Listofcategories.png"
+    />
+    <span style="text-align: center;">{{
+      'translate.allCategories' | translate
+    }}</span>
+  </div>
+</button>
+    </div>
+    <p-carousel [value]="categories" [circular]="false" [numVisible]="8" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+        <ng-template let-category pTemplate="item">
+            <div class="categoryItem" style="cursor: pointer;" (click)="selectCategory(category.id)">
+                <img src="{{ category.imageTo }}" />
+                <span style="text-align: center;">{{
+      category.title[currentLang]
+    }}</span>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>

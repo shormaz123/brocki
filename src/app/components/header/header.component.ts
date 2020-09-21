@@ -96,13 +96,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-
-  getAdsByParams(adssubgroup: number) {
-
-
-  }
-
-
   goToUserProfie(id: number) {
     if (localStorage.getItem(AuthConst.token) == null) {
       this.router.navigate(['/login']);
@@ -167,6 +160,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   navigateToSite() {
-    this.router.navigate(['/site'], {queryParams: {refresh: new Date().getTime()}});
+    this.router.navigate(['/site'] );
+    sessionStorage.removeItem('category_id');
+    this.helpers.clearCategories();
   }
 }
