@@ -27,8 +27,6 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
   // public filterAd: FilterAds;
 
   pageNumber: number = 1;
-  // pageSize: number = 8;
-  // status: string;
   disableButton: boolean = true;
 
   constructor(
@@ -44,7 +42,7 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (Object.keys(this.ads).length !== 16) {
+    if (Object.keys(this.ads).length !== 12) {
       this.disableButton = false;
     }
   }
@@ -101,7 +99,7 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
       pageSize: this.filterAd.pageSize,
     };
     this.adsService.getAdsByParamToFilter(filteredAds).subscribe((response) => {
-      if (Object.keys(response).length !== 16) {
+      if (Object.keys(response).length !== 12) {
         this.disableButton = false;
       }
       this.newAds = response;
