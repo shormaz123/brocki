@@ -51,6 +51,8 @@ export class AdComponent implements OnInit, AfterViewInit {
   userImage: string = this.defaultImage;
   companyImage: string[];
   paginationNumber = 1;
+  sellerPhones: boolean;
+  sellerEmail;
 
   usersImagesAvailabe: boolean;
   categoryImagesAvailable: boolean;
@@ -74,6 +76,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   adminBoolean: boolean;
   displaySideNav = true;
   mailBoolean = false;
+  email: boolean = false;
 
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
@@ -194,6 +197,7 @@ export class AdComponent implements OnInit, AfterViewInit {
         }
         this.userService.getUserById(this.userSellerId).subscribe((x) => {
           this.companyName = x.company;
+          this.sellerEmail = x.email;
           console.log(x.roleName);
           if ( x.roleName === 'bussines') {
             this.private = false;
@@ -283,5 +287,17 @@ export class AdComponent implements OnInit, AfterViewInit {
     document.body.removeChild(selBox);
     this.copied = true;
     setTimeout(() => (this.copied = false), 2000);
+  }
+
+  phonesOfSeller(): void {
+    this.sellerPhones = !this.sellerPhones;
+  }
+
+  sendEmail(): void {
+    this.email = true;
+  }
+
+  closeEmail(): void {
+    this.email = false;
   }
 }
