@@ -30,8 +30,8 @@
 
 .socialMedia {
     display: flex;
-    justify-content: center;
-    width: 80%;
+    justify-content: space-between;
+    width: 600px;
     flex-direction: row;
     margin-top: 10px;
 }
@@ -39,8 +39,8 @@
 .social {
     display: flex;
     flex-direction: row;
-    width: 40%;
-    justify-content: space-evenly;
+    width: 80%;
+    justify-content: space-between;
 }
 
 .socialButton {
@@ -54,8 +54,8 @@
     position: relative;
     img {
         margin-right: 10px;
-        width: 25px;
-        height: 23px;
+        width: 30px;
+        height: 28px;
     }
 }
 
@@ -75,16 +75,16 @@
 .info {
     display: flex;
     flex-direction: row;
-    width: 80%;
+    width: 1000px;
     margin-bottom: 25px;
     .left {
-        width: 33%;
+        width: 50%;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: flex-start;
         padding-top: 25px;
         .card {
-            width: 370px;
+            width: 100%;
             height: 250px;
             border-radius: 15px;
             border: 0.5px solid;
@@ -119,9 +119,9 @@
     .center {
         display: flex;
         flex-direction: column;
-        width: 33%;
+        width: 25%;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
         padding-top: 25px;
         .profile {
             display: flex;
@@ -129,7 +129,6 @@
             align-items: center;
             height: 100%;
             justify-content: space-evenly;
-            width: 100%;
             img {
                 width: 100%;
                 height: 85%;
@@ -143,8 +142,15 @@
     }
 }
 
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 .right {
-    width: 33%;
+    width: 25%;
     padding-top: 25px;
     display: flex;
     flex-direction: column;
@@ -202,12 +208,12 @@
         flex-direction: column;
         justify-content: space-evenly;
         height: auto;
-        width: 62%;
+        width: 1000px;
         margin-top: 40px;
         margin-bottom: 40px;
         background-color: white;
-        font-size: 14pt;
-        font-weight: 100;
+        font-weight: 400;
+        font-size: 20px;
         label {
             color: $red;
             margin-bottom: 20px;
@@ -432,4 +438,45 @@ p-carousel {
     flex-shrink: 0;
     line-height: 40px;
     border-radius: 50%;
+}
+
+.iconBox {
+    display: flex;
+    margin: 23px 0 0px 0;
+    background: $red;
+    border-radius: 35px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    padding: 2px;
+    width: 220px;
+    &--email {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    &__email {
+        line-height: 40px;
+        padding: 0 0 0 10px;
+    }
+}
+
+.phoneImage {
+    border-radius: 50%;
+    &--margin {
+        margin: 0 14px 0 0;
+    }
+}
+
+.phone {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 10px;
+}
+
+.photo {
+    cursor: pointer;
+    height: 25px;
 }
