@@ -10,4 +10,5 @@ export interface FilterAds {
   adsGroupId: any;
   subCategory: number;
   pageNumber: number;
+  pageSize: number;
 }

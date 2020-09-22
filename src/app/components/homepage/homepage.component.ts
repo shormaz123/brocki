@@ -13,10 +13,9 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit, OnDestroy {
-
   userId;
   userRequest: UserAddAdsRequest;
   paginationNumber = 1;
@@ -32,26 +31,34 @@ export class HomepageComponent implements OnInit, OnDestroy {
   subscriptionLang: Subscription;
   numberOfFavorites: number;
   currentLang = 'de';
+  disableButton: boolean = true;
 
-  constructor(private adsService: AdsService,
-              private userService: UserService,
-              private helpersService: HelpersService,
-              private router: Router,
-              private translateBackend: TranslateServiceRest,
-              private authService: AuthService) { }
+  constructor(
+    private adsService: AdsService,
+    private userService: UserService,
+    private helpersService: HelpersService,
+    private router: Router,
+    private translateBackend: TranslateServiceRest,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.token = localStorage.getItem(AuthConst.token);
-   this.userId = Number(localStorage.getItem('brocki_id'));
-    this.adsService.getAdsByPagination(this.paginationNumber).subscribe((response) => {
-        console.log(response, 'response')
+    this.userId = Number(localStorage.getItem('brocki_id'));
+    this.adsService
+      .getAdsByPagination(this.paginationNumber)
+      .subscribe((response) => {
+        console.log(response, 'response');
         this.ads = response;
         console.log('ads', this.ads);
-        this.randomAdsA = this.shuffle(this.ads.slice(0, Math.floor(this.ads.length / 2)));
-        this.randomAdsB = this.shuffle(this.ads.slice(Math.floor(this.ads.length / 2), this.ads.length ));
+        this.randomAdsA = this.shuffle(
+          this.ads.slice(0, Math.floor(this.ads.length / 2))
+        );
+        this.randomAdsB = this.shuffle(
+          this.ads.slice(Math.floor(this.ads.length / 2), this.ads.length)
+        );
         if (this.token) {
           this.getUserAndFavAd();
-
         } else {
           this.favAds = this.ads;
           console.log('favAds', this.favAds);
@@ -62,15 +69,18 @@ export class HomepageComponent implements OnInit, OnDestroy {
       .subscribe((message) => {
         this.currentLang = message;
       });
-      this.numberOfFavs = this.helpersService.getNumberOfFavorites().subscribe( number => {
+    this.numberOfFavs = this.helpersService
+      .getNumberOfFavorites()
+      .subscribe((number) => {
         this.numberOfFavorites = number;
-       });
+      });
   }
 
-
   getUserAndFavAd() {
-    console.log(this.userId, 'userId')
-    this.userService.getFavourites(Number(localStorage.getItem('brocki_id'))).subscribe((x) => {
+    console.log(this.userId, 'userId');
+    this.userService
+      .getFavourites(Number(localStorage.getItem('brocki_id')))
+      .subscribe((x) => {
         this.favoriteAds = x;
         this.numberOfFavorites = x.length;
         this.sendNumberOfFavorites(x.length);
@@ -78,10 +88,16 @@ export class HomepageComponent implements OnInit, OnDestroy {
         this.favAds = this.ads.map(
           (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
         );
-        this.randomAdsA = this.shuffle(this.favAds.slice(0, Math.floor(this.favAds.length / 2)));
-        this.randomAdsB = this.shuffle(this.favAds.slice(Math.floor(this.favAds.length / 2), this.favAds.length ));
+        this.randomAdsA = this.shuffle(
+          this.favAds.slice(0, Math.floor(this.favAds.length / 2))
+        );
+        this.randomAdsB = this.shuffle(
+          this.favAds.slice(
+            Math.floor(this.favAds.length / 2),
+            this.favAds.length
+          )
+        );
       });
-
   }
 
   ngOnDestroy() {
@@ -108,7 +124,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
       this.raiseAdNumber();
     }),
       (error) => {
-        if (error.message = 'Unexpected end of JSON input') {
+        if ((error.message = 'Unexpected end of JSON input')) {
         }
         console.log('not to favorite');
       };
@@ -122,11 +138,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
     }),
       // tslint:disable-next-line:no-unused-expression
       (error) => {
-
         console.log('not delete to favorite');
       };
-
-
   }
 
   goToAd(id: number) {
@@ -134,24 +147,32 @@ export class HomepageComponent implements OnInit, OnDestroy {
   }
 
   increaseShow() {
-    this.paginationNumber += 1,
-      this.adsService.getAdsByPagination(this.paginationNumber).subscribe( response => {
-        this.paginationAds = response;
-        console.log(this.paginationAds, this.paginationNumber);
-        if (this.token) {
-          this.favAds.push(...this.paginationAds);
-          this.disableScrolling();
-        } else {
-          this.favAds.push(...this.paginationAds);
-          this.disableScrolling();
-        }
-      });
+    (this.paginationNumber += 1),
+      this.adsService
+        .getAdsByPagination(this.paginationNumber)
+        .subscribe((response) => {
+          console.log(response);
+          this.paginationAds = response;
+          if (this.paginationAds.length !== 16) {
+            this.disableButton = false;
+          }
+          console.log(this.paginationAds, this.paginationNumber);
+          if (this.token) {
+            this.favAds.push(...this.paginationAds);
+            this.disableScrolling();
+          } else {
+            this.favAds.push(...this.paginationAds);
+            this.disableScrolling();
+          }
+        });
   }
 
   disableScrolling() {
     const x = window.scrollX;
     const y = window.scrollY;
-    window.onscroll = function() {window.scrollTo(x, y); };
+    window.onscroll = function () {
+      window.scrollTo(x, y);
+    };
   }
 
   sendNumberOfFavorites(number: number) {
@@ -167,6 +188,4 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.numberOfFavorites = this.numberOfFavorites - 1;
     this.sendNumberOfFavorites(this.numberOfFavorites);
   }
-
-
 }

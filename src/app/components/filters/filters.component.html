@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!hideFilter">
   <div class="underContainer">
     <span class="title" style="padding-bottom: 40px">{{
       'translate.filters' | translate
@@ -185,3 +185,8 @@
 
   <!-- <button class="resetButton">Reset filters</button> -->
 </div>
+<app-filters-ads
+  *ngIf="hideFilter"
+  [ads]="fillAds"
+  [filterAd]="filterAd"
+></app-filters-ads>

@@ -51,6 +51,7 @@ export class UserComponent implements OnInit {
   totalAdsLength: number;
   activeAds: Array<Ads> = [];
   activeAdsLength: number;
+  pageSize: number = 8;
 
   constructor(
     private userService: UserService,
@@ -179,6 +180,7 @@ export class UserComponent implements OnInit {
       soldAds.userId = this.userId;
       soldAds.pageNumber = 0;
       soldAds.pageNumber += 1;
+      soldAds.pageSize = this.pageSize;
       this.adsService.getSoldAds(soldAds).subscribe((res) => {
         this.soldProducts = [];
         this.soldProducts.push(res);

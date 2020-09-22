@@ -4,6 +4,7 @@ import {
   ViewChild,
   ElementRef,
   OnDestroy,
+  HostListener,
 } from '@angular/core';
 import { FilterAds } from '../../shared/models/filterAds.model';
 import { Ads } from '../../shared/models/ads.model';
@@ -26,10 +27,10 @@ import { AuthConst } from '../../@core/consts/auth.const';
 })
 export class FiltersComponent implements OnInit, OnDestroy {
   fromPrice: number = 0;
-  toPrice: number = 999999;
+  toPrice: number = 1000000;
   options: Options = {
     floor: 0,
-    ceil: 999999,
+    ceil: 1000000,
     step: 1000,
 
     translate: (value: number, label: LabelType): string => {
@@ -58,17 +59,22 @@ export class FiltersComponent implements OnInit, OnDestroy {
   new: boolean;
   public filterAd: FilterAds;
 
+  ads: any;
+  hideFilter: boolean = false;
+
+  fillAds: any;
+
   cantons = cantons;
   formattedAmount;
   amount;
   categoriesGroup;
   subCategoriesGroup;
   category = {
-    id: 0,
+    id: undefined,
     groupName: '',
   };
   subCategory = {
-    id: 0,
+    id: undefined,
     subGroupName: '',
   };
 
@@ -76,6 +82,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   subscriptionLang: Subscription;
   nullValue = null;
   pageNumber: number = 1;
+  pageSize: number = 16;
 
   language: string;
 
@@ -176,21 +183,28 @@ export class FiltersComponent implements OnInit, OnDestroy {
         adsGroupId: this.category.id,
         subCategory: this.subCategory.id,
         pageNumber: this.pageNumber,
+        pageSize: this.pageSize,
       };
 
-      this.adsService
-        .getAdsByParamToFilter(this.filterAd)
-        .subscribe((filteredAds) => {
-          if (Object.keys(filteredAds).length === 0) {
-            this.error = true;
-            setTimeout(() => (this.error = false), 5000);
-            this.errorMessage = 'No available ads to filter';
-          } else {
-            this.router.navigateByUrl('/filters-ads', {
-              state: { data: filteredAds },
-            });
-          }
-        });
+      this.adsService.getAdsByParamToFilter(this.filterAd).subscribe((res) => {
+        this.ads = res;
+
+        if (Object.keys(this.ads).length === 0) {
+          this.error = true;
+          setTimeout(() => (this.error = false), 5000);
+          this.errorMessage = 'No available ads to filter';
+        } else {
+          this.fillAds = res;
+          this.hideFilter = true;
+          // this.router.navigateByUrl('/filters-ads', {
+          //   state: { data: filteredAds },
+          // });
+          // filteredAds.forEach((ads) => {
+          //   console.log(ads);
+          // });
+          // this.ads = filteredAds;
+        }
+      });
     }
   }
 }
