@@ -1,4 +1,5 @@
 <div class="container">
+
     <div class="imageContainer">
         <div class="imageGallery">
             <!-- <p-galleria [images]="images" panelWidth="500" panelHeight="313" ></p-galleria> -->
@@ -356,10 +357,8 @@
       </div>
     </div>
   </div>
-  <div class="page" *ngIf="email">
-    <app-email
-      [sellerEmail]="sellerEmail"
-      (closeEmail)="closeEmail()"
-    ></app-email>
-  </div>
+
+</div>
+<div class="page" *ngIf="email">
+  <app-email [sellerEmail]="sellerEmail" (closeEmail)="closeEmail()"></app-email>
 </div>
