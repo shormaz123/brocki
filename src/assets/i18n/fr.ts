@@ -72,7 +72,7 @@ export const fr = {
     expired: 'Expiré',
     sold: 'Vendue',
     guestBook: "Livre d'or",
-    shareVia: 'Partage via',
+    shareVia: 'Partager via',
     update: 'Mettre à jour',
     info: 'info',
     acceptAds: 'Contrôle des annonces',
