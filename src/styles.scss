@@ -358,18 +358,3 @@ body .ui-accordion .ui-accordion-header:not(.ui-state-disabled).ui-state-active 
 .pi {
     line-height: unset !important;
 }
-
-.ngx-gallery-arrow-right {
-    .ngx-gallery-arrow {
-        right: 0px !important;
-        left: 10px !important;
-    }
-}
-
-.ngx-gallery-arrow-left {
-    left: -28px !important;
-    .ngx-gallery-arrow {
-        left: 0px !important;
-        right: 10px !important;
-    }
-}
