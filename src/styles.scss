@@ -203,6 +203,10 @@ body {
     height: 100% !important;
 }
 
+.ui-carousel-item {
+    justify-content: flex-start !important;
+}
+
 body .ui-carousel .ui-carousel-content .ui-carousel-prev,
 body .ui-carousel .ui-carousel-content .ui-carousel-next {
     background-color: $red;
