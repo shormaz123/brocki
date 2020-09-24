@@ -15,6 +15,8 @@ import {
   Feature,
   MapboxServiceService,
 } from '../../@core/services/mapbox-service.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-update-info-bussines',
@@ -52,7 +54,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
     private fb: FormBuilder,
     private adsService: AdsService,
     private toastr: ToastrService,
-    private mapboxService: MapboxServiceService
+    private mapboxService: MapboxServiceService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -194,10 +197,19 @@ export class UpdateInfoBussinesComponent implements OnInit {
   }
 
   onSubmit() {
-    this.modal.confirm({
-      nzTitle: 'Are you sure you want to change your info?',
-      nzContent: '',
-      nzOnOk: () => {
+    // this.modal.confirm({
+    //   nzTitle: 'Are you sure you want to change your info?',
+    //   nzContent: '',
+    //   nzOnOk: () => {
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+        width: '500px',
+        data: {
+          title: 'Update user',
+          message: 'Are you sure you want to change your info?'
+        }
+      });
+      confirmDialog.afterClosed().subscribe(result => {
+        if (result === true) {
         this.updateBusiness.name = this.businessForm.value.name;
         this.updateBusiness.surname = this.businessForm.value.surname;
         this.updateBusiness.email = this.businessForm.value.email;
@@ -225,7 +237,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
             this.toastr.error('Ops, something went wrong!');
           }
         );
-      },
+      }
     });
   }
 

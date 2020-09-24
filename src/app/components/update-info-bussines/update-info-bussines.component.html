@@ -1,99 +1,61 @@
 <div class="container">
-  <div class="business">
-    <div class="business__title">
-      <span
-        >{{ 'translate.update' | translate }}
+    <div class="business">
+        <div class="business__title">
+            <span>{{ 'translate.update' | translate }}
         <span style="color: #d62b1f">{{
           'translate.info' | translate
-        }}</span></span
-      >
-    </div>
-    <form class="form" (ngSubmit)="onSubmit()" [formGroup]="businessForm">
-      <div class="form__inputItem">
-        <img src="../../../assets/images/update-info-bussines/company.png" />
-        <input
-          placeholder="{{ 'translate.company' | translate }}"
-          formControlName="company"
-          maxlength="20"
-        />
-      </div>
-      <div class="form__inputItem">
-        <img src="../../../assets/images/update-info-bussines/name.png" />
-        <input
-          placeholder="{{ 'translate.nameFirst' | translate }}"
-          formControlName="name"
-        />
-      </div>
-      <div class="form__inputItem">
-        <img src="../../../assets/images/update-info-bussines/surname.png" />
-        <input
-          placeholder="{{ 'translate.surname' | translate }}"
-          formControlName="surname"
-        />
-      </div>
-      <div class="form__inputItem">
-        <img src="../../../assets/images/update-info-bussines/email.png" />
-        <input
-          placeholder="{{ 'translate.email' | translate }}"
-          formControlName="email"
-        />
-      </div>
-      <div class="form__inputItem">
-        <img src="../../../assets/images/update-info-bussines/website.png" />
-        <input
-          placeholder="{{ 'translate.website' | translate }}"
-          formControlName="website"
-        />
-      </div>
-      <div class="form__inputItem">
-        <img src="../../../assets/images/update-info-bussines/phone.png" />
-        <input
-          maxlength="18"
-          placeholder="{{ 'translate.phone' | translate }}"
-          formControlName="phone"
-        />
-      </div>
-      <div class="form__inputItem">
-        <img src="../../../assets/images/update-info-bussines/mobile.png" />
-        <input
-          maxlength="18"
-          placeholder="{{ 'translate.mobile' | translate }}"
-          formControlName="mobile"
-        />
-      </div>
-      <div class="form__inputItem">
-        <img src="../../../assets/images/update-info-bussines/address.png" />
-        <input
-          placeholder="{{ 'translate.address' | translate }}"
-          formControlName="address"
-          [value]="selectedAddress"
-          (keypress)="search($event)"
-          type="text"
-          [matAutocomplete]="auto"
-        />
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option
-            *ngFor="let address of addresses; let i = index"
-            [value]="address"
-            (click)="onSelect(address, i)"
-          >
-            {{ address }}
-          </mat-option>
-        </mat-autocomplete>
-      </div>
-      <div class="form__inputItem form__inputItem--margin">
-        <div class="form__location">
-          <select class="form__select" formControlName="canton">
+        }}</span></span>
+        </div>
+        <form class="form" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()" [formGroup]="businessForm">
+            <div class="form__inputItem">
+                <img src="../../../assets/images/update-info-bussines/company.png" />
+                <input placeholder="{{ 'translate.company' | translate }}" formControlName="company" maxlength="20" />
+            </div>
+            <div class="form__inputItem">
+                <img src="../../../assets/images/update-info-bussines/name.png" />
+                <input placeholder="{{ 'translate.nameFirst' | translate }}" formControlName="name" />
+            </div>
+            <div class="form__inputItem">
+                <img src="../../../assets/images/update-info-bussines/surname.png" />
+                <input placeholder="{{ 'translate.surname' | translate }}" formControlName="surname" />
+            </div>
+            <div class="form__inputItem">
+                <img src="../../../assets/images/update-info-bussines/email.png" />
+                <input placeholder="{{ 'translate.email' | translate }}" formControlName="email" />
+            </div>
+            <div class="form__inputItem">
+                <img src="../../../assets/images/update-info-bussines/website.png" />
+                <input placeholder="{{ 'translate.website' | translate }}" formControlName="website" />
+            </div>
+            <div class="form__inputItem">
+                <img src="../../../assets/images/update-info-bussines/phone.png" />
+                <input maxlength="18" placeholder="{{ 'translate.phone' | translate }}" formControlName="phone" />
+            </div>
+            <div class="form__inputItem">
+                <img src="../../../assets/images/update-info-bussines/mobile.png" />
+                <input maxlength="18" placeholder="{{ 'translate.mobile' | translate }}" formControlName="mobile" />
+            </div>
+            <div class="form__inputItem">
+                <img src="../../../assets/images/update-info-bussines/address.png" />
+                <input placeholder="{{ 'translate.address' | translate }}" formControlName="address" [value]="selectedAddress" (keypress)="search($event)" type="text" [matAutocomplete]="auto" />
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let address of addresses; let i = index" [value]="address" (click)="onSelect(address, i)">
+                        {{ address }}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="form__inputItem form__inputItem--margin">
+                <div class="form__location">
+                    <select class="form__select" formControlName="canton">
             <option *ngFor="let canton of cantons" [value]="canton">
               {{ canton }}
             </option>
           </select>
-        </div>
-      </div>
+                </div>
+            </div>
 
-      <div class="form__inputItem">
-        <a class="form__password" (click)="goTo('/change-password')"
-          >{{ 'translate.changePassword' | translate }}?</a
+            <div class="form__inputItem">
+                <a class="form__password" (click)="goTo('/change-password')">{{ 'translate.changePassword' | translate }}?</a
         >
       </div>
       <div class="form__inputItem">
