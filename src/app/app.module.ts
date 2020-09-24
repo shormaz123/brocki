@@ -145,6 +145,7 @@ registerLocaleData(en);
     EmailComponent,
     CategoryAdsComponent,
     HomepageComponent,
+
   ],
   imports: [
     BrowserModule,

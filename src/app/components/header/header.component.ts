@@ -164,4 +164,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     sessionStorage.removeItem('category_id');
     this.helpers.clearCategories();
   }
+
+  goToSubCategory(subCategoryId, categoryId) {
+    this.router.navigate(['/ads',subCategoryId,categoryId ])
+    this.displaySideNav = false;
+  }
 }
