@@ -14,4 +14,5 @@ export class AdsParam {
   urgentSales: boolean;
   userId: number;
   pageNumber: number;
+  pageSize: number;
 }

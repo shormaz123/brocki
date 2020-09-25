@@ -35,6 +35,8 @@ export class AdsService {
   getAdsByParamToFilter(data: FilterAds) {
     let params = new HttpParams();
 
+    params = params.append('status', 'ACTIVE'.toString());
+
     if (data.region) {
       params = params.append('region', data.region.toString());
     }
@@ -44,7 +46,7 @@ export class AdsService {
     }
 
     if (data.subCategory) {
-      params = params.append('subCategory', data.subCategory.toString());
+      params = params.append('adssubgroup', data.subCategory.toString());
     }
 
     if (data.fromPrice) {
@@ -75,6 +77,7 @@ export class AdsService {
     }
 
     params = params.append('pageNumber', data.pageNumber.toString());
+    params = params.append('pageSize', data.pageSize.toString());
 
     return this.httpClient.get(`${this.baseUrl}/mybrocki/ads/filter`, {
       params,
@@ -93,13 +96,14 @@ export class AdsService {
     );
   }
 
-  getSoldAdsPAgination(
+  getSoldAdsPagination(
     id: number,
     page: number,
-    status: string
+    status: string,
+    pageSize: number
   ): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?userId=${id}&pageNumber=${page}&status=${status}`
+      `${this.baseUrl}/mybrocki/ads/filter?userId=${id}&pageNumber=${page}&status=${status}&pageSize=${pageSize}`
     );
   }
 
@@ -185,6 +189,7 @@ export class AdsService {
     query = query.append('status', data.status);
     query = query.append('userId', data.userId.toString());
     query = query.append('pageNumber', data.pageNumber.toString());
+    query = query.append('pageSize', data.pageSize.toString());
     return this.http.get<Ads>(`${this.baseUrl}/mybrocki/ads/filter?${query}`);
   }
 

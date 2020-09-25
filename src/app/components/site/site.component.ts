@@ -58,7 +58,7 @@ export class SiteComponent implements OnInit, OnDestroy {
   randomAdsA;
   randomAdsB;
   paginationAds: Ads[];
-  deselectAll:boolean;
+  deselectAll: boolean;
 
   @ViewChild('panel', { read: ElementRef, static: false })
   public panel: ElementRef<any>;
@@ -74,29 +74,27 @@ export class SiteComponent implements OnInit, OnDestroy {
   startPage: number;
   paginationNumber = 1;
   refresh?;
-  disableButton: boolean = true;
 
   constructor(
     private adsService: AdsService,
     private translateBackend: TranslateServiceRest,
     private helpersService: HelpersService
-
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.deselectAll = true;
-    this.token = localStorage.getItem(AuthConst.token)
-    this.numberOfFavs = this.helpersService.getNumberOfFavorites().subscribe( number => {
-     this.numberOfFavorites = number;
-     console.log(this.numberOfFavorites, 'siteNumber')
-    });
+    this.token = localStorage.getItem(AuthConst.token);
+    this.numberOfFavs = this.helpersService
+      .getNumberOfFavorites()
+      .subscribe((number) => {
+        this.numberOfFavorites = number;
+        console.log(this.numberOfFavorites, 'siteNumber');
+      });
     this.subscriptionLang = this.translateBackend
       .getLanguage()
       .subscribe((message) => {
         this.currentLang = message;
       });
-
   }
   onMouseWheel(e) {
     this.enableScrolling();
@@ -125,16 +123,9 @@ export class SiteComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.numberOfFavs.unsubscribe();
     this.subscriptionLang.unsubscribe();
-
   }
 
-   enableScrolling() {
-    window.onscroll = function() {};
+  enableScrolling() {
+    window.onscroll = function () {};
   }
-
-
-
-
-
-
 }

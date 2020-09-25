@@ -43,6 +43,7 @@ export class SellerProfileComponent implements OnInit {
   checked: boolean = true;
   sellerLocationLong;
   sellerLocationLat;
+  pageSize: number = 8;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -116,6 +117,7 @@ export class SellerProfileComponent implements OnInit {
       soldAds.userId = this.sellerindex;
       soldAds.pageNumber = 0;
       soldAds.pageNumber += 1;
+      soldAds.pageSize = this.pageSize;
       this.adsService.getSoldAds(soldAds).subscribe((res) => {
         this.soldProducts = [];
         this.soldProducts.push(res);

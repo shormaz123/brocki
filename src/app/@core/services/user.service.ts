@@ -96,10 +96,8 @@ export class UserService {
   sendEmailToSeller(email: any) {
     let query = new HttpParams();
     if (email.ad) {
-      query = query.append('adId ', email.ad.id);
-      query = query.append('adImage', email.ad.image[0]);
-      query = query.append('adName', email.ad.productName);
-      query = query.append('adPrice', email.ad.price);
+      query = query.append('adId', email.ad.id);
+      query = query.append('adlink', email.adlink);
     }
     query = query.append('email', email.email);
     query = query.append('name', email.name);

@@ -1,38 +1,59 @@
-import { Component, OnInit } from '@angular/core';
-import {Ads} from '../../shared/models/ads.model';
-import {Router} from '@angular/router';
-import {HelpersService} from '../../@core/services/helpers.service';
-import {UserService} from '../../@core/services/user.service';
-import {UserAddAdsRequest} from '../../shared/models/useraddAdsRequest.model';
-import {AuthConst} from '../../@core/consts/auth.const';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Ads } from '../../shared/models/ads.model';
+import { Router } from '@angular/router';
+import { HelpersService } from '../../@core/services/helpers.service';
+import { UserService } from '../../@core/services/user.service';
+import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
+import { AuthConst } from '../../@core/consts/auth.const';
+import { AdsService } from '../../@core/services/ads.service';
+import { FilterAds } from '../../shared/models/filterAds.model';
 
 @Component({
   selector: 'app-filters-ads',
   templateUrl: './filters-ads.component.html',
-  styleUrls: ['./filters-ads.component.scss']
+  styleUrls: ['./filters-ads.component.scss'],
 })
-export class FiltersAdsComponent implements OnInit {
-
+export class FiltersAdsComponent implements OnInit, OnChanges {
   filteredAds: Ads[];
   userRequest: UserAddAdsRequest;
   token;
   userId: number;
 
-  constructor(private router: Router, private helpersService: HelpersService, private userService: UserService) {
+  @Input() ads: any;
+  @Input() filterAd: any;
 
-    if (this.router.getCurrentNavigation().extras.state) {
-      this.filteredAds = this.router.getCurrentNavigation().extras.state.data;
-      console.log('filteredads', this.filteredAds);
+  newAds: any;
+
+  // public filterAd: FilterAds;
+
+  pageNumber: number = 1;
+  disableButton: boolean = true;
+
+  constructor(
+    private router: Router,
+    private helpersService: HelpersService,
+    private userService: UserService,
+    private adsService: AdsService
+  ) {
+    // if (this.router.getCurrentNavigation().extras.state) {
+    //   this.filteredAds = this.router.getCurrentNavigation().extras.state.data;
+    //   console.log('filteredads', this.filteredAds);
+    // }
+  }
+
+  ngOnChanges() {
+    if (Object.keys(this.ads).length !== 12) {
+      this.disableButton = false;
     }
   }
 
   ngOnInit() {
-    this.token = localStorage.getItem(AuthConst.token)
-    if (this.token) {
-      this.userService.getUser().subscribe( user => {
-        this.userId = user.id
-      });
-    }
+    // this.token = localStorage.getItem(AuthConst.token);
+    // if (this.token) {
+    //   this.userService.getUser().subscribe((user) => {
+    //     this.userId = user.id;
+    //   });
+    // }
   }
 
   addToWishlist(adId: number) {
@@ -60,5 +81,48 @@ export class FiltersAdsComponent implements OnInit {
     this.helpersService.$numOfFavs.next();
   }
 
+  increaseShow() {
+    this.pageNumber += 1;
 
+    const filteredAds = {
+      region: this.filterAd.region,
+      fromPrice: this.filterAd.fromPrice,
+      toPrice: this.filterAd.toPrice,
+      fixedPrice: this.filterAd.fixedPrice,
+      hasImage: this.filterAd.hasImage,
+      freeDelivery: this.filterAd.freeDelivery,
+      productWarranty: this.filterAd.productWarranty,
+      urgentSales: this.filterAd.urgentSales,
+      adsGroupId: this.filterAd.adsGroupId,
+      subCategory: this.filterAd.subCategory,
+      pageNumber: this.pageNumber,
+      pageSize: this.filterAd.pageSize,
+    };
+    this.adsService.getAdsByParamToFilter(filteredAds).subscribe((response) => {
+      this.newAds = response;
+      if (Object.keys(this.newAds).length !== 12) {
+        this.disableButton = false;
+      }
+      this.ads.push(...this.newAds);
+      this.disableScrolling();
+    });
+  }
+
+  disableScrolling() {
+    const x = window.scrollX;
+    const y = window.scrollY;
+    // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function () {
+      window.scrollTo(x, y);
+    };
+  }
+
+  enableScrolling() {
+    // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function () {};
+  }
+
+  onMouseWheel(e) {
+    this.enableScrolling();
+  }
 }

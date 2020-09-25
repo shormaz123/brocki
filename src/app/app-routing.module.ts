@@ -22,10 +22,8 @@ import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.
 import { AdsComponent } from './components/ads/ads.component';
 import { AcceptAdsComponent } from './components/user/accept-ads/accept-ads.component';
 import { AcceptUsersComponent } from './components/user/accept-users/accept-users.component';
-import { FiltersAdsComponent } from './components/filters-ads/filters-ads.component';
-import {
-  AuthGuardService as AuthGuard
-} from '../app/@core/services/authGuard.service';
+// import { FiltersAdsComponent } from './components/filters-ads/filters-ads.component';
+import { AuthGuardService as AuthGuard } from '../app/@core/services/authGuard.service';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { CategoryAdsComponent } from './components/category-ads/category-ads.component';
 
@@ -40,22 +38,22 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: HomepageComponent
-         },
-         {
-          path: 'homepage',
-          component: HomepageComponent
-        },
-        {
-          path: 'category-ads/:groupId',
-          component: CategoryAdsComponent
-        }
-        ]
+            component: HomepageComponent,
+          },
+          {
+            path: 'homepage',
+            component: HomepageComponent,
+          },
+          {
+            path: 'category-ads/:groupId',
+            component: CategoryAdsComponent,
+          },
+        ],
       },
       {
         path: 'user/:id',
         component: UserComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService],
       },
       {
         path: 'accept-users',
@@ -124,42 +122,39 @@ const routes: Routes = [
         path: 'site',
         component: SiteComponent,
         children: [
-            {
-              path: '',
-              component: HomepageComponent
-           },
+          {
+            path: '',
+            component: HomepageComponent,
+          },
           {
             path: 'homepage',
-            component: HomepageComponent
+            component: HomepageComponent,
           },
           {
             path: 'category-ads/:groupId',
-            component: CategoryAdsComponent
-          }
-
-        ]
-
+            component: CategoryAdsComponent,
+          },
+        ],
       },
       {
         path: 'change-password',
         component: ChangePasswordComponent,
       },
-      {
-        path: 'filters-ads',
-        component: FiltersAdsComponent,
-      },
+      // {
+      //   path: 'filters-ads',
+      //   component: FiltersAdsComponent,
+      // },
       {
         path: 'ad/:id',
         component: AdComponent,
       },
     ],
   },
-
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled'}),
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
   ],
   exports: [RouterModule],
 })

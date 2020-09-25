@@ -1,8 +1,17 @@
-<h1 mat-dialog-title style="color: #4d4d4d;">{{ data.title }} <i nz-icon nzType="question-circle" nzTheme="outline" style="color:#d62b1f;"></i> </h1>
-<div mat-dialog-content style="color: #4d4d4d;">
-    {{ data.message }}
+<h1 mat-dialog-title style="color: #4d4d4d">
+  {{ data.title }}
+  <i
+    nz-icon
+    nzType="question-circle"
+    nzTheme="outline"
+    style="color: #d62b1f"
+  ></i>
+</h1>
+<div mat-dialog-content style="color: #4d4d4d">
+  {{ data.message }}
 </div>
-<div style="
+<div
+  style="
     float: right;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -10,24 +19,37 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-  ">
-    <input style="
+  "
+>
+  <input
+    style="
       margin: 0px 10px;
       background-color: #d62b1f;
       color: white;
       border-radius: 15px;
       border: 1px solid #d62b1f;
       width: auto;
-    height: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
-    cursor: pointer;
-    " type="button" value="YES" [mat-dialog-close]="true" />
-    <input type="button" value="NO" [mat-dialog-close]="false" style="
-    border-radius: 15px;
-    padding-right: 20px;
-    padding-left: 20px;
-    cursor: pointer;
-    color: #4d4d4d;;
-" />
+      height: 30px;
+      padding-left: 20px;
+      padding-right: 20px;
+      cursor: pointer;
+    "
+    type="button"
+    value="YES"
+    [mat-dialog-close]="true"
+  />
+  <input
+    type="button"
+    value="NO"
+    [mat-dialog-close]="false"
+    style="
+      border-radius: 15px;
+      padding-right: 20px;
+      padding-left: 20px;
+      cursor: pointer;
+      height: 30px;
+      border: 1px solid #e6e6e6;
+      color: #4d4d4d; ;
+    "
+  />
 </div>

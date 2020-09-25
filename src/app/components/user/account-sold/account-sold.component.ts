@@ -11,6 +11,7 @@ export class AccountSoldComponent implements OnChanges {
   @Input() soldProducts: Array<any> = [];
 
   paginationNumber: number = 1;
+  pageSize: number = 8;
   status: string;
   userId: number;
   disableButton: boolean = true;
@@ -30,9 +31,14 @@ export class AccountSoldComponent implements OnChanges {
   increaseShow() {
     (this.paginationNumber += 1), (this.status = 'SOLD'), (this.userId = 265);
     this.adsService
-      .getSoldAdsPAgination(this.userId, this.paginationNumber, this.status)
+      .getSoldAdsPagination(
+        this.userId,
+        this.paginationNumber,
+        this.status,
+        this.pageSize
+      )
       .subscribe((response) => {
-        if (response.length < 4) {
+        if (response.length !== 8) {
           this.disableButton = false;
         }
         const soldAds = response;
