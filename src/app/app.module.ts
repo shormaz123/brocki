@@ -96,6 +96,7 @@ import { CategoryAdsComponent } from './components/category-ads/category-ads.com
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { MatDialogModule } from '@angular/material';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { NgxHotjarModule } from 'ngx-hotjar';
 
 registerLocaleData(en);
 
@@ -185,6 +186,7 @@ registerLocaleData(en);
     Ng5SliderModule,
     MatAutocompleteModule,
     Ng2CarouselamosModule,
+    NgxHotjarModule.forRoot('2010181'),
     ToastrModule.forRoot({
       preventDuplicates: true,
       closeButton: true,
