@@ -44,7 +44,7 @@ export class AdsService {
     }
 
     if (data.subCategory) {
-      params = params.append('subCategory', data.subCategory.toString());
+      params = params.append('adssubgroup', data.subCategory.toString());
     }
 
     if (data.fromPrice) {

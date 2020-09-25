@@ -63,6 +63,7 @@ export class EmailComponent implements OnInit {
       phone: string;
       message: string;
       toSender: boolean;
+      adlink: string;
       ad?: Ads;
     }
 
@@ -80,6 +81,7 @@ export class EmailComponent implements OnInit {
     email.phone = this.emailForm.value.phone;
     email.message = this.emailForm.value.message;
     email.toSender = this.toSender;
+    email.adlink = `https://minibrocki-fe-stage.herokuapp.com/ad/${this.adForEmail.id}`;
 
     this.toastr.success('An email has been sent');
 

@@ -97,6 +97,7 @@ export class UserService {
     let query = new HttpParams();
     if (email.ad) {
       query = query.append('adId', email.ad.id);
+      query = query.append('adlink', email.adlink);
     }
     query = query.append('email', email.email);
     query = query.append('name', email.name);
