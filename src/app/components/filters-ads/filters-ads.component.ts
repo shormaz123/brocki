@@ -42,9 +42,9 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    // if (Object.keys(this.ads).length !== 12) {
-    //   this.disableButton = false;
-    // }
+    if (Object.keys(this.ads).length !== 12) {
+      this.disableButton = false;
+    }
   }
 
   ngOnInit() {
@@ -99,11 +99,10 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
       pageSize: this.filterAd.pageSize,
     };
     this.adsService.getAdsByParamToFilter(filteredAds).subscribe((response) => {
-      // if (Object.keys(response).length !== 12) {
-      //   this.disableButton = false;
-      // }
       this.newAds = response;
-      console.log(this.newAds);
+      if (Object.keys(this.newAds).length !== 12) {
+        this.disableButton = false;
+      }
       this.ads.push(...this.newAds);
       this.disableScrolling();
     });

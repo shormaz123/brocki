@@ -82,7 +82,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   subscriptionLang: Subscription;
   nullValue = null;
   pageNumber: number = 1;
-  pageSize: number = 13;
+  pageSize: number = 12;
 
   language: string;
 
@@ -188,8 +188,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
       this.adsService.getAdsByParamToFilter(this.filterAd).subscribe((res) => {
         this.ads = res;
-        console.log(this.ads);
-
         if (Object.keys(this.ads).length === 0) {
           this.error = true;
           setTimeout(() => (this.error = false), 5000);

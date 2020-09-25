@@ -35,6 +35,8 @@ export class AdsService {
   getAdsByParamToFilter(data: FilterAds) {
     let params = new HttpParams();
 
+    params = params.append('status', 'ACTIVE'.toString());
+
     if (data.region) {
       params = params.append('region', data.region.toString());
     }
