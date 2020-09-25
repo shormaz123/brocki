@@ -6,7 +6,7 @@
         <p-accordion>
             <p-accordionTab header="{{ category.groupName[currentLang] }}" *ngFor="let category of categoriesGroup" (click)="selectDropDown(category.id)">
                 <div *ngFor="let subCategory of subCategories" class="accordationDiv">
-                    <span class="accordationSpan" [routerLink]="['/ads', subCategory.id, category.id]">{{ subCategory.subGroupName[currentLang] }}</span
+                    <span class="accordationSpan" (click)="goToSubCategory(subCategory.id, category.id)">{{ subCategory.subGroupName[currentLang] }}</span
           >
         </div>
       </p-accordionTab>

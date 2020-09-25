@@ -82,7 +82,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   subscriptionLang: Subscription;
   nullValue = null;
   pageNumber: number = 1;
-  pageSize: number = 12;
+  pageSize: number = 13;
 
   language: string;
 

@@ -1,4 +1,5 @@
 <div class="container">
+
     <div class="imageContainer">
         <div class="imageGallery">
             <!-- <p-galleria [images]="images" panelWidth="500" panelHeight="313" ></p-galleria> -->
@@ -31,11 +32,9 @@
         </div>
     </div>
     <div class="title">
-        <div class="productTitle">
-            <label>{{
+        <label>{{
       ad?.productName || card?.productName
     }}</label>
-        </div>
     </div>
     <div class="info">
         <div class="left">
@@ -44,7 +43,7 @@
                     {{ ad?.price || card?.price | number: '1.2-2':'en-US' }} CHF
                 </div>
                 <div class="cardColumn">{{ ad?.adsType || card?.adsType }}</div>
-                <div class="cardColumn">
+                <div class="cardColumn" style="text-align: center;">
                     {{ userSeller?.city || reviewUser?.city }}
                 </div>
                 <div class="cardColumn2">
@@ -103,7 +102,7 @@
     </div>
     <div class="des">
         <div class="description">
-            <label>{{ 'translate.description' | translate }}:</label>
+            <label class="descriptionTitle">{{ 'translate.description' | translate }}:</label>
             <div>
                 <label style="color: #8c8c8c;">{{
           ad?.description || card?.description
@@ -118,7 +117,7 @@
                 <p-carousel [value]="adsByUser" [numVisible]="3" [numScroll]="1">
                     <ng-template let-adByUser pTemplate="item">
                         <div style="
-                width: 95%;
+                width: 298px;
                 height: 100%;
                 padding: '5px';
                 background-color: #f6f6f6;
@@ -196,7 +195,7 @@
           <ng-template let-reviewUserActiveAds pTemplate="item">
             <div
               style="
-                width: 95%;
+                width: 298px;
                 height: 100%;
                 padding: '5px';
                 background-color: #f6f6f6;
@@ -285,7 +284,7 @@
           <ng-template let-adByCat pTemplate="item">
             <div
               style="
-                width: 95%;
+                width: 100%;
                 height: 100%;
                 padding: '5px';
                 background-color: #f6f6f6;
@@ -356,10 +355,8 @@
       </div>
     </div>
   </div>
-  <div class="page" *ngIf="email">
-    <app-email
-      [sellerEmail]="sellerEmail"
-      (closeEmail)="closeEmail()"
-    ></app-email>
-  </div>
+
+</div>
+<div class="page" *ngIf="email">
+  <app-email [sellerEmail]="sellerEmail" (closeEmail)="closeEmail()"></app-email>
 </div>

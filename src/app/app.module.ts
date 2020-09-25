@@ -94,12 +94,15 @@ import { Ng5SliderModule } from 'ng5-slider';
 import 'hammerjs';
 import { CategoryAdsComponent } from './components/category-ads/category-ads.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { MatDialogModule } from '@angular/material';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
+    ConfirmDialogComponent,
     LoginComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
@@ -142,6 +145,7 @@ registerLocaleData(en);
     EmailComponent,
     CategoryAdsComponent,
     HomepageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -156,6 +160,7 @@ registerLocaleData(en);
     NzUploadModule,
     NzRateModule,
     Ng2SearchPipeModule,
+    MatDialogModule,
     MatIconModule,
     NzAlertModule,
     CarouselModule,
@@ -197,6 +202,9 @@ registerLocaleData(en);
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAFo8eoAunpvp47MeINO5LlMdhJkG0Pvz0',
     }),
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ],
   providers: [
     HttpBaseService,

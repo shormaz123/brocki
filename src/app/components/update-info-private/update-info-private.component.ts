@@ -9,6 +9,8 @@ import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
 import { UserStatus } from '../../shared/enums/userStatus';
 import {MapboxServiceService} from '../../@core/services/mapbox-service.service';
+import { MatDialog } from '@angular/material';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-update-info-private',
@@ -33,7 +35,8 @@ export class UpdateInfoPrivateComponent implements OnInit {
     private modal: NzModalService,
     private router: Router,
     private fb: FormBuilder,
-    private mapboxService: MapboxServiceService
+    private mapboxService: MapboxServiceService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -132,10 +135,19 @@ export class UpdateInfoPrivateComponent implements OnInit {
   }
 
   onSubmit() {
-    this.modal.confirm({
-      nzTitle: 'Are you sure you want to change your info?',
-      nzContent: '',
-      nzOnOk: () => {
+    // this.modal.confirm({
+    //   nzTitle: 'Are you sure you want to change your info?',
+    //   nzContent: '',
+    //   nzOnOk: () => {
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+        width: '500px',
+        data: {
+          title: 'Update user',
+          message: 'Are you sure you want to change your info?'
+        }
+      });
+      confirmDialog.afterClosed().subscribe(result => {
+        if (result === true) {
         const updateUserInfo = new User();
         updateUserInfo.name = this.privateForm.value.name;
         updateUserInfo.surname = this.privateForm.value.surname;
@@ -166,7 +178,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
             });
           }
         );
-      },
+      }
     });
   }
 

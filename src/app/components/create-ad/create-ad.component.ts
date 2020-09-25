@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreateAd } from '../../shared/models/create-ad.model';
 import { adsGroup } from '../../shared/models/adsGroup.model';
@@ -9,7 +9,10 @@ import { TranslateServiceRest } from '../../@core/services/translateREST.service
 import { Subscription } from 'rxjs';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
-import { NzModalService } from 'ng-zorro-antd';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import { MatDialog } from '@angular/material';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-create-ad',
@@ -30,13 +33,15 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   currentLang = 'de';
   currentPhotos: Array<any> = [];
 
+
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private adsService: AdsService,
     private translateBackend: TranslateServiceRest,
     private toastr: ToastrService,
-    private modal: NzModalService
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -93,22 +98,17 @@ export class CreateAdComponent implements OnInit, OnDestroy {
 
   uploadImage(event: any): void {
     event.preventDefault();
-
     if (event.target.files.length < 1) {
       return;
     }
-
     const formData = new FormData();
-
     const newPhotos = Object.values(event.target.files);
-
     this.currentPhotos = [...this.currentPhotos, ...newPhotos].slice(0, 6);
     this.currentPhotos.forEach((photo) => formData.append('file', photo));
     this.adsService.uploadImageInStorage(formData).subscribe((res) => {
       this.photos = res;
     });
   }
-
   onDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.photos, event.previousIndex, event.currentIndex);
   }
@@ -123,69 +123,82 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.modal.confirm({
-      nzTitle: 'Are you sure you want to create your ad?',
-      nzContent: '',
-      nzOnOk: () => {
-        const create = new CreateAd();
-        create.productName = this.createForm.value.productName;
-        if (create.productName.length === 0) {
-          this.toastr.warning('You must add an ad name');
-        }
-        create.description = this.createForm.value.description;
-        if (create.description.length === 0) {
-          this.toastr.warning('You must add an ad description');
-          return;
-        }
-        create.fixedPrice = this.createForm.value.fixedPrice;
-        if (this.createForm.value.fixedPrice === '') {
-          create.fixedPrice = false;
-        }
-        create.freeDelivery = this.createForm.value.freeDelivery;
-        if (this.createForm.value.freeDelivery === '') {
-          create.freeDelivery = false;
-        }
-        create.adsGroupId = this.categoryId;
-        if (create.adsGroupId === undefined) {
-          this.toastr.warning('You must select a category');
-          return;
-        }
-        create.adsSubGroupId = this.subcategoryId;
-        if (create.adsSubGroupId === undefined) {
-          this.toastr.warning('You must select a subcategory');
-          return;
-        }
-        create.image = this.photos;
-        if (create.image.length === 0) {
-          this.toastr.warning('You must add an image');
-          return;
-        }
-        create.productWarranty = this.createForm.value.productWarranty;
-        if (this.createForm.value.productWarranty === '') {
-          create.productWarranty = false;
-        }
-        create.urgentSales = this.createForm.value.urgentSales;
-        if (this.createForm.value.urgentSales === '') {
-          create.urgentSales = false;
-        }
-        create.price = this.roundUp(
-          Number(
-            (Math.round(this.createForm.value.price * 100) / 100).toFixed(2)
-          ),
-          1
-        );
-        if (create.price === 0) {
-          this.toastr.warning('You have to set a price');
-          return;
-        }
-        create.adsType = this.statusOfProduct;
+    // this.modal.confirm({
+    //   nzTitle: 'Are you sure you want to create your ad?',
+    //   nzContent: '',
+    //   nzOnOk: () => {
 
-        this.adsService.newAd(create).subscribe(() => {
-          this.router.navigate(['/site']);
-          this.toastr.success('Ad successfully created!');
-        });
-      },
-    });
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+        width: '500px',
+        data: {
+          title: 'New Ad',
+          message: 'Are you sure you want to create your ad?'
+        }
+      });
+      confirmDialog.afterClosed().subscribe(result => {
+        if (result === true) {
+          const create = new CreateAd();
+          create.productName = this.createForm.value.productName;
+          if (create.productName.length === 0) {
+            this.toastr.warning('You must add an ad name');
+          }
+          create.description = this.createForm.value.description;
+          if (create.description.length === 0) {
+            this.toastr.warning('You must add an ad description');
+            return;
+          }
+          create.fixedPrice = this.createForm.value.fixedPrice;
+          if (this.createForm.value.fixedPrice === '') {
+            create.fixedPrice = false;
+          }
+          create.freeDelivery = this.createForm.value.freeDelivery;
+          if (this.createForm.value.freeDelivery === '') {
+            create.freeDelivery = false;
+          }
+          create.adsGroupId = this.categoryId;
+          if (create.adsGroupId === undefined) {
+            this.toastr.warning('You must select a category');
+            return;
+          }
+          create.adsSubGroupId = this.subcategoryId;
+          if (create.adsSubGroupId === undefined) {
+            this.toastr.warning('You must select a subcategory');
+            return;
+          }
+          create.image = this.photos;
+          if (create.image.length === 0) {
+            this.toastr.warning('You must add an image');
+            return;
+          }
+          create.productWarranty = this.createForm.value.productWarranty;
+          if (this.createForm.value.productWarranty === '') {
+            create.productWarranty = false;
+          }
+          create.urgentSales = this.createForm.value.urgentSales;
+          if (this.createForm.value.urgentSales === '') {
+            create.urgentSales = false;
+          }
+          create.price = this.roundUp(
+            Number(
+              (Math.round(this.createForm.value.price * 100) / 100).toFixed(2)
+            ),
+            1
+          );
+          if (create.price === 0) {
+            this.toastr.warning('You have to set a price');
+            return;
+          }
+          create.adsType = this.statusOfProduct;
+
+          this.adsService.newAd(create).subscribe(() => {
+            this.router.navigate(['/site']);
+            this.toastr.success('Ad successfully created!');
+          });
+        }
+      });
+
+    //   },
+    // });
   }
 
   roundUp(num, precision) {

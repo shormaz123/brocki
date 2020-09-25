@@ -77,7 +77,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   displaySideNav = true;
   mailBoolean = false;
   email: boolean = false;
-
+useKeyborad = true;
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
 
@@ -101,12 +101,13 @@ export class AdComponent implements OnInit, AfterViewInit {
 
     this.galleryOptions = [
       {
-        width: '600px',
+        width: '700px',
         height: '400px',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
         previewCloseOnClick: true,
         previewCloseOnEsc: true,
+        previewKeyboardNavigation: true
       },
       // max-width 800
       {
@@ -117,11 +118,13 @@ export class AdComponent implements OnInit, AfterViewInit {
         thumbnailsPercent: 20,
         thumbnailsMargin: 20,
         thumbnailMargin: 20,
+        previewKeyboardNavigation: true
       },
       // max-width 400
       {
         breakpoint: 400,
         preview: false,
+        previewKeyboardNavigation: true
       },
     ];
 
