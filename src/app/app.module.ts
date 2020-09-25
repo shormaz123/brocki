@@ -186,7 +186,7 @@ registerLocaleData(en);
     Ng5SliderModule,
     MatAutocompleteModule,
     Ng2CarouselamosModule,
-    NgxHotjarModule.forRoot('2010181'),
+    NgxHotjarModule.forRoot('2010944'),
     ToastrModule.forRoot({
       preventDuplicates: true,
       closeButton: true,
