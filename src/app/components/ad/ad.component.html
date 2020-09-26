@@ -38,41 +38,47 @@
     </div>
     <div class="info">
         <div class="left">
-            <div class="card">
-                <div class="cardColumn1">
-                    {{ ad?.price || card?.price | number: '1.2-2':'en-US' }} CHF
+            <div class="profile">
+                <div class="seller-image">
+                    <img *ngIf="!reviewUser" [src]="userImage" [routerLink]="['/seller', userSellerId]" pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!" tooltipPosition="top" style="cursor: pointer" />
+                    <img *ngIf="reviewUser" [src]="reviewUser.companyImage[0]" [routerLink]="['/seller/', reviewUser.id]" />
                 </div>
-                <div class="cardColumn">{{ ad?.adsType || card?.adsType }}</div>
-                <div class="cardColumn" style="text-align: center;">
-                    {{ userSeller?.city || reviewUser?.city }}
-                </div>
-                <div class="cardColumn2">
-                    {{ ad?.adsDate || card?.adsDate | date: 'medium' }}
-                </div>
+
             </div>
+
+
         </div>
         <div class="center">
-            <div class="contact">
-                <div class="iconBox" (click)="phonesOfSeller()">
-                    <div class="phoneImage phoneImage--margin">
-                        <div class="photo" [inlineSVG]="
+            <div class="centerBox">
+                <label *ngIf="private">{{
+                userSeller?.name || reviewUser?.name
+                }}</label>
+                <label *ngIf="business">{{ companyName }}</label>
+                <label *ngIf="adminBoolean">{{ adminName }}</label>
+                <div style="font-size: 18px;">
+                    {{ userSeller?.address || reviewUser?.address }}
+                </div>
+                <div class="contact">
+                    <div class="iconBox" (click)="phonesOfSeller()">
+                        <div class="phoneImage phoneImage--margin">
+                            <div class="photo" [inlineSVG]="
                       '../../../assets/images/update-info-bussines/phone.svg'
                     "></div>
+                        </div>
+                        <div class="phone" *ngIf="sellerPhones">
+                            <div>{{ userSeller?.phone }}</div>
+                            <div>{{ userSeller?.mobile }}</div>
+                        </div>
                     </div>
-                    <div class="phone" *ngIf="sellerPhones">
-                        <div>{{ userSeller?.phone }}</div>
-                        <div>{{ userSeller?.mobile }}</div>
-                    </div>
-                </div>
-                <div class="iconBox iconBox--email" (click)="sendEmail()">
-                    <div class="phoneImage">
-                        <div class="photo" [inlineSVG]="
+                    <div class="iconBox iconBox--email" (click)="sendEmail()">
+                        <div class="phoneImage">
+                            <div class="photo" [inlineSVG]="
                       '../../../assets/images/update-info-bussines/email.svg'
                     "></div>
+                        </div>
+                        <div class="iconBox__email"></div>
                     </div>
-                    <div class="iconBox__email"></div>
-                </div>
-                <!-- <div class="phone">
+                    <!-- <div class="phone">
                     <img src="../../../assets/images/ad/icon phone.png" *ngIf="userSeller?.phone || userSeller?.mobile" />
                     <div class="numbers">
                         <label>{{ userSeller?.phone }}</label>
@@ -83,19 +89,22 @@
                     <img (click)="toogleMail()" src="../../../assets/images/ad/icon mail.png" *ngIf="userSeller?.email || reviewUser?.email" style="cursor: pointer" />
                     <label *ngIf="mailBoolean">{{ userSeller?.email || reviewUser?.email }}</label>
                 </div> -->
+                </div>
             </div>
         </div>
         <div class="right">
-            <div class="profile">
-                <div class="seller-image">
-                    <img *ngIf="!reviewUser" [src]="userImage" [routerLink]="['/seller', userSellerId]" pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!" tooltipPosition="top" style="cursor: pointer" />
-                    <img *ngIf="reviewUser" [src]="reviewUser.companyImage[0]" [routerLink]="['/seller/', reviewUser.id]" />
+            <div class="card">
+                <div class="cardColumn1">
+                    {{ ad?.price || card?.price | number: '1.2-2':'en-US' }} CHF
                 </div>
-                <label *ngIf="private">{{
-    userSeller?.name || reviewUser?.name
-    }}</label>
-                <label *ngIf="business">{{ companyName }}</label>
-                <label *ngIf="adminBoolean">{{ adminName }}</label>
+                <div class="cardColumn">{{ ad?.adsType || card?.adsType }}</div>
+                <div class="cardColumn" style="text-align: center;">
+                    <label style="margin-right: 5px;">5</label>
+                    <img src="../../../assets/images/eye.svg" style="height: 24px;">
+                </div>
+                <div class="cardColumn2">
+                    {{ ad?.adsDate || card?.adsDate | date: 'medium' }}
+                </div>
             </div>
 
         </div>
