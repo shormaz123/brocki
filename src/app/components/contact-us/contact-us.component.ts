@@ -4,6 +4,8 @@ import { UserService } from '../../@core/services/user.service';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { AuthConst } from '../../@core/consts/auth.const';
+import { ToastrService } from 'ngx-toastr';
+import {  throttleTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contact-us',
@@ -19,8 +21,9 @@ export class ContactUsComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private notification: NzNotificationService
-  ) {}
+    private notification: NzNotificationService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
     (this.token = localStorage.getItem(AuthConst.token)),
@@ -53,8 +56,26 @@ export class ContactUsComponent implements OnInit {
     email.email = this.contactForm.value.email;
     email.subject = this.contactForm.value.subject;
     email.message = this.contactForm.value.message;
-    this.notification.success('', 'An email has been sent');
-    this.router.navigate([`/user/${this.userId}`]);
-    this.userService.contactUs(email).subscribe();
+
+    this.userService.contactUs(email).pipe(throttleTime(2000)).subscribe(
+      (x) => {
+      if (x) {
+        this.toastr.success('', 'An email has been sent');
+        this.router.navigate([`/site`]);
+      }
+    },  (error) => {
+      if (error.status === 200) {
+        this.toastr.success('', 'An email has been sent');
+        this.router.navigate([`/site`]);
+      } else if ( error.status === 500 ) {
+        this.toastr.warning('', 'Please, fill every field in accurate way');
+      }
+    }
+    )
+  }
+
+  log() {
+    console.log('Clicked!');
+    this.onSubmit();
   }
 }

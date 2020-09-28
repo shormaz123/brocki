@@ -382,6 +382,18 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       selectedImage: '../../../assets/images/navigation/red/IT.svg',
       imageTo: '',
     },
+    {
+      id: 29,
+      title: {
+        de: '',
+        en: '',
+        fr: '',
+        it: '',
+      },
+      image: '../../../assets/images/navigation/drinks 2.svg',
+      selectedImage: '../../../assets/images/navigation/red/drinks.svg',
+      imageTo: '',
+    },
   ];
 
   favAds;

@@ -60,7 +60,9 @@
 }
 
 .title {
-    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -495,4 +497,12 @@ p-carousel {
 .descriptionTitle {
     font-size: 25px;
     font-weight: 500;
+}
+
+.socialMediaDiv {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

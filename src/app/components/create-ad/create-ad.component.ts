@@ -123,10 +123,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    // this.modal.confirm({
-    //   nzTitle: 'Are you sure you want to create your ad?',
-    //   nzContent: '',
-    //   nzOnOk: () => {
 
       const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
         width: '500px',

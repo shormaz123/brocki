@@ -1,80 +1,48 @@
 <div class="container">
-  <div class="contact-us">
-    <div class="contact-us__title">
-      {{ 'translate.contactUs' | translate }}
-    </div>
-    <div class="contact-us__body">
-      <div class="contact-us__pictures">
-        <div class="contact-us__image">
-          <img
-            class="contact-us__photo"
-            src="../../../assets/images/filters/location icon.png"
-          />
-          <div class="contact-us__text">
-            Mio Software GmbH Route de la Plaine 28 1580 Avenches<br />
-            Suisse
-          </div>
+    <div class="contact-us">
+        <div class="contact-us__title">
+            {{ 'translate.contactUs' | translate }}
         </div>
-        <div class="contact-us__image">
-          <img
-            class="contact-us__photo"
-            src="../../../assets/images/ad/icon phone.png"
-          />
-          <div class="contact-us__text">+41 27 923 88 88</div>
-        </div>
-        <div class="contact-us__image">
-          <img
-            class="contact-us__photo"
-            src="../../../assets/images/ad/icon mail.png"
-          />
-          <div class="contact-us__text">info@minibrocki.ch</div>
-        </div>
-      </div>
-      <form class="form" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
-        <div class="form__flex">
-          <div class="form__inputItem">
-            <input
-              class="form__input-tight"
-              placeholder="{{ 'translate.nameFirst' | translate }}"
-              formControlName="name"
-            />
-          </div>
-          <div class="form__inputItem">
-            <input
-              class="form__input-tight"
-              placeholder="{{ 'translate.email' | translate }}"
-              formControlName="email"
-            />
-          </div>
-        </div>
-        <div class="form__inputItem">
-          <input
-            class="form__input-wide"
-            placeholder="{{ 'translate.subject' | translate }}"
-            formControlName="subject"
-          />
-        </div>
-        <div class="form__inputItem">
-          <textarea
-            class="form__input-wide form__input-wide--textarea"
-            placeholder="{{ 'translate.message' | translate }}"
-            formControlName="message"
-          ></textarea>
-        </div>
-        <div class="form__inputItem">
-          <button class="form__sendMessage" type="submit">
+        <div class="contact-us__body">
+            <div class="contact-us__pictures">
+                <div class="contact-us__image">
+                    <img class="contact-us__photo" src="../../../assets/images/filters/location icon.png" />
+                    <div class="contact-us__text">
+                        Mio Software GmbH Route de la Plaine 28 1580 Avenches<br /> Suisse
+                    </div>
+                </div>
+                <div class="contact-us__image">
+                    <img class="contact-us__photo" src="../../../assets/images/ad/icon phone.png" />
+                    <div class="contact-us__text">+41 27 923 88 88</div>
+                </div>
+                <div class="contact-us__image">
+                    <img class="contact-us__photo" src="../../../assets/images/ad/icon mail.png" />
+                    <div class="contact-us__text">info@minibrocki.ch</div>
+                </div>
+            </div>
+            <form class="form" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+                <div class="form__flex">
+                    <div class="form__inputItem">
+                        <input class="form__input-tight" placeholder="{{ 'translate.nameFirst' | translate }}" formControlName="name" />
+                    </div>
+                    <div class="form__inputItem">
+                        <input class="form__input-tight" placeholder="{{ 'translate.email' | translate }}" formControlName="email" />
+                    </div>
+                </div>
+                <div class="form__inputItem">
+                    <input class="form__input-wide" placeholder="{{ 'translate.subject' | translate }}" formControlName="subject" />
+                </div>
+                <div class="form__inputItem">
+                    <textarea class="form__input-wide form__input-wide--textarea" placeholder="{{ 'translate.message' | translate }}" formControlName="message"></textarea>
+                </div>
+                <div class="form__inputItem">
+                    <button class="form__sendMessage" type="submit" appDebounceClick [debounceTime]="700" (debounceClick)="log()">
             {{ 'translate.sendMassage' | translate }}
           </button>
+                </div>
+            </form>
         </div>
-      </form>
+        <iframe width="790px" height="400px" id="gmap_canvas" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2726.8317434115634!2d7.038627415605673!3d46.88635857914346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28853bde12c7ba66!2sMinibrocki.ch!5e0!3m2!1sen!2srs!4v1598201645551!5m2!1sen!2srs"
+            frameborder="0" scrolling="no"></iframe>
     </div>
-    <iframe
-      width="790px"
-      height="400px"
-      id="gmap_canvas"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2726.8317434115634!2d7.038627415605673!3d46.88635857914346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28853bde12c7ba66!2sMinibrocki.ch!5e0!3m2!1sen!2srs!4v1598201645551!5m2!1sen!2srs"
-      frameborder="0"
-      scrolling="no"
-    ></iframe>
-  </div>
 </div>
