@@ -90,7 +90,7 @@ export const it = {
       'Il prezzo massimo non può essere superiore al prezzo minimo',
     sendCopyOfEmail: "Inviami una copia dell'e-mail",
     messageToSeller: 'Messaggio al venditore',
-    close: 'Chiudi,',
+    close: 'Chiudi',
     send: 'Invia',
     company: 'Azienda',
     nameFirst: 'Nome',

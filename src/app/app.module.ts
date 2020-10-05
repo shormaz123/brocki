@@ -97,7 +97,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { MatDialogModule } from '@angular/material';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { NgxHotjarModule } from 'ngx-hotjar';
-import { ClickOutsideDirective } from './shared/directives/click-outside.directive';
+import { ClickOutsideDirective } from './utils/click-outside.directive';
+import { DebounceClickDirective } from './utils/app-prevent-double-click.directive';
 
 registerLocaleData(en);
 
@@ -148,6 +149,7 @@ registerLocaleData(en);
     CategoryAdsComponent,
     HomepageComponent,
     ClickOutsideDirective,
+    DebounceClickDirective,
   ],
   imports: [
     BrowserModule,

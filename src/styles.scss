@@ -203,10 +203,9 @@ body {
     height: 100% !important;
 }
 
-.ui-carousel-item {
-    justify-content: flex-start !important;
-}
-
+// .ui-carousel-item {
+//     justify-content: flex-start !important;
+// }
 body .ui-carousel .ui-carousel-content .ui-carousel-prev,
 body .ui-carousel .ui-carousel-content .ui-carousel-next {
     background-color: $red;
@@ -305,7 +304,7 @@ body .ui-accordion .ui-accordion-header:not(.ui-state-disabled).ui-state-active 
 
 //carousel ngx
 .slick-slider {
-    width: 90%;
+    width: 100%;
     margin: auto;
     background: #000;
 }
