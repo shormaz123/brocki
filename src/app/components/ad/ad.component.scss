@@ -222,6 +222,9 @@
     label {
       color: $red;
       margin-bottom: 20px;
+      text-align: justify;
+      word-break: break-word;
+      white-space: pre-line;
     }
   }
 }
