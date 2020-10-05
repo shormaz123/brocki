@@ -23,39 +23,160 @@
           ></textarea>
         </div>
       </div>
-      <div class="form__input">
-        <select
+      <div class="form__input form__input--first">
+        <label class="form__label"
+          >{{ 'translate.category' | translate }}:</label
+        >
+        <input
           class="form__select"
           formControlName="category"
-          (change)="findCategory($event)"
-        >
-          <option value="">
-            {{ 'translate.selectCategory' | translate }}
-          </option>
-          <option *ngFor="let category of categories" [value]="category.id">
+          placeholder="{{ 'translate.typeCategory' | translate }} ..."
+          type="text"
+          #category
+          (keyup)="searchCategory(category.value)"
+          (click)="toggleCategoryDropdown()"
+          (clickOutside)="toggleCategory = false"
+          (click)="subcategory.value = ''"
+        />
+        <div class="form__selectDropdown" *ngIf="toggleCategory">
+          <div *ngIf="filteredCategory.length === 0">
+            <div
+              class="form__dropdownCategory"
+              *ngFor="let category of categories"
+              (click)="categorySearch(category.groupName[currentLang])"
+            >
+              {{ category.groupName[currentLang] }}
+            </div>
+          </div>
+          <div *ngIf="filteredCategory.length !== 0">
+            <div
+              class="form__dropdownCategory"
+              *ngFor="let category of filteredCategory"
+              (click)="categorySearch(category.groupName[currentLang])"
+            >
+              {{ category.groupName[currentLang] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- <select class="form__selectCategory" (change)="findCategory($event)">
+          <option class="form__option" selected disabled value="">List</option>
+          <option
+            class="form__option"
+            *ngFor="let category of categories"
+            [value]="category.id"
+          >
             {{ category.groupName[currentLang] }}
           </option>
-        </select>
+        </select> -->
+        <div
+          class="form__categoryButton"
+          (click)="listCategory()"
+          (clickOutside)="toggleListCategory = false"
+          (click)="subcategory.value = ''"
+        >
+          List
+        </div>
+        <div class="form__categoryList" label="List" *ngIf="toggleListCategory">
+          <div
+            class="form__option"
+            *ngFor="let category of categories"
+            (click)="findCategory(category)"
+          >
+            {{ category.groupName[currentLang] }}
+          </div>
+        </div>
       </div>
-      <div class="form__input">
-        <select
-          class="form__select"
+      <div class="form__input form__input--second">
+        <label class="form__label"
+          >{{ 'translate.subcategory' | translate }}:</label
+        >
+        <input
           formControlName="subcategory"
+          type="text"
+          placeholder="{{ 'translate.typeSubcategory' | translate }} ..."
+          class="form__select"
+          #subcategory
+          name="subcategory"
+          (keyup)="searchSubcategory(subcategory.value)"
+          (click)="toggleSubcategoryDropdown()"
+          (clickOutside)="toggleSubcategory = false"
+        />
+
+        <div *ngIf="subcategories.length !== 0">
+          <div *ngIf="filteredSubcategory.length === 0">
+            <div class="form__selectDropdown" *ngIf="toggleSubcategory">
+              <div
+                *ngFor="let subcategory of subcategories"
+                class="form__dropdownCategory"
+                (click)="
+                  subcategorySearch(subcategory.subGroupName[currentLang])
+                "
+              >
+                {{ subcategory.subGroupName[currentLang] }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="filteredSubcategory.length !== 0">
+          <div class="form__selectDropdown" *ngIf="toggleSubcategory">
+            <div
+              *ngFor="let subcategory of filteredSubcategory"
+              class="form__dropdownCategory"
+              (click)="subcategorySearch(subcategory.subGroupName[currentLang])"
+            >
+              {{ subcategory.subGroupName[currentLang] }}
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="form__categoryButton"
+          type="button"
+          (click)="listSubcategory()"
+          (clickOutside)="toggleListSubcategory = false"
+        >
+          List
+        </div>
+        <div *ngIf="subcategories.length !== 0">
+          <div class="form__subcategoryList" *ngIf="toggleListSubcategory">
+            <div
+              class="form__option"
+              *ngFor="let subcategory of subcategories"
+              (click)="findsubcategory(subcategory)"
+            >
+              {{ subcategory.subGroupName[currentLang] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- <select
+          class="form__selectSubcategory"
           (change)="findsubcategory($event)"
         >
-          <option value="">
-            {{ 'translate.selectSubCategory' | translate }}
-          </option>
+          <option class="form__option" selected disabled value="">List</option>
           <option
+            class="form__option"
             *ngFor="let subcategory of subcategories"
             [value]="subcategory.id"
           >
             {{ subcategory.subGroupName[currentLang] }}
           </option>
-        </select>
+        </select> -->
       </div>
+      <label class="form__label">{{ 'translate.tags' | translate }}:</label>
       <div class="form__buttons">
-        <div class="form__button">
+        <div style="margin: 0 20px 15px 0" *ngFor="let tag of tags">
+          <div
+            class="form__tag"
+            [ngClass]="{ active: clickedTags.includes(tag) }"
+            (click)="chosenTag(tag)"
+          >
+            {{ tag }}
+          </div>
+        </div>
+        <!-- <div class="form__button">
           <button
             class="form__used"
             value="USED"
@@ -78,7 +199,7 @@
           >
             {{ 'translate.new' | translate }}
           </button>
-        </div>
+        </div> -->
       </div>
       <div class="form__input">
         <label class="form__label form__label--equal"
@@ -122,7 +243,7 @@
           </div>
         </div>
       </div>
-      <div class="form__checkboxes">
+      <!-- <div class="form__checkboxes">
         <label class="form__label form__label--padding">{{
           'translate.otherFilters' | translate
         }}</label>
@@ -164,7 +285,7 @@
             }}</span>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="form__input">
         <label class="form__label">{{ 'translate.price' | translate }}</label>
         <div class="form__price">
