@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Comment } from '../../../shared/models/createComment.model';
 import { NzModalService, NzNotificationService } from 'ng-zorro-antd';
 import { AuthConst } from '../../../@core/consts/auth.const';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-guestbook-seller',
@@ -31,7 +32,8 @@ export class GuestbookSellerComponent implements OnInit {
     private adsService: AdsService,
     private authService: AuthService,
     private modal: NzModalService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -60,7 +62,7 @@ export class GuestbookSellerComponent implements OnInit {
     const comment = new Comment();
     if (this.ratingForm.value.rating === '') {
       this.modal.error({
-        nzTitle: 'To post a comment you must rate the seller!',
+        nzTitle: this.translateService.instant('translate.rateTheSeller'),
       });
       return;
     } else {
@@ -68,7 +70,7 @@ export class GuestbookSellerComponent implements OnInit {
     }
     if (this.ratingForm.value.comment === '') {
       this.modal.error({
-        nzTitle: 'To post a comment, please leave a comment in text area!',
+        nzTitle: this.translateService.instant('translate.leaveComment'),
       });
       return;
     } else {
@@ -77,13 +79,13 @@ export class GuestbookSellerComponent implements OnInit {
     comment.userId = this.sellerId;
     comment.authorName = this.nameOfCommentator;
     this.modal.confirm({
-      nzTitle: 'Are you sure you want to post comment?',
+      nzTitle: this.translateService.instant('translate.postComment'),
       nzContent: '',
       nzOnOk: () => {
         this.adsService.createComment(comment).subscribe(() => {
           this.notification.success(
             '',
-            'You have successfully posted a comment'
+            this.translateService.instant('translate.successfullyPostedComment')
           );
           this.guestBook.emit();
         });

@@ -14,6 +14,8 @@ import cities from '../../shared/cities.json';
 import { MessageService } from 'primeng/api';
 import { NzNotificationService } from 'ng-zorro-antd';
 import {Feature, MapboxServiceService} from '../../@core/services/mapbox-service.service';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -50,7 +52,9 @@ export class RegistrationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private notification: NzNotificationService,
-    private mapboxService: MapboxServiceService
+    private mapboxService: MapboxServiceService,
+    private translateService: TranslateService,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -67,12 +71,10 @@ export class RegistrationComponent implements OnInit {
       terms: [false, [Validators.required]],
       location: ['', [Validators.required]]
     });
-
     this.brockenstube = true;
     this.institution = false;
     this.private = true;
     this.business = false;
-
     this.registerForm.controls.role_id.setValue(3);
   }
 
@@ -120,7 +122,7 @@ export class RegistrationComponent implements OnInit {
       console.log(this.registerForm.value)
       this.authService.register(this.registration).subscribe(
         (response) => {
-          this.notification.success('', 'Profile successfully created!'),
+          this.toastr.success(this.translateService.instant('translate.profileSuccessfullyCreated')),
             this.router.navigate(['/site']);
         },
         (error) => {
@@ -131,11 +133,9 @@ export class RegistrationComponent implements OnInit {
         }
       );
     } else {
-      // this.registerForm.invalid
-      this.errorMessage = 'Please, fill every field in accurate way';
+      this.errorMessage = this.translateService.instant('translate.fillEveryFieldError');
       this.error = true;
       setTimeout(() => (this.error = false), 5000);
-      // return  console.log("form invalid");
     }
   }
 

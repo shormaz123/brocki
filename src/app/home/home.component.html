@@ -1,21 +1,22 @@
 <div class="mobile">
-  <div class="mobileHeader">
-    <div class="mobileLanguages">
-      <img src="../../assets/images/header/EN.png" />
-      <img src="../../assets/images/header/GE.png" />
-      <img src="../../assets/images/header/IT.png" />
-      <img src="../../assets/images/header/FR.png" />
+    <div class="mobileHeader">
+        <div class="mobileLanguages">
+            <img src="../../assets/images/header/GE.png" (click)="change('de')" />
+            <img src="../../assets/images/header/IT.png" (click)="change('it')" />
+            <img src="../../assets/images/header/FR.png" (click)="change('fr')" />
+            <img src="../../assets/images/header/EN.png" (click)="change('en')" />
+
+        </div>
+        <div class="mobileLogo">
+            <img src="../../assets/images/header/minibrocki.svg" alt="" />
+        </div>
     </div>
-    <div class="mobileLogo">
-      <img src="../../assets/images/header/minibrocki.svg" alt="" />
-    </div>
-  </div>
-  <div class="mobileBody">
-    <div class="mobileText">
-      <label style="text-align: center"
-        >Minibrocki.ch is not currently available on the mobile version.</label
+    <div class="mobileBody">
+        <div class="mobileText">
+            <label style="text-align: center">{{
+          'translate.minibrockiMobileText' | translate
+        }}</label
       >
-      <label>Please download the app:</label>
     </div>
     <div class="mobileGoogleImage">
       <img src="../../assets/images/mobileImages/google play.svg" alt="" />
@@ -28,24 +29,20 @@
     <div class="mobileLeftFooter">
       <label style="text-align: justify">
         <span
-          >The
-          <span style="color: #d62b1f; cursor: pointer">minibrocki®️ </span>app
-          is intended to help Swiss SME retailers as well as second-hand and
-          institutions, in today's dynamic market development. Its made to bind
-          the customer to the business, win new customers and thus increase
-          sales.</span
+          >{{ 'translate.minibrockiDescriptionOne' | translate }}
+          <span style="color: #d62b1f; cursor: pointer">{{ 'translate.minibrockiDescriptionTwo' | translate }}</span> {{ 'translate.minibrockiDescriptionThree' | translate }}</span
         >
       </label>
+        </div>
+        <div class="mobileRightFooter">
+            <img src="../../assets/images/header/minibrocki.svg" alt="" />
+            <span>{{ 'translate.copyrightOne' | translate }}</span>
+            <span>{{ 'translate.copyrightTwo' | translate }} <span style="color: #d62b1f">{{ 'translate.copyrightThree' | translate }}</span></span>
+        </div>
     </div>
-    <div class="mobileRightFooter">
-      <img src="../../assets/images/header/minibrocki.svg" alt="" />
-      <span>Copyright @2020 All rights reserved</span>
-      <span>by <span style="color: #d62b1f">MioSoftware LLC</span></span>
-    </div>
-  </div>
 </div>
 <div class="container">
-  <app-header></app-header>
-  <router-outlet></router-outlet>
-  <app-footer class="footer"></app-footer>
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer class="footer"></app-footer>
 </div>

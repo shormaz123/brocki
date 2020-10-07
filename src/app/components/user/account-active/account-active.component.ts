@@ -12,6 +12,9 @@ import { NzModalService } from 'ng-zorro-antd';
 import { ToastrService } from 'ngx-toastr';
 import { UserStatus } from '../../../shared/enums/userStatus';
 import { AuthConst } from '../../../@core/consts/auth.const';
+import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material';
+import { ConfirmDialogComponent } from 'app/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-account-active',
@@ -39,7 +42,9 @@ export class AccountActiveComponent implements OnInit, OnChanges {
   constructor(
     private modal: NzModalService,
     private adsService: AdsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translateService: TranslateService,
+    private dialog: MatDialog
   ) {}
   ngOnInit() {
     this.language = localStorage.getItem(AuthConst.language);
@@ -69,10 +74,15 @@ export class AccountActiveComponent implements OnInit, OnChanges {
   }
 
   deleteAd(active: Ads, index: number): void {
-    this.modal.confirm({
-      nzTitle: 'Are you sure you want to delete this ad?',
-      nzContent: '',
-      nzOnOk: () => {
+
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+        width: '500px',
+        data: {
+          message: this.translateService.instant('translate.deleteAdConfirmation')
+        }
+      });
+      confirmDialog.afterClosed().subscribe(result => {
+        if (result) {
         this.activeProducts[0].splice(index, 1);
         if (this.activeProducts[0].length === 0) {
           this.ads = false;
@@ -100,15 +110,19 @@ export class AccountActiveComponent implements OnInit, OnChanges {
           this.ad = '1';
           this.changeStatusDelete.emit(this.ad);
         });
-      },
-    });
+      }
+      })
   }
 
   soldAd(active: Ads, index: number): void {
-    this.modal.confirm({
-      nzTitle: 'Whether the ad was actually sold?',
-      nzContent: '',
-      nzOnOk: () => {
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+        width: '500px',
+        data: {
+          message: this.translateService.instant('translate.acruallySoldAd')
+        }
+      });
+      confirmDialog.afterClosed().subscribe(result => {
+        if (result) {
         this.activeProducts[0].splice(index, 1);
         if (this.activeProducts[0].length === 0) {
           this.ads = false;
@@ -136,7 +150,7 @@ export class AccountActiveComponent implements OnInit, OnChanges {
           this.ad = '1';
           this.changeStatusSold.emit(this.ad);
         });
-      },
+      }
     });
   }
 

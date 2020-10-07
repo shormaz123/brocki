@@ -20,6 +20,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 import { element } from 'protractor';
 import { AuthConst } from '../../@core/consts/auth.const';
 
@@ -89,7 +90,8 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     private adsService: AdsService,
     private translateBackend: TranslateServiceRest,
     private toastr: ToastrService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -386,73 +388,71 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+        width: '500px',
+        data: {
+          message:  this.translateService.instant('translate.createAdConfirmation')
+        }
+      });
+      confirmDialog.afterClosed().subscribe(result => {
+        if (result === true) {
+          const create = new CreateAd();
+          create.productName = this.createForm.value.productName;
+          if (create.productName.length === 0) {
+            this.toastr.warning(this.translateService.instant('translate.mustAddName'));
+          }
+          create.description = this.createForm.value.description;
+          if (create.description.length === 0) {
+            this.toastr.warning(this.translateService.instant('translate.mustAddDescription'));
+            return;
+          }
+          create.fixedPrice = this.createForm.value.fixedPrice;
+          if (this.createForm.value.fixedPrice === '') {
+            create.fixedPrice = false;
+          }
+          create.freeDelivery = this.createForm.value.freeDelivery;
+          if (this.createForm.value.freeDelivery === '') {
+            create.freeDelivery = false;
+          }
+          create.adsGroupId = this.categoryId;
+          if (create.adsGroupId === undefined) {
+            this.toastr.warning(this.translateService.instant('translate.mustAddCategory'));
+            return;
+          }
+          create.adsSubGroupId = this.subcategoryId;
+          if (create.adsSubGroupId === undefined) {
+            this.toastr.warning(this.translateService.instant('translate.mustAddSubcategory'));
+            return;
+          }
+          create.image = this.photos;
+          if (create.image.length === 0) {
+            this.toastr.warning(this.translateService.instant('translate.mustAddImage'));
+            return;
+          }
+          create.productWarranty = this.createForm.value.productWarranty;
+          if (this.createForm.value.productWarranty === '') {
+            create.productWarranty = false;
+          }
+          create.urgentSales = this.createForm.value.urgentSales;
+          if (this.createForm.value.urgentSales === '') {
+            create.urgentSales = false;
+          }
+          create.price = this.roundUp(
+            Number(
+              (Math.round(this.createForm.value.price * 100) / 100).toFixed(2)
+            ),
+            1
+          );
+          if (create.price === 0) {
+            this.toastr.warning(this.translateService.instant('translate.setPrice'));
+            return;
+          }
+          create.adsType = this.statusOfProduct;
 
-    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-      width: '500px',
-      data: {
-        title: 'New Ad',
-        message: 'Are you sure you want to create your ad?',
-      },
-    });
-    confirmDialog.afterClosed().subscribe((result) => {
-      if (result === true) {
-        const create = new CreateAd();
-        create.productName = this.createForm.value.productName;
-        if (create.productName.length === 0) {
-          this.toastr.warning('You must add an ad name');
-        }
-        create.description = this.createForm.value.description;
-        if (create.description.length === 0) {
-          this.toastr.warning('You must add an ad description');
-          return;
-        }
-        create.fixedPrice = this.createForm.value.fixedPrice;
-        if (this.createForm.value.fixedPrice === '') {
-          create.fixedPrice = false;
-        }
-        create.freeDelivery = this.createForm.value.freeDelivery;
-        if (this.createForm.value.freeDelivery === '') {
-          create.freeDelivery = false;
-        }
-        create.adsGroupId = this.categoryId;
-        if (create.adsGroupId === undefined) {
-          this.toastr.warning('You must select a category');
-          return;
-        }
-        create.adsSubGroupId = this.subcategoryId;
-        if (create.adsSubGroupId === undefined) {
-          this.toastr.warning('You must select a subcategory');
-          return;
-        }
-        create.image = this.photos;
-        if (create.image.length === 0) {
-          this.toastr.warning('You must add an image');
-          return;
-        }
-        create.productWarranty = this.createForm.value.productWarranty;
-        if (this.createForm.value.productWarranty === '') {
-          create.productWarranty = false;
-        }
-        create.urgentSales = this.createForm.value.urgentSales;
-        if (this.createForm.value.urgentSales === '') {
-          create.urgentSales = false;
-        }
-        create.price = this.roundUp(
-          Number(
-            (Math.round(this.createForm.value.price * 100) / 100).toFixed(2)
-          ),
-          1
-        );
-        if (create.price === 0) {
-          this.toastr.warning('You have to set a price');
-          return;
-        }
-        create.adsType = this.statusOfProduct;
-
-        this.adsService.newAd(create).subscribe(() => {
-          this.router.navigate(['/site']);
-          this.toastr.success('Ad successfully created!');
-        });
+          this.adsService.newAd(create).subscribe(() => {
+            this.router.navigate(['/site']);
+            this.toastr.success(this.translateService.instant('translate.adSuccessfullyCreated'));
+          });
       }
     });
 

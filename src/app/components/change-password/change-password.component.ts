@@ -5,6 +5,9 @@ import { UserService } from '../../@core/services/user.service';
 import { AuthService } from '../../@core/services/auth.service';
 import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-change-password',
@@ -25,7 +28,9 @@ export class ChangePasswordComponent implements OnInit {
     private notification: NzNotificationService,
     private fb: FormBuilder,
     private modal: NzModalService,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit() {
@@ -41,25 +46,32 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    this.modal.confirm({
-      nzTitle: 'Are you sure you want to change your password?',
-      nzContent: '',
-      nzOnOk: () => {
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+        width: '500px',
+        data: {
+          message: this.translateService.instant('translate.changePasswordConfirmation')
+        }
+      });
+      confirmDialog.afterClosed().subscribe(result => {
+        if (result) {
         (this.oldPassword = this.changePasswordForm.value.oldPassword),
           (this.newPassword = this.changePasswordForm.value.newPassword),
           this.authService
             .newPassword(this.oldPassword, this.newPassword)
             .subscribe(
-              (res) => {},
-              (error) => {
-                this.notification.success('', 'Password successfully changed!');
+              (res) => {
+                if (res) {
+                this.notification.success('', this.translateService.instant('translate.passwordChanged'));
                 this.router.navigate([`/user/${this.userId}`]);
-                // this.modal.error({
-                //   nzTitle: "Ops, something went wrong!",
-                // });
-              }
-            );
-      },
-    });
+                }
+              },
+              (error) => {
+                this.modal.error({
+                  nzTitle: error.message,
+                });
+              });
+            }
+      });
   }
+
 }
