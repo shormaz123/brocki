@@ -10,6 +10,7 @@ import {AuthConst} from '../../@core/consts/auth.const';
 import {TranslateServiceRest} from '../../@core/services/translateREST.service';
 import {Subscription} from 'rxjs';
 import {Location} from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-ads',
@@ -33,6 +34,9 @@ export class AdsComponent implements OnInit, OnDestroy {
   subscriptionLang: Subscription;
   selectedImage: string;
   pageNumber = 1;
+  clickedTags: Array<string> = [];
+  clickedTag: string;
+  tags = [];
 
 
 
@@ -41,7 +45,8 @@ export class AdsComponent implements OnInit, OnDestroy {
               private userService: UserService,
               private helpersService: HelpersService,
               private translateBackend: TranslateServiceRest,
-              private location: Location) {
+              private location: Location,
+              private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -81,6 +86,7 @@ export class AdsComponent implements OnInit, OnDestroy {
       .getLanguage()
       .subscribe((message) => {
         this.currentLang = message;
+        this.lang();
         this.adsService.getSubCategoryById(this.subGroupId).subscribe( subTitle => {
           this.subCategoryName = subTitle.subGroupName[this.currentLang]
         });
@@ -89,6 +95,7 @@ export class AdsComponent implements OnInit, OnDestroy {
           this.getImage(this.groupId);
         });
       });
+      this.lang();
   }
 
   ngOnDestroy() {
@@ -202,6 +209,55 @@ export class AdsComponent implements OnInit, OnDestroy {
     });
   }
 
+   lang() {
+    if (this.currentLang === 'de') {
+      this.tags = [
+        'antik',
+        'gebraucht',
+        'neu',
+        'gut zu gebrauchen',
+        'restauriert',
+        'defekt',
+        'einzigartig',
+        'handgemacht',
+      ];
+    } else if (this.currentLang === 'en') {
+      this.tags = [
+        'antique',
+        'second hand',
+        'new',
+        'good to use',
+        'restored',
+        'malfunction',
+        'unique',
+        'handmade',
+
+      ];
+    } else if (this.currentLang === 'it') {
+      this.tags = [
+        'antico',
+        'seconda mano',
+        'nuovo',
+        'buono da usare',
+        'restaurato',
+        'malfunzionamento',
+        'unico',
+        'fatto a mano',
+      ];
+    } else if (this.currentLang === 'fr') {
+      this.tags = [
+        'antique',
+        "d'occasion",
+        'nouveau',
+        'bon à utiliser',
+        'restaure',
+        'mauvais fonctionnement',
+        'unique',
+        'fait main',
+      ];
+    }
+  }
+
   addToWishlist(adId: number) {
     this.userRequest = {
       adsId: adId,
@@ -229,6 +285,35 @@ export class AdsComponent implements OnInit, OnDestroy {
 
   backClicked() {
     this.location.back();
+  }
+
+  chosenTag(tag: string): void {
+    this.clickedTag = tag;
+
+    this.clickedTags = [...this.clickedTags];
+
+    if (this.clickedTags.includes(this.clickedTag)) {
+      this.clickedTags = this.clickedTags.filter((e) => e !== this.clickedTag);
+      return;
+    }
+
+    if (this.clickedTags.length < 3) {
+      this.clickedTags.push(tag);
+    } else {
+      this.setLanguage();
+    }
+  }
+
+  setLanguage() {
+    if (this.currentLang === 'en') {
+      return this.toastr.warning('You can choose up to 3 tags');
+    } else if (this.currentLang === 'fr') {
+      return this.toastr.warning("Vous pouvez choisir jusqu'à 3 balises");
+    } else if (this.currentLang === 'de') {
+      return this.toastr.warning('Sie können bis zu 3 Tags auswählen');
+    } else if (this.currentLang === 'it') {
+      return this.toastr.warning('Puoi scegliere fino a 3 tag');
+    }
   }
 
 

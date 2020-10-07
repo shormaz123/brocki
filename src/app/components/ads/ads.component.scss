@@ -324,7 +324,7 @@ button {
     width: 20%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     padding-top: 40px;
     img {
         height: 59px;
@@ -352,4 +352,35 @@ button {
     h1 {
         color: $red;
     }
+}
+
+.tagsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    &__tag {
+        width: 112px;
+        background-color: $white;
+        border: 1px solid $border-gray;
+        color: $darkgrey;
+        padding: 9px 5px;
+        border-radius: 25px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        text-align: center;
+    }
+    &__tag::first-letter {
+        text-transform: capitalize;
+    }
+}
+
+.active {
+    background-color: $red;
+    color: $white;
 }

@@ -61,6 +61,13 @@
             </div>
         </div>
     </div>
+    <div class="tagsContainer">
+        <div style="margin: 0 20px 15px 0" *ngFor="let tag of tags">
+            <div class="tagsContainer__tag" [ngClass]="{ active: clickedTags.includes(tag) }" (click)="chosenTag(tag)">
+                {{ tag }}
+            </div>
+        </div>
+    </div>
     <div class="noAdsContainer" *ngIf="favAds.length === 0">
         <h1>{{ 'translate.noAvailableAds' | translate }}
         </h1>
