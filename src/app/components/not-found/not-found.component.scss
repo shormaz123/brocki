@@ -1,19 +1,17 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixin';
-
 .not-found {
-  width: 100vw;
-  background-color: $lightgrey;
-
-  &__image {
-    background: url('../../../assets/images/404.svg');
-    height: 540px;
-    margin: 0 auto;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    @include rwd(1280) {
-      height: 500px;
+    width: 100vw;
+    background-color: $lightgrey;
+    height: 100%;
+    &__image {
+        background: url('../../../assets/images/404.svg');
+        height: 100%;
+        margin: 0 auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        @include rwd(1280) {
+            height: 500px;
+        }
     }
-  }
 }
