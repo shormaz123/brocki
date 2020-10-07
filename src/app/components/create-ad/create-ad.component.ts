@@ -13,6 +13,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-ad',
@@ -41,7 +42,8 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     private adsService: AdsService,
     private translateBackend: TranslateServiceRest,
     private toastr: ToastrService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -123,12 +125,10 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-
       const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
         width: '500px',
         data: {
-          title: 'New Ad',
-          message: 'Are you sure you want to create your ad?'
+          message:  this.translateService.instant('translate.createAdConfirmation')
         }
       });
       confirmDialog.afterClosed().subscribe(result => {
@@ -136,11 +136,11 @@ export class CreateAdComponent implements OnInit, OnDestroy {
           const create = new CreateAd();
           create.productName = this.createForm.value.productName;
           if (create.productName.length === 0) {
-            this.toastr.warning('You must add an ad name');
+            this.toastr.warning(this.translateService.instant('translate.mustAddName'));
           }
           create.description = this.createForm.value.description;
           if (create.description.length === 0) {
-            this.toastr.warning('You must add an ad description');
+            this.toastr.warning(this.translateService.instant('translate.mustAddDescription'));
             return;
           }
           create.fixedPrice = this.createForm.value.fixedPrice;
@@ -153,17 +153,17 @@ export class CreateAdComponent implements OnInit, OnDestroy {
           }
           create.adsGroupId = this.categoryId;
           if (create.adsGroupId === undefined) {
-            this.toastr.warning('You must select a category');
+            this.toastr.warning(this.translateService.instant('translate.mustAddCategory'));
             return;
           }
           create.adsSubGroupId = this.subcategoryId;
           if (create.adsSubGroupId === undefined) {
-            this.toastr.warning('You must select a subcategory');
+            this.toastr.warning(this.translateService.instant('translate.mustAddSubcategory'));
             return;
           }
           create.image = this.photos;
           if (create.image.length === 0) {
-            this.toastr.warning('You must add an image');
+            this.toastr.warning(this.translateService.instant('translate.mustAddImage'));
             return;
           }
           create.productWarranty = this.createForm.value.productWarranty;
@@ -181,14 +181,14 @@ export class CreateAdComponent implements OnInit, OnDestroy {
             1
           );
           if (create.price === 0) {
-            this.toastr.warning('You have to set a price');
+            this.toastr.warning(this.translateService.instant('translate.setPrice'));
             return;
           }
           create.adsType = this.statusOfProduct;
 
           this.adsService.newAd(create).subscribe(() => {
             this.router.navigate(['/site']);
-            this.toastr.success('Ad successfully created!');
+            this.toastr.success(this.translateService.instant('translate.adSuccessfullyCreated'));
           });
         }
       });

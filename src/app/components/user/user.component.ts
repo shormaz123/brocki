@@ -11,6 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { UserStatus } from '../../shared/enums/userStatus';
 import { HelpersService } from '../../@core/services/helpers.service';
+import { TranslateService } from '@ngx-translate/core';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-user',
@@ -60,7 +63,9 @@ export class UserComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private adsService: AdsService,
     private modal: NzModalService,
-    private helpersService: HelpersService
+    private helpersService: HelpersService,
+    private translateService: TranslateService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -229,15 +234,21 @@ export class UserComponent implements OnInit {
   }
 
   logout(): void {
-    this.modal.confirm({
-      nzTitle: 'Are you sure you want to logout?',
-      nzContent: '',
-      nzOnOk: () => {
+    // this.modal.confirm({
+    //   nzTitle: this.translateService.instant('translate.logoutConfirmation'),
+    //   nzContent: '',
+    //   nzOnOk: () => {
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+        width: '500px',
+        data: {
+          message:  this.translateService.instant('translate.logoutConfirmation')
+        }
+      });
+      confirmDialog.afterClosed().subscribe(result => {
         this.authService.logout();
         this.helpersService.$loginName.next();
         this.router.navigate(['/site']);
-      },
-    });
+      });
   }
 
   scroll(): void {

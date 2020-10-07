@@ -98,6 +98,7 @@ import { MatDialogModule } from '@angular/material';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { NgxHotjarModule } from 'ngx-hotjar';
 import { DebounceClickDirective } from './utils/app-prevent-double-click.directive';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 registerLocaleData(en);
 
@@ -218,6 +219,8 @@ registerLocaleData(en);
     AdsService,
     AuthGuardService,
     TranslateServiceRest,
+    GoogleTagManagerService,
+    {provide: 'googleTagManagerId', useValue: 'GTM-WCR3GVT'},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,

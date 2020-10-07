@@ -17,6 +17,7 @@ import {
 } from '../../@core/services/mapbox-service.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-info-bussines',
@@ -55,7 +56,8 @@ export class UpdateInfoBussinesComponent implements OnInit {
     private adsService: AdsService,
     private toastr: ToastrService,
     private mapboxService: MapboxServiceService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -165,7 +167,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
       this.mapboxService.search_word(searchTerm).subscribe((features: any) => {
         this.addresses = features.map((feat) => feat.place_name);
         this.responseLocationObject = features.map((feat) => feat.geometry);
-        // console.log('objekat', features);
       });
     } else {
       this.addresses = [];
@@ -176,7 +177,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
     this.selectedAddress = address;
     this.addresses = [];
     this.selectedLocation = this.responseLocationObject[i];
-    // console.log('koordinate', this.selectedLocation);
     this.businessForm.patchValue({
       location: {
         longitude: this.selectedLocation.coordinates[0],
@@ -197,15 +197,11 @@ export class UpdateInfoBussinesComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.modal.confirm({
-    //   nzTitle: 'Are you sure you want to change your info?',
-    //   nzContent: '',
-    //   nzOnOk: () => {
       const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
         width: '500px',
         data: {
-          title: 'Update user',
-          message: 'Are you sure you want to change your info?'
+          title: this.translateService.instant('translate.updateUser'),
+          message: this.translateService.instant('translate.changeInfoConfirmation')
         }
       });
       confirmDialog.afterClosed().subscribe(result => {
@@ -229,14 +225,13 @@ export class UpdateInfoBussinesComponent implements OnInit {
         this.updateBusiness.website = this.businessForm.value.website;
         this.userService.updateUser(this.updateBusiness).subscribe(
           (user) => {
-            this.toastr.success('User updated');
+            this.toastr.success('', this.translateService.instant('translate.userUpdated'));
             window.scrollTo({ top: 0 });
             this.router.navigate([`/user/${this.userId}`]);
           },
           (error) => {
-            this.toastr.error('Ops, something went wrong!');
-          }
-        );
+            this.toastr.error(this.translateService.instant('translate.wentWrong'));
+          });
       }
     });
   }

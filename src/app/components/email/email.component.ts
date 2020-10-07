@@ -4,6 +4,7 @@ import { Ads } from 'app/shared/models/ads.model';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../@core/services/user.service';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-email',
@@ -24,7 +25,8 @@ export class EmailComponent implements OnInit {
     private fb: FormBuilder,
     private toastr: ToastrService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -70,7 +72,7 @@ export class EmailComponent implements OnInit {
     const email = new sendEmail();
 
     if (this.emailForm.invalid) {
-      this.toastr.warning('Please fill in all fields');
+      this.toastr.warning(this.translateService.instant('translate.fillEveryFieldError'));
       return;
     }
 
@@ -83,7 +85,7 @@ export class EmailComponent implements OnInit {
     email.toSender = this.toSender;
     email.adlink = `https://minibrocki-fe-stage.herokuapp.com/ad/${this.adForEmail.id}`;
 
-    this.toastr.success('An email has been sent');
+    this.toastr.success(this.translateService.instant('translate.emailSent'));
 
     if (email.ad) {
       this.router.navigate([`/ad/${this.adForEmail.id}`]);

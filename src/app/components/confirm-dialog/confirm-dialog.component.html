@@ -1,28 +1,20 @@
 <h1 mat-dialog-title style="color: #4d4d4d">
-  {{ data.title }}
-  <i
-    nz-icon
-    nzType="question-circle"
-    nzTheme="outline"
-    style="color: #d62b1f"
-  ></i>
+    {{ data.title }}
+    <i nz-icon nzType="question-circle" nzTheme="outline" style="color: #d62b1f"></i>
 </h1>
 <div mat-dialog-content style="color: #4d4d4d">
-  {{ data.message }}
+    {{ data.message }}
 </div>
-<div
-  style="
+<div style="
     float: right;
     margin-top: 20px;
     margin-bottom: 10px;
-    width: 150px;
+    width: 300px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-  "
->
-  <input
-    style="
+    justify-content: flex-end;
+  ">
+    <input style="
       margin: 0px 10px;
       background-color: #d62b1f;
       color: white;
@@ -33,16 +25,8 @@
       padding-left: 20px;
       padding-right: 20px;
       cursor: pointer;
-    "
-    type="button"
-    value="YES"
-    [mat-dialog-close]="true"
-  />
-  <input
-    type="button"
-    value="NO"
-    [mat-dialog-close]="false"
-    style="
+    " type="button" value="{{'translate.ok' | translate }}" [mat-dialog-close]="true" />
+    <input type="button" value="{{'translate.cancel' | translate }}" [mat-dialog-close]="false" style="
       border-radius: 15px;
       padding-right: 20px;
       padding-left: 20px;
@@ -50,6 +34,5 @@
       height: 30px;
       border: 1px solid #e6e6e6;
       color: #4d4d4d; ;
-    "
-  />
+    " />
 </div>

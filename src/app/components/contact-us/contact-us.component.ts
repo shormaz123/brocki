@@ -6,6 +6,7 @@ import { NzNotificationService } from 'ng-zorro-antd';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { ToastrService } from 'ngx-toastr';
 import {  throttleTime } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact-us',
@@ -22,7 +23,8 @@ export class ContactUsComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private notification: NzNotificationService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translateService: TranslateService
   ) { }
 
   ngOnInit() {
@@ -60,15 +62,15 @@ export class ContactUsComponent implements OnInit {
     this.userService.contactUs(email).pipe(throttleTime(2000)).subscribe(
       (x) => {
       if (x) {
-        this.toastr.success('', 'An email has been sent');
+        this.toastr.success('', this.translateService.instant('translate.emailSent'));
         this.router.navigate([`/site`]);
       }
     },  (error) => {
       if (error.status === 200) {
-        this.toastr.success('', 'An email has been sent');
+        this.toastr.success('', this.translateService.instant('translate.emailSent'));
         this.router.navigate([`/site`]);
       } else if ( error.status === 500 ) {
-        this.toastr.warning('', 'Please, fill every field in accurate way');
+        this.toastr.warning('', this.translateService.instant('translate.fillEveryFieldError'));
       }
     }
     )

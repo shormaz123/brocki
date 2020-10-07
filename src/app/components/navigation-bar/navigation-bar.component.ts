@@ -385,10 +385,10 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     {
       id: 29,
       title: {
-        de: '',
-        en: '',
-        fr: '',
-        it: '',
+        de: '"Sammlerstücke"',
+        en: 'Collectibles',
+        fr: 'Objets de collection',
+        it: 'Collezionismo',
       },
       image: '../../../assets/images/navigation/drinks 2.svg',
       selectedImage: '../../../assets/images/navigation/red/drinks.svg',

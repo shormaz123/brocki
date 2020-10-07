@@ -1,25 +1,25 @@
 <div class="mainContainer">
-  <div class="container">
-    <div class="account">
-      <div class="image">
-        <div class="imageBorder">
-          <div class="profil-image">
-            <img class="user-image" [src]="userImage" />
-          </div>
-        </div>
-        <span *ngIf="private">{{ userName }}</span>
-        <span *ngIf="business">{{ companyName }}</span>
-      </div>
-      <div class="body">
-        <div class="counter" *ngIf="admin">
-          <div class="ads-counter">
-            TOTAL ADS: {{ totalAdsLength | number: '1.0-0' }}
-          </div>
-          <div class="ads-counter ads-counter--active">
-            ACTIVE ADS: {{ activeAdsLength | number: '1.0-0' }}
-          </div>
-        </div>
-        <!-- <div class="checkmarks">
+    <div class="container">
+        <div class="account">
+            <div class="image">
+                <div class="imageBorder">
+                    <div class="profil-image">
+                        <img class="user-image" [src]="userImage" />
+                    </div>
+                </div>
+                <span *ngIf="private">{{ userName }}</span>
+                <span *ngIf="business">{{ companyName }}</span>
+            </div>
+            <div class="body">
+                <div class="counter" *ngIf="admin">
+                    <div class="ads-counter">
+                        TOTAL ADS: {{ totalAdsLength | number: '1.0-0' }}
+                    </div>
+                    <div class="ads-counter ads-counter--active">
+                        ACTIVE ADS: {{ activeAdsLength | number: '1.0-0' }}
+                    </div>
+                </div>
+                <!-- <div class="checkmarks">
           <div>
             <img src="../../../assets/images/myAccount/check box.png" />
             <span style="padding-left: 10px;">checked user</span>
@@ -33,134 +33,81 @@
             <span style="padding-left: 10px;">successful sales</span>
           </div>
         </div> -->
-        <div class="boxes" [ngClass]="{ admin: admin }">
-          <div class="boxes__link">
-            <div
-              (click)="updateInfo()"
-              class="boxes__image"
-              [inlineSVG]="'./../../assets/images/myAccount/update-info.svg'"
-            ></div>
-            <div class="boxes__text">
-              {{ 'translate.updateInfo' | translate }}
-            </div>
-          </div>
-          <div *ngIf="!admin" class="boxes__link" (click)="goTo('/pricing')">
-            <div
-              class="boxes__image boxes__image--background"
-              [ngStyle]="
+                <div class="boxes" [ngClass]="{ admin: admin }">
+                    <div class="boxes__link">
+                        <div (click)="updateInfo()" class="boxes__image" [inlineSVG]="'./../../assets/images/myAccount/update-info.svg'"></div>
+                        <div class="boxes__text">
+                            {{ 'translate.updateInfo' | translate }}
+                        </div>
+                    </div>
+                    <div *ngIf="!admin" class="boxes__link" (click)="goTo('/pricing')">
+                        <div class="boxes__image boxes__image--background" [ngStyle]="
                 credit > 99 ? { fontSize: '20px' } : { fontSize: '32px' }
-              "
-            >
-              {{ credit }}
-            </div>
-            <div class="boxes__text">{{ 'translate.credits' | translate }}</div>
-          </div>
-          <div *ngIf="admin" class="boxes__link" (click)="goTo('/accept-ads')">
-            <div
-              class="boxes__image"
-              [inlineSVG]="'../../../assets/images/myAccount/accept-ads.svg'"
-            ></div>
-            <div class="boxes__text">
-              {{ 'translate.acceptAds' | translate }}
-            </div>
-          </div>
-          <div *ngIf="!admin" class="boxes__link" (click)="goTo('/contact-us')">
-            <div
-              class="boxes__image"
-              [inlineSVG]="'../../../assets/images/myAccount/contact-us.svg'"
-            ></div>
-            <div class="boxes__text">
-              {{ 'translate.contactUs' | translate }}
-            </div>
-          </div>
-          <div
-            *ngIf="admin"
-            class="boxes__link"
-            (click)="goTo('/accept-users')"
-          >
-            <div
-              class="boxes__image"
-              [inlineSVG]="
+              ">
+                            {{ credit }}
+                        </div>
+                        <div class="boxes__text">{{ 'translate.credits' | translate }}</div>
+                    </div>
+                    <div *ngIf="admin" class="boxes__link" (click)="goTo('/accept-ads')">
+                        <div class="boxes__image" [inlineSVG]="'../../../assets/images/myAccount/accept-ads.svg'"></div>
+                        <div class="boxes__text">
+                            {{ 'translate.acceptAds' | translate }}
+                        </div>
+                    </div>
+                    <div *ngIf="!admin" class="boxes__link" (click)="goTo('/contact-us')">
+                        <div class="boxes__image" [inlineSVG]="'../../../assets/images/myAccount/contact-us.svg'"></div>
+                        <div class="boxes__text">
+                            {{ 'translate.contactUs' | translate }}
+                        </div>
+                    </div>
+                    <div *ngIf="admin" class="boxes__link" (click)="goTo('/accept-users')">
+                        <div class="boxes__image" [inlineSVG]="
                 '../../../assets/images/myAccount/business-accounts.svg'
-              "
-            ></div>
-            <div class="boxes__text">
-              {{ 'translate.businessAccounts' | translate }}
+              "></div>
+                        <div class="boxes__text">
+                            {{ 'translate.businessAccounts' | translate }}
+                        </div>
+                    </div>
+                    <div class="boxes__link" routerLink="/favorite">
+                        <div class="boxes__image boxes__image--favorites" [inlineSVG]="'../../../assets/images/myAccount/favorite.svg'"></div>
+                        <div class="boxes__text">
+                            {{ 'translate.favorite' | translate }}
+                        </div>
+                    </div>
+                    <div class="boxes__link" (click)="logout()">
+                        <div class="boxes__image" [inlineSVG]="'../../../assets/images/logout/logout.svg'"></div>
+                        <div class="boxes__text">{{ 'translate.logout' | translate }}</div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="boxes__link" routerLink="/favorite">
-            <div
-              class="boxes__image boxes__image--favorites"
-              [inlineSVG]="'../../../assets/images/myAccount/favorite.svg'"
-            ></div>
-            <div class="boxes__text">
-              {{ 'translate.favorite' | translate }}
+        </div>
+        <div class="navigation">
+            <div class="navItem">
+                <div (click)="activeButton()" [ngClass]="{ active: active, focus: !active }">
+                    <span>{{ 'translate.active' | translate }}</span>
+                </div>
             </div>
-          </div>
-          <div class="boxes__link" (click)="logout()">
-            <div
-              class="boxes__image"
-              [inlineSVG]="'../../../assets/images/logout/logout.svg'"
-            ></div>
-            <div class="boxes__text">{{ 'translate.logout' | translate }}</div>
-          </div>
+            <div class="navItem">
+                <div (click)="expiredButton()" [ngClass]="{ active: expired, focus: !expired }">
+                    <span>{{ 'translate.expired' | translate }}</span>
+                </div>
+            </div>
+            <div class="navItem">
+                <div (click)="soldButton()" [ngClass]="{ active: sold, focus: !sold }">
+                    <span>{{ 'translate.sold' | translate }}</span>
+                </div>
+            </div>
+            <div class="navItem">
+                <div (click)="guestButton()" [ngClass]="{ active: guest, focus: !guest }">
+                    <span>{{ 'translate.guestBook' | translate }}</span>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="navigation">
-      <div class="navItem">
-        <div
-          (click)="activeButton()"
-          [ngClass]="{ active: active, focus: !active }"
-        >
-          <span>{{ 'translate.active' | translate }}</span>
-        </div>
-      </div>
-      <div class="navItem">
-        <div
-          (click)="expiredButton()"
-          [ngClass]="{ active: expired, focus: !expired }"
-        >
-          <span>{{ 'translate.expired' | translate }}</span>
-        </div>
-      </div>
-      <div class="navItem">
-        <div (click)="soldButton()" [ngClass]="{ active: sold, focus: !sold }">
-          <span>{{ 'translate.sold' | translate }}</span>
-        </div>
-      </div>
-      <div class="navItem">
-        <div
-          (click)="guestButton()"
-          [ngClass]="{ active: guest, focus: !guest }"
-        >
-          <span>{{ 'translate.guestBook' | translate }}</span>
-        </div>
-      </div>
+    <div class="secondContainer">
+        <app-guest-book [guestBook]="guestBook" [comments]="comment" *ngIf="guest"></app-guest-book>
+        <app-account-sold [soldProducts]="soldProducts" [ads]="adsSold" *ngIf="sold"></app-account-sold>
+        <app-account-expired [expiredProducts]="expiredProducts" [ads]="adsExpired" *ngIf="expired"></app-account-expired>
+        <app-account-active (changeStatusSold)="soldAds($event)" (changeStatusDelete)="deleteAds($event)" [activeProducts]="activeProducts" [ads]="adsActive" *ngIf="active"></app-account-active>
     </div>
-  </div>
-  <div class="secondContainer">
-    <app-guest-book
-      [guestBook]="guestBook"
-      [comments]="comment"
-      *ngIf="guest"
-    ></app-guest-book>
-    <app-account-sold
-      [soldProducts]="soldProducts"
-      [ads]="adsSold"
-      *ngIf="sold"
-    ></app-account-sold>
-    <app-account-expired
-      [expiredProducts]="expiredProducts"
-      [ads]="adsExpired"
-      *ngIf="expired"
-    ></app-account-expired>
-    <app-account-active
-      (changeStatusSold)="soldAds($event)"
-      (changeStatusDelete)="deleteAds($event)"
-      [activeProducts]="activeProducts"
-      [ads]="adsActive"
-      *ngIf="active"
-    ></app-account-active>
-  </div>
 </div>

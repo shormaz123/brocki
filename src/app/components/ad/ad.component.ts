@@ -22,6 +22,7 @@ import {
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { HelpersService } from '../../@core/services/helpers.service';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-ad',
@@ -87,10 +88,22 @@ useKeyborad = true;
     private adsService: AdsService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private helpersService: HelpersService
+    private helpersService: HelpersService,
+    private gtmService: GoogleTagManagerService,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    this.router.events.forEach(item => {
+      if (item instanceof NavigationEnd) {
+        const gtmTag = {
+          event: 'page',
+          pageName: item.url
+        };
+        this.gtmService.pushTag(gtmTag);
+        console.log(gtmTag)
+      }
+    });
     this.enableScrolling();
     this.token = localStorage.getItem(AuthConst.token);
     if (this.token) {

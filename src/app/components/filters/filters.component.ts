@@ -19,6 +19,7 @@ import { response } from 'express';
 import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
 import { Options, LabelType } from 'ng5-slider';
 import { AuthConst } from '../../@core/consts/auth.const';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-filters',
@@ -89,7 +90,8 @@ export class FiltersComponent implements OnInit, OnDestroy {
   constructor(
     private adsService: AdsService,
     private router: Router,
-    private translateBackend: TranslateServiceRest
+    private translateBackend: TranslateServiceRest,
+    private translateService: TranslateService
   ) {
     this.subscriptionLang = this.translateBackend
       .getLanguage()
@@ -191,7 +193,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
         if (Object.keys(this.ads).length === 0) {
           this.error = true;
           setTimeout(() => (this.error = false), 5000);
-          this.errorMessage = 'No available ads to filter';
+          this.errorMessage = this.translateService.instant('translate.noAvailableAds');
         } else {
           this.fillAds = res;
           this.hideFilter = true;

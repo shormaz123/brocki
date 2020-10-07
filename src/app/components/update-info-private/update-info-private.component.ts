@@ -11,6 +11,8 @@ import { UserStatus } from '../../shared/enums/userStatus';
 import {MapboxServiceService} from '../../@core/services/mapbox-service.service';
 import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-info-private',
@@ -36,7 +38,9 @@ export class UpdateInfoPrivateComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private mapboxService: MapboxServiceService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private translateService: TranslateService,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -142,8 +146,8 @@ export class UpdateInfoPrivateComponent implements OnInit {
       const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
         width: '500px',
         data: {
-          title: 'Update user',
-          message: 'Are you sure you want to change your info?'
+          title: this.translateService.instant('translate.updateUser'),
+          message: this.translateService.instant('translate.changeInfoConfirmation')
         }
       });
       confirmDialog.afterClosed().subscribe(result => {
@@ -169,13 +173,11 @@ export class UpdateInfoPrivateComponent implements OnInit {
         updateUserInfo.website = '';
         this.userService.updateUser(updateUserInfo).subscribe(
           (user) => {
-            this.notification.success('', 'User updated');
+            this.toastr.success('', this.translateService.instant('translate.userUpdated'));
             this.router.navigate([`/user/${this.userId}`]);
           },
           (error) => {
-            this.modal.error({
-              nzTitle: 'Ops, something went wrong!',
-            });
+            this.toastr.error(this.translateService.instant('translate.wentWrong'));
           }
         );
       }
