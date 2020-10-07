@@ -63,10 +63,7 @@ const routes: Routes = [
         path: 'accept-ads',
         component: AcceptAdsComponent,
       },
-      {
-        path: 'confirm-account',
-        component: ConfirmLoginComponent,
-      },
+
       {
         path: 'seller/:id',
         component: SellerProfileComponent,
@@ -149,6 +146,10 @@ const routes: Routes = [
         component: AdComponent,
       },
     ],
+  },
+  {
+    path: 'confirm-account',
+    component: ConfirmLoginComponent,
   },
 ];
 
