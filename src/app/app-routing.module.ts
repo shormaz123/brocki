@@ -146,13 +146,14 @@ const routes: Routes = [
         path: 'ad/:id',
         component: AdComponent,
       },
-      { path: '**', component: NotFoundComponent },
+
     ],
   },
   {
     path: 'confirm-account',
     component: ConfirmLoginComponent,
   },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
