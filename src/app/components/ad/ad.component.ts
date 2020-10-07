@@ -22,7 +22,6 @@ import {
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { HelpersService } from '../../@core/services/helpers.service';
-import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-ad',
@@ -78,7 +77,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   displaySideNav = true;
   mailBoolean = false;
   email: boolean = false;
-useKeyborad = true;
+  useKeyborad = true;
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
 
@@ -89,19 +88,16 @@ useKeyborad = true;
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private helpersService: HelpersService,
-    private gtmService: GoogleTagManagerService,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.router.events.forEach(item => {
+    this.router.events.forEach((item) => {
       if (item instanceof NavigationEnd) {
         const gtmTag = {
           event: 'page',
-          pageName: item.url
+          pageName: item.url,
         };
-        this.gtmService.pushTag(gtmTag);
-        console.log(gtmTag)
       }
     });
     this.enableScrolling();
@@ -120,7 +116,7 @@ useKeyborad = true;
         imageAnimation: NgxGalleryAnimation.Slide,
         previewCloseOnClick: true,
         previewCloseOnEsc: true,
-        previewKeyboardNavigation: true
+        previewKeyboardNavigation: true,
       },
       // max-width 800
       {
@@ -131,13 +127,13 @@ useKeyborad = true;
         thumbnailsPercent: 20,
         thumbnailsMargin: 20,
         thumbnailMargin: 20,
-        previewKeyboardNavigation: true
+        previewKeyboardNavigation: true,
       },
       // max-width 400
       {
         breakpoint: 400,
         preview: false,
-        previewKeyboardNavigation: true
+        previewKeyboardNavigation: true,
       },
     ];
 
@@ -153,7 +149,6 @@ useKeyborad = true;
      **/
     if (this.card) {
       this.userService.getUserById(this.card.userId).subscribe((res) => {
-
         this.reviewUser = res;
         this.reviewUserId = res.id;
         this.adsService.getAllByUserId(this.reviewUserId).subscribe((res) => {
@@ -172,7 +167,7 @@ useKeyborad = true;
   ngAfterViewInit() {}
 
   toogleMail() {
-    this.mailBoolean = !this.mailBoolean
+    this.mailBoolean = !this.mailBoolean;
   }
 
   displaySideBar() {
@@ -181,7 +176,7 @@ useKeyborad = true;
 
   enableScrolling() {
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function() {};
+    window.onscroll = function () {};
   }
 
   getNewAd(id: number) {
@@ -194,15 +189,17 @@ useKeyborad = true;
         this.adGroupId = response.adsGroupId;
         console.log(response);
         this.allOfreviewer = true;
-        this.adsService.getAdsByGroupId(this.adGroupId, this.paginationNumber).subscribe((x) => {
-          if (x == null) {
-            this.categoryImagesAvailable = false;
-          } else {
-            this.categoryImagesAvailable = true;
-            this.adsByCategory = x;
-            console.log('adsByCat',this.adsByCategory);
-          }
-        });
+        this.adsService
+          .getAdsByGroupId(this.adGroupId, this.paginationNumber)
+          .subscribe((x) => {
+            if (x == null) {
+              this.categoryImagesAvailable = false;
+            } else {
+              this.categoryImagesAvailable = true;
+              this.adsByCategory = x;
+              console.log('adsByCat', this.adsByCategory);
+            }
+          });
 
         for (const picture of response.image) {
           this.galleryImages.push({
@@ -215,12 +212,11 @@ useKeyborad = true;
           this.companyName = x.company;
           this.sellerEmail = x.email;
           console.log(x.roleName);
-          if ( x.roleName === 'bussines') {
+          if (x.roleName === 'bussines') {
             this.private = false;
             this.business = true;
           } else if (x.roleName === 'admin') {
-            this.adminName = x.company,
-            this.private = false;
+            (this.adminName = x.company), (this.private = false);
             this.business = false;
             this.adminBoolean = true;
           } else {
@@ -247,7 +243,7 @@ useKeyborad = true;
           } else {
             this.usersImagesAvailabe = true;
             this.adsByUser = x;
-            console.log('adsByUser', this.adsByUser)
+            console.log('adsByUser', this.adsByUser);
           }
         });
       });
