@@ -135,6 +135,7 @@
           type="button"
           (click)="listSubcategory()"
           (clickOutside)="toggleListSubcategory = false"
+          [ngClass]="{ noCategory: subcategories.length === 0 }"
         >
           List
         </div>

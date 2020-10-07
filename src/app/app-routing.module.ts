@@ -26,6 +26,7 @@ import { AcceptUsersComponent } from './components/user/accept-users/accept-user
 import { AuthGuardService as AuthGuard } from '../app/@core/services/authGuard.service';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { CategoryAdsComponent } from './components/category-ads/category-ads.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -145,6 +146,7 @@ const routes: Routes = [
         path: 'ad/:id',
         component: AdComponent,
       },
+      { path: '**', component: NotFoundComponent },
     ],
   },
   {

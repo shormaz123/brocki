@@ -99,7 +99,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { NgxHotjarModule } from 'ngx-hotjar';
 import { ClickOutsideDirective } from './utils/click-outside.directive';
 import { DebounceClickDirective } from './utils/app-prevent-double-click.directive';
-import { GoogleTagManagerService } from 'angular-google-tag-manager';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 registerLocaleData(en);
 
@@ -151,6 +151,7 @@ registerLocaleData(en);
     HomepageComponent,
     ClickOutsideDirective,
     DebounceClickDirective,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -219,8 +220,6 @@ registerLocaleData(en);
     AdsService,
     AuthGuardService,
     TranslateServiceRest,
-    GoogleTagManagerService,
-    {provide: 'googleTagManagerId', useValue: 'GTM-WCR3GVT'},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
