@@ -97,6 +97,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { MatDialogModule } from '@angular/material';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { NgxHotjarModule } from 'ngx-hotjar';
+import { ClickOutsideDirective } from './utils/click-outside.directive';
 import { DebounceClickDirective } from './utils/app-prevent-double-click.directive';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
@@ -148,8 +149,8 @@ registerLocaleData(en);
     EmailComponent,
     CategoryAdsComponent,
     HomepageComponent,
-    DebounceClickDirective
-
+    ClickOutsideDirective,
+    DebounceClickDirective,
   ],
   imports: [
     BrowserModule,
@@ -189,6 +190,7 @@ registerLocaleData(en);
     Ng5SliderModule,
     MatAutocompleteModule,
     Ng2CarouselamosModule,
+
     NgxHotjarModule.forRoot('2010944'),
     ToastrModule.forRoot({
       preventDuplicates: true,
@@ -208,9 +210,7 @@ registerLocaleData(en);
       apiKey: 'AIzaSyAFo8eoAunpvp47MeINO5LlMdhJkG0Pvz0',
     }),
   ],
-  entryComponents: [
-    ConfirmDialogComponent
-  ],
+  entryComponents: [ConfirmDialogComponent],
   providers: [
     HttpBaseService,
     HelpersService,

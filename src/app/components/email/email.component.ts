@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../@core/services/user.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthConst } from '../../@core/consts/auth.const';
 
 @Component({
   selector: 'app-email',
@@ -20,6 +21,7 @@ export class EmailComponent implements OnInit {
   checked: boolean = true;
   email: boolean = false;
   toSender: boolean = false;
+  language: string;
 
   constructor(
     private fb: FormBuilder,
@@ -41,12 +43,11 @@ export class EmailComponent implements OnInit {
           ),
         ],
       ],
-      phone: [
-        '',
-        [Validators.required, Validators.pattern(/^-?(0|[1-9,+]\d*)?$/)],
-      ],
+      phone: ['', [Validators.required, Validators.pattern(/^[0-9\s]*$/)]],
       message: ['', [Validators.required]],
     });
+
+    this.language = localStorage.getItem(AuthConst.language);
   }
 
   closeModal(): void {
@@ -55,6 +56,18 @@ export class EmailComponent implements OnInit {
 
   copyOfEmail(): void {
     this.toSender = !this.toSender;
+  }
+
+  emptyFields() {
+    if (this.language === 'en') {
+      return this.toastr.warning('Please fill in all fields');
+    } else if (this.language === 'fr') {
+      return this.toastr.warning('Merci de remplir tous les champs');
+    } else if (this.language === 'de') {
+      return this.toastr.warning('Bitte füllen Sie alle Felder aus');
+    } else if (this.language === 'it') {
+      return this.toastr.warning('Si prega di compilare tutti i campi');
+    }
   }
 
   onSubmit() {
@@ -76,16 +89,27 @@ export class EmailComponent implements OnInit {
       return;
     }
 
-    email.ad = this.adForEmail;
+    if (this.adForEmail) {
+      email.ad = this.adForEmail;
+      email.adlink = `https://minibrocki-fe-stage.herokuapp.com/ad/${this.adForEmail.id}`;
+    }
     email.name = this.emailForm.value.name;
     email.email = this.emailForm.value.email;
     email.emailSeller = this.sellerEmail;
     email.phone = this.emailForm.value.phone;
     email.message = this.emailForm.value.message;
     email.toSender = this.toSender;
-    email.adlink = `https://minibrocki-fe-stage.herokuapp.com/ad/${this.adForEmail.id}`;
 
     this.toastr.success(this.translateService.instant('translate.emailSent'));
+    if (this.language === 'en') {
+      this.toastr.success('Email is send');
+    } else if (this.language === 'fr') {
+      this.toastr.success("l'email est envoyé");
+    } else if (this.language === 'de') {
+      this.toastr.success('E-Mail wird gesendet');
+    } else if (this.language === 'it') {
+      this.toastr.success("l'email è stata inviata");
+    }
 
     if (email.ad) {
       this.router.navigate([`/ad/${this.adForEmail.id}`]);
