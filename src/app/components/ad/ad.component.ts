@@ -14,14 +14,17 @@ import { UserService } from '../../@core/services/user.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Ads } from '../../shared/models/ads.model';
 import { User } from '../../shared/models/user.model';
-import {
-  NgxGalleryOptions,
-  NgxGalleryImage,
-  NgxGalleryAnimation,
-} from 'ngx-gallery';
+// import {
+//   NgxGalleryOptions,
+//   NgxGalleryImage,
+//   NgxGalleryAnimation,
+// } from 'ngx-gallery';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { HelpersService } from '../../@core/services/helpers.service';
+import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
+import {NgxGalleryImage} from '@kolkov/ngx-gallery';
+import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
 
 @Component({
   selector: 'app-ad',
@@ -92,6 +95,17 @@ export class AdComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    this.galleryOptions = [
+      {
+        width: '700px',
+        height: '400px',
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Slide,
+        previewCloseOnClick: true,
+        previewCloseOnEsc: true,
+        previewKeyboardNavigation: true,
+      },
+    ];
     this.router.events.forEach((item) => {
       if (item instanceof NavigationEnd) {
         const gtmTag = {
@@ -108,34 +122,7 @@ export class AdComponent implements OnInit, AfterViewInit {
       });
     }
 
-    this.galleryOptions = [
-      {
-        width: '700px',
-        height: '400px',
-        thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide,
-        previewCloseOnClick: true,
-        previewCloseOnEsc: true,
-        previewKeyboardNavigation: true,
-      },
-      // max-width 800
-      {
-        breakpoint: 800,
-        width: '100%',
-        height: '600px',
-        imagePercent: 80,
-        thumbnailsPercent: 20,
-        thumbnailsMargin: 20,
-        thumbnailMargin: 20,
-        previewKeyboardNavigation: true,
-      },
-      // max-width 400
-      {
-        breakpoint: 400,
-        preview: false,
-        previewKeyboardNavigation: true,
-      },
-    ];
+
 
     this.images = [];
     this.activatedRoute.params.subscribe((params) => {
@@ -154,11 +141,13 @@ export class AdComponent implements OnInit, AfterViewInit {
         this.adsService.getAllByUserId(this.reviewUserId).subscribe((res) => {
           this.reviewUserActiveAds = res;
           for (const picture of this.card.image) {
-            this.reviewAdsImages.push({
+            this.reviewAdsImages.push(
+              {
               small: picture,
               medium: picture,
               big: picture,
-            });
+            }
+            );
           }
         });
       });
@@ -202,12 +191,16 @@ export class AdComponent implements OnInit, AfterViewInit {
           });
 
         for (const picture of response.image) {
-          this.galleryImages.push({
+          this.galleryImages.push(
+            {
             small: picture,
             medium: picture,
             big: picture,
-          });
+          }
+          );
+          console.log(this.galleryImages)
         }
+
         this.userService.getUserById(this.userSellerId).subscribe((x) => {
           this.companyName = x.company;
           this.sellerEmail = x.email;

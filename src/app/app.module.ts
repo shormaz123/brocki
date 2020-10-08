@@ -58,7 +58,7 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { CardModule } from 'primeng/card';
 import { AdComponent } from './components/ad/ad.component';
-import { NgxGalleryModule } from 'ngx-gallery';
+// import { NgxGalleryModule } from 'ngx-gallery';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -100,6 +100,7 @@ import { NgxHotjarModule } from 'ngx-hotjar';
 import { ClickOutsideDirective } from './utils/click-outside.directive';
 import { DebounceClickDirective } from './utils/app-prevent-double-click.directive';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 registerLocaleData(en);
 
