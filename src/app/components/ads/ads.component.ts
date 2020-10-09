@@ -209,7 +209,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     });
   }
 
-   lang() {
+  lang() {
     if (this.currentLang === 'de') {
       this.tags = [
         'antik',
@@ -218,8 +218,20 @@ export class AdsComponent implements OnInit, OnDestroy {
         'gut zu gebrauchen',
         'restauriert',
         'defekt',
+        'luxuriös',
+        'aus holz',
+        'sammlerstück',
+        'selten',
         'einzigartig',
         'handgemacht',
+        'aus erste hand',
+        'für kinder & jugendliche',
+        'für männer',
+        'für frauen',
+        'preis verhandelbar',
+        'macOS & iOS',
+        'android',
+        'windows',
       ];
     } else if (this.currentLang === 'en') {
       this.tags = [
@@ -229,9 +241,20 @@ export class AdsComponent implements OnInit, OnDestroy {
         'good to use',
         'restored',
         'malfunction',
+        'luxurious',
+        'wooden',
+        "collector's item",
+        'rare',
         'unique',
         'handmade',
-
+        'first-hand',
+        'for children & teenagers',
+        'for men',
+        'for women',
+        'price negotiable',
+        'macOS & iOS',
+        'android',
+        'windows',
       ];
     } else if (this.currentLang === 'it') {
       this.tags = [
@@ -241,8 +264,20 @@ export class AdsComponent implements OnInit, OnDestroy {
         'buono da usare',
         'restaurato',
         'malfunzionamento',
+        'lussuoso',
+        'legno',
+        'oggetto da collezione',
+        'raro',
         'unico',
         'fatto a mano',
+        'di prima mano',
+        'per bambini & adolescenti',
+        'per uomo',
+        'per donne',
+        'prezzo negoziabile',
+        'macOS & iOS',
+        'android',
+        'windows',
       ];
     } else if (this.currentLang === 'fr') {
       this.tags = [
@@ -252,8 +287,20 @@ export class AdsComponent implements OnInit, OnDestroy {
         'bon à utiliser',
         'restaure',
         'mauvais fonctionnement',
+        'luxueux',
+        'en bois',
+        'pièce de collection',
+        'rare',
         'unique',
         'fait main',
+        'première main',
+        'pour les enfants & adolescents',
+        'pour hommes',
+        'pour femme',
+        'prix nègociable',
+        'macOS & iOS',
+        'android',
+        'windows',
       ];
     }
   }
@@ -297,7 +344,7 @@ export class AdsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (this.clickedTags.length < 3) {
+    if (this.clickedTags.length < 4) {
       this.clickedTags.push(tag);
     } else {
       this.setLanguage();
