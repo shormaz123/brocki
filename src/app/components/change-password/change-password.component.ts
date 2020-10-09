@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-change-password',
@@ -31,6 +32,7 @@ export class ChangePasswordComponent implements OnInit {
     private router: Router,
     private translateService: TranslateService,
     private dialog: MatDialog,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -61,7 +63,7 @@ export class ChangePasswordComponent implements OnInit {
             .subscribe(
               (res) => {
                 if (res) {
-                this.notification.success('', this.translateService.instant('translate.passwordChanged'));
+                this.toastr.success('', this.translateService.instant('translate.passwordChanged'));
                 this.router.navigate([`/user/${this.userId}`]);
                 }
               },
