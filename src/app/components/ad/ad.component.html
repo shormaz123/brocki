@@ -2,9 +2,8 @@
 
     <div class="imageContainer">
         <div class="imageGallery">
-            <!-- <p-galleria [images]="images" panelWidth="500" panelHeight="313" ></p-galleria> -->
-            <ngx-gallery *ngIf="allOfreviewer" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-            <ngx-gallery *ngIf="!allOfreviewer" [options]="galleryOptions" [images]="reviewAdsImages"></ngx-gallery>
+            <ngx-gallery *ngIf="allOfreviewer" [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+            <ngx-gallery *ngIf="!allOfreviewer" [options]="galleryOptions" [images]="reviewAdsImages" class="ngx-gallery"></ngx-gallery>
         </div>
     </div>
     <div class="socialMediaDiv">
@@ -56,7 +55,7 @@
                 userSeller?.name || reviewUser?.name
                 }}</label>
                 <label *ngIf="business">{{ companyName }}</label>
-                <label *ngIf="adminBoolean">{{ adminName }}</label>
+                <label *ngIf="!business">{{ adminName }}</label>
                 <div style="font-size: 15px;">
                     {{ userSeller?.address || reviewUser?.address }}
                 </div>
