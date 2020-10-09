@@ -67,6 +67,7 @@ export const de = {
     confirmTermsAndConditionsTwo: 'Geschäftsbedingungen zustimmen.',
     checkedUser: 'Überprüfter Benutzer',
     approvedContact: 'Überprüfter Kontakt',
+    approvedPhone: 'Zugelassenes Telefon',
     successfulSales: 'Erfolgreicher Verkauf',
     updateInfo: 'Einstellungen',
     contactUs: 'Kontaktieren Sie uns',
@@ -167,8 +168,10 @@ export const de = {
     InvalidEmail: 'Ungültige E-Mail-Adresse',
     numbersOnly: 'Bitte geben Sie nur Zahlen ein',
     adPictures: 'Anzeigenbilder',
-    minibrockiMobileText: 'Minibrocki.ch ist derzeit nicht auf der mobilen Version verfügbar. Bitte laden Sie die App herunter:',
-    typeAndSelectAddress: 'Bitte geben Sie Ihre Adresse ein und wählen Sie sie aus',
+    minibrockiMobileText:
+      'Minibrocki.ch ist derzeit nicht auf der mobilen Version verfügbar. Bitte laden Sie die App herunter:',
+    typeAndSelectAddress:
+      'Bitte geben Sie Ihre Adresse ein und wählen Sie sie aus',
     logoutConfirmation: 'Möchten Sie sich abmelden?',
     createAdConfirmation: 'Möchten Sie Ihre Anzeige wirklich erstellen?',
     mustAddName: 'Sie müssen einen Anzeigenamen hinzufügen',
@@ -184,15 +187,18 @@ export const de = {
     userUpdated: 'Benutzer aktualisiert',
     wentWrong: 'Ups! Irgendwas lief schief!',
     emailSent: 'Eine E-Mail wurde gesendet',
-    rateTheSeller: 'Um einen Kommentar abzugeben, müssen Sie den Verkäufer bewerten!',
-    leaveComment: 'Um einen Kommentar zu schreiben, hinterlassen Sie bitte einen Kommentar im Textbereich!',
+    rateTheSeller:
+      'Um einen Kommentar abzugeben, müssen Sie den Verkäufer bewerten!',
+    leaveComment:
+      'Um einen Kommentar zu schreiben, hinterlassen Sie bitte einen Kommentar im Textbereich!',
     postComment: 'Bist du sicher, dass du einen Kommentar posten möchtest?',
-    successfullyPostedComment: 'Sie haben erfolgreich einen Kommentar gepostet!',
+    successfullyPostedComment:
+      'Sie haben erfolgreich einen Kommentar gepostet!',
     ok: 'In Ordnung',
     cancel: 'Abbrechen',
     changePasswordConfirmation: 'Möchten Sie Ihr Passwort wirklich ändern?',
     passwordChanged: 'Passwort erfolgreich geändert!',
     deleteAdConfirmation: 'Möchten Sie diese Anzeige wirklich löschen?',
-    acruallySoldAd: 'Wurde die Anzeige verkauft?'
+    acruallySoldAd: 'Wurde die Anzeige verkauft?',
   },
 };
