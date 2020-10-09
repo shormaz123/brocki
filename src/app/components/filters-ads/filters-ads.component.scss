@@ -70,12 +70,16 @@
 .pricetag {
   display: flex;
   justify-content: center;
-  width: fit-content;
+  align-items: center;
+  // width: -webkit-fit-content;
+  // width: -moz-fit-content;
+  width: 150px;
+  height: 25px;
   color: white;
   padding-left: 5px;
-  background-color: $red;
+  background-color: #d62b1f;
   padding-right: 5px;
-  border-radius: 15px;
+  border-radius: 25px;
 }
 
 .ui-card-title {
@@ -88,10 +92,9 @@
 
 .footer {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   margin-top: 10px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .image {
@@ -159,7 +162,7 @@ p-carousel {
 
 .footer {
   display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   margin-top: 10px;
 }
@@ -293,7 +296,7 @@ p-carousel {
   justify-content: center;
   .increaseButton {
     background-color: $red;
-    color: $lightgray-second;
+    color: $white;
     margin: 50px 0;
     border-radius: 15px;
   }
