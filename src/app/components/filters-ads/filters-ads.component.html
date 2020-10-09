@@ -31,9 +31,11 @@
         </div>
         <div class="footer">
           <div class="pricetag">
-            <label style="color: white">{{ card.price }} CHF</label>
+            <label style="color: white"
+              >{{ card.price | number: '1.2-2':'en-US' }} CHF</label
+            >
           </div>
-          <div>
+          <div style="display: flex">
             <mat-icon
               *ngIf="!token"
               pTooltip="{{

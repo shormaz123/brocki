@@ -12,12 +12,12 @@
 
 .cardHover {
   box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06),
-  1px 3px 8px rgba(39, 44, 49, 0.03);
+    1px 3px 8px rgba(39, 44, 49, 0.03);
   transition: all 0.5s ease;
   /* back to normal */
   &:hover {
     box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.07),
-    1px 6px 12px rgba(39, 44, 49, 0.04);
+      1px 6px 12px rgba(39, 44, 49, 0.04);
     transition: all 0.4s ease;
     // transform: translate3D(0, -1px, 0) scale(1.03);
     // transform: translateX(-50%) translateX(-0.4px) translateY(-50%) translateY(-0.4px);
@@ -44,7 +44,8 @@
   label {
     width: 100%;
   }
-}@import '../../../scss/variables';
+}
+@import '../../../scss/variables';
 .container {
   height: auto;
   width: 100vw;
@@ -304,12 +305,14 @@ p-carousel {
 .pricetag {
   display: flex;
   justify-content: center;
-  width: fit-content;
+  align-items: center;
+  width: 200px;
+  height: 30px;
   color: white;
   padding-left: 5px;
   background-color: $red;
   padding-right: 5px;
-  border-radius: 15px;
+  border-radius: 25px;
 }
 
 .ui-card-title {
@@ -322,8 +325,8 @@ p-carousel {
 
 .footer {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  // flex-direction: row;
+  // justify-content: space-between;
   margin-top: 10px;
   align-items: center;
 }
@@ -393,8 +396,8 @@ p-carousel {
 
 .footer {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  // flex-direction: row;
+  // justify-content: space-between;
   margin-top: 10px;
 }
 
@@ -563,7 +566,6 @@ p-sidebar {
   }
 }
 
-
 .adLine {
   border: 0 0 1px 0;
   border-bottom: 1px solid $red;
@@ -576,12 +578,12 @@ p-sidebar {
 
 .cardHover {
   box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06),
-  1px 3px 8px rgba(39, 44, 49, 0.03);
+    1px 3px 8px rgba(39, 44, 49, 0.03);
   transition: all 0.5s ease;
   /* back to normal */
   &:hover {
     box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.07),
-    1px 6px 12px rgba(39, 44, 49, 0.04);
+      1px 6px 12px rgba(39, 44, 49, 0.04);
     transition: all 0.4s ease;
     // transform: translate3D(0, -1px, 0) scale(1.03);
     // transform: translateX(-50%) translateX(-0.4px) translateY(-50%) translateY(-0.4px);
@@ -609,5 +611,3 @@ p-sidebar {
     width: 100%;
   }
 }
-
-

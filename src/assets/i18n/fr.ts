@@ -67,6 +67,7 @@ export const fr = {
     confirmTermsAndConditionsTwo: '',
     checkedUser: 'Utilisateur vérifié',
     approvedContact: 'Contact vérifié',
+    approvedPhone: 'Téléphone approuvé',
     successfulSales: 'Vente réussie',
     updateInfo: 'Paramètres',
     contactUs: 'Nous contacter',
@@ -165,7 +166,8 @@ export const fr = {
     InvalidEmail: 'Adresse e-mail invalide',
     numbersOnly: "S'il vous plait entrez uniquement des nombres",
     adPictures: "Photos d'annonces",
-    minibrockiMobileText: "Minibrocki.ch n'est actuellement pas disponible sur la version mobile, veuillez télécharger - l'application:",
+    minibrockiMobileText:
+      "Minibrocki.ch n'est actuellement pas disponible sur la version mobile, veuillez télécharger - l'application:",
     typeAndSelectAddress: 'Veuillez saisir et sélectionner votre adresse',
     logoutConfirmation: 'Êtes-vous sûr de vouloir vous déconnecter?',
     createAdConfirmation: 'Voulez-vous vraiment créer votre annonce?',
@@ -182,15 +184,18 @@ export const fr = {
     userUpdated: 'Utilisateur mis à jour',
     wentWrong: 'Oups, un problème est survenu!',
     emailSent: 'Un email a été envoyé',
-    rateTheSeller: 'Pour publier un commentaire, vous devez évaluer le vendeur!',
-    leaveComment: 'Pour publier un commentaire, veuillez laisser un commentaire dans la zone de texte!',
+    rateTheSeller:
+      'Pour publier un commentaire, vous devez évaluer le vendeur!',
+    leaveComment:
+      'Pour publier un commentaire, veuillez laisser un commentaire dans la zone de texte!',
     postComment: 'Voulez-vous vraiment publier un commentaire?',
     successfullyPostedComment: 'Vous avez publié un commentaire avec succès!',
     ok: "D'accord",
     cancel: 'Annuler',
-    changePasswordConfirmation: 'Voulez-vous vraiment changer votre mot de passe?',
+    changePasswordConfirmation:
+      'Voulez-vous vraiment changer votre mot de passe?',
     passwordChanged: 'Mot de passe changé avec succès!',
     deleteAdConfirmation: 'Voulez-vous vraiment supprimer cette annonce?',
-    acruallySoldAd: "L'annonce a-t-elle été vendue?"
+    acruallySoldAd: "L'annonce a-t-elle été vendue?",
   },
 };

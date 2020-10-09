@@ -67,6 +67,7 @@ export const it = {
     confirmTermsAndConditionsTwo: '',
     checkedUser: 'Utente verificato',
     approvedContact: 'Contatto verificato',
+    approvedPhone: 'Telefono approvato',
     successfulSales: 'Vendita di successo',
     updateInfo: 'Impostazioni',
     contactUs: 'Contattaci',
@@ -165,7 +166,8 @@ export const it = {
     InvalidEmail: 'Indirizzo email non valido',
     numbersOnly: 'Si prega di inserire solo numeri',
     adPictures: "Immagini dell'annuncio",
-    minibrockiMobileText: "Minibrocki.ch non è attualmente disponibile nella versione mobile, scarica l'app:",
+    minibrockiMobileText:
+      "Minibrocki.ch non è attualmente disponibile nella versione mobile, scarica l'app:",
     typeAndSelectAddress: 'Per favore, digita e seleziona il tuo indirizzo',
     logoutConfirmation: 'Sei sicuro di voler uscire?',
     createAdConfirmation: 'Sei sicuro di voler creare il tuo annuncio?',
@@ -177,13 +179,15 @@ export const it = {
     setPrice: 'Devi fissare un Prezzo',
     adSuccessfullyCreated: 'Annuncio creato con successo!',
     profileSuccessfullyCreated: 'Profilo creato con successo!',
-    changeInfoConfirmation: 'Sei sicuro di voler modificare le tue informazioni?',
+    changeInfoConfirmation:
+      'Sei sicuro di voler modificare le tue informazioni?',
     updateUser: 'Aggiorna utente',
     userUpdated: 'Utente aggiornato',
     wentWrong: 'Oops! Qualcosa è andato storto!',
     emailSent: 'Una email è stata inviata',
     rateTheSeller: 'Per pubblicare un commento devi valutare il venditore!',
-    leaveComment: "Per pubblicare un commento, lascia un commento nell'area di testo!",
+    leaveComment:
+      "Per pubblicare un commento, lascia un commento nell'area di testo!",
     postComment: 'Sei sicuro di voler pubblicare un commento?',
     successfullyPostedComment: 'Hai pubblicato con successo un commento!',
     ok: 'Ok',
@@ -191,6 +195,6 @@ export const it = {
     changePasswordConfirmation: 'Sei sicuro di voler cambiare la tua password?',
     passwordChanged: 'Password cambiata con successo!',
     deleteAdConfirmation: 'Sei sicuro di voler cancellare questo annuncio?',
-    acruallySoldAd: "L'annuncio è stato venduto?"
+    acruallySoldAd: "L'annuncio è stato venduto?",
   },
 };

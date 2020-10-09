@@ -67,6 +67,7 @@ export const en = {
     confirmTermsAndConditionsTwo: '',
     checkedUser: 'Checked user',
     approvedContact: 'Approved contact',
+    approvedPhone: 'Approved phone',
     successfulSales: 'Successful sales',
     updateInfo: 'Update info',
     contactUs: 'Contact us',
@@ -116,7 +117,7 @@ export const en = {
     willBeAvailableSoon: 'Will be available soon!',
     showMore: 'Show more',
     brockenstube: 'Flea market',
-  institution: 'Institution',
+    institution: 'Institution',
     freeDelivery: 'Free delivery',
     copyLink: 'Copy link',
     sellerAccount: 'Seller Account',
@@ -164,7 +165,8 @@ export const en = {
     InvalidEmail: 'Invalid e-mail address',
     numbersOnly: 'Please enter numbers only',
     adPictures: 'Ad pictures',
-    minibrockiMobileText: 'Minibrocki.ch is not currently available on the mobile version. Please download the app:',
+    minibrockiMobileText:
+      'Minibrocki.ch is not currently available on the mobile version. Please download the app:',
     typeAndSelectAddress: 'Please, type and select your address',
     logoutConfirmation: 'Are you sure you want to logout?',
     createAdConfirmation: 'Are you sure you want to create your ad?',
@@ -187,9 +189,10 @@ export const en = {
     successfullyPostedComment: 'You have successfully posted a comment!',
     ok: 'Ok',
     cancel: 'Cancel',
-    changePasswordConfirmation: 'Are you sure you want to change your password?',
+    changePasswordConfirmation:
+      'Are you sure you want to change your password?',
     passwordChanged: 'Password successfully changed!',
     deleteAdConfirmation: 'Are you sure you want to delete this ad?',
-    acruallySoldAd: 'Whether the ad was actually sold?'
+    acruallySoldAd: 'Whether the ad was actually sold?',
   },
 };
