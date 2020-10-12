@@ -25,6 +25,7 @@ import { HelpersService } from '../../@core/services/helpers.service';
 import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {NgxGalleryImage} from '@kolkov/ngx-gallery';
 import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ad',
@@ -81,6 +82,10 @@ export class AdComponent implements OnInit, AfterViewInit {
   mailBoolean = false;
   email: boolean = false;
   useKeyborad = true;
+  favoriteAds: Ads[];
+  numberOfFavs: Subscription;
+  favAds = [];
+
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
 
@@ -234,13 +239,38 @@ export class AdComponent implements OnInit, AfterViewInit {
           if (x == null) {
             this.usersImagesAvailabe = false;
           } else {
-            this.usersImagesAvailabe = true;
-            this.adsByUser = x;
-            console.log('adsByUser', this.adsByUser);
+            if (this.token) {
+              // this.favAds = ads.map(
+              //   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+              // );
+            } else {
+              this.usersImagesAvailabe = true;
+              this.adsByUser = x;
+              console.log('adsByUser', this.adsByUser);
+            }
           }
         });
       });
     }
+  }
+
+  getUserAndFavAd(ads: Ads[]) {
+    console.log(this.userId, 'userId');
+    this.userService
+      .getFavourites(Number(localStorage.getItem('brocki_id')))
+      .subscribe((x) => {
+        this.favoriteAds = x;
+        this.numberOfFavs = x.length;
+        this.sendNumberOfFavorites(x.length);
+        // Replace objects between two arrays.
+        this.favAds = ads.map(
+          (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+        );
+      });
+  }
+
+  sendNumberOfFavorites(number: number) {
+    this.helpersService.sendNumberOfFavorites(number);
   }
 
   addToWishlist(adId: number) {

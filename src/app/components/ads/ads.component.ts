@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {AdsService} from '../../@core/services/ads.service';
 import {Ads} from '../../shared/models/ads.model';
 import {UserService} from '../../@core/services/user.service';
@@ -11,6 +11,7 @@ import {TranslateServiceRest} from '../../@core/services/translateREST.service';
 import {Subscription} from 'rxjs';
 import {Location} from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ads',
@@ -25,7 +26,7 @@ export class AdsComponent implements OnInit, OnDestroy {
   userRequest: UserAddAdsRequest;
   userId;
   currentLang;
-  favAds: Ads[];
+  favAds: Ads[] = [];
   favoriteAds: Ads[];
   numberOfFavorites: number;
   displaySideNav = true;
@@ -46,7 +47,8 @@ export class AdsComponent implements OnInit, OnDestroy {
               private helpersService: HelpersService,
               private translateBackend: TranslateServiceRest,
               private location: Location,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -57,6 +59,19 @@ export class AdsComponent implements OnInit, OnDestroy {
     //     this.userId = user.id;
     //   });
     // }
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.rootRoute(this.activatedRoute)),
+      filter((route: ActivatedRoute) => route.outlet === 'primary'),
+    ).subscribe((route: ActivatedRoute) => {
+      console.log(route.snapshot.paramMap.get('subGroupId'), 'subgroupadscomponent');
+      console.log(route.snapshot.paramMap.get('groupId'), 'subgroupadscomponent');
+      console.log(route.component);
+    });
+
+
+
+    //
     this.activatedRoute.params.subscribe((params) => {
       this.subGroupId = params.subGroupId;
       this.groupId = params.groupId;
@@ -303,6 +318,13 @@ export class AdsComponent implements OnInit, OnDestroy {
         'windows',
       ];
     }
+  }
+
+  private rootRoute(route: ActivatedRoute): ActivatedRoute {
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+    return route;
   }
 
   addToWishlist(adId: number) {

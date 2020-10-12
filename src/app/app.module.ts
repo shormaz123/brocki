@@ -101,6 +101,8 @@ import { ClickOutsideDirective } from './utils/click-outside.directive';
 import { DebounceClickDirective } from './utils/app-prevent-double-click.directive';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { AdsCategoryWithTagsComponent } from './components/ads-category-with-tags/ads-category-with-tags.component';
+import {MatExpansionModule} from '@angular/material/expansion'
 
 registerLocaleData(en);
 
@@ -153,6 +155,7 @@ registerLocaleData(en);
     ClickOutsideDirective,
     DebounceClickDirective,
     NotFoundComponent,
+    AdsCategoryWithTagsComponent,
   ],
   imports: [
     BrowserModule,
@@ -192,7 +195,7 @@ registerLocaleData(en);
     Ng5SliderModule,
     MatAutocompleteModule,
     Ng2CarouselamosModule,
-
+    MatExpansionModule,
     NgxHotjarModule.forRoot('2010944'),
     ToastrModule.forRoot({
       preventDuplicates: true,
@@ -213,6 +216,7 @@ registerLocaleData(en);
     }),
   ],
   entryComponents: [ConfirmDialogComponent],
+  exports: [MatExpansionModule],
   providers: [
     HttpBaseService,
     HelpersService,

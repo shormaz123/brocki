@@ -1,24 +1,38 @@
 <div class="container">
     <p-sidebar [(visible)]="displaySideNav" [baseZIndex]="10000">
-        <h1 style="text-align: center">
-            {{ 'translate.allCategories' | translate }}
-        </h1>
-        <p-accordion>
-            <p-accordionTab header="{{ category.groupName[currentLang] }}" *ngFor="let category of categoriesGroup" (click)="selectDropDown(category.id)">
+        <div class="titleSidebar">
+            <h1 style="text-align: center; ">
+                {{ 'translate.allCategories' | translate }}
+            </h1>
+        </div>
+
+        <!-- <p-accordion *ngFor="let category of categoriesGroup">
+            <p-accordionTab header="{{ category.groupName[currentLang] }}" (click)="selectDropDown(category.id)" [routerLink]="['/ads-category-with-tags',category.id]">
                 <div *ngFor="let subCategory of subCategories" class="accordationDiv">
                     <span class="accordationSpan" (click)="goToSubCategory(subCategory.id, category.id)">{{ subCategory.subGroupName[currentLang] }}</span
           >
         </div>
       </p-accordionTab>
-    </p-accordion>
-  </p-sidebar>
-  <div class="firstContainer" *ngIf="!createAd"></div>
-  <div class="firstContainer" routerLink="/create-ad" *ngIf="createAd">
-    <div class="addImage" *ngIf="createAd && !privateUser">
-      <img class="image" src="../../../assets/images/header/create ad.svg" />
-    </div>
-    <span class="createAd" *ngIf="createAd && !privateUser"
-      >&nbsp;{{ 'translate.createAd' | translate }}</span
+    </p-accordion> -->
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let category of categoriesGroup, let index = index">
+                <mat-expansion-panel-header [ngClass]="{ activeTab: clickedTabs.includes(category)}" (click)="selectCategoryOnSideBar(category)">
+                    <mat-panel-title (click)="selectDropDown(category.id)" [routerLink]="['/ads-category-with-tags',category.id]">
+                        {{ category.groupName[currentLang] }}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p *ngFor="let subCategory of subCategories" class="grid5" (click)="goToSubCategory(subCategory.id, category.id)">
+                    {{ subCategory.subGroupName[currentLang] }}
+                </p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </p-sidebar>
+    <div class="firstContainer" *ngIf="!createAd"></div>
+    <div class="firstContainer" routerLink="/create-ad" *ngIf="createAd">
+        <div class="addImage" *ngIf="createAd && !privateUser">
+            <img class="image" src="../../../assets/images/header/create ad.svg" />
+        </div>
+        <span class="createAd" *ngIf="createAd && !privateUser">&nbsp;{{ 'translate.createAd' | translate }}</span
     >
   </div>
   <div class="secondContainer">
@@ -62,39 +76,39 @@
           style="height: 25px; margin-right: 10px"
         />
         <span>{{ accountName }}</span>
-                </div>
-                <!--          <img-->
-                <!--            *ngIf="dropdownBoolean"-->
-                <!--            src="../../../assets/images/ad/keyboard-down-arrow.svg"-->
-                <!--            style="height: 25px; margin-left: 5px;"-->
-                <!--          />-->
-                <!--          <img-->
-                <!--            *ngIf="!dropdownBoolean"-->
-                <!--            src="../../../assets/images/ad/keyboard-up-arrow.svg"-->
-                <!--            style="height: 25px; margin-left: 5px;"-->
-                <!--          />-->
-                <!--        </button>-->
-                <!--        <div class="dropdown-content" id="myDropdown">-->
-                <!--          <div href="#" style="height: 50px;" [routerLink]="['/user', userId]">-->
-                <!--            <img-->
-                <!--              src="../../../assets/images/ad/pencil-edit-button.svg"-->
-                <!--              style="height: 25px; margin-right: 10px;"-->
-                <!--            />{{'translate.edit' | translate}}-->
-                <!--          </div>-->
-                <!--          <div href="#" style="height: auto;" (click)="logout()">-->
-                <!--            <img-->
-                <!--              src="../../../assets/images/ad/logout.svg"-->
-                <!--              style="height: 25px; margin-right: 10px;"-->
-                <!--            />{{'translate.logout' | translate}}-->
-                <!--          </div>-->
-                <!--        </div>-->
-                <!--      </div>-->
-                <!-- <button mat-button [routerLink]="['/user', userId]" *ngIf="accountName">{{ accountName }}</button>
+    </div>
+    <!--          <img-->
+    <!--            *ngIf="dropdownBoolean"-->
+    <!--            src="../../../assets/images/ad/keyboard-down-arrow.svg"-->
+    <!--            style="height: 25px; margin-left: 5px;"-->
+    <!--          />-->
+    <!--          <img-->
+    <!--            *ngIf="!dropdownBoolean"-->
+    <!--            src="../../../assets/images/ad/keyboard-up-arrow.svg"-->
+    <!--            style="height: 25px; margin-left: 5px;"-->
+    <!--          />-->
+    <!--        </button>-->
+    <!--        <div class="dropdown-content" id="myDropdown">-->
+    <!--          <div href="#" style="height: 50px;" [routerLink]="['/user', userId]">-->
+    <!--            <img-->
+    <!--              src="../../../assets/images/ad/pencil-edit-button.svg"-->
+    <!--              style="height: 25px; margin-right: 10px;"-->
+    <!--            />{{'translate.edit' | translate}}-->
+    <!--          </div>-->
+    <!--          <div href="#" style="height: auto;" (click)="logout()">-->
+    <!--            <img-->
+    <!--              src="../../../assets/images/ad/logout.svg"-->
+    <!--              style="height: 25px; margin-right: 10px;"-->
+    <!--            />{{'translate.logout' | translate}}-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!-- <button mat-button [routerLink]="['/user', userId]" *ngIf="accountName">{{ accountName }}</button>
       <mat-menu #menu="matMenu" >
         <button mat-menu-item (click)="create()" *ngIf="!accountName">{{'translate.createAccount' | translate}}</button>
         <button mat-menu-item (click)="logout()" >Logout</button>
       </mat-menu> -->
-                <!--
+    <!--
       <span
         class="accountAd"
         routerLink="/user"
@@ -103,7 +117,7 @@
         >{{ accountName }} &nbsp;</span
       >
       -->
-                <img (click)="goToUserProfie(userId)" style="cursor: pointer" class="accountLogo" src="../../../assets/images/header/my account.svg" />
+    <img (click)="goToUserProfie(userId)" style="cursor: pointer" class="accountLogo" src="../../../assets/images/header/my account.svg" />
 </div>
 </div>
 </div>
