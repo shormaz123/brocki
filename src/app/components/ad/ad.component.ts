@@ -48,8 +48,10 @@ export class AdComponent implements OnInit, AfterViewInit {
   userSeller: User;
   productName;
   adsByUser;
+  allAdsByUser;
   adGroupId?;
   adsByCategory;
+  allAdsByCategory;
   currentUrl = document.URL;
   defaultImage = '../../../assets/images/myAccount/profile-picture.png';
   userImage: string = this.defaultImage;
@@ -100,6 +102,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    this.getUserAndFavAd();
     this.galleryOptions = [
       {
         width: '700px',
@@ -189,9 +192,16 @@ export class AdComponent implements OnInit, AfterViewInit {
             if (x == null) {
               this.categoryImagesAvailable = false;
             } else {
-              this.categoryImagesAvailable = true;
-              this.adsByCategory = x;
-              console.log('adsByCat', this.adsByCategory);
+              if (this.token) {
+                this.allAdsByCategory = x;
+                this.adsByCategory = this.allAdsByCategory.map(
+                  (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+                );
+              } else {
+                this.categoryImagesAvailable = true;
+                this.adsByCategory = x;
+                console.log('adsByCat', this.adsByCategory);
+              }
             }
           });
 
@@ -240,9 +250,10 @@ export class AdComponent implements OnInit, AfterViewInit {
             this.usersImagesAvailabe = false;
           } else {
             if (this.token) {
-              // this.favAds = ads.map(
-              //   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-              // );
+              this.allAdsByUser = x;
+              this.adsByUser = this.allAdsByUser.map(
+                (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+              );
             } else {
               this.usersImagesAvailabe = true;
               this.adsByUser = x;
@@ -254,8 +265,7 @@ export class AdComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getUserAndFavAd(ads: Ads[]) {
-    console.log(this.userId, 'userId');
+  getUserAndFavAd() {
     this.userService
       .getFavourites(Number(localStorage.getItem('brocki_id')))
       .subscribe((x) => {
@@ -263,9 +273,9 @@ export class AdComponent implements OnInit, AfterViewInit {
         this.numberOfFavs = x.length;
         this.sendNumberOfFavorites(x.length);
         // Replace objects between two arrays.
-        this.favAds = ads.map(
-          (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-        );
+        // this.favAds = ads.map(
+        //   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+        // );
       });
   }
 
