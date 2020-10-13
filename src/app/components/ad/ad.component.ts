@@ -102,7 +102,11 @@ export class AdComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.getUserAndFavAd();
+    this.token = localStorage.getItem(AuthConst.token);
+    if (this.token) {
+      this.getUserAndFavAd();
+
+    }
     this.galleryOptions = [
       {
         width: '700px',
@@ -123,7 +127,6 @@ export class AdComponent implements OnInit, AfterViewInit {
       }
     });
     this.enableScrolling();
-    this.token = localStorage.getItem(AuthConst.token);
     if (this.token) {
       this.userService.getUser().subscribe((response) => {
         this.userId = response.id;
