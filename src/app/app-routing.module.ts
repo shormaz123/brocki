@@ -27,6 +27,7 @@ import { AuthGuardService as AuthGuard } from '../app/@core/services/authGuard.s
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { CategoryAdsComponent } from './components/category-ads/category-ads.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AdsCategoryWithTagsComponent } from './components/ads-category-with-tags/ads-category-with-tags.component';
 
 const routes: Routes = [
   {
@@ -115,6 +116,10 @@ const routes: Routes = [
       {
         path: 'ads/:subGroupId/:groupId',
         component: AdsComponent,
+      },
+      {
+        path: 'ads-category-with-tags/:groupId',
+        component: AdsCategoryWithTagsComponent,
       },
       {
         path: 'site',

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {AdsService} from '../../@core/services/ads.service';
 import {Ads} from '../../shared/models/ads.model';
 import {UserService} from '../../@core/services/user.service';
@@ -11,6 +11,7 @@ import {TranslateServiceRest} from '../../@core/services/translateREST.service';
 import {Subscription} from 'rxjs';
 import {Location} from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ads',
@@ -25,7 +26,7 @@ export class AdsComponent implements OnInit, OnDestroy {
   userRequest: UserAddAdsRequest;
   userId;
   currentLang;
-  favAds: Ads[];
+  favAds: Ads[] = [];
   favoriteAds: Ads[];
   numberOfFavorites: number;
   displaySideNav = true;
@@ -46,7 +47,8 @@ export class AdsComponent implements OnInit, OnDestroy {
               private helpersService: HelpersService,
               private translateBackend: TranslateServiceRest,
               private location: Location,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -57,6 +59,19 @@ export class AdsComponent implements OnInit, OnDestroy {
     //     this.userId = user.id;
     //   });
     // }
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.rootRoute(this.activatedRoute)),
+      filter((route: ActivatedRoute) => route.outlet === 'primary'),
+    ).subscribe((route: ActivatedRoute) => {
+      console.log(route.snapshot.paramMap.get('subGroupId'), 'subgroupadscomponent');
+      console.log(route.snapshot.paramMap.get('groupId'), 'subgroupadscomponent');
+      console.log(route.component);
+    });
+
+
+
+    //
     this.activatedRoute.params.subscribe((params) => {
       this.subGroupId = params.subGroupId;
       this.groupId = params.groupId;
@@ -209,7 +224,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     });
   }
 
-   lang() {
+  lang() {
     if (this.currentLang === 'de') {
       this.tags = [
         'antik',
@@ -218,8 +233,20 @@ export class AdsComponent implements OnInit, OnDestroy {
         'gut zu gebrauchen',
         'restauriert',
         'defekt',
+        'luxuriös',
+        'aus holz',
+        'sammlerstück',
+        'selten',
         'einzigartig',
         'handgemacht',
+        'aus erste hand',
+        'für kinder & jugendliche',
+        'für männer',
+        'für frauen',
+        'preis verhandelbar',
+        'macOS & iOS',
+        'android',
+        'windows',
       ];
     } else if (this.currentLang === 'en') {
       this.tags = [
@@ -229,9 +256,20 @@ export class AdsComponent implements OnInit, OnDestroy {
         'good to use',
         'restored',
         'malfunction',
+        'luxurious',
+        'wooden',
+        "collector's item",
+        'rare',
         'unique',
         'handmade',
-
+        'first-hand',
+        'for children & teenagers',
+        'for men',
+        'for women',
+        'price negotiable',
+        'macOS & iOS',
+        'android',
+        'windows',
       ];
     } else if (this.currentLang === 'it') {
       this.tags = [
@@ -241,8 +279,20 @@ export class AdsComponent implements OnInit, OnDestroy {
         'buono da usare',
         'restaurato',
         'malfunzionamento',
+        'lussuoso',
+        'legno',
+        'oggetto da collezione',
+        'raro',
         'unico',
         'fatto a mano',
+        'di prima mano',
+        'per bambini & adolescenti',
+        'per uomo',
+        'per donne',
+        'prezzo negoziabile',
+        'macOS & iOS',
+        'android',
+        'windows',
       ];
     } else if (this.currentLang === 'fr') {
       this.tags = [
@@ -252,10 +302,29 @@ export class AdsComponent implements OnInit, OnDestroy {
         'bon à utiliser',
         'restaure',
         'mauvais fonctionnement',
+        'luxueux',
+        'en bois',
+        'pièce de collection',
+        'rare',
         'unique',
         'fait main',
+        'première main',
+        'pour les enfants & adolescents',
+        'pour hommes',
+        'pour femme',
+        'prix nègociable',
+        'macOS & iOS',
+        'android',
+        'windows',
       ];
     }
+  }
+
+  private rootRoute(route: ActivatedRoute): ActivatedRoute {
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+    return route;
   }
 
   addToWishlist(adId: number) {
@@ -297,7 +366,7 @@ export class AdsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (this.clickedTags.length < 3) {
+    if (this.clickedTags.length < 4) {
       this.clickedTags.push(tag);
     } else {
       this.setLanguage();
