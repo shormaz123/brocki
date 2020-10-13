@@ -62,6 +62,8 @@ export const it = {
     canton: 'Cantone',
     createAccount: 'Creare un profilo',
     username: 'Nome utente',
+    selectCategory:'Seleziona categoria',
+    selectSubCategory:'Seleziona Sottocategoria',
     confirmTermsAndConditionsOne:
       'Conferma di accettare i nostri termini e condizioni.',
     confirmTermsAndConditionsTwo: '',

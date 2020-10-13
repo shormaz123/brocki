@@ -167,6 +167,14 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.region = event.target.value;
   }
 
+  minPrice(min:string):void{
+    this.fromPrice = Number(min);
+  }
+
+  maxPrice(max:string):void{
+    this.toPrice = Number(max);
+  }
+
   confirmButton() {
     if (this.toPrice < this.fromPrice) {
       this.errorMessage = 'Max price cannot be bigger than minimum price';
