@@ -55,13 +55,13 @@
       <div class="manualAmount__block">
         <div class="manualAmount__value">min</div>
         <div>
-          <input class="manualAmount__input" #min (keyup)="minPrice(min.value)" type="tel" maxlength="6" >
+          <input class="manualAmount__input" #min (keyup)="minPrice(min.value)" type="number" onKeyPress="if(this.value.length==6) return false;" >
         </div>
       </div>
       <div class="manualAmount__block manualAmount__block--end">
         <div class="manualAmount__value">max</div>
         <div>
-          <input class="manualAmount__input" #max (keyup)="maxPrice(max.value)" type="tel" maxlength="6">
+          <input class="manualAmount__input" #max (keyup)="maxPrice(max.value)" type="number" onKeyPress="if(this.value.length==6) return false;">
         </div>
       </div>
     </div>
