@@ -32,7 +32,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   options: Options = {
     floor: 0,
     ceil: 1000000,
-    step: 1000,
+    step: 1,
 
     translate: (value: number, label: LabelType): string => {
       switch (label) {
@@ -165,6 +165,24 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   getCanton(event: any): void {
     this.region = event.target.value;
+  }
+
+  minPrice(min:string){
+    this.fromPrice = Number(min);
+    if(this.fromPrice > this.toPrice){
+      return this.toPrice = 1000000;
+    }else if(this.fromPrice < this.toPrice){
+      return this.fromPrice;
+    }
+  }
+
+  maxPrice(max:string){
+    this.toPrice = Number(max);
+    if(this.toPrice < this.fromPrice){
+      return this.toPrice = 1000000;
+    }else if(this.fromPrice < this.toPrice){
+      return this.fromPrice;
+    }
   }
 
   confirmButton() {
