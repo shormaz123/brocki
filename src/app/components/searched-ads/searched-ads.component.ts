@@ -6,41 +6,31 @@ import { UserService } from '../../@core/services/user.service';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { AdsService } from '../../@core/services/ads.service';
-import { FilterAds } from '../../shared/models/filterAds.model';
 
 @Component({
-  selector: 'app-filters-ads',
-  templateUrl: './filters-ads.component.html',
-  styleUrls: ['./filters-ads.component.scss'],
+  selector: 'app-searched-ads',
+  templateUrl: './searched-ads.component.html',
+  styleUrls: ['./searched-ads.component.scss']
 })
-export class FiltersAdsComponent implements OnInit, OnChanges {
-  filteredAds: Ads[];
-  userRequest: UserAddAdsRequest;
+export class SearchedAdsComponent implements OnInit {
+
+  pageNumber = 1;
+  disableButton = true;
+  ads;
   token;
+  favAds: Ads[];
+  favoriteAds: Ads[];
+  userRequest: UserAddAdsRequest;
   userId: number;
+  dataAd;
+  productName: string;
+  newAds: Ads[];
 
-  @Input() ads?: any;
-  @Input() filterAd?: any;
-
-  newAds: any;
-
-  // public filterAd: FilterAds;
-
-  pageNumber: number = 1;
-  disableButton: boolean = true;
-
-  constructor(
-    private router: Router,
-    private helpersService: HelpersService,
-    private userService: UserService,
-    private adsService: AdsService,
-    private route: ActivatedRoute
-  ) {
-    // if (this.router.getCurrentNavigation().extras.state) {
-    //   this.filteredAds = this.router.getCurrentNavigation().extras.state.data;
-    //   console.log('filteredads', this.filteredAds);
-    // }
-  }
+  constructor(private router: Router,
+              private helpersService: HelpersService,
+              private userService: UserService,
+              private adsService: AdsService,
+              private route: ActivatedRoute) { }
 
   ngOnChanges() {
     if (Object.keys(this.ads).length !== 12) {
@@ -49,7 +39,35 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-
+    this.token = localStorage.getItem(AuthConst.token);
+    if (this.token) {
+      this.userId = Number(localStorage.getItem('brocki_id'));
+      this.userService
+      .getFavourites(Number(localStorage.getItem('brocki_id')))
+      .subscribe((x) => {
+        this.favoriteAds = x;
+      }
+      );
+    }
+    this.route.params.subscribe(params => {
+      this.productName = params.data
+      if (this.productName) {
+          this.adsService.getAdsdBySearch(this.productName , this.pageNumber).subscribe(
+        (x) => {
+          if (this.token) {
+            this.ads = x.map(
+              (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+            );
+          } else {
+            this.ads = x;
+          }
+        },
+        (error) => {
+          console.log('error');
+        }
+      );
+      }
+  });
     // this.token = localStorage.getItem(AuthConst.token);
     // if (this.token) {
     //   this.userService.getUser().subscribe((user) => {
@@ -85,22 +103,7 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
 
   increaseShow() {
     this.pageNumber += 1;
-
-    const filteredAds = {
-      region: this.filterAd.region,
-      fromPrice: this.filterAd.fromPrice,
-      toPrice: this.filterAd.toPrice,
-      fixedPrice: this.filterAd.fixedPrice,
-      hasImage: this.filterAd.hasImage,
-      freeDelivery: this.filterAd.freeDelivery,
-      productWarranty: this.filterAd.productWarranty,
-      urgentSales: this.filterAd.urgentSales,
-      adsGroupId: this.filterAd.adsGroupId,
-      subCategory: this.filterAd.subCategory,
-      pageNumber: this.pageNumber,
-      pageSize: this.filterAd.pageSize,
-    };
-    this.adsService.getAdsByParamToFilter(filteredAds).subscribe((response) => {
+    this.adsService.getAdsdBySearch(this.productName, this.pageNumber).subscribe((response) => {
       this.newAds = response;
       if (Object.keys(this.newAds).length !== 12) {
         this.disableButton = false;
@@ -108,23 +111,25 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
       this.ads.push(...this.newAds);
       this.disableScrolling();
     });
+
   }
 
   disableScrolling() {
     const x = window.scrollX;
     const y = window.scrollY;
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function () {
+    window.onscroll = function() {
       window.scrollTo(x, y);
     };
   }
 
   enableScrolling() {
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function () {};
+    window.onscroll = function() {};
   }
 
   onMouseWheel(e) {
     this.enableScrolling();
   }
+
 }

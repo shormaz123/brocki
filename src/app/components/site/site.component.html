@@ -8,7 +8,7 @@
           {{ 'translate.filters' | translate }}
         </button>
                 <div class="searchBox">
-                    <input type="text" class="searchTerm" placeholder="Search" [(ngModel)]="searchProductName" />
+                    <input type="text" class="searchTerm" placeholder="Search" [(ngModel)]="searchProductName" (keydown.enter)="getAdsBySearch()" />
                     <button type="submit" class="searchButton" (click)="getAdsBySearch()">
             <i class="fa fa-search"></i>
           </button>

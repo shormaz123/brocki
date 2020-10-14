@@ -196,5 +196,7 @@ export const it = {
     passwordChanged: 'Password cambiata con successo!',
     deleteAdConfirmation: 'Sei sicuro di voler cancellare questo annuncio?',
     acruallySoldAd: "L'annuncio è stato venduto?",
+    searchedAds: 'Annunci cercati',
+    filteredAds: 'Annunci filtrati'
   },
 };

@@ -32,6 +32,7 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/auth/ads`);
   }
 
+
   getAdsByParamToFilter(data: FilterAds) {
     let params = new HttpParams();
 
@@ -107,9 +108,9 @@ export class AdsService {
     );
   }
 
-  getAdsdBySearch(productName: string): Observable<Ads[]> {
+  getAdsdBySearch(productName: string, pageNumber: number): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/search?productName=${productName}&status=ACTIVE&pageSize=16`
+      `${this.baseUrl}/mybrocki/ads/search?productName=${productName}&status=ACTIVE&pageSize=16&pageNumber=${pageNumber}`
     );
   }
 
