@@ -385,3 +385,18 @@ button {
     background-color: $red;
     color: $white;
 }
+
+.increaseButtonClass {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .increaseButton {
+        height: auto !important;
+        width: auto !important;
+        background-color: $red;
+        color: $white;
+        margin-top: 50px;
+        border-radius: 15px;
+    }
+}

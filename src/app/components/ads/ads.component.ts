@@ -12,6 +12,7 @@ import {Subscription} from 'rxjs';
 import {Location} from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ads',
@@ -35,9 +36,14 @@ export class AdsComponent implements OnInit, OnDestroy {
   subscriptionLang: Subscription;
   selectedImage: string;
   pageNumber = 1;
-  clickedTags: Array<string> = [];
-  clickedTag: string;
+  clickedTags: Array<number> = [];
+  clickedTag: number;
   tags = [];
+  newAds: any;
+  disableButton: boolean = true;
+  chosenLanguage;
+  userLang;
+  startingAds;
 
 
 
@@ -48,10 +54,23 @@ export class AdsComponent implements OnInit, OnDestroy {
               private translateBackend: TranslateServiceRest,
               private location: Location,
               private toastr: ToastrService,
-              private router: Router) {
+              private router: Router,
+              private translate: TranslateService) {
   }
 
   ngOnInit() {
+    this.userId = Number(localStorage.getItem('brocki_id'));
+    this.currentLang = localStorage.getItem(AuthConst.language)
+    this.chosenLanguage = this.translateBackend.getChoosenLanguage();
+    if (this.chosenLanguage !== '') {
+    this.userLang = this.chosenLanguage;
+    this.change(this.userLang);
+  } else {
+    this.translate.use('de');
+  }
+    this.adsService.getAllTags().subscribe( x => {
+      this.tags = x
+    });
     this.currentLang = localStorage.getItem(AuthConst.language)
     this.token = localStorage.getItem(AuthConst.token);
     // if (this.token) {
@@ -88,20 +107,20 @@ export class AdsComponent implements OnInit, OnDestroy {
       })
       this.adsService.getAdsBySubGroupParam(params.subGroupId, this.pageNumber).subscribe((ads) => {
         this.ads = ads;
+        this.startingAds = ads.length
         if (this.token) {
           this.getFavoriteAds(Number(localStorage.getItem(AuthConst.userId)));
+          this.showMoreButton();
         } else {
           this.favAds = ads;
+          this.showMoreButton();
         }
-        // this.getUserAndFavAd();
-        console.log(this.subGroupId, 'subgroupAds');
       });
     });
     this.subscriptionLang = this.translateBackend
       .getLanguage()
       .subscribe((message) => {
         this.currentLang = message;
-        this.lang();
         this.adsService.getSubCategoryById(this.subGroupId).subscribe( subTitle => {
           this.subCategoryName = subTitle.subGroupName[this.currentLang]
         });
@@ -110,7 +129,19 @@ export class AdsComponent implements OnInit, OnDestroy {
           this.getImage(this.groupId);
         });
       });
-      this.lang();
+  }
+
+  showMoreButton(){
+    if (this.favAds.length !== 3) {
+      this.disableButton = false;
+    } else {
+      this.disableButton = true;
+    }
+  }
+
+  change(code: string) {
+    this.translate.use(code);
+    this.translateBackend.sendLanguage(code);
   }
 
   ngOnDestroy() {
@@ -224,100 +255,104 @@ export class AdsComponent implements OnInit, OnDestroy {
     });
   }
 
-  lang() {
-    if (this.currentLang === 'de') {
-      this.tags = [
-        'antik',
-        'gebraucht',
-        'neu',
-        'gut zu gebrauchen',
-        'restauriert',
-        'defekt',
-        'luxuriös',
-        'aus holz',
-        'sammlerstück',
-        'selten',
-        'einzigartig',
-        'handgemacht',
-        'aus erste hand',
-        'für kinder & jugendliche',
-        'für männer',
-        'für frauen',
-        'preis verhandelbar',
-        'macOS & iOS',
-        'android',
-        'windows',
-      ];
-    } else if (this.currentLang === 'en') {
-      this.tags = [
-        'antique',
-        'second hand',
-        'new',
-        'good to use',
-        'restored',
-        'malfunction',
-        'luxurious',
-        'wooden',
-        "collector's item",
-        'rare',
-        'unique',
-        'handmade',
-        'first-hand',
-        'for children & teenagers',
-        'for men',
-        'for women',
-        'price negotiable',
-        'macOS & iOS',
-        'android',
-        'windows',
-      ];
-    } else if (this.currentLang === 'it') {
-      this.tags = [
-        'antico',
-        'seconda mano',
-        'nuovo',
-        'buono da usare',
-        'restaurato',
-        'malfunzionamento',
-        'lussuoso',
-        'legno',
-        'oggetto da collezione',
-        'raro',
-        'unico',
-        'fatto a mano',
-        'di prima mano',
-        'per bambini & adolescenti',
-        'per uomo',
-        'per donne',
-        'prezzo negoziabile',
-        'macOS & iOS',
-        'android',
-        'windows',
-      ];
-    } else if (this.currentLang === 'fr') {
-      this.tags = [
-        'antique',
-        "d'occasion",
-        'nouveau',
-        'bon à utiliser',
-        'restaure',
-        'mauvais fonctionnement',
-        'luxueux',
-        'en bois',
-        'pièce de collection',
-        'rare',
-        'unique',
-        'fait main',
-        'première main',
-        'pour les enfants & adolescents',
-        'pour hommes',
-        'pour femme',
-        'prix nègociable',
-        'macOS & iOS',
-        'android',
-        'windows',
-      ];
-    }
+  // lang() {
+  //   if (this.currentLang === 'de') {
+  //     this.tags = [
+  //       'antik',
+  //       'gebraucht',
+  //       'neu',
+  //       'gut zu gebrauchen',
+  //       'restauriert',
+  //       'defekt',
+  //       'luxuriös',
+  //       'aus holz',
+  //       'sammlerstück',
+  //       'selten',
+  //       'einzigartig',
+  //       'handgemacht',
+  //       'aus erste hand',
+  //       'für kinder & jugendliche',
+  //       'für männer',
+  //       'für frauen',
+  //       'preis verhandelbar',
+  //       'macOS & iOS',
+  //       'android',
+  //       'windows',
+  //     ];
+  //   } else if (this.currentLang === 'en') {
+  //     this.tags = [
+  //       'antique',
+  //       'second hand',
+  //       'new',
+  //       'good to use',
+  //       'restored',
+  //       'malfunction',
+  //       'luxurious',
+  //       'wooden',
+  //       "collector's item",
+  //       'rare',
+  //       'unique',
+  //       'handmade',
+  //       'first-hand',
+  //       'for children & teenagers',
+  //       'for men',
+  //       'for women',
+  //       'price negotiable',
+  //       'macOS & iOS',
+  //       'android',
+  //       'windows',
+  //     ];
+  //   } else if (this.currentLang === 'it') {
+  //     this.tags = [
+  //       'antico',
+  //       'seconda mano',
+  //       'nuovo',
+  //       'buono da usare',
+  //       'restaurato',
+  //       'malfunzionamento',
+  //       'lussuoso',
+  //       'legno',
+  //       'oggetto da collezione',
+  //       'raro',
+  //       'unico',
+  //       'fatto a mano',
+  //       'di prima mano',
+  //       'per bambini & adolescenti',
+  //       'per uomo',
+  //       'per donne',
+  //       'prezzo negoziabile',
+  //       'macOS & iOS',
+  //       'android',
+  //       'windows',
+  //     ];
+  //   } else if (this.currentLang === 'fr') {
+  //     this.tags = [
+  //       'antique',
+  //       "d'occasion",
+  //       'nouveau',
+  //       'bon à utiliser',
+  //       'restaure',
+  //       'mauvais fonctionnement',
+  //       'luxueux',
+  //       'en bois',
+  //       'pièce de collection',
+  //       'rare',
+  //       'unique',
+  //       'fait main',
+  //       'première main',
+  //       'pour les enfants & adolescents',
+  //       'pour hommes',
+  //       'pour femme',
+  //       'prix nègociable',
+  //       'macOS & iOS',
+  //       'android',
+  //       'windows',
+  //     ];
+  //   }
+  // }
+
+  backClicked() {
+    this.location.back();
   }
 
   private rootRoute(route: ActivatedRoute): ActivatedRoute {
@@ -327,13 +362,14 @@ export class AdsComponent implements OnInit, OnDestroy {
     return route;
   }
 
-  addToWishlist(adId: number) {
+  addToWishlist(adId: number, ad: any) {
     this.userRequest = {
       adsId: adId,
       userId: this.userId,
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
       console.log('add update to favorite', x);
+      this.favoriteAds.push(ad)
     }),
       (error) => {
         console.log('not to favorite');
@@ -352,22 +388,62 @@ export class AdsComponent implements OnInit, OnDestroy {
     this.helpersService.$numOfFavs.next();
   }
 
-  backClicked() {
-    this.location.back();
-  }
+  chosenTag(tag: number): void {
+    this.pageNumber = 1;
 
-  chosenTag(tag: string): void {
     this.clickedTag = tag;
 
     this.clickedTags = [...this.clickedTags];
 
     if (this.clickedTags.includes(this.clickedTag)) {
       this.clickedTags = this.clickedTags.filter((e) => e !== this.clickedTag);
+      if (this.clickedTags.length < 3 && this.clickedTags.length > 0) {
+      this.adsService.filterSubCategoryTags(this.clickedTags, this.pageNumber, this.subGroupId).subscribe( response => {
+        this.favAds = response
+        if (this.token) {
+          this.favAds = this.favAds.map(
+            (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+          );
+        }
+        this.pageNumber = 1;
+        if (this.favAds.length !== 3) {
+          this.disableButton = false;
+        } else {
+          this.disableButton = true;
+        }
+      })
+    } else {
+      this.adsService.getAdsBySubGroupParam(this.subGroupId, this.pageNumber).subscribe((ads) => {
+        this.favAds = ads;
+        if (this.token) {
+          this.favAds = this.favAds.map(
+            (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+          );
+        }
+        if (this.favAds.length !== 3) {
+          this.disableButton = false;
+        } else {
+          this.disableButton = true;
+        }})
+    }
       return;
     }
 
-    if (this.clickedTags.length < 4) {
+    if ((this.clickedTags.length < 3) ) {
       this.clickedTags.push(tag);
+      this.adsService.filterSubCategoryTags(this.clickedTags, this.pageNumber, this.subGroupId).subscribe( response => {
+        this.favAds = response;
+        if (this.token) {
+          this.favAds = this.favAds.map(
+            (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+          );
+        }
+        if (this.favAds.length !== 3) {
+          this.disableButton = false;
+        } else {
+          this.disableButton = true;
+        }
+      })
     } else {
       this.setLanguage();
     }
@@ -383,6 +459,36 @@ export class AdsComponent implements OnInit, OnDestroy {
     } else if (this.currentLang === 'it') {
       return this.toastr.warning('Puoi scegliere fino a 3 tag');
     }
+  }
+
+  disableScrolling() {
+    const x = window.scrollX;
+    const y = window.scrollY;
+    // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function () {
+      window.scrollTo(x, y);
+    };
+  }
+
+  onMouseWheel(e) {
+    this.enableScrolling();
+  }
+
+  enableScrolling() {
+    // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function () {};
+  }
+
+  increaseShow() {
+    this.pageNumber += 1;
+    this.adsService.filterSubCategoryTags(this.clickedTags, this.pageNumber, this.subGroupId).subscribe((response) => {
+      this.newAds = response;
+      if (this.newAds.length !== 3) {
+        this.disableButton = false;
+      }
+      this.favAds.push(...this.newAds);
+      this.disableScrolling();
+    });
   }
 
 

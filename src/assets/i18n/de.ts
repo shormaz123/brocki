@@ -92,7 +92,7 @@ export const de = {
     maxMinPriceError:
       'Der Höchstpreis kann nicht höher als der Mindestpreis sein',
     sendCopyOfEmail: 'Kopie der E-mail and mich schicken',
-    messageToSeller: 'Nachricht and den Verkäufer',
+    messageToSeller: 'Nachricht an den Verkäufer',
     close: 'Schliessen',
     send: 'Senden',
     company: 'Unternehmen',
