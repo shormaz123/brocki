@@ -18,6 +18,7 @@ import { Subscription } from 'rxjs';
 import { response } from 'express';
 import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
 import { Options, LabelType } from 'ng5-slider';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -27,6 +28,8 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit, OnDestroy {
+  filterForm: FormGroup;
+
   fromPrice: number = 0;
   toPrice: number = 1000000;
   options: Options = {
@@ -45,6 +48,8 @@ export class FiltersComponent implements OnInit, OnDestroy {
       }
     },
   };
+
+
 
   fixedPrice = false;
   hasImage = false;
@@ -91,7 +96,8 @@ export class FiltersComponent implements OnInit, OnDestroy {
     private adsService: AdsService,
     private router: Router,
     private translateBackend: TranslateServiceRest,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private fb: FormBuilder,
   ) {
     this.subscriptionLang = this.translateBackend
       .getLanguage()
@@ -111,6 +117,11 @@ export class FiltersComponent implements OnInit, OnDestroy {
       .getLanguage()
       .subscribe((message) => {
         this.currentLang = message;
+      });
+
+      this.filterForm = this.fb.group({
+        minPrice: ['', [Validators.required]],
+        maxPrice: ['', [Validators.required]],
       });
   }
 
@@ -170,9 +181,10 @@ export class FiltersComponent implements OnInit, OnDestroy {
   minPrice(min:string){
     this.fromPrice = Number(min);
     if(this.fromPrice > this.toPrice){
-      return this.toPrice = 1000000;
+      this.toPrice = 1000000;
+      this.filterForm.controls.maxPrice.patchValue(this.toPrice);
     }else if(this.fromPrice < this.toPrice){
-      return this.fromPrice;
+      this.fromPrice;
     }
   }
 

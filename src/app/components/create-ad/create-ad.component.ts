@@ -23,6 +23,8 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 import { TranslateService } from '@ngx-translate/core';
 import { element } from 'protractor';
 import { AuthConst } from '../../@core/consts/auth.const';
+import {Tags } from '../../shared/models/tags.model';
+import {Observable } from 'rxjs';
 
 interface category {
   id: number;
@@ -33,6 +35,10 @@ interface subcategory {
   adsGroup: number;
   id: number;
   subGroupName: string;
+}
+
+interface tag {
+  id: number;
 }
 
 @Component({
@@ -62,27 +68,10 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   toggleListCategory: boolean = false;
   toggleListSubcategory: boolean = false;
   language: string;
-  clickedTags: Array<string> = [];
-  clickedTag: string;
+  clickedTags: Array<any> = [];
+  clickedTag: any;
+  tags$: Observable<Tags[]>;
 
-  tags = [
-    // 'aaaaaaa',
-    // 'bbbbbb',
-    // 'ccccc',
-    // 'ddddddd',
-    // 'eeeeeeee',
-    // 'fffffff',
-    // 'ggggggg',
-    // 'hhhhhhhhhh',
-    // 'iiiiiii',
-    // 'jjjjjjjjj',
-    // 'kkkkk',
-    // 'lllll',
-    // 'mmmmmm',
-    // 'nnnnn',
-    // 'oooooo',
-    // 'pppppppp',
-  ];
 
   constructor(
     private fb: FormBuilder,
@@ -102,11 +91,8 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       description: ['', [Validators.required, , Validators.maxLength(600)]],
       category: ['', [Validators.required]],
       subcategory: ['', [Validators.required]],
+      tags:['',[Validators.required]],
       image: [undefined, [Validators.required]],
-      fixedPrice: [''],
-      freeDelivery: [''],
-      productWarranty: [''],
-      urgentSales: [''],
       price: ['', [Validators.required]],
     });
 
@@ -121,11 +107,12 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     this.subscriptionLang = this.translateBackend
       .getLanguage()
       .subscribe((message) => {
+        console.log(message)
         this.currentLang = message;
-        this.lang();
         this.clickedTags = [];
       });
-    this.lang();
+
+   this.tags$ = this.adsService.getAllTags();
   }
 
   ngOnDestroy() {
@@ -133,7 +120,8 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     this.subscriptionLang.unsubscribe();
   }
 
-  chosenTag(tag: string): void {
+  chosenTag(tag: Tags): void {
+  
     this.clickedTag = tag;
 
     this.clickedTags = [...this.clickedTags];
@@ -144,7 +132,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     }
 
     if (this.clickedTags.length < 3) {
-      this.clickedTags.push(tag);
+      this.clickedTags.push(this.clickedTag);
     } else {
       this.setLanguage();
     }
@@ -159,102 +147,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       return this.toastr.warning('Sie können bis zu 3 Tags auswählen');
     } else if (this.currentLang === 'it') {
       return this.toastr.warning('Puoi scegliere fino a 3 tag');
-    }
-  }
-
-  lang() {
-    if (this.currentLang === 'de') {
-      this.tags = [
-        'antik',
-        'gebraucht',
-        'neu',
-        'gut zu gebrauchen',
-        'restauriert',
-        'defekt',
-        'luxuriös',
-        'aus holz',
-        'sammlerstück',
-        'selten',
-        'einzigartig',
-        'handgemacht',
-        'aus erste hand',
-        'für kinder & jugendliche',
-        'für männer',
-        'für frauen',
-        'preis verhandelbar',
-        'macOS & iOS',
-        'android',
-        'windows',
-      ];
-    } else if (this.currentLang === 'en') {
-      this.tags = [
-        'antique',
-        'second hand',
-        'new',
-        'good to use',
-        'restored',
-        'malfunction',
-        'luxurious',
-        'wooden',
-        "collector's item",
-        'rare',
-        'unique',
-        'handmade',
-        'first-hand',
-        'for children & teenagers',
-        'for men',
-        'for women',
-        'price negotiable',
-        'macOS & iOS',
-        'android',
-        'windows',
-      ];
-    } else if (this.currentLang === 'it') {
-      this.tags = [
-        'antico',
-        'seconda mano',
-        'nuovo',
-        'buono da usare',
-        'restaurato',
-        'malfunzionamento',
-        'lussuoso',
-        'legno',
-        'oggetto da collezione',
-        'raro',
-        'unico',
-        'fatto a mano',
-        'di prima mano',
-        'per bambini & adolescenti',
-        'per uomo',
-        'per donne',
-        'prezzo negoziabile',
-        'macOS & iOS',
-        'android',
-        'windows',
-      ];
-    } else if (this.currentLang === 'fr') {
-      this.tags = [
-        'antique',
-        "d'occasion",
-        'nouveau',
-        'bon à utiliser',
-        'restaure',
-        'mauvais fonctionnement',
-        'luxueux',
-        'en bois',
-        'pièce de collection',
-        'rare',
-        'unique',
-        'fait main',
-        'première main',
-        'pour les enfants & adolescents',
-        'pour hommes',
-        'pour femme',
-        'prix nègociable',
-        'macOS & iOS',
-        'android',
-        'windows',
-      ];
     }
   }
 
@@ -406,14 +298,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
             this.toastr.warning(this.translateService.instant('translate.mustAddDescription'));
             return;
           }
-          create.fixedPrice = this.createForm.value.fixedPrice;
-          if (this.createForm.value.fixedPrice === '') {
-            create.fixedPrice = false;
-          }
-          create.freeDelivery = this.createForm.value.freeDelivery;
-          if (this.createForm.value.freeDelivery === '') {
-            create.freeDelivery = false;
-          }
           create.adsGroupId = this.categoryId;
           if (create.adsGroupId === undefined) {
             this.toastr.warning(this.translateService.instant('translate.mustAddCategory'));
@@ -424,19 +308,13 @@ export class CreateAdComponent implements OnInit, OnDestroy {
             this.toastr.warning(this.translateService.instant('translate.mustAddSubcategory'));
             return;
           }
+          create.tags =  this.clickedTags
           create.image = this.photos;
           if (create.image.length === 0) {
             this.toastr.warning(this.translateService.instant('translate.mustAddImage'));
             return;
           }
-          create.productWarranty = this.createForm.value.productWarranty;
-          if (this.createForm.value.productWarranty === '') {
-            create.productWarranty = false;
-          }
-          create.urgentSales = this.createForm.value.urgentSales;
-          if (this.createForm.value.urgentSales === '') {
-            create.urgentSales = false;
-          }
+        
           create.price = this.roundUp(
             Number(
               (Math.round(this.createForm.value.price * 100) / 100).toFixed(2)
@@ -455,9 +333,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
           });
       }
     });
-
-    //   },
-    // });
   }
 
   roundUp(num, precision) {

@@ -8,6 +8,7 @@ import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
 import { User } from '../../shared/models/user.model';
 import { CreateAd } from '../../shared/models/create-ad.model';
 import { Comment } from '../../shared/models/createComment.model';
+import {Tags} from '../../shared/models/tags.model';
 import {
   HttpClient,
   HttpEvent,
@@ -16,7 +17,7 @@ import {
   HttpParams,
   HttpHeaders,
 } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map,shareReplay } from 'rxjs/operators';
 import { AdsParam } from '../../shared/models/adParams.model';
 import { FilterAds } from '../../shared/models/filterAds.model';
 
@@ -167,6 +168,19 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/auth/ads/visible`);
   }
 
+
+  /**
+   * Get all Tags
+   *
+   */
+  getAllTags():Observable<Tags[]>{
+    return this.http.get<Tags[]>(`${this.baseUrl}/mybrocki/tags`)
+      .pipe(
+        map(res => res),
+        shareReplay()
+      )
+  }
+
   /**
    * change status of Ads
    *
@@ -230,8 +244,12 @@ export class AdsService {
     let params = new HttpParams();
     params = params.append('image', image.toString());
     return this.httpClient.delete(
-      `${this.baseUrl}/mybrocki/auth/image/destroy`,
-      { params }
+      `${this.baseUrl}/mybrocki/auth/image/destroy`,{
+        params:{
+          image:image.toString()
+        }
+      }
+      // { params }
     );
   }
 

@@ -101,15 +101,6 @@ export class EmailComponent implements OnInit {
     email.toSender = this.toSender;
 
     this.toastr.success(this.translateService.instant('translate.emailSent'));
-    if (this.language === 'en') {
-      this.toastr.success('Email is send');
-    } else if (this.language === 'fr') {
-      this.toastr.success("l'email est envoyé");
-    } else if (this.language === 'de') {
-      this.toastr.success('E-Mail wird gesendet');
-    } else if (this.language === 'it') {
-      this.toastr.success("l'email è stata inviata");
-    }
 
     if (email.ad) {
       this.router.navigate([`/ad/${this.adForEmail.id}`]);
