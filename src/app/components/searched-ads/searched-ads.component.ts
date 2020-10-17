@@ -53,6 +53,7 @@ export class SearchedAdsComponent implements OnInit {
       this.productName = params.data
       if (this.productName) {
           this.adsService.getAdsdBySearch(this.productName , this.pageNumber).subscribe(
+
         (x) => {
           if (this.token) {
             this.ads = x.map(
@@ -61,10 +62,14 @@ export class SearchedAdsComponent implements OnInit {
           } else {
             this.ads = x;
           }
+          if (Object.keys(this.ads).length !== 12) {
+            this.disableButton = false;
+          }
         },
         (error) => {
           console.log('error');
         }
+
       );
       }
   });
