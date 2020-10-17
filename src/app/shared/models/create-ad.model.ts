@@ -1,3 +1,5 @@
+import {Tags} from '../../shared/models/tags.model';
+
 export class CreateAd {
   adsType: string;
   adsGroupId: number;
@@ -9,8 +11,5 @@ export class CreateAd {
   productName: string;
   userId: number;
   visibleAds: boolean;
-  fixedPrice: boolean;
-  freeDelivery: boolean;
-  productWarranty: boolean;
-  urgentSales: boolean;
+  tags:Array<Tags>;
 }

@@ -28,6 +28,7 @@ export const fr = {
     productWarranty: 'Garantie produit',
     urgentSales: 'Ventes urgentes',
     confirm: 'Confirmer ',
+    postAd: 'Publier une annonce',
     email: 'Adresse e-mail',
     subject: 'Matière',
     message: 'Message',

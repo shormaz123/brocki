@@ -51,20 +51,20 @@
         </option>
       </select>
     </div>
-    <div class="manualAmount">
+    <form class="manualAmount" [formGroup]="filterForm">
       <div class="manualAmount__block">
         <div class="manualAmount__value">min</div>
         <div>
-          <input class="manualAmount__input" #min (keyup)="minPrice(min.value)" type="number" onKeyPress="if(this.value.length==6) return false;" >
+          <input class="manualAmount__input" formControlName="minPrice" #min (keyup)="minPrice(min.value)" type="number" onKeyPress="if(this.value.length==6) return false;" >
         </div>
       </div>
       <div class="manualAmount__block manualAmount__block--end">
         <div class="manualAmount__value">max</div>
         <div>
-          <input class="manualAmount__input" #max (keyup)="maxPrice(max.value)" type="number" onKeyPress="if(this.value.length==6) return false;">
+          <input class="manualAmount__input"  formControlName="maxPrice" #max (keyup)="maxPrice(max.value)" type="number" onKeyPress="if(this.value.length==6) return false;">
         </div>
       </div>
-    </div>
+    </form>
 
     <div class="amount" style="padding-bottom: 25px">
       <!-- <img src="../../../assets/images/filters/CHF.png" />

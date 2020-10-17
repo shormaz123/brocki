@@ -55,6 +55,7 @@
           </div>
         </div>
         <div
+        *ngIf="active.status === 'ACTIVE' || active.status === 'NOT_ACCEPTED'"
           class="delete-ad"
           (click)="deleteAd(active, i)"
           [inlineSVG]="'../../../assets/images/update-info-bussines/trash.svg'"

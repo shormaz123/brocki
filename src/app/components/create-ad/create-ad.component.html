@@ -140,7 +140,7 @@
           List
         </div>
         <div *ngIf="subcategories.length !== 0">
-          <div class="form__subcategoryList" *ngIf="toggleListSubcategory">
+          <div formControlName="tags" class="form__subcategoryList" *ngIf="toggleListSubcategory">
             <div
               class="form__option"
               *ngFor="let subcategory of subcategories"
@@ -167,9 +167,9 @@
       </div>
       <label class="form__label">{{ 'translate.tags' | translate }}:</label>
                 <div class="form__buttons">
-                    <div style="margin: 0 20px 15px 0" *ngFor="let tag of tags">
+                    <div style="margin: 0 20px 15px 0" *ngFor="let tag of tags$ | async">
                         <div class="form__tag" [ngClass]="{ active: clickedTags.includes(tag) }" (click)="chosenTag(tag)">
-                            {{ tag }}
+                            {{ tag.name[currentLang] }}
                         </div>
                     </div>
                     <!-- <div class="form__button">
@@ -294,7 +294,7 @@
       </div>
       <div class="form__input">
         <button class="form__saveButton" type="submit">
-          {{ 'translate.saveChanges' | translate }}
+          {{ 'translate.postAd' | translate }}
         </button>
       </div>
     </form>

@@ -28,6 +28,7 @@ export const en = {
     productWarranty: 'Product warranty',
     urgentSales: 'Urgent sales',
     confirm: 'Confirm',
+    postAd: 'Post ad',
     email: 'Email',
     subject: 'Subject',
     message: 'Message',

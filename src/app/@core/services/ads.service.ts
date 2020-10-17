@@ -8,6 +8,7 @@ import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
 import { User } from '../../shared/models/user.model';
 import { CreateAd } from '../../shared/models/create-ad.model';
 import { Comment } from '../../shared/models/createComment.model';
+import {Tags} from '../../shared/models/tags.model';
 import {
   HttpClient,
   HttpEvent,
@@ -16,7 +17,7 @@ import {
   HttpParams,
   HttpHeaders,
 } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map,shareReplay } from 'rxjs/operators';
 import { AdsParam } from '../../shared/models/adParams.model';
 import { FilterAds } from '../../shared/models/filterAds.model';
 
@@ -32,8 +33,7 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/auth/ads`);
   }
 
-
-  getAdsByParamToFilter(data: any) {
+  getAdsByParamToFilter(data: FilterAds) {
     let params = new HttpParams();
 
     params = params.append('status', 'ACTIVE'.toString());
@@ -116,25 +116,29 @@ export class AdsService {
 
   getAdsBySubGroupParam(adssubgroup: number, page: number): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}&pageNumber=${page}&status=ACTIVE&pageSize=3`
+      `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}&pageNumber=${page}&status=ACTIVE&pageSize=16`
     );
   }
 
   filterCategoryTags(tags: Array<number>, pageNumber: number, adsGroupId: number): Observable<Ads[]> {
-   return this.http.get(
-     `${this.baseUrl}/mybrocki/ads/filter?tag=${tags}&pageNumber=${pageNumber}&status=ACTIVE&pageSize=3&adsGroupId=${adsGroupId}`);
-  }
-
-  filterSubCategoryTags(tags: Array<number>, pageNumber: number, subGroupId: number): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?tag=${tags}&pageNumber=${pageNumber}&status=ACTIVE&pageSize=3&adssubgroup=${subGroupId}`);
+      `${this.baseUrl}/mybrocki/ads/filter?tag=${tags}&pageNumber=${pageNumber}&status=ACTIVE&pageSize=3&adsGroupId=${adsGroupId}`);
    }
+ 
+   filterSubCategoryTags(tags: Array<number>, pageNumber: number, subGroupId: number): Observable<Ads[]> {
+     return this.http.get(
+       `${this.baseUrl}/mybrocki/ads/filter?tag=${tags}&pageNumber=${pageNumber}&status=ACTIVE&pageSize=3&adssubgroup=${subGroupId}`);
+    }
 
   getAdsByActiveStatus(): Observable<Ads[]> {
     return this.http.get(`${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE`);
   }
 
-
+  // getAdsByNonActiveStatus() {
+  //   return this.http.get(
+  //     // `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}`
+  //   );
+  // }
 
   newAd(ad: CreateAd): Observable<Ads> {
     return this.http.post(`${this.baseUrl}/mybrocki/auth/ads/create`, ad);
@@ -162,10 +166,6 @@ export class AdsService {
 
   // Public Controller
 
-  getAllTags(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/mybrocki/tags`);
-  }
-
   getAdById(id: number): Observable<Ads> {
     return this.http.get(`${this.baseUrl}/mybrocki/ads/${id}`);
   }
@@ -176,6 +176,19 @@ export class AdsService {
 
   getAllVisibleAds(): Observable<Ads[]> {
     return this.http.get(`${this.baseUrl}/mybrocki/auth/ads/visible`);
+  }
+
+
+  /**
+   * Get all Tags
+   *
+   */
+  getAllTags():Observable<Tags[]>{
+    return this.http.get<Tags[]>(`${this.baseUrl}/mybrocki/tags`)
+      .pipe(
+        map(res=> res),
+        shareReplay()
+      )
   }
 
   /**
@@ -266,7 +279,7 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/group/${id}`);
   }
 
-  getSubCategoryById(id: number, ): Observable<any> {
+  getSubCategoryById(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/mybrocki/subgroup/${id}`);
   }
 }
