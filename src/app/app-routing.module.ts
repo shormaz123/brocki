@@ -28,6 +28,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { CategoryAdsComponent } from './components/category-ads/category-ads.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AdsCategoryWithTagsComponent } from './components/ads-category-with-tags/ads-category-with-tags.component';
+import { FiltersAdsComponent } from './components/filters-ads/filters-ads.component';
+import { SearchedAdsComponent } from './components/searched-ads/searched-ads.component';
 
 const routes: Routes = [
   {
@@ -143,10 +145,10 @@ const routes: Routes = [
         path: 'change-password',
         component: ChangePasswordComponent,
       },
-      // {
-      //   path: 'filters-ads',
-      //   component: FiltersAdsComponent,
-      // },
+      {
+        path: 'searched-ads',
+        component: SearchedAdsComponent,
+      },
       {
         path: 'ad/:id',
         component: AdComponent,

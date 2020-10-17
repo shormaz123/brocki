@@ -33,7 +33,8 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/auth/ads`);
   }
 
-  getAdsByParamToFilter(data: FilterAds) {
+
+  getAdsByParamToFilter(data: any) {
     let params = new HttpParams();
 
     params = params.append('status', 'ACTIVE'.toString());
@@ -108,27 +109,33 @@ export class AdsService {
     );
   }
 
-  getAdsdBySearch(productName: string): Observable<Ads[]> {
+  getAdsdBySearch(productName: string, pageNumber: number): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/search?productName=${productName}&status=ACTIVE&pageSize=16`
+      `${this.baseUrl}/mybrocki/ads/search?productName=${productName}&status=ACTIVE&pageSize=16&pageNumber=${pageNumber}`
     );
   }
 
   getAdsBySubGroupParam(adssubgroup: number, page: number): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}&pageNumber=${page}&status=ACTIVE&pageSize=16`
+      `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}&pageNumber=${page}&status=ACTIVE&pageSize=3`
     );
   }
+
+  filterCategoryTags(tags: Array<number>, pageNumber: number, adsGroupId: number): Observable<Ads[]> {
+   return this.http.get(
+     `${this.baseUrl}/mybrocki/ads/filter?tag=${tags}&pageNumber=${pageNumber}&status=ACTIVE&pageSize=3&adsGroupId=${adsGroupId}`);
+  }
+
+  filterSubCategoryTags(tags: Array<number>, pageNumber: number, subGroupId: number): Observable<Ads[]> {
+    return this.http.get(
+      `${this.baseUrl}/mybrocki/ads/filter?tag=${tags}&pageNumber=${pageNumber}&status=ACTIVE&pageSize=3&adssubgroup=${subGroupId}`);
+   }
 
   getAdsByActiveStatus(): Observable<Ads[]> {
     return this.http.get(`${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE`);
   }
 
-  // getAdsByNonActiveStatus() {
-  //   return this.http.get(
-  //     // `${this.baseUrl}/mybrocki/ads/filter?adssubgroup=${adssubgroup}`
-  //   );
-  // }
+
 
   newAd(ad: CreateAd): Observable<Ads> {
     return this.http.post(`${this.baseUrl}/mybrocki/auth/ads/create`, ad);
@@ -155,6 +162,10 @@ export class AdsService {
   }
 
   // Public Controller
+
+  getAllTags(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/mybrocki/tags`);
+  }
 
   getAdById(id: number): Observable<Ads> {
     return this.http.get(`${this.baseUrl}/mybrocki/ads/${id}`);
@@ -273,7 +284,7 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/group/${id}`);
   }
 
-  getSubCategoryById(id: number): Observable<any> {
+  getSubCategoryById(id: number, ): Observable<any> {
     return this.http.get(`${this.baseUrl}/mybrocki/subgroup/${id}`);
   }
 }

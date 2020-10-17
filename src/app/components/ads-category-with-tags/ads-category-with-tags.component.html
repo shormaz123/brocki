@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" (wheel)="onMouseWheel($event)">
     <div class="headerContainer">
         <div class="categoriesContainer">
 
@@ -56,10 +56,10 @@
             </div>
         </div>
     </div>
-    <div class="tagsContainer">
+    <div class="tagsContainer" *ngIf="startingAds > 0">
         <div style="margin: 0 20px 15px 0" *ngFor="let tag of tags">
-            <div class="tagsContainer__tag" [ngClass]="{ active: clickedTags.includes(tag) }" (click)="chosenTag(tag)">
-                {{ tag }}
+            <div class="tagsContainer__tag" [ngClass]="{ active: clickedTags.includes(tag.id) }" (click)="chosenTag(tag.id)">
+                {{ tag.name[currentLang] }}
             </div>
         </div>
     </div>
@@ -108,7 +108,7 @@
             </mat-icon>
             <mat-icon
               *ngIf="!card.favourite"
-              (click)="addToWishlist(card.id)"
+              (click)="addToWishlist(card.id, card)"
               aria-label="Example icon-button with a heart icon"
             >
               favorite_border
@@ -119,5 +119,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="increaseButtonClass" *ngIf="disableButton && startingAds > 0">
+        <button class="increaseButton" mat-button (click)="increaseShow()">
+        {{ 'translate.showMore' | translate }}
+      </button>
     </div>
 </div>

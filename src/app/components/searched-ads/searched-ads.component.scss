@@ -17,30 +17,13 @@
     align-items: center;
     justify-content: flex-start;
     .underContainer {
-        width: 100%;
+        width: 70%;
         display: flex;
         align-items: center;
         flex-direction: column;
         .title {
             font-size: 24pt;
         }
-    }
-}
-
-.headerContainer {
-    display: flex;
-    flex-direction: row;
-    width: 70%;
-    height: 200px;
-    .categoriesContainer {
-        width: 20%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 40px;
-    }
-    .titleContainer {
-        width: 70%;
     }
 }
 
@@ -87,12 +70,16 @@
 .pricetag {
     display: flex;
     justify-content: center;
-    width: fit-content;
+    align-items: center;
+    // width: -webkit-fit-content;
+    // width: -moz-fit-content;
+    width: 150px;
+    height: 25px;
     color: white;
     padding-left: 5px;
-    background-color: $red;
+    background-color: #d62b1f;
     padding-right: 5px;
-    border-radius: 15px;
+    border-radius: 25px;
 }
 
 .ui-card-title {
@@ -105,10 +92,9 @@
 
 .footer {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     margin-top: 10px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .image {
@@ -124,13 +110,11 @@
 }
 
 .cardBody {
-    text-align: center;
-    display: inline-block;
-    width: 98%;
-    white-space: nowrap;
-    overflow: hidden!important;
-    text-overflow: ellipsis;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 60px;
 }
 
 .description {
@@ -178,7 +162,7 @@ p-carousel {
 
 .footer {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     margin-top: 10px;
 }
@@ -188,6 +172,15 @@ p-carousel {
     justify-content: center;
     align-items: center;
     height: 230px;
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    align-items: center;
 }
 
 .description {
@@ -294,109 +287,15 @@ p-carousel {
     justify-content: center;
 }
 
-button {
-    height: 59px;
-    width: 58px;
-    .tab-icon {
-        padding: 5px 25px;
-        padding-bottom: 5px;
-    }
-    &:focus {
-        .icon-not-active {
-            display: none;
-        }
-        .icon-active {
-            display: inline;
-        }
-    }
-    .icon-not-active {
-        display: inline;
-    }
-    .icon-active {
-        display: none;
-    }
-    span {
-        margin-top: 20px;
-    }
-}
-
-.categoryContainer {
-    width: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-top: 40px;
-    img {
-        height: 59px;
-        width: 58px;
-    }
-}
-
-.arrow {
-    border: none;
-    background: none;
-    img {
-        height: 59px;
-        width: 58px;
-        cursor: pointer;
-    }
-}
-
-.category {
-    height: 100%;
-    width: 50%;
-    ;
-}
-
-.noAdsContainer {
-    h1 {
-        color: $red;
-    }
-}
-
-.tagsContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    width: 1024px;
-    height: auto;
-    &__tag {
-        width: 112px;
-        background-color: $white;
-        border: 1px solid $border-gray;
-        color: $darkgrey;
-        padding: 9px 5px;
-        border-radius: 25px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        text-align: center;
-    }
-    &__tag::first-letter {
-        text-transform: capitalize;
-    }
-}
-
-.active {
-    background-color: $red;
-    color: $white;
-}
-
 .increaseButtonClass {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     .increaseButton {
-        height: auto !important;
-        width: auto !important;
         background-color: $red;
         color: $white;
-        margin-top: 50px;
+        margin: 50px 0;
         border-radius: 15px;
     }
 }

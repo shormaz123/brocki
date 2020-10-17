@@ -102,7 +102,8 @@ import { DebounceClickDirective } from './utils/app-prevent-double-click.directi
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { AdsCategoryWithTagsComponent } from './components/ads-category-with-tags/ads-category-with-tags.component';
-import {MatExpansionModule} from '@angular/material/expansion'
+import {MatExpansionModule} from '@angular/material/expansion';
+import { SearchedAdsComponent } from './components/searched-ads/searched-ads.component'
 
 registerLocaleData(en);
 
@@ -156,6 +157,7 @@ registerLocaleData(en);
     DebounceClickDirective,
     NotFoundComponent,
     AdsCategoryWithTagsComponent,
+    SearchedAdsComponent,
   ],
   imports: [
     BrowserModule,

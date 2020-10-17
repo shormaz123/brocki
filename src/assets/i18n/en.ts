@@ -197,5 +197,7 @@ export const en = {
     passwordChanged: 'Password successfully changed!',
     deleteAdConfirmation: 'Are you sure you want to delete this ad?',
     acruallySoldAd: 'Whether the ad was actually sold?',
+    searchedAds: 'Searched ads',
+    filteredAds: 'Filtered ads'
   },
 };

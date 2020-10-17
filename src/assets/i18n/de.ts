@@ -203,5 +203,7 @@ export const de = {
     passwordChanged: 'Passwort erfolgreich geändert!',
     deleteAdConfirmation: 'Möchten Sie diese Anzeige wirklich löschen?',
     acruallySoldAd: 'Wurde die Anzeige verkauft?',
+    searchedAds: 'Gesuchte Anzeigen',
+    filteredAds: 'Gefilterte Anzeigen'
   },
 };

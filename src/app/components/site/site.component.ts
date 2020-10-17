@@ -78,7 +78,8 @@ export class SiteComponent implements OnInit, OnDestroy {
   constructor(
     private adsService: AdsService,
     private translateBackend: TranslateServiceRest,
-    private helpersService: HelpersService
+    private helpersService: HelpersService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -103,20 +104,21 @@ export class SiteComponent implements OnInit, OnDestroy {
     if (this.searchProductName === undefined) {
       return;
     } else {
-      this.adsService.getAdsdBySearch(this.searchProductName).subscribe(
-        (x) => {
-          if (this.token) {
-            this.favAds = x.map(
-              (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-            );
-          } else {
-            this.favAds = x;
-          }
-        },
-        (error) => {
-          console.log('error');
-        }
-      );
+      this.router.navigate(["/searched-ads", { 'data': this.searchProductName }]);
+      // this.adsService.getAdsdBySearch(this.searchProductName).subscribe(
+      //   (x) => {
+      //     if (this.token) {
+      //       this.favAds = x.map(
+      //         (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+      //       );
+      //     } else {
+      //       this.favAds = x;
+      //     }
+      //   },
+      //   (error) => {
+      //     console.log('error');
+      //   }
+      // );
     }
   }
 

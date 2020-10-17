@@ -200,5 +200,7 @@ export const fr = {
     passwordChanged: 'Mot de passe changé avec succès!',
     deleteAdConfirmation: 'Voulez-vous vraiment supprimer cette annonce?',
     acruallySoldAd: "L'annonce a-t-elle été vendue?",
+    searchedAds: 'Annonces recherchées',
+    filteredAds: 'Annonces filtrées'
   },
 };
