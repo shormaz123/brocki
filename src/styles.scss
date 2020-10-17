@@ -395,3 +395,8 @@ mat-expansion-panel {
 .mat-expansion-panel-spacing {
     margin: 0px !important;
 }
+
+.mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: $red;
+}
