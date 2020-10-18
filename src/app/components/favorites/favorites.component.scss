@@ -331,7 +331,6 @@
   overflow: hidden !important;
   text-overflow: ellipsis;
   justify-content: center;
-  width: 200px;
   height: 60px;
   @include rwd(1680) {
     width: 100%;

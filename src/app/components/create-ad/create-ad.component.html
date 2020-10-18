@@ -9,7 +9,7 @@
             <div class="form__input">
                 <label class="form__label">{{ 'translate.title' | translate }}:</label>
                 <div>
-                    <input formControlName="productName" />
+                    <input formControlName="productName"  maxLength="50"/>
                 </div>
             </div>
             <div class="form__input">
@@ -17,6 +17,7 @@
         >
         <div>
           <textarea
+          maxLength="2000"
             class="form__textarea"
             formControlName="description"
           ></textarea>
