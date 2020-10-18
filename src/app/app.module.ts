@@ -104,6 +104,8 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { AdsCategoryWithTagsComponent } from './components/ads-category-with-tags/ads-category-with-tags.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SearchedAdsComponent } from './components/searched-ads/searched-ads.component'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 registerLocaleData(en);
 
@@ -158,6 +160,7 @@ registerLocaleData(en);
     NotFoundComponent,
     AdsCategoryWithTagsComponent,
     SearchedAdsComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -197,6 +200,7 @@ registerLocaleData(en);
     Ng5SliderModule,
     MatAutocompleteModule,
     Ng2CarouselamosModule,
+    MatProgressSpinnerModule,
     MatExpansionModule,
     NgxHotjarModule.forRoot('2010944'),
     ToastrModule.forRoot({

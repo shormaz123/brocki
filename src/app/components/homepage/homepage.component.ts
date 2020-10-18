@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthConst } from 'app/@core/consts/auth.const';
+import { LoadingIndicatorService } from 'app/@core/loading-indicator.service';
 import { AdsService } from 'app/@core/services/ads.service';
 import { AuthService } from 'app/@core/services/auth.service';
 import { HelpersService } from 'app/@core/services/helpers.service';
@@ -39,18 +40,19 @@ export class HomepageComponent implements OnInit, OnDestroy {
     private helpersService: HelpersService,
     private router: Router,
     private translateBackend: TranslateServiceRest,
-    private authService: AuthService
+    private authService: AuthService,
+    private loadingService: LoadingIndicatorService
   ) {}
 
   ngOnInit() {
+    this.loadingService.loadingOn();
     this.token = localStorage.getItem(AuthConst.token);
     this.userId = Number(localStorage.getItem('brocki_id'));
     this.adsService
       .getAdsByPagination(this.paginationNumber)
       .subscribe((response) => {
-        console.log(response, 'response');
         this.ads = response;
-        console.log('ads', this.ads);
+        this.loadingService.loadingOff();
         this.randomAdsA = this.shuffle(
           this.ads.slice(0, Math.floor(this.ads.length / 2))
         );
@@ -63,7 +65,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
           this.favAds = this.ads;
           console.log('favAds', this.favAds);
         }
-      });
+      }
+      );
     this.subscriptionLang = this.translateBackend
       .getLanguage()
       .subscribe((message) => {

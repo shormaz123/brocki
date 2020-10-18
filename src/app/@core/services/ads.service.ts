@@ -110,7 +110,7 @@ export class AdsService {
 
   getAdsdBySearch(productName: string, pageNumber: number): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/search?productName=${productName}&status=ACTIVE&pageSize=16&pageNumber=${pageNumber}`
+      `${this.baseUrl}/mybrocki/ads/filter?searchTerm=${productName}&status=ACTIVE&pageSize=12&pageNumber=${pageNumber}`
     );
   }
 
