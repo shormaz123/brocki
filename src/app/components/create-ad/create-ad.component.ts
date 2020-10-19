@@ -91,7 +91,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       description: ['', [Validators.required, , Validators.maxLength(600)]],
       category: ['', [Validators.required]],
       subcategory: ['', [Validators.required]],
-      tags:['',[Validators.required]],
+      tags:[[],[Validators.required]],
       image: [undefined, [Validators.required]],
       price: ['', [Validators.required]],
     });
@@ -148,10 +148,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     } else if (this.currentLang === 'it') {
       return this.toastr.warning('Puoi scegliere fino a 3 tag');
     }
-  }
-
-  statusProduct(event: any): void {
-    this.statusOfProduct = event.target.value;
   }
 
   findCategory(selectedCategory: category): void {
@@ -325,7 +321,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
             this.toastr.warning(this.translateService.instant('translate.setPrice'));
             return;
           }
-          create.adsType = this.statusOfProduct;
 
           this.adsService.newAd(create).subscribe(() => {
             this.router.navigate(['/site']);

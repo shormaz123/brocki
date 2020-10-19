@@ -1,7 +1,6 @@
 import {Tags} from '../../shared/models/tags.model';
 
 export class CreateAd {
-  adsType: string;
   adsGroupId: number;
   adsSubGroupId: number;
   description: string;
