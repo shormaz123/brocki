@@ -35,69 +35,72 @@
   align-items: center;
   justify-content: center;
 
-  &__expired {
-    width: 200px;
+  &__container {
+    display: flex;
+    width: 201px;
     height: 200px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 17px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 3px solid $text-gray;
+  }
+
+  &__expired {
+    width: 100%;
   }
 }
 
-.expired {
+.reactive {
   position: absolute;
   bottom: 20px;
-  right: 125px;
-  background-color: #d62b1f;
-  color: white;
-  border-radius: 20px;
-  padding: 3px 30px;
-  text-transform: uppercase;
-  font-size: 16px;
-  // cursor: pointer;
-
-  @include rwd(1600) {
-    position: absolute;
-    bottom: 20px;
-    right: 95px;
-  }
+  right: 0;
+  cursor: pointer;
 }
 
 /**
    * tooltip when backend create api for reactivate ads
    *
    */
-// .tooltip {
-//   position: relative;
-//   display: inline-block;
-// }
-// .tooltip .tooltiptext {
-//   visibility: hidden;
-//   width: 125px;
-//   font-size: 14px;
-//   text-transform: lowercase;
-//   background-color: $red;
-//   color: #fff;
-//   text-align: center;
-//   border-radius: 10px;
-//   padding: 3px 0;
-//   position: absolute;
-//   top: -35px;
-//   right: -28px;
-//   z-index: 1;
-// }
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 180px;
+  font-size: 14px;
+  text-transform: lowercase;
+  background-color: $red;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 3px 0;
+  position: absolute;
+  top: 113px;
+  right: -67px;
+  z-index: 1;
+}
 
-// .tooltip .tooltiptext::after {
-//   content: '';
-//   position: absolute;
-//   top: 100%;
-//   right: 10px;
-//   margin-left: -5px;
-//   border-width: 5px;
-//   border-style: solid;
-//   border-color: $red transparent transparent transparent;
-// }
+.tooltip .tooltiptext::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 80px;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: $red transparent transparent transparent;
+}
 
-// .tooltip:hover .tooltiptext {
-//   visibility: visible;
-// }
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 
 .text {
   width: 60%;

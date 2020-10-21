@@ -152,14 +152,25 @@ export class UserComponent implements OnInit {
   }
 
   activeButton() {
+    this.activeProducts= [];
+    this.scroll();
     this.active = true;
     this.expired = false;
     this.sold = false;
     this.guest = false;
-    this.scroll();
+    this.adsService.getAllVisibleAds().subscribe((res) => {
+      console.log(res)
+      this.activeProducts.push(res);
+      if (this.activeProducts[0].length === 0) {
+        this.adsActive = false;
+      } else {
+        this.adsActive = true;
+      }
+    });
   }
 
   expiredButton() {
+    this.expiredProducts = [];
     this.scroll();
     if (!this.expired) {
       this.adsService.getExpiredAds().subscribe((res) => {

@@ -2,6 +2,7 @@ import { Component, OnChanges, Input } from '@angular/core';
 import { Ads } from '../../../shared/models/ads.model';
 import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
 import { AdsService } from '../../../@core/services/ads.service';
+import { UserStatus } from '../../../shared/enums/userStatus';
 
 @Component({
   selector: 'app-account-expired',
@@ -17,7 +18,9 @@ export class AccountExpiredComponent implements OnChanges {
     private adsService: AdsService
   ) {}
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    console.log(this.expiredProducts)
+  }
 
   style() {
     if (this.expiredProducts[0] > 0) {
@@ -28,40 +31,36 @@ export class AccountExpiredComponent implements OnChanges {
   }
 
   /**
-   * reactivate function when backend create api for reactivate ads
+   * reactivateAd function when backend create api for reactivate ads
    *
    */
-  // reactivate(expired: Ads, index: number): void {
-  //   this.modal.confirm({
-  //     nzTitle: 'Are you sure you want to reactivate this ad?',
-  //     nzContent: '',
-  //     nzOnOk: () => {
-  //       this.expiredProducts[0].splice(index, 1);
-  //       if (this.expiredProducts[0].length === 0) {
-  //         this.ads = false;
-  //       }
-  //       const ads = new Ads();
-  //       ads.adsDate = null;
-  //       ads.adsLocation = null;
-  //       ads.adsType = null;
-  //       ads.adsgroupId = null;
-  //       ads.adssubgropuId = null;
-  //       ads.description = null;
-  //       ads.favourite = null;
-  //       ads.fixedPrice = null;
-  //       ads.freeDelivery = null;
-  //       ads.id = expired.id;
-  //       ads.image = null;
-  //       ads.price = null;
-  //       ads.productName = null;
-  //       ads.productWarranty = null;
-  //       ads.status = 'ACTIVE';
-  //       ads.urgentSales = null;
-  //       ads.userId = null;
-  //       this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
-  //         this.notification.success('', 'The ad has been reactivated');
-  //       });
-  //     },
-  //   });
-  // }
+  reactivateAd(expired: Ads, index: number): void {
+    console.log(expired,index)
+    this.modal.confirm({
+      nzTitle: 'Are you sure you want to reactivate this ad?',
+      nzContent: '',
+      nzOnOk: () => {
+        this.expiredProducts[0].splice(index, 1);
+        if (this.expiredProducts[0].length === 0) {
+          this.ads = false;
+        }
+        const ads = new Ads();
+        ads.adsDate = null;
+        ads.adsLocation = expired.adsLocation;
+        ads.adsGroupId = expired.adsGroupId;
+        ads.adsSubGroupId = expired.adsSubGroupId;
+        ads.description = expired.description;
+        ads.favourite = expired.favourite;
+        ads.id = expired.id;
+        ads.image = expired.image;
+        ads.price = expired.price;
+        ads.status = UserStatus.ACTIVE;
+        ads.userId = expired.userId;
+        ads.tags = expired.tags;
+        this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
+          this.notification.success('', 'The ad has been reactivated');
+        });
+      },
+    });
+  }
 }

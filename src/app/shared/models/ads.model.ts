@@ -1,3 +1,5 @@
+import {Tags} from '../../shared/models/tags.model';
+
 export class Ads {
   id: number;
   productName: string;
@@ -8,14 +10,10 @@ export class Ads {
   userId: number;
   adsSubGroupId: number;
   adsGroupId: number;
-  adsType: string;
-  fixedPrice: boolean;
-  freeDelivery: boolean;
-  productWarranty: boolean;
-  urgentSales: boolean;
   adsDate: string;
   favourite: boolean;
   soldDate: string;
   adsLocation: string;
   visibleAds: true;
+  tags:Array<Tags>;
 }

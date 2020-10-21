@@ -1,4 +1,5 @@
 @import '../../../scss/variables';
+@import '../../../scss/mixin.scss';
 * {
   color: $darkgrey;
   outline: none;
@@ -80,9 +81,14 @@
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;
-  width: 70% !important;
+  width: 1280px;
   img {
     width: 100%;
+  }
+
+  @include xl {
+    width: 1010px;
+    margin: 0 auto;
   }
 }
 
