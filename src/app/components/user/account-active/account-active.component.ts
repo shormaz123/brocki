@@ -74,8 +74,6 @@ export class AccountActiveComponent implements OnInit, OnChanges {
   }
 
   deleteAd(active: Ads, index: number): void {
-    console.log(active)
-
       const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
         width: '500px',
         data: {

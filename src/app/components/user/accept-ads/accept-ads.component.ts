@@ -41,20 +41,15 @@ export class AcceptAdsComponent implements OnInit {
         const ad = new Ads();
         ad.adsDate = null;
         ad.adsLocation = null;
-        ad.adsType = null;
         ad.adsGroupId = null;
         ad.adsSubGroupId = null;
         ad.description = null;
         ad.favourite = null;
-        ad.fixedPrice = null;
-        ad.freeDelivery = null;
         ad.id = acceptAd.id;
         ad.image = null;
         ad.price = null;
         ad.productName = null;
-        ad.productWarranty = null;
         ad.status = 'ACTIVE';
-        ad.urgentSales = null;
         ad.userId = null;
         this.adsService.changeStatusOfAds(ad, ad.id).subscribe(() => {
           this.notification.success('', 'Ad accepted');
@@ -72,20 +67,15 @@ export class AcceptAdsComponent implements OnInit {
         const ad = new Ads();
         ad.adsDate = null;
         ad.adsLocation = null;
-        ad.adsType = null;
         ad.adsGroupId = null;
         ad.adsSubGroupId = null;
         ad.description = null;
         ad.favourite = null;
-        ad.fixedPrice = null;
-        ad.freeDelivery = null;
         ad.id = declineAd.id;
         ad.image = null;
         ad.price = null;
         ad.productName = null;
-        ad.productWarranty = null;
         ad.status = 'NOT_ACCEPTED';
-        ad.urgentSales = null;
         ad.userId = null;
         if (this.readyForReviewAds[0].length === 0) {
           this.message = false;

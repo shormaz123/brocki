@@ -198,6 +198,7 @@ export const en = {
     deleteAdConfirmation: 'Are you sure you want to delete this ad?',
     acruallySoldAd: 'Whether the ad was actually sold?',
     searchedAds: 'Searched ads',
-    filteredAds: 'Filtered ads'
+    filteredAds: 'Filtered ads',
+    modalReactivate:'Are you sure you want to reactivate this ad?'
   },
 };
