@@ -256,9 +256,11 @@ export class UserComponent implements OnInit {
         }
       });
       confirmDialog.afterClosed().subscribe(result => {
-        this.authService.logout();
-        this.helpersService.$loginName.next();
-        this.router.navigate(['/site']);
+     if (result) {
+      this.authService.logout();
+      this.helpersService.$loginName.next();
+      this.router.navigate(['/site']);
+     }
       });
   }
 
