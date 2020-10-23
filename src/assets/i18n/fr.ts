@@ -201,6 +201,7 @@ export const fr = {
     deleteAdConfirmation: 'Voulez-vous vraiment supprimer cette annonce?',
     acruallySoldAd: "L'annonce a-t-elle été vendue?",
     searchedAds: 'Annonces recherchées',
-    filteredAds: 'Annonces filtrées'
+    filteredAds: 'Annonces filtrées',
+    modalReactivate:'Voulez-vous vraiment réactiver cette annonce?'
   },
 };

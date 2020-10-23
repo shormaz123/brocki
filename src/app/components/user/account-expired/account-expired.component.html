@@ -10,7 +10,9 @@
   <div *ngIf="ads === false">
     <div *ngFor="let expired of expiredProducts[0]; let i = index" class="card">
       <div class="image">
-        <img class="image__expired" [src]="expired.image[0]" />
+        <div class="image__container">
+          <img class="image__expired" [src]="expired.image[0]" />
+        </div>
       </div>
       <div class="text">
         <div class="text__link">
@@ -29,11 +31,14 @@
           </div>
         </div>
       </div>
-      <div class="expired">
-        <div class="tooltip">
-          {{ 'translate.reactivate' | translate }}
-          <!-- <span class="tooltiptext">{{'translate.reactivateThisAd' | translate}}</span> -->
-        </div>
+      <div class="expired"></div>
+      <div class="tooltip">
+        <span class="tooltiptext">{{'translate.reactivateThisAd' | translate}}</span>
+        <img
+          (click)="reactivateAd(expired, i)"
+          class="reactive"
+          src="../../../../assets/images/reactive.svg"
+        />
       </div>
     </div>
   </div>

@@ -188,7 +188,7 @@ export class AdsService {
       .pipe(
         map(res=> res),
         shareReplay()
-      )
+      );
   }
 
   /**
@@ -201,6 +201,8 @@ export class AdsService {
     return this.http.put<Ads>(
       `${this.baseUrl}/mybrocki/auth/ads/status/${id}`,
       ads
+    ).pipe(
+      shareReplay()
     );
   }
 

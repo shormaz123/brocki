@@ -200,6 +200,7 @@ export const it = {
     deleteAdConfirmation: 'Sei sicuro di voler cancellare questo annuncio?',
     acruallySoldAd: "L'annuncio è stato venduto?",
     searchedAds: 'Annunci cercati',
-    filteredAds: 'Annunci filtrati'
+    filteredAds: 'Annunci filtrati',
+    modalReactivate:'Sei sicuro di voler riattivare questo annuncio?'
   },
 };

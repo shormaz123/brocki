@@ -98,7 +98,7 @@
                 <div class="cardColumn1">
                     {{ ad?.price || card?.price | number: '1.2-2':'en-US' }} CHF
                 </div>
-                <div class="cardColumn">{{ ad?.adsType || card?.adsType }}</div>
+                <!-- <div class="cardColumn">{{ ad?.adsType || card?.adsType }}</div> -->
                 <div class="cardColumn" style="text-align: center;">
                     <label style="margin-right: 5px;">5</label>
                     <img src="../../../assets/images/eye.svg" style="height: 24px;">
@@ -113,7 +113,7 @@
     <div class="des">
         <div class="description">
             <label class="descriptionTitle">{{ 'translate.description' | translate }}:</label>
-            <div>
+            <div style="text-align: justify">
                 <label style="color: #8c8c8c;">{{
           ad?.description || card?.description
         }}</label>

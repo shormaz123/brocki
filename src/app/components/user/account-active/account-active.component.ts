@@ -50,7 +50,7 @@ export class AccountActiveComponent implements OnInit, OnChanges {
     this.language = localStorage.getItem(AuthConst.language);
   }
 
-  ngOnChanges() {}
+  ngOnChanges() {console.log(this.activeProducts)}
 
   languageLabel(status: string) {
     this.language = localStorage.getItem(AuthConst.language);
@@ -74,7 +74,6 @@ export class AccountActiveComponent implements OnInit, OnChanges {
   }
 
   deleteAd(active: Ads, index: number): void {
-
       const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
         width: '500px',
         data: {
@@ -90,21 +89,17 @@ export class AccountActiveComponent implements OnInit, OnChanges {
         const ads = new Ads();
         ads.adsDate = null;
         ads.adsLocation = null;
-        ads.adsType = null;
         ads.adsGroupId = null;
         ads.adsSubGroupId = null;
         ads.description = null;
         ads.favourite = null;
-        ads.fixedPrice = null;
-        ads.freeDelivery = null;
         ads.id = active.id;
         ads.image = null;
         ads.price = null;
         ads.productName = null;
-        ads.productWarranty = null;
         ads.status = UserStatus.DELETE;
-        ads.urgentSales = null;
         ads.userId = null;
+        ads.tags = null;
         this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
           this.successDelete();
           this.ad = '1';
@@ -130,21 +125,17 @@ export class AccountActiveComponent implements OnInit, OnChanges {
         const ads = new Ads();
         ads.adsDate = null;
         ads.adsLocation = null;
-        ads.adsType = null;
         ads.adsGroupId = null;
         ads.adsSubGroupId = null;
         ads.description = null;
         ads.favourite = null;
-        ads.fixedPrice = null;
-        ads.freeDelivery = null;
         ads.id = active.id;
         ads.image = null;
         ads.price = null;
         ads.productName = null;
-        ads.productWarranty = null;
         ads.status = UserStatus.SOLD;
-        ads.urgentSales = null;
         ads.userId = null;
+        ads.tags = null;
         this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
           this.successSold();
           this.ad = '1';

@@ -5,4 +5,5 @@ export enum UserStatus {
   READY = 'READY',
   ACTIVE = 'ACTIVE',
   SOLD = 'SOLD',
+  EXPIRED = 'EXPIRED',
 }

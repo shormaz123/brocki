@@ -9,7 +9,7 @@
             <div class="form__input">
                 <label class="form__label">{{ 'translate.title' | translate }}:</label>
                 <div>
-                    <input formControlName="productName" />
+                    <input formControlName="productName"  maxLength="50"/>
                 </div>
             </div>
             <div class="form__input">
@@ -17,6 +17,7 @@
         >
         <div>
           <textarea
+          maxLength="2000"
             class="form__textarea"
             formControlName="description"
           ></textarea>
@@ -57,17 +58,6 @@
             </div>
           </div>
         </div>
-
-        <!-- <select class="form__selectCategory" (change)="findCategory($event)">
-          <option class="form__option" selected disabled value="">List</option>
-          <option
-            class="form__option"
-            *ngFor="let category of categories"
-            [value]="category.id"
-          >
-            {{ category.groupName[currentLang] }}
-          </option>
-        </select> -->
         <div
           class="form__categoryButton"
           (click)="listCategory()"
@@ -150,20 +140,6 @@
             </div>
           </div>
         </div>
-
-        <!-- <select
-          class="form__selectSubcategory"
-          (change)="findsubcategory($event)"
-        >
-          <option class="form__option" selected disabled value="">List</option>
-          <option
-            class="form__option"
-            *ngFor="let subcategory of subcategories"
-            [value]="subcategory.id"
-          >
-            {{ subcategory.subGroupName[currentLang] }}
-          </option>
-        </select> -->
       </div>
       <label class="form__label">{{ 'translate.tags' | translate }}:</label>
                 <div class="form__buttons">
@@ -172,30 +148,6 @@
                             {{ tag.name[currentLang] }}
                         </div>
                     </div>
-                    <!-- <div class="form__button">
-          <button
-            class="form__used"
-            value="USED"
-            [class.active]="statusOfProduct === 'USED'"
-            type="button"
-            (click)="statusProduct($event)"
-          >
-            {{ 'translate.used' | translate }}
-          </button>
-        </div>
-        <div class="form__button">
-          <button
-            class="form__new"
-            [ngClass]="{
-              active: statusOfProduct === 'NEW'
-            }"
-            value="NEW"
-            type="button"
-            (click)="statusProduct($event)"
-          >
-            {{ 'translate.new' | translate }}
-          </button>
-        </div> -->
                 </div>
                 <div class="form__input">
                     <label class="form__label form__label--equal">{{ 'translate.adPictures' | translate }}:</label
@@ -228,49 +180,6 @@
             </div>
     </div>
 </div>
-<!-- <div class="form__checkboxes">
-        <label class="form__label form__label--padding">{{
-          'translate.otherFilters' | translate
-        }}</label>
-        <div class="form__box-body">
-          <div class="form__checkbox">
-            <mat-checkbox
-              class="example-margin"
-              formControlName="fixedPrice"
-            ></mat-checkbox>
-            <span class="form__box-check-text">{{
-              'translate.fixedPrice' | translate
-            }}</span>
-          </div>
-          <div class="form__checkbox">
-            <mat-checkbox
-              class="example-margin"
-              formControlName="freeDelivery"
-            ></mat-checkbox>
-            <span class="form__box-check-text">{{
-              'translate.freeDelivery' | translate
-            }}</span>
-          </div>
-          <div class="form__checkbox">
-            <mat-checkbox
-              class="example-margin"
-              formControlName="productWarranty"
-            ></mat-checkbox>
-            <span class="form__box-check-text">{{
-              'translate.productWarranty' | translate
-            }}</span>
-          </div>
-          <div class="form__checkbox">
-            <mat-checkbox
-              class="example-margin"
-              formControlName="urgentSales"
-            ></mat-checkbox>
-            <span class="form__box-check-text">{{
-              'translate.urgentSales' | translate
-            }}</span>
-          </div>
-        </div>
-      </div> -->
 <div class="form__input">
     <label class="form__label">{{ 'translate.price' | translate }}:</label>
     <div class="form__price">
