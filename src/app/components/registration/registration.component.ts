@@ -34,18 +34,18 @@ export class RegistrationComponent implements OnInit {
   private: boolean;
   business: boolean;
   role_id: number;
-  cantons = cantons;
-  cities = cities;
-  selectedRegion = 'Aargau (Argovia)';
   errorMessage: string;
-  addresses: String[] = [];
-  selectedAddress = null;
   location = {
     longitude: 0,
     latitude: 0,
   };
   responseLocationObject;
   selectedLocation;
+
+  addressAd: any;
+  addressNumber: any;
+  addressPostalCode: any;
+  addressPlace: any;
 
   constructor(
     private authService: AuthService,
@@ -58,61 +58,67 @@ export class RegistrationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const completeAddress = (`${this.addressAd} ` + `${this.addressNumber} ` + `${this.addressPostalCode} ` + `${this.addressPlace}`)
 
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       userName: ['', [Validators.required]],
-      address: ['', [Validators.required]],
+      address: [ '', [Validators.required]],
       credit: [0, [Validators.required]],
       region: ['', [Validators.required]],
       bussinesType: ['PRIVATE'],
       role_id: [3,],
       terms: [false, [Validators.required]],
-      location: ['', [Validators.required]]
+      // addressAd: ['', [Validators.required]],
+      // addressNumber: ['', [Validators.required]],
+      // addressPostalCode: ['', [Validators.required]],
+      // addressPlace: ['', [Validators.required]]
     });
     this.brockenstube = true;
     this.institution = false;
     this.private = true;
     this.business = false;
     this.registerForm.controls.role_id.setValue(3);
+    // this.registerForm.controls.address.setValue(`${this.addressAd} ` + `${this.addressNumber} ` + `${this.addressPostalCode} ` + `${this.addressPlace}`);
   }
 
   get f() {
     return this.registerForm.controls;
   }
 
-  search(event: any) {
-    const searchTerm = event.target.value.toLowerCase();
-    if (searchTerm && searchTerm.length > 0) {
-      this.mapboxService
-        .search_word(searchTerm)
-        .subscribe((features: any) => {
-          this.addresses = features.map(feat => feat.place_name);
-          this.responseLocationObject = features.map(feat => feat.geometry);
-          console.log( 'objekat', features);
+  // search(event: any) {
+  //   const searchTerm = event.target.value.toLowerCase();
+  //   if (searchTerm && searchTerm.length > 0) {
+  //     this.mapboxService
+  //       .search_word(searchTerm)
+  //       .subscribe((features: any) => {
+  //         this.addresses = features.map(feat => feat.place_name);
+  //         this.responseLocationObject = features.map(feat => feat.geometry);
+  //         console.log( 'objekat', features);
 
-        });
-    } else {
-      this.addresses = [];
-    }
-  }
+  //       });
+  //   } else {
+  //     this.addresses = [];
+  //   }
+  // }
 
-  onSelect(address: string, i: number) {
-    this.selectedAddress = address;
-    this.registerForm.controls.address.setValue(address);
-    this.addresses = [];
-    this.selectedLocation = this.responseLocationObject[i];
-    console.log( 'koordinate', this.selectedLocation);
-    this.registerForm.patchValue( {
-      location: {
-        longitude: this.selectedLocation.coordinates[0],
-        latitude: this.selectedLocation.coordinates[1],
-      },
-    });
-  }
+  // onSelect(address: string, i: number) {
+  //   this.selectedAddress = address;
+  //   this.registerForm.controls.address.setValue(address);
+  //   this.addresses = [];
+  //   this.selectedLocation = this.responseLocationObject[i];
+  //   console.log( 'koordinate', this.selectedLocation);
+  //   this.registerForm.patchValue( {
+  //     location: {
+  //       longitude: this.selectedLocation.coordinates[0],
+  //       latitude: this.selectedLocation.coordinates[1],
+  //     },
+  //   });
+  // }
 
   onSubmit() {
+    this.registerForm.controls.address.setValue(`${this.addressAd}` + `${this.addressNumber} ` + `${this.addressPostalCode} ` + `${this.addressPlace}`);
     this.submitted = true;
     console.log(this.registerForm.value);
 

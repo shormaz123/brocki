@@ -31,10 +31,28 @@
                 </div>
                 <div class="inputItem3">
                     <label *ngIf="private">{{ 'translate.username' | translate }}</label>
-                    <label *ngIf="business">{{ 'translate.companyName' | translate }}</label>
+                    <label *ngIf="business">{{
+            'translate.companyName' | translate
+          }}</label>
                     <input formControlName="userName" maxlength="20" />
                 </div>
-                <div class="inputItem3">
+                <div class="inputItem">
+                    <label>{{ 'translate.addressAd' | translate }}</label>
+                    <input [(ngModel)]="addressAd" [ngModelOptions]="{standalone: true}" type="text" />
+                </div>
+                <div class="inputItem">
+                    <label>{{ 'translate.addressNumberAd' | translate }}</label>
+                    <input [(ngModel)]="addressNumber" [ngModelOptions]="{standalone: true}" />
+                </div>
+                <div class="inputItem">
+                    <label>{{ 'translate.addressCodePostal' | translate }}</label>
+                    <input [(ngModel)]="addressPostalCode" [ngModelOptions]="{standalone: true}" />
+                </div>
+                <div class="inputItem">
+                    <label>{{ 'translate.addressPlace' | translate }}</label>
+                    <input [(ngModel)]="addressPlace" [ngModelOptions]="{standalone: true}" />
+                </div>
+                <!-- <div class="inputItem3">
                     <label>{{ 'translate.typeAndSelectAddress' | translate }}:</label>
                     <input formControlName="location" [value]="selectedAddress" (keypress)="search($event)" type="text" [matAutocomplete]="auto" />
                     <mat-autocomplete #auto="matAutocomplete">
@@ -43,37 +61,15 @@
                         </mat-option>
                     </mat-autocomplete>
 
-                    <!--            <select id="menace">-->
-                    <!--              <option *ngFor="let address of addresses" (click)="onSelect(address)"> {{ address }} </option>-->
-                    <!--            </select>-->
-                    <!--            <select lines="none" *ngIf="addresses.length > 0">-->
-                    <!--              <option button *ngFor="let address of addresses" (click)="onSelect(address)">-->
-                    <!--                {{ address }}-->
-                    <!--              </option>-->
-                    <!--            </select>-->
-
-                </div>
-                <!--        <div class="inputItem4">-->
-                <!--          <label>{{ 'translate.city' | translate }}</label>-->
-                <!--          <select-->
-                <!--            name="contactMethod"-->
-                <!--            class="form-control"-->
-                <!--            required-->
-                <!--            formControlName="city"-->
-                <!--          >-->
-                <!--            <option *ngFor="let city of cities" [value]="city">{{-->
-                <!--              city-->
-                <!--            }}</option>-->
-                <!--          </select>-->
-                <!--        </div>-->
-                <div class="inputItem5">
+                </div> -->
+                <!-- <div class="inputItem5">
                     <label>{{ 'translate.canton' | translate }}</label>
                     <select name="contactMethod" class="form-control" required formControlName="region">
             <option *ngFor="let region of cantons" [value]="region">
               {{ region }}
             </option>
           </select>
-                </div>
+                </div> -->
             </div>
             <div class="lastDiv1">
                 <div class="textPassword">

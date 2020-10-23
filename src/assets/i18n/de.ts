@@ -205,6 +205,10 @@ export const de = {
     acruallySoldAd: 'Wurde die Anzeige verkauft?',
     searchedAds: 'Gesuchte Anzeigen',
     filteredAds: 'Gefilterte Anzeigen',
-    modalReactivate:'Sind Sie sicher, dass Sie diese Anzeige reaktivieren möchten?'
+    modalReactivate:'Sind Sie sicher, dass Sie diese Anzeige reaktivieren möchten?',
+    addressAd: 'Adresse',
+    addressNumberAd: 'Nr.',
+    addressCodePostal: 'PLZ',
+    addressPlace: 'Ort'
   },
 };
