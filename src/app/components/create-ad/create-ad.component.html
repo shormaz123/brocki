@@ -293,7 +293,7 @@
         </div>
       </div>
       <div class="form__input">
-        <button class="form__saveButton" type="submit">
+        <button class="form__saveButton" type="submit" appDebounceClick [debounceTime]="700" (debounceClick)="log()">
           {{ 'translate.postAd' | translate }}
         </button>
       </div>
