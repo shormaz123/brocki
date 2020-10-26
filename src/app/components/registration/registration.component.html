@@ -38,19 +38,19 @@
                 </div>
                 <div class="inputItem">
                     <label>{{ 'translate.addressAd' | translate }}</label>
-                    <input [(ngModel)]="addressAd" [ngModelOptions]="{standalone: true}" type="text" />
+                    <input input formControlName="street" type="text" />
                 </div>
                 <div class="inputItem">
                     <label>{{ 'translate.addressNumberAd' | translate }}</label>
-                    <input [(ngModel)]="addressNumber" [ngModelOptions]="{standalone: true}" />
+                    <input formControlName="houseNumber" />
                 </div>
                 <div class="inputItem">
                     <label>{{ 'translate.addressCodePostal' | translate }}</label>
-                    <input [(ngModel)]="addressPostalCode" [ngModelOptions]="{standalone: true}" />
+                    <input formControlName="postalNumber" />
                 </div>
                 <div class="inputItem">
                     <label>{{ 'translate.addressPlace' | translate }}</label>
-                    <input [(ngModel)]="addressPlace" [ngModelOptions]="{standalone: true}" />
+                    <input formControlName="city" type="text" />
                 </div>
                 <!-- <div class="inputItem3">
                     <label>{{ 'translate.typeAndSelectAddress' | translate }}:</label>

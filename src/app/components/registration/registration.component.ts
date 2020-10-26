@@ -64,61 +64,27 @@ export class RegistrationComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       userName: ['', [Validators.required]],
-      address: [ '', [Validators.required]],
       credit: [0, [Validators.required]],
-      region: ['', [Validators.required]],
       bussinesType: ['PRIVATE'],
       role_id: [3,],
       terms: [false, [Validators.required]],
-      // addressAd: ['', [Validators.required]],
-      // addressNumber: ['', [Validators.required]],
-      // addressPostalCode: ['', [Validators.required]],
-      // addressPlace: ['', [Validators.required]]
+      street: ['', [Validators.required]],
+      houseNumber: ['', [Validators.required]],
+      postalNumber: ['', [Validators.required]],
+      city: ['', [Validators.required]]
     });
     this.brockenstube = true;
     this.institution = false;
     this.private = true;
     this.business = false;
     this.registerForm.controls.role_id.setValue(3);
-    // this.registerForm.controls.address.setValue(`${this.addressAd} ` + `${this.addressNumber} ` + `${this.addressPostalCode} ` + `${this.addressPlace}`);
   }
 
   get f() {
     return this.registerForm.controls;
   }
 
-  // search(event: any) {
-  //   const searchTerm = event.target.value.toLowerCase();
-  //   if (searchTerm && searchTerm.length > 0) {
-  //     this.mapboxService
-  //       .search_word(searchTerm)
-  //       .subscribe((features: any) => {
-  //         this.addresses = features.map(feat => feat.place_name);
-  //         this.responseLocationObject = features.map(feat => feat.geometry);
-  //         console.log( 'objekat', features);
-
-  //       });
-  //   } else {
-  //     this.addresses = [];
-  //   }
-  // }
-
-  // onSelect(address: string, i: number) {
-  //   this.selectedAddress = address;
-  //   this.registerForm.controls.address.setValue(address);
-  //   this.addresses = [];
-  //   this.selectedLocation = this.responseLocationObject[i];
-  //   console.log( 'koordinate', this.selectedLocation);
-  //   this.registerForm.patchValue( {
-  //     location: {
-  //       longitude: this.selectedLocation.coordinates[0],
-  //       latitude: this.selectedLocation.coordinates[1],
-  //     },
-  //   });
-  // }
-
   onSubmit() {
-    this.registerForm.controls.address.setValue(`${this.addressAd}` + `${this.addressNumber} ` + `${this.addressPostalCode} ` + `${this.addressPlace}`);
     this.submitted = true;
     console.log(this.registerForm.value);
 
