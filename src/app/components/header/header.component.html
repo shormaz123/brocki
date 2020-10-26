@@ -28,11 +28,11 @@
         </mat-accordion>
     </p-sidebar>
     <div class="firstContainer" *ngIf="!createAd"></div>
-    <div class="firstContainer" routerLink="/create-ad" *ngIf="createAd">
-        <div class="addImage" *ngIf="createAd && !privateUser">
+    <div class="firstContainer" *ngIf="createAd">
+        <div class="addImage" *ngIf="createAd && !privateUser" routerLink="/create-ad">
             <img class="image" src="../../../assets/images/header/create ad.svg" />
         </div>
-        <span class="createAd" *ngIf="createAd && !privateUser">&nbsp;{{ 'translate.createAd' | translate }}</span
+        <span class="createAd" *ngIf="createAd && !privateUser" routerLink="/create-ad">&nbsp;{{ 'translate.createAd' | translate }}</span
     >
   </div>
   <div class="secondContainer">
