@@ -199,6 +199,10 @@ export const en = {
     acruallySoldAd: 'Whether the ad was actually sold?',
     searchedAds: 'Searched ads',
     filteredAds: 'Filtered ads',
-    modalReactivate:'Are you sure you want to reactivate this ad?'
+    modalReactivate:'Are you sure you want to reactivate this ad?',
+    addressAd: 'Address',
+    addressNumberAd: 'Number',
+    addressCodePostal: 'Postcode',
+    addressPlace: 'Place'
   },
 };

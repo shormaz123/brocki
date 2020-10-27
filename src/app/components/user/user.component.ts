@@ -101,7 +101,6 @@ export class UserComponent implements OnInit {
     }
     this.scroll();
     this.userService.getUser().subscribe((res) => {
-      console.log(res);
       this.roleName = res.bussinesType;
       if (res.roleName === 'bussines' || 'admin') {
         this.companyName = res.company;
@@ -162,7 +161,6 @@ export class UserComponent implements OnInit {
     this.sold = false;
     this.guest = false;
     this.adsService.getAllVisibleAds().subscribe((res) => {
-      console.log(res);
       this.activeProducts.push(res);
       if (this.activeProducts[0].length === 0) {
         this.adsActive = false;
@@ -259,9 +257,11 @@ export class UserComponent implements OnInit {
       },
     });
     confirmDialog.afterClosed().subscribe((result) => {
-      this.authService.logout();
-      this.helpersService.$loginName.next();
-      this.router.navigate(['/site']);
+      if (result) {
+        this.authService.logout();
+        this.helpersService.$loginName.next();
+        this.router.navigate(['/site']);
+      }
     });
   }
 

@@ -64,7 +64,6 @@ export class UpdateInfoPrivateComponent implements OnInit {
 
     this.userService.getUser().subscribe((res) => {
       this.userId = res.id;
-      console.log(res);
       const user = new User();
 
       this.selectedLocation = res.location;
@@ -169,7 +168,6 @@ export class UpdateInfoPrivateComponent implements OnInit {
         updateUserInfo.userName = this.privateForm.value.userName;
         updateUserInfo.userStatus = UserStatus.APPROVED;
         updateUserInfo.website = '';
-        console.log(updateUserInfo);
         this.userService.updateUser(updateUserInfo).subscribe(
           (user) => {
             this.toastr.success(

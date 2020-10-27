@@ -34,18 +34,18 @@ export class RegistrationComponent implements OnInit {
   private: boolean;
   business: boolean;
   role_id: number;
-  cantons = cantons;
-  cities = cities;
-  selectedRegion = 'Aargau (Argovia)';
   errorMessage: string;
-  addresses: String[] = [];
-  selectedAddress = null;
   location = {
     longitude: 0,
     latitude: 0,
   };
   responseLocationObject;
   selectedLocation;
+
+  addressAd: any;
+  addressNumber: any;
+  addressPostalCode: any;
+  addressPlace: any;
 
   constructor(
     private authService: AuthService,
@@ -58,18 +58,20 @@ export class RegistrationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const completeAddress = (`${this.addressAd} ` + `${this.addressNumber} ` + `${this.addressPostalCode} ` + `${this.addressPlace}`)
 
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       userName: ['', [Validators.required]],
-      address: ['', [Validators.required]],
       credit: [0, [Validators.required]],
-      region: ['', [Validators.required]],
       bussinesType: ['PRIVATE'],
       role_id: [3,],
       terms: [false, [Validators.required]],
-      location: ['', [Validators.required]]
+      street: ['', [Validators.required]],
+      houseNumber: ['', [Validators.required]],
+      postalNumber: ['', [Validators.required]],
+      city: ['', [Validators.required]]
     });
     this.brockenstube = true;
     this.institution = false;
@@ -80,36 +82,6 @@ export class RegistrationComponent implements OnInit {
 
   get f() {
     return this.registerForm.controls;
-  }
-
-  search(event: any) {
-    const searchTerm = event.target.value.toLowerCase();
-    if (searchTerm && searchTerm.length > 0) {
-      this.mapboxService
-        .search_word(searchTerm)
-        .subscribe((features: any) => {
-          this.addresses = features.map(feat => feat.place_name);
-          this.responseLocationObject = features.map(feat => feat.geometry);
-          console.log( 'objekat', features);
-
-        });
-    } else {
-      this.addresses = [];
-    }
-  }
-
-  onSelect(address: string, i: number) {
-    this.selectedAddress = address;
-    this.registerForm.controls.address.setValue(address);
-    this.addresses = [];
-    this.selectedLocation = this.responseLocationObject[i];
-    console.log( 'koordinate', this.selectedLocation);
-    this.registerForm.patchValue( {
-      location: {
-        longitude: this.selectedLocation.coordinates[0],
-        latitude: this.selectedLocation.coordinates[1],
-      },
-    });
   }
 
   onSubmit() {

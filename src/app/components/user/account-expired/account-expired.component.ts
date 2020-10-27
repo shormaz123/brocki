@@ -1,4 +1,4 @@
-import { Component, OnDestroy,OnChanges, Input } from '@angular/core';
+import { Component, OnDestroy, OnChanges, Input } from '@angular/core';
 import { Ads } from '../../../shared/models/ads.model';
 import { AdsService } from '../../../@core/services/ads.service';
 import { UserStatus } from '../../../shared/enums/userStatus';
@@ -14,28 +14,26 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './account-expired.component.html',
   styleUrls: ['./account-expired.component.scss'],
 })
-export class AccountExpiredComponent implements OnDestroy,OnChanges {
+export class AccountExpiredComponent implements OnDestroy, OnChanges {
   @Input() expiredProducts: Ads;
   @Input() ads: boolean;
   subscriptionLang: Subscription;
-  language:'en';
+  language: 'en';
 
   constructor(
     private adsService: AdsService,
     private translateService: TranslateService,
     private dialog: MatDialog,
     private toastr: ToastrService,
-    private translateBackend: TranslateServiceRest,
+    private translateBackend: TranslateServiceRest
   ) {}
 
- 
-
-  ngOnChanges() { 
+  ngOnChanges() {
     this.subscriptionLang = this.translateBackend
-    .getLanguage()
-    .subscribe((message) => {
-      this.language = message;
-    });
+      .getLanguage()
+      .subscribe((message) => {
+        this.language = message;
+      });
   }
 
   ngOnDestroy() {
@@ -51,14 +49,13 @@ export class AccountExpiredComponent implements OnDestroy,OnChanges {
   }
 
   reactivateAd(expired: Ads, index: number): void {
-    console.log(expired,index)
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       width: '500px',
       data: {
-        message: this.translateService.instant('translate.modalReactivate')
-      }
+        message: this.translateService.instant('translate.modalReactivate'),
+      },
     });
-    confirmDialog.afterClosed().subscribe(result => {
+    confirmDialog.afterClosed().subscribe((result) => {
       if (result) {
         this.expiredProducts[0].splice(index, 1);
         if (this.expiredProducts[0].length === 0) {
@@ -95,5 +92,4 @@ export class AccountExpiredComponent implements OnDestroy,OnChanges {
       return this.toastr.success("L'annuncio è stato riattivato!");
     }
   }
-
 }

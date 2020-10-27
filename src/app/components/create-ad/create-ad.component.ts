@@ -121,7 +121,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   }
 
   chosenTag(tag: Tags): void {
-  
+
     this.clickedTag = tag;
 
     this.clickedTags = [...this.clickedTags];
@@ -310,7 +310,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
             this.toastr.warning(this.translateService.instant('translate.mustAddImage'));
             return;
           }
-        
+
           create.price = this.roundUp(
             Number(
               (Math.round(this.createForm.value.price * 100) / 100).toFixed(2)
@@ -340,5 +340,10 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     if (ex.test(el.value) === false) {
       el.value = el.value.substring(0, el.value.length - 1);
     }
+  }
+
+  log() {
+    console.log('Clicked create ad!');
+    this.onSubmit();
   }
 }

@@ -93,7 +93,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .getUpdateUser()
       .subscribe((user) => {
         this.accountName = user.userName;
-        console.log(this.accountName);
       });
   }
 

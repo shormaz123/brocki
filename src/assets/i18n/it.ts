@@ -201,6 +201,10 @@ export const it = {
     acruallySoldAd: "L'annuncio è stato venduto?",
     searchedAds: 'Annunci cercati',
     filteredAds: 'Annunci filtrati',
-    modalReactivate:'Sei sicuro di voler riattivare questo annuncio?'
+    modalReactivate:'Sei sicuro di voler riattivare questo annuncio?',
+    addressAd: 'Indirizzo',
+    addressNumberAd: 'Numero',
+    addressCodePostal: 'Codice postale',
+    addressPlace: 'Posto'
   },
 };
