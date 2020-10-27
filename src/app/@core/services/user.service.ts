@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpBaseService } from './http-base.service';
 import { User } from '../../shared/models/user.model';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserFavorite } from '../../shared/models/userFavorite.model';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { Email } from '../../shared/models/email.model';
+import { tap, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -16,11 +17,18 @@ export class UserService {
 
   constructor(private http: HttpBaseService, private httpClient: HttpClient) {}
 
+  private user = new Subject<any>();
+
   updateUser(user: User): Observable<User> {
+    this.user.next(user);
     return this.http.put<User>(
       `${this.baseUrl}/mybrocki/auth/users/updateuser`,
       user
     );
+  }
+
+  getUpdateUser(): Observable<any> {
+    return this.user.asObservable();
   }
 
   deleteUser(id: number): Observable<String> {

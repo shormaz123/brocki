@@ -50,7 +50,7 @@ export class AccountActiveComponent implements OnInit, OnChanges {
     this.language = localStorage.getItem(AuthConst.language);
   }
 
-  ngOnChanges() {console.log(this.activeProducts)}
+  ngOnChanges() {}
 
   languageLabel(status: string) {
     this.language = localStorage.getItem(AuthConst.language);

@@ -46,6 +46,7 @@ export class UserComponent implements OnInit {
   comment: boolean;
   admin: string;
   language: string;
+  roleName: string;
   private: boolean;
   business: boolean;
   companyName: string;
@@ -100,6 +101,8 @@ export class UserComponent implements OnInit {
     }
     this.scroll();
     this.userService.getUser().subscribe((res) => {
+      console.log(res);
+      this.roleName = res.bussinesType;
       if (res.roleName === 'bussines' || 'admin') {
         this.companyName = res.company;
 
@@ -152,14 +155,14 @@ export class UserComponent implements OnInit {
   }
 
   activeButton() {
-    this.activeProducts= [];
+    this.activeProducts = [];
     this.scroll();
     this.active = true;
     this.expired = false;
     this.sold = false;
     this.guest = false;
     this.adsService.getAllVisibleAds().subscribe((res) => {
-      console.log(res)
+      console.log(res);
       this.activeProducts.push(res);
       if (this.activeProducts[0].length === 0) {
         this.adsActive = false;
@@ -249,17 +252,17 @@ export class UserComponent implements OnInit {
     //   nzTitle: this.translateService.instant('translate.logoutConfirmation'),
     //   nzContent: '',
     //   nzOnOk: () => {
-      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-        width: '500px',
-        data: {
-          message:  this.translateService.instant('translate.logoutConfirmation')
-        }
-      });
-      confirmDialog.afterClosed().subscribe(result => {
-        this.authService.logout();
-        this.helpersService.$loginName.next();
-        this.router.navigate(['/site']);
-      });
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      data: {
+        message: this.translateService.instant('translate.logoutConfirmation'),
+      },
+    });
+    confirmDialog.afterClosed().subscribe((result) => {
+      this.authService.logout();
+      this.helpersService.$loginName.next();
+      this.router.navigate(['/site']);
+    });
   }
 
   scroll(): void {
