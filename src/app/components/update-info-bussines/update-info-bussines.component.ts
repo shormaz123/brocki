@@ -11,10 +11,7 @@ import { UserStatus } from '../../shared/enums/userStatus';
 import { getMatIconFailedToSanitizeLiteralError } from '@angular/material/icon';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
-import {
-  Feature,
-  MapboxServiceService,
-} from '../../@core/services/mapbox-service.service';
+
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
@@ -55,7 +52,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
     private fb: FormBuilder,
     private adsService: AdsService,
     private toastr: ToastrService,
-    private mapboxService: MapboxServiceService,
     private dialog: MatDialog,
     private translateService: TranslateService
   ) {}
@@ -70,23 +66,24 @@ export class UpdateInfoBussinesComponent implements OnInit {
       website: [''],
       phone: [''],
       mobile: [''],
-      address: [''],
-      canton: [''],
-      city: [''],
       aboutUs: ['', [Validators.maxLength(2)]],
-      location: [
-        {
-          longitude: 0,
-          latitude: 0,
-        },
-      ],
+      street: ['', [Validators.required]],
+      houseNumber: ['', [Validators.required]],
+      postalNumber: ['', [Validators.required]],
+      city: ['', [Validators.required]]
+
     });
 
     this.userService.getUser().subscribe((res) => {
-      this.selectedLocation = res.location;
       const user = new User();
       user.aboutUs = res.aboutUs;
       user.address = res.address;
+      const [street, streetNumber, city, postalCode] = res.address.split(',');
+      console.log(street, streetNumber, city, postalCode);
+      user.street = street;
+      user.houseNumber = streetNumber;
+      user.postalNumber = postalCode;
+      user.city = city;
       this.bussinesType = res.bussinesType;
       user.bussinesType = res.bussinesType;
       user.city = res.city;
@@ -104,11 +101,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
       user.email = res.email;
       user.id = res.id;
       this.userId = user.id;
-      user.location = {
-        longitude: res.location.longitude,
-        latitude: res.location.latitude,
-      };
-
       user.mobile = res.mobile;
       user.name = res.name;
       user.phone = res.phone;
@@ -134,7 +126,9 @@ export class UpdateInfoBussinesComponent implements OnInit {
         city: user.city,
         canton: user.region,
         aboutUs: user.aboutUs,
-        location: user.location,
+        street: user.street,
+        postalCode: user.postalNumber,
+        houseNumber: user.houseNumber
       });
     });
   }
@@ -158,30 +152,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
     this.uploadPhotos.forEach((photo) => formData.append('file', photo));
     this.adsService.uploadImageInStorage(formData).subscribe((res) => {
       this.allImages = [...this.allImages.concat(res)];
-    });
-  }
-
-  search(event: any) {
-    const searchTerm = event.target.value.toLowerCase();
-    if (searchTerm && searchTerm.length > 0) {
-      this.mapboxService.search_word(searchTerm).subscribe((features: any) => {
-        this.addresses = features.map((feat) => feat.place_name);
-        this.responseLocationObject = features.map((feat) => feat.geometry);
-      });
-    } else {
-      this.addresses = [];
-    }
-  }
-
-  onSelect(address: string, i: number) {
-    this.selectedAddress = address;
-    this.addresses = [];
-    this.selectedLocation = this.responseLocationObject[i];
-    this.businessForm.patchValue({
-      location: {
-        longitude: this.selectedLocation.coordinates[0],
-        latitude: this.selectedLocation.coordinates[1],
-      },
     });
   }
 
@@ -212,11 +182,15 @@ export class UpdateInfoBussinesComponent implements OnInit {
         this.updateBusiness.phone = this.businessForm.value.phone;
         this.updateBusiness.mobile = this.businessForm.value.mobile;
         this.updateBusiness.address = this.businessForm.value.address;
-        this.updateBusiness.city = this.businessForm.value.city;
-        this.updateBusiness.region = this.businessForm.value.canton;
         this.updateBusiness.aboutUs = this.businessForm.value.aboutUs;
-        this.updateBusiness.location = this.businessForm.value.location;
         this.updateBusiness.company = this.businessForm.value.company;
+        this.updateBusiness.mobile = this.businessForm.value.mobile;
+        this.updateBusiness.aboutUs = this.businessForm.value.aboutUs;
+        this.updateBusiness.company = this.businessForm.value.company;
+        this.updateBusiness.street = this.businessForm.value.street;
+        this.updateBusiness.postalNumber = this.businessForm.value.postalNumber;
+        this.updateBusiness.houseNumber = this.businessForm.value.houseNumber;
+        this.updateBusiness.city = this.businessForm.value.city;
         this.updateBusiness.companyImage = this.allImages;
         this.updateBusiness.bussinesType = this.bussinesType;
         this.updateBusiness.roleName = this.roleName;

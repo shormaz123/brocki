@@ -13,7 +13,6 @@ import cantons from '../../shared/cantons.json';
 import cities from '../../shared/cities.json';
 import { MessageService } from 'primeng/api';
 import { NzNotificationService } from 'ng-zorro-antd';
-import {Feature, MapboxServiceService} from '../../@core/services/mapbox-service.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
@@ -52,12 +51,13 @@ export class RegistrationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private notification: NzNotificationService,
-    private mapboxService: MapboxServiceService,
     private translateService: TranslateService,
     private toastr: ToastrService,
   ) {}
 
   ngOnInit() {
+
+
     const completeAddress = (`${this.addressAd} ` + `${this.addressNumber} ` + `${this.addressPostalCode} ` + `${this.addressPlace}`)
 
     this.registerForm = this.formBuilder.group({

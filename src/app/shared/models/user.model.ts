@@ -2,7 +2,6 @@ export class User {
   aboutUs: string;
   address: string;
   bussinesType: string;
-  city: string;
   company: string;
   companyImage: Array<string>;
   credit: number;
@@ -23,4 +22,8 @@ export class User {
   userName: string;
   userStatus: string;
   website: string;
+  street: string;
+  houseNumber: string;
+  postalNumber: string;
+  city: string;
 }

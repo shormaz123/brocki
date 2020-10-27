@@ -37,21 +37,19 @@
             </div>
             <div class="form__inputItem">
                 <img src="../../../assets/images/update-info-bussines/address.png" />
-                <input placeholder="{{ 'translate.address' | translate }}" formControlName="address" [value]="selectedAddress" (keypress)="search($event)" type="text" [matAutocomplete]="auto" />
-                <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let address of addresses; let i = index" [value]="address" (click)="onSelect(address, i)">
-                        {{ address }}
-                    </mat-option>
-                </mat-autocomplete>
+                <input placeholder="{{ 'translate.addressAd' | translate }}" formControlName="street" />
             </div>
-            <div class="form__inputItem form__inputItem--margin">
-                <div class="form__location">
-                    <select class="form__select" formControlName="canton">
-            <option *ngFor="let canton of cantons" [value]="canton">
-              {{ canton }}
-            </option>
-          </select>
-                </div>
+            <div class="form__inputItem">
+                <img src="../../../assets/images/update-info-bussines/address.png" />
+                <input placeholder="{{ 'translate.addressNumberAd' | translate }}" formControlName="houseNumber" />
+            </div>
+            <div class="form__inputItem">
+                <img src="../../../assets/images/update-info-bussines/address.png" />
+                <input placeholder="{{ 'translate.addressCodePostal' | translate }}" formControlName="postalNumber" />
+            </div>
+            <div class="form__inputItem">
+                <img src="../../../assets/images/update-info-bussines/address.png" />
+                <input placeholder="{{ 'translate.addressPlace' | translate }}" formControlName="city" />
             </div>
 
             <div class="form__inputItem">
