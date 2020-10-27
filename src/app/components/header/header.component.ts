@@ -100,6 +100,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.loginNameSubscription.unsubscribe();
     this.displaySideBarSubscription.unsubscribe();
+    this.subscriptionUser.unsubscribe();
   }
 
   selectDropDown(id: number) {
