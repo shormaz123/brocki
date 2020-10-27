@@ -1,5 +1,8 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { AdsService } from '../../../@core/services/ads.service';
+import { UserService } from '../../../@core/services/user.service';
+import { ActivatedRoute} from '@angular/router';
+import{ Ads} from '../../../shared/models/ads.model';
 
 @Component({
   selector: 'app-account-sold',
@@ -15,10 +18,12 @@ export class AccountSoldComponent implements OnChanges {
   status: string;
   userId: number;
   disableButton: boolean = true;
+  soldAds:Ads[]=[];
 
-  constructor(private adsService: AdsService) {}
+  constructor(private adsService: AdsService, private route: ActivatedRoute, private userServuce: UserService) {}
 
-  ngOnChanges() {}
+  ngOnChanges(changes: SimpleChanges) {this.userId = Number(this.route.snapshot.paramMap.get('id'))}
+                  
 
   style() {
     if (this.soldProducts[0] > 0) {
@@ -28,8 +33,27 @@ export class AccountSoldComponent implements OnChanges {
     }
   }
 
+  rrr(a:any){
+    // const ads = new Ads();
+    // ads.adsDate = null;
+    // ads.adsLocation = null;
+    // ads.adsGroupId = null;
+    // ads.adsSubGroupId = null;
+    // ads.description = null;
+    // ads.favourite = null;
+    // ads.id = a.id;
+    // ads.image = null;
+    // ads.price = null;
+    // ads.productName = null;
+    // ads.status = "ACTIVE";
+    // ads.userId = null;
+    // ads.tags = null;
+    // this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() =>{
+    // });
+  }
+
   increaseShow() {
-    (this.paginationNumber += 1), (this.status = 'SOLD'), (this.userId = 265);
+    (this.paginationNumber += 1), (this.status = 'SOLD'), (this.userId);
     this.adsService
       .getSoldAdsPagination(
         this.userId,
@@ -38,12 +62,18 @@ export class AccountSoldComponent implements OnChanges {
         this.pageSize
       )
       .subscribe((response) => {
+        this.soldAds = response;
+        this.soldProducts[0].push(...this.soldAds);
+        this.disableScrolling();
+
         if (response.length !== 8) {
           this.disableButton = false;
         }
-        const soldAds = response;
-        this.soldProducts[0].push(...soldAds);
-        this.disableScrolling();
+       
+        if(this.soldAds .length == 0){
+          this.disableButton = false;
+        } 
+
       });
   }
 

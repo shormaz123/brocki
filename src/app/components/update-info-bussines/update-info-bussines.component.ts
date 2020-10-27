@@ -78,15 +78,14 @@ export class UpdateInfoBussinesComponent implements OnInit {
       const user = new User();
       user.aboutUs = res.aboutUs;
       user.address = res.address;
-      const [street, streetNumber, city, postalCode] = res.address.split(',');
-      console.log(street, streetNumber, city, postalCode);
+      const [street, streetNumber, postalNumber, city] = res.address.split(',');
+      console.log(street, streetNumber, postalNumber, city) ;
       user.street = street;
       user.houseNumber = streetNumber;
-      user.postalNumber = postalCode;
+      user.postalNumber = postalNumber;
       user.city = city;
       this.bussinesType = res.bussinesType;
       user.bussinesType = res.bussinesType;
-      user.city = res.city;
       user.company = res.company;
       user.companyImage = res.companyImage;
       this.allImages = res.companyImage || [];
@@ -127,7 +126,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
         canton: user.region,
         aboutUs: user.aboutUs,
         street: user.street,
-        postalCode: user.postalNumber,
+        postalNumber: user.postalNumber,
         houseNumber: user.houseNumber
       });
     });

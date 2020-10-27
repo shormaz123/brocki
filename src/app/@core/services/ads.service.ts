@@ -8,7 +8,7 @@ import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
 import { User } from '../../shared/models/user.model';
 import { CreateAd } from '../../shared/models/create-ad.model';
 import { Comment } from '../../shared/models/createComment.model';
-import {Tags} from '../../shared/models/tags.model';
+import { Tags } from '../../shared/models/tags.model';
 import {
   HttpClient,
   HttpEvent,
@@ -17,7 +17,7 @@ import {
   HttpParams,
   HttpHeaders,
 } from '@angular/common/http';
-import { map,shareReplay } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { AdsParam } from '../../shared/models/adParams.model';
 import { FilterAds } from '../../shared/models/filterAds.model';
 
@@ -120,15 +120,25 @@ export class AdsService {
     );
   }
 
-  filterCategoryTags(tags: Array<number>, pageNumber: number, adsGroupId: number): Observable<Ads[]> {
+  filterCategoryTags(
+    tags: Array<number>,
+    pageNumber: number,
+    adsGroupId: number
+  ): Observable<Ads[]> {
     return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?tag=${tags}&pageNumber=${pageNumber}&status=ACTIVE&pageSize=3&adsGroupId=${adsGroupId}`);
-   }
- 
-   filterSubCategoryTags(tags: Array<number>, pageNumber: number, subGroupId: number): Observable<Ads[]> {
-     return this.http.get(
-       `${this.baseUrl}/mybrocki/ads/filter?tag=${tags}&pageNumber=${pageNumber}&status=ACTIVE&pageSize=3&adssubgroup=${subGroupId}`);
-    }
+      `${this.baseUrl}/mybrocki/ads/filter?tag=${tags}&pageNumber=${pageNumber}&status=ACTIVE&pageSize=3&adsGroupId=${adsGroupId}`
+    );
+  }
+
+  filterSubCategoryTags(
+    tags: Array<number>,
+    pageNumber: number,
+    subGroupId: number
+  ): Observable<Ads[]> {
+    return this.http.get(
+      `${this.baseUrl}/mybrocki/ads/filter?tag=${tags}&pageNumber=${pageNumber}&status=ACTIVE&pageSize=3&adssubgroup=${subGroupId}`
+    );
+  }
 
   getAdsByActiveStatus(): Observable<Ads[]> {
     return this.http.get(`${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE`);
@@ -178,17 +188,15 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/auth/ads/visible`);
   }
 
-
   /**
    * Get all Tags
    *
    */
-  getAllTags():Observable<Tags[]>{
-    return this.http.get<Tags[]>(`${this.baseUrl}/mybrocki/tags`)
-      .pipe(
-        map(res=> res),
-        shareReplay()
-      );
+  getAllTags(): Observable<Tags[]> {
+    return this.http.get<Tags[]>(`${this.baseUrl}/mybrocki/tags`).pipe(
+      map((res) => res),
+      shareReplay()
+    );
   }
 
   /**
@@ -198,12 +206,9 @@ export class AdsService {
   changeStatusOfAds(ads: Ads, id: number): Observable<Ads> {
     let query = new HttpParams();
     query = query.append('status', ads.status);
-    return this.http.put<Ads>(
-      `${this.baseUrl}/mybrocki/auth/ads/status/${id}`,
-      ads
-    ).pipe(
-      shareReplay()
-    );
+    return this.http
+      .put<Ads>(`${this.baseUrl}/mybrocki/auth/ads/status/${id}`, ads)
+      .pipe(shareReplay());
   }
 
   /**

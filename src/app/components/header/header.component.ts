@@ -4,7 +4,7 @@ import {
   OnDestroy,
   Input,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 import { UserService } from '../../@core/services/user.service';
 import { AuthConst } from '../../@core/consts/auth.const';
@@ -14,11 +14,10 @@ import { NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
-import {AdsService} from '../../@core/services/ads.service';
-import {Ads} from '../../shared/models/ads.model';
+import { AdsService } from '../../@core/services/ads.service';
+import { Ads } from '../../shared/models/ads.model';
+import { User } from '../../shared/models/user.model';
 import { DOCUMENT } from '@angular/common';
-
-
 
 @Component({
   selector: 'app-header',
@@ -43,9 +42,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentLang;
   categoriesGroup;
   sidebarTitleBackground: boolean;
-  clickedTabs:Array<any> = [];
+  clickedTabs: Array<any> = [];
   clickedTab: any;
-
+  subscriptionUser: Subscription;
 
   @Output() notify = new EventEmitter<any>();
 
@@ -64,7 +63,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sidebarTitleBackground = false;
-    this.currentLang = localStorage.getItem(AuthConst.language)
+    this.currentLang = localStorage.getItem(AuthConst.language);
     this.chosenLanguage = this.translateBackend.getChoosenLanguage();
     if (this.chosenLanguage !== '') {
       this.userLang = this.chosenLanguage;
@@ -83,16 +82,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.categoriesGroup = x;
       console.log(this.categoriesGroup);
     });
-    this.displaySideBarSubscription = this.helpers.getDisplaySideBar().subscribe( response => {
-      this.currentLang = localStorage.getItem(AuthConst.language);
-      this.displaySideNav = response;
-    });
-  }
+    this.displaySideBarSubscription = this.helpers
+      .getDisplaySideBar()
+      .subscribe((response) => {
+        this.currentLang = localStorage.getItem(AuthConst.language);
+        this.displaySideNav = response;
+      });
 
+    this.subscriptionUser = this.userService
+      .getUpdateUser()
+      .subscribe((user) => {
+        this.accountName = user.userName;
+      });
+  }
 
   ngOnDestroy() {
     this.loginNameSubscription.unsubscribe();
     this.displaySideBarSubscription.unsubscribe();
+    this.subscriptionUser.unsubscribe();
   }
 
   selectDropDown(id: number) {
@@ -119,7 +126,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getUser(): void {
     this.userService.getUser().subscribe(
       (user) => {
-        console.log(user)
+        console.log(user);
         if (user.bussinesType === 'PRIVATE') {
           this.privateUser = true;
         } else {
@@ -165,28 +172,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   navigateToSite() {
-    this.router.navigate(['/site'] );
+    this.router.navigate(['/site']);
     sessionStorage.removeItem('category_id');
     this.helpers.clearCategories();
   }
 
   goToSubCategory(subCategoryId, categoryId) {
-    this.router.navigate(['/ads',subCategoryId,categoryId ])
+    this.router.navigate(['/ads', subCategoryId, categoryId]);
     this.displaySideNav = false;
   }
 
   selectCategoryOnSideBar(category: any) {
-// this.clickedTab = category
-
-// this.clickedTabs = [...this.clickedTabs];
-
-// if (this.clickedTabs.includes(this.clickedTab)) {
-
-//   this.clickedTabs = this.clickedTabs.filter((e) => e !== this.clickedTab);
-//   return;
-// }
-// if (this.clickedTabs.length < 30) {
-//   this.clickedTabs.push(category);
-// }
+    // this.clickedTab = category
+    // this.clickedTabs = [...this.clickedTabs];
+    // if (this.clickedTabs.includes(this.clickedTab)) {
+    //   this.clickedTabs = this.clickedTabs.filter((e) => e !== this.clickedTab);
+    //   return;
+    // }
+    // if (this.clickedTabs.length < 30) {
+    //   this.clickedTabs.push(category);
+    // }
   }
 }

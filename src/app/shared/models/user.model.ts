@@ -26,4 +26,6 @@ export class User {
   houseNumber: string;
   postalNumber: string;
   city: string;
+  lat;
+  lng;
 }

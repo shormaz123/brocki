@@ -37,11 +37,9 @@ export class InfoSellerComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
-        this.sellerLocationLong = seller.location.longitude;
-        this.sellerLocationLat = seller.location.latitude;
-        console.log(this.sellerLocationLong)
-        console.log(this.sellerLocationLat)
-        this.sellerAddress = seller.address
+        this.sellerLocationLong = seller.lng;
+        this.sellerLocationLat = seller.lat;
+        this.sellerAddress = seller.address;
         this.sellerindex = seller.id;
         this.infoForm.patchValue({
           company: seller.company,
