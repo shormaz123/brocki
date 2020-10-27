@@ -1,104 +1,55 @@
 <div class="loginContainer">
-  <div class="mainContainer">
-    <div class="titleDiv">
-      <span class="title"
-        >{{ 'translate.update' | translate }}
+    <div class="mainContainer">
+        <div class="titleDiv">
+            <span class="title">{{ 'translate.update' | translate }}
         <span style="color: #d62b1f">{{
           'translate.info' | translate
-        }}</span></span
-      >
-    </div>
-    <form
-      (ngSubmit)="onSubmit()"
-      (keyup.enter)="onSubmit()"
-      [formGroup]="privateForm"
-    >
-      <div class="inputItem">
-        <img src="../../../assets/images/update-info-bussines/name.png" />
-        <input
-          placeholder="{{ 'translate.username' | translate }}"
-          formControlName="userName"
-        />
-      </div>
-      <div class="inputItem">
-        <img src="../../../assets/images/update-info-bussines/name.png" />
-        <input
-          placeholder="{{ 'translate.nameFirst' | translate }}"
-          formControlName="name"
-        />
-      </div>
-      <div class="inputItem">
-        <img src="../../../assets/images/update-info-bussines/surname.png" />
-        <input
-          placeholder="{{ 'translate.surname' | translate }}"
-          formControlName="surname"
-        />
-      </div>
-      <div class="inputItem">
-        <img src="../../../assets/images/update-info-bussines/email.png" />
-        <input
-          placeholder="{{ 'translate.email' | translate }}"
-          formControlName="email"
-        />
-      </div>
-
-      <div class="inputItem">
-        <img src="../../../assets/images/update-info-bussines/phone.png" />
-        <input
-          placeholder="{{ 'translate.phone' | translate }}"
-          formControlName="phone"
-        />
-      </div>
-      <div class="inputItem">
-        <img src="../../../assets/images/update-info-bussines/mobile.png" />
-        <input
-          placeholder="{{ 'translate.mobile' | translate }}"
-          formControlName="mobile"
-        />
-      </div>
-      <div class="inputItem">
-        <img src="../../../assets/images/update-info-bussines/address.png" />
-        <!--        <label>{{ 'translate.city' | translate }}</label>-->
-        <input
-          placeholder="{{ 'translate.address' | translate }}"
-          formControlName="address"
-          [value]="selectedAddress"
-          (keypress)="search($event)"
-          type="text"
-          [matAutocomplete]="auto"
-        />
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option
-            *ngFor="let address of addresses; let i = index"
-            [value]="address"
-            (click)="onSelect(address, i)"
-            formControlName="address"
-          >
-            {{ address }}
-          </mat-option>
-        </mat-autocomplete>
-      </div>
-      <div class="inputItem">
-        <div class="locationInput locationInput--margin">
-          <select class="select-city" formControlName="canton">
-            <option *ngFor="let canton of cantons" [value]="canton">
-              {{ canton }}
-            </option>
-          </select>
+        }}</span></span>
         </div>
-      </div>
-      <!--      <div class="inputItem">-->
-      <!--        <div class="locationInput locationInput&#45;&#45;margin">-->
-      <!--          <select class="select-city" formControlName="city">-->
-      <!--            <option *ngFor="let city of cities" [value]="city">{{-->
-      <!--              city-->
-      <!--            }}</option>-->
-      <!--          </select>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <div class="inputItem inputItem--margin">
-        <a (click)="changePassword()"
-          >{{ 'translate.changePassword' | translate }}?</a
+        <form (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()" [formGroup]="privateForm">
+            <div class="inputItem">
+                <img src="../../../assets/images/update-info-bussines/name.png" />
+                <input placeholder="{{ 'translate.username' | translate }}" formControlName="userName" />
+            </div>
+            <div class="inputItem">
+                <img src="../../../assets/images/update-info-bussines/name.png" />
+                <input placeholder="{{ 'translate.nameFirst' | translate }}" formControlName="name" />
+            </div>
+            <div class="inputItem">
+                <img src="../../../assets/images/update-info-bussines/surname.png" />
+                <input placeholder="{{ 'translate.surname' | translate }}" formControlName="surname" />
+            </div>
+            <div class="inputItem">
+                <img src="../../../assets/images/update-info-bussines/email.png" />
+                <input placeholder="{{ 'translate.email' | translate }}" formControlName="email" />
+            </div>
+
+            <div class="inputItem">
+                <img src="../../../assets/images/update-info-bussines/phone.png" />
+                <input placeholder="{{ 'translate.phone' | translate }}" formControlName="phone" />
+            </div>
+            <div class="inputItem">
+                <img src="../../../assets/images/update-info-bussines/mobile.png" />
+                <input placeholder="{{ 'translate.mobile' | translate }}" formControlName="mobile" />
+            </div>
+            <div class="inputItem">
+                <img src="../../../assets/images/update-info-bussines/address.png" />
+                <input placeholder="{{ 'translate.addressAd' | translate }}" formControlName="street" />
+            </div>
+            <div class="inputItem">
+                <img src="../../../assets/images/update-info-bussines/address.png" />
+                <input placeholder="{{ 'translate.addressNumberAd' | translate }}" formControlName="houseNumber" />
+            </div>
+            <div class="inputItem">
+                <img src="../../../assets/images/update-info-bussines/address.png" />
+                <input placeholder="{{ 'translate.addressCodePostal' | translate }}" formControlName="postalNumber" />
+            </div>
+            <div class="inputItem">
+                <img src="../../../assets/images/update-info-bussines/address.png" />
+                <input placeholder="{{ 'translate.addressPlace' | translate }}" formControlName="city" />
+            </div>
+            <div class="inputItem inputItem--margin">
+                <a (click)="changePassword()">{{ 'translate.changePassword' | translate }}?</a
         >
       </div>
 

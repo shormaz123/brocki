@@ -50,19 +50,20 @@ export class UpdateInfoPrivateComponent implements OnInit {
       email: [{ value: '', disabled: true }],
       phone: [''],
       mobile: [''],
-      address: [''],
-      canton: [''],
-      location: [
-        {
-          longitude: 0,
-          latitude: 0,
-        },
-      ],
+      street: ['', [Validators.required]],
+      houseNumber: ['', [Validators.required]],
+      postalNumber: ['', [Validators.required]],
+      city: ['', [Validators.required]]
     });
 
     this.userService.getUser().subscribe((res) => {
       this.userId = res.id;
       const user = new User();
+      const [street, streetNumber, postalNumber, city] = res.address.split(',');
+      user.street = street;
+      user.houseNumber = streetNumber;
+      user.postalNumber = postalNumber;
+      user.city = city;
       user.aboutUs = res.aboutUs;
       user.address = res.address;
       user.bussinesType = res.bussinesType;
@@ -94,6 +95,9 @@ export class UpdateInfoPrivateComponent implements OnInit {
         address: user.address,
         city: user.city,
         canton: user.region,
+        street: user.street,
+        postalNumber: user.postalNumber,
+        houseNumber: user.houseNumber
       });
     });
   }
@@ -122,6 +126,10 @@ export class UpdateInfoPrivateComponent implements OnInit {
         updateUserInfo.region = this.privateForm.value.canton;
         updateUserInfo.aboutUs = '';
         updateUserInfo.company = '';
+        updateUserInfo.street = this.privateForm.value.street;
+        updateUserInfo.postalNumber = this.privateForm.value.postalNumber;
+        updateUserInfo.houseNumber = this.privateForm.value.houseNumber;
+        updateUserInfo.city = this.privateForm.value.city;
         updateUserInfo.companyImage = [];
         updateUserInfo.bussinesType = 'PRIVATE';
         updateUserInfo.roleName = 'private';
