@@ -101,7 +101,9 @@ export class UserComponent implements OnInit {
     }
     this.scroll();
     this.userService.getUser().subscribe((res) => {
-      this.roleName = res.bussinesType;
+      console.log(res);
+      this.roleName = res.roleName;
+      console.log(this.roleName);
       if (res.roleName === 'bussines' || 'admin') {
         this.companyName = res.company;
 
@@ -112,20 +114,21 @@ export class UserComponent implements OnInit {
         this.business = false;
       }
 
-      if (res.roleName === 'admin' && res.company === '') {
-        this.userName = res.userName;
-        this.private = true;
-        this.business = false;
-      }
+      if (res.company.length === 0) {
+        if (res.roleName === 'admin' && res.company === '') {
+          this.userName = res.userName;
+          this.private = true;
+          this.business = false;
+        }
 
-      if (res.roleName === 'bussines' && res.company === '') {
-        this.userName = res.userName;
-        this.private = true;
-        this.business = false;
+        if (res.roleName === 'bussines' && res.company === '') {
+          this.userName = res.userName;
+          this.private = true;
+          this.business = false;
+        }
       }
 
       this.path = res.bussinesType;
-      this.userName = res.userName;
       this.credit = res.credit;
 
       this.companyImage = res.companyImage || [];
