@@ -77,7 +77,6 @@ export class ContactUsComponent implements OnInit {
   }
 
   log() {
-    console.log('Clicked!');
     this.onSubmit();
   }
 }

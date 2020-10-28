@@ -86,12 +86,9 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.registerForm.value);
-
     if (this.registerForm.valid &&
     this.registerForm.value.terms === true) {
       this.registration = this.registerForm.value;
-      console.log(this.registerForm.value)
       this.authService.register(this.registration).subscribe(
         (response) => {
           this.toastr.success(this.translateService.instant('translate.profileSuccessfullyCreated')),
@@ -101,7 +98,6 @@ export class RegistrationComponent implements OnInit {
           this.error = true;
           setTimeout(() => (this.error = false), 2000);
           this.errorMessage = error.message;
-          console.log(this.errorMessage);
         }
       );
     } else {

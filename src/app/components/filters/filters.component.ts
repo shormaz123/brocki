@@ -227,13 +227,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
         } else {
           this.fillAds = res;
           this.hideFilter = true;
-          // this.router.navigateByUrl('/filters-ads', {
-          //   state: { data: filteredAds },
-          // });
-          // filteredAds.forEach((ads) => {
-          //   console.log(ads);
-          // });
-          // this.ads = filteredAds;
+
         }
       });
     }

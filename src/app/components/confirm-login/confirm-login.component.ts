@@ -32,12 +32,10 @@ export class ConfirmLoginComponent implements OnInit {
     this.userService.confirmAccount(this.confirmToken).subscribe(
       (x) => {
         if (x) {
-          console.log(x);
           this.router.navigate(['/site']);
         }
     },
       (error) => {
-        console.log(error.text);
         if (error.text === 'OK') {
           this.router.navigate(['/site']);
         } else {

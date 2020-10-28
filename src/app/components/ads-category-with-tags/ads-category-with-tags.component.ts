@@ -67,7 +67,6 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
     }
       this.adsService.getAllTags().subscribe( x => {
         this.tags = x
-        console.log(this.tags, 'tags')
       })
       this.token = localStorage.getItem(AuthConst.token);
       this.activatedRoute.params.subscribe((params) => {
@@ -232,22 +231,18 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
         userId: this.userId,
       };
       this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-        console.log('add update to favorite', x);
         this.favoriteAds.push(ad)
       }),
         (error) => {
-          console.log('not to favorite');
         };
       this.helpersService.$numOfFavs.next();
     }
 
     removeFromWishlist(adId: number) {
       this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
-        console.log('delete update to favorite', x);
       }),
         // tslint:disable-next-line:no-unused-expression
         (error) => {
-          console.log('not delete to favorite');
         };
       this.helpersService.$numOfFavs.next();
     }

@@ -36,10 +36,7 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
     private adsService: AdsService,
     private route: ActivatedRoute
   ) {
-    // if (this.router.getCurrentNavigation().extras.state) {
-    //   this.filteredAds = this.router.getCurrentNavigation().extras.state.data;
-    //   console.log('filteredads', this.filteredAds);
-    // }
+
   }
 
   ngOnChanges() {
@@ -50,12 +47,6 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-    // this.token = localStorage.getItem(AuthConst.token);
-    // if (this.token) {
-    //   this.userService.getUser().subscribe((user) => {
-    //     this.userId = user.id;
-    //   });
-    // }
   }
 
   addToWishlist(adId: number) {
@@ -64,21 +55,17 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
       userId: this.userId,
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      console.log('add update to favorite', x);
     }),
       (error) => {
-        console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
 
   removeFromWishlist(adId: number) {
     this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
-      console.log('delete update to favorite', x);
     }),
       // tslint:disable-next-line:no-unused-expression
       (error) => {
-        console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }

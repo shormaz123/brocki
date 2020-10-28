@@ -101,9 +101,7 @@ export class UserComponent implements OnInit {
     }
     this.scroll();
     this.userService.getUser().subscribe((res) => {
-      console.log(res);
       this.roleName = res.roleName;
-      console.log(this.roleName);
       if (res.roleName === 'bussines' || 'admin') {
         this.companyName = res.company;
 

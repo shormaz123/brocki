@@ -79,7 +79,6 @@ export class UpdateInfoBussinesComponent implements OnInit {
       user.aboutUs = res.aboutUs;
       user.address = res.address;
       const [street, streetNumber, postalNumber, city] = res.address.split(',');
-      console.log(street, streetNumber, postalNumber, city) ;
       user.street = street;
       user.houseNumber = streetNumber;
       user.postalNumber = postalNumber;

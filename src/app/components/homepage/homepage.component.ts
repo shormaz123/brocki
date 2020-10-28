@@ -63,7 +63,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
           this.getUserAndFavAd();
         } else {
           this.favAds = this.ads;
-          console.log('favAds', this.favAds);
         }
       }
       );
@@ -80,7 +79,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
   }
 
   getUserAndFavAd() {
-    console.log(this.userId, 'userId');
     this.userService
       .getFavourites(Number(localStorage.getItem('brocki_id')))
       .subscribe((x) => {
@@ -123,25 +121,21 @@ export class HomepageComponent implements OnInit, OnDestroy {
       userId: this.userId,
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      console.log('add update to favorite', x);
       this.raiseAdNumber();
     }),
       (error) => {
         if ((error.message = 'Unexpected end of JSON input')) {
         }
-        console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
 
   removeFromWishlist(adId: number) {
     this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
-      console.log('delete update to favorite', x);
       this.downAdNumber();
     }),
       // tslint:disable-next-line:no-unused-expression
       (error) => {
-        console.log('not delete to favorite');
       };
   }
 
@@ -154,12 +148,10 @@ export class HomepageComponent implements OnInit, OnDestroy {
       this.adsService
         .getAdsByPagination(this.paginationNumber)
         .subscribe((response) => {
-          console.log(response);
           this.paginationAds = response;
           if (this.paginationAds.length !== 16) {
             this.disableButton = false;
           }
-          console.log(this.paginationAds, this.paginationNumber);
           if (this.token) {
             this.favAds.push(...this.paginationAds);
             this.disableScrolling();

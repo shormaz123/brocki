@@ -412,7 +412,6 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   ngOnInit() {
 this.currentLang = localStorage.getItem(AuthConst.language)
     this.fakedCategoryId = Number(sessionStorage.getItem('category_id'))
-    console.log(this.fakedCategoryId, 'fakedId');
 
     this.token = localStorage.getItem(AuthConst.token);
     this.subscriptionLang = this.translateBackend
@@ -420,7 +419,6 @@ this.currentLang = localStorage.getItem(AuthConst.language)
     .subscribe((message) => {
       this.currentLang = message;
     });
-    console.log('ngOnInit called')
     this.deselectAll();
     if (this.fakedCategoryId) {
       this.selectCategory(this.fakedCategoryId)
@@ -436,7 +434,6 @@ this.currentLang = localStorage.getItem(AuthConst.language)
     this.categories.forEach((item) => {
       item.imageTo = item.image;
     });
-    console.log('deselectCalled called')
   }
 
   ngOnDestroy() {
@@ -457,7 +454,6 @@ this.currentLang = localStorage.getItem(AuthConst.language)
     if (imageToShow) {
       this.deselectAll()
       imageToShow.imageTo = imageToShow.selectedImage;
-      console.log(imageToShow)
     }
     sessionStorage.setItem('category_id', id.toString());
   }

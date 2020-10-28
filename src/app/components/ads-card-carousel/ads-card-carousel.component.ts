@@ -40,7 +40,6 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
   ngOnInit() {
     this.numberOfFavs = this.helpersService.getNumberOfFavorites().subscribe( number => {
       this.numberOfFavorites = number;
-      console.log(this.numberOfFavorites, 'siteNumber')
      });
     this.token = localStorage.getItem(AuthConst.token);
     this.carouselTile = {
@@ -74,14 +73,12 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     this.numberOfFavorites = this.favoriteNumber
     this.preloadImages();
   }
 
   preloadImages() {
     this.ads = this.randomAds;
-    console.log(this.ads, 'carousel ads');
   }
 
   ngOnDestroy() {
@@ -93,23 +90,19 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
       userId:  Number(localStorage.getItem(AuthConst.userId)),
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      console.log('add update to favorite', x);
       this.raiseAdNumber();
     }),
       (error) => {
-        console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
 
   removeFromWishlist(adId: number) {
     this.userService.deleteUserFavourite(adId,  Number(localStorage.getItem(AuthConst.userId))).subscribe((x) => {
-      console.log('delete update to favorite', x);
       this.downAdNumber();
     }),
       // tslint:disable-next-line:no-unused-expression
       (error) => {
-        console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
@@ -117,7 +110,6 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
  goToAd(event, id: number) {
   if(event.button === 0) {
     this.router.navigate(['/ad', id]);
-    console.log(event.button)
   }
  }
 

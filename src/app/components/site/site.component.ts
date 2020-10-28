@@ -89,7 +89,6 @@ export class SiteComponent implements OnInit, OnDestroy {
       .getNumberOfFavorites()
       .subscribe((number) => {
         this.numberOfFavorites = number;
-        console.log(this.numberOfFavorites, 'siteNumber');
       });
     this.subscriptionLang = this.translateBackend
       .getLanguage()
@@ -105,20 +104,6 @@ export class SiteComponent implements OnInit, OnDestroy {
       return;
     } else {
       this.router.navigate(["/searched-ads", { 'data': this.searchProductName }]);
-      // this.adsService.getAdsdBySearch(this.searchProductName).subscribe(
-      //   (x) => {
-      //     if (this.token) {
-      //       this.favAds = x.map(
-      //         (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-      //       );
-      //     } else {
-      //       this.favAds = x;
-      //     }
-      //   },
-      //   (error) => {
-      //     console.log('error');
-      //   }
-      // );
     }
   }
 

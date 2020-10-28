@@ -107,7 +107,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     this.subscriptionLang = this.translateBackend
       .getLanguage()
       .subscribe((message) => {
-        console.log(message)
         this.currentLang = message;
         this.clickedTags = [];
       });
@@ -343,7 +342,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   }
 
   log() {
-    console.log('Clicked create ad!');
     this.onSubmit();
   }
 }

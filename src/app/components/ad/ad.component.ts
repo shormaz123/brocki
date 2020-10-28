@@ -187,7 +187,6 @@ export class AdComponent implements OnInit, AfterViewInit {
         this.userSellerId = response.userId;
         this.ad = response;
         this.adGroupId = response.adsGroupId;
-        console.log(response, 'trenutni oglas');
         this.allOfreviewer = true;
         this.adsService
           .getAdsByGroupId(this.adGroupId, this.paginationNumber)
@@ -209,7 +208,6 @@ export class AdComponent implements OnInit, AfterViewInit {
               } else {
                 this.categoryImagesAvailable = true;
                 this.adsByCategory = x;
-                console.log('adsByCat', this.adsByCategory);
               }
             }
           });
@@ -222,13 +220,11 @@ export class AdComponent implements OnInit, AfterViewInit {
             big: picture,
           }
           );
-          console.log(this.galleryImages);
         }
 
         this.userService.getUserById(this.userSellerId).subscribe((x) => {
           this.companyName = x.company;
           this.sellerEmail = x.email;
-          console.log(x.roleName);
           if (x.roleName === 'bussines') {
             this.private = false;
             this.business = true;
@@ -266,7 +262,6 @@ export class AdComponent implements OnInit, AfterViewInit {
             } else {
               this.usersImagesAvailabe = true;
               this.adsByUser = x;
-              console.log('adsByUser', this.adsByUser);
             }
           }
         });
@@ -307,16 +302,13 @@ export class AdComponent implements OnInit, AfterViewInit {
   }
 
   addToWishlist(adId: number) {
-    console.log(adId);
     this.userRequest = {
       adsId: adId,
       userId: this.userId,
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      console.log('add update to favorite', x);
     }),
       (error) => {
-        console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
     if (this.token) {
@@ -339,10 +331,8 @@ export class AdComponent implements OnInit, AfterViewInit {
 
   removeFromWishlist(adId: number) {
     this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
-      console.log('delete update to favorite', x);
     }),
       (error) => {
-        console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
     if (this.token) {

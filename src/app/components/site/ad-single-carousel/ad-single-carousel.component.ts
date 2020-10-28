@@ -44,7 +44,6 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
     this.numberOfFavs = this.helpersService.getNumberOfFavorites().subscribe( number => {
       this.numberOfFavorites = number;
-      console.log(this.numberOfFavorites, 'siteNumber')
      });
     this.token = localStorage.getItem(AuthConst.token);
     if (this.userId) {
@@ -73,11 +72,9 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges, OnDestroy {
       userId: Number(localStorage.getItem(AuthConst.userId))
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      console.log('add update to favorite', x);
       this.raiseAdNumber()
     }),
       (error) => {
-        console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
@@ -85,10 +82,8 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges, OnDestroy {
   removeFromWishlist(adId: number) {
     this.userService.deleteUserFavourite(adId, Number(localStorage.getItem(AuthConst.userId))).subscribe((x) => {
       this.downAdNumber();
-      console.log('delete update to favorite', x);
     }),
       (error) => {
-        console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
@@ -108,7 +103,6 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     this.numberOfFavorites = this.favoriteNumber
   }
 

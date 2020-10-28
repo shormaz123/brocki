@@ -83,9 +83,6 @@ export class AdsComponent implements OnInit, OnDestroy {
       map(() => this.rootRoute(this.activatedRoute)),
       filter((route: ActivatedRoute) => route.outlet === 'primary'),
     ).subscribe((route: ActivatedRoute) => {
-      console.log(route.snapshot.paramMap.get('subGroupId'), 'subgroupadscomponent');
-      console.log(route.snapshot.paramMap.get('groupId'), 'subgroupadscomponent');
-      console.log(route.component);
     });
 
 
@@ -94,7 +91,6 @@ export class AdsComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.subscribe((params) => {
       this.subGroupId = params.subGroupId;
       this.groupId = params.groupId;
-      console.log(this.subGroupId);
       this.adsService.getSubCategoryById(params.subGroupId).subscribe( subTitle => {
         this.subCategoryName = subTitle.subGroupName[this.currentLang]
       });
@@ -103,7 +99,6 @@ export class AdsComponent implements OnInit, OnDestroy {
         this.getImage(params.groupId)
       });
       this.adsService.getSubBySubGroupId(params.subGroupId).subscribe( x => {
-        console.log(x, 'x')
       })
       this.adsService.getAdsBySubGroupParam(params.subGroupId, this.pageNumber).subscribe((ads) => {
         this.ads = ads;
@@ -368,22 +363,18 @@ export class AdsComponent implements OnInit, OnDestroy {
       userId: this.userId,
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      console.log('add update to favorite', x);
       this.favoriteAds.push(ad)
     }),
       (error) => {
-        console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
 
   removeFromWishlist(adId: number) {
     this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
-      console.log('delete update to favorite', x);
     }),
       // tslint:disable-next-line:no-unused-expression
       (error) => {
-        console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }

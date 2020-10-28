@@ -80,7 +80,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
-      console.log(this.categoriesGroup);
     });
     this.displaySideBarSubscription = this.helpers
       .getDisplaySideBar()
@@ -126,7 +125,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getUser(): void {
     this.userService.getUser().subscribe(
       (user) => {
-        console.log(user);
         if (user.bussinesType === 'PRIVATE') {
           this.privateUser = true;
         } else {
@@ -142,7 +140,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           localStorage.setItem(AuthConst.userId, user.id.toString());
         }
       },
-      (error) => console.log('User not logged in')
+      (error) =>
     );
   }
 

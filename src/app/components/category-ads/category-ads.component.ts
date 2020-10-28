@@ -48,7 +48,6 @@ export class CategoryAdsComponent implements OnInit {
       this.adsService.getAdsByGroupId(params.groupId, this.pageNumber).subscribe(
         response => {
           this.ads = response;
-          console.log(response, 'category ads');
           this.token = localStorage.getItem(AuthConst.token);
           if (this.token) {
             this.getFavoriteAds(Number(localStorage.getItem(AuthConst.userId)));
@@ -176,7 +175,6 @@ export class CategoryAdsComponent implements OnInit {
     this.userService.getFavourites(userId).subscribe((x) => {
       this.favoriteAds = x;
       this.numberOfFavorites = x.length;
-      console.log(this.numberOfFavorites, ' numberonClick')
       // Replace objects between two arrays.
       this.favAds = this.ads.map(
         (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
@@ -191,23 +189,19 @@ export class CategoryAdsComponent implements OnInit {
       userId: Number(localStorage.getItem(AuthConst.userId))
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      console.log('add update to favorite', x);
       this.raiseAdNumber();
     }),
       (error) => {
-        console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
 
   removeFromWishlist(adId: number) {
     this.userService.deleteUserFavourite(adId, Number(localStorage.getItem(AuthConst.userId))).subscribe((x) => {
-      console.log('delete update to favorite', x);
       this.downAdNumber();
     }),
       // tslint:disable-next-line:no-unused-expression
       (error) => {
-        console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }

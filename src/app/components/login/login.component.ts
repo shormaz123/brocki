@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
         if (response) {
           localStorage.setItem(AuthConst.roleName, response.roleName);
           localStorage.setItem(AuthConst.token, response.token);
-          console.log(response);
           this.helpers.$loginName.next(response.token);
         }
         this.router.navigate(['/site']);
@@ -49,7 +48,6 @@ export class LoginComponent implements OnInit {
         this.errorBoolean = true;
         setTimeout(() => (this.errorBoolean = false), 2000);
         this.errorMessage = error.message;
-        console.log(this.errorMessage);
       }
     );
   }

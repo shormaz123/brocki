@@ -37,20 +37,16 @@ export class FavoritesComponent implements OnInit {
       userId: this.userId,
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      console.log('add update to favorite', x);
     }),
       (error) => {
-        console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
   }
 
   removeFromWishlist(adId: number, i: any) {
     this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
-      console.log('delete update to favorite', x);
     }),
       (error) => {
-        console.log('not delete to favorite');
       };
     this.favoriteAds.splice(i, 1);
     this.helpersService.$numOfFavs.next();

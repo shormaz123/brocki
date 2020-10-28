@@ -22,7 +22,6 @@ export class ForgotPasswordComponent implements OnInit {
   submit() {
     this.authService.resetPassword(this.email).subscribe(
       (response) => {
-        console.log(response);
         this.toastr.success('New password has been sent to your email!');
         this.router.navigate(['/site']);
       },
@@ -31,7 +30,6 @@ export class ForgotPasswordComponent implements OnInit {
         if (error.status === 200) {
 
         }
-        console.log(error.status);
       }
     );
   }
