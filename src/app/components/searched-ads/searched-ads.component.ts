@@ -15,7 +15,7 @@ import { AdsService } from '../../@core/services/ads.service';
 export class SearchedAdsComponent implements OnInit {
 
   pageNumber = 1;
-  disableButton = true;
+  disableButton = false;
   ads;
   token;
   favAds: Ads[];
@@ -64,6 +64,8 @@ export class SearchedAdsComponent implements OnInit {
           }
           if (Object.keys(this.ads).length !== 12) {
             this.disableButton = false;
+          } else {
+            this.disableButton = true;
           }
         },
         (error) => {
