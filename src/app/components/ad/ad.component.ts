@@ -82,7 +82,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   adminBoolean: boolean;
   displaySideNav = true;
   mailBoolean = false;
-  email: boolean = false;
+  email = false;
   useKeyborad = true;
   favoriteAds: Ads[];
   numberOfFavs: Subscription;
@@ -176,7 +176,7 @@ export class AdComponent implements OnInit, AfterViewInit {
 
   enableScrolling() {
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function () {};
+    window.onscroll = function() {};
   }
 
   getNewAd(id: number) {
@@ -187,7 +187,7 @@ export class AdComponent implements OnInit, AfterViewInit {
         this.userSellerId = response.userId;
         this.ad = response;
         this.adGroupId = response.adsGroupId;
-        console.log(response);
+        console.log(response, 'trenutni oglas');
         this.allOfreviewer = true;
         this.adsService
           .getAdsByGroupId(this.adGroupId, this.paginationNumber)
@@ -196,10 +196,16 @@ export class AdComponent implements OnInit, AfterViewInit {
               this.categoryImagesAvailable = false;
             } else {
               if (this.token) {
+                for (var i = 0; i < this.favoriteAds.length; i++) {
+                  if (this.favoriteAds[i].id === this.ad.id) {
+                      this.ad.favourite = true;
+                  }
+                }
                 this.allAdsByCategory = x;
                 this.adsByCategory = this.allAdsByCategory.map(
                   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
                 );
+
               } else {
                 this.categoryImagesAvailable = true;
                 this.adsByCategory = x;
@@ -216,7 +222,7 @@ export class AdComponent implements OnInit, AfterViewInit {
             big: picture,
           }
           );
-          console.log(this.galleryImages)
+          console.log(this.galleryImages);
         }
 
         this.userService.getUserById(this.userSellerId).subscribe((x) => {
@@ -268,6 +274,20 @@ export class AdComponent implements OnInit, AfterViewInit {
     }
   }
 
+  favoriteCategoryAds(id: number) {
+
+  }
+
+  favoriteUserAds() {
+    if (this.token) {
+      this.adsByUser = this.allAdsByUser.map(
+        (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+      );
+    } else {
+      this.usersImagesAvailabe = true;
+    }
+  }
+
   getUserAndFavAd() {
     this.userService
       .getFavourites(Number(localStorage.getItem('brocki_id')))
@@ -299,6 +319,22 @@ export class AdComponent implements OnInit, AfterViewInit {
         console.log('not to favorite');
       };
     this.helpersService.$numOfFavs.next();
+    if (this.token) {
+      for (var i in this.adsByCategory) {
+        if (this.adsByCategory[i].id == adId) {
+          this.adsByCategory[i].favourite = true;
+          this.allAdsByCategory = [...this.adsByCategory]
+           break; //Stop this loop, we found it!
+        }
+      }
+      for (var i in this.adsByUser) {
+        if (this.adsByUser[i].id == adId) {
+          this.adsByUser[i].favourite = true;
+          this.adsByUser = [...this.adsByUser]
+           break; //Stop this loop, we found it!
+        }
+      }
+    }
   }
 
   removeFromWishlist(adId: number) {
@@ -309,7 +345,24 @@ export class AdComponent implements OnInit, AfterViewInit {
         console.log('not delete to favorite');
       };
     this.helpersService.$numOfFavs.next();
+    if (this.token) {
+      for (var i in this.adsByCategory) {
+        if (this.adsByCategory[i].id == adId) {
+          this.adsByCategory[i].favourite = false;
+          this.allAdsByCategory = [...this.adsByCategory]
+           break; //Stop this loop, we found it!
+        }
+      }
+      for (var i in this.adsByUser) {
+        if (this.adsByUser[i].id == adId) {
+          this.adsByUser[i].favourite = false;
+          this.adsByUser = [...this.adsByUser]
+           break; //Stop this loop, we found it!
+        }
+      }
+    }
   }
+
 
   goToFaceBook() {
     document
