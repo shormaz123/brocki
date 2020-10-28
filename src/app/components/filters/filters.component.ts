@@ -49,8 +49,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
     },
   };
 
-
-
   fixedPrice = false;
   hasImage = false;
   freeDelivery = false;
@@ -97,7 +95,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
     private router: Router,
     private translateBackend: TranslateServiceRest,
     private translateService: TranslateService,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {
     this.subscriptionLang = this.translateBackend
       .getLanguage()
@@ -119,10 +117,10 @@ export class FiltersComponent implements OnInit, OnDestroy {
         this.currentLang = message;
       });
 
-      this.filterForm = this.fb.group({
-        minPrice: ['', [Validators.required]],
-        maxPrice: ['', [Validators.required]],
-      });
+    this.filterForm = this.fb.group({
+      minPrice: ['', [Validators.required]],
+      maxPrice: ['', [Validators.required]],
+    });
   }
 
   ngOnDestroy() {
@@ -178,21 +176,21 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.region = event.target.value;
   }
 
-  minPrice(min:string){
+  minPrice(min: string) {
     this.fromPrice = Number(min);
-    if(this.fromPrice > this.toPrice){
+    if (this.fromPrice > this.toPrice) {
       this.toPrice = 1000000;
       this.filterForm.controls.maxPrice.patchValue(this.toPrice);
-    }else if(this.fromPrice < this.toPrice){
+    } else if (this.fromPrice < this.toPrice) {
       this.fromPrice;
     }
   }
 
-  maxPrice(max:string){
+  maxPrice(max: string) {
     this.toPrice = Number(max);
-    if(this.toPrice < this.fromPrice){
-      return this.toPrice = 1000000;
-    }else if(this.fromPrice < this.toPrice){
+    if (this.toPrice < this.fromPrice) {
+      return (this.toPrice = 1000000);
+    } else if (this.fromPrice < this.toPrice) {
       return this.fromPrice;
     }
   }
@@ -223,11 +221,12 @@ export class FiltersComponent implements OnInit, OnDestroy {
         if (Object.keys(this.ads).length === 0) {
           this.error = true;
           setTimeout(() => (this.error = false), 5000);
-          this.errorMessage = this.translateService.instant('translate.noAvailableAds');
+          this.errorMessage = this.translateService.instant(
+            'translate.noAvailableAds'
+          );
         } else {
           this.fillAds = res;
           this.hideFilter = true;
-
         }
       });
     }
