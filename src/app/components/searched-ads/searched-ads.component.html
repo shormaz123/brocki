@@ -2,6 +2,10 @@
     <div class="underContainer">
         <span class="title" style="padding-bottom: 40px">{{ 'translate.searchedAds' | translate }}</span>
     </div>
+    <div class="noAdsContainer" *ngIf="ads.length === 0">
+        <h1>{{ 'translate.noAvailableAds' | translate }}
+        </h1>
+    </div>
     <div class="bodySuggestions2">
         <div style="
         padding: '5px';
