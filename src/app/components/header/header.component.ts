@@ -140,7 +140,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
           localStorage.setItem(AuthConst.userId, user.id.toString());
         }
       },
-      (error) =>
     );
   }
 
