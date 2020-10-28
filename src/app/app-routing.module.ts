@@ -104,6 +104,7 @@ const routes: Routes = [
       {
         path: 'favorite',
         component: FavoritesComponent,
+        canActivate: [AuthGuardService],
       },
       {
         path: 'update-info-private',
