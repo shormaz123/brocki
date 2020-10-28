@@ -11,7 +11,7 @@
     <div *ngFor="let ad of soldProducts[0]; let i = index" class="card">
       <div class="image">
         <div class="image__wrapper">
-          <img class="image__sold" [src]="ad.image[0]" (click)="rrr(ad)"/>
+          <img class="image__sold" [src]="ad.image[0]" />
         </div>
       </div>
       <div class="text">
@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-  <ng-container *ngIf="soldProducts[0].length != 0">
+  <ng-container *ngIf="soldProducts[0] !== []">
     <div class="increaseButtonClass" *ngIf="disableButton">
       <button class="increaseButton" mat-button (click)="increaseShow()">
         {{ 'translate.showMore' | translate }}

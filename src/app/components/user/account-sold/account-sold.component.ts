@@ -1,8 +1,8 @@
 import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { AdsService } from '../../../@core/services/ads.service';
 import { UserService } from '../../../@core/services/user.service';
-import { ActivatedRoute} from '@angular/router';
-import{ Ads} from '../../../shared/models/ads.model';
+import { ActivatedRoute } from '@angular/router';
+import { Ads } from '../../../shared/models/ads.model';
 
 @Component({
   selector: 'app-account-sold',
@@ -18,12 +18,17 @@ export class AccountSoldComponent implements OnChanges {
   status: string;
   userId: number;
   disableButton: boolean = true;
-  soldAds:Ads[]=[];
+  soldAds: Ads[] = [];
 
-  constructor(private adsService: AdsService, private route: ActivatedRoute, private userServuce: UserService) {}
+  constructor(
+    private adsService: AdsService,
+    private route: ActivatedRoute,
+    private userServuce: UserService
+  ) {}
 
-  ngOnChanges(changes: SimpleChanges) {this.userId = Number(this.route.snapshot.paramMap.get('id'))}
-                  
+  ngOnChanges(changes: SimpleChanges) {
+    this.userId = Number(this.route.snapshot.paramMap.get('id'));
+  }
 
   style() {
     if (this.soldProducts[0] > 0) {
@@ -33,27 +38,8 @@ export class AccountSoldComponent implements OnChanges {
     }
   }
 
-  rrr(a:any){
-    // const ads = new Ads();
-    // ads.adsDate = null;
-    // ads.adsLocation = null;
-    // ads.adsGroupId = null;
-    // ads.adsSubGroupId = null;
-    // ads.description = null;
-    // ads.favourite = null;
-    // ads.id = a.id;
-    // ads.image = null;
-    // ads.price = null;
-    // ads.productName = null;
-    // ads.status = "ACTIVE";
-    // ads.userId = null;
-    // ads.tags = null;
-    // this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() =>{
-    // });
-  }
-
   increaseShow() {
-    (this.paginationNumber += 1), (this.status = 'SOLD'), (this.userId);
+    (this.paginationNumber += 1), (this.status = 'SOLD'), this.userId;
     this.adsService
       .getSoldAdsPagination(
         this.userId,
@@ -69,11 +55,10 @@ export class AccountSoldComponent implements OnChanges {
         if (response.length !== 8) {
           this.disableButton = false;
         }
-       
-        if(this.soldAds .length == 0){
-          this.disableButton = false;
-        } 
 
+        if (this.soldAds.length == 0) {
+          this.disableButton = false;
+        }
       });
   }
 
