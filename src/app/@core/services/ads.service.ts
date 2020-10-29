@@ -50,10 +50,6 @@ export class AdsService {
       params = params.append('adssubgroup', data.subCategory.toString());
     }
 
-    if (data.fromPrice) {
-      params = params.append('fromPrice', data.fromPrice.toString());
-    }
-
     if (data.toPrice) {
       params = params.append('toPrice', data.toPrice.toString());
     }
@@ -77,6 +73,7 @@ export class AdsService {
     //   params = params.append('urgentSales', data.urgentSales.toString());
     // }
 
+    params = params.append('fromPrice', data.fromPrice.toString());
     params = params.append('pageNumber', data.pageNumber.toString());
     params = params.append('pageSize', data.pageSize.toString());
 
