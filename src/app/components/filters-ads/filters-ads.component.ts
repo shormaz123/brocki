@@ -74,14 +74,11 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
     this.pageNumber += 1;
 
     const filteredAds = {
-      region: this.filterAd.region,
+      location: this.filterAd.location,
       fromPrice: this.filterAd.fromPrice,
       toPrice: this.filterAd.toPrice,
       fixedPrice: this.filterAd.fixedPrice,
       hasImage: this.filterAd.hasImage,
-      freeDelivery: this.filterAd.freeDelivery,
-      productWarranty: this.filterAd.productWarranty,
-      urgentSales: this.filterAd.urgentSales,
       adsGroupId: this.filterAd.adsGroupId,
       subCategory: this.filterAd.subCategory,
       pageNumber: this.pageNumber,

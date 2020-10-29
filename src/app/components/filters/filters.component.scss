@@ -1,232 +1,240 @@
 @import '../../../scss/variables';
 * {
-  color: $darkgrey;
+    color: $darkgrey;
 }
 
 .container {
-  padding-top: 50px;
-  width: 100vw;
-  background-color: $lightgrey;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  .underContainer {
-    width: 1000px;
-    height: 90%;
+    padding-top: 50px;
+    width: 100vw;
+    background-color: $lightgrey;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
-    .title {
-      font-size: 24pt;
+    .underContainer {
+        width: 1000px;
+        height: 90%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .title {
+            font-size: 24pt;
+        }
     }
-  }
 }
 
 img {
-  height: 32px;
-  width: 32px;
-  margin-right: 10px;
+    height: 32px;
+    width: 32px;
+    margin-right: 10px;
 }
 
 .checkbox {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  span {
-    padding-left: 10px;
-  }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    span {
+        padding-left: 10px;
+    }
 }
 
 mat-checkbox {
-  width: 30px !important;
-  height: 34px !important;
+    width: 30px !important;
+    height: 34px !important;
 }
 
 input {
-  height: 25px;
-  border: 1px solid darkgray;
-  border-radius: 15px;
-  padding-left: 10px;
-  font-size: 20px;
+    height: 25px;
+    border: 1px solid darkgray;
+    border-radius: 15px;
+    padding-left: 10px;
+    font-size: 20px;
 }
 
 .location {
-  display: flex;
-  align-items: center;
-  width: 500px;
-  input {
-    width: 86%;
-  }
-
-  select {
-    width: 100%;
-  }
+    display: flex;
+    align-items: center;
+    width: 500px;
+    input {
+        width: 100%;
+        height: 40px;
+        border: 1px solid #e6e6e6;
+        border-radius: 25px;
+        padding-left: 10px;
+        font-size: large;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: "";
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-size: 20px;
+        background-position: 425px 9px;
+        color: #8c8c8c;
+    }
+    select {
+        width: 100%;
+    }
 }
 
 .amount {
-  display: flex;
-  align-items: center;
-  width: 500px;
-  input {
-    width: 40%;
-  }
+    display: flex;
+    align-items: center;
+    width: 500px;
+    input {
+        width: 40%;
+    }
 }
 
 .buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  width: 500px;
-  padding-left: 68px;
-  button {
-    background-color: $lightgrey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 500px;
+    padding-left: 68px;
+    button {
+        background-color: $lightgrey;
+        height: 35px;
+        width: 20%;
+        border: 1px solid;
+        border-radius: 15px;
+        color: $darkgrey;
+        font-size: 17px;
+        outline: none;
+        cursor: pointer;
+    }
+}
+
+.checkboxes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width: 500px;
+}
+
+.confirmButton {
+    background-color: $red;
     height: 35px;
     width: 20%;
     border: 1px solid;
     border-radius: 15px;
-    color: $darkgrey;
+    color: white;
     font-size: 17px;
     outline: none;
     cursor: pointer;
-  }
-}
-
-.checkboxes {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  width: 500px;
-}
-
-.confirmButton {
-  background-color: $red;
-  height: 35px;
-  width: 20%;
-  border: 1px solid;
-  border-radius: 15px;
-  color: white;
-  font-size: 17px;
-  outline: none;
-  cursor: pointer;
-  &:hover {
-    -ms-transform: scale(1.5);
-    /* IE 9 */
-    -webkit-transform: scale(1.5);
-    /* Safari 3-8 */
-    transform: scale(1.1);
-  }
+    &:hover {
+        -ms-transform: scale(1.5);
+        /* IE 9 */
+        -webkit-transform: scale(1.5);
+        /* Safari 3-8 */
+        transform: scale(1.1);
+    }
 }
 
 .resetButton {
-  border-radius: 20px;
-  height: 30px;
-  width: 120px;
-  cursor: pointer;
-  &:hover {
-    border-color: $red;
-    color: $red;
-  }
+    border-radius: 20px;
+    height: 30px;
+    width: 120px;
+    cursor: pointer;
+    &:hover {
+        border-color: $red;
+        color: $red;
+    }
 }
 
 .selected {
-  background-color: $red !important;
-  color: white !important;
+    background-color: $red !important;
+    color: white !important;
 }
 
 .deselected {
-  background-color: $lightgrey !important;
-  color: $darkgrey !important;
+    background-color: $lightgrey !important;
+    color: $darkgrey !important;
 }
 
 select {
-  width: 81%;
-  height: 40px;
-  border: 1px solid$border-gray;
-  border-radius: 25px;
-  padding-left: 10px;
-  font-size: large;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: '';
-  cursor: pointer;
-  background-image: url('../../../assets/images/update-info-bussines/arrow menu.png');
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position: 425px 9px;
-  color: $text-gray;
+    width: 81%;
+    height: 40px;
+    border: 1px solid$border-gray;
+    border-radius: 25px;
+    padding-left: 10px;
+    font-size: large;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    cursor: pointer;
+    background-image: url('../../../assets/images/update-info-bussines/arrow menu.png');
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 425px 9px;
+    color: $text-gray;
 }
 
 .select-arrow {
-  width: 81%;
-  height: 40px;
-  border-color: $border-gray;
-  border-radius: 25px;
-  padding-left: 10px;
-  font-size: large;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: '';
-  cursor: pointer;
-  background-image: url('../../../assets/images/update-info-bussines/arrow menu.png');
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position: 468px 9px;
-  color: $text-gray;
+    width: 81%;
+    height: 40px;
+    border-color: $border-gray;
+    border-radius: 25px;
+    padding-left: 10px;
+    font-size: large;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    cursor: pointer;
+    background-image: url('../../../assets/images/update-info-bussines/arrow menu.png');
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 468px 9px;
+    color: $text-gray;
 }
 
 .manualAmount {
-  display: flex;
-  flex-direction: row;
-  padding: 0 0 25px 0;
-  width: 500px;
-  justify-content: space-between;
-
-  &__block {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    width: 250px;
-
-    &--end {
-      justify-content: flex-end;
+    padding: 0 0 25px 0;
+    width: 500px;
+    justify-content: space-between;
+    &__block {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 250px;
+        &--end {
+            justify-content: flex-end;
+        }
     }
-  }
-
-  &__value {
-    background-color: $red;
-    color: $white;
-    padding: 0px 10px;
-    width: 50px;
-    text-align: center;
-    border-radius: 25px;
-    height: 40px;
-    line-height: 40px;
-    margin: 0 15px 0 0;
-  }
-
-  &__input {
-    width: 170px;
-    height: 40px;
-    border-radius: 25px;
-    border: 1px solid $border-gray;
-    color: $text-gray;
-
-    &[type='number'] {
-      -moz-appearance: textfield;
+    &__value {
+        background-color: $red;
+        color: $white;
+        padding: 0px 10px;
+        width: 50px;
+        text-align: center;
+        border-radius: 25px;
+        height: 40px;
+        line-height: 40px;
+        margin: 0 15px 0 0;
     }
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+    &__input {
+        width: 170px;
+        height: 40px;
+        border-radius: 25px;
+        border: 1px solid $border-gray;
+        color: $text-gray;
+        &[type='number'] {
+            -moz-appearance: textfield;
+        }
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
     }
-  }
 }
 
 ::placeholder {
-  color: $text-gray;
+    color: $text-gray;
 }
