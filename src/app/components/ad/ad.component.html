@@ -155,7 +155,7 @@
                 padding: 10px !important;
               ">
                             <div style="background-color: white; cursor: pointer; padding: 10px" class="cardHover">
-                                <div class="image" (click)="getNewAd(adByUser.id)">
+                                <div class="image" [routerLink]="['/ad', adByUser.id]">
                                     <img src="Card" [src]="adByUser.image[0]" />
                                 </div>
                                 <div class="cardBody" [routerLink]="['/ad', adByUser.id]">
@@ -237,7 +237,7 @@
                 style="background-color: white; cursor: pointer; padding: 10px"
                 class="cardHover"
               >
-                <div class="image" (click)="getNewAd(reviewUserActiveAds.id)">
+                <div class="image" [routerLink]="['/ad', reviewUserActiveAds.id]">
                   <img [src]="reviewUserActiveAds.image[0]" />
                 </div>
                 <div
@@ -326,7 +326,7 @@
                 style="background-color: white; cursor: pointer; padding: 10px"
                 class="cardHover"
               >
-                <div class="image" (click)="getNewAd(adByCat.id)">
+                <div class="image" [routerLink]="['/ad', adByCat.id]">
                   <img src="Card" [src]="adByCat.image[0]" />
                 </div>
                 <div class="cardBody" [routerLink]="['/ad', adByCat.id]">
