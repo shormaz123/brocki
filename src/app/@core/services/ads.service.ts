@@ -22,7 +22,7 @@ import { AdsParam } from '../../shared/models/adParams.model';
 import { FilterAds } from '../../shared/models/filterAds.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class AdsService {
   private readonly baseUrl = environment.apiUrlBase;
