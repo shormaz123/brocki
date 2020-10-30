@@ -22,6 +22,7 @@ export class EmailComponent implements OnInit {
   email: boolean = false;
   toSender: boolean = false;
   language: string;
+  adLink: string;
 
   constructor(
     private fb: FormBuilder,
@@ -32,6 +33,8 @@ export class EmailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.adForEmail,'adforeamil')
+    this.adLink = document.URL;
     this.emailForm = this.fb.group({
       name: ['', [Validators.required]],
       email: [
@@ -91,7 +94,7 @@ export class EmailComponent implements OnInit {
 
     if (this.adForEmail) {
       email.ad = this.adForEmail;
-      email.adlink = `https://minibrocki-fe-stage.herokuapp.com/ad/${this.adForEmail.id}`;
+      email.adlink = this.adLink;
     }
     email.name = this.emailForm.value.name;
     email.email = this.emailForm.value.email;
