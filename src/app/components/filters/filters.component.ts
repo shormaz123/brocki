@@ -89,6 +89,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   pageSize: number = 12;
 
   language: string;
+  location: string;
 
   constructor(
     private adsService: AdsService,
@@ -202,14 +203,11 @@ export class FiltersComponent implements OnInit, OnDestroy {
       setTimeout(() => (this.error = false), 5000);
     } else {
       this.filterAd = {
-        region: this.region,
+        location: this.location,
         fromPrice: this.fromPrice,
         toPrice: this.toPrice,
         fixedPrice: this.fixedPrice,
         hasImage: this.hasImage,
-        freeDelivery: this.freeDelivery,
-        productWarranty: this.productWarranty,
-        urgentSales: this.urgentSales,
         adsGroupId: this.category.id,
         subCategory: this.subCategory.id,
         pageNumber: this.pageNumber,

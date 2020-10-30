@@ -38,8 +38,8 @@ export class AdsService {
 
     params = params.append('status', 'ACTIVE'.toString());
 
-    if (data.region) {
-      params = params.append('region', data.region.toString());
+    if (data.location) {
+      params = params.append('location', data.location.toString());
     }
 
     if (data.adsGroupId) {
@@ -58,20 +58,20 @@ export class AdsService {
       params = params.append('fixedPrice', data.fixedPrice.toString());
     }
 
-    if (data.freeDelivery) {
-      params = params.append('freeDelivery', data.freeDelivery.toString());
-    }
+    // if (data.freeDelivery) {
+    //   params = params.append('freeDelivery', data.freeDelivery.toString());
+    // }
 
-    if (data.productWarranty) {
-      params = params.append(
-        'productWarranty',
-        data.productWarranty.toString()
-      );
-    }
+    // if (data.productWarranty) {
+    //   params = params.append(
+    //     'productWarranty',
+    //     data.productWarranty.toString()
+    //   );
+    // }
 
-    if (data.urgentSales) {
-      params = params.append('urgentSales', data.urgentSales.toString());
-    }
+    // if (data.urgentSales) {
+    //   params = params.append('urgentSales', data.urgentSales.toString());
+    // }
 
     params = params.append('fromPrice', data.fromPrice.toString());
     params = params.append('pageNumber', data.pageNumber.toString());

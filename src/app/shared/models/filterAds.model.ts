@@ -1,12 +1,12 @@
 export interface FilterAds {
-  region: string;
   fromPrice?: number;
   toPrice?: number;
   fixedPrice?: boolean;
   hasImage: boolean;
-  freeDelivery: boolean;
-  productWarranty: boolean;
-  urgentSales?: boolean;
+  location: string;
+  // freeDelivery: boolean;
+  // productWarranty: boolean;
+  // urgentSales?: boolean;
   adsGroupId: any;
   subCategory: number;
   pageNumber: number;

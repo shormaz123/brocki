@@ -1,9 +1,10 @@
 <div class="container" *ngIf="!hideFilter">
-  <div class="underContainer">
-    <span class="title" style="padding-bottom: 40px">{{
+    <div class="underContainer">
+        <span class="title" style="padding-bottom: 40px">{{
       'translate.filters' | translate
     }}</span>
-    <div class="location" style="padding-bottom: 25px">
+        <!-- <div class="location" style="padding-bottom: 25px">
+
       <img src="../../../assets/images/filters/location icon.png" />
       <select
         name="contactMethod"
@@ -17,14 +18,14 @@
           {{ region }}
         </option>
       </select>
-    </div>
-    <div class="location" style="padding-bottom: 25px">
-      <img src="../../../assets/icon3 2.png" />
-      <select
-        name="contactMethod"
-        class="form-control"
-        (change)="findCategory($event)"
-      >
+    </div> -->
+        <div class="location" style="padding-bottom: 25px">
+            <img src="../../../assets/images/filters/location icon.png" />
+            <input type="text" [(ngModel)]="location" class="form-control">
+        </div>
+        <div class="location" style="padding-bottom: 25px">
+            <img src="../../../assets/icon3 2.png" />
+            <select name="contactMethod" class="form-control" (change)="findCategory($event)">
         <option value="">
           {{ 'translate.selectCategory' | translate }}
         </option>
@@ -32,14 +33,10 @@
           {{ category.groupName[currentLang] }}
         </option>
       </select>
-    </div>
-    <div class="location" style="padding-bottom: 25px">
-      <img src="../../../assets/icon3 2.png" />
-      <select
-        name="contactMethod"
-        class="form-control"
-        (change)="findSubCategory($event)"
-      >
+        </div>
+        <div class="location" style="padding-bottom: 25px">
+            <img src="../../../assets/icon3 2.png" />
+            <select name="contactMethod" class="form-control" (change)="findSubCategory($event)">
         <option value="">
           {{ 'translate.selectSubCategory' | translate }}
         </option>
@@ -50,49 +47,31 @@
           {{ subCategory.subGroupName[currentLang] }}
         </option>
       </select>
-    </div>
-    <form class="manualAmount" [formGroup]="filterForm">
-      <div class="manualAmount__block">
-        <div class="manualAmount__value">min</div>
-        <div>
-          <input class="manualAmount__input" formControlName="minPrice" #min (keyup)="minPrice(min.value)" type="number" onKeyPress="if(this.value.length==6) return false;" >
         </div>
-      </div>
-      <div class="manualAmount__block manualAmount__block--end">
-        <div class="manualAmount__value">max</div>
-        <div>
-          <input class="manualAmount__input"  formControlName="maxPrice" #max (keyup)="maxPrice(max.value)" type="number" onKeyPress="if(this.value.length==6) return false;">
-        </div>
-      </div>
-    </form>
+        <form class="manualAmount" [formGroup]="filterForm">
+            <div class="manualAmount__block">
+                <div class="manualAmount__value">min</div>
+                <div>
+                    <input class="manualAmount__input" formControlName="minPrice" #min (keyup)="minPrice(min.value)" type="number" onKeyPress="if(this.value.length==6) return false;">
+                </div>
+            </div>
+            <div class="manualAmount__block manualAmount__block--end">
+                <div class="manualAmount__value">max</div>
+                <div>
+                    <input class="manualAmount__input" formControlName="maxPrice" #max (keyup)="maxPrice(max.value)" type="number" onKeyPress="if(this.value.length==6) return false;">
+                </div>
+            </div>
+        </form>
 
-    <div class="amount" style="padding-bottom: 25px">
-      <ng5-slider
-        [(value)]="fromPrice"
-        [(highValue)]="toPrice"
-        [options]="options"
-      ></ng5-slider>
-    </div>
-    <button
-      class="confirmButton"
-      style="margin-bottom: 50px"
-      (click)="confirmButton()"
-    >
+        <div class="amount" style="padding-bottom: 25px">
+            <ng5-slider [(value)]="fromPrice" [(highValue)]="toPrice" [options]="options"></ng5-slider>
+        </div>
+        <button class="confirmButton" style="margin-bottom: 50px" (click)="confirmButton()">
       {{ 'translate.confirm' | translate }}
     </button>
-  </div>
-  <nz-alert
-    nzType="error"
-    [nzMessage]="errorMessage"
-    nzShowIcon
-    *ngIf="error"
-    style="margin-bottom: 25px"
-  ></nz-alert>
+    </div>
+    <nz-alert nzType="error" [nzMessage]="errorMessage" nzShowIcon *ngIf="error" style="margin-bottom: 25px"></nz-alert>
 
-  <!-- <button class="resetButton">Reset filters</button> -->
+    <!-- <button class="resetButton">Reset filters</button> -->
 </div>
-<app-filters-ads
-  *ngIf="hideFilter"
-  [ads]="fillAds"
-  [filterAd]="filterAd"
-></app-filters-ads>
+<app-filters-ads *ngIf="hideFilter" [ads]="fillAds" [filterAd]="filterAd"></app-filters-ads>
