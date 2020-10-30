@@ -1,7 +1,6 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-console.log('BROCKI_API_URL', process.env.BROCKI_API_URL);
 export const environment = {
   production: false,
   apiUrlBase: process.env.BROCKI_API_URL,
