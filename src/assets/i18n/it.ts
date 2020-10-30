@@ -205,6 +205,7 @@ export const it = {
     addressAd: 'Indirizzo',
     addressNumberAd: 'Numero',
     addressCodePostal: 'Codice postale',
-    addressPlace: 'Posto'
+    addressPlace: 'Posto',
+    location: 'Posizione'
   },
 };

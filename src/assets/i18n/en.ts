@@ -203,6 +203,7 @@ export const en = {
     addressAd: 'Address',
     addressNumberAd: 'Number',
     addressCodePostal: 'Postcode',
-    addressPlace: 'Place'
+    addressPlace: 'Place',
+    location: 'Location'
   },
 };

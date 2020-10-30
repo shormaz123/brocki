@@ -209,6 +209,7 @@ export const de = {
     addressAd: 'Adresse',
     addressNumberAd: 'Nr.',
     addressCodePostal: 'PLZ',
-    addressPlace: 'Ort'
+    addressPlace: 'Ort',
+    location: 'Lage'
   },
 };

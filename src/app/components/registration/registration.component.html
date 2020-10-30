@@ -43,34 +43,34 @@
       <div class="input">
         <div class="inputItem">
           <label>{{ 'translate.email' | translate }}</label>
-          <input formControlName="email" maxlength="30" />
+          <input formControlName="email" maxlength="45" />
         </div>
         <div class="inputItem2">
           <label>{{ 'translate.password' | translate }} </label>
-          <input formControlName="password" type="password" />
+          <input formControlName="password" type="password" maxlength="30" />
         </div>
         <div class="inputItem3">
           <label *ngIf="private">{{ 'translate.username' | translate }}</label>
           <label *ngIf="business">{{
             'translate.companyName' | translate
           }}</label>
-          <input formControlName="userName" maxlength="20" />
+          <input formControlName="userName" maxlength="35" />
         </div>
         <div class="inputItem">
           <label>{{ 'translate.addressAd' | translate }}</label>
-          <input input formControlName="street" type="text" />
+          <input input formControlName="street" type="text" maxlength="50" />
         </div>
         <div class="inputItem">
           <label>{{ 'translate.addressNumberAd' | translate }}</label>
-          <input formControlName="houseNumber" />
+          <input formControlName="houseNumber" maxlength="10" />
         </div>
         <div class="inputItem">
           <label>{{ 'translate.addressCodePostal' | translate }}</label>
-          <input formControlName="postalNumber" />
+          <input formControlName="postalNumber" maxlength="10" />
         </div>
         <div class="inputItem">
           <label>{{ 'translate.addressPlace' | translate }}</label>
-          <input formControlName="city" type="text" />
+          <input formControlName="city" type="text" maxlength="30" />
         </div>
         <!-- <div class="inputItem3">
                     <label>{{ 'translate.typeAndSelectAddress' | translate }}:</label>

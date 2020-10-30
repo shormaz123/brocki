@@ -206,6 +206,7 @@ export const fr = {
     addressAd: 'Adresse',
     addressNumberAd: 'No',
     addressCodePostal: 'Code postal',
-    addressPlace: 'Lieu'
+    addressPlace: 'Lieu',
+    location: 'Emplacement'
   },
 };

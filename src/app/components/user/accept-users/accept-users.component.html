@@ -33,13 +33,11 @@
               {{ user.city }}
             </div>
           </div>
-          <div class="card__label">
+          <div class="card__label card__label--addressHeight">
             <div class="card__label-title">
-              {{ 'translate.canton' | translate }}
+              {{ 'translate.address' | translate }}
             </div>
-            <div class="card__label-text">
-              {{ user.region }}
-            </div>
+            <div class="card__label-text">{{ user.address }}</div>
           </div>
           <div class="card__buttons">
             <button class="card__accept" (click)="acceptUser(user, i)">
