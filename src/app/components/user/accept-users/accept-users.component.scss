@@ -1,152 +1,140 @@
 @import '../../../../scss/variables';
 @import '../../../../scss/mixin.scss';
-
 .container {
-  background-color: $lightgrey;
-  width: 100vw;
+    background-color: $lightgrey;
+    width: 100vw;
 }
 
 .accept-ads {
-  width: 1280px;
-  margin: 0 auto;
-  padding: 60px 0 90px;
-  font-size: 20px;
-
-  @include rwd(1600) {
-    width: 985px;
-  }
-
-  &__title {
-    font-size: 24pt;
-    padding-bottom: 50px;
-    text-align: center;
-  }
+    width: 1280px;
+    margin: 0 auto;
+    padding: 60px 0 90px;
+    font-size: 20px;
+    @include rwd(1600) {
+        width: 985px;
+    }
+    &__title {
+        font-size: 24pt;
+        padding-bottom: 50px;
+        text-align: center;
+    }
 }
 
 .wrapper-card {
-  width: 1280px;
-  display: flex;
-  flex-wrap: wrap;
-  @include rwd(1600) {
-    width: 985px;
-  }
+    width: 1280px;
+    display: flex;
+    flex-wrap: wrap;
+    @include rwd(1600) {
+        width: 985px;
+    }
 }
 
 .message {
-  height: 270px;
-  color: $red;
-  font-weight: 500;
+    height: 270px;
+    color: $red;
+    font-weight: 500;
 }
 
 .card {
-  background-color: $white;
-  width: 314px;
-  height: auto;
-  padding: 10px 7px;
-  margin: 3px 3px;
-  @include rwd(1600) {
-    width: 322px;
+    background-color: $white;
+    width: 314px;
+    height: auto;
+    padding: 10px 7px;
     margin: 3px 3px;
-  }
-
-  &:hover .card__label {
-    background-color: #e6e6e6;
-    color: $darkgrey;
-  }
-  &__name {
-    width: 280px;
-    font-size: 20px;
-    font-weight: bolder;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-    padding: 15px 0 10px;
-  }
-
-  &__line {
-    height: 1px;
-    width: 70%;
-    border-width: 0;
-    margin: 5px auto;
-    background-color: #d62b1f;
-  }
-
-  &__label {
-    text-align: center;
-    padding: 8px;
-    margin: 2px 0;
-    background-color: #f5f5f5;
-    border-radius: 15px;
-    height: 87px;
-
-    &--addressHeight {
-      height: 150px;
+    @include rwd(1600) {
+        width: 322px;
+        margin: 3px 3px;
     }
-  }
-
-  &__label-title {
-    font-size: 18px;
-    font-weight: bolder;
-    text-transform: capitalize;
-    word-break: break-word;
-    white-space: pre-line;
-    text-align: center;
-  }
-
-  &__label-text {
-    font-size: 15px;
-    margin: 0 0 0 6px;
-    text-align: justify;
-    word-break: break-word;
-    white-space: pre-line;
-  }
-
-  &__buttons {
-    width: 280px;
-    margin: 35px 0 10px;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__accept {
-    width: 120px;
-    height: 33px;
-    background-color: $accept;
-    border: none;
-    border-radius: 15px;
-    color: $white;
-    cursor: pointer;
-  }
-
-  &__decline {
-    width: 120px;
-    height: 33px;
-    background-color: $red;
-    border: none;
-    border-radius: 15px;
-    color: $white;
-    cursor: pointer;
-  }
+    &:hover .card__label {
+        background-color: #e6e6e6;
+        color: $darkgrey;
+    }
+    &__name {
+        width: 280px;
+        font-size: 20px;
+        font-weight: bolder;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+        padding: 15px 0 10px;
+    }
+    &__line {
+        height: 1px;
+        width: 70%;
+        border-width: 0;
+        margin: 5px auto;
+        background-color: #d62b1f;
+    }
+    &__label {
+        text-align: center;
+        padding: 8px;
+        margin: 2px 0;
+        background-color: #f5f5f5;
+        border-radius: 15px;
+        height: 87px;
+        &--addressHeight {
+            height: 150px;
+        }
+    }
+    &__label-title {
+        font-size: 18px;
+        font-weight: bolder;
+        text-transform: capitalize;
+        word-break: break-word;
+        white-space: pre-line;
+        text-align: center;
+    }
+    &__label-text {
+        font-size: 15px;
+        margin: 0 0 0 6px;
+        text-align: justify;
+        word-break: break-word;
+        white-space: pre-line;
+        display: flex;
+        justify-content: center;
+    }
+    &__buttons {
+        width: 280px;
+        margin: 35px 0 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__accept {
+        width: 120px;
+        height: 33px;
+        background-color: $accept;
+        border: none;
+        border-radius: 15px;
+        color: $white;
+        cursor: pointer;
+    }
+    &__decline {
+        width: 120px;
+        height: 33px;
+        background-color: $red;
+        border: none;
+        border-radius: 15px;
+        color: $white;
+        cursor: pointer;
+    }
 }
 
 .cardHover {
-  padding: 5px 10px;
-  box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06),
-    1px 3px 8px rgba(39, 44, 49, 0.03);
-  transition: all 0.5s ease;
-  /* back to normal */
-  &:hover {
     padding: 5px 10px;
-    box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.07),
-      1px 6px 12px rgba(39, 44, 49, 0.04);
-    transition: all 0.4s ease;
-    // transform: translate3D(0, -1px, 0) scale(1.03);
-    // transform: translateX(-50%) translateX(-0.4px) translateY(-50%) translateY(-0.4px);
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    transform: scale(1.05);
-    /* zoom in */
-  }
+    box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
+    transition: all 0.5s ease;
+    /* back to normal */
+    &:hover {
+        padding: 5px 10px;
+        box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.07), 1px 6px 12px rgba(39, 44, 49, 0.04);
+        transition: all 0.4s ease;
+        // transform: translate3D(0, -1px, 0) scale(1.03);
+        // transform: translateX(-50%) translateX(-0.4px) translateY(-50%) translateY(-0.4px);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        transform: scale(1.05);
+        /* zoom in */
+    }
 }
