@@ -1,15 +1,15 @@
-import { Injectable } from "@angular/core";
-import { HttpBaseService } from "./http-base.service";
-import { environment } from "src/environments/environment";
-import { Observable } from "rxjs";
-import { Ads } from "src/app/shared/models/ads.model";
-import { adsGroup } from "src/app/shared/models/adsGroup.model";
-import { adsSubGroup } from "src/app/shared/models/adsSubGroup.model";
-import { User } from "src/app/shared/models/user.model";
-import { CreateAd } from "src/app/shared/models/create-ad.model";
+import { Injectable } from '@angular/core';
+import { HttpBaseService } from './http-base.service';
+import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import { Ads } from '../../shared/models/ads.model';
+import { adsGroup } from '../../shared/models/adsGroup.model';
+import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
+import { User } from '../../shared/models/user.model';
+import { CreateAd } from '../../shared/models/create-ad.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AdsService {
   private readonly baseUrl = environment.apiUrlBase;
@@ -40,7 +40,7 @@ export class AdsService {
     return this.http.post(`${this.baseUrl}/mybrocki/companyimage/${id}`, file);
   }
 
-  //Public Controller
+  // Public Controller
 
   getAddById(id: number): Observable<Ads> {
     return this.http.get(`${this.baseUrl}/mybrocki/ads/${id}`);
