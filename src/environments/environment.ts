@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrlBase: 'https://minibrocki-be-stage.herokuapp.com',
+  apiUrlBase: process.env.API_URL,
 };
 
 /*
