@@ -78,17 +78,28 @@
     margin: 2px 0;
     background-color: #f5f5f5;
     border-radius: 15px;
+    height: 87px;
+
+    &--addressHeight {
+      height: 150px;
+    }
   }
 
   &__label-title {
     font-size: 18px;
     font-weight: bolder;
     text-transform: capitalize;
+    word-break: break-word;
+    white-space: pre-line;
+    text-align: center;
   }
 
   &__label-text {
     font-size: 15px;
     margin: 0 0 0 6px;
+    text-align: justify;
+    word-break: break-word;
+    white-space: pre-line;
   }
 
   &__buttons {
