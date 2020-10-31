@@ -123,90 +123,91 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
     getImage(groupId) {
       switch (groupId) {
         case '1':
-            this.selectedImage = '../../../assets/images/navigation/red/Antiquities & Art.svg'
-            break;
-        case '2':
-          this.selectedImage =
-          '../../../assets/images/navigation/red/knives & tools 2.svg'
+          this.selectedImage = '../../../assets/images/navigation/red/Antiquities & Art.svg'
           break;
-        case '3':
-          this.selectedImage = '../../../assets/images/navigation/red/Commercial.svg'
+      case '2':
+        this.selectedImage =
+        '../../../assets/images/navigation/red/knives & tools 2.svg'
           break;
-            case '4':
-              this.selectedImage = '../../../assets/images/navigation/red/Garden.svg'
-              break;
-          case '5':
-            this.selectedImage = '../../../assets/images/navigation/red/Household.svg'
+      case '3':
+        this.selectedImage = '../../../assets/images/navigation/red/Commercial.svg'
+          break;
+          case '4':
+            this.selectedImage = '../../../assets/images/navigation/red/Garden.svg'
             break;
-          case '6':
-            this.selectedImage = '../../../assets/images/navigation/red/Fashion.svg'
+        case '5':
+          this.selectedImage = '../../../assets/images/navigation/red/Household.svg'
             break;
-              case '27':
-                this.selectedImage = '../../../assets/images/navigation/red/Lifehacks.svg'
+        case '6':
+          this.selectedImage = '../../../assets/images/navigation/red/Fashion.svg'
+            break;
+
+              case '7':
+                this.selectedImage = '../../../assets/images/navigation/red/outdoor & survival v1.svg'
                 break;
-            case '7':
-                this.selectedImage = ''
-                break;
-            case '8':
-              this.selectedImage = '../../../assets/images/navigation/red/IT.svg'
+          case '8':
+            this.selectedImage = '../../../assets/images/navigation/red/IT.svg'
               break;
-                case '9':
-                  this.selectedImage = '../../../assets/images/navigation/red/CD.svg'
+              case '9':
+                this.selectedImage = '../../../assets/images/navigation/red/CD.svg'
+                break;
+            case '10':
+              this.selectedImage = '../../../assets/images/navigation/red/lamps & illuminants 2.svg'
+                break;
+            case '11':
+              this.selectedImage = '../../../assets/images/navigation/red/batteries & chargers.svg'
+                break;
+                case '12':
+                  this.selectedImage = '../../../assets/images/navigation/red/Watches & Jewlery.svg'
                   break;
-              case '10':
-                this.selectedImage = '../../../assets/images/navigation/red/lamps & illuminants 2.svg'
-                break;
-              case '11':
-                this.selectedImage = '../../../assets/images/navigation/red/batteries & chargers.svg'
-                break;
-                  case '12':
-                    this.selectedImage = '../../../assets/images/navigation/red/Watches & Jewlery.svg'
+              case '13':
+                this.selectedImage = '../../../assets/images/navigation/red/Sport.svg'
+                  break;
+              case '14':
+                this.selectedImage = '../../../assets/images/navigation/red/rc toy - modelling 2.svg'
+                  break;
+                  case '15':
+                    this.selectedImage = '../../../assets/images/navigation/red/Books.svg'
                     break;
-                case '13':
-                  this.selectedImage = '../../../assets/images/navigation/red/Sport.svg'
-                  break;
-                case '14':
-                  this.selectedImage = '../../../assets/images/navigation/red/rc toy - modelling 2.svg'
-                  break;
-                    case '15':
-                      this.selectedImage = '../../../assets/images/navigation/red/Books.svg'
+                case '16':
+                  this.selectedImage = '../../../assets/images/navigation/red/Office.svg'
+                    break;
+                case '17':
+                  this.selectedImage = '../../../assets/images/navigation/red/Pets.svg'
+                    break;
+                    case '18':
+                      this.selectedImage = '../../../assets/images/navigation/red/Instruments.svg'
                       break;
-                  case '16':
-                    this.selectedImage = '../../../assets/images/navigation/red/Office.svg'
-                    break;
-                  case '17':
-                    this.selectedImage = '../../../assets/images/navigation/red/Pets.svg'
-                    break;
-                      case '18':
-                        this.selectedImage = '../../../assets/images/navigation/red/Instruments.svg'
+                  case '19':
+                    this.selectedImage = '../../../assets/images/navigation/red/Motors & Wheels.svg'
+                      break;
+                  case '20':
+                    this.selectedImage = '../../../assets/images/navigation/red/Handcrafted.svg'
+                      break;
+                      case '21':
+                        this.selectedImage = '../../../assets/images/navigation/red/sold by the meter.svg'
                         break;
-                    case '19':
-                      this.selectedImage = '../../../assets/images/navigation/red/Motors & Wheels.svg'
-                      break;
-                    case '20':
-                      this.selectedImage = '../../../assets/images/navigation/red/Handcrafted.svg'
-                      break;
-                        case '21':
-                          this.selectedImage = '../../../assets/images/navigation/red/sold by the meter.svg'
+                    case '22':
+                      this.selectedImage = '../../../assets/images/navigation/red/sold by the kg 2.svg'
+                        break;
+                    case '23':
+                      this.selectedImage = '../../../assets/images/navigation/red/Luxury.svg'
+                        break;
+                        case '24':
+                          this.selectedImage = '../../../assets/images/navigation/red/Toys.svg'
                           break;
-                      case '22':
-                        this.selectedImage = '../../../assets/images/navigation/red/sold by the kg 2.svg'
-                        break;
-                      case '23':
-                        this.selectedImage = '../../../assets/images/navigation/red/Luxury.svg'
-                        break;
-                          case '24':
-                            this.selectedImage = '../../../assets/images/navigation/red/Toys.svg'
+                      case '25':
+                        this.selectedImage = '../../../assets/images/navigation/red/Unique.svg'
+                          break;
+                      case '26':
+                        this.selectedImage = '../../../assets/images/navigation/red/Wooden.svg'
+                          break;
+                          case '27':
+                            this.selectedImage = '../../../assets/images/navigation/red/Lifehacks.svg'
                             break;
-                        case '25':
-                          this.selectedImage = '../../../assets/images/navigation/red/Unique.svg'
-                          break;
-                        case '26':
-                          this.selectedImage = '../../../assets/images/navigation/red/Wooden.svg'
-                          break;
-                            case '29':
-                          this.selectedImage = '../../../assets/images/navigation/red/drinks.svg';
-                          break;
+                          case '28':
+                        this.selectedImage = '../../../assets/images/navigation/red/drinks (2).svg';
+                        break;
     }
 
     }

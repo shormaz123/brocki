@@ -74,18 +74,18 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       selectedImage: '../../../assets/images/navigation/red/CD.svg',
       imageTo: '',
     },
-    {
-      id: 28,
-      title:  {
-        de: 'Sammlung',
-        en: 'Collection',
-        fr: 'Collection',
-        it: 'Collezione',
-      },
-      image: '../../../assets/images/navigation/Collection.svg',
-      selectedImage: '../../../assets/images/navigation/red/Collection.svg',
-      imageTo: '',
-    },
+    // {
+    //   id: 28,
+    //   title:  {
+    //     de: 'Sammlung',
+    //     en: 'Collection',
+    //     fr: 'Collection',
+    //     it: 'Collezione',
+    //   },
+    //   image: '../../../assets/images/navigation/Collection.svg',
+    //   selectedImage: '../../../assets/images/navigation/red/Collection.svg',
+    //   imageTo: '',
+    // },
     {
       id: 3,
       title:  {
@@ -244,15 +244,15 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       imageTo: '',
     },
     {
-      id: 20,
+      id: 7,
       title: {
         de: 'Outdoor & Überleben',
         en: 'Outdoor & Survival',
         fr: 'Extérieur et survie',
         it: 'Outdoor e sopravvivenza',
       },
-      image: '',
-      selectedImage: '',
+      image: '../../../assets/images/navigation/outdoor & survival v2.svg',
+      selectedImage: '../../../assets/images/navigation/red/outdoor & survival v1.svg',
       imageTo: '',
     },
     {
@@ -383,15 +383,15 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       imageTo: '',
     },
     {
-      id: 29,
+      id: 28,
       title: {
         de: '"Sammlerstücke"',
-        en: 'Collectibles',
+        en: 'Collection',
         fr: 'Objets de collection',
         it: 'Collezionismo',
       },
-      image: '../../../assets/images/navigation/drinks 2.svg',
-      selectedImage: '../../../assets/images/navigation/red/drinks.svg',
+      image: '../../../assets/images/navigation/drinks (3).svg',
+      selectedImage: '../../../assets/images/navigation/red/drinks (2).svg',
       imageTo: '',
     },
   ];

@@ -80,6 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
+      console.log(this.categoriesGroup)
     });
     this.displaySideBarSubscription = this.helpers
       .getDisplaySideBar()
@@ -180,14 +181,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   selectCategoryOnSideBar(category: any) {
-    // this.clickedTab = category
-    // this.clickedTabs = [...this.clickedTabs];
-    // if (this.clickedTabs.includes(this.clickedTab)) {
-    //   this.clickedTabs = this.clickedTabs.filter((e) => e !== this.clickedTab);
-    //   return;
-    // }
-    // if (this.clickedTabs.length < 30) {
-    //   this.clickedTabs.push(category);
-    // }
   }
 }

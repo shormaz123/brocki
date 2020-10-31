@@ -168,12 +168,10 @@ export class AdsComponent implements OnInit, OnDestroy {
         case '6':
           this.selectedImage = '../../../assets/images/navigation/red/Fashion.svg'
             break;
-            case '27':
-              this.selectedImage = '../../../assets/images/navigation/red/Lifehacks.svg'
-              break;
-          case '7':
-              this.selectedImage = ''
-              break;
+
+              case '7':
+                this.selectedImage = '../../../assets/images/navigation/red/outdoor & survival v1.svg'
+                break;
           case '8':
             this.selectedImage = '../../../assets/images/navigation/red/IT.svg'
               break;
@@ -231,8 +229,11 @@ export class AdsComponent implements OnInit, OnDestroy {
                       case '26':
                         this.selectedImage = '../../../assets/images/navigation/red/Wooden.svg'
                           break;
-                          case '29':
-                        this.selectedImage = '../../../assets/images/navigation/red/drinks.svg';
+                          case '27':
+                            this.selectedImage = '../../../assets/images/navigation/red/Lifehacks.svg'
+                            break;
+                          case '28':
+                        this.selectedImage = '../../../assets/images/navigation/red/drinks (2).svg';
                         break;
   }
 
