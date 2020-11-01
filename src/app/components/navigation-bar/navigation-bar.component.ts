@@ -385,7 +385,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     {
       id: 28,
       title: {
-        de: '"Sammlerstücke"',
+        de: 'Sammlerstücke',
         en: 'Collection',
         fr: 'Objets de collection',
         it: 'Collezionismo',
