@@ -33,7 +33,6 @@ export class EmailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.adForEmail,'adforeamil')
     this.adLink = document.URL;
     this.emailForm = this.fb.group({
       name: ['', [Validators.required]],

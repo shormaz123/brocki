@@ -25,7 +25,6 @@ export class AcceptUsersComponent implements OnInit {
     this.lang = localStorage.getItem(AuthConst.language);
     this.userService.UsersForAcceptions(UserStatus.READY).subscribe((res) => {
       this.usersForReview.push(res);
-      console.log(res);
     });
   }
 
