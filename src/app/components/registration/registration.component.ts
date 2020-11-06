@@ -15,6 +15,7 @@ import { MessageService } from 'primeng/api';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
 
 @Component({
   selector: 'app-registration',
@@ -26,6 +27,20 @@ export class RegistrationComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   error = false;
+
+  // snackbar properties
+
+  message = this.translateService.instant('translate.confirmAccountText');;
+  actionButtonLabel = this.translateService.instant('translate.ok');
+  action = true;
+  setAutoHide = true;
+  autoHide = 20000;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
+  addExtraClass: boolean = false;
+
+  //
 
   checked: boolean;
   brockenstube: boolean;
@@ -53,12 +68,13 @@ export class RegistrationComponent implements OnInit {
     private notification: NzNotificationService,
     private translateService: TranslateService,
     private toastr: ToastrService,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
 
 
-    const completeAddress = (`${this.addressAd} ` + `${this.addressNumber} ` + `${this.addressPostalCode} ` + `${this.addressPlace}`)
+    const completeAddress = (`${this.addressAd} ` + `${this.addressNumber} ` + `${this.addressPostalCode} ` + `${this.addressPlace}`);
 
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -66,7 +82,7 @@ export class RegistrationComponent implements OnInit {
       userName: ['', [Validators.required]],
       credit: [0, [Validators.required]],
       bussinesType: ['PRIVATE'],
-      role_id: [3,],
+      role_id: [3, ],
       terms: [false, [Validators.required]],
       street: ['', [Validators.required]],
       houseNumber: ['', [Validators.required]],
@@ -91,7 +107,7 @@ export class RegistrationComponent implements OnInit {
       this.registration = this.registerForm.value;
       this.authService.register(this.registration).subscribe(
         (response) => {
-          this.toastr.success(this.translateService.instant('translate.profileSuccessfullyCreated')),
+          this.openSnackbar(),
             this.router.navigate(['/site']);
         },
         (error) => {
@@ -131,5 +147,13 @@ export class RegistrationComponent implements OnInit {
     this.business = true;
     this.registerForm.controls.role_id.setValue(value);
     this.registerForm.controls.bussinesType.setValue('INSTITUTION');
+  }
+
+  openSnackbar() {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.duration = this.setAutoHide ? this.autoHide : 0;
+    this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
   }
 }

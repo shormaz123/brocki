@@ -207,6 +207,8 @@ export const fr = {
     addressNumberAd: 'No',
     addressCodePostal: 'Code postal',
     addressPlace: 'Lieu',
-    location: 'Emplacement'
+    location: 'Emplacement',
+    confirmAccountText: 'Veuillez vérifier votre boîte de réception pour un e-mail d`activation et le confirmer. Vous pouvez ensuite créer une annonce.',
+    notYetAvailable: 'Pas encore disponible!'
   },
 };

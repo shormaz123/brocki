@@ -210,6 +210,8 @@ export const de = {
     addressNumberAd: 'Nr.',
     addressCodePostal: 'PLZ',
     addressPlace: 'Ort',
-    location: 'Lage'
+    location: 'Lage',
+    confirmAccountText: 'Bitte überprüfen Sie Ihren E-Mail-Posteingang auf eine Aktivierungs-E-Mail und bestätigen Sie diese. Anschliessend können Sie eine Anzeige erstellen.',
+    notYetAvailable: 'Noch nicht verfügbar!',
   },
 };

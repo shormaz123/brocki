@@ -206,6 +206,8 @@ export const it = {
     addressNumberAd: 'Numero',
     addressCodePostal: 'Codice postale',
     addressPlace: 'Posto',
-    location: 'Posizione'
+    location: 'Posizione',
+    confirmAccountText: "Controlla la tua casella di posta elettronica per un'e-mail di attivazione e confermala. È quindi possibile creare un annuncio.",
+    notYetAvailable: 'Non ancora disponibile!'
   },
 };

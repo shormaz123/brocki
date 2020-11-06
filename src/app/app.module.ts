@@ -106,6 +106,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { SearchedAdsComponent } from './components/searched-ads/searched-ads.component'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 registerLocaleData(en);
 
@@ -201,6 +202,7 @@ registerLocaleData(en);
     MatAutocompleteModule,
     Ng2CarouselamosModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
     MatExpansionModule,
     NgxHotjarModule.forRoot('2010944'),
     ToastrModule.forRoot({

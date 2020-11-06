@@ -18,10 +18,10 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
-import { element } from 'protractor';
+import { element, error } from 'protractor';
 import { AuthConst } from '../../@core/consts/auth.const';
 import {Tags } from '../../shared/models/tags.model';
 import {Observable } from 'rxjs';
@@ -72,6 +72,20 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   clickedTag: any;
   tags$: Observable<Tags[]>;
 
+  // snackbar properties
+
+  message = this.translateService.instant('translate.confirmAccountText');
+  actionButtonLabel = this.translateService.instant('translate.ok');
+  action = true;
+  setAutoHide = true;
+  autoHide = 5000;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
+  addExtraClass: boolean = false;
+
+  //
+
 
   constructor(
     private fb: FormBuilder,
@@ -80,7 +94,8 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     private translateBackend: TranslateServiceRest,
     private toastr: ToastrService,
     private dialog: MatDialog,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -321,13 +336,23 @@ export class CreateAdComponent implements OnInit, OnDestroy {
             return;
           }
 
-          this.adsService.newAd(create).subscribe(() => {
-            this.router.navigate(['/site']);
-            this.toastr.success(this.translateService.instant('translate.adSuccessfullyCreated'));
+          this.adsService.newAd(create).subscribe(
+            (res) => {
+              if (res) {
+                this.router.navigate(['/site']);
+                this.toastr.success(this.translateService.instant('translate.adSuccessfullyCreated'));
+              }
+            },
+            (error) => {
+              if (error.status === 403) {
+                this.openSnackbar();
+              }
+            });
+           }
           });
       }
-    });
-  }
+
+
 
   roundUp(num, precision) {
     precision = Math.pow(20, precision);
@@ -343,5 +368,13 @@ export class CreateAdComponent implements OnInit, OnDestroy {
 
   log() {
     this.onSubmit();
+  }
+
+  openSnackbar() {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.duration = this.setAutoHide ? this.autoHide : 0;
+    this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
   }
 }
