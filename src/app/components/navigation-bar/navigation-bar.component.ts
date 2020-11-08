@@ -74,18 +74,18 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       selectedImage: '../../../assets/images/navigation/red/CD.svg',
       imageTo: '',
     },
-    // {
-    //   id: 28,
-    //   title:  {
-    //     de: 'Sammlung',
-    //     en: 'Collection',
-    //     fr: 'Collection',
-    //     it: 'Collezione',
-    //   },
-    //   image: '../../../assets/images/navigation/Collection.svg',
-    //   selectedImage: '../../../assets/images/navigation/red/Collection.svg',
-    //   imageTo: '',
-    // },
+    {
+      id: 28,
+      title:  {
+        de: 'Spirituosen, Wein & Whiskys',
+        en: 'Spirits, Wine & Whiskeys',
+        fr: 'Spiritueux, Vins & Whiskies',
+        it: 'Distillati, Vino & Whisky',
+      },
+      image: '../../../assets/images/navigation/drinks (3).svg',
+      selectedImage: '../../../assets/images/navigation/red/drinks (2).svg',
+      imageTo: '',
+    },
     {
       id: 3,
       title:  {
@@ -383,15 +383,15 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       imageTo: '',
     },
     {
-      id: 28,
+      id: 29,
       title: {
         de: 'Sammlerstücke',
         en: 'Collection',
         fr: 'Objets de collection',
         it: 'Collezionismo',
       },
-      image: '../../../assets/images/navigation/drinks (3).svg',
-      selectedImage: '../../../assets/images/navigation/red/drinks (2).svg',
+      image: '../../../assets/images/navigation/Collection.svg',
+      selectedImage: '../../../assets/images/navigation/red/Collection.svg',
       imageTo: '',
     },
   ];

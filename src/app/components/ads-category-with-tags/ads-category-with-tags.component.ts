@@ -205,9 +205,12 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
                           case '27':
                             this.selectedImage = '../../../assets/images/navigation/red/Lifehacks.svg'
                             break;
-                          case '28':
-                        this.selectedImage = '../../../assets/images/navigation/red/drinks (2).svg';
-                        break;
+                            case '28':
+                              this.selectedImage = '../../../assets/images/navigation/red/drinks (2).svg';
+                              break;
+                              case '29':
+                                this.selectedImage = '../../../assets/images/navigation/red/Collection.svg';
+                                break;
     }
 
     }

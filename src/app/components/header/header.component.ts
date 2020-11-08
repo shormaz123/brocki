@@ -80,6 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
+      console.log(this.categoriesGroup)
     });
     this.displaySideBarSubscription = this.helpers
       .getDisplaySideBar()

@@ -235,6 +235,9 @@ export class AdsComponent implements OnInit, OnDestroy {
                           case '28':
                         this.selectedImage = '../../../assets/images/navigation/red/drinks (2).svg';
                         break;
+                        case '29':
+                          this.selectedImage = '../../../assets/images/navigation/red/Collection.svg';
+                          break;
   }
 
   }
