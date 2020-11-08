@@ -87,6 +87,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   favoriteAds: Ads[];
   numberOfFavs: Subscription;
   favAds = [];
+  address:string;
 
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
@@ -148,6 +149,8 @@ export class AdComponent implements OnInit, AfterViewInit {
     if (this.card) {
       this.userService.getUserById(this.card.userId).subscribe((res) => {
         this.reviewUser = res;
+        const [street, streetNumber, postalNumber, city] = res.address.split(',');
+        this.address =  street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
         this.reviewUserId = res.id;
         this.adsService.getAllByUserId(this.reviewUserId).subscribe((res) => {
           this.reviewUserActiveAds = res;
@@ -186,6 +189,7 @@ export class AdComponent implements OnInit, AfterViewInit {
       this.adsService.getAdById(id).subscribe((response) => {
         this.userSellerId = response.userId;
         this.ad = response;
+
         this.adGroupId = response.adsGroupId;
         this.allOfreviewer = true;
         this.adsService
@@ -224,6 +228,7 @@ export class AdComponent implements OnInit, AfterViewInit {
 
         this.userService.getUserById(this.userSellerId).subscribe((x) => {
           this.companyName = x.company;
+
           this.sellerEmail = x.email;
           if (x.roleName === 'bussines') {
             this.private = false;
@@ -247,6 +252,9 @@ export class AdComponent implements OnInit, AfterViewInit {
           } else {
             this.usersImagesAvailabe = true;
             this.userSeller = x;
+           const [street, streetNumber, postalNumber, city] = x.address.split(',');
+            this.address =  street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
+
           }
         });
 

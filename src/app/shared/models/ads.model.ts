@@ -16,4 +16,5 @@ export class Ads {
   adsLocation: string;
   visibleAds: true;
   tags:Array<Tags>;
+  address: any;
 }

@@ -57,7 +57,7 @@
                 <label *ngIf="business">{{ companyName }}</label>
                 <label *ngIf="!business">{{ adminName }}</label>
                 <div style="font-size: 15px;">
-                    {{ userSeller?.address || reviewUser?.address }}
+                    {{ address }}
                 </div>
                 <div class="contact">
                     <div class="iconBox" (click)="phonesOfSeller()">

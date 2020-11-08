@@ -56,8 +56,8 @@ export class SellerProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
-        this.address = seller.address;
-
+        const [street, streetNumber, postalNumber, city] = seller.address.split(',');
+        this.address =  street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
         if (seller.roleName === 'bussines' || 'admin') {
           this.sellerCompany = seller.company;
 
