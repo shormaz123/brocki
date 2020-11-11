@@ -1,8 +1,7 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../../@core/services/user.service';
 import { ActivatedRoute } from '@angular/router';
-
 
 @Component({
   selector: 'app-info-seller',
@@ -50,7 +49,7 @@ export class InfoSellerComponent implements OnInit {
           phone: seller.phone,
           mobile: seller.mobile,
           address: seller.address,
-          locationAddress: seller.location
+          locationAddress: seller.location,
         });
       });
     });

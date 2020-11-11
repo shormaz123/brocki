@@ -1,31 +1,40 @@
 <div class="container" (wheel)="onMouseWheel($event)">
-    <div class="underContainer">
-        <span class="title" style="padding-bottom: 40px">{{ 'translate.filteredAds' | translate }}</span>
-    </div>
-    <div class="bodySuggestions2">
-        <div style="
+  <div class="underContainer">
+    <span class="title" style="padding-bottom: 40px">{{
+      'translate.filteredAds' | translate
+    }}</span>
+  </div>
+  <div class="bodySuggestions2">
+    <div
+      style="
         padding: '5px';
         padding: 10px !important;
         width: 25%;
         background-color: #f6f6f6;
         box-sizing: border-box;
-      " *ngFor="let card of ads; let i = index">
-            <div style="background-color: white; cursor: pointer; padding: 10px" class="cardHover">
-                <div class="image" [routerLink]="['/ad', card.id]">
-                    <img src="Card" [src]="card.image[0]" />
-                </div>
-                <div class="cardBody" [routerLink]="['/ad', card.id]">
-                    <label style="font-size: 20px; font-weight: bolder">{{
+      "
+      *ngFor="let card of ads; let i = index"
+    >
+      <div
+        style="background-color: white; cursor: pointer; padding: 10px"
+        class="cardHover"
+      >
+        <div class="image" [routerLink]="['/ad', card.id]">
+          <img src="Card" [src]="card.image[0]" />
+        </div>
+        <div class="cardBody" [routerLink]="['/ad', card.id]">
+          <label style="font-size: 20px; font-weight: bolder">{{
             card.productName
           }}</label>
-                    <div class="adLine"></div>
-                    <div class="description">
-                        <label style="font-size: 12px">{{ card.description }}</label>
-                    </div>
-                </div>
-                <div class="footer">
-                    <div class="pricetag">
-                        <label style="color: white">{{ card.price | number: '1.2-2':'en-US' }} CHF</label
+          <div class="adLine"></div>
+          <div class="description">
+            <label style="font-size: 12px">{{ card.description }}</label>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="pricetag">
+            <label style="color: white"
+              >{{ card.price | number: '1.2-2':'en-US' }} CHF</label
             >
           </div>
           <div style="display: flex">
@@ -66,7 +75,7 @@
     </div>
   </div>
   <div class="increaseButtonClass" *ngIf="disableButton">
-    <button class="increaseButton" mat-button (click)="increaseShow()">
+    <button class="show--more" mat-button (click)="increaseShow()">
       {{ 'translate.showMore' | translate }}
     </button>
   </div>

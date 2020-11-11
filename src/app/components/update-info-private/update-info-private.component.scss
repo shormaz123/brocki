@@ -116,22 +116,6 @@ button:focus {
   justify-content: center;
 }
 
-.signUpButton {
-  background-color: white;
-  height: 25px;
-  width: 30%;
-  border: 1px solid;
-  border-radius: 15px;
-  color: $darkgrey;
-  font-size: 17px;
-  margin-left: 4.5%;
-  cursor: pointer;
-
-  &:hover {
-    color: $red;
-  }
-}
-
 .forPassword {
   cursor: pointer;
   color: $red;

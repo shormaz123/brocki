@@ -64,24 +64,6 @@ button:focus {
   outline: none;
 }
 
-.signInButton {
-  background-color: $red;
-  height: 35px;
-  width: 20%;
-  border: 1px solid;
-  border-radius: 15px;
-  color: white;
-  font-size: 17px;
-  cursor: pointer;
-  &:hover {
-    -ms-transform: scale(1.5);
-    /* IE 9 */
-    -webkit-transform: scale(1.5);
-    /* Safari 3-8 */
-    transform: scale(1.1);
-  }
-}
-
 .emptyDiv {
   width: 15%;
 }
@@ -98,20 +80,6 @@ button:focus {
   width: 100%;
   display: flex;
   justify-content: center;
-}
-
-.signUpButton {
-  background-color: white;
-  border: 1px solid $border-gray;
-  border-radius: 15px;
-  color: $darkgrey;
-  font-size: 17px;
-  cursor: pointer;
-  padding: 2px 47px;
-
-  &:hover {
-    color: $red;
-  }
 }
 
 .forPassword {
@@ -348,23 +316,4 @@ mat-checkbox-label {
 .input {
   margin-bottom: 20px;
   height: auto;
-}
-
-select {
-  width: 500px;
-  height: 41px;
-  border: 1px solid$border-gray;
-  border-radius: 25px;
-  padding-left: 15px;
-  font-size: 19px;
-
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: '';
-  cursor: pointer;
-  background-image: url('../../../assets/images/update-info-bussines/arrow menu.png');
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position: 470px 9px;
 }
