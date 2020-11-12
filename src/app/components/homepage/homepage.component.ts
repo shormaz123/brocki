@@ -7,6 +7,7 @@ import { AuthService } from 'app/@core/services/auth.service';
 import { HelpersService } from 'app/@core/services/helpers.service';
 import { TranslateServiceRest } from 'app/@core/services/translateREST.service';
 import { UserService } from 'app/@core/services/user.service';
+import { WishlistService } from 'app/@core/services/wishlist.service';
 import { Ads } from 'app/shared/models/ads.model';
 import { UserAddAdsRequest } from 'app/shared/models/useraddAdsRequest.model';
 import { Subscription } from 'rxjs';
@@ -41,7 +42,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
     private router: Router,
     private translateBackend: TranslateServiceRest,
     private authService: AuthService,
-    private loadingService: LoadingIndicatorService
+    private loadingService: LoadingIndicatorService,
+    private wishlist: WishlistService
   ) {}
 
   ngOnInit() {
@@ -115,28 +117,32 @@ export class HomepageComponent implements OnInit, OnDestroy {
     return newArr;
   }
 
-  addToWishlist(adId: number) {
+  addToWishlist(ad: Ads) {
+    this.wishlist.add(ad).subscribe();
     this.userRequest = {
-      adsId: adId,
+      adsId: ad.id,
       userId: this.userId,
     };
-    this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      this.raiseAdNumber();
-    }),
-      (error) => {
-        if ((error.message = 'Unexpected end of JSON input')) {
-        }
-      };
-    this.helpersService.$numOfFavs.next();
+    this.userService.updateUserFavourites(this.userRequest).subscribe();
+    // this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
+    //   this.raiseAdNumber();
+    // }),
+    //   (error) => {
+    //     if ((error.message = 'Unexpected end of JSON input')) {
+    //     }
+    //   };
+    // this.helpersService.$numOfFavs.next();
+
   }
 
-  removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
-      this.downAdNumber();
-    }),
+  removeFromWishlist(ad: Ads) {
+    this.wishlist.remove(ad).subscribe();
+    this.userService.deleteUserFavourite(ad.id, this.userId).subscribe((x) => {
+      // this.downAdNumber();
+    });
       // tslint:disable-next-line:no-unused-expression
-      (error) => {
-      };
+      // (error) => {
+      // };
   }
 
   goToAd(id: number) {

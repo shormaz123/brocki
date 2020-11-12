@@ -23,6 +23,7 @@ import {
 } from '@angular/router';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
+import { WishlistService } from 'app/@core/services/wishlist.service';
 
 @Component({
   selector: 'app-site',
@@ -79,7 +80,8 @@ export class SiteComponent implements OnInit, OnDestroy {
     private adsService: AdsService,
     private translateBackend: TranslateServiceRest,
     private helpersService: HelpersService,
-    private router: Router
+    private router: Router,
+    public wishlist: WishlistService
   ) {}
 
   ngOnInit() {

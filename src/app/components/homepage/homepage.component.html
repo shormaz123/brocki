@@ -1,43 +1,23 @@
-<app-ad-single-carousel
-  [favAds]="favAds"
-  [userId]="userId"
-  [favoriteNumber]="numberOfFavorites"
-></app-ad-single-carousel>
+<app-ad-single-carousel [favAds]="favAds" [userId]="userId" [favoriteNumber]="numberOfFavorites"></app-ad-single-carousel>
 <div class="container">
-  <div class="advertise">
-    <img
-      src="../../../assets/images/banner1.jpg"
-      routerLink="/contact-us"
-      style="cursor: pointer"
-    />
-  </div>
-  <div class="siteButtons">
-    <!-- <button class="siteButton">Around me</button> -->
-    <button
-      class="siteButton"
-      pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}"
-      tooltipPosition="top"
-    >
+    <div class="advertise">
+        <img src="../../../assets/images/banner1.jpg" routerLink="/contact-us" style="cursor: pointer" />
+    </div>
+    <div class="siteButtons">
+        <!-- <button class="siteButton">Around me</button> -->
+        <button class="siteButton" pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}" tooltipPosition="top">
       {{ 'translate.freshlyAdvertised' | translate }}
     </button>
-    <button
-      class="siteButton"
-      pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}"
-      tooltipPosition="top"
-    >
+        <button class="siteButton" pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}" tooltipPosition="top">
       {{ 'translate.unused' | translate }}
     </button>
-    <button
-      class="siteButton"
-      pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}"
-      tooltipPosition="top"
-    >
+        <button class="siteButton" pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}" tooltipPosition="top">
       {{ 'translate.mostWanted' | translate }}
     </button>
-  </div>
+    </div>
 </div>
 <div class="suggestions">
-  <span class="suggText">
+    <span class="suggText">
     {{ 'translate.suggestionsForYou' | translate }}:</span
   >
   <div class="bodySuggestions2">
@@ -105,14 +85,14 @@
               >
                 <mat-icon
                   *ngIf="card.favourite"
-                  (click)="removeFromWishlist(card.id)"
+                  (click)="removeFromWishlist(card)"
                   aria-label="Example icon-button with a heart icon"
                 >
                   favorite
                 </mat-icon>
                 <mat-icon
                   *ngIf="!card.favourite"
-                  (click)="addToWishlist(card.id)"
+                  (click)="addToWishlist(card)"
                   aria-label="Example icon-button with a heart icon"
                 >
                   favorite_border
@@ -120,14 +100,14 @@
               </button>
             </div>
             <span style="color: black">{{ card.adsDate | date }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="increaseButtonClass" *ngIf="disableButton">
-      <button class="increaseButton" mat-button (click)="increaseShow()">
+</div>
+</div>
+</div>
+</div>
+<div class="increaseButtonClass" *ngIf="disableButton">
+    <button class="increaseButton" mat-button (click)="increaseShow()">
         {{ 'translate.showMore' | translate }}
       </button>
-    </div>
-  </div>
+</div>
+</div>
 </div>

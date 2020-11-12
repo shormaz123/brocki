@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HelpersService } from '../../@core/services/helpers.service';
+import { WishlistService } from 'app/@core/services/wishlist.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private http: HttpClient,
     private router: Router,
-    private helpers: HelpersService
+    private helpers: HelpersService,
+    public wishlist: WishlistService
   ) {}
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem(AuthConst.roleName, response.roleName);
           localStorage.setItem(AuthConst.token, response.token);
           this.helpers.$loginName.next(response.token);
+          // this.wishlist.loadAllFavoriteAds()
         }
         this.router.navigate(['/site']);
       },
