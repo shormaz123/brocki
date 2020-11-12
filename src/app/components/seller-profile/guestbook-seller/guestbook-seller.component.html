@@ -20,8 +20,10 @@
       formControlName="comment"
       rows="4"
     ></textarea>
-    <div class="button">
-      <button type="submit">{{ 'translate.submit' | translate }}</button>
+    <div class="button--submit">
+      <button class="button" type="submit" [disabled]="ratingForm.invalid">
+        {{ 'translate.submit' | translate }}
+      </button>
     </div>
   </form>
   <div class="guest-book__comments" *ngFor="let comment of CommentsOfUser[0]">

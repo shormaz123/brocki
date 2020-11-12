@@ -66,8 +66,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
         } else {
           this.favAds = this.ads;
         }
-      }
-      );
+      });
     this.subscriptionLang = this.translateBackend
       .getLanguage()
       .subscribe((message) => {

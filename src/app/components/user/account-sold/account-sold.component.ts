@@ -1,6 +1,5 @@
 import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { AdsService } from '../../../@core/services/ads.service';
-import { UserService } from '../../../@core/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { Ads } from '../../../shared/models/ads.model';
 
@@ -20,11 +19,7 @@ export class AccountSoldComponent implements OnChanges {
   disableButton: boolean = true;
   soldAds: Ads[] = [];
 
-  constructor(
-    private adsService: AdsService,
-    private route: ActivatedRoute,
-    private userServuce: UserService
-  ) {}
+  constructor(private adsService: AdsService, private route: ActivatedRoute) {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.userId = Number(this.route.snapshot.paramMap.get('id'));

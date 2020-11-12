@@ -85,20 +85,12 @@ textarea {
   outline: none;
 }
 
-.button {
+.button--submit {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+}
 
-  button {
-    background-color: $red;
-    height: 35px;
-    width: 15%;
-    border: 1px solid;
-    border-radius: 15px;
-    color: white;
-    font-size: 17px;
-    margin: 20px 0 0 30px;
-    cursor: pointer;
-  }
+.button {
+  margin: 20px 0 0 30px;
 }

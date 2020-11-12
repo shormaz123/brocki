@@ -1,59 +1,17 @@
 <div class="container">
-    <div class="underContainer">
-        <span class="title" style="padding-bottom: 40px;">{{ 'translate.favoriteAds' | translate }}</span
-    >
+  <div class="under--container">
+    <span class="title">{{ 'translate.favoriteAds' | translate }}</span>
   </div>
-  <div class="noAdsContainer" *ngIf="favoriteAds.length === 0">
-    <h1>{{ 'translate.noAvailableAds' | translate }}
-    </h1>
-</div>
-  <div class="bodySuggestions2">
-    <div class="lineCard">
-    <div
-      style="
-        padding: '5px';
-        padding: 10px !important;
-        width: 25%;
-        background-color: #f6f6f6;
-        box-sizing: border-box;
-      "
-      *ngFor="let card of favoriteAds; let i = index"
-    >
-      <div
-        style="background-color: white; cursor: pointer; padding: 10px;"
-        class="cardHover"
-      >
-        <div class="image" [routerLink]="['/ad', card.id]">
-          <img src="Card" [src]="card.image[0]" />
-        </div>
-        <div class="cardBody" [routerLink]="['/ad', card.id]">
-          <label style="font-size: 20px; font-weight: bolder;">{{
-            card.productName
-          }}</label>
-          <div class="adLine"></div>
-          <div class="description">
-            <label style="font-size: 12px;">{{ card.description }}</label>
-          </div>
-        </div>
-        <div class="footer">
-          <div class="pricetag">
-            <label style="color: white;">{{ card.price | number:'1.2-2':'en-US' }} CHF</label>
-          </div>
-          <div>
-            <button mat-icon-button (click)="card.favourite = !card.favourite">
-              <mat-icon
-                *ngIf="card.favourite"
-                (click)="removeFromWishlist(card.id, i)"
-                aria-label="Example icon-button with a heart icon"
-              >
-                favorite
-              </mat-icon>
-            </button>
-          </div>
-          <span style="color: black;">{{ card.adsDate | date }}</span>
+  <div class="no--ads--container" *ngIf="favoriteAds?.length === 0">
+    <h1>{{ 'translate.noAvailableAds' | translate }}</h1>
+  </div>
+  <div class="favorites">
+    <div class="favorites__line--card">
+      <app-ads-card-detail
+        class="favorites__favorite--ads"
+        [ads]="favoriteAds"
+        (removeWishlist)="removeFromWishlist($event)"
+      ></app-ads-card-detail>
     </div>
-</div>
-</div>
-</div>
-</div>
+  </div>
 </div>

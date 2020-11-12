@@ -36,9 +36,9 @@
       </div>
     </div>
   </div>
-  <ng-container *ngIf="soldProducts[0] !== []">
+  <ng-container *ngIf="ads === false">
     <div class="increaseButtonClass" *ngIf="disableButton">
-      <button class="increaseButton" mat-button (click)="increaseShow()">
+      <button class="show--more" mat-button (click)="increaseShow()">
         {{ 'translate.showMore' | translate }}
       </button>
     </div>

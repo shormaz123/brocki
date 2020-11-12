@@ -6,7 +6,6 @@ import { AuthService } from '.././../../@core/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Comment } from '../../../shared/models/createComment.model';
 import { NzModalService, NzNotificationService } from 'ng-zorro-antd';
-import { AuthConst } from '../../../@core/consts/auth.const';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

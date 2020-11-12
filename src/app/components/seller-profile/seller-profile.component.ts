@@ -4,9 +4,7 @@ import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
 import { AdsParam } from '../../shared/models/adParams.model';
 import { Comment } from '../../shared/models/createComment.model';
-import { isBuffer } from 'util';
 import { UserStatus } from '../../shared/enums/userStatus';
-import { Ads } from '../../shared/models/ads.model';
 
 @Component({
   selector: 'app-seller-profile',
@@ -56,8 +54,11 @@ export class SellerProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
-        const [street, streetNumber, postalNumber, city] = seller.address.split(',');
-        this.address =  street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
+        const [street, streetNumber, postalNumber, city] = seller.address.split(
+          ','
+        );
+        this.address =
+          street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
         if (seller.roleName === 'bussines' || 'admin') {
           this.sellerCompany = seller.company;
 

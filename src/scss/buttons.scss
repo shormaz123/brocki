@@ -1,0 +1,79 @@
+@import '../scss/variables';
+
+.button {
+  background-color: $red;
+  height: 35px;
+  padding: 0 35px;
+  border: 1px solid;
+  border-radius: 15px;
+  color: $white !important;
+  font-size: 17px;
+  cursor: pointer;
+
+  &:hover {
+    -ms-transform: scale(1.1);
+    /* IE 9 */
+    -webkit-transform: scale(1.1);
+    /* Safari 3-8 */
+    transform: scale(1.1);
+  }
+
+  &:focus {
+    outline: none;
+    cursor: default;
+  }
+
+  &:disabled {
+    cursor: default;
+
+    &:hover {
+      -ms-transform: scale(1);
+      /* IE 9 */
+      -webkit-transform: scale(1);
+      /* Safari 3-8 */
+      transform: scale(1);
+    }
+  }
+
+  &__registration {
+    background-color: white;
+    border: 1px solid $border-gray;
+    border-radius: 15px;
+    color: $darkgrey;
+    font-size: 17px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 2px 30px;
+
+    &:hover {
+      color: $red;
+    }
+  }
+
+  &__reg--sign--in {
+    background-color: white !important;
+    border: 1px solid #e6e6e6;
+    border-radius: 15px;
+    color: #4d4d4d !important;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 2px 47px;
+
+    &:hover {
+      color: $red !important;
+      -ms-transform: scale(1);
+      /* IE 9 */
+      -webkit-transform: scale(1);
+      /* Safari 3-8 */
+      transform: scale(1);
+    }
+  }
+}
+
+.show--more {
+  background-color: $red !important;
+  color: $white !important;
+  margin: 50px 0 !important;
+  border-radius: 15px !important;
+}

@@ -1,59 +1,103 @@
 <div class="container">
-    <div class="business">
-        <div class="business__title">
-            <span>{{ 'translate.update' | translate }}
+  <div class="business">
+    <div class="business__title">
+      <span
+        >{{ 'translate.update' | translate }}
         <span style="color: #d62b1f">{{
           'translate.info' | translate
-        }}</span></span>
-        </div>
-        <form class="form" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()" [formGroup]="businessForm">
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/company.png" />
-                <input placeholder="{{ 'translate.company' | translate }}" formControlName="company" maxlength="20" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/name.png" />
-                <input placeholder="{{ 'translate.nameFirst' | translate }}" formControlName="name" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/surname.png" />
-                <input placeholder="{{ 'translate.surname' | translate }}" formControlName="surname" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/email.png" />
-                <input placeholder="{{ 'translate.email' | translate }}" formControlName="email" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/website.png" />
-                <input placeholder="{{ 'translate.website' | translate }}" formControlName="website" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/phone.png" />
-                <input maxlength="18" placeholder="{{ 'translate.phone' | translate }}" formControlName="phone" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/mobile.png" />
-                <input maxlength="18" placeholder="{{ 'translate.mobile' | translate }}" formControlName="mobile" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/address.png" />
-                <input placeholder="{{ 'translate.addressAd' | translate }}" formControlName="street" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/address.png" />
-                <input placeholder="{{ 'translate.addressNumberAd' | translate }}" formControlName="houseNumber" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/address.png" />
-                <input placeholder="{{ 'translate.addressCodePostal' | translate }}" formControlName="postalNumber" />
-            </div>
-            <div class="form__inputItem">
-                <img src="../../../assets/images/update-info-bussines/address.png" />
-                <input placeholder="{{ 'translate.addressPlace' | translate }}" formControlName="city" />
-            </div>
+        }}</span></span
+      >
+    </div>
+    <form
+      class="form"
+      (ngSubmit)="onSubmit()"
+      (keyup.enter)="onSubmit()"
+      [formGroup]="businessForm"
+    >
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/company.png" />
+        <input
+          placeholder="{{ 'translate.company' | translate }}"
+          formControlName="company"
+          maxlength="20"
+        />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/name.png" />
+        <input
+          placeholder="{{ 'translate.nameFirst' | translate }}"
+          formControlName="name"
+        />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/surname.png" />
+        <input
+          placeholder="{{ 'translate.surname' | translate }}"
+          formControlName="surname"
+        />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/email.png" />
+        <input
+          placeholder="{{ 'translate.email' | translate }}"
+          formControlName="email"
+        />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/website.png" />
+        <input
+          placeholder="{{ 'translate.website' | translate }}"
+          formControlName="website"
+        />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/phone.png" />
+        <input
+          maxlength="18"
+          placeholder="{{ 'translate.phone' | translate }}"
+          formControlName="phone"
+        />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/mobile.png" />
+        <input
+          maxlength="18"
+          placeholder="{{ 'translate.mobile' | translate }}"
+          formControlName="mobile"
+        />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/address.png" />
+        <input
+          placeholder="{{ 'translate.addressAd' | translate }}"
+          formControlName="street"
+        />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/address.png" />
+        <input
+          placeholder="{{ 'translate.addressNumberAd' | translate }}"
+          formControlName="houseNumber"
+        />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/address.png" />
+        <input
+          placeholder="{{ 'translate.addressCodePostal' | translate }}"
+          formControlName="postalNumber"
+        />
+      </div>
+      <div class="form__inputItem">
+        <img src="../../../assets/images/update-info-bussines/address.png" />
+        <input
+          placeholder="{{ 'translate.addressPlace' | translate }}"
+          formControlName="city"
+        />
+      </div>
 
-            <div class="form__inputItem">
-                <a class="form__password" (click)="goTo('/change-password')">{{ 'translate.changePassword' | translate }}?</a
+      <div class="form__inputItem">
+        <a class="form__password" (click)="goTo('/change-password')"
+          >{{ 'translate.changePassword' | translate }}?</a
         >
       </div>
       <div class="form__inputItem">
@@ -113,7 +157,7 @@
         </div>
       </div>
       <div class="form__inputItem">
-        <button class="form__button" type="submit">
+        <button class="button" type="submit">
           {{ 'translate.saveUpdate' | translate }}
         </button>
       </div>

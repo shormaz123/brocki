@@ -53,7 +53,7 @@ export class UpdateInfoPrivateComponent implements OnInit {
       street: ['', [Validators.required]],
       houseNumber: ['', [Validators.required]],
       postalNumber: ['', [Validators.required]],
-      city: ['', [Validators.required]]
+      city: ['', [Validators.required]],
     });
 
     this.userService.getUser().subscribe((res) => {
@@ -97,11 +97,10 @@ export class UpdateInfoPrivateComponent implements OnInit {
         canton: user.region,
         street: user.street,
         postalNumber: user.postalNumber,
-        houseNumber: user.houseNumber
+        houseNumber: user.houseNumber,
       });
     });
   }
-
 
   onSubmit() {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {

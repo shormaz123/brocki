@@ -1,0 +1,40 @@
+<div class="card" *ngFor="let ad of ads; let i = index">
+  <div class="card__hover">
+    <div class="card__image" [routerLink]="['/ad', ad.id]">
+      <img [src]="ad.image[0]" />
+    </div>
+    <div class="card__body" [routerLink]="['/ad', ad.id]">
+      <label class="card__body--label">{{ ad.productName }}</label>
+      <div class="card_line"></div>
+      <div class="card__description">
+        <label class="card__description--label">{{ ad.description }}</label>
+      </div>
+    </div>
+    <div class="card__links">
+      <div class="card__pricetag">
+        <label class="card__pricetag--label"
+          >{{ ad.price | number: '1.2-2':'en-US' }} CHF</label
+        >
+      </div>
+      <div>
+        <button mat-icon-button (click)="ad.favourite = !ad.favourite">
+          <mat-icon
+            *ngIf="ad.favourite"
+            (click)="removeFromWishlist(ad.id, i)"
+            aria-label="Example icon-button with a heart icon"
+          >
+            favorite
+          </mat-icon>
+          <mat-icon
+            *ngIf="!ad.favourite"
+            (click)="addToWishlist(ad.id)"
+            aria-label="Example icon-button with a heart icon"
+          >
+            favorite_border
+          </mat-icon>
+        </button>
+      </div>
+      <span class="card__date">{{ ad.adsDate | date }}</span>
+    </div>
+  </div>
+</div>

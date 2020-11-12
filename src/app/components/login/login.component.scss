@@ -57,29 +57,8 @@ input {
 
 input:focus,
 select:focus,
-textarea:focus,
-button:focus {
+textarea:focus {
   outline: none;
-}
-
-.signInButton {
-  margin-top: 20px;
-  background-color: $red;
-  height: 35px;
-  width: 180px;
-  border: 1px solid;
-  border-radius: 15px;
-  color: white;
-  font-size: 17px;
-  cursor: pointer;
-
-  &:hover {
-    -ms-transform: scale(1.5);
-    /* IE 9 */
-    -webkit-transform: scale(1.5);
-    /* Safari 3-8 */
-    transform: scale(1.1);
-  }
 }
 
 .emptyDiv {
@@ -101,20 +80,9 @@ button:focus {
   align-items: center;
 }
 
-.signUpButton {
-  background-color: white;
-  border: 1px solid $border-gray;
-  border-radius: 15px;
-  color: $darkgrey;
-  font-size: 17px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 2px 30px;
-
-  &:hover {
-    color: $red;
-  }
+.button__width {
+  margin-top: 20px;
+  width: 180px;
 }
 
 .forPassword {

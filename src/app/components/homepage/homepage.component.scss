@@ -4,148 +4,113 @@
 /*Resize the wrap to see the search bar change!*/
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .advertise {
-    padding-top: 50px;
-    height: 250px;
-    width: 900px;
-    padding-bottom: 50px;
-    img {
-        // display: inline;
-        width: 100%;
-    }
+  padding-top: 50px;
+  height: 250px;
+  width: 900px;
+  padding-bottom: 50px;
+  img {
+    // display: inline;
+    width: 100%;
+  }
 }
 
 .siteButtons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 900px;
-    height: 40px;
-    margin-bottom: 50px;
-    .siteButton {
-        background-color: $red;
-        border-radius: 15px;
-        border: 1px solid $border-gray;
-        width: 180px !important;
-        height: 30px;
-        width: auto;
-        color: white;
-        cursor: pointer;
-    }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 900px;
+  height: 40px;
+  margin-bottom: 50px;
+  .siteButton {
+    background-color: $red;
+    border-radius: 15px;
+    border: 1px solid $border-gray;
+    width: 180px !important;
+    height: 30px;
+    width: auto;
+    color: white;
+    cursor: pointer;
+  }
 }
 
 .suggestions {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .suggText {
+    font-size: 16pt;
+    counter-reset: $darkgrey;
+    margin-bottom: 30px;
+  }
+  .bodySuggestions {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    .suggText {
-        font-size: 16pt;
-        counter-reset: $darkgrey;
-        margin-bottom: 30px;
+    flex-direction: row;
+    height: 300px;
+    margin-bottom: 50px;
+    .cards {
+      width: 80%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .bodySuggestions {
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-        height: 300px;
-        margin-bottom: 50px;
-        .cards {
-            width: 80%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    }
+  }
 }
 
 .bodySuggestions2 {
+  margin-bottom: 50px;
+  width: 1024px;
+  img {
+    width: 100%;
+  }
+}
+
+.line {
+  height: 5px;
+  width: 100%;
+  border: 0 0 0 5px solid;
+  border: 0 0 5px 0;
+  border-bottom: 2px solid $lightgray-second;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.increaseButtonClass {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ads {
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+  img {
+    width: 100%;
+  }
+
+  &__body {
     margin-bottom: 50px;
     width: 1024px;
-    img {
-        width: 100%;
-    }
-}
+  }
 
-.pricetag {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 25px;
-    color: white;
-    padding-left: 5px;
-    background-color: $red;
-    padding-right: 5px;
-    border-radius: 25px;
-}
-
-.ui-card-title {
-    font-size: 11pt;
-    font-weight: bold;
-    margin-bottom: 0.5em;
-    overflow: auto;
-    height: auto;
-}
-
-.footer {
-    display: flex;
-    margin-top: 10px;
-    align-items: center;
-    @include rwd(1480) {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    @include rwd(1350) {
-        width: 100%;
-    }
-}
-
-.image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 230px;
-    overflow: hidden;
-    img {
-        max-width: fit-content;
-        display: block;
-    }
-}
-
-.cardBody {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-    height: 60px;
-    @include rwd(1680) {
-        width: 100%;
-    }
-    @include rwd(1350) {
-        width: 100%;
-    }
-}
-
-.description {
-    display: block;
-    max-width: 98%;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-}
-
-.lineCard {
+  &__line--card {
     display: flex;
     height: auto;
     flex-direction: row;
@@ -153,187 +118,10 @@
     justify-content: flex-start;
     margin-bottom: 50px;
     flex-wrap: wrap;
-    img {
-        width: 100%;
-    }
-}
+  }
 
-.line {
-    height: 5px;
-    width: 100%;
-    border: 0 0 0 5px solid;
-    border: 0 0 5px 0;
-    border-bottom: 2px solid $lightgray-second;
-    margin-bottom: 50px;
-    margin-top: 50px;
-}
-
-p-carousel {
-    width: 90% !important;
-}
-
-.ui-card-title {
-    font-size: 11pt;
-    font-weight: bold;
-    margin-bottom: 0.5em;
-    overflow: auto;
-    height: auto;
-}
-
-.footer {
+  &__favorite--ads {
     display: flex;
-    // flex-direction: row;
-    // justify-content: space-between;
-    align-self: center;
-    margin-top: 10px;
-    @include rwd(1480) {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    @include rwd(1350) {
-        width: 100%;
-    }
-}
-
-.image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 230px;
-}
-
-.cardBody {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 60px;
-    align-items: center;
-    @include rwd(1680) {
-        width: 100%;
-    }
-    @include rwd(1350) {
-        width: 100%;
-    }
-}
-
-.description {
-    display: block;
-    max-width: 98%;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-}
-
-.lineCard {
-    display: flex;
-    height: auto;
-    flex-direction: row;
-    width: 100%;
-    justify-content: flex-start;
-    margin-bottom: 50px;
-}
-
-.line {
-    height: 5px;
-    width: 100%;
-    border: 0 0 0 5px solid;
-    border: 0 0 5px 0;
-    border-bottom: 2px solid $lightgray-second;
-    margin-bottom: 50px;
-}
-
-p-carousel {
-    width: 90% !important;
-}
-
-.mainContainer {
-    display: flex;
-    flex-direction: row;
-    .sidebar {
-        width: auto;
-    }
-}
-
-p-sidebar {
-    overflow: scroll;
-}
-
-.accordationSpan {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    &:hover {
-        cursor: pointer;
-        color: $red;
-    }
-}
-
-.accordationDiv {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.increaseButtonClass {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .increaseButton {
-        background-color: $red;
-        color: $white;
-        margin-top: 50px;
-        border-radius: 15px;
-    }
-}
-
-.adLine {
-    border: 0 0 1px 0;
-    border-bottom: 1px solid $red;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    width: 70%;
-    height: 1px;
-    margin: 0px auto;
-}
-
-.cardHover {
-    box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06), 1px 3px 8px rgba(39, 44, 49, 0.03);
-    transition: all 0.5s ease;
-    /* back to normal */
-    &:hover {
-        box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.07), 1px 6px 12px rgba(39, 44, 49, 0.04);
-        transition: all 0.4s ease;
-        // transform: translate3D(0, -1px, 0) scale(1.03);
-        // transform: translateX(-50%) translateX(-0.4px) translateY(-50%) translateY(-0.4px);
-        -webkit-transform: scale(1.1);
-        -moz-transform: scale(1.1);
-        -o-transform: scale(1.1);
-        transform: scale(1.05);
-        /* zoom in */
-    }
-}
-
-.mat-icon {
-    color: $red;
-}
-
-.dropbtn {
-    height: 100%;
-    .mat-button-wrapper {
-        height: 100%;
-    }
-}
-
-.bodyLabel {
-    text-align: center;
-    display: inline-block;
-    width: 98%;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-    justify-content: center;
-    label {
-        width: 100%;
-    }
+    flex-wrap: wrap;
+  }
 }

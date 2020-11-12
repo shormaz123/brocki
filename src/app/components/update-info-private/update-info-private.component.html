@@ -1,64 +1,97 @@
 <div class="loginContainer">
-    <div class="mainContainer">
-        <div class="titleDiv">
-            <span class="title">{{ 'translate.update' | translate }}
+  <div class="mainContainer">
+    <div class="titleDiv">
+      <span class="title"
+        >{{ 'translate.update' | translate }}
         <span style="color: #d62b1f">{{
           'translate.info' | translate
-        }}</span></span>
-        </div>
-        <form (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()" [formGroup]="privateForm">
-            <div class="inputItem">
-                <img src="../../../assets/images/update-info-bussines/name.png" />
-                <input placeholder="{{ 'translate.username' | translate }}" formControlName="userName" />
-            </div>
-            <div class="inputItem">
-                <img src="../../../assets/images/update-info-bussines/name.png" />
-                <input placeholder="{{ 'translate.nameFirst' | translate }}" formControlName="name" />
-            </div>
-            <div class="inputItem">
-                <img src="../../../assets/images/update-info-bussines/surname.png" />
-                <input placeholder="{{ 'translate.surname' | translate }}" formControlName="surname" />
-            </div>
-            <div class="inputItem">
-                <img src="../../../assets/images/update-info-bussines/email.png" />
-                <input placeholder="{{ 'translate.email' | translate }}" formControlName="email" />
-            </div>
+        }}</span></span
+      >
+    </div>
+    <form
+      (ngSubmit)="onSubmit()"
+      (keyup.enter)="onSubmit()"
+      [formGroup]="privateForm"
+    >
+      <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/name.png" />
+        <input
+          placeholder="{{ 'translate.username' | translate }}"
+          formControlName="userName"
+        />
+      </div>
+      <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/name.png" />
+        <input
+          placeholder="{{ 'translate.nameFirst' | translate }}"
+          formControlName="name"
+        />
+      </div>
+      <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/surname.png" />
+        <input
+          placeholder="{{ 'translate.surname' | translate }}"
+          formControlName="surname"
+        />
+      </div>
+      <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/email.png" />
+        <input
+          placeholder="{{ 'translate.email' | translate }}"
+          formControlName="email"
+        />
+      </div>
 
-            <div class="inputItem">
-                <img src="../../../assets/images/update-info-bussines/phone.png" />
-                <input placeholder="{{ 'translate.phone' | translate }}" formControlName="phone" />
-            </div>
-            <div class="inputItem">
-                <img src="../../../assets/images/update-info-bussines/mobile.png" />
-                <input placeholder="{{ 'translate.mobile' | translate }}" formControlName="mobile" />
-            </div>
-            <div class="inputItem">
-                <img src="../../../assets/images/update-info-bussines/address.png" />
-                <input placeholder="{{ 'translate.addressAd' | translate }}" formControlName="street" />
-            </div>
-            <div class="inputItem">
-                <img src="../../../assets/images/update-info-bussines/address.png" />
-                <input placeholder="{{ 'translate.addressNumberAd' | translate }}" formControlName="houseNumber" />
-            </div>
-            <div class="inputItem">
-                <img src="../../../assets/images/update-info-bussines/address.png" />
-                <input placeholder="{{ 'translate.addressCodePostal' | translate }}" formControlName="postalNumber" />
-            </div>
-            <div class="inputItem">
-                <img src="../../../assets/images/update-info-bussines/address.png" />
-                <input placeholder="{{ 'translate.addressPlace' | translate }}" formControlName="city" />
-            </div>
-            <div class="inputItem inputItem--margin">
-                <a (click)="changePassword()">{{ 'translate.changePassword' | translate }}?</a
+      <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/phone.png" />
+        <input
+          placeholder="{{ 'translate.phone' | translate }}"
+          formControlName="phone"
+        />
+      </div>
+      <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/mobile.png" />
+        <input
+          placeholder="{{ 'translate.mobile' | translate }}"
+          formControlName="mobile"
+        />
+      </div>
+      <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/address.png" />
+        <input
+          placeholder="{{ 'translate.addressAd' | translate }}"
+          formControlName="street"
+        />
+      </div>
+      <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/address.png" />
+        <input
+          placeholder="{{ 'translate.addressNumberAd' | translate }}"
+          formControlName="houseNumber"
+        />
+      </div>
+      <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/address.png" />
+        <input
+          placeholder="{{ 'translate.addressCodePostal' | translate }}"
+          formControlName="postalNumber"
+        />
+      </div>
+      <div class="inputItem">
+        <img src="../../../assets/images/update-info-bussines/address.png" />
+        <input
+          placeholder="{{ 'translate.addressPlace' | translate }}"
+          formControlName="city"
+        />
+      </div>
+      <div class="inputItem inputItem--margin">
+        <a (click)="changePassword()"
+          >{{ 'translate.changePassword' | translate }}?</a
         >
       </div>
 
       <div class="inputItem">
-        <button
-          class="signInButton"
-          type="submit"
-          [disabled]="!privateForm.dirty"
-        >
+        <button class="button" type="submit" [disabled]="!privateForm.dirty">
           {{ 'translate.saveChanges' | translate }}
         </button>
       </div>

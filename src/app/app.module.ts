@@ -102,11 +102,12 @@ import { DebounceClickDirective } from './utils/app-prevent-double-click.directi
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { AdsCategoryWithTagsComponent } from './components/ads-category-with-tags/ads-category-with-tags.component';
-import {MatExpansionModule} from '@angular/material/expansion';
-import { SearchedAdsComponent } from './components/searched-ads/searched-ads.component'
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { SearchedAdsComponent } from './components/searched-ads/searched-ads.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AdsCardDetailComponent } from './components/ads-card-detail/ads-card-detail.component';
 
 registerLocaleData(en);
 
@@ -162,6 +163,7 @@ registerLocaleData(en);
     AdsCategoryWithTagsComponent,
     SearchedAdsComponent,
     LoadingSpinnerComponent,
+    AdsCardDetailComponent,
   ],
   imports: [
     BrowserModule,
