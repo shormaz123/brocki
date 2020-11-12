@@ -64,8 +64,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
         } else {
           this.favAds = this.ads;
         }
-      }
-      );
+      });
     this.subscriptionLang = this.translateBackend
       .getLanguage()
       .subscribe((message) => {
@@ -115,9 +114,9 @@ export class HomepageComponent implements OnInit, OnDestroy {
     return newArr;
   }
 
-  addToWishlist(adId: number) {
+  addToWishlist(event: any) {
     this.userRequest = {
-      adsId: adId,
+      adsId: event,
       userId: this.userId,
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
@@ -130,13 +129,14 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.helpersService.$numOfFavs.next();
   }
 
-  removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
-      this.downAdNumber();
-    }),
+  removeFromWishlist(event: any) {
+    this.userService
+      .deleteUserFavourite(event.adId, this.userId)
+      .subscribe((x) => {
+        this.downAdNumber();
+      }),
       // tslint:disable-next-line:no-unused-expression
-      (error) => {
-      };
+      (error) => {};
   }
 
   goToAd(id: number) {

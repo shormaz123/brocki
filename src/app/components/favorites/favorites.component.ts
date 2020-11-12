@@ -36,19 +36,19 @@ export class FavoritesComponent implements OnInit {
       adsId: adId,
       userId: this.userId,
     };
-    this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-    }),
-      (error) => {
-      };
+    this.userService
+      .updateUserFavourites(this.userRequest)
+      .subscribe((x) => {}),
+      (error) => {};
     this.helpersService.$numOfFavs.next();
   }
 
-  removeFromWishlist(adId: number, i: any) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
-    }),
-      (error) => {
-      };
-    this.favoriteAds.splice(i, 1);
+  removeFromWishlist(event: any) {
+    this.userService
+      .deleteUserFavourite(event.adId, this.userId)
+      .subscribe((x) => {}),
+      (error) => {};
+    this.favoriteAds.splice(event.index, 1);
     this.helpersService.$numOfFavs.next();
   }
 }
