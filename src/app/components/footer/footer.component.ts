@@ -16,9 +16,7 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.token = localStorage.getItem(AuthConst.token);
     if (this.token) {
-      this.userService.getUser().subscribe((res) => {
-        this.userId = res.id;
-      });
+      this.userId = Number(localStorage.getItem('brocki_id'))
     }
   }
 

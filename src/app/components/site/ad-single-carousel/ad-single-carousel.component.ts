@@ -3,12 +3,8 @@ import {
   OnInit,
   ViewChild,
   Input,
-  AfterViewInit,
-  OnChanges,
-  SimpleChanges, OnDestroy
 } from '@angular/core';
-import { NguCarouselConfig } from '@ngu/carousel';
-import { NzCarouselBaseStrategy, NzCarouselComponent } from 'ng-zorro-antd';
+import { NzCarouselComponent } from 'ng-zorro-antd';
 import { AdsService } from '../../../@core/services/ads.service';
 import { Ads } from '../../../shared/models/ads.model';
 import { UserService } from '../../../@core/services/user.service';
@@ -22,13 +18,16 @@ import { Subscription } from 'rxjs';
   templateUrl: './ad-single-carousel.component.html',
   styleUrls: ['./ad-single-carousel.component.scss'],
 })
-export class AdSingleCarouselComponent implements OnInit, OnChanges, OnDestroy {
+export class AdSingleCarouselComponent implements OnInit {
+
   @Input() userId;
   @Input() favAds: Ads;
   @Input() favoriteNumber;
+
   @ViewChild(NzCarouselComponent, { static: false })
+
   myCarousel: NzCarouselComponent;
-  public favoriteAds;
+  favoriteAds;
   selected: boolean;
   userRequest: UserAddAdsRequest;
   token;
@@ -36,21 +35,10 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges, OnDestroy {
   numberOfFavs: Subscription;
 
   constructor(
-    private adsService: AdsService,
-    private userService: UserService,
-    private helpersService: HelpersService,
   ) {}
 
   ngOnInit() {
-    this.numberOfFavs = this.helpersService.getNumberOfFavorites().subscribe( number => {
-      this.numberOfFavorites = number;
-     });
     this.token = localStorage.getItem(AuthConst.token);
-    if (this.userId) {
-      this.userService.getUser().subscribe((user) => {
-        this.userId = user.id;
-      });
-    }
   }
 
   next() {
@@ -61,49 +49,6 @@ export class AdSingleCarouselComponent implements OnInit, OnChanges, OnDestroy {
     this.myCarousel.pre();
   }
 
-  ngOnDestroy() {
-    this.numberOfFavs.unsubscribe();
 
-  }
-
-  addToWishlist(adId: number) {
-    this.userRequest = {
-      adsId: adId,
-      userId: Number(localStorage.getItem(AuthConst.userId))
-    };
-    this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      this.raiseAdNumber()
-    }),
-      (error) => {
-      };
-    this.helpersService.$numOfFavs.next();
-  }
-
-  removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, Number(localStorage.getItem(AuthConst.userId))).subscribe((x) => {
-      this.downAdNumber();
-    }),
-      (error) => {
-      };
-    this.helpersService.$numOfFavs.next();
-  }
-
-  sendNumberOfFavorites(number: number) {
-    this.helpersService.sendNumberOfFavorites(number);
-  }
-
-  raiseAdNumber() {
-    this.numberOfFavorites = this.numberOfFavorites + 1;
-    this.sendNumberOfFavorites(this.numberOfFavorites);
-  }
-
-  downAdNumber() {
-    this.numberOfFavorites = this.numberOfFavorites - 1;
-    this.sendNumberOfFavorites(this.numberOfFavorites);
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.numberOfFavorites = this.favoriteNumber
-  }
 
 }

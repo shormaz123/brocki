@@ -119,6 +119,13 @@ export class HomepageComponent implements OnInit, OnDestroy {
           }
           if (this.token) {
             this.favAds.push(...this.paginationAds);
+            this.wishlist.ads$.subscribe((x) => {
+              this.favoriteAds = x;
+              // Replace objects between two arrays.
+              this.favAds = this.favAds.map(
+                (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+              );
+            });
             this.disableScrolling();
           } else {
             this.favAds.push(...this.paginationAds);

@@ -64,22 +64,17 @@ export class SiteComponent implements OnInit, OnDestroy {
   @ViewChild('panel', { read: ElementRef, static: false })
   public panel: ElementRef<any>;
 
-  state;
   selected: boolean;
 
-  numberOfFavs: Subscription;
 
   subscriptionLang: Subscription;
   myRefreshSubscription: Subscription;
   currentLang = 'de';
   startPage: number;
   paginationNumber = 1;
-  refresh?;
 
   constructor(
-    private adsService: AdsService,
     private translateBackend: TranslateServiceRest,
-    private helpersService: HelpersService,
     private router: Router,
     public wishlist: WishlistService
   ) {}
@@ -87,11 +82,6 @@ export class SiteComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.deselectAll = true;
     this.token = localStorage.getItem(AuthConst.token);
-    this.numberOfFavs = this.helpersService
-      .getNumberOfFavorites()
-      .subscribe((number) => {
-        this.numberOfFavorites = number;
-      });
     this.subscriptionLang = this.translateBackend
       .getLanguage()
       .subscribe((message) => {
@@ -110,7 +100,6 @@ export class SiteComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.numberOfFavs.unsubscribe();
     this.subscriptionLang.unsubscribe();
   }
 
