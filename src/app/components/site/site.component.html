@@ -15,7 +15,7 @@
                 </div>
                 <button class="favorite" routerLink="/favorite" *ngIf="token">
           {{ 'translate.favorite' | translate }}
-          <span *ngIf="numberOfFavorites ">({{ wishlist.count$ | async}})</span>
+          <span >({{ wishlist.count$ | async}})</span>
         </button>
                 <button class="favorite" *ngIf="!token" pTooltip="{{
                           'translate.pleaseLoginBeforeYouAddThisAd' | translate

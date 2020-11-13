@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../@core/services/user.service';
 import { Ads } from '../../shared/models/ads.model';
 import { HelpersService } from '../../@core/services/helpers.service';
+import { WishlistService } from 'app/@core/services/wishlist.service';
 
 @Component({
   selector: 'app-favorites',
@@ -14,8 +15,7 @@ export class FavoritesComponent implements OnInit {
   userId: number;
 
   constructor(
-    private userService: UserService,
-    private helpersService: HelpersService
+    public wishlist: WishlistService
   ) {}
 
   ngOnInit() {
@@ -23,32 +23,8 @@ export class FavoritesComponent implements OnInit {
   }
 
   getUserAndFavAd() {
-    this.userService.getUser().subscribe((response) => {
-      this.userId = response.id;
-      this.userService.getFavourites(response.id).subscribe((x) => {
-        this.favoriteAds = x;
-      });
+    this.wishlist.ads$.subscribe( x => {
+      this.favoriteAds = x;
     });
-  }
-
-  addToWishlist(adId: number) {
-    this.userRequest = {
-      adsId: adId,
-      userId: this.userId,
-    };
-    this.userService
-      .updateUserFavourites(this.userRequest)
-      .subscribe((x) => {}),
-      (error) => {};
-    this.helpersService.$numOfFavs.next();
-  }
-
-  removeFromWishlist(event: any) {
-    this.userService
-      .deleteUserFavourite(event.adId, this.userId)
-      .subscribe((x) => {}),
-      (error) => {};
-    this.favoriteAds.splice(event.index, 1);
-    this.helpersService.$numOfFavs.next();
   }
 }

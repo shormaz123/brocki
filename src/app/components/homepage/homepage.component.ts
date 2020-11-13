@@ -37,16 +37,14 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   constructor(
     private adsService: AdsService,
-    private userService: UserService,
-    private helpersService: HelpersService,
     private router: Router,
     private translateBackend: TranslateServiceRest,
-    private authService: AuthService,
     private loadingService: LoadingIndicatorService,
     private wishlist: WishlistService
   ) {}
 
   ngOnInit() {
+
     this.loadingService.loadingOn();
     this.token = localStorage.getItem(AuthConst.token);
     this.userId = Number(localStorage.getItem('brocki_id'));
@@ -72,20 +70,11 @@ export class HomepageComponent implements OnInit, OnDestroy {
       .subscribe((message) => {
         this.currentLang = message;
       });
-    this.numberOfFavs = this.helpersService
-      .getNumberOfFavorites()
-      .subscribe((number) => {
-        this.numberOfFavorites = number;
-      });
   }
 
   getUserAndFavAd() {
-    this.userService
-      .getFavourites(Number(localStorage.getItem('brocki_id')))
-      .subscribe((x) => {
+    this.wishlist.ads$.subscribe((x) => {
         this.favoriteAds = x;
-        this.numberOfFavorites = x.length;
-        this.sendNumberOfFavorites(x.length);
         // Replace objects between two arrays.
         this.favAds = this.ads.map(
           (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
@@ -103,7 +92,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.numberOfFavs.unsubscribe();
     this.subscriptionLang.unsubscribe();
   }
 
@@ -114,34 +102,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
       [newArr[i], newArr[rand]] = [newArr[rand], newArr[i]];
     }
     return newArr;
-  }
-
-  addToWishlist(ad: Ads) {
-    this.wishlist.add(ad).subscribe();
-    this.userRequest = {
-      adsId: ad.id,
-      userId: this.userId,
-    };
-    this.userService.updateUserFavourites(this.userRequest).subscribe();
-    // this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-    //   this.raiseAdNumber();
-    // }),
-    //   (error) => {
-    //     if ((error.message = 'Unexpected end of JSON input')) {
-    //     }
-    //   };
-    // this.helpersService.$numOfFavs.next();
-
-  }
-
-  removeFromWishlist(ad: Ads) {
-    this.wishlist.remove(ad).subscribe();
-    this.userService.deleteUserFavourite(ad.id, this.userId).subscribe((x) => {
-      // this.downAdNumber();
-    });
-      // tslint:disable-next-line:no-unused-expression
-      // (error) => {
-      // };
   }
 
   goToAd(id: number) {
@@ -175,17 +135,4 @@ export class HomepageComponent implements OnInit, OnDestroy {
     };
   }
 
-  sendNumberOfFavorites(number: number) {
-    this.helpersService.sendNumberOfFavorites(number);
-  }
-
-  raiseAdNumber() {
-    this.numberOfFavorites = this.numberOfFavorites + 1;
-    this.sendNumberOfFavorites(this.numberOfFavorites);
-  }
-
-  downAdNumber() {
-    this.numberOfFavorites = this.numberOfFavorites - 1;
-    this.sendNumberOfFavorites(this.numberOfFavorites);
-  }
 }
