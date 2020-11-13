@@ -27,9 +27,9 @@ export class HomepageComponent implements OnInit, OnDestroy {
   randomAdsA;
   randomAdsB;
   ads: Ads[];
+  loadMoreAds: Ads[];
   filteredAds: Ads[];
   favoriteAds: Ads[];
-  numberOfFavs: Subscription;
   subscriptionLang: Subscription;
   numberOfFavorites: number;
   currentLang = 'de';
@@ -60,9 +60,14 @@ export class HomepageComponent implements OnInit, OnDestroy {
           this.ads.slice(Math.floor(this.ads.length / 2), this.ads.length)
         );
         if (this.token) {
-          this.getUserAndFavAd();
+          this.getUserFavoriteAds();
+          this.favAds = this.ads.map(
+            (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+          );
+          this.getRandomAds();
         } else {
           this.favAds = this.ads;
+          this.getRandomAds();
         }
       });
     this.subscriptionLang = this.translateBackend
@@ -72,25 +77,28 @@ export class HomepageComponent implements OnInit, OnDestroy {
       });
   }
 
-  getUserAndFavAd() {
+  getUserFavoriteAds() {
     this.wishlist.ads$.subscribe((x) => {
-        this.favoriteAds = x;
-        // Replace objects between two arrays.
-        this.favAds = this.ads.map(
-          (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-        );
-        this.randomAdsA = this.shuffle(
-          this.favAds.slice(0, Math.floor(this.favAds.length / 2))
-        );
-        this.randomAdsB = this.shuffle(
-          this.favAds.slice(
-            Math.floor(this.favAds.length / 2),
-            this.favAds.length
-          )
-        );
-      });
+      this.favoriteAds = x;
+      // Replace objects between two arrays.
+
+    });
   }
 
+  replaceAdsId() {
+  }
+
+  getRandomAds() {
+    this.randomAdsA = this.shuffle(
+      this.favAds.slice(0, Math.floor(this.favAds.length / 2))
+    );
+    this.randomAdsB = this.shuffle(
+      this.favAds.slice(
+        Math.floor(this.favAds.length / 2),
+        this.favAds.length
+      )
+    );
+  }
   ngOnDestroy() {
     this.subscriptionLang.unsubscribe();
   }
@@ -118,14 +126,11 @@ export class HomepageComponent implements OnInit, OnDestroy {
             this.disableButton = false;
           }
           if (this.token) {
-            this.favAds.push(...this.paginationAds);
-            this.wishlist.ads$.subscribe((x) => {
-              this.favoriteAds = x;
-              // Replace objects between two arrays.
-              this.favAds = this.favAds.map(
+              const newAds = this.paginationAds.map(
                 (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
               );
-            });
+              this.favAds.push(...newAds);
+            // });
             this.disableScrolling();
           } else {
             this.favAds.push(...this.paginationAds);
