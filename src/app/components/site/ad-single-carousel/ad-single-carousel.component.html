@@ -1,31 +1,25 @@
 <div class="container">
-  <div class="mainContainer">
-    <div (click)="pre()">
-      <img
-        src="../../../../assets/images/buttons/arrow round left.png"
-        style="cursor: pointer;"
-      />
-    </div>
-    <div class="carousel">
-      <nz-carousel [nzEffect]="'fade'" nzArrows="true" nzDots="false">
-        <div nz-carousel-content *ngFor="let ad of favAds">
-          <div class="containers">
-            <div class="leftContainer" [routerLink]="['/ad', ad.id]">
-              <img [src]="ad.image[0]" />
-            </div>
-            <div class="rightContainer">
-              <div class="title">
-                <label class="title-text">
+    <div class="mainContainer">
+        <div (click)="pre()">
+            <img src="../../../../assets/images/buttons/arrow round left.png" style="cursor: pointer;" />
+        </div>
+        <div class="carousel">
+            <nz-carousel [nzEffect]="'fade'" nzArrows="true" nzDots="false">
+                <div nz-carousel-content *ngFor="let ad of favAds">
+                    <div class="containers">
+                        <div class="leftContainer" [routerLink]="['/ad', ad.id]">
+                            <img [src]="ad.image[0]" />
+                        </div>
+                        <div class="rightContainer">
+                            <div class="title">
+                                <label class="title-text">
                   {{ ad.productName }}
                 </label>
-              </div>
+                            </div>
 
-              <div class="text">
-                <div style="width: 100%; height: 80%;">
-                  <label
-                    class="desc-text"
-                    style="color: #4d4d4d; line-height: normal;"
-                    >{{ ad.description }}</label
+                            <div class="text">
+                                <div style="width: 100%; height: 80%;">
+                                    <label class="desc-text" style="color: #4d4d4d; line-height: normal;">{{ ad.description }}</label
                   >
                 </div>
 
@@ -48,14 +42,12 @@
                   >
                     <mat-icon
                       *ngIf="ad.favourite"
-                      (click)="removeFromWishlist(ad.id)"
                       aria-label="Example icon-button with a heart icon"
                     >
                       favorite
                     </mat-icon>
                     <mat-icon
                       *ngIf="!ad.favourite"
-                      (click)="addToWishlist(ad.id)"
                       aria-label="Example icon-button with a heart icon"
                     >
                       favorite_border
@@ -66,19 +58,16 @@
               <div class="price">
                 <div class="pricetag">
                   <label>{{ ad.price | number:'1.2-2':'en-US'   }} CHF</label>
+                                </div>
+                                <span style="color: black;">{{ ad.adsDate | date }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <span style="color: black;">{{ ad.adsDate | date }}</span>
-              </div>
-            </div>
-          </div>
+            </nz-carousel>
         </div>
-      </nz-carousel>
+        <div (click)="next()">
+            <img src="../../../../assets/images/buttons/arrow round right.png" style="cursor: pointer;" />
+        </div>
     </div>
-    <div (click)="next()">
-      <img
-        src="../../../../assets/images/buttons/arrow round right.png"
-        style="cursor: pointer;"
-      />
-    </div>
-  </div>
 </div>

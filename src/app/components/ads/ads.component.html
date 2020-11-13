@@ -1,8 +1,8 @@
 <div class="container" (wheel)="onMouseWheel($event)">
-  <div class="headerContainer">
-    <div class="categoriesContainer">
-      <div class="category">
-        <button class="category__button">
+    <div class="headerContainer">
+        <div class="categoriesContainer">
+            <div class="category">
+                <button class="category__button">
           <div class="category__tab-icon" (click)="displaySideBar()">
             <img
               class="icon-not-active"
@@ -17,62 +17,51 @@
             }}</span>
           </div>
         </button>
-      </div>
-      <div
-        style="
+            </div>
+            <div style="
           height: 100%;
           width: 50%;
           display: flex;
           align-items: flex-start;
           justify-content: center;
-        "
-      >
-        <button class="arrow">
+        ">
+                <button class="arrow">
           <img src="../../../assets/images/back.svg" (click)="backClicked()" />
         </button>
-      </div>
+            </div>
+        </div>
+        <div class="titleContainer">
+            <div class="underContainer">
+                <span class="title">{{ categoryName }}</span>
+            </div>
+            <div class="underContainer">
+                <span class="title">{{ subCategoryName }}</span>
+            </div>
+        </div>
+        <div class="categoryContainer" style="align-items: flex-start">
+            <div>
+                <img src="{{ selectedImage }}" />
+            </div>
+        </div>
     </div>
-    <div class="titleContainer">
-      <div class="underContainer">
-        <span class="title">{{ categoryName }}</span>
-      </div>
-      <div class="underContainer">
-        <span class="title">{{ subCategoryName }}</span>
-      </div>
+    <div class="tagsContainer" *ngIf="startingAds > 0">
+        <div style="margin: 0 20px 15px 0" *ngFor="let tag of tags">
+            <div class="tagsContainer__tag" [ngClass]="{ active: clickedTags.includes(tag.id) }" (click)="chosenTag(tag.id)">
+                {{ tag.name[currentLang] }}
+            </div>
+        </div>
     </div>
-    <div class="categoryContainer" style="align-items: flex-start">
-      <div>
-        <img src="{{ selectedImage }}" />
-      </div>
+    <div class="no--ads--container" *ngIf="favAds.length === 0">
+        <h1>{{ 'translate.noAvailableAds' | translate }}</h1>
     </div>
-  </div>
-  <div class="tagsContainer" *ngIf="startingAds > 0">
-    <div style="margin: 0 20px 15px 0" *ngFor="let tag of tags">
-      <div
-        class="tagsContainer__tag"
-        [ngClass]="{ active: clickedTags.includes(tag.id) }"
-        (click)="chosenTag(tag.id)"
-      >
-        {{ tag.name[currentLang] }}
-      </div>
+    <div class="favorites">
+        <div class="favorites__line--card">
+            <app-ads-card-detail [ads]="favAds" class="favorites__favorite--ads"></app-ads-card-detail>
+        </div>
     </div>
-  </div>
-  <div class="no--ads--container" *ngIf="favAds.length === 0">
-    <h1>{{ 'translate.noAvailableAds' | translate }}</h1>
-  </div>
-  <div class="favorites">
-    <div class="favorites__line--card">
-      <app-ads-card-detail
-        [ads]="favAds"
-        (addWishlist)="addToWishlist($event)"
-        (removeWishlist)="removeFromWishlist($event)"
-        class="favorites__favorite--ads"
-      ></app-ads-card-detail>
-    </div>
-  </div>
-  <div class="increaseButtonClass" *ngIf="disableButton">
-    <button class="show--more" mat-button (click)="increaseShow()">
+    <div class="increaseButtonClass" *ngIf="disableButton">
+        <button class="show--more" mat-button (click)="increaseShow()">
       {{ 'translate.showMore' | translate }}
     </button>
-  </div>
+    </div>
 </div>
