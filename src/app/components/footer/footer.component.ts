@@ -24,4 +24,8 @@ export class FooterComponent implements OnInit {
     this.router.navigate([route]);
     window.scrollTo({ top: 0 });
   }
+
+  openFile() {
+    window.open("assets/documents/Allgemeine Geschäftsbedingungen MiniBrocki.ch.pdf");
+}
 }

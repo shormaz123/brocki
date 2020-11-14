@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Ads } from 'app/shared/models/ads.model';
 import { BehaviorSubject, Observable, of, Subject, throwError, timer } from 'rxjs';
-import { catchError, map, takeUntil, tap } from 'rxjs/operators';
+import { catchError, map, skipWhile, takeUntil, tap } from 'rxjs/operators';
 import { AuthConst } from '../consts/auth.const';
 import { UserService } from './user.service';
 
@@ -25,6 +25,7 @@ export class WishlistService implements OnDestroy {
 };
 
 token;
+userFavoriteAds;
 private destroy$: Subject<void> = new Subject();
 private onAddingSubject$: Subject<Ads> = new Subject();
 private adsSubject$: BehaviorSubject<Ads[]> = new BehaviorSubject([]);
@@ -52,10 +53,6 @@ private adsSubject$: BehaviorSubject<Ads[]> = new BehaviorSubject([]);
 
 private save(): void {
   this.adsSubject$.next(this.data.favoriteAds);
-}
-
-getFavAds() : Observable<Ads[]>  {
-  return of(this.data.favoriteAds);
 }
 
 private load(): void {
