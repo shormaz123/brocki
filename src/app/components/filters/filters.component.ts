@@ -1,22 +1,8 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  OnDestroy,
-  HostListener,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FilterAds } from '../../shared/models/filterAds.model';
-import { Ads } from '../../shared/models/ads.model';
-import cantons from '../../shared/cantons.json';
 import { AdsService } from '../../@core/services/ads.service';
-import { NzNotificationService } from 'ng-zorro-antd';
-import { Router } from '@angular/router';
-import { HelpersService } from '../../@core/services/helpers.service';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
 import { Subscription } from 'rxjs';
-import { response } from 'express';
-import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
 import { Options, LabelType } from 'ng5-slider';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthConst } from '../../@core/consts/auth.const';
@@ -29,6 +15,32 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class FiltersComponent implements OnInit, OnDestroy {
   filterForm: FormGroup;
+
+  region: string;
+  error = false;
+  errorMessage;
+  public filterAd: FilterAds;
+  ads: any;
+  hideFilter: boolean = false;
+  currentLang = 'de';
+  subscriptionLang: Subscription;
+  pageNumber: number = 1;
+  pageSize: number = 16;
+  language: string;
+  location: string;
+  fillAds: any;
+  categoriesGroup;
+  subCategoriesGroup;
+
+  category = {
+    id: undefined,
+    groupName: '',
+  };
+
+  subCategory = {
+    id: undefined,
+    subGroupName: '',
+  };
 
   fromPrice: number = 0;
   toPrice: number = 1000000;
@@ -49,51 +61,8 @@ export class FiltersComponent implements OnInit, OnDestroy {
     },
   };
 
-  fixedPrice = false;
-  hasImage = false;
-  freeDelivery = false;
-  productWarranty = false;
-  urgentSales = false;
-  region: string;
-  error = false;
-  errorMessage;
-
-  all: boolean;
-  used: boolean;
-  new: boolean;
-  public filterAd: FilterAds;
-
-  ads: any;
-  hideFilter: boolean = false;
-
-  fillAds: any;
-
-  cantons = cantons;
-  formattedAmount;
-  amount;
-  categoriesGroup;
-  subCategoriesGroup;
-  category = {
-    id: undefined,
-    groupName: '',
-  };
-  subCategory = {
-    id: undefined,
-    subGroupName: '',
-  };
-
-  currentLang = 'de';
-  subscriptionLang: Subscription;
-  nullValue = null;
-  pageNumber: number = 1;
-  pageSize: number = 16;
-
-  language: string;
-  location: string;
-
   constructor(
     private adsService: AdsService,
-    private router: Router,
     private translateBackend: TranslateServiceRest,
     private translateService: TranslateService,
     private fb: FormBuilder
@@ -110,7 +79,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
     });
-    this.all = true;
 
     this.subscriptionLang = this.translateBackend
       .getLanguage()
@@ -127,26 +95,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
     this.subscriptionLang.unsubscribe();
-  }
-
-  getLanguage() {}
-
-  allButton() {
-    this.all = true;
-    this.new = false;
-    this.used = false;
-  }
-
-  newButton() {
-    this.all = false;
-    this.new = true;
-    this.used = false;
-  }
-
-  usedButton() {
-    this.all = false;
-    this.new = false;
-    this.used = true;
   }
 
   findCategory(event: any): void {
@@ -206,8 +154,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
         location: this.location,
         fromPrice: this.fromPrice,
         toPrice: this.toPrice,
-        fixedPrice: this.fixedPrice,
-        hasImage: this.hasImage,
         adsGroupId: this.category.id,
         subCategory: this.subCategory.id,
         pageNumber: this.pageNumber,

@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   OnDestroy,
-  Input,
   Output,
   EventEmitter,
 } from '@angular/core';
@@ -15,9 +14,6 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
 import { AdsService } from '../../@core/services/ads.service';
-import { Ads } from '../../shared/models/ads.model';
-import { User } from '../../shared/models/user.model';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -28,16 +24,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Output() getLanguage = new EventEmitter<any>();
   accountName: string;
   createAd: boolean;
-  roleName;
-  user;
   userId;
   dropdownBoolean = true;
   userLang;
   chosenLanguage;
-  header;
   privateUser;
   displaySideNav;
-  ads: Ads[];
   subCategories;
   currentLang;
   categoriesGroup;
@@ -80,7 +72,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
-      console.log(this.categoriesGroup)
+      console.log(this.categoriesGroup);
     });
     this.displaySideBarSubscription = this.helpers
       .getDisplaySideBar()
@@ -124,24 +116,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   getUser(): void {
-    this.userService.getUser().subscribe(
-      (user) => {
-        if (user.bussinesType === 'PRIVATE') {
-          this.privateUser = true;
-        } else {
-          this.privateUser = false;
-        }
-        if (user == null) {
-          this.accountName = null;
-          this.createAd = false;
-        } else {
-          this.accountName = user.userName;
-          this.createAd = true;
-          this.userId = user.id;
-          localStorage.setItem(AuthConst.userId, user.id.toString());
-        }
-      },
-    );
+    this.userService.getUser().subscribe((user) => {
+      if (user.bussinesType === 'PRIVATE') {
+        this.privateUser = true;
+      } else {
+        this.privateUser = false;
+      }
+      if (user == null) {
+        this.accountName = null;
+        this.createAd = false;
+      } else {
+        this.accountName = user.userName;
+        this.createAd = true;
+        this.userId = user.id;
+        localStorage.setItem(AuthConst.userId, user.id.toString());
+      }
+    });
   }
 
   logout() {
@@ -180,6 +170,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.displaySideNav = false;
   }
 
-  selectCategoryOnSideBar(category: any) {
-  }
+  selectCategoryOnSideBar(category: any) {}
 }

@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { Ads } from '../../../shared/models/ads.model';
 import { AdsService } from '../../../@core/services/ads.service';
-import { NzModalService } from 'ng-zorro-antd';
 import { ToastrService } from 'ngx-toastr';
 import { UserStatus } from '../../../shared/enums/userStatus';
 import { AuthConst } from '../../../@core/consts/auth.const';
@@ -29,7 +28,6 @@ export class AccountActiveComponent implements OnInit, OnChanges {
   ad: string;
   @Output() changeStatusSold = new EventEmitter();
   @Output() changeStatusDelete = new EventEmitter();
-  userId: number;
   itReject = '../../../../assets/images/adsLabel/it-reject.svg';
   itReview = '../../../../assets/images/adsLabel/it-ready-for-review.svg';
   frReject = '../../../../assets/images/adsLabel/fr-reject.svg';
@@ -40,7 +38,6 @@ export class AccountActiveComponent implements OnInit, OnChanges {
   enReview = '../../../../assets/images/adsLabel/en-ready-for-review.svg';
 
   constructor(
-    private modal: NzModalService,
     private adsService: AdsService,
     private toastr: ToastrService,
     private translateService: TranslateService,
@@ -74,14 +71,16 @@ export class AccountActiveComponent implements OnInit, OnChanges {
   }
 
   deleteAd(active: Ads, index: number): void {
-      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-        width: '500px',
-        data: {
-          message: this.translateService.instant('translate.deleteAdConfirmation')
-        }
-      });
-      confirmDialog.afterClosed().subscribe(result => {
-        if (result) {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      data: {
+        message: this.translateService.instant(
+          'translate.deleteAdConfirmation'
+        ),
+      },
+    });
+    confirmDialog.afterClosed().subscribe((result) => {
+      if (result) {
         this.activeProducts[0].splice(index, 1);
         if (this.activeProducts[0].length === 0) {
           this.ads = false;
@@ -106,18 +105,18 @@ export class AccountActiveComponent implements OnInit, OnChanges {
           this.changeStatusDelete.emit(this.ad);
         });
       }
-      })
+    });
   }
 
   soldAd(active: Ads, index: number): void {
-      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-        width: '500px',
-        data: {
-          message: this.translateService.instant('translate.acruallySoldAd')
-        }
-      });
-      confirmDialog.afterClosed().subscribe(result => {
-        if (result) {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      data: {
+        message: this.translateService.instant('translate.acruallySoldAd'),
+      },
+    });
+    confirmDialog.afterClosed().subscribe((result) => {
+      if (result) {
         this.activeProducts[0].splice(index, 1);
         if (this.activeProducts[0].length === 0) {
           this.ads = false;

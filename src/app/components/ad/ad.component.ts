@@ -2,10 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  HostListener,
-  OnDestroy,
   OnInit,
-  Renderer2,
   ViewChild,
   Input,
 } from '@angular/core';
@@ -14,17 +11,12 @@ import { UserService } from '../../@core/services/user.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Ads } from '../../shared/models/ads.model';
 import { User } from '../../shared/models/user.model';
-// import {
-//   NgxGalleryOptions,
-//   NgxGalleryImage,
-//   NgxGalleryAnimation,
-// } from 'ngx-gallery';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { HelpersService } from '../../@core/services/helpers.service';
-import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
-import {NgxGalleryImage} from '@kolkov/ngx-gallery';
-import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
+import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import { NgxGalleryImage } from '@kolkov/ngx-gallery';
+import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -46,7 +38,6 @@ export class AdComponent implements OnInit, AfterViewInit {
   userSellerId: number;
   ad: Ads;
   userSeller: User;
-  productName;
   adsByUser;
   allAdsByUser;
   adGroupId?;
@@ -83,12 +74,10 @@ export class AdComponent implements OnInit, AfterViewInit {
   displaySideNav = true;
   mailBoolean = false;
   email = false;
-  useKeyborad = true;
   favoriteAds: Ads[];
   numberOfFavs: Subscription;
   favAds = [];
-  address:string;
-
+  address: string;
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
 
@@ -106,7 +95,6 @@ export class AdComponent implements OnInit, AfterViewInit {
     this.token = localStorage.getItem(AuthConst.token);
     if (this.token) {
       this.getUserAndFavAd();
-
     }
     this.galleryOptions = [
       {
@@ -134,8 +122,6 @@ export class AdComponent implements OnInit, AfterViewInit {
       });
     }
 
-
-
     this.images = [];
     this.activatedRoute.params.subscribe((params) => {
       this.adId = params.id;
@@ -149,19 +135,20 @@ export class AdComponent implements OnInit, AfterViewInit {
     if (this.card) {
       this.userService.getUserById(this.card.userId).subscribe((res) => {
         this.reviewUser = res;
-        const [street, streetNumber, postalNumber, city] = res.address.split(',');
-        this.address =  street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
+        const [street, streetNumber, postalNumber, city] = res.address.split(
+          ','
+        );
+        this.address =
+          street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
         this.reviewUserId = res.id;
         this.adsService.getAllByUserId(this.reviewUserId).subscribe((res) => {
           this.reviewUserActiveAds = res;
           for (const picture of this.card.image) {
-            this.reviewAdsImages.push(
-              {
+            this.reviewAdsImages.push({
               small: picture,
               medium: picture,
               big: picture,
-            }
-            );
+            });
           }
         });
       });
@@ -179,7 +166,7 @@ export class AdComponent implements OnInit, AfterViewInit {
 
   enableScrolling() {
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function() {};
+    window.onscroll = function () {};
   }
 
   getNewAd(id: number) {
@@ -201,14 +188,13 @@ export class AdComponent implements OnInit, AfterViewInit {
               if (this.token) {
                 for (var i = 0; i < this.favoriteAds.length; i++) {
                   if (this.favoriteAds[i].id === this.ad.id) {
-                      this.ad.favourite = true;
+                    this.ad.favourite = true;
                   }
                 }
                 this.allAdsByCategory = x;
                 this.adsByCategory = this.allAdsByCategory.map(
                   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
                 );
-
               } else {
                 this.categoryImagesAvailable = true;
                 this.adsByCategory = x;
@@ -217,13 +203,11 @@ export class AdComponent implements OnInit, AfterViewInit {
           });
 
         for (const picture of response.image) {
-          this.galleryImages.push(
-            {
+          this.galleryImages.push({
             small: picture,
             medium: picture,
             big: picture,
-          }
-          );
+          });
         }
 
         this.userService.getUserById(this.userSellerId).subscribe((x) => {
@@ -252,9 +236,11 @@ export class AdComponent implements OnInit, AfterViewInit {
           } else {
             this.usersImagesAvailabe = true;
             this.userSeller = x;
-           const [street, streetNumber, postalNumber, city] = x.address.split(',');
-            this.address =  street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
-
+            const [street, streetNumber, postalNumber, city] = x.address.split(
+              ','
+            );
+            this.address =
+              street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
           }
         });
 
@@ -277,9 +263,7 @@ export class AdComponent implements OnInit, AfterViewInit {
     }
   }
 
-  favoriteCategoryAds(id: number) {
-
-  }
+  favoriteCategoryAds(id: number) {}
 
   favoriteUserAds() {
     if (this.token) {
@@ -314,53 +298,52 @@ export class AdComponent implements OnInit, AfterViewInit {
       adsId: adId,
       userId: this.userId,
     };
-    this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-    }),
-      (error) => {
-      };
+    this.userService
+      .updateUserFavourites(this.userRequest)
+      .subscribe((x) => {}),
+      (error) => {};
     this.helpersService.$numOfFavs.next();
     if (this.token) {
       for (var i in this.adsByCategory) {
         if (this.adsByCategory[i].id == adId) {
           this.adsByCategory[i].favourite = true;
-          this.allAdsByCategory = [...this.adsByCategory]
-           break; //Stop this loop, we found it!
+          this.allAdsByCategory = [...this.adsByCategory];
+          break; //Stop this loop, we found it!
         }
       }
       for (var i in this.adsByUser) {
         if (this.adsByUser[i].id == adId) {
           this.adsByUser[i].favourite = true;
-          this.adsByUser = [...this.adsByUser]
-           break; //Stop this loop, we found it!
+          this.adsByUser = [...this.adsByUser];
+          break; //Stop this loop, we found it!
         }
       }
     }
   }
 
   removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
-    }),
-      (error) => {
-      };
+    this.userService
+      .deleteUserFavourite(adId, this.userId)
+      .subscribe((x) => {}),
+      (error) => {};
     this.helpersService.$numOfFavs.next();
     if (this.token) {
       for (var i in this.adsByCategory) {
         if (this.adsByCategory[i].id == adId) {
           this.adsByCategory[i].favourite = false;
-          this.allAdsByCategory = [...this.adsByCategory]
-           break; //Stop this loop, we found it!
+          this.allAdsByCategory = [...this.adsByCategory];
+          break; //Stop this loop, we found it!
         }
       }
       for (var i in this.adsByUser) {
         if (this.adsByUser[i].id == adId) {
           this.adsByUser[i].favourite = false;
-          this.adsByUser = [...this.adsByUser]
-           break; //Stop this loop, we found it!
+          this.adsByUser = [...this.adsByUser];
+          break; //Stop this loop, we found it!
         }
       }
     }
   }
-
 
   goToFaceBook() {
     document

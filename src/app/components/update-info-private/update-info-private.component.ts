@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../shared/models/user.model';
 import { UserService } from '../../@core/services/user.service';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { NzNotificationService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
-import cantons from '../../shared/cantons.json';
-import cities from '../../shared/cities.json';
 import { UserStatus } from '../../shared/enums/userStatus';
 import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -20,20 +16,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UpdateInfoPrivateComponent implements OnInit {
   privateForm: FormGroup;
-  cantons = cantons;
-  cities = cities;
-  userName: string;
   newUser: Array<User> = [];
   userId: number;
-  addresses: string[] = [];
-  selectedAddress = null;
-  selectedLocation: any;
-  responseLocationObject;
 
   constructor(
-    private notification: NzNotificationService,
     private userService: UserService,
-    private modal: NzModalService,
     private router: Router,
     private fb: FormBuilder,
     private dialog: MatDialog,

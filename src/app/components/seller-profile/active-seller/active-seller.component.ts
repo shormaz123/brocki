@@ -12,7 +12,7 @@ export class ActiveSellerComponent implements OnChanges {
   @Input() ads: boolean;
   @Input() sellerEmail: string;
   adForEmail: Ads;
-  hide = true;
+
   constructor() {}
 
   ngOnChanges() {}

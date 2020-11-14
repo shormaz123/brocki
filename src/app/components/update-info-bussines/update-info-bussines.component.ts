@@ -3,12 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../shared/models/user.model';
 import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
-import { NzModalService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
-import cantons from '../../shared/cantons.json';
-import cities from '../../shared/cities.json';
 import { UserStatus } from '../../shared/enums/userStatus';
-import { getMatIconFailedToSanitizeLiteralError } from '@angular/material/icon';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
 
@@ -24,30 +20,20 @@ import { TranslateService } from '@ngx-translate/core';
 export class UpdateInfoBussinesComponent implements OnInit {
   businessForm: FormGroup;
   businessUser: Array<User> = [];
-  photos: Array<string> = [];
-  companyPhotos: Array<string> = [];
   deletedImage: boolean;
   userId: number;
   userName: string;
   bussinesType: string;
   roleName: string;
-  cantons = cantons;
-  cities = cities;
   companyPhoto: string;
   photoValue: number;
-  photo: string;
   currentPhotos: Array<any> = [];
   uploadPhotos: Array<string> = [];
-  addresses: string[] = [];
-  selectedAddress = null;
-  selectedLocation: any;
-  responseLocationObject;
   updateBusiness = new User();
   allImages: Array<any> = [];
 
   constructor(
     private userService: UserService,
-    private modal: NzModalService,
     private router: Router,
     private fb: FormBuilder,
     private adsService: AdsService,
@@ -70,8 +56,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
       street: ['', [Validators.required]],
       houseNumber: ['', [Validators.required]],
       postalNumber: ['', [Validators.required]],
-      city: ['', [Validators.required]]
-
+      city: ['', [Validators.required]],
     });
 
     this.userService.getUser().subscribe((res) => {
@@ -126,7 +111,7 @@ export class UpdateInfoBussinesComponent implements OnInit {
         aboutUs: user.aboutUs,
         street: user.street,
         postalNumber: user.postalNumber,
-        houseNumber: user.houseNumber
+        houseNumber: user.houseNumber,
       });
     });
   }
@@ -165,15 +150,17 @@ export class UpdateInfoBussinesComponent implements OnInit {
   }
 
   onSubmit() {
-      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-        width: '500px',
-        data: {
-          title: this.translateService.instant('translate.updateUser'),
-          message: this.translateService.instant('translate.changeInfoConfirmation')
-        }
-      });
-      confirmDialog.afterClosed().subscribe(result => {
-        if (result === true) {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      data: {
+        title: this.translateService.instant('translate.updateUser'),
+        message: this.translateService.instant(
+          'translate.changeInfoConfirmation'
+        ),
+      },
+    });
+    confirmDialog.afterClosed().subscribe((result) => {
+      if (result === true) {
         this.updateBusiness.name = this.businessForm.value.name;
         this.updateBusiness.surname = this.businessForm.value.surname;
         this.updateBusiness.email = this.businessForm.value.email;
@@ -197,13 +184,19 @@ export class UpdateInfoBussinesComponent implements OnInit {
         this.updateBusiness.website = this.businessForm.value.website;
         this.userService.updateUser(this.updateBusiness).subscribe(
           (user) => {
-            this.toastr.success('', this.translateService.instant('translate.userUpdated'));
+            this.toastr.success(
+              '',
+              this.translateService.instant('translate.userUpdated')
+            );
             window.scrollTo({ top: 0 });
             this.router.navigate([`/user/${this.userId}`]);
           },
           (error) => {
-            this.toastr.error(this.translateService.instant('translate.wentWrong'));
-          });
+            this.toastr.error(
+              this.translateService.instant('translate.wentWrong')
+            );
+          }
+        );
       }
     });
   }

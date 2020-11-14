@@ -1,21 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserRegistration } from '../../shared/models/userRegistration.model';
 import { AuthService } from '../../@core/services/auth.service';
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import cantons from '../../shared/cantons.json';
-import cities from '../../shared/cities.json';
-import { MessageService } from 'primeng/api';
-import { NzNotificationService } from 'ng-zorro-antd';
 import { TranslateService } from '@ngx-translate/core';
-import { ToastrService } from 'ngx-toastr';
-import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
+import {
+  MatSnackBar,
+  MatSnackBarConfig,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material';
 
 @Component({
   selector: 'app-registration',
@@ -30,7 +24,7 @@ export class RegistrationComponent implements OnInit {
 
   // snackbar properties
 
-  message = this.translateService.instant('translate.confirmAccountText');;
+  message = this.translateService.instant('translate.confirmAccountText');
   actionButtonLabel = this.translateService.instant('translate.ok');
   action = true;
   setAutoHide = true;
@@ -38,24 +32,13 @@ export class RegistrationComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  addExtraClass: boolean = false;
-
   //
 
-  checked: boolean;
   brockenstube: boolean;
   institution: boolean;
   private: boolean;
   business: boolean;
-  role_id: number;
   errorMessage: string;
-  location = {
-    longitude: 0,
-    latitude: 0,
-  };
-  responseLocationObject;
-  selectedLocation;
-
   addressAd: any;
   addressNumber: any;
   addressPostalCode: any;
@@ -65,16 +48,16 @@ export class RegistrationComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private notification: NzNotificationService,
     private translateService: TranslateService,
-    private toastr: ToastrService,
     public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
-
-
-    const completeAddress = (`${this.addressAd} ` + `${this.addressNumber} ` + `${this.addressPostalCode} ` + `${this.addressPlace}`);
+    const completeAddress =
+      `${this.addressAd} ` +
+      `${this.addressNumber} ` +
+      `${this.addressPostalCode} ` +
+      `${this.addressPlace}`;
 
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -82,12 +65,12 @@ export class RegistrationComponent implements OnInit {
       userName: ['', [Validators.required]],
       credit: [0, [Validators.required]],
       bussinesType: ['PRIVATE'],
-      role_id: [3, ],
+      role_id: [3],
       terms: [false, [Validators.required]],
       street: ['', [Validators.required]],
       houseNumber: ['', [Validators.required]],
       postalNumber: ['', [Validators.required]],
-      city: ['', [Validators.required]]
+      city: ['', [Validators.required]],
     });
     this.brockenstube = true;
     this.institution = false;
@@ -102,13 +85,11 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    if (this.registerForm.valid &&
-    this.registerForm.value.terms === true) {
+    if (this.registerForm.valid && this.registerForm.value.terms === true) {
       this.registration = this.registerForm.value;
       this.authService.register(this.registration).subscribe(
         (response) => {
-          this.openSnackbar(),
-            this.router.navigate(['/site']);
+          this.openSnackbar(), this.router.navigate(['/site']);
         },
         (error) => {
           this.error = true;
@@ -117,7 +98,9 @@ export class RegistrationComponent implements OnInit {
         }
       );
     } else {
-      this.errorMessage = this.translateService.instant('translate.fillEveryFieldError');
+      this.errorMessage = this.translateService.instant(
+        'translate.fillEveryFieldError'
+      );
       this.error = true;
       setTimeout(() => (this.error = false), 5000);
     }
@@ -154,6 +137,10 @@ export class RegistrationComponent implements OnInit {
     config.verticalPosition = this.verticalPosition;
     config.horizontalPosition = this.horizontalPosition;
     config.duration = this.setAutoHide ? this.autoHide : 0;
-    this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
+    this.snackBar.open(
+      this.message,
+      this.action ? this.actionButtonLabel : undefined,
+      config
+    );
   }
 }

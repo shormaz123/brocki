@@ -1,14 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../shared/models/user.model';
 import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
 import { AuthService } from '../../@core/services/auth.service';
 import { Ads } from '../../shared/models/ads.model';
-import { AuthConst } from '../../@core/consts/auth.const';
 import { AdsParam } from '../../shared/models/adParams.model';
-import { Comment } from '../../shared/models/createComment.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NzModalService } from 'ng-zorro-antd';
 import { UserStatus } from '../../shared/enums/userStatus';
 import { HelpersService } from '../../@core/services/helpers.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -21,16 +18,12 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-  getLang: string;
-  expression: boolean;
   active: boolean;
   expired: boolean;
   sold: boolean;
   guest: boolean;
   user: User;
-  currentUserId: number;
   path: string;
-  uploadingUrl: string;
   userId: number;
   userName: string;
   defaultImage = '../../../assets/images/myAccount/profile-picture.png';
@@ -45,7 +38,6 @@ export class UserComponent implements OnInit {
   adsSold: boolean;
   comment: boolean;
   admin: string;
-  language: string;
   roleName: string;
   private: boolean;
   business: boolean;
@@ -63,7 +55,6 @@ export class UserComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private adsService: AdsService,
-    private modal: NzModalService,
     private helpersService: HelpersService,
     private translateService: TranslateService,
     private dialog: MatDialog

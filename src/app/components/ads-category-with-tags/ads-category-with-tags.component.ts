@@ -4,7 +4,6 @@ import { AdsService } from '../../@core/services/ads.service';
 import { Ads } from '../../shared/models/ads.model';
 import { UserService } from '../../@core/services/user.service';
 import { HelpersService } from '../../@core/services/helpers.service';
-import { AuthService } from '../../@core/services/auth.service';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
@@ -30,14 +29,11 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
   numberOfFavorites: number;
   displaySideNav = true;
   categoryName: string;
-  subCategoryName: string;
   subscriptionLang: Subscription;
   selectedImage: string;
   pageNumber = 1;
   clickedTags: Array<number> = [];
   clickedTag: number;
-  clickedTagId: number;
-  clickedTagsIds = [];
   tags = [];
   newAds: any;
   disableButton: boolean = true;
@@ -90,7 +86,6 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
             this.favAds = ads;
             this.showMoreButton();
           }
-          // this.getUserAndFavAd();
         });
     });
     this.subscriptionLang = this.translateBackend

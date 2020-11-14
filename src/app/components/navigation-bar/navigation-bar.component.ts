@@ -1,10 +1,9 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthConst } from 'app/@core/consts/auth.const';
 import { AdsService } from 'app/@core/services/ads.service';
 import { HelpersService } from 'app/@core/services/helpers.service';
 import { TranslateServiceRest } from 'app/@core/services/translateREST.service';
-import { stringify } from 'querystring';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,7 +12,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./navigation-bar.component.scss'],
 })
 export class NavigationBarComponent implements OnInit, OnDestroy {
-
   displaySideNav = true;
   paginationNumber = 1;
 
@@ -39,7 +37,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   public categories = [
     {
       id: 1,
-      title:  {
+      title: {
         de: 'Antiquitäten & Kunst',
         en: 'Antiques & Art',
         fr: 'Antiquités et Art',
@@ -52,7 +50,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     },
     {
       id: 15,
-      title:  {
+      title: {
         de: 'Bücher und Zeitschriften',
         en: 'Books and Magazines',
         fr: 'Livres et magazines',
@@ -64,7 +62,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     },
     {
       id: 9,
-      title:  {
+      title: {
         de: 'CDs',
         en: 'CDs',
         fr: 'CDs',
@@ -76,7 +74,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     },
     {
       id: 28,
-      title:  {
+      title: {
         de: 'Spirituosen, Wein & Whiskys',
         en: 'Spirits, Wine & Whiskeys',
         fr: 'Spiritueux, Vins & Whiskies',
@@ -88,7 +86,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     },
     {
       id: 3,
-      title:  {
+      title: {
         de: 'Gewerbe & Handwerk',
         en: 'Trade & Craft',
         fr: 'Commerce et artisanat',
@@ -252,7 +250,8 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
         it: 'Outdoor e sopravvivenza',
       },
       image: '../../../assets/images/navigation/outdoor & survival v2.svg',
-      selectedImage: '../../../assets/images/navigation/red/outdoor & survival v1.svg',
+      selectedImage:
+        '../../../assets/images/navigation/red/outdoor & survival v1.svg',
       imageTo: '',
     },
     {
@@ -396,38 +395,38 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     },
   ];
 
-  favAds;
   token;
   currentLang = 'de';
   subscriptionLang: Subscription;
   categorySub: Subscription;
   fakedCategoryId;
 
-  constructor( private helpersService: HelpersService,
-               private adsService: AdsService,
-               private translateBackend: TranslateServiceRest,
-               private router: Router,
-               private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private helpersService: HelpersService,
+    private translateBackend: TranslateServiceRest,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-this.currentLang = localStorage.getItem(AuthConst.language)
-    this.fakedCategoryId = Number(sessionStorage.getItem('category_id'))
+    this.currentLang = localStorage.getItem(AuthConst.language);
+    this.fakedCategoryId = Number(sessionStorage.getItem('category_id'));
 
     this.token = localStorage.getItem(AuthConst.token);
     this.subscriptionLang = this.translateBackend
-    .getLanguage()
-    .subscribe((message) => {
-      this.currentLang = message;
-    });
+      .getLanguage()
+      .subscribe((message) => {
+        this.currentLang = message;
+      });
     this.deselectAll();
     if (this.fakedCategoryId) {
-      this.selectCategory(this.fakedCategoryId)
+      this.selectCategory(this.fakedCategoryId);
     }
 
-    this.categorySub = this.helpersService.getClearedCategores().subscribe( x=> {
-      this.deselectAll();
-    })
-
+    this.categorySub = this.helpersService
+      .getClearedCategores()
+      .subscribe((x) => {
+        this.deselectAll();
+      });
   }
 
   deselectAll() {
@@ -438,7 +437,6 @@ this.currentLang = localStorage.getItem(AuthConst.language)
 
   ngOnDestroy() {
     this.subscriptionLang.unsubscribe();
-
   }
 
   displaySideBar() {
@@ -452,7 +450,7 @@ this.currentLang = localStorage.getItem(AuthConst.language)
     });
 
     if (imageToShow) {
-      this.deselectAll()
+      this.deselectAll();
       imageToShow.imageTo = imageToShow.selectedImage;
     }
     sessionStorage.setItem('category_id', id.toString());

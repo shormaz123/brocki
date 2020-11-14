@@ -22,7 +22,7 @@ import { AdsParam } from '../../shared/models/adParams.model';
 import { FilterAds } from '../../shared/models/filterAds.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AdsService {
   private readonly baseUrl = environment.apiUrlBase;
@@ -53,25 +53,6 @@ export class AdsService {
     if (data.toPrice) {
       params = params.append('toPrice', data.toPrice.toString());
     }
-
-    if (data.fixedPrice) {
-      params = params.append('fixedPrice', data.fixedPrice.toString());
-    }
-
-    // if (data.freeDelivery) {
-    //   params = params.append('freeDelivery', data.freeDelivery.toString());
-    // }
-
-    // if (data.productWarranty) {
-    //   params = params.append(
-    //     'productWarranty',
-    //     data.productWarranty.toString()
-    //   );
-    // }
-
-    // if (data.urgentSales) {
-    //   params = params.append('urgentSales', data.urgentSales.toString());
-    // }
 
     params = params.append('fromPrice', data.fromPrice.toString());
     params = params.append('pageNumber', data.pageNumber.toString());

@@ -1,11 +1,4 @@
-import {
-  Component,
-  HostListener,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreateAd } from '../../shared/models/create-ad.model';
 import { adsGroup } from '../../shared/models/adsGroup.model';
@@ -16,15 +9,18 @@ import { TranslateServiceRest } from '../../@core/services/translateREST.service
 import { Subscription } from 'rxjs';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
-import { MatDialog, MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
+import {
+  MatDialog,
+  MatSnackBar,
+  MatSnackBarConfig,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
-import { element, error } from 'protractor';
 import { AuthConst } from '../../@core/consts/auth.const';
-import {Tags } from '../../shared/models/tags.model';
-import {Observable } from 'rxjs';
+import { Tags } from '../../shared/models/tags.model';
+import { Observable } from 'rxjs';
 
 interface category {
   id: number;
@@ -48,12 +44,9 @@ interface tag {
 })
 export class CreateAdComponent implements OnInit, OnDestroy {
   createForm: FormGroup;
-  statusOfProduct = 'NEW';
   categories: Array<adsGroup> = [];
   subcategories: Array<adsSubGroup> = [];
-  uploadPhoto: Array<any> = [];
   photos: Array<string> = [];
-  picture: Array<string> = [];
   categoryId: number;
   categoryName: string;
   subcategoryName: string;
@@ -86,7 +79,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
 
   //
 
-
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -106,7 +98,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       description: ['', [Validators.required, , Validators.maxLength(600)]],
       category: ['', [Validators.required]],
       subcategory: ['', [Validators.required]],
-      tags:[[],[Validators.required]],
+      tags: [[], [Validators.required]],
       image: [undefined, [Validators.required]],
       price: ['', [Validators.required]],
     });
@@ -126,7 +118,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
         this.clickedTags = [];
       });
 
-   this.tags$ = this.adsService.getAllTags();
+    this.tags$ = this.adsService.getAllTags();
   }
 
   ngOnDestroy() {
@@ -135,7 +127,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   }
 
   chosenTag(tag: Tags): void {
-
     this.clickedTag = tag;
 
     this.clickedTags = [...this.clickedTags];
@@ -290,69 +281,84 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-        width: '500px',
-        data: {
-          message:  this.translateService.instant('translate.createAdConfirmation')
-        }
-      });
-      confirmDialog.afterClosed().subscribe(result => {
-        if (result === true) {
-          const create = new CreateAd();
-          create.productName = this.createForm.value.productName;
-          if (create.productName.length === 0) {
-            this.toastr.warning(this.translateService.instant('translate.mustAddName'));
-          }
-          create.description = this.createForm.value.description;
-          if (create.description.length === 0) {
-            this.toastr.warning(this.translateService.instant('translate.mustAddDescription'));
-            return;
-          }
-          create.adsGroupId = this.categoryId;
-          if (create.adsGroupId === undefined) {
-            this.toastr.warning(this.translateService.instant('translate.mustAddCategory'));
-            return;
-          }
-          create.adsSubGroupId = this.subcategoryId;
-          if (create.adsSubGroupId === undefined) {
-            this.toastr.warning(this.translateService.instant('translate.mustAddSubcategory'));
-            return;
-          }
-          create.tags =  this.clickedTags
-          create.image = this.photos;
-          if (create.image.length === 0) {
-            this.toastr.warning(this.translateService.instant('translate.mustAddImage'));
-            return;
-          }
-
-          create.price = this.roundUp(
-            Number(
-              (Math.round(this.createForm.value.price * 100) / 100).toFixed(2)
-            ),
-            1
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      data: {
+        message: this.translateService.instant(
+          'translate.createAdConfirmation'
+        ),
+      },
+    });
+    confirmDialog.afterClosed().subscribe((result) => {
+      if (result === true) {
+        const create = new CreateAd();
+        create.productName = this.createForm.value.productName;
+        if (create.productName.length === 0) {
+          this.toastr.warning(
+            this.translateService.instant('translate.mustAddName')
           );
-          if (create.price === 0) {
-            this.toastr.warning(this.translateService.instant('translate.setPrice'));
-            return;
+        }
+        create.description = this.createForm.value.description;
+        if (create.description.length === 0) {
+          this.toastr.warning(
+            this.translateService.instant('translate.mustAddDescription')
+          );
+          return;
+        }
+        create.adsGroupId = this.categoryId;
+        if (create.adsGroupId === undefined) {
+          this.toastr.warning(
+            this.translateService.instant('translate.mustAddCategory')
+          );
+          return;
+        }
+        create.adsSubGroupId = this.subcategoryId;
+        if (create.adsSubGroupId === undefined) {
+          this.toastr.warning(
+            this.translateService.instant('translate.mustAddSubcategory')
+          );
+          return;
+        }
+        create.tags = this.clickedTags;
+        create.image = this.photos;
+        if (create.image.length === 0) {
+          this.toastr.warning(
+            this.translateService.instant('translate.mustAddImage')
+          );
+          return;
+        }
+
+        create.price = this.roundUp(
+          Number(
+            (Math.round(this.createForm.value.price * 100) / 100).toFixed(2)
+          ),
+          1
+        );
+        if (create.price === 0) {
+          this.toastr.warning(
+            this.translateService.instant('translate.setPrice')
+          );
+          return;
+        }
+
+        this.adsService.newAd(create).subscribe(
+          (res) => {
+            if (res) {
+              this.router.navigate(['/site']);
+              this.toastr.success(
+                this.translateService.instant('translate.adSuccessfullyCreated')
+              );
+            }
+          },
+          (error) => {
+            if (error.status === 403) {
+              this.openSnackbar();
+            }
           }
-
-          this.adsService.newAd(create).subscribe(
-            (res) => {
-              if (res) {
-                this.router.navigate(['/site']);
-                this.toastr.success(this.translateService.instant('translate.adSuccessfullyCreated'));
-              }
-            },
-            (error) => {
-              if (error.status === 403) {
-                this.openSnackbar();
-              }
-            });
-           }
-          });
+        );
       }
-
-
+    });
+  }
 
   roundUp(num, precision) {
     precision = Math.pow(20, precision);
@@ -375,6 +381,10 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     config.verticalPosition = this.verticalPosition;
     config.horizontalPosition = this.horizontalPosition;
     config.duration = this.setAutoHide ? this.autoHide : 0;
-    this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
+    this.snackBar.open(
+      this.message,
+      this.action ? this.actionButtonLabel : undefined,
+      config
+    );
   }
 }

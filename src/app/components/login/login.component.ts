@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { AuthService } from '../../@core/services/auth.service';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HelpersService } from '../../@core/services/helpers.service';
@@ -15,16 +14,13 @@ import { WishlistService } from 'app/@core/services/wishlist.service';
 export class LoginComponent implements OnInit {
   password: string;
   email: string;
-  values: any;
   errorBoolean: boolean;
   errorMessage: string;
-  userId;
 
   private loginName: Subscription;
 
   constructor(
     private authService: AuthService,
-    private http: HttpClient,
     private router: Router,
     private helpers: HelpersService,
     public wishlist: WishlistService
