@@ -4,7 +4,6 @@ import { HelpersService } from '../../@core/services/helpers.service';
 import { UserService } from '../../@core/services/user.service';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AdsService } from '../../@core/services/ads.service';
-import { AdsParam } from 'app/shared/models/adParams.model';
 
 @Component({
   selector: 'app-filters-ads',
@@ -19,7 +18,7 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
   @Input() ads?: any;
   @Input() filterAd?: any;
 
-  favAds: AdsParam;
+  favAds: any;
   favoriteAds;
 
   newAds: any;
@@ -91,7 +90,7 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
       if (Object.keys(this.newAds).length !== 16) {
         this.disableButton = false;
       }
-      this.ads.push(...this.newAds);
+      this.favAds.push(...this.newAds);
       this.disableScrolling();
     });
   }

@@ -14,9 +14,11 @@
       ></app-ads-card-detail>
     </div>
   </div>
-  <div class="increaseButtonClass" *ngIf="disableButton">
-    <button class="show--more" mat-button (click)="increaseShow()">
-      {{ 'translate.showMore' | translate }}
-    </button>
-  </div>
+  <ng-container *ngIf="favAds?.length > 0">
+    <div class="increaseButtonClass" *ngIf="disableButton">
+      <button class="show--more" mat-button (click)="increaseShow()">
+        {{ 'translate.showMore' | translate }}
+      </button>
+    </div>
+  </ng-container>
 </div>

@@ -4,7 +4,6 @@ import { UserService } from 'app/@core/services/user.service';
 import { WishlistService } from 'app/@core/services/wishlist.service';
 import { Ads } from 'app/shared/models/ads.model';
 import { UserAddAdsRequest } from 'app/shared/models/useraddAdsRequest.model';
-import { AdsParam } from '../../shared/models/adParams.model';
 
 @Component({
   selector: 'app-ads-card-detail',
@@ -12,19 +11,15 @@ import { AdsParam } from '../../shared/models/adParams.model';
   styleUrls: ['./ads-card-detail.component.scss'],
 })
 export class AdsCardDetailComponent implements OnInit {
-
   userRequest: UserAddAdsRequest;
   token;
   @Input() ads: any;
-  // @Output() readonly addWishlist = new EventEmitter<number>();
-  // @Output() readonly removeWishlist = new EventEmitter<{
-  //   adId: number;
-  //   index: number;
-  // }>();
   favoriteAds?: Ads[];
 
-  constructor(private wishlist: WishlistService, private userService: UserService) {
-  }
+  constructor(
+    private wishlist: WishlistService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.token = localStorage.getItem(AuthConst.token);
@@ -32,15 +27,16 @@ export class AdsCardDetailComponent implements OnInit {
 
   removeFromWishlist(ad: Ads): void {
     this.wishlist.remove(ad).subscribe();
-    this.userService.deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id'))).subscribe((x) => {
-    });
+    this.userService
+      .deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id')))
+      .subscribe((x) => {});
   }
 
   addToWishlist(ad: Ads): void {
     this.wishlist.add(ad).subscribe();
     this.userRequest = {
       adsId: ad.id,
-      userId: Number(localStorage.getItem('brocki_id'))
+      userId: Number(localStorage.getItem('brocki_id')),
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe();
   }
