@@ -42,12 +42,14 @@
                   >
                     <mat-icon
                       *ngIf="ad.favourite"
+                      (click)="removeFromWishlist(ad)"
                       aria-label="Example icon-button with a heart icon"
                     >
                       favorite
                     </mat-icon>
                     <mat-icon
                       *ngIf="!ad.favourite"
+                      (click)="addToWishlist(ad)"
                       aria-label="Example icon-button with a heart icon"
                     >
                       favorite_border

@@ -35,14 +35,14 @@
                             <button mat-icon-button (click)="item.favourite = !item.favourite" *ngIf="token">
                 <mat-icon
                   *ngIf="item.favourite"
-                  (click)="removeFromWishlist(item.id)"
+                  (click)="removeFromWishlist(item)"
                   aria-label="Example icon-button with a heart icon"
                 >
                   favorite
                 </mat-icon>
                 <mat-icon
                   *ngIf="!item.favourite"
-                  (click)="addToWishlist(item.id)"
+                  (click)="addToWishlist(item)"
                   aria-label="Example icon-button with a heart icon"
                 >
                   favorite_border

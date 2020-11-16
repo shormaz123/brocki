@@ -16,11 +16,6 @@ export class AdsCardDetailComponent implements OnInit {
   userRequest: UserAddAdsRequest;
   token;
   @Input() ads: any;
-  // @Output() readonly addWishlist = new EventEmitter<number>();
-  // @Output() readonly removeWishlist = new EventEmitter<{
-  //   adId: number;
-  //   index: number;
-  // }>();
   favoriteAds?: Ads[];
 
   constructor(private wishlist: WishlistService, private userService: UserService) {

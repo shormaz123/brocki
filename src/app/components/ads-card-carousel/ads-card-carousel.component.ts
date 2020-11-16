@@ -1,12 +1,12 @@
 import {AfterViewInit, Component, HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {UserService} from '../../@core/services/user.service';
-import {HelpersService} from '../../@core/services/helpers.service';
 import {UserAddAdsRequest} from '../../shared/models/useraddAdsRequest.model';
 import {Ads} from '../../shared/models/ads.model';
 import {AuthConst} from '../../@core/consts/auth.const';
 import { Router } from '@angular/router';
 import { NgxCarousel } from 'ngx-carousel';
 import { Subscription } from 'rxjs';
+import { WishlistService } from 'app/@core/services/wishlist.service';
 
 
 
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './ads-card-carousel.component.html',
   styleUrls: ['./ads-card-carousel.component.scss']
 })
-export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewInit {
 
   public carouselTileItems: Array<any>;
   public carouselTile: NgxCarousel;
@@ -29,18 +29,14 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
   ads: Ads[];
   numberOfFavorites: number;
   numberOfFavs: Subscription;
-
   token;
-
   title = 'ngSlick';
 
-
-  constructor(private userService: UserService, private helpersService: HelpersService, private router: Router) { }
+  constructor(private userService: UserService,
+              private router: Router,
+              private wishlist: WishlistService) { }
 
   ngOnInit() {
-    this.numberOfFavs = this.helpersService.getNumberOfFavorites().subscribe( number => {
-      this.numberOfFavorites = number;
-     });
     this.token = localStorage.getItem(AuthConst.token);
     this.carouselTile = {
       grid: {xs: 2, sm: 3, md: 3, lg: 3, all: 0},
@@ -53,13 +49,12 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
       load: 2,
       touch: true,
       easing: 'ease'
-    }
+    };
   }
-
 
   public carouselTileLoad(evt: any) {
 
-    const len = this.randomAds.length
+    const len = this.randomAds.length;
     if (len <= 30) {
       for (let i = len; i < len + 10; i++) {
         this.carouselTileItems.push(i);
@@ -73,7 +68,6 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.numberOfFavorites = this.favoriteNumber
     this.preloadImages();
   }
 
@@ -81,30 +75,19 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
     this.ads = this.randomAds;
   }
 
-  ngOnDestroy() {
-    this.numberOfFavs.unsubscribe();
-  }
-  addToWishlist(adId: number) {
-    this.userRequest = {
-      adsId: adId,
-      userId:  Number(localStorage.getItem(AuthConst.userId)),
-    };
-    this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      this.raiseAdNumber();
-    }),
-      (error) => {
-      };
-    this.helpersService.$numOfFavs.next();
+  removeFromWishlist(ad: Ads): void {
+    this.wishlist.remove(ad).subscribe();
+    this.userService.deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id'))).subscribe((x) => {
+    });
   }
 
-  removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId,  Number(localStorage.getItem(AuthConst.userId))).subscribe((x) => {
-      this.downAdNumber();
-    }),
-      // tslint:disable-next-line:no-unused-expression
-      (error) => {
-      };
-    this.helpersService.$numOfFavs.next();
+  addToWishlist(ad: Ads): void {
+    this.wishlist.add(ad).subscribe();
+    this.userRequest = {
+      adsId: ad.id,
+      userId: Number(localStorage.getItem('brocki_id'))
+    };
+    this.userService.updateUserFavourites(this.userRequest).subscribe();
   }
 
  goToAd(event, id: number) {
@@ -116,22 +99,6 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
  onEvent(event) {
   event.stopPropagation();
 }
-
-sendNumberOfFavorites(number: number) {
-  this.helpersService.sendNumberOfFavorites(number);
-}
-
-raiseAdNumber() {
-  this.numberOfFavorites = this.numberOfFavorites + 1;
-  this.sendNumberOfFavorites(this.numberOfFavorites);
-}
-
-downAdNumber() {
-  this.numberOfFavorites = this.numberOfFavorites - 1;
-  this.sendNumberOfFavorites(this.numberOfFavorites);
-}
-
-
 }
 
 

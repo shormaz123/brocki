@@ -12,6 +12,7 @@ import { AuthConst } from '../../../@core/consts/auth.const';
 import { HelpersService } from '../../../@core/services/helpers.service';
 import { UserAddAdsRequest } from '../../../shared/models/useraddAdsRequest.model';
 import { Subscription } from 'rxjs';
+import { WishlistService } from 'app/@core/services/wishlist.service';
 
 @Component({
   selector: 'app-ad-single-carousel',
@@ -34,7 +35,7 @@ export class AdSingleCarouselComponent implements OnInit {
   numberOfFavorites;
   numberOfFavs: Subscription;
 
-  constructor(
+  constructor( private wishlist: WishlistService, private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -49,6 +50,21 @@ export class AdSingleCarouselComponent implements OnInit {
     this.myCarousel.pre();
   }
 
+
+  removeFromWishlist(ad: Ads): void {
+    this.wishlist.remove(ad).subscribe();
+    this.userService.deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id'))).subscribe((x) => {
+    });
+  }
+
+  addToWishlist(ad: Ads): void {
+    this.wishlist.add(ad).subscribe();
+    this.userRequest = {
+      adsId: ad.id,
+      userId: Number(localStorage.getItem('brocki_id'))
+    };
+    this.userService.updateUserFavourites(this.userRequest).subscribe();
+  }
 
 
 }

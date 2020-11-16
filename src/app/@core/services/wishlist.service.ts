@@ -69,7 +69,7 @@ private load(): void {
 
 remove(ad: Ads): Observable<void> {
   // timer only for demo
-  return timer(200).pipe(map(() => {
+  return timer(0).pipe(map(() => {
       const index = this.data.favoriteAds.findIndex(item => item.id === ad.id);
 
       if (index !== -1) {
