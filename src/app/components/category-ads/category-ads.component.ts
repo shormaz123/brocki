@@ -73,11 +73,6 @@ export class CategoryAdsComponent implements OnInit {
             });
         });
     });
-    this.numberOfFavs = this.helpersService
-      .getNumberOfFavorites()
-      .subscribe((number) => {
-        this.numberOfFavorites = number;
-      });
   }
 
   ngOnDestroy() {
@@ -217,7 +212,6 @@ export class CategoryAdsComponent implements OnInit {
       userId: Number(localStorage.getItem(AuthConst.userId)),
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      this.raiseAdNumber();
     }),
       (error) => {};
     this.helpersService.$numOfFavs.next();
@@ -230,7 +224,6 @@ export class CategoryAdsComponent implements OnInit {
         Number(localStorage.getItem(AuthConst.userId))
       )
       .subscribe((x) => {
-        this.downAdNumber();
       }),
       // tslint:disable-next-line:no-unused-expression
       (error) => {};
@@ -241,17 +234,4 @@ export class CategoryAdsComponent implements OnInit {
     this.location.back();
   }
 
-  sendNumberOfFavorites(number: number) {
-    this.helpersService.sendNumberOfFavorites(number);
-  }
-
-  raiseAdNumber() {
-    this.numberOfFavorites = this.numberOfFavorites + 1;
-    this.sendNumberOfFavorites(this.numberOfFavorites);
-  }
-
-  downAdNumber() {
-    this.numberOfFavorites = this.numberOfFavorites - 1;
-    this.sendNumberOfFavorites(this.numberOfFavorites);
-  }
 }

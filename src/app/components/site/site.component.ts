@@ -24,6 +24,7 @@ import {
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
 import { WishlistService } from 'app/@core/services/wishlist.service';
+import { getTestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'app-site',
@@ -32,6 +33,7 @@ import { WishlistService } from 'app/@core/services/wishlist.service';
 })
 export class SiteComponent implements OnInit, OnDestroy {
   encapsulation: ViewEncapsulation.None;
+
 
   searchText;
   items: Array<any> = [];
@@ -77,7 +79,10 @@ export class SiteComponent implements OnInit, OnDestroy {
     private translateBackend: TranslateServiceRest,
     private router: Router,
     public wishlist: WishlistService
-  ) {}
+  ) {
+
+
+  }
 
   ngOnInit() {
     this.deselectAll = true;

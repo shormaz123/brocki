@@ -297,7 +297,6 @@ export class AdComponent implements OnInit, AfterViewInit {
       .subscribe((x) => {
         this.favoriteAds = x;
         this.numberOfFavs = x.length;
-        this.sendNumberOfFavorites(x.length);
         // Replace objects between two arrays.
         // this.favAds = ads.map(
         //   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
@@ -305,9 +304,6 @@ export class AdComponent implements OnInit, AfterViewInit {
       });
   }
 
-  sendNumberOfFavorites(number: number) {
-    this.helpersService.sendNumberOfFavorites(number);
-  }
 
   addToWishlist(adId: number) {
     this.userRequest = {

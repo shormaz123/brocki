@@ -28,14 +28,6 @@ export class HelpersService {
     return this.$displaySideBar.asObservable();
   }
 
-  sendNumberOfFavorites(number: number) {
-    this.numberOfFavorites.next(number);
-}
-
-getNumberOfFavorites(): Observable<any> {
-       return this.numberOfFavorites.asObservable();
-}
-
 addCategoryId(id: number) {
   this.onAddingCategory.next(id)
   this.selectedCategory.categoryId = id;

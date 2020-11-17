@@ -3,6 +3,7 @@ import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnack
 import { TranslateService } from '@ngx-translate/core';
 import { AuthConst } from 'app/@core/consts/auth.const';
 import { TranslateServiceRest } from 'app/@core/services/translateREST.service';
+import { WishlistService } from 'app/@core/services/wishlist.service';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
     private translateBackend: TranslateServiceRest,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
     ) {}
 
   ngOnInit() {

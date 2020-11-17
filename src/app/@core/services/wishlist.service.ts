@@ -17,8 +17,6 @@ export class WishlistService implements OnDestroy {
 
   constructor( private userService: UserService) {
     this.load();
-
-
   }
   private data: WishlistData = {
     favoriteAds: []
@@ -28,7 +26,7 @@ token;
 userFavoriteAds;
 private destroy$: Subject<void> = new Subject();
 private onAddingSubject$: Subject<Ads> = new Subject();
-private adsSubject$: BehaviorSubject<Ads[]> = new BehaviorSubject([]);
+private adsSubject$: BehaviorSubject<Ads[]> = new BehaviorSubject(this.data.favoriteAds);
 
 
     readonly ads$: Observable<Ads[]> = this.adsSubject$.pipe(takeUntil(this.destroy$));
@@ -55,14 +53,14 @@ private save(): void {
   this.adsSubject$.next(this.data.favoriteAds);
 }
 
-private load(): void {
+ load(): void {
   this.token = localStorage.getItem(AuthConst.token);
   if (this.token) {
       this.userService
       .getFavourites(Number(localStorage.getItem('brocki_id')))
       .subscribe( x => {
         this.data.favoriteAds = x;
-        this.save();
+        this.save();x
       });
     }
 }
@@ -83,8 +81,5 @@ remove(ad: Ads): Observable<void> {
 ngOnDestroy(): void {
   this.destroy$.next();
   this.destroy$.complete();
-}
-
-
-
+  }
 }

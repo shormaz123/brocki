@@ -18,6 +18,8 @@ import { AdsService } from '../../@core/services/ads.service';
 import { Ads } from '../../shared/models/ads.model';
 import { User } from '../../shared/models/user.model';
 import { DOCUMENT } from '@angular/common';
+import { WishlistService } from 'app/@core/services/wishlist.service';
+import { AuthStore } from 'app/@core/services/auth.store';
 
 @Component({
   selector: 'app-header',
@@ -58,7 +60,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private translate: TranslateService,
     private translateBackend: TranslateServiceRest,
-    private adsService: AdsService
+    private adsService: AdsService,
+    public auth: AuthStore
   ) {}
 
   ngOnInit() {
@@ -138,7 +141,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.accountName = user.userName;
           this.createAd = true;
           this.userId = user.id;
-          localStorage.setItem(AuthConst.userId, user.id.toString());
+
         }
       },
     );
@@ -149,9 +152,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       nzTitle: 'Are you sure you want to logout?',
       nzContent: '',
       nzOnOk: () => {
-        localStorage.removeItem(AuthConst.roleName);
-        localStorage.removeItem(AuthConst.token);
-        localStorage.removeItem(AuthConst.userId);
+        this.auth.logout();
         if (this.router.url === '/site') {
           window.location.reload();
         }

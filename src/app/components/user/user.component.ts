@@ -14,6 +14,7 @@ import { HelpersService } from '../../@core/services/helpers.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
+import { AuthStore } from 'app/@core/services/auth.store';
 
 @Component({
   selector: 'app-user',
@@ -66,7 +67,8 @@ export class UserComponent implements OnInit {
     private modal: NzModalService,
     private helpersService: HelpersService,
     private translateService: TranslateService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private auth: AuthStore
   ) {}
 
   ngOnInit() {
@@ -247,10 +249,7 @@ export class UserComponent implements OnInit {
   }
 
   logout(): void {
-    // this.modal.confirm({
-    //   nzTitle: this.translateService.instant('translate.logoutConfirmation'),
-    //   nzContent: '',
-    //   nzOnOk: () => {
+
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       width: '500px',
       data: {
@@ -259,8 +258,7 @@ export class UserComponent implements OnInit {
     });
     confirmDialog.afterClosed().subscribe((result) => {
       if (result) {
-        this.authService.logout();
-        this.helpersService.$loginName.next();
+        this.auth.logout();
         this.router.navigate(['/site']);
       }
     });

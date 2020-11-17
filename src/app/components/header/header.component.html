@@ -66,11 +66,11 @@
       />
     </div>
     <div class="account">
-      <span class="accountAd" routerLink="/login" *ngIf="!accountName"
+      <span class="accountAd" routerLink="/login" *ngIf="auth.isLoggedOut$ | async"
         >{{ 'translate.login' | translate }}&nbsp;</span
       >
       <!--      <div class="dropdown">-->
-      <div class="dropbtn" mat-button *ngIf="accountName">
+      <div class="dropbtn" mat-button  *ngIf="auth.isLoggedIn$  | async">
         <img
           src="../../../assets/images/ad/User_font_awesome.svg"
           style="height: 25px; margin-right: 10px"
