@@ -38,7 +38,8 @@ export class InfoSellerComponent implements OnInit {
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
         this.sellerLocationLong = seller.lng;
         this.sellerLocationLat = seller.lat;
-        this.sellerAddress = seller.address;
+        const [street, streetNumber, postalNumber, city] = seller.address.split(',');
+        this.sellerAddress =  street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
         this.sellerindex = seller.id;
         this.infoForm.patchValue({
           company: seller.company,
@@ -48,7 +49,7 @@ export class InfoSellerComponent implements OnInit {
           website: seller.website,
           phone: seller.phone,
           mobile: seller.mobile,
-          address: seller.address,
+          address: this.sellerAddress,
           locationAddress: seller.location,
         });
       });
