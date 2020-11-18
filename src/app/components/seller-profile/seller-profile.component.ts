@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../@core/services/user.service';
 import { AdsService } from '../../@core/services/ads.service';
@@ -20,7 +20,6 @@ export class SellerProfileComponent implements OnInit {
   email: boolean = false;
   sellerPhones: boolean;
   sellerId;
-  seller;
   sellerCompany: string;
   sellerName: string;
   sellerPhone: string;
@@ -33,14 +32,11 @@ export class SellerProfileComponent implements OnInit {
   adsActive: boolean;
   soldProducts: Array<any> = [];
   adsSold: boolean;
-  role: string;
   CommentsOfUser: Array<Comment> = [];
   private: boolean;
   business: boolean;
   address: string;
   checked: boolean = true;
-  sellerLocationLong;
-  sellerLocationLat;
   pageSize: number = 8;
 
   constructor(

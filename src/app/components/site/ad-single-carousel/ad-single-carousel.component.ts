@@ -1,18 +1,13 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Input,
-} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NzCarouselComponent } from 'ng-zorro-antd';
-import { AdsService } from '../../../@core/services/ads.service';
 import { Ads } from '../../../shared/models/ads.model';
-import { UserService } from '../../../@core/services/user.service';
 import { AuthConst } from '../../../@core/consts/auth.const';
 import { HelpersService } from '../../../@core/services/helpers.service';
 import { UserAddAdsRequest } from '../../../shared/models/useraddAdsRequest.model';
 import { Subscription } from 'rxjs';
 import { WishlistService } from 'app/@core/services/wishlist.service';
+import { UserService } from 'app/@core/services/user.service';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
   selector: 'app-ad-single-carousel',
@@ -20,20 +15,12 @@ import { WishlistService } from 'app/@core/services/wishlist.service';
   styleUrls: ['./ad-single-carousel.component.scss'],
 })
 export class AdSingleCarouselComponent implements OnInit {
-
   @Input() userId;
   @Input() favAds: Ads;
   @Input() favoriteNumber;
-
-  @ViewChild(NzCarouselComponent, { static: false })
-
   myCarousel: NzCarouselComponent;
-  favoriteAds;
-  selected: boolean;
-  userRequest: UserAddAdsRequest;
   token;
-  numberOfFavorites;
-  numberOfFavs: Subscription;
+  userRequest: UserAddAdsRequest
 
   constructor( private wishlist: WishlistService, private userService: UserService
   ) {}

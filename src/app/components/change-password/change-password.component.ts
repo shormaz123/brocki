@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { UserService } from '../../@core/services/user.service';
 import { AuthService } from '../../@core/services/auth.service';
-import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -17,16 +16,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
-
   oldPassword: string;
   newPassword: string;
-  reTypePassword: string;
   userId: number;
 
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private notification: NzNotificationService,
     private fb: FormBuilder,
     private modal: NzModalService,
     private router: Router,
@@ -48,14 +44,16 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onSubmit() {
-      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-        width: '500px',
-        data: {
-          message: this.translateService.instant('translate.changePasswordConfirmation')
-        }
-      });
-      confirmDialog.afterClosed().subscribe(result => {
-        if (result) {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      data: {
+        message: this.translateService.instant(
+          'translate.changePasswordConfirmation'
+        ),
+      },
+    });
+    confirmDialog.afterClosed().subscribe((result) => {
+      if (result) {
         (this.oldPassword = this.changePasswordForm.value.oldPassword),
           (this.newPassword = this.changePasswordForm.value.newPassword),
           this.authService
@@ -63,17 +61,20 @@ export class ChangePasswordComponent implements OnInit {
             .subscribe(
               (res) => {
                 if (res) {
-                this.toastr.success('', this.translateService.instant('translate.passwordChanged'));
-                this.router.navigate([`/user/${this.userId}`]);
+                  this.toastr.success(
+                    '',
+                    this.translateService.instant('translate.passwordChanged')
+                  );
+                  this.router.navigate([`/user/${this.userId}`]);
                 }
               },
               (error) => {
                 this.modal.error({
                   nzTitle: error.message,
                 });
-              });
-            }
-      });
+              }
+            );
+      }
+    });
   }
-
 }

@@ -1,25 +1,25 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthConst } from 'app/@core/consts/auth.const';
-import { AuthService } from 'app/@core/services/auth.service';
-import {UserService} from '../../@core/services/user.service';
+import { UserService } from '../../@core/services/user.service';
 
 @Component({
   selector: 'app-confirm-login',
   templateUrl: './confirm-login.component.html',
-  styleUrls: ['./confirm-login.component.scss']
+  styleUrls: ['./confirm-login.component.scss'],
 })
 export class ConfirmLoginComponent implements OnInit {
   confirmToken;
   errorBoolean;
   errorMessage;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private translate: TranslateService) {
-  }
+    private translate: TranslateService
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((queryParams) => {
@@ -34,7 +34,7 @@ export class ConfirmLoginComponent implements OnInit {
         if (x) {
           this.router.navigate(['/site']);
         }
-    },
+      },
       (error) => {
         if (error.text === 'OK') {
           this.router.navigate(['/site']);
@@ -42,7 +42,7 @@ export class ConfirmLoginComponent implements OnInit {
           this.errorBoolean = true;
           this.errorMessage = 'No token!';
         }
-      });
+      }
+    );
   }
-
 }

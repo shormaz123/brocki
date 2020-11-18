@@ -28,7 +28,6 @@ export class CategoryAdsComponent implements OnInit {
   token;
   groupId;
   userRequest: UserAddAdsRequest;
-  userId;
   pageNumber = 1;
   numberOfFavs: Subscription;
 

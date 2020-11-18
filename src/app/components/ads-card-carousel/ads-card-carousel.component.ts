@@ -8,18 +8,15 @@ import { NgxCarousel } from 'ngx-carousel';
 import { Subscription } from 'rxjs';
 import { WishlistService } from 'app/@core/services/wishlist.service';
 
-
-
 @Component({
   selector: 'app-ads-card-carousel',
   templateUrl: './ads-card-carousel.component.html',
-  styleUrls: ['./ads-card-carousel.component.scss']
+  styleUrls: ['./ads-card-carousel.component.scss'],
 })
 export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewInit {
 
   public carouselTileItems: Array<any>;
   public carouselTile: NgxCarousel;
-
 
   public carouselOne: NgxCarousel;
   userRequest: UserAddAdsRequest;
@@ -39,12 +36,12 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
   ngOnInit() {
     this.token = localStorage.getItem(AuthConst.token);
     this.carouselTile = {
-      grid: {xs: 2, sm: 3, md: 3, lg: 3, all: 0},
+      grid: { xs: 2, sm: 3, md: 3, lg: 3, all: 0 },
       slide: 2,
       speed: 400,
       animation: 'lazy',
       point: {
-        visible: false
+        visible: false,
       },
       load: 2,
       touch: true,
@@ -53,19 +50,15 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   public carouselTileLoad(evt: any) {
-
     const len = this.randomAds.length;
     if (len <= 30) {
       for (let i = len; i < len + 10; i++) {
         this.carouselTileItems.push(i);
       }
     }
-
   }
 
-  ngAfterViewInit() {
-
-  }
+  ngAfterViewInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.preloadImages();
@@ -90,15 +83,15 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
     this.userService.updateUserFavourites(this.userRequest).subscribe();
   }
 
- goToAd(event, id: number) {
-  if(event.button === 0) {
-    this.router.navigate(['/ad', id]);
+  goToAd(event, id: number) {
+    if (event.button === 0) {
+      this.router.navigate(['/ad', id]);
+    }
   }
- }
+
 
  onEvent(event) {
   event.stopPropagation();
 }
 }
-
 

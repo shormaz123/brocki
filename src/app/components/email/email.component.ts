@@ -18,8 +18,6 @@ export class EmailComponent implements OnInit {
   @Input() sellerEmail: string;
   @Input() adForEmail: Ads;
 
-  checked: boolean = true;
-  email: boolean = false;
   toSender: boolean = false;
   language: string;
   adLink: string;
@@ -87,7 +85,9 @@ export class EmailComponent implements OnInit {
     const email = new sendEmail();
 
     if (this.emailForm.invalid) {
-      this.toastr.warning(this.translateService.instant('translate.fillEveryFieldError'));
+      this.toastr.warning(
+        this.translateService.instant('translate.fillEveryFieldError')
+      );
       return;
     }
 

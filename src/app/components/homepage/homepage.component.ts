@@ -3,13 +3,9 @@ import { Router } from '@angular/router';
 import { AuthConst } from 'app/@core/consts/auth.const';
 import { LoadingIndicatorService } from 'app/@core/loading-indicator.service';
 import { AdsService } from 'app/@core/services/ads.service';
-import { AuthService } from 'app/@core/services/auth.service';
-import { HelpersService } from 'app/@core/services/helpers.service';
 import { TranslateServiceRest } from 'app/@core/services/translateREST.service';
-import { UserService } from 'app/@core/services/user.service';
 import { WishlistService } from 'app/@core/services/wishlist.service';
 import { Ads } from 'app/shared/models/ads.model';
-import { UserAddAdsRequest } from 'app/shared/models/useraddAdsRequest.model';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -19,7 +15,6 @@ import { Subscription } from 'rxjs';
 })
 export class HomepageComponent implements OnInit, OnDestroy {
   userId;
-  userRequest: UserAddAdsRequest;
   paginationNumber = 1;
   paginationAds: Ads[];
   token;
@@ -44,7 +39,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-
     this.loadingService.loadingOn();
     this.token = localStorage.getItem(AuthConst.token);
     this.userId = Number(localStorage.getItem('brocki_id'));
@@ -81,22 +75,17 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.wishlist.ads$.subscribe((x) => {
       this.favoriteAds = x;
       // Replace objects between two arrays.
-
     });
   }
 
-  replaceAdsId() {
-  }
+  replaceAdsId() {}
 
   getRandomAds() {
     this.randomAdsA = this.shuffle(
       this.favAds.slice(0, Math.floor(this.favAds.length / 2))
     );
     this.randomAdsB = this.shuffle(
-      this.favAds.slice(
-        Math.floor(this.favAds.length / 2),
-        this.favAds.length
-      )
+      this.favAds.slice(Math.floor(this.favAds.length / 2), this.favAds.length)
     );
   }
   ngOnDestroy() {
@@ -126,10 +115,10 @@ export class HomepageComponent implements OnInit, OnDestroy {
             this.disableButton = false;
           }
           if (this.token) {
-              const newAds = this.paginationAds.map(
-                (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-              );
-              this.favAds.push(...newAds);
+            const newAds = this.paginationAds.map(
+              (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+            );
+            this.favAds.push(...newAds);
             // });
             this.disableScrolling();
           } else {
@@ -146,5 +135,4 @@ export class HomepageComponent implements OnInit, OnDestroy {
       window.scrollTo(x, y);
     };
   }
-
 }

@@ -4,14 +4,13 @@ import { AdsService } from '../../@core/services/ads.service';
 import { Ads } from '../../shared/models/ads.model';
 import { UserService } from '../../@core/services/user.service';
 import { HelpersService } from '../../@core/services/helpers.service';
-import { AuthService } from '../../@core/services/auth.service';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AuthConst } from '../../@core/consts/auth.const';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -72,11 +71,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     });
     this.currentLang = localStorage.getItem(AuthConst.language);
     this.token = localStorage.getItem(AuthConst.token);
-    // if (this.token) {
-    //   this.userService.getUser().subscribe( user => {
-    //     this.userId = user.id;
-    //   });
-    // }
+
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -277,7 +272,6 @@ export class AdsComponent implements OnInit, OnDestroy {
       );
     });
   }
-
 
   backClicked() {
     this.location.back();

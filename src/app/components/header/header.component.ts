@@ -26,16 +26,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Output() getLanguage = new EventEmitter<any>();
   accountName: string;
   createAd: boolean;
-  roleName;
-  user;
   userId;
   dropdownBoolean = true;
   userLang;
   chosenLanguage;
-  header;
   privateUser;
   displaySideNav;
-  ads: Ads[];
   subCategories;
   currentLang;
   categoriesGroup;
@@ -171,6 +167,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.displaySideNav = false;
   }
 
-  selectCategoryOnSideBar(category: any) {
-  }
+  selectCategoryOnSideBar(category: any) {}
 }
