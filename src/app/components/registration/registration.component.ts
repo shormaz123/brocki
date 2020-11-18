@@ -154,6 +154,8 @@ export class RegistrationComponent implements OnInit {
     config.verticalPosition = this.verticalPosition;
     config.horizontalPosition = this.horizontalPosition;
     config.duration = this.setAutoHide ? this.autoHide : 0;
-    this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
+    config.panelClass = ['orange-snackbar']
+    this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config
+      );
   }
 }
