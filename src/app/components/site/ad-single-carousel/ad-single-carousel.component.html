@@ -37,10 +37,11 @@
                   </button>
                   <button
                     mat-icon-button
-                    (click)="ad.favourite = !ad.favourite"
                     *ngIf="token"
+                    [disableRipple]="true"
                   >
                     <mat-icon
+                    (click)="ad.favourite = !ad.favourite"
                       *ngIf="ad.favourite"
                       (click)="removeFromWishlist(ad)"
                       aria-label="Example icon-button with a heart icon"
@@ -48,6 +49,7 @@
                       favorite
                     </mat-icon>
                     <mat-icon
+                    (click)="ad.favourite = !ad.favourite"
                       *ngIf="!ad.favourite"
                       (click)="addToWishlist(ad)"
                       aria-label="Example icon-button with a heart icon"

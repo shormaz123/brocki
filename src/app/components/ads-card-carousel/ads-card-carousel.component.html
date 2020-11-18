@@ -32,10 +32,11 @@
                 }}!" tooltipPosition="bottom" aria-label="Example icon-button with a heart icon">
                                 favorite_border
                             </mat-icon>
-                            <button mat-icon-button (click)="item.favourite = !item.favourite" *ngIf="token">
+                            <button mat-icon-button *ngIf="token" [disableRipple]="true">
                 <mat-icon
                   *ngIf="item.favourite"
                   (click)="removeFromWishlist(item)"
+                  (click)="item.favourite = !item.favourite"
                   aria-label="Example icon-button with a heart icon"
                 >
                   favorite
@@ -43,6 +44,7 @@
                 <mat-icon
                   *ngIf="!item.favourite"
                   (click)="addToWishlist(item)"
+                  (click)="item.favourite = !item.favourite"
                   aria-label="Example icon-button with a heart icon"
                 >
                   favorite_border

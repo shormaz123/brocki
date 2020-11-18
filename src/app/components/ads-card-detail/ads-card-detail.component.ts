@@ -39,4 +39,14 @@ export class AdsCardDetailComponent implements OnInit {
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe();
   }
+
+  favorite(ad: Ads) {
+    console.log(!ad.favourite)
+    // if (ad.favourite) {
+    //    this.removeFromWishlist(ad)
+    // }
+    // if (!ad.favourite){
+    //    this.addToWishlist(ad)
+    // }
+  }
 }

@@ -27,8 +27,9 @@
               >
                 favorite_border
               </mat-icon>
-        <button mat-icon-button (click)="ad.favourite = !ad.favourite" *ngIf="token">
+            <button mat-icon-button  *ngIf="token" [disableRipple]="true">
           <mat-icon
+            (click)="ad.favourite = !ad.favourite"
             *ngIf="ad.favourite"
             (click)="removeFromWishlist(ad)"
             aria-label="Example icon-button with a heart icon"
@@ -37,6 +38,7 @@
           </mat-icon>
           <mat-icon
             *ngIf="!ad.favourite"
+            (click)="ad.favourite = !ad.favourite"
             (click)="addToWishlist(ad)"
             aria-label="Example icon-button with a heart icon"
           >
