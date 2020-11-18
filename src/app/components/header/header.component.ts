@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   OnDestroy,
-  Input,
   Output,
   EventEmitter,
 } from '@angular/core';
@@ -16,9 +15,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { TranslateServiceRest } from '../../@core/services/translateREST.service';
 import { AdsService } from '../../@core/services/ads.service';
 import { Ads } from '../../shared/models/ads.model';
-import { User } from '../../shared/models/user.model';
-import { DOCUMENT } from '@angular/common';
-import { WishlistService } from 'app/@core/services/wishlist.service';
 import { AuthStore } from 'app/@core/services/auth.store';
 
 @Component({
@@ -50,7 +46,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @Output() notify = new EventEmitter<any>();
 
-  private loginNameSubscription: Subscription;
   private displaySideBarSubscription: Subscription;
 
   constructor(
@@ -74,16 +69,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     } else {
       this.translate.use('de');
     }
-    this.loginNameSubscription = this.helpers.$loginName.subscribe((filter) => {
-      this.getUser();
-    });
     if (localStorage.getItem(AuthConst.token) == null) {
     } else {
       this.getUser();
     }
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
-      console.log(this.categoriesGroup)
     });
     this.displaySideBarSubscription = this.helpers
       .getDisplaySideBar()
@@ -100,7 +91,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.loginNameSubscription.unsubscribe();
     this.displaySideBarSubscription.unsubscribe();
     this.subscriptionUser.unsubscribe();
   }

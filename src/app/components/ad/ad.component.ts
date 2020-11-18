@@ -26,6 +26,8 @@ import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {NgxGalleryImage} from '@kolkov/ngx-gallery';
 import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
 import { Subscription } from 'rxjs';
+import { AuthStore } from 'app/@core/services/auth.store';
+import { WishlistService } from 'app/@core/services/wishlist.service';
 
 @Component({
   selector: 'app-ad',
@@ -99,7 +101,9 @@ export class AdComponent implements OnInit, AfterViewInit {
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private helpersService: HelpersService,
-    private router: Router
+    private router: Router,
+    private auth: AuthStore,
+    private wishlist: WishlistService
   ) {}
 
   ngOnInit() {
@@ -129,8 +133,9 @@ export class AdComponent implements OnInit, AfterViewInit {
     });
     this.enableScrolling();
     if (this.token) {
-      this.userService.getUser().subscribe((response) => {
+      this.auth.userProfile$.subscribe((response) => {
         this.userId = response.id;
+        console.log(this.userId, 'userId')
       });
     }
 
@@ -277,10 +282,6 @@ export class AdComponent implements OnInit, AfterViewInit {
     }
   }
 
-  favoriteCategoryAds(id: number) {
-
-  }
-
   favoriteUserAds() {
     if (this.token) {
       this.adsByUser = this.allAdsByUser.map(
@@ -292,11 +293,9 @@ export class AdComponent implements OnInit, AfterViewInit {
   }
 
   getUserAndFavAd() {
-    this.userService
-      .getFavourites(Number(localStorage.getItem('brocki_id')))
-      .subscribe((x) => {
+    this.wishlist.ads$.
+      subscribe((x) => {
         this.favoriteAds = x;
-        this.numberOfFavs = x.length;
         // Replace objects between two arrays.
         // this.favAds = ads.map(
         //   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj

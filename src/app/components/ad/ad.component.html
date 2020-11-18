@@ -145,7 +145,7 @@
         <label>{{ 'translate.allArticlesOfThisSeller' | translate }}</label>
         <div *ngIf="!reviewUserActiveAds" class="bodySuggestions">
             <div class="cards">
-                <p-carousel [value]="adsByUser" [numVisible]="3" [numScroll]="1">
+                <!-- <p-carousel [value]="adsByUser" [numVisible]="3" [numScroll]="1">
                     <ng-template let-adByUser pTemplate="item">
                         <div style="
                 width: 298px;
@@ -213,12 +213,13 @@
               </div>
             </div>
           </ng-template>
-        </p-carousel>
-      </div>
-    </div>
-    <div *ngIf="reviewUserActiveAds" class="bodySuggestions">
-      <div class="cards">
-        <p-carousel
+        </p-carousel> -->
+                <app-ads-card-carousel [randomAds]="adsByUser"></app-ads-card-carousel>
+            </div>
+        </div>
+        <div *ngIf="reviewUserActiveAds" class="bodySuggestions">
+            <div class="cards">
+                <!-- <p-carousel
           [value]="reviewUserActiveAds"
           [numVisible]="3"
           [numScroll]="1"
@@ -303,15 +304,15 @@
               </div>
             </div>
           </ng-template>
-        </p-carousel>
-      </div>
-    </div>
-    <label *ngIf="!reviewUserActiveAds"
-      >{{ 'translate.similarProducts' | translate }}:</label
+        </p-carousel> -->
+                <app-ads-card-carousel [randomAds]="reviewUserActiveAds"></app-ads-card-carousel>
+            </div>
+        </div>
+        <label *ngIf="!reviewUserActiveAds">{{ 'translate.similarProducts' | translate }}:</label
     >
     <div *ngIf="!reviewUserActiveAds" class="bodySuggestions">
       <div class="cards">
-        <p-carousel [value]="adsByCategory" [numVisible]="3" [numScroll]="1">
+        <!-- <p-carousel [value]="adsByCategory" [numVisible]="3" [numScroll]="1">
           <ng-template let-adByCat pTemplate="item">
             <div
               style="
@@ -334,17 +335,17 @@
                     <label style="font-size: 20px; font-weight: bolder">{{
                       adByCat.productName
                     }}</label>
-                                    </div>
-                                    <div class="adLine"></div>
-                                    <div class="description">
-                                        <label style="font-size: 12px">{{
+    </div>
+    <div class="adLine"></div>
+    <div class="description">
+        <label style="font-size: 12px">{{
                       adByCat.description
                     }}</label>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <div class="pricetag">
-                                        <label>{{ adByCat.price | number: '1.2-2':'en-US' }} CHF</label
+    </div>
+</div>
+<div class="footer">
+    <div class="pricetag">
+        <label>{{ adByCat.price | number: '1.2-2':'en-US' }} CHF</label
                     >
                   </div>
                   <div>
@@ -382,7 +383,10 @@
               </div>
             </div>
           </ng-template>
-        </p-carousel>
+        </p-carousel> -->
+        <app-ads-card-carousel
+        [randomAds]="adsByCategory"
+      ></app-ads-card-carousel>
       </div>
     </div>
   </div>

@@ -15,7 +15,7 @@ const AUTH_DATA = "auth_data";
 export class AuthStore {
 
   private userProfile: User = null;
-
+  private user: User = null;
 
     private subject = new BehaviorSubject<any>(null);
     private userSubject$ = new BehaviorSubject<any>(this.userProfile);
@@ -24,26 +24,34 @@ export class AuthStore {
 
     readonly userProfile$: Observable<User> = this.userSubject$.pipe(takeUntil(this.destroy$));
 
-    private user: User = null;
 
     user$ : Observable<User> = this.subject.asObservable();
+
 
 
 
     isLoggedIn$ : Observable<boolean>;
     isLoggedOut$ : Observable<boolean>;
 
-    constructor(private http: HttpClient,
+    constructor(
                 private authService: AuthService,
-                private userService: UserService) {
+                private userService: UserService
+                ) {
 
         this.isLoggedIn$ = this.user$.pipe(map(user => !!user));
 
         this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
+        const user = localStorage.getItem('brocki_id');
 
-        if (this.user) {
-            this.subject.next((this.user));
+        if (user) {
+            this.subject.next(JSON.parse(user));
+        }
+
+        const userToken = localStorage.getItem(AuthConst.token)
+
+        if (userToken) {
+          this.userSubject$.next(this.userProfile)
         }
 
     }
@@ -59,7 +67,6 @@ export class AuthStore {
                       this.userProfile = x;
                       localStorage.setItem(AuthConst.userId, x.id.toString());
                       this.userSubject$.next(x);
-                      console.log(this.userProfile, 'userPRofile')
                     });
                 }),
                 shareReplay()

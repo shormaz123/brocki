@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit {
     this.language = localStorage.getItem(AuthConst.language);
     this.currentLang = this.language;
     this.change(this.currentLang)
-    console.log(this.currentLang, 'current')
   }
 
   change(code: string) {
