@@ -135,7 +135,6 @@ export class AdComponent implements OnInit, AfterViewInit {
     if (this.token) {
       this.auth.userProfile$.subscribe((response) => {
         this.userId = response.id;
-        console.log(this.userId, 'userId')
       });
     }
 
@@ -303,58 +302,21 @@ export class AdComponent implements OnInit, AfterViewInit {
       });
   }
 
+  removeFromWishlist(ad: Ads): void {
+    this.wishlist.remove(ad).subscribe();
+    this.userService.deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id'))).subscribe((x) => {
+    });
+  }
 
-  addToWishlist(adId: number) {
+  addToWishlist(ad: Ads): void {
+    this.wishlist.add(ad).subscribe();
     this.userRequest = {
-      adsId: adId,
-      userId: this.userId,
+      adsId: ad.id,
+      userId: Number(localStorage.getItem('brocki_id'))
     };
-    this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-    }),
-      (error) => {
-      };
-    this.helpersService.$numOfFavs.next();
-    if (this.token) {
-      for (var i in this.adsByCategory) {
-        if (this.adsByCategory[i].id == adId) {
-          this.adsByCategory[i].favourite = true;
-          this.allAdsByCategory = [...this.adsByCategory]
-           break; //Stop this loop, we found it!
-        }
-      }
-      for (var i in this.adsByUser) {
-        if (this.adsByUser[i].id == adId) {
-          this.adsByUser[i].favourite = true;
-          this.adsByUser = [...this.adsByUser]
-           break; //Stop this loop, we found it!
-        }
-      }
-    }
+    this.userService.updateUserFavourites(this.userRequest).subscribe();
   }
 
-  removeFromWishlist(adId: number) {
-    this.userService.deleteUserFavourite(adId, this.userId).subscribe((x) => {
-    }),
-      (error) => {
-      };
-    this.helpersService.$numOfFavs.next();
-    if (this.token) {
-      for (var i in this.adsByCategory) {
-        if (this.adsByCategory[i].id == adId) {
-          this.adsByCategory[i].favourite = false;
-          this.allAdsByCategory = [...this.adsByCategory]
-           break; //Stop this loop, we found it!
-        }
-      }
-      for (var i in this.adsByUser) {
-        if (this.adsByUser[i].id == adId) {
-          this.adsByUser[i].favourite = false;
-          this.adsByUser = [...this.adsByUser]
-           break; //Stop this loop, we found it!
-        }
-      }
-    }
-  }
 
 
   goToFaceBook() {
