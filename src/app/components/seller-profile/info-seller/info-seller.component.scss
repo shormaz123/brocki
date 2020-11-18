@@ -1,44 +1,44 @@
 @import '../../../../scss/variables';
 @import '../../../../scss/mixin.scss';
-
 .info {
-  width: 1280px;
-  height: 600px;
-  display: flex;
-  flex-direction: row;
-  background-color: white;
-  padding: 20px;
-  margin-bottom: 30px;
-  @include rwdm(1600) {
     width: 1280px;
-  }
-  @include rwd(1600) {
-    width: 985px;
-  }
-  &__left {
-    width: 50%;
+    height: 600px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-end;
-  }
-  &__right {
-    width: 50%;
-  }
-  &__item {
-    width: 100%;
-    height: auto;
-    span {
-      padding-left: 10px;
+    flex-direction: row;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    @include rwdm(1600) {
+        width: 1280px;
     }
-  }
-  &__input {
-    border: none;
-    padding: 0 0 0 10px;
-    background-color: $white;
-    color: $black;
-    &--address {
-      width: 400px;
+    @include rwd(1600) {
+        width: 985px;
     }
-  }
+    &__left {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    &__right {
+        width: 50%;
+    }
+    &__item {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        span {
+            padding-left: 10px;
+        }
+    }
+    &__input {
+        border: none;
+        padding: 0 0 0 10px;
+        background-color: $white;
+        color: $black;
+        &--address {
+            width: 400px;
+        }
+    }
 }

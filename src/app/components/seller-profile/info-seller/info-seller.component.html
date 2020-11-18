@@ -1,44 +1,41 @@
 <div class="info">
-  <form class="info__left" [formGroup]="infoForm">
-    <div class="info__item">
-      <img src="../../../../assets/images/seller/company.png" />
-      <input class="info__input" formControlName="company" />
+    <form class="info__left" [formGroup]="infoForm">
+        <div class="info__item" *ngIf="company">
+            <img src="../../../../assets/images/seller/company.png" />
+            <input class="info__input" formControlName="company" />
+        </div>
+        <div class="info__item" *ngIf="name">
+            <img src="../../../../assets/images/seller/name.png" />
+            <input class="info__input" formControlName="name" />
+        </div>
+        <div class="info__item" *ngIf="surname">
+            <img src="../../../../assets/images/seller/surname.png" />
+            <input class="info__input" formControlName="surname" />
+        </div>
+        <div class="info__item" *ngIf="email">
+            <img src="../../../../assets/images/seller/email.png" />
+            <input class="info__input" formControlName="email" />
+        </div>
+        <div class="info__item" *ngIf="website">
+            <img src="../../../../assets/images/seller/website.png" />
+            <input class="info__input" formControlName="website" />
+        </div>
+        <div class="info__item" *ngIf="phone">
+            <img src="../../../../assets/images/seller/phone.png" />
+            <input class="info__input" formControlName="phone" />
+        </div>
+        <div class="info__item" *ngIf="mobile">
+            <img src="../../../../assets/images/seller/mobile.png" />
+            <input class="info__input" formControlName="mobile" />
+        </div>
+        <div class="info__item">
+            <img src="../../../../assets/images/seller/address.png" />
+            <input class="info__input info__input--address" formControlName="address" />
+        </div>
+    </form>
+    <div class="info__right">
+        <agm-map style="height:500px" [zoom]='19' [latitude]="sellerLocationLat" [longitude]="sellerLocationLong">
+            <agm-marker [latitude]="sellerLocationLat" [longitude]="sellerLocationLong"></agm-marker>
+        </agm-map>
     </div>
-    <div class="info__item">
-      <img src="../../../../assets/images/seller/name.png" />
-      <input class="info__input" formControlName="name" />
-    </div>
-    <div class="info__item">
-      <img src="../../../../assets/images/seller/surname.png" />
-      <input class="info__input" formControlName="surname" />
-    </div>
-    <div class="info__item">
-      <img src="../../../../assets/images/seller/email.png" />
-      <input class="info__input" formControlName="email" />
-    </div>
-    <div class="info__item">
-      <img src="../../../../assets/images/seller/website.png" />
-      <input class="info__input" formControlName="website" />
-    </div>
-    <div class="info__item">
-      <img src="../../../../assets/images/seller/phone.png" />
-      <input class="info__input" formControlName="phone" />
-    </div>
-    <div class="info__item">
-      <img src="../../../../assets/images/seller/mobile.png" />
-      <input class="info__input" formControlName="mobile" />
-    </div>
-    <div class="info__item">
-      <img src="../../../../assets/images/seller/address.png" />
-      <input
-        class="info__input info__input--address"
-        formControlName="address"
-      />
-    </div>
-  </form>
-  <div class="info__right">
-    <agm-map style="height:500px" [zoom]='19' [latitude]="sellerLocationLat" [longitude]="sellerLocationLong">
-      <agm-marker [latitude]="sellerLocationLat" [longitude]="sellerLocationLong"></agm-marker>
-    </agm-map>
-  </div>
 </div>

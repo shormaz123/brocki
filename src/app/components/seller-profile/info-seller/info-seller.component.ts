@@ -15,6 +15,14 @@ export class InfoSellerComponent implements OnInit {
   sellerLocationLong;
   sellerLocationLat;
   sellerAddress;
+  company;
+  name;
+  surname;
+  email;
+  website;
+  phone;
+  mobile;
+
 
   constructor(
     private fb: FormBuilder,
@@ -36,6 +44,13 @@ export class InfoSellerComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
+        this.company = seller.company;
+        this.name = seller.name;
+        this.surname = seller.surname;
+        this.email = seller.email;
+        this.website = seller.website;
+        this.phone = seller.phone;
+        this.mobile = seller.mobile;
         this.sellerLocationLong = seller.lng;
         this.sellerLocationLat = seller.lat;
         const [street, streetNumber, postalNumber, city] = seller.address.split(',');
