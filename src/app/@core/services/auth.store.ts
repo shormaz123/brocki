@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { AuthConst } from '../consts/auth.const';
 import { UserService } from './user.service';
 import { User } from 'app/shared/models/user.model';
+import { WishlistService } from './wishlist.service';
 
 const AUTH_DATA = "auth_data";
 
@@ -35,7 +36,8 @@ export class AuthStore {
 
     constructor(
                 private authService: AuthService,
-                private userService: UserService
+                private userService: UserService,
+                private wishlist: WishlistService
                 ) {
 
         this.isLoggedIn$ = this.user$.pipe(map(user => !!user));
@@ -67,6 +69,7 @@ export class AuthStore {
                       this.userProfile = x;
                       localStorage.setItem(AuthConst.userId, x.id.toString());
                       this.userSubject$.next(x);
+                      this.wishlist.load();
                     });
                 }),
                 shareReplay()

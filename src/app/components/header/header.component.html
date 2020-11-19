@@ -27,8 +27,8 @@
             </mat-expansion-panel>
         </mat-accordion>
     </p-sidebar>
-    <div class="firstContainer" *ngIf="!createAd"></div>
-    <div class="firstContainer" *ngIf="createAd">
+    <div class="firstContainer" *ngIf="!createAd || (auth.isLoggedOut$ | async)"></div>
+    <div class="firstContainer" *ngIf="createAd && (auth.isLoggedIn$ | async)">
         <div class="addImage" *ngIf="createAd && !privateUser" routerLink="/create-ad">
             <img class="image" src="../../../assets/images/header/create ad.svg" />
         </div>

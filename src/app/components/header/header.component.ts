@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   clickedTabs: Array<any> = [];
   clickedTab: any;
   subscriptionUser: Subscription;
+  userDataSub: Subscription;
 
   @Output() notify = new EventEmitter<any>();
 
@@ -84,11 +85,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((user) => {
         this.accountName = user.userName;
       });
+    // this.userDataSub = this.auth.sendUserData().subscribe(
+    //     (user) => {
+    //       console.log(user, 'user')
+    //       this.getUser() })
+    this.auth.userProfile$.subscribe((response) => {
+      if (response) {
+        this.getUser();
+      }
+    });
   }
 
   ngOnDestroy() {
     this.displaySideBarSubscription.unsubscribe();
     this.subscriptionUser.unsubscribe();
+    this.userDataSub.unsubscribe();
   }
 
   selectDropDown(id: number) {
@@ -138,6 +149,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       nzTitle: 'Are you sure you want to logout?',
       nzContent: '',
       nzOnOk: () => {
+        this.createAd = false;
         this.auth.logout();
         if (this.router.url === '/site') {
           window.location.reload();

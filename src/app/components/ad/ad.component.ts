@@ -123,6 +123,7 @@ export class AdComponent implements OnInit, AfterViewInit {
     if (this.token) {
       this.auth.userProfile$.subscribe((response) => {
         this.userId = response.id;
+        this.getUserAndFavAd();
       });
     }
 

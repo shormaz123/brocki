@@ -60,7 +60,7 @@ private save(): void {
       .getFavourites(Number(localStorage.getItem('brocki_id')))
       .subscribe( x => {
         this.data.favoriteAds = x;
-        this.save();x
+        this.save();
       });
     }
 }

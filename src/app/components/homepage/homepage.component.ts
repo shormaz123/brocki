@@ -55,9 +55,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
         );
         if (this.token) {
           this.getUserFavoriteAds();
-          this.favAds = this.ads.map(
-            (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-          );
+
           this.getRandomAds();
         } else {
           this.favAds = this.ads;
@@ -75,6 +73,9 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.wishlist.ads$.subscribe((x) => {
       this.favoriteAds = x;
       // Replace objects between two arrays.
+      this.favAds = this.ads.map(
+        (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+      );
     });
   }
 

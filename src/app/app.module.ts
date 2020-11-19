@@ -108,6 +108,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AdsCardDetailComponent } from './components/ads-card-detail/ads-card-detail.component';
+import { AuthStore } from './@core/services/auth.store';
 
 registerLocaleData(en);
 
@@ -235,6 +236,7 @@ registerLocaleData(en);
     AdsService,
     AuthGuardService,
     TranslateServiceRest,
+    AuthStore,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
