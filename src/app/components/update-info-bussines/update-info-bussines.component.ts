@@ -143,10 +143,11 @@ export class UpdateInfoBussinesComponent implements OnInit {
     moveItemInArray(this.allImages, event.previousIndex, event.currentIndex);
   }
 
-  deleteImage(index: number): void {
+  deleteImage(companyPhoto: string, index: number): void {
     this.allImages.splice(index, 1);
     this.deletedImage = true;
     this.photoValue = this.photoValue - 1;
+    this.adsService.deleteImage(companyPhoto).subscribe();
   }
 
   onSubmit() {
