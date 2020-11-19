@@ -63,7 +63,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   images;
   userRequest: UserAddAdsRequest;
   token;
-  userId: number;
+  userId?: number;
   public spt: any;
   public spl: any;
   copied = false;
@@ -122,7 +122,7 @@ export class AdComponent implements OnInit, AfterViewInit {
     this.enableScrolling();
     if (this.token) {
       this.auth.userProfile$.subscribe((response) => {
-        this.userId = response.id;
+        this.userId = Number(localStorage.getItem('brocki_id'));
         this.getUserAndFavAd();
       });
     }

@@ -29,12 +29,12 @@ export class UserComponent implements OnInit {
   userName: string;
   defaultImage = '../../../assets/images/myAccount/profile-picture.png';
   userImage: string = this.defaultImage;
-  activeProducts: Array<any> = [];
-  expiredProducts: Array<any> = [];
-  soldProducts: Array<any> = [];
-  guestBook: Array<any> = [];
-  companyImage: string[];
-  adsActive: boolean;
+  activeProducts?: Array<any> = [];
+  expiredProducts?: Array<any> = [];
+  soldProducts?: Array<any> = [];
+  guestBook?: Array<any> = [];
+  companyImage?: string[];
+  adsActive?: boolean;
   adsExpired: boolean;
   adsSold: boolean;
   comment: boolean;
@@ -42,12 +42,12 @@ export class UserComponent implements OnInit {
   roleName: string;
   private: boolean;
   business: boolean;
-  companyName: string;
+  companyName?: string;
   credit: number;
-  totalAds: Array<Ads> = [];
-  totalAdsLength: number;
-  activeAds: Array<Ads> = [];
-  activeAdsLength: number;
+  totalAds?: Array<Ads> = [];
+  totalAdsLength?: number;
+  activeAds?: Array<Ads> = [];
+  activeAdsLength?: number;
   pageSize: number = 8;
 
   constructor(
@@ -105,7 +105,7 @@ export class UserComponent implements OnInit {
         this.business = false;
       }
 
-      if (res.company.length === 0) {
+      if (res.company != null && res.company.length < 1) {
         if (res.roleName === 'admin' && res.company === '') {
           this.userName = res.userName;
           this.private = true;

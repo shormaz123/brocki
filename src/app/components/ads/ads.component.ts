@@ -265,7 +265,6 @@ export class AdsComponent implements OnInit, OnDestroy {
   getFavoriteAds(userId: number) {
     this.userService.getFavourites(userId).subscribe((x) => {
       this.favoriteAds = x;
-      this.numberOfFavorites = x.length;
       // Replace objects between two arrays.
       this.favAds = this.ads.map(
         (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
