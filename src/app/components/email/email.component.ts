@@ -6,6 +6,8 @@ import { UserService } from '../../@core/services/user.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthConst } from '../../@core/consts/auth.const';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-email',
@@ -27,7 +29,8 @@ export class EmailComponent implements OnInit {
     private toastr: ToastrService,
     private userService: UserService,
     private router: Router,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -71,6 +74,17 @@ export class EmailComponent implements OnInit {
   }
 
   onSubmit() {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      data: {
+        title: this.translateService.instant('translate.updateUser'),
+        message: this.translateService.instant(
+          'translate.changeInfoConfirmation'
+        ),
+      },
+    });
+    confirmDialog.afterClosed().subscribe((result) => {
+      if (result === true) {
     class sendEmail {
       name: string;
       email: string;
@@ -102,14 +116,25 @@ export class EmailComponent implements OnInit {
     email.message = this.emailForm.value.message;
     email.toSender = this.toSender;
 
-    this.toastr.success(this.translateService.instant('translate.emailSent'));
 
-    if (email.ad) {
+    // if (email.ad) {
+    // } else {
+    // }
+
+    this.userService.sendEmailToSeller(email).subscribe( x => {
+      if (x) {
+        this.toastr.success(this.translateService.instant('translate.emailSent'));
+        this.router.navigate([`/site`]);
+      }
+      // tslint:disable-next-line: no-unused-expression
+      (error) => {
       this.router.navigate([`/ad/${this.adForEmail.id}`]);
-    } else {
-      this.router.navigate([`/site`]);
-    }
-
-    this.userService.sendEmailToSeller(email).subscribe();
+      this.toastr.error(
+          this.translateService.instant('translate.wentWrong')
+        );
+      };
+    });
   }
+  });
+}
 }
