@@ -14,9 +14,9 @@ export class ConfirmLoginComponent implements OnInit {
   errorBoolean;
   errorMessage;
   currentLang;
-  text;
-  buttonText;
-  language
+  text ='Bitte bestätigen Sie Ihre Registrierung.';
+  buttonText = 'Konto bestätigen';
+  language;
 
   constructor(
     private router: Router,
