@@ -1,6 +1,6 @@
 <div class="container">
     <img src="../../../assets/images/header/minibrocki.svg" style="width: 200px;">
-    <label>{{'translate.confirmRegistration' | translate}}</label>
-    <button (click)="goTo()">{{'translate.confirmAccount' | translate}}</button>
+    <label>{{text}}</label>
+    <button (click)="goTo()">{{buttonText}}</button>
     <nz-alert nzType="error" nzMessage="{{ errorMessage }}" nzShowIcon *ngIf="errorBoolean" style="margin-bottom: 20px; margin-left: 4.5%;"></nz-alert>
 </div>

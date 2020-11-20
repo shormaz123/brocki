@@ -13,6 +13,10 @@ export class ConfirmLoginComponent implements OnInit {
   confirmToken;
   errorBoolean;
   errorMessage;
+  currentLang;
+  text;
+  buttonText;
+  language
 
   constructor(
     private router: Router,
@@ -26,6 +30,9 @@ export class ConfirmLoginComponent implements OnInit {
       this.confirmToken = queryParams.token;
     });
     this.translate.use(localStorage.getItem(AuthConst.language));
+    this.language = localStorage.getItem(AuthConst.language);
+    this.currentLang = this.language;
+    this.setLanguage();
   }
 
   goTo(): void {
@@ -44,5 +51,21 @@ export class ConfirmLoginComponent implements OnInit {
         }
       }
     );
+  }
+
+  setLanguage() {
+    if (this.currentLang === 'en') {
+      this.text='Please, confirm your registration.',
+      this.buttonText = 'Confirm account'
+    } else if (this.currentLang === 'fr') {
+      this.text='Veuillez confirmer votre inscription.',
+      this.buttonText = 'Confirmer le compte'
+    } else if (this.currentLang === 'de') {
+      this.text='Bitte bestätigen Sie Ihre Registrierung.',
+      this.buttonText = 'Konto bestätigen'
+    } else if (this.currentLang === 'it') {
+      this.text='Per favore, conferma la tua registrazione',
+      this.buttonText = "Confermare l'account"
+    }
   }
 }
