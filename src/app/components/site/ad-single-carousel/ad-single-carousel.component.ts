@@ -2,12 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NzCarouselComponent } from 'ng-zorro-antd';
 import { Ads } from '../../../shared/models/ads.model';
 import { AuthConst } from '../../../@core/consts/auth.const';
-import { HelpersService } from '../../../@core/services/helpers.service';
 import { UserAddAdsRequest } from '../../../shared/models/useraddAdsRequest.model';
-import { Subscription } from 'rxjs';
 import { WishlistService } from 'app/@core/services/wishlist.service';
 import { UserService } from 'app/@core/services/user.service';
-import { User } from 'app/shared/models/user.model';
+import { NgxCarousel } from 'ngx-carousel';
 
 @Component({
   selector: 'app-ad-single-carousel',
@@ -16,27 +14,37 @@ import { User } from 'app/shared/models/user.model';
 })
 export class AdSingleCarouselComponent implements OnInit {
   @Input() userId;
-  @Input() favAds: Ads;
+  @Input() favAds: Ads[];
+  ads: Ads[];
   @Input() favoriteNumber;
   myCarousel: NzCarouselComponent;
+  public carouselTileItems: Array<any>;
+  public carouselTile: NgxCarousel;
   token;
   userRequest: UserAddAdsRequest
+  public carouselOne: NgxCarousel;
 
   constructor( private wishlist: WishlistService, private userService: UserService
   ) {}
 
   ngOnInit() {
+    this.carouselTile = {
+      grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},
+      slide: 1,
+      speed: 400,
+      interval: 5000,
+      point: {
+        visible: false
+      },
+      load: 2,
+      loop: true,
+      custom: 'banner',
+      touch: true
+    };
+    this.ads = this.favAds
+    console.log(this.ads)
     this.token = localStorage.getItem(AuthConst.token);
   }
-
-  next() {
-    this.myCarousel.next();
-  }
-
-  pre() {
-    this.myCarousel.pre();
-  }
-
 
   removeFromWishlist(ad: Ads): void {
     this.wishlist.remove(ad).subscribe();

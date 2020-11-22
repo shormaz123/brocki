@@ -25,8 +25,8 @@ export class AuthService {
 
   // Register user
 
-  register(registration: UserRegistration): Observable<UserRegistration> {
-    return this.http.post<UserRegistration>(
+  register(registration: UserRegistration): Observable<any> {
+    return this.http.post<any>(
       `${this.baseUrl}/mybrocki/registration`,
       registration
     );

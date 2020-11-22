@@ -10,6 +10,9 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material';
+import { AuthConst } from 'app/@core/consts/auth.const';
+import { UserService } from 'app/@core/services/user.service';
+import { AuthStore } from 'app/@core/services/auth.store';
 
 @Component({
   selector: 'app-registration',
@@ -27,8 +30,7 @@ export class RegistrationComponent implements OnInit {
   message = this.translateService.instant('translate.confirmAccountText');
   actionButtonLabel = this.translateService.instant('translate.ok');
   action = true;
-  setAutoHide = true;
-  autoHide = 20000;
+  setAutoHide = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
@@ -49,7 +51,9 @@ export class RegistrationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private translateService: TranslateService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public userService: UserService,
+    private auth: AuthStore
   ) {}
 
   ngOnInit() {
@@ -87,16 +91,16 @@ export class RegistrationComponent implements OnInit {
     this.submitted = true;
     if (this.registerForm.valid && this.registerForm.value.terms === true) {
       this.registration = this.registerForm.value;
-      this.authService.register(this.registration).subscribe(
-        (response) => {
-          this.openSnackbar(), this.router.navigate(['/site']);
-        },
-        (error) => {
-          this.error = true;
-          setTimeout(() => (this.error = false), 2000);
-          this.errorMessage = error.message;
-        }
-      );
+      this.auth.loginAfterRegistration(this.registration).subscribe(
+      (response) => {
+        this.openSnackbar(), this.router.navigate(['/site']);
+      },
+      (error) => {
+            this.error = true;
+            setTimeout(() => (this.error = false), 2000);
+            this.errorMessage = error.message;
+          }
+      )
     } else {
       this.errorMessage = this.translateService.instant(
         'translate.fillEveryFieldError'
@@ -136,9 +140,8 @@ export class RegistrationComponent implements OnInit {
     let config = new MatSnackBarConfig();
     config.verticalPosition = this.verticalPosition;
     config.horizontalPosition = this.horizontalPosition;
-    config.duration = this.setAutoHide ? this.autoHide : 0;
     config.panelClass = ['orange-snackbar']
-    this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config
+    this.snackBar.open(this.translateService.instant('translate.confirmAccountText'), this.action ? this.translateService.instant('translate.ok') : undefined, config
       );
   }
 }

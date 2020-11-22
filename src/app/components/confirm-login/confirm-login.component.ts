@@ -28,7 +28,7 @@ export class ConfirmLoginComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       this.confirmToken = queryParams.token;
-    });
+    })
     this.translate.use(localStorage.getItem(AuthConst.language));
     this.language = localStorage.getItem(AuthConst.language);
     this.currentLang = this.language;

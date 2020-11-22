@@ -13,7 +13,6 @@
         align-items: center;
         justify-content: center;
         height: 100%;
-        margin-bottom: 40px;
     }
 }
 
@@ -44,13 +43,13 @@ nz-carousel {
     justify-content: center;
     width: 50%;
     height: 360px;
+    overflow: hidden;
     img {
         width: 100%;
     }
 }
 
 .containers {
-    width: 90%;
     height: 360px;
     display: flex;
 }
@@ -101,7 +100,7 @@ nz-carousel {
 }
 
 .price {
-    height: 30px;
+    height: 40px;
     display: flex;
     align-items: center;
     .pricetag {
@@ -113,9 +112,61 @@ nz-carousel {
         padding-right: 20px;
         border-radius: 15px;
         margin-right: 20px;
+        color: white;
     }
 }
 
 .mat-icon {
     color: $red;
+}
+
+////ngx carousel
+h1 {
+    min-height: 200px;
+    background-color: #ccc;
+    text-align: center;
+    line-height: 200px;
+}
+
+.leftRs {
+    background-color: $red;
+    color: white;
+    border: none !important;
+    // display: flex !important;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+    left: -100px;
+    cursor: pointer;
+}
+
+.rightRs {
+    background-color: $red;
+    color: white;
+    border: none !important;
+    // display: flex !important;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+    right: -100px;
+    cursor: pointer;
+}
+
+.carouselContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

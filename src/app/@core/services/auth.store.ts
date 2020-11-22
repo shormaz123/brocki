@@ -7,6 +7,7 @@ import { AuthConst } from '../consts/auth.const';
 import { UserService } from './user.service';
 import { User } from 'app/shared/models/user.model';
 import { WishlistService } from './wishlist.service';
+import { UserRegistration } from 'app/shared/models/userRegistration.model';
 
 const AUTH_DATA = "auth_data";
 
@@ -74,6 +75,24 @@ export class AuthStore {
                 }),
                 shareReplay()
             );
+    }
+
+    loginAfterRegistration(registration: UserRegistration): Observable<any> {
+      return this.authService.register(registration).pipe(
+        tap (
+          (response) => {
+               this.subject.next(response);
+               localStorage.setItem(AuthConst.roleName, response.roleName);
+               localStorage.setItem(AuthConst.token, response.token);
+               this.userService.getUser().subscribe( x => {
+                  this.userProfile = x;
+                  localStorage.setItem(AuthConst.userId, x.id.toString());
+                  this.userSubject$.next(x);
+                  this.wishlist.load();
+                          });
+              }),
+              shareReplay()
+      );
     }
 
     logout() {

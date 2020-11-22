@@ -1,77 +1,75 @@
 <div class="container">
     <div class="mainContainer">
-        <div (click)="pre()">
-            <img src="../../../../assets/images/buttons/arrow round left.png" style="cursor: pointer;" />
-        </div>
-        <div class="carousel">
-            <nz-carousel [nzEffect]="'fade'" nzArrows="true" nzDots="false">
-                <div nz-carousel-content *ngFor="let ad of favAds">
-                    <div class="containers">
-                        <div class="leftContainer" [routerLink]="['/ad', ad.id]">
-                            <img [src]="ad.image[0]" />
+        <ngx-carousel [inputs]="carouselTile" style="width: 750px;margin-top: 40px;margin-bottom: 40px;">
+            <ngx-tile NgxCarouselItem *ngFor="let ad of favAds">
+                <div class="containers">
+                    <div class="leftContainer" [routerLink]="['/ad', ad.id]">
+                        <img [src]="ad.image[0]" />
+                    </div>
+                    <div class="rightContainer">
+                        <div class="title">
+                            <label class="title-text">
+          {{ ad.productName }}
+        </label>
                         </div>
-                        <div class="rightContainer">
-                            <div class="title">
-                                <label class="title-text">
-                  {{ ad.productName }}
-                </label>
-                            </div>
 
-                            <div class="text">
-                                <div style="width: 100%; height: 80%;">
-                                    <label class="desc-text" style="color: #4d4d4d; line-height: normal;">{{ ad.description }}</label
-                  >
-                </div>
-
-                <div style="width: 100%; height: 10%; display: flex;">
-                  <button mat-icon-button *ngIf="!token"
-                          pTooltip="{{
-                          'translate.pleaseLoginBeforeYouAddThisAd' | translate
-                        }}!"
-                          tooltipPosition="bottom">
-                  <mat-icon
-                    aria-label="Example icon-button with a heart icon"
-                  >
-                    favorite_border
-                  </mat-icon>
-                  </button>
-                  <button
-                    mat-icon-button
-                    *ngIf="token"
-                    [disableRipple]="true"
-                  >
-                    <mat-icon
-                    (click)="ad.favourite = !ad.favourite"
-                      *ngIf="ad.favourite"
-                      (click)="removeFromWishlist(ad)"
-                      aria-label="Example icon-button with a heart icon"
-                    >
-                      favorite
-                    </mat-icon>
-                    <mat-icon
-                    (click)="ad.favourite = !ad.favourite"
-                      *ngIf="!ad.favourite"
-                      (click)="addToWishlist(ad)"
-                      aria-label="Example icon-button with a heart icon"
-                    >
-                      favorite_border
-                    </mat-icon>
-                  </button>
-                </div>
-              </div>
-              <div class="price">
-                <div class="pricetag">
-                  <label>{{ ad.price | number:'1.2-2':'en-US'   }} CHF</label>
-                                </div>
-                                <span style="color: black;">{{ ad.adsDate | date }}</span>
+                        <div class="text">
+                            <div style="width: 100%; height: 80%;">
+                                <label class="desc-text" style="color: #4d4d4d; line-height: normal;">{{ ad.description }}</label
+          >
+        </div>
+        <div style="width: 100%; height: 10%; display: flex;">
+          <button mat-icon-button *ngIf="!token"
+                  pTooltip="{{
+                  'translate.pleaseLoginBeforeYouAddThisAd' | translate
+                }}!"
+                  tooltipPosition="bottom">
+          <mat-icon
+            aria-label="Example icon-button with a heart icon"
+          >
+            favorite_border
+          </mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            *ngIf="token"
+            [disableRipple]="true"
+          >
+            <mat-icon
+            (click)="ad.favourite = !ad.favourite"
+              *ngIf="ad.favourite"
+              (click)="removeFromWishlist(ad)"
+              aria-label="Example icon-button with a heart icon"
+            >
+              favorite
+            </mat-icon>
+            <mat-icon
+            (click)="ad.favourite = !ad.favourite"
+              *ngIf="!ad.favourite"
+              (click)="addToWishlist(ad)"
+              aria-label="Example icon-button with a heart icon"
+            >
+              favorite_border
+            </mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="price">
+        <div class="pricetag">
+          <label>{{ ad.price | number:'1.2-2':'en-US'   }} CHF</label>
                             </div>
+                            <span style="color: black;">{{ ad.adsDate | date }}</span>
                         </div>
                     </div>
                 </div>
-            </nz-carousel>
-        </div>
-        <div (click)="next()">
-            <img src="../../../../assets/images/buttons/arrow round right.png" style="cursor: pointer;" />
-        </div>
+            </ngx-tile>
+            <button NgxCarouselPrev class="leftRs">
+      <span class="ui-carousel-prev-icon pi pi-chevron-left"></span>
+    </button>
+            <button NgxCarouselNext class="rightRs">
+      <span class="ui-carousel-prev-icon pi pi-chevron-right"></span>
+    </button>
+        </ngx-carousel>
+
     </div>
 </div>
