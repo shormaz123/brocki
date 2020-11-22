@@ -1,7 +1,7 @@
 <div class="card" *ngFor="let ad of ads; let i = index">
   <div class="card__hover">
     <div class="card__image" [routerLink]="['/ad', ad.id]">
-      <img [src]="ad.image[0]" />
+      <img style="width: 100%" [src]="ad.image[0]" />
     </div>
     <div class="card__body" [routerLink]="['/ad', ad.id]">
       <label class="card__body--label">{{ ad.productName }}</label>

@@ -91,8 +91,12 @@
       </div>
 
       <div class="inputItem">
-        <button class="button" type="submit" [disabled]="!privateForm.dirty">
-          {{ 'translate.saveChanges' | translate }}
+        <button
+          class="button btn"
+          type="submit"
+          [disabled]="!privateForm.dirty"
+        >
+          {{ 'translate.saveUpdate' | translate }}
         </button>
       </div>
     </form>
