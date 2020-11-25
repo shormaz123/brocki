@@ -199,10 +199,11 @@ export class AdComponent implements OnInit, AfterViewInit {
                 this.allAdsByCategory = x;
                 this.adsByCategory = this.allAdsByCategory.map(
                   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-                );
+                ).filter( el => (el.id != this.adId) );
               } else {
                 this.categoryImagesAvailable = true;
-                this.adsByCategory = x;
+                this.allAdsByCategory  = x;
+                this.adsByCategory = this.allAdsByCategory.filter( el => (el.id != this.adId));
               }
             }
           });
@@ -257,10 +258,11 @@ export class AdComponent implements OnInit, AfterViewInit {
               this.allAdsByUser = x;
               this.adsByUser = this.allAdsByUser.map(
                 (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-              );
+              ).filter(el => (el.id != this.adId) );
             } else {
               this.usersImagesAvailabe = true;
-              this.adsByUser = x;
+              this.allAdsByUser = x;
+              this.adsByUser = this.allAdsByUser.filter( el => (el.id != this.adId) );
             }
           }
         });
