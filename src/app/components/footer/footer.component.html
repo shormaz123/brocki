@@ -1,20 +1,22 @@
 <div class="footer">
-    <div class="footer__list">
-        <img class="footer__image" src="assets/images/footer/line 2px.png" />
-        <div class="footer__links">
-            <div class="footer__text" (click)="goTo('/site')">
-                {{ 'translate.home' | translate }}
-            </div>
-            <div class="footer__text" (click)="goTo('/user/' + userId)">
-                {{ 'translate.myAccount' | translate }}
-            </div>
-            <div class="footer__text">
-                <a href="http://www.mio-software.com/" target="_blank" style="color: #4d4d4d">{{ 'translate.aboutUs' | translate }}</a
+  <div class="footer__list">
+    <img class="footer__image" src="assets/images/footer/line 2px.png" />
+    <div class="footer__links">
+      <div class="footer__text" (click)="goTo('/site')">
+        {{ 'translate.home' | translate }}
+      </div>
+      <div class="footer__text" (click)="goTo('/user/' + userId)">
+        {{ 'translate.myAccount' | translate }}
+      </div>
+      <div class="footer__text">
+        <a
+          href="http://www.mio-software.com/"
+          target="_blank"
+          style="color: #4d4d4d"
+          >{{ 'translate.aboutUs' | translate }}</a
         >
       </div>
-      <div class="footer__text" (click)="openFile()">
-        AGB
-      </div>
+      <div class="footer__text" (click)="openFile()">AGB</div>
       <div class="footer__text" (click)="goTo('contact-us')">
         {{ 'translate.contactUs' | translate }}
       </div>
@@ -32,10 +34,13 @@
           [inlineSVG]="'../../../assets/images/footer/facebook.svg'"
         ></div>
       </a>
-                <a href="https://www.instagram.com/minibrocki.ch/" target="_blank">
-                    <div class="footer__icon" [inlineSVG]="'../../../assets/images/footer/instagram.svg'"></div>
-                </a>
-                <!-- <a href="https://www.linkedin.com" target="_blank">
+      <a href="https://www.instagram.com/minibrocki.ch/" target="_blank">
+        <div
+          class="footer__icon"
+          [inlineSVG]="'../../../assets/images/footer/instagram.svg'"
+        ></div>
+      </a>
+      <!-- <a href="https://www.linkedin.com" target="_blank">
         <div
           class="footer__icon"
           [inlineSVG]="'../../../assets/images/footer/linkedin.svg'"
@@ -47,20 +52,26 @@
           [inlineSVG]="'../../../assets/images/footer/youtube.svg'"
         ></div>
       </a> -->
-            </div>
-            <div class="footer__copyright">
-                <p class="footer__copyright-color">
-                    {{ 'translate.copyrightOne' | translate }}<br /> {{ 'translate.copyrightTwo' | translate }}
-                    <span style="color: #d62b1f; align-items: center; font-size: 14px">
-          {{ 'translate.copyrightThree' | translate }}
-        </span>
-                </p>
-            </div>
-        </div>
-        <div class="footer__links footer__links--end">
-            <p class="footer__email-text">
-                {{ 'translate.minibrockiDescriptionOne' | translate }}
-                <span style="color: #d62b1f; cursor: pointer">{{ 'translate.minibrockiDescriptionTwo' | translate }}️ </span
+    </div>
+    <div class="footer__copyright">
+      <p class="footer__copyright-color">
+        {{ 'translate.copyrightOne' | translate }}<br />
+        {{ 'translate.copyrightTwo' | translate }}
+        <a href="http://www.mio-software.com/" target="_blank"
+          ><span style="color: #d62b1f; align-items: center; font-size: 14px">
+            {{ 'translate.copyrightThree' | translate }}
+          </span></a
+        >
+      </p>
+    </div>
+  </div>
+  <div class="footer__links footer__links--end">
+    <p class="footer__email-text">
+      {{ 'translate.minibrockiDescriptionOne' | translate }}
+      <a href="http://www.mio-software.com/" target="_blank"
+        ><span style="color: #d62b1f; cursor: pointer"
+          >{{ 'translate.minibrockiDescriptionTwo' | translate }}️
+        </span></a
       >{{ 'translate.minibrockiDescriptionThree' | translate }}
     </p>
     <div class="footer__email">
@@ -69,7 +80,9 @@
         class="footer__icon footer__icon--email"
         src="assets/images/footer/mail icon.png"
       />
-      <p class="footer__email-email">&nbsp;info@minibrocki.com</p>
+      <p (click)="goTo('contact-us')" class="footer__email-email">
+        &nbsp;info@minibrocki.com
+      </p>
     </div>
   </div>
 </div>
