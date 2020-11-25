@@ -64,6 +64,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   clickedTags: Array<any> = [];
   clickedTag: any;
   tags$: Observable<Tags[]>;
+  asd: any;
 
   // snackbar properties
 
