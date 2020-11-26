@@ -76,7 +76,7 @@ export class GuestbookSellerComponent implements OnInit {
       comment.comments = this.ratingForm.value.comment;
     }
     comment.userId = this.sellerId;
-    comment.authorName = this.nameOfCommentator;
+
     this.modal.confirm({
       nzTitle: this.translateService.instant('translate.postComment'),
       nzContent: '',
