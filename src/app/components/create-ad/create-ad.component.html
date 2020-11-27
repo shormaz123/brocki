@@ -173,7 +173,9 @@
             *ngFor="let photo of photos; let i = index"
           >
             <div class="form__index">{{ i + 1 }}</div>
-            <img [src]="photo" class="form__image" />
+            <div>
+              <img [src]="photo" class="form__image" />
+            </div>
             <div class="form__delete" (click)="deletePhoto(i)">
               <label class="form__delete-label">{{
                 'translate.deletePhoto' | translate

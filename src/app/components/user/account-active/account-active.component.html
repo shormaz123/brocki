@@ -16,6 +16,7 @@
             [class.wrapper]="active.status === 'ACTIVE'"
           >
             <img
+              class="image__img"
               [ngStyle]="{
                 opacity:
                   active.status === 'NOT_ACCEPTED' ||
@@ -55,7 +56,7 @@
           </div>
         </div>
         <div
-        *ngIf="active.status === 'ACTIVE' || active.status === 'NOT_ACCEPTED'"
+          *ngIf="active.status === 'ACTIVE' || active.status === 'NOT_ACCEPTED'"
           class="delete-ad"
           (click)="deleteAd(active, i)"
           [inlineSVG]="'../../../assets/images/update-info-bussines/trash.svg'"
