@@ -42,7 +42,6 @@ export class AdSingleCarouselComponent implements OnInit {
       touch: true
     };
     this.ads = this.favAds
-    console.log(this.ads)
     this.token = localStorage.getItem(AuthConst.token);
   }
 

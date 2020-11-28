@@ -85,10 +85,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((user) => {
         this.accountName = user.userName;
       });
-    // this.userDataSub = this.auth.sendUserData().subscribe(
-    //     (user) => {
-    //       console.log(user, 'user')
-    //       this.getUser() })
     this.auth.userProfile$.subscribe((response) => {
       if (response) {
         this.getUser();
