@@ -1,34 +1,51 @@
-<app-ad-single-carousel [favAds]="favAds" [userId]="userId" *ngIf="favAds"></app-ad-single-carousel>
+<app-ad-single-carousel
+  [favAds]="favAds"
+  [userId]="userId"
+  *ngIf="favAds"
+></app-ad-single-carousel>
 <div class="container">
-    <div class="advertise">
-        <img src="../../../assets/images/banner1.jpg" routerLink="/contact-us" style="cursor: pointer" />
-    </div>
-    <div class="siteButtons">
-        <!-- <button class="siteButton">Around me</button> -->
-        <button class="siteButton" pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}" tooltipPosition="top">
+  <div class="advertise">
+    <img
+      src="../../../assets/images/banner1.jpg"
+      routerLink="/contact-us"
+      style="cursor: pointer"
+    />
+  </div>
+  <div class="siteButtons">
+    <!-- <button class="siteButton">Around me</button> -->
+    <button
+      class="siteButton"
+      pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}"
+      tooltipPosition="top"
+    >
       {{ 'translate.freshlyAdvertised' | translate }}
     </button>
-        <button class="siteButton" pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}" tooltipPosition="top">
+    <button
+      class="siteButton"
+      pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}"
+      tooltipPosition="top"
+    >
       {{ 'translate.unused' | translate }}
     </button>
-        <button class="siteButton" pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}" tooltipPosition="top">
+    <button
+      class="siteButton"
+      pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}"
+      tooltipPosition="top"
+      [routerLink]="['../most-wanted-ads']"
+    >
       {{ 'translate.mostWanted' | translate }}
     </button>
-    </div>
+  </div>
 </div>
 <div class="suggestions">
-    <span class="suggText">
+  <span class="suggText">
     {{ 'translate.suggestionsForYou' | translate }}:</span
   >
   <div class="bodySuggestions2">
-    <app-ads-card-carousel
-      [randomAds]="randomAdsA"
-    ></app-ads-card-carousel>
+    <app-ads-card-carousel [randomAds]="randomAdsA"></app-ads-card-carousel>
   </div>
   <div class="bodySuggestions2" style="margin-bottom: 50px">
-    <app-ads-card-carousel
-      [randomAds]="randomAdsB"
-    ></app-ads-card-carousel>
+    <app-ads-card-carousel [randomAds]="randomAdsB"></app-ads-card-carousel>
     <div class="ads" id="Ads" #panel>
       <div class="line"></div>
       <div class="ads__body">
@@ -44,6 +61,6 @@
       <button class="show--more" mat-button (click)="increaseShow()">
         {{ 'translate.showMore' | translate }}
       </button>
-</div>
-</div>
+    </div>
+  </div>
 </div>

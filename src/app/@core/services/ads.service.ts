@@ -267,7 +267,7 @@ export class AdsService {
   mostWanted(): Observable<any> {
     return this.http
       .get<any>(
-        `${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE&view=1&pageNumber=1&pageSize=5`
+        `${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE&view=true&pageNumber=1&pageSize=5`
       )
       .pipe(
         map((x) => x),

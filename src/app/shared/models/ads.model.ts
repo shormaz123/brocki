@@ -1,4 +1,4 @@
-import {Tags} from '../../shared/models/tags.model';
+import { Tags } from '../../shared/models/tags.model';
 
 export class Ads {
   id: number;
@@ -15,6 +15,7 @@ export class Ads {
   soldDate: string;
   adsLocation: string;
   visibleAds: true;
-  tags:Array<Tags>;
+  tags: Array<Tags>;
   address: any;
+  view: number;
 }
