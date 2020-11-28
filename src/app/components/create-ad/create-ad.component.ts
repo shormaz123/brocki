@@ -116,7 +116,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       .getLanguage()
       .subscribe((message) => {
         this.currentLang = message;
-        this.clickedTags = [];
       });
 
     this.tags$ = this.adsService.getAllTags();
@@ -341,6 +340,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
           );
           return;
         }
+        console.log(create);
 
         this.adsService.newAd(create).subscribe(
           (res) => {

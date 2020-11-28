@@ -17,7 +17,7 @@ import { HelpersService } from '../../@core/services/helpers.service';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { AuthStore } from 'app/@core/services/auth.store';
 import { WishlistService } from 'app/@core/services/wishlist.service';
 
@@ -197,13 +197,18 @@ export class AdComponent implements OnInit, AfterViewInit {
                   }
                 }
                 this.allAdsByCategory = x;
-                this.adsByCategory = this.allAdsByCategory.map(
-                  (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-                ).filter( el => (el.id != this.adId) );
+                this.adsByCategory = this.allAdsByCategory
+                  .map(
+                    (obj) =>
+                      this.favoriteAds.find((o) => o.id === obj.id) || obj
+                  )
+                  .filter((el) => el.id != this.adId);
               } else {
                 this.categoryImagesAvailable = true;
-                this.allAdsByCategory  = x;
-                this.adsByCategory = this.allAdsByCategory.filter( el => (el.id != this.adId));
+                this.allAdsByCategory = x;
+                this.adsByCategory = this.allAdsByCategory.filter(
+                  (el) => el.id != this.adId
+                );
               }
             }
           });
@@ -256,13 +261,17 @@ export class AdComponent implements OnInit, AfterViewInit {
           } else {
             if (this.token) {
               this.allAdsByUser = x;
-              this.adsByUser = this.allAdsByUser.map(
-                (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-              ).filter(el => (el.id != this.adId) );
+              this.adsByUser = this.allAdsByUser
+                .map(
+                  (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+                )
+                .filter((el) => el.id != this.adId);
             } else {
               this.usersImagesAvailabe = true;
               this.allAdsByUser = x;
-              this.adsByUser = this.allAdsByUser.filter( el => (el.id != this.adId) );
+              this.adsByUser = this.allAdsByUser.filter(
+                (el) => el.id != this.adId
+              );
             }
           }
         });
@@ -281,31 +290,30 @@ export class AdComponent implements OnInit, AfterViewInit {
   }
 
   getUserAndFavAd() {
-    this.wishlist.ads$.
-      subscribe((x) => {
-        this.favoriteAds = x;
-        // Replace objects between two arrays.
-        // this.favAds = ads.map(
-        //   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-        // );
-      });
+    this.wishlist.ads$.subscribe((x) => {
+      this.favoriteAds = x;
+      // Replace objects between two arrays.
+      // this.favAds = ads.map(
+      //   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+      // );
+    });
   }
 
   removeFromWishlist(ad: Ads): void {
     this.wishlist.remove(ad).subscribe();
-    this.userService.deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id'))).subscribe((x) => {
-    });
+    this.userService
+      .deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id')))
+      .subscribe((x) => {});
   }
 
   addToWishlist(ad: Ads): void {
     this.wishlist.add(ad).subscribe();
     this.userRequest = {
       adsId: ad.id,
-      userId: Number(localStorage.getItem('brocki_id'))
+      userId: Number(localStorage.getItem('brocki_id')),
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe();
   }
-
 
   goToFaceBook() {
     document

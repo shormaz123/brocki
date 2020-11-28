@@ -260,6 +260,21 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/comment/user/${userId}`);
   }
 
+  /**
+   *
+   * Most wanted ads
+   */
+  mostWanted(): Observable<any> {
+    return this.http
+      .get<any>(
+        `${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE&view=1&pageNumber=1&pageSize=5`
+      )
+      .pipe(
+        map((x) => x),
+        shareReplay()
+      );
+  }
+
   getCategoryById(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/mybrocki/group/${id}`);
   }

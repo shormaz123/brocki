@@ -1,76 +1,105 @@
 <div class="container">
-    <div class="imageContainer">
-        <div class="imageGallery">
-            <ngx-gallery *ngIf="allOfreviewer" [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
-            <ngx-gallery *ngIf="!allOfreviewer" [options]="galleryOptions" [images]="reviewAdsImages" class="ngx-gallery"></ngx-gallery>
-        </div>
+  <div class="imageContainer">
+    <div class="imageGallery">
+      <ngx-gallery
+        *ngIf="allOfreviewer"
+        [options]="galleryOptions"
+        [images]="galleryImages"
+        class="ngx-gallery"
+      ></ngx-gallery>
+      <ngx-gallery
+        *ngIf="!allOfreviewer"
+        [options]="galleryOptions"
+        [images]="reviewAdsImages"
+        class="ngx-gallery"
+      ></ngx-gallery>
     </div>
-    <div class="socialMediaDiv">
-        <div class="socialMedia">
-            <div style="width: 20%; display: flex; align-items: center">
-                <label>{{ 'translate.shareVia' | translate }}:</label>
-            </div>
-            <div class="social">
-                <div class="socialButton" [socialShare]="'tw'">
-                    <img src="../../../assets/images/ad/logoOne.png" /> Twitter
-                </div>
+  </div>
+  <div class="socialMediaDiv">
+    <div class="socialMedia">
+      <div style="width: 20%; display: flex; align-items: center">
+        <label>{{ 'translate.shareVia' | translate }}:</label>
+      </div>
+      <div class="social">
+        <div class="socialButton" [socialShare]="'tw'">
+          <img src="../../../assets/images/ad/logoOne.png" /> Twitter
+        </div>
 
-                <div class="socialButton" [socialShare]="'fb'">
-                    <img src="../../../assets/images/ad/logoTwo.png" /> Facebook
-                </div>
+        <div class="socialButton" [socialShare]="'fb'">
+          <img src="../../../assets/images/ad/logoTwo.png" /> Facebook
+        </div>
 
-                <div class="socialButton" (click)="copyLink()">
-                    <img src="../../../assets/images/ad/logoThree.png" />{{ 'translate.copyLink' | translate }}
-                    <div class="copiedTooltip" *ngIf="copied">
-                        {{ 'translate.copied' | translate }}!
-                    </div>
-                </div>
-            </div>
+        <div class="socialButton" (click)="copyLink()">
+          <img src="../../../assets/images/ad/logoThree.png" />{{
+            'translate.copyLink' | translate
+          }}
+          <div class="copiedTooltip" *ngIf="copied">
+            {{ 'translate.copied' | translate }}!
+          </div>
         </div>
+      </div>
     </div>
-    <div class="title">
-        <label>{{ ad?.productName || card?.productName }}</label>
-    </div>
-    <div class="info">
-        <div class="left">
-            <div class="profile">
-                <div class="seller-image">
-                    <img *ngIf="!reviewUser" [src]="userImage" [routerLink]="['/seller', userSellerId]" pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!" tooltipPosition="top" style="cursor: pointer" />
-                    <img *ngIf="reviewUser" [src]="reviewUser.companyImage[0]" [routerLink]="['/seller/', reviewUser.id]" />
-                </div>
-            </div>
+  </div>
+  <div class="title">
+    <label>{{ ad?.productName || card?.productName }}</label>
+  </div>
+  <div class="info">
+    <div class="left">
+      <div class="profile">
+        <div class="seller-image">
+          <img
+            *ngIf="!reviewUser"
+            [src]="userImage"
+            [routerLink]="['/seller', userSellerId]"
+            pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!"
+            tooltipPosition="top"
+            style="cursor: pointer"
+          />
+          <img
+            *ngIf="reviewUser"
+            [src]="reviewUser.companyImage[0]"
+            [routerLink]="['/seller/', reviewUser.id]"
+          />
         </div>
-        <div class="center">
-            <div class="centerBox">
-                <label *ngIf="private">{{
+      </div>
+    </div>
+    <div class="center">
+      <div class="centerBox">
+        <label *ngIf="private">{{
           userSeller?.name || reviewUser?.name
         }}</label>
-                <label *ngIf="business">{{ companyName }}</label>
-                <label *ngIf="!business">{{ adminName }}</label>
-                <div style="font-size: 15px">
-                    {{ address }}
-                </div>
-                <div class="contact">
-                    <div class="iconBox" (click)="phonesOfSeller()">
-                        <div class="phoneImage phoneImage--margin">
-                            <div class="photo" [inlineSVG]="
+        <label *ngIf="business">{{ companyName }}</label>
+        <label *ngIf="!business">{{ adminName }}</label>
+        <div style="font-size: 15px">
+          {{ address }}
+        </div>
+        <div class="contact">
+          <div class="iconBox" (click)="phonesOfSeller()">
+            <div class="phoneImage phoneImage--margin">
+              <div
+                class="photo"
+                [inlineSVG]="
                   '../../../assets/images/update-info-bussines/phone.svg'
-                "></div>
-                        </div>
-                        <div class="phone" *ngIf="sellerPhones">
-                            <div>{{ userSeller?.phone }}</div>
-                            <div>{{ userSeller?.mobile }}</div>
-                        </div>
-                    </div>
-                    <div class="iconBox iconBox--email" (click)="sendEmail()">
-                        <div class="phoneImage">
-                            <div class="photo" [inlineSVG]="
+                "
+              ></div>
+            </div>
+            <div class="phone" *ngIf="sellerPhones">
+              <div>{{ userSeller?.phone }}</div>
+              <div>{{ userSeller?.mobile }}</div>
+            </div>
+          </div>
+          <div class="iconBox iconBox--email" (click)="sendEmail()">
+            <div class="phoneImage">
+              <div
+                class="photo"
+                [inlineSVG]="
                   '../../../assets/images/update-info-bussines/email.svg'
-                "></div>
-                        </div>
-                        <div class="iconBox__email"></div>
-                    </div>
-                    <!-- <div class="phone">
+                "
+              ></div>
+            </div>
+            <div class="iconBox__email"></div>
+          </div>
+          <!-- <div class="phone">
                     <img src="../../../assets/images/ad/icon phone.png" *ngIf="userSeller?.phone || userSeller?.mobile" />
                     <div class="numbers">
                         <label>{{ userSeller?.phone }}</label>
@@ -81,79 +110,88 @@
                     <img (click)="toogleMail()" src="../../../assets/images/ad/icon mail.png" *ngIf="userSeller?.email || reviewUser?.email" style="cursor: pointer" />
                     <label *ngIf="mailBoolean">{{ userSeller?.email || reviewUser?.email }}</label>
                 </div> -->
-                </div>
-            </div>
         </div>
-        <div class="right">
-            <div class="card">
-                <div class="cardColumn1">
-                    {{ ad?.price || card?.price | number: '1.2-2':'en-US' }} CHF
-                </div>
-                <!-- <div class="cardColumn">{{ ad?.adsType || card?.adsType }}</div> -->
-                <div class="cardColumn" style="text-align: center">
-                    <!-- <label style="margin-right: 5px;">5</label>
-                    <img src="../../../assets/images/eye.svg" style="height: 24px;"> -->
-                    <mat-icon *ngIf="!token" pTooltip="{{
-                      'translate.pleaseLoginBeforeYouAddThisAd' | translate
-                    }}!" tooltipPosition="bottom" aria-label="Example icon-button with a heart icon" style="cursor: pointer;">
-                        favorite_border
-                    </mat-icon>
-                    <button mat-icon-button *ngIf="token" [disableRipple]="true">
-                    <mat-icon
-                    (click)="ad.favourite = !ad.favourite"
-                      *ngIf="ad?.favourite"
-                      (click)="removeFromWishlist(ad)"
-                      aria-label="Example icon-button with a heart icon"
-                    >
-                      favorite
-                    </mat-icon>
-                    <mat-icon
-                    (click)="ad.favourite = !ad.favourite"
-                      *ngIf="!ad?.favourite"
-                      (click)="addToWishlist(ad)"
-                      aria-label="Example icon-button with a heart icon"
-                    >
-                      favorite_border
-                    </mat-icon>
-                  </button>
-                </div>
-                <div class="cardColumn2">
-                    {{ ad?.adsDate || card?.adsDate | date: 'medium' }}
-                </div>
-            </div>
-
-        </div>
+      </div>
     </div>
+    <div class="right">
+      <div class="card">
+        <div class="cardColumn1">
+          {{ ad?.price || card?.price | number: '1.2-2':'en-US' }} CHF
+        </div>
+        <!-- <div class="cardColumn">{{ ad?.adsType || card?.adsType }}</div> -->
+        <div class="cardColumn" style="text-align: center">
+          <label style="margin-right: 5px">{{ ad?.view }}</label>
+          <img src="../../../assets/images/eye.svg" style="height: 24px" />
+          <mat-icon
+            *ngIf="!token"
+            pTooltip="{{
+              'translate.pleaseLoginBeforeYouAddThisAd' | translate
+            }}!"
+            tooltipPosition="bottom"
+            aria-label="Example icon-button with a heart icon"
+            style="cursor: pointer"
+          >
+            favorite_border
+          </mat-icon>
+          <button mat-icon-button *ngIf="token" [disableRipple]="true">
+            <mat-icon
+              (click)="ad.favourite = !ad.favourite"
+              *ngIf="ad?.favourite"
+              (click)="removeFromWishlist(ad)"
+              aria-label="Example icon-button with a heart icon"
+            >
+              favorite
+            </mat-icon>
+            <mat-icon
+              (click)="ad.favourite = !ad.favourite"
+              *ngIf="!ad?.favourite"
+              (click)="addToWishlist(ad)"
+              aria-label="Example icon-button with a heart icon"
+            >
+              favorite_border
+            </mat-icon>
+          </button>
+        </div>
+        <div class="cardColumn2">
+          {{ ad?.adsDate || card?.adsDate | date: 'medium' }}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="des">
-    <div class="description">
-        <label class="descriptionTitle">{{ 'translate.description' | translate }}:</label
-      >
-      <div style="text-align: justify">
-        <label style="color: #8c8c8c">{{
-          ad?.description || card?.description
-        }}</label>
+  <div class="description">
+    <label class="descriptionTitle"
+      >{{ 'translate.description' | translate }}:</label
+    >
+    <div style="text-align: justify">
+      <label style="color: #8c8c8c">{{
+        ad?.description || card?.description
+      }}</label>
     </div>
-</div>
-<div class="articles">
+  </div>
+  <div class="articles">
     <label>{{ 'translate.allArticlesOfThisSeller' | translate }}</label>
     <div *ngIf="!reviewUserActiveAds" class="bodySuggestions">
-        <div class="cards">
-            <app-ads-card-carousel [randomAds]="adsByUser"></app-ads-card-carousel>
-        </div>
+      <div class="cards">
+        <app-ads-card-carousel [randomAds]="adsByUser"></app-ads-card-carousel>
+      </div>
     </div>
     <div *ngIf="reviewUserActiveAds" class="bodySuggestions">
-        <div class="cards">
-            <app-ads-card-carousel [randomAds]="reviewUserActiveAds"></app-ads-card-carousel>
-        </div>
+      <div class="cards">
+        <app-ads-card-carousel
+          [randomAds]="reviewUserActiveAds"
+        ></app-ads-card-carousel>
+      </div>
     </div>
-    <label *ngIf="!reviewUserActiveAds">{{ 'translate.similarProducts' | translate }}:</label
+    <label *ngIf="!reviewUserActiveAds"
+      >{{ 'translate.similarProducts' | translate }}:</label
     >
     <div *ngIf="!reviewUserActiveAds" class="bodySuggestions">
       <div class="cards">
         <app-ads-card-carousel
-        [randomAds]="adsByCategory"
-      ></app-ads-card-carousel>
+          [randomAds]="adsByCategory"
+        ></app-ads-card-carousel>
       </div>
     </div>
   </div>
