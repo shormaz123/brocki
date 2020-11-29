@@ -6,4 +6,5 @@ export class AuthConst {
   static readonly userId: string = 'brocki_id';
   static readonly language: string = 'de';
   static readonly category: string = 'category_id';
+  static readonly userStatus: string = 'user_status';
 }

@@ -16,6 +16,7 @@ import { TranslateServiceRest } from '../../@core/services/translateREST.service
 import { AdsService } from '../../@core/services/ads.service';
 import { Ads } from '../../shared/models/ads.model';
 import { AuthStore } from 'app/@core/services/auth.store';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
   selector: 'app-header',
@@ -40,6 +41,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   clickedTab: any;
   subscriptionUser: Subscription;
   userDataSub: Subscription;
+  user: User;
 
   @Output() notify = new EventEmitter<any>();
 
@@ -122,6 +124,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getUser(): void {
     this.userService.getUser().subscribe(
       (user) => {
+        this.user = user;
+        localStorage.setItem(AuthConst.userStatus, user.userStatus)
         if (user.bussinesType === 'PRIVATE') {
           this.privateUser = true;
         } else {

@@ -340,7 +340,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
           );
           return;
         }
-        console.log(create);
 
         this.adsService.newAd(create).subscribe(
           (res) => {
