@@ -243,27 +243,6 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
     });
   }
 
-  addToWishlist(event: any, ad: any) {
-    this.userRequest = {
-      adsId: event,
-      userId: this.userId,
-    };
-    this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-      this.favoriteAds.push(ad);
-    }),
-      (error) => {};
-    this.helpersService.$numOfFavs.next();
-  }
-
-  removeFromWishlist(event: any) {
-    this.userService
-      .deleteUserFavourite(event.adId, this.userId)
-      .subscribe((x) => {}),
-      // tslint:disable-next-line:no-unused-expression
-      (error) => {};
-    this.helpersService.$numOfFavs.next();
-  }
-
   backClicked() {
     this.location.back();
   }

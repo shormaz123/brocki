@@ -18,11 +18,9 @@ export class InfoSellerComponent implements OnInit {
   company;
   name;
   surname;
-  email;
   website;
   phone;
   mobile;
-
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +33,6 @@ export class InfoSellerComponent implements OnInit {
       company: [{ value: '', disabled: true }],
       name: [{ value: '', disabled: true }],
       surname: [{ value: '', disabled: true }],
-      email: [{ value: '', disabled: true }],
       website: [{ value: '', disabled: true }],
       phone: [{ value: '', disabled: true }],
       mobile: [{ value: '', disabled: true }],
@@ -47,20 +44,21 @@ export class InfoSellerComponent implements OnInit {
         this.company = seller.company;
         this.name = seller.name;
         this.surname = seller.surname;
-        this.email = seller.email;
         this.website = seller.website;
         this.phone = seller.phone;
         this.mobile = seller.mobile;
         this.sellerLocationLong = seller.lng;
         this.sellerLocationLat = seller.lat;
-        const [street, streetNumber, postalNumber, city] = seller.address.split(',');
-        this.sellerAddress =  street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
+        const [street, streetNumber, postalNumber, city] = seller.address.split(
+          ','
+        );
+        this.sellerAddress =
+          street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
         this.sellerindex = seller.id;
         this.infoForm.patchValue({
           company: seller.company,
           name: seller.name,
           surname: seller.surname,
-          email: seller.email,
           website: seller.website,
           phone: seller.phone,
           mobile: seller.mobile,

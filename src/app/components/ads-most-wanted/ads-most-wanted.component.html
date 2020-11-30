@@ -11,12 +11,15 @@
     <div class="favorites__box">
       <div class="favorites__line--card">
         <app-ads-card-detail
-          [ads]="favAds"
-          (addWishlist)="addToWishlist($event)"
-          (removeWishlist)="removeFromWishlist($event)"
+          [ads]="mostWanted$ | async"
           class="favorites__favorite--ads"
         ></app-ads-card-detail>
       </div>
     </div>
+  </div>
+  <div class="increaseButtonClass" *ngIf="!buttonHide">
+    <button class="show--more" mat-button (click)="increaseShow()">
+      {{ 'translate.showMore' | translate }}
+    </button>
   </div>
 </div>

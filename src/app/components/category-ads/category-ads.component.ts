@@ -203,32 +203,7 @@ export class CategoryAdsComponent implements OnInit {
     return this.favAds;
   }
 
-  addToWishlist(adId: number) {
-    this.userRequest = {
-      adsId: adId,
-      userId: Number(localStorage.getItem(AuthConst.userId)),
-    };
-    this.userService.updateUserFavourites(this.userRequest).subscribe((x) => {
-    }),
-      (error) => {};
-    this.helpersService.$numOfFavs.next();
-  }
-
-  removeFromWishlist(event: any) {
-    this.userService
-      .deleteUserFavourite(
-        event.adId,
-        Number(localStorage.getItem(AuthConst.userId))
-      )
-      .subscribe((x) => {
-      }),
-      // tslint:disable-next-line:no-unused-expression
-      (error) => {};
-    this.helpersService.$numOfFavs.next();
-  }
-
   backClicked() {
     this.location.back();
   }
-
 }
