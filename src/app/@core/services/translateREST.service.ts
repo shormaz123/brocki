@@ -9,10 +9,17 @@ import { AuthConst } from '../consts/auth.const';
   providedIn: 'root',
 })
 export class TranslateServiceRest {
-  private defaultLanguage = 'de';
+   defaultLanguage ;
 
   constructor(private http: HttpBaseService, private httpClient: HttpClient) {
-    localStorage.setItem(AuthConst.language, this.defaultLanguage);
+
+      if (localStorage.getItem(AuthConst.language)) {
+        this.defaultLanguage = localStorage.getItem(AuthConst.language)
+        localStorage.setItem(AuthConst.language, this.defaultLanguage);
+      } else {
+        this.defaultLanguage = 'de';
+        localStorage.setItem(AuthConst.language, this.defaultLanguage);
+      }
   }
 
   private language = new Subject<any>();

@@ -31,6 +31,7 @@ import { AdsCategoryWithTagsComponent } from './components/ads-category-with-tag
 import { FiltersAdsComponent } from './components/filters-ads/filters-ads.component';
 import { SearchedAdsComponent } from './components/searched-ads/searched-ads.component';
 import { AdsMostWantedComponent } from './components/ads-most-wanted/ads-most-wanted.component';
+import { UserStatusGuardService } from './@core/services/UserStatusGuard.service';
 
 const routes: Routes = [
   {
@@ -104,7 +105,7 @@ const routes: Routes = [
       {
         path: 'create-ad',
         component: CreateAdComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService, UserStatusGuardService],
       },
       {
         path: 'favorite',
