@@ -109,6 +109,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AdsCardDetailComponent } from './components/ads-card-detail/ads-card-detail.component';
 import { AuthStore } from './@core/services/auth.store';
+import { AdsMostWantedComponent } from './components/ads-most-wanted/ads-most-wanted.component';
 import { UserStatusGuardService } from './@core/services/UserStatusGuard.service';
 import { ImgFallbackDirective } from './utils/fallbackImage.directive';
 
@@ -167,7 +168,8 @@ registerLocaleData(en);
     SearchedAdsComponent,
     LoadingSpinnerComponent,
     AdsCardDetailComponent,
-    ImgFallbackDirective
+    ImgFallbackDirective,
+    AdsMostWantedComponent,
   ],
   imports: [
     BrowserModule,

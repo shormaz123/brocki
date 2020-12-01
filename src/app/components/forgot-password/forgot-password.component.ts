@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../@core/services/auth.service';
-import {Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material';
-import {ToastrService} from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,12 +12,13 @@ import {ToastrService} from 'ngx-toastr';
 export class ForgotPasswordComponent implements OnInit {
   email: string;
 
-  constructor(private authService: AuthService,  private router: Router, private toastr: ToastrService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
-  ngOnInit() {
-
-
-  }
+  ngOnInit() {}
 
   submit() {
     this.authService.resetPassword(this.email).subscribe(
@@ -28,7 +29,6 @@ export class ForgotPasswordComponent implements OnInit {
       (error) => {
         this.toastr.error('Wrong email!');
         if (error.status === 200) {
-
         }
       }
     );

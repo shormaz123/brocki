@@ -1,20 +1,25 @@
 <div class="main--container">
   <div class="container">
     <div class="under--container">
-      <span class="title">{{ categoryName }}</span>
+      <span class="title"> {{ 'translate.mostWanted' | translate }}</span>
     </div>
   </div>
-  <div class="no--ads-container" *ngIf="favAds.length === 0">
+  <div class="no--ads-container" *ngIf="">
     <h1>{{ 'translate.noAvailableAds' | translate }}</h1>
   </div>
   <div class="favorites">
     <div class="favorites__box">
       <div class="favorites__line--card">
         <app-ads-card-detail
-          [ads]="favAds"
+          [ads]="mostWanted$ | async"
           class="favorites__favorite--ads"
         ></app-ads-card-detail>
       </div>
     </div>
+  </div>
+  <div class="increaseButtonClass" *ngIf="!buttonHide">
+    <button class="show--more" mat-button (click)="increaseShow()">
+      {{ 'translate.showMore' | translate }}
+    </button>
   </div>
 </div>

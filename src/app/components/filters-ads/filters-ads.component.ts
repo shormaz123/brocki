@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Ads } from '../../shared/models/ads.model';
-import { HelpersService } from '../../@core/services/helpers.service';
 import { UserService } from '../../@core/services/user.service';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AdsService } from '../../@core/services/ads.service';
@@ -27,7 +26,6 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
   disableButton: boolean = true;
 
   constructor(
-    private helpersService: HelpersService,
     private userService: UserService,
     private adsService: AdsService
   ) {}
@@ -48,27 +46,6 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
         );
       });
     });
-  }
-
-  addToWishlist(event: any) {
-    this.userRequest = {
-      adsId: event,
-      userId: this.userId,
-    };
-    this.userService
-      .updateUserFavourites(this.userRequest)
-      .subscribe((x) => {}),
-      (error) => {};
-    this.helpersService.$numOfFavs.next();
-  }
-
-  removeFromWishlist(event: any) {
-    this.userService
-      .deleteUserFavourite(event.adId, this.userId)
-      .subscribe((x) => {}),
-      // tslint:disable-next-line:no-unused-expression
-      (error) => {};
-    this.helpersService.$numOfFavs.next();
   }
 
   increaseShow() {

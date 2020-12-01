@@ -122,26 +122,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   getUser(): void {
-    this.userService.getUser().subscribe(
-      (user) => {
-        this.user = user;
-        localStorage.setItem(AuthConst.userStatus, user.userStatus)
-        if (user.bussinesType === 'PRIVATE') {
-          this.privateUser = true;
-        } else {
-          this.privateUser = false;
-        }
-        if (user == null) {
-          this.accountName = null;
-          this.createAd = false;
-        } else {
-          this.accountName = user.userName;
-          this.createAd = true;
-          this.userId = user.id;
-
-        }
-      },
-    );
+    this.userService.getUser().subscribe((user) => {
+      this.user = user;
+      localStorage.setItem(AuthConst.userStatus, user.userStatus);
+      if (user.bussinesType === 'PRIVATE') {
+        this.privateUser = true;
+      } else {
+        this.privateUser = false;
+      }
+      if (user == null) {
+        this.accountName = null;
+        this.createAd = false;
+      } else {
+        this.accountName = user.userName;
+        this.createAd = true;
+        this.userId = user.id;
+      }
+    });
   }
 
   logout() {
