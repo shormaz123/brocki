@@ -35,6 +35,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   reviewUserId: number;
   reviewUserActiveAds: Ads;
   allOfreviewer: boolean;
+  noImage = '../../../assets/images/navigation/noImage.jpg'
 
   adId: number;
   userSellerId: number;
