@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Comment } from '../../../shared/models/createComment.model';
 import { NzModalService, NzNotificationService } from 'ng-zorro-antd';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-guestbook-seller',
@@ -32,7 +33,8 @@ export class GuestbookSellerComponent implements OnInit {
     private authService: AuthService,
     private modal: NzModalService,
     private notification: NzNotificationService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -82,13 +84,12 @@ export class GuestbookSellerComponent implements OnInit {
       nzContent: '',
       nzOnOk: () => {
         this.adsService.createComment(comment).subscribe(() => {
-          this.notification.success(
+          this.toastr.success(
             '',
             this.translateService.instant('translate.successfullyPostedComment')
           );
           this.guestBook.emit();
         });
-        // this.router.navigate(['/site']);
       },
     });
   }
