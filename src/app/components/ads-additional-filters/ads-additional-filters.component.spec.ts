@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdsMostWantedComponent } from './ads-most-wanted.component';
+import { AdsMostWantedComponent } from './ads-additional-filters.component';
 
 describe('AdsMostWantedComponent', () => {
   let component: AdsMostWantedComponent;
@@ -8,9 +8,8 @@ describe('AdsMostWantedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdsMostWantedComponent ]
-    })
-    .compileComponents();
+      declarations: [AdsMostWantedComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
