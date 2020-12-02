@@ -20,6 +20,7 @@ import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import { Subscription, Observable } from 'rxjs';
 import { AuthStore } from 'app/@core/services/auth.store';
 import { WishlistService } from 'app/@core/services/wishlist.service';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ad',
@@ -53,6 +54,9 @@ export class AdComponent implements OnInit, AfterViewInit {
   paginationNumber = 1;
   sellerPhones: boolean;
   sellerEmail;
+  adImage;
+  adDescription;
+  adTitle;
 
   usersImagesAvailabe: boolean;
   categoryImagesAvailable: boolean;
@@ -93,8 +97,15 @@ export class AdComponent implements OnInit, AfterViewInit {
     private helpersService: HelpersService,
     private router: Router,
     private auth: AuthStore,
-    private wishlist: WishlistService
-  ) {}
+    private wishlist: WishlistService,
+    private metaTagService: Meta
+  ) {
+    this.metaTagService.removeTag('title');
+    this.metaTagService.removeTag('description');
+    // this.metaTagService.removeTag('og:image');
+    // this.metaTagService.removeTag('twitter:description');
+    // this.metaTagService.removeTag('twitter:site');
+  }
 
   ngOnInit() {
     this.token = localStorage.getItem(AuthConst.token);
@@ -159,6 +170,7 @@ export class AdComponent implements OnInit, AfterViewInit {
         });
       });
     }
+
   }
   ngAfterViewInit() {}
 
@@ -182,9 +194,18 @@ export class AdComponent implements OnInit, AfterViewInit {
       this.adsService.getAdById(id).subscribe((response) => {
         this.userSellerId = response.userId;
         this.ad = response;
-
+        this.adImage = response.image[0];
+        this.adDescription = response.description;
+        this.adTitle = response.productName;
         this.adGroupId = response.adsGroupId;
         this.allOfreviewer = true;
+        this.metaTagService.addTags([
+          { name: 'title', content: this.adTitle },
+          { name: 'description', content: this.adDescription },
+          { name: 'og:image', content: this.adImage },
+          { name: 'twitter:description', content: this.adDescription },
+          { name: 'twitter:site', content: this.adImage }
+        ]);
         this.adsService
           .getAdsByGroupId(this.adGroupId, this.paginationNumber)
           .subscribe((x) => {

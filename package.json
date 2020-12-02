@@ -75,6 +75,7 @@
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.4.0",
     "rxjs-compat": "^6.5.5",
+    "share-buttons": "^1.6.1",
     "slick-carousel": "^1.8.1",
     "stream": "0.0.2",
     "swiper": "5.3.8",

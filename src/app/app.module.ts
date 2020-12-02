@@ -72,7 +72,6 @@ import { TooltipModule } from 'primeng/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { CustomTranslateLoader } from './@core/custom-translate-loader';
-import { NgxSocialShareModule } from 'ngx-social-share';
 import { TranslateServiceRest } from './@core/services/translateREST.service';
 import { ConfirmLoginComponent } from './components/confirm-login/confirm-login.component';
 import { AdsComponent } from './components/ads/ads.component';
@@ -112,6 +111,7 @@ import { AuthStore } from './@core/services/auth.store';
 import { AdsMostWantedComponent } from './components/ads-most-wanted/ads-most-wanted.component';
 import { UserStatusGuardService } from './@core/services/UserStatusGuard.service';
 import { ImgFallbackDirective } from './utils/fallbackImage.directive';
+import { NgxSocialShareModule } from 'ngx-social-share';
 
 registerLocaleData(en);
 
