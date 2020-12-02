@@ -38,6 +38,7 @@ export class SellerProfileComponent implements OnInit {
   address: string;
   checked: boolean = true;
   pageSize: number = 8;
+  sellerStatus: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -50,6 +51,7 @@ export class SellerProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
+        this.sellerStatus = seller.userStatus
         const [street, streetNumber, postalNumber, city] = seller.address.split(
           ','
         );
@@ -57,7 +59,6 @@ export class SellerProfileComponent implements OnInit {
           street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
         if (seller.roleName === 'bussines' || 'admin') {
           this.sellerCompany = seller.company;
-
           this.private = false;
           this.business = true;
         } else {
@@ -81,9 +82,11 @@ export class SellerProfileComponent implements OnInit {
         this.sellerPhone = seller.phone;
         this.sellerMobile = seller.mobile;
         this.sellerEmail = seller.email;
-        seller.companyImage[0]
-          ? (this.sellerImage = seller.companyImage[0])
-          : (this.sellerImage = this.defaultImage);
+        if (seller.companyImage) {
+          this.sellerImage = seller.companyImage[0]
+        } else {
+          this.sellerImage = this.defaultImage
+        }
       });
     });
 
