@@ -20,7 +20,6 @@ import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import { Subscription, Observable } from 'rxjs';
 import { AuthStore } from 'app/@core/services/auth.store';
 import { WishlistService } from 'app/@core/services/wishlist.service';
-import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ad',
@@ -98,13 +97,8 @@ export class AdComponent implements OnInit, AfterViewInit {
     private router: Router,
     private auth: AuthStore,
     private wishlist: WishlistService,
-    private metaTagService: Meta
   ) {
-    this.metaTagService.removeTag('title');
-    this.metaTagService.removeTag('description');
-    // this.metaTagService.removeTag('og:image');
-    // this.metaTagService.removeTag('twitter:description');
-    // this.metaTagService.removeTag('twitter:site');
+
   }
 
   ngOnInit() {
@@ -199,13 +193,6 @@ export class AdComponent implements OnInit, AfterViewInit {
         this.adTitle = response.productName;
         this.adGroupId = response.adsGroupId;
         this.allOfreviewer = true;
-        this.metaTagService.addTags([
-          { name: 'title', content: this.adTitle },
-          { name: 'description', content: this.adDescription },
-          { name: 'og:image', content: this.adImage },
-          { name: 'twitter:description', content: this.adDescription },
-          { name: 'twitter:site', content: this.adImage }
-        ]);
         this.adsService
           .getAdsByGroupId(this.adGroupId, this.paginationNumber)
           .subscribe((x) => {

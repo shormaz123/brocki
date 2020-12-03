@@ -1,50 +1,35 @@
-<div
-  class="about-us"
-  [ngStyle]="
-    sellersImages.length < 4 || chosenImage
+<div class="about-us" [ngStyle]="
+    sellersImages?.length < 4 || chosenImage
       ? { height: 'auto' }
       : { height: 'auto' }
-  "
->
-  <div class="chosen-image" *ngIf="chosenImage">
-    <div class="chosen-image__image">
-      <img style="width: 100%" [src]="chosenImage" />
+  ">
+    <div class="chosen-image" *ngIf="chosenImage">
+        <div class="chosen-image__image">
+            <img style="width: 100%" [src]="chosenImage" />
+        </div>
+        <div class="chosen-image__close" (click)="closeImage()" [inlineSVG]="'../../../assets/images/buttons/close.svg'">
+            X
+        </div>
     </div>
-    <div
-      class="chosen-image__close"
-      (click)="closeImage()"
-      [inlineSVG]="'../../../assets/images/buttons/close.svg'"
-    >
-      X
-    </div>
-  </div>
-  <div *ngIf="chosenImage === false" class="about-us">
-    <div class="about-us__title">
-      {{ 'translate.aboutUs' | translate }}
-    </div>
-    <div class="about-us__text">
-      {{ aboutUs }}
-    </div>
-    <div
-      class="company-picture"
-      [ngClass]="{ display: sellersImages.length === 2 }"
-      [ngStyle]="
-        sellersImages.length === 1
+    <div *ngIf="chosenImage === false" class="about-us">
+        <div class="about-us__title">
+            {{ 'translate.aboutUs' | translate }}
+        </div>
+        <div class="about-us__text">
+            {{ aboutUs }}
+        </div>
+        <div class="company-picture" [ngClass]="{ display: sellersImages?.length === 2 }" [ngStyle]="
+        sellersImages?.length === 1
           ? { display: 'flex', 'justify-content': 'center' }
           : { display: 'flex' }
-      "
-    >
-      <div *ngFor="let image of sellersImages">
-        <div class="company-picture__images" *ngIf="noImages">
-          <div class="company-picture__image">
-            <img
-              class="chosen-image__img"
-              [src]="image"
-              (click)="showImage(image)"
-            />
-          </div>
+      ">
+            <div *ngFor="let image of sellersImages">
+                <div class="company-picture__images" *ngIf="noImages">
+                    <div class="company-picture__image">
+                        <img class="chosen-image__img" [src]="image" (click)="showImage(image)" />
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
