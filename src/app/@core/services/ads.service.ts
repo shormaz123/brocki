@@ -64,9 +64,14 @@ export class AdsService {
   }
 
   getAdsByPagination(page: number): Observable<Ads[]> {
-    return this.http.get(
-      `${this.baseUrl}/mybrocki/ads/filter?pageNumber=${page}&status=ACTIVE&pageSize=16`
-    );
+    return this.http
+      .get<Ads[]>(
+        `${this.baseUrl}/mybrocki/ads/filter?pageNumber=${page}&status=ACTIVE&pageSize=16`
+      )
+      .pipe(
+        map((ads) => ads),
+        shareReplay()
+      );
   }
 
   getAdsByGroupId(id: number, page: number): Observable<Ads[]> {
@@ -267,7 +272,7 @@ export class AdsService {
   mostWanted(pageNumber: number): Observable<any> {
     return this.http
       .get<any>(
-        `${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE&view=true&pageNumber=${pageNumber}&pageSize=8`
+        `${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE&view=true&pageNumber=${pageNumber}&pageSize=16`
       )
       .pipe(
         map((x) => x),
@@ -282,7 +287,7 @@ export class AdsService {
   unusedAds(pageNumber: number): Observable<any> {
     return this.http
       .get<any>(
-        `${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE&pageSize=8&pageNumber=${pageNumber}&tag=3`
+        `${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE&pageSize=16&pageNumber=${pageNumber}&tag=3`
       )
       .pipe(
         map((x) => x),

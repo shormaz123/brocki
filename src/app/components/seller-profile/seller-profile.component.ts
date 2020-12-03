@@ -51,7 +51,7 @@ export class SellerProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
-        this.sellerStatus = seller.userStatus
+        this.sellerStatus = seller.userStatus;
         const [street, streetNumber, postalNumber, city] = seller.address.split(
           ','
         );
@@ -83,9 +83,9 @@ export class SellerProfileComponent implements OnInit {
         this.sellerMobile = seller.mobile;
         this.sellerEmail = seller.email;
         if (seller.companyImage) {
-          this.sellerImage = seller.companyImage[0]
+          this.sellerImage = seller.companyImage[0];
         } else {
-          this.sellerImage = this.defaultImage
+          this.sellerImage = this.defaultImage;
         }
       });
     });

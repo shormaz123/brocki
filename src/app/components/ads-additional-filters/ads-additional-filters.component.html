@@ -25,6 +25,11 @@
           [ads]="unusedAds$ | async"
           class="favorites__favorite--ads"
         ></app-ads-card-detail>
+        <app-ads-card-detail
+          *ngIf="advertised"
+          [ads]="advertisedAds$ | async"
+          class="favorites__favorite--ads"
+        ></app-ads-card-detail>
       </div>
     </div>
   </div>
