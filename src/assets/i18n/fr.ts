@@ -209,6 +209,7 @@ export const fr = {
     addressPlace: 'Lieu',
     location: 'Emplacement',
     confirmAccountText: 'Veuillez vérifier votre boîte de réception pour un e-mail d`activation et le confirmer. Vous pouvez ensuite créer une annonce.',
-    notYetAvailable: 'Pas encore disponible!'
+    notYetAvailable: 'Pas encore disponible!',
+    or: 'ou '
   },
 };

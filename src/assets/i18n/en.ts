@@ -206,7 +206,8 @@ export const en = {
     addressPlace: 'Place',
     location: 'Location',
     confirmAccountText: 'Please check your e-mail inbox for an activation e-mail and confirm it. You can then create an ad.',
-    notYetAvailable: 'Not yet available!'
+    notYetAvailable: 'Not yet available!',
+    or: 'or '
 
   },
 };
