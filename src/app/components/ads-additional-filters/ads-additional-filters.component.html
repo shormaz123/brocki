@@ -1,7 +1,12 @@
 <div class="main--container">
   <div class="container">
     <div class="under--container">
-      <span class="title"> {{ 'translate.mostWanted' | translate }}</span>
+      <span class="title" *ngIf="most">
+        {{ 'translate.mostWanted' | translate }}</span
+      >
+      <span class="title" *ngIf="unused">
+        {{ 'translate.unused' | translate }}</span
+      >
     </div>
   </div>
   <div class="no--ads-container" *ngIf="">
@@ -11,7 +16,13 @@
     <div class="favorites__box">
       <div class="favorites__line--card">
         <app-ads-card-detail
+          *ngIf="most"
           [ads]="mostWanted$ | async"
+          class="favorites__favorite--ads"
+        ></app-ads-card-detail>
+        <app-ads-card-detail
+          *ngIf="unused"
+          [ads]="unusedAds$ | async"
           class="favorites__favorite--ads"
         ></app-ads-card-detail>
       </div>

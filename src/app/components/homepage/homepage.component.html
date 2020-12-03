@@ -20,11 +20,7 @@
     >
       {{ 'translate.freshlyAdvertised' | translate }}
     </button>
-    <button
-      class="siteButton"
-      pTooltip="{{ 'translate.willBeAvailableSoon' | translate }}"
-      tooltipPosition="top"
-    >
+    <button class="siteButton" [routerLink]="['../unused-ads']">
       {{ 'translate.unused' | translate }}
     </button>
     <button class="siteButton" [routerLink]="['../most-wanted-ads']">

@@ -334,12 +334,14 @@ export class CreateAdComponent implements OnInit, OnDestroy {
           ),
           1
         );
+
         if (create.price === 0) {
           this.toastr.warning(
             this.translateService.instant('translate.setPrice')
           );
           return;
         }
+        console.log(create);
 
         this.adsService.newAd(create).subscribe(
           (res) => {

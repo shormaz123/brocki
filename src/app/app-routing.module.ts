@@ -30,7 +30,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AdsCategoryWithTagsComponent } from './components/ads-category-with-tags/ads-category-with-tags.component';
 import { FiltersAdsComponent } from './components/filters-ads/filters-ads.component';
 import { SearchedAdsComponent } from './components/searched-ads/searched-ads.component';
-import { AdsMostWantedComponent } from './components/ads-most-wanted/ads-most-wanted.component';
+import { AdsAdditionalFiltersComponent } from './components/ads-additional-filters/ads-additional-filters.component';
 import { UserStatusGuardService } from './@core/services/UserStatusGuard.service';
 
 const routes: Routes = [
@@ -56,7 +56,11 @@ const routes: Routes = [
           },
           {
             path: 'most-wanted-ads',
-            component: AdsMostWantedComponent,
+            component: AdsAdditionalFiltersComponent,
+          },
+          {
+            path: 'unused-ads',
+            component: AdsAdditionalFiltersComponent,
           },
         ],
       },

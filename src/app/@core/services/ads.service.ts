@@ -275,6 +275,21 @@ export class AdsService {
       );
   }
 
+  /**
+   *
+   * Unused ads
+   */
+  unusedAds(pageNumber: number): Observable<any> {
+    return this.http
+      .get<any>(
+        `${this.baseUrl}/mybrocki/ads/filter?status=ACTIVE&pageSize=8&pageNumber=${pageNumber}&tag=3`
+      )
+      .pipe(
+        map((x) => x),
+        shareReplay()
+      );
+  }
+
   getCategoryById(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/mybrocki/group/${id}`);
   }
