@@ -11,16 +11,16 @@
                 <label>{{ 'translate.shareVia' | translate }}:</label>
             </div>
             <div class="social">
-                <!-- <div class="socialButton" [socialShare]="'tw'">
+                <div class="socialButton" [socialShare]="'tw'">
                     <img src="../../../assets/images/ad/logoOne.png" /> Twitter
                 </div>
 
                 <div class="socialButton" [socialShare]="'fb'">
                     <img src="../../../assets/images/ad/logoTwo.png" /> Facebook
-                </div> -->
+                </div>
 
-                <div [socialShare]="'fb'">Facebook</div>
-                <div [socialShare]="'tw'">Twitter</div>
+                <!-- <div [socialShare]="'fb'">Facebook</div>
+                <div [socialShare]="'tw'">Twitter</div> -->
 
                 <div class="socialButton" (click)="copyLink()">
                     <img src="../../../assets/images/ad/logoThree.png" />{{ 'translate.copyLink' | translate }}
