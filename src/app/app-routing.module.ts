@@ -62,6 +62,10 @@ const routes: Routes = [
             path: 'unused-ads',
             component: AdsAdditionalFiltersComponent,
           },
+          {
+            path: 'freshly-advertised-ads',
+            component: AdsAdditionalFiltersComponent,
+          },
         ],
       },
       {
