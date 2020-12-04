@@ -54,7 +54,8 @@
   background-color: $red;
   color: white;
   border-radius: 20px;
-  border: 1px solid $border-gray;
+  border: none;
+  box-sizing: border-box;
   width: 12%;
   height: 40px;
   &:hover {
@@ -68,7 +69,8 @@
   border-radius: 20px;
   border: 1px solid $border-gray;
   width: 12%;
-  height: auto;
+  height: 40px;
+  box-sizing: border-box;
   &:hover {
     cursor: pointer;
   }

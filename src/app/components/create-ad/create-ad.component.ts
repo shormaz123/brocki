@@ -327,13 +327,15 @@ export class CreateAdComponent implements OnInit, OnDestroy {
           );
           return;
         }
-
-        create.price = this.roundUp(
-          Number(
-            (Math.round(this.createForm.value.price * 100) / 100).toFixed(2)
-          ),
-          1
+        create.price = Number(
+          parseFloat(this.createForm.value.price).toFixed(2)
         );
+        // create.price = this.roundUp(
+        //   Number(
+        //     (Math.round(this.createForm.value.price * 100) / 100).toFixed(3)
+        //   ),
+        //   2
+        // );
 
         if (create.price === 0) {
           this.toastr.warning(

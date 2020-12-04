@@ -79,8 +79,8 @@
 
   &__links {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    margin-top: 10px;
     align-items: center;
     @include rwd(1480) {
       width: 100%;
