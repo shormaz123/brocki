@@ -41,11 +41,11 @@ export class AdComponent implements OnInit, AfterViewInit {
   userSellerId: number;
   ad: Ads;
   userSeller: User;
-  adsByUser;
-  allAdsByUser;
+  adsByUser:any = [];
+  allAdsByUser: any = [];
   adGroupId?;
   adsByCategory;
-  allAdsByCategory;
+  allAdsByCategory: any = [];
   currentUrl = document.URL;
   defaultImage = '../../../assets/images/myAccount/profile-picture.png';
   userImage: string = this.defaultImage;
@@ -80,7 +80,7 @@ export class AdComponent implements OnInit, AfterViewInit {
   displaySideNav = true;
   mailBoolean = false;
   email = false;
-  favoriteAds: Ads[];
+  favoriteAds: any;
   numberOfFavs: Subscription;
   favAds = [];
   address: string;
@@ -129,7 +129,7 @@ export class AdComponent implements OnInit, AfterViewInit {
     if (this.token) {
       this.auth.userProfile$.subscribe((response) => {
         this.userId = Number(localStorage.getItem('brocki_id'));
-        this.getUserAndFavAd();
+        // this.getUserAndFavAd();
       });
     }
 
@@ -164,7 +164,6 @@ export class AdComponent implements OnInit, AfterViewInit {
         });
       });
     }
-
   }
   ngAfterViewInit() {}
 
@@ -286,6 +285,9 @@ export class AdComponent implements OnInit, AfterViewInit {
         });
       });
     }
+
+
+
   }
 
   favoriteUserAds() {
@@ -301,10 +303,14 @@ export class AdComponent implements OnInit, AfterViewInit {
   getUserAndFavAd() {
     this.wishlist.ads$.subscribe((x) => {
       this.favoriteAds = x;
-      // Replace objects between two arrays.
-      // this.favAds = ads.map(
-      //   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-      // );
+      if (this.token) {
+        this.adsByUser = this.allAdsByUser.map(
+          (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+        ).filter((el) => el.id != this.adId);;
+        this.adsByCategory = this.allAdsByCategory.map(
+          (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+        ).filter((el) => el.id != this.adId);;
+        }
     });
   }
 

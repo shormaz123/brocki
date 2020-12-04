@@ -81,6 +81,7 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
       userId: Number(localStorage.getItem('brocki_id'))
     };
     this.userService.updateUserFavourites(this.userRequest).subscribe();
+
   }
 
   goToAd(event, id: number) {
@@ -93,5 +94,10 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
  onEvent(event) {
   event.stopPropagation();
 }
+
+// trackByItem( item: any): number {
+//   return item;
+// }
+
 }
 

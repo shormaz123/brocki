@@ -37,7 +37,7 @@ private adsSubject$: BehaviorSubject<Ads[]> = new BehaviorSubject(this.data.favo
   add(ad: Ads): Observable<void> {
 
     // timer only for demo
-    return timer(200).pipe(map(() => {
+    return timer(0).pipe(map(() => {
         this.onAddingSubject$.next(ad);
 
         const index = this.data.favoriteAds.findIndex(item => item.id === ad.id);
