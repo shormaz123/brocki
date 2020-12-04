@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrlBase: "https://minibrocki-be-stage.herokuapp.com",
-  enableSentry: true
+  enableSentry: false
   // apiUrlBase: "https://be.minibrocki.ch",
 };
 
