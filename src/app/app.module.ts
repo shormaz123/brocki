@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -112,6 +112,8 @@ import { AdsAdditionalFiltersComponent } from './components/ads-additional-filte
 import { UserStatusGuardService } from './@core/services/UserStatusGuard.service';
 import { ImgFallbackDirective } from './utils/fallbackImage.directive';
 import { NgxSocialShareModule } from 'ngx-social-share';
+import { SentryModule } from './sentry.module';
+import { environment } from './../environments/environment.prod'
 
 registerLocaleData(en);
 
@@ -212,6 +214,7 @@ registerLocaleData(en);
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatExpansionModule,
+    environment.enableSentry ? SentryModule.forRoot() : [],
     NgxHotjarModule.forRoot('2010944'),
     ToastrModule.forRoot({
       preventDuplicates: true,
