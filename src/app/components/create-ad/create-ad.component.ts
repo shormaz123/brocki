@@ -65,6 +65,8 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   clickedTag: any;
   tags$: Observable<Tags[]>;
   asd: any;
+  decimal: boolean;
+  decimalNumber: number;
 
   // snackbar properties
 
@@ -280,6 +282,21 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     this.createForm.patchValue({ subcategory: this.subcategoryName });
   }
 
+  showDecimal(price: number): void {
+    this.decimal = (this.createForm.value.price * 100) % 1 === 0;
+    if (this.decimal) {
+      this.decimalNumber = price;
+      console.log(this.decimal);
+      this.createForm.patchValue({
+        price: this.decimalNumber,
+      });
+    } else {
+      this.createForm.patchValue({
+        price: this.decimalNumber,
+      });
+    }
+  }
+
   onSubmit() {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       width: '500px',
@@ -327,15 +344,8 @@ export class CreateAdComponent implements OnInit, OnDestroy {
           );
           return;
         }
-        create.price = Number(
-          parseFloat(this.createForm.value.price).toFixed(2)
-        );
-        // create.price = this.roundUp(
-        //   Number(
-        //     (Math.round(this.createForm.value.price * 100) / 100).toFixed(3)
-        //   ),
-        //   2
-        // );
+
+        create.price = this.createForm.value.price;
 
         if (create.price === 0) {
           this.toastr.warning(
@@ -343,7 +353,6 @@ export class CreateAdComponent implements OnInit, OnDestroy {
           );
           return;
         }
-        console.log(create);
 
         this.adsService.newAd(create).subscribe(
           (res) => {
@@ -364,17 +373,17 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     });
   }
 
-  roundUp(num, precision) {
-    precision = Math.pow(20, precision);
-    return Math.ceil(num * precision) / precision;
-  }
+  // roundUp(num, precision) {
+  //   precision = Math.pow(20, precision);
+  //   return Math.ceil(num * precision) / precision;
+  // }
 
-  checkDec(el) {
-    const ex = /^[0-9]+\.?[0-9]*$/;
-    if (ex.test(el.value) === false) {
-      el.value = el.value.substring(0, el.value.length - 1);
-    }
-  }
+  // checkDec(el) {
+  //   const ex = /^[0-9]+\.?[0-9]*$/;
+  //   if (ex.test(el.value) === false) {
+  //     el.value = el.value.substring(0, el.value.length - 1);
+  //   }
+  // }
 
   log() {
     this.onSubmit();

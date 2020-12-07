@@ -208,6 +208,8 @@
           <input
             placeholder="0.00"
             step="0.01"
+            #price
+            (keyup)="showDecimal(price.value)"
             class="form__input form__input--price"
             formControlName="price"
             type="text"
