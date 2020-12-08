@@ -11,7 +11,6 @@ export class AppComponent {
   title = 'myBrocki';
 
   constructor(private router: Router, private metaservice: Meta) {
-    this.metaservice.addTag({ name: 'description', content: 'opisopisopisopisopisopisopisopis'});
 
     this.router.events.subscribe(event => {
      if (event instanceof NavigationEnd) {
