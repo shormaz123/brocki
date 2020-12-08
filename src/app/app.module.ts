@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -245,6 +245,7 @@ registerLocaleData(en);
     AuthGuardService,
     TranslateServiceRest,
     AuthStore,
+    Meta,
     UserStatusGuardService,
     {
       provide: HTTP_INTERCEPTORS,

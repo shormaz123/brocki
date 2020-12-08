@@ -11,11 +11,11 @@
                 <label>{{ 'translate.shareVia' | translate }}:</label>
             </div>
             <div class="social">
-                <div class="socialButton" [socialShare]="'tw'">
+                <div class="socialButton" (click)="share('twitter')">
                     <img src="../../../assets/images/ad/logoOne.png" /> Twitter
                 </div>
 
-                <div class="socialButton" [socialShare]="'fb'">
+                <div class="socialButton" (click)="share('facebook')">
                     <img src="../../../assets/images/ad/logoTwo.png" /> Facebook
                 </div>
 

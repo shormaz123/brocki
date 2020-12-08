@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewChild,
   Input,
+  OnDestroy,
 } from '@angular/core';
 import { AdsService } from '../../@core/services/ads.service';
 import { UserService } from '../../@core/services/user.service';
@@ -20,13 +21,14 @@ import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import { Subscription, Observable } from 'rxjs';
 import { AuthStore } from 'app/@core/services/auth.store';
 import { WishlistService } from 'app/@core/services/wishlist.service';
+import { Meta, Title, MetaDefinition } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ad',
   templateUrl: './ad.component.html',
   styleUrls: ['./ad.component.scss'],
 })
-export class AdComponent implements OnInit, AfterViewInit {
+export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
   reviewAdsImages: NgxGalleryImage[] = [];
@@ -84,6 +86,11 @@ export class AdComponent implements OnInit, AfterViewInit {
   numberOfFavs: Subscription;
   favAds = [];
   address: string;
+  navUrl: string;
+  typeShareTwitter;
+  typeShareFacebook;
+  shareUrl = document.URL;
+
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
 
@@ -97,6 +104,8 @@ export class AdComponent implements OnInit, AfterViewInit {
     private router: Router,
     private auth: AuthStore,
     private wishlist: WishlistService,
+    private readonly metaService: Meta,
+    private readonly titleService: Title
   ) {
 
   }
@@ -164,6 +173,7 @@ export class AdComponent implements OnInit, AfterViewInit {
         });
       });
     }
+
   }
   ngAfterViewInit() {}
 
@@ -187,6 +197,8 @@ export class AdComponent implements OnInit, AfterViewInit {
       this.adsService.getAdById(id).subscribe((response) => {
         this.userSellerId = response.userId;
         this.ad = response;
+        this.setMetaTags();
+
         this.adImage = response.image[0];
         this.adDescription = response.description;
         this.adTitle = response.productName;
@@ -287,7 +299,6 @@ export class AdComponent implements OnInit, AfterViewInit {
     }
 
 
-
   }
 
   favoriteUserAds() {
@@ -367,4 +378,40 @@ export class AdComponent implements OnInit, AfterViewInit {
   closeEmail(): void {
     this.email = false;
   }
+
+  public share(type: string) {
+    let searchParams = new URLSearchParams();
+    if (type === 'facebook') {
+      searchParams.set('u', this.shareUrl);
+      this.navUrl = 'https://www.facebook.com/sharer/sharer.php?' + searchParams;
+     window.open(this.navUrl, "_blank");
+
+    }
+    if (type === 'twitter') {
+      searchParams.set('url', this.shareUrl);
+      this.navUrl =  'https://twitter.com/share?' + searchParams;
+      window.open(this.navUrl, "_blank");
+
+    }
+
+  }
+
+  setMetaTags() {
+
+    this.metaService.addTag({name: 'twitter:title', content: this.ad.productName});
+    this.metaService.addTag({name: 'twitter:image:alt', content: this.ad.image[0]});
+    this.metaService.addTag({property: 'og:image:alt', content: this.ad.image[0]});
+    this.metaService.addTag({property: 'og:title', content: this.ad.productName});
+    this.metaService.addTag({name: 'title', content: this.ad.productName});
+  }
+
+ngOnDestroy() {
+
+  this.metaService.removeTag(`name='twitter:title'`);
+  this.metaService.removeTag(`name='twitter:image:alt'`);
+  this.metaService.removeTag(`property='og:image:alt'`);
+  this.metaService.removeTag(`property='og:title'`);
+  this.metaService.removeTag(`name='title'`);
+}
+
 }
