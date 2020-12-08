@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -9,7 +10,9 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent {
   title = 'myBrocki';
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private metaservice: Meta) {
+    this.metaservice.addTag({ name: 'description', content: 'opisopisopisopisopisopisopisopis'});
+
     this.router.events.subscribe(event => {
      if (event instanceof NavigationEnd) {
        (<any>window).ga('set', 'page', event.urlAfterRedirects);
