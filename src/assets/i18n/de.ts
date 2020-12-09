@@ -159,7 +159,7 @@ export const de = {
     pricingEight:
       'Wohnt der Interessent in der gleichen Stadt? Für die Bezahlung und Übergaben, locken Sie die Interessenten am besten in Ihr Geschäft.',
     pricingNine:
-      'Klicken Sie bei Ihrem inserierten Artikel auf «Rechnung verschicken», fügen Sie die E-Mail-Adresse des Käufers ein und schreiben Sie den endgültigen Preis, der bezahlt werden soll.',
+      'Klicken Sie bei Ihre inserierten Artikel auf «Rechnung verschicken», fügen Sie die E-Mail-Adresse des Käufers ein und schreiben Sie den endgültigen Preis, der bezahlt werden soll.',
     pricingTen:
       'Schicken Sie die Rechnung per E-Mail (Paypal, Twint, Rechnung) oder Post und sobald der Artikel bezahlt wurde, reservieren oder versenden Sie diesen.',
     pricingEleven:
@@ -199,7 +199,7 @@ export const de = {
       'Sie haben erfolgreich einen Kommentar gepostet!',
     ok: 'In Ordnung',
     cancel: 'Abbrechen',
-    changePasswordConfirmation: 'Möchten Sie Ihr Passwort wirklich ändern?',
+    changePasswordConfirmation: 'Möchten Sie Ihre Passwort wirklich ändern?',
     passwordChanged: 'Passwort erfolgreich geändert!',
     deleteAdConfirmation: 'Möchten Sie diese Anzeige wirklich löschen?',
     acruallySoldAd: 'Wurde die Anzeige verkauft?',
@@ -213,7 +213,7 @@ export const de = {
     addressPlace: 'Ort',
     location: 'Lage',
     confirmAccountText:
-      'Bitte überprüfen Sie Ihren E-Mail-Posteingang auf eine Aktivierungs-E-Mail und bestätigen Sie diese. Anschliessend können Sie eine Anzeige erstellen.',
+      'Bitte überprüfen Sie Ihre E-Mail-Posteingang auf eine Aktivierungs-E-Mail und bestätigen Sie diese. Anschliessend können Sie eine Anzeige erstellen.',
     notYetAvailable: 'Noch nicht verfügbar!',
     or: 'oder '
   },
