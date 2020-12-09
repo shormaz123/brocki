@@ -1,44 +1,41 @@
 <div class="container" (wheel)="onMouseWheel($event)">
-  <div
-    class="ads"
-    [ngStyle]="ads === true ? { height: '0px' } : { height: '260px' }"
-  >
-    <div class="ads__text" *ngIf="ads === false">
-      {{ 'translate.userNoSoldAds' | translate }}
+    <div class="ads" [ngStyle]="ads === true ? { height: '0px' } : { height: '260px' }">
+        <div class="ads__text" *ngIf="ads === false">
+            {{ 'translate.userNoSoldAds' | translate }}
+        </div>
     </div>
-  </div>
-  <div *ngIf="ads === true">
-    <div *ngFor="let sold of soldProducts[0]; let i = index" class="card">
-      <div class="image">
-        <div class="image__wrapper">
-          <img class="image__sold" [src]="sold.image[0]" />
+    <div *ngIf="ads === true">
+        <div *ngFor="let sold of soldProducts[0]; let i = index" class="card">
+            <div class="image">
+                <div class="image__wrapper">
+                    <img class="image__sold" [src]="sold.image[0]" />
+                </div>
+            </div>
+            <div class="text">
+                <div class="text__link">
+                    <div class="text__title">{{ sold.productName }}</div>
+                </div>
+                <div class="text__line"></div>
+                <div class="text__link">
+                    <div class="text__body">{{ sold.description }}</div>
+                </div>
+                <div class="text__body-price">
+                    <div class="text__price">
+                        <div>{{ sold.price | number: '.2-2' }} CHF</div>
+                    </div>
+                    <div class="text__day">
+                        <div>{{ sold.soldDate | date: 'MMM d, y, H:mm' }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sold">
+                {{ 'translate.sold' | translate }}
+            </div>
         </div>
-      </div>
-      <div class="text">
-        <div class="text__link">
-          <div class="text__title">{{ sold.productName }}</div>
-        </div>
-        <div class="text__line"></div>
-        <div class="text__link">
-          <div class="text__body">{{ sold.description }}</div>
-        </div>
-        <div class="text__body-price">
-          <div class="text__price">
-            <div>{{ sold.price | number: '.2-2' }} CHF</div>
-          </div>
-          <div class="text__day">
-            <div>{{ sold.soldDate | date: 'medium' }}</div>
-          </div>
-        </div>
-      </div>
-      <div class="sold">
-        {{ 'translate.sold' | translate }}
-      </div>
     </div>
-  </div>
-  <div class="increaseButtonClass sold-btn" *ngIf="disableButton">
-    <button class="show--more" mat-button (click)="increaseShow()">
+    <div class="increaseButtonClass sold-btn" *ngIf="disableButton">
+        <button class="show--more" mat-button (click)="increaseShow()">
       {{ 'translate.showMore' | translate }}
     </button>
-  </div>
+    </div>
 </div>

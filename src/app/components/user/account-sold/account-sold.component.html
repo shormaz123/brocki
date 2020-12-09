@@ -1,46 +1,43 @@
 <div class="container" (wheel)="onMouseWheel($event)">
-  <div
-    class="ads"
-    [ngStyle]="ads === false ? { height: '0px' } : { height: '110px' }"
-  >
-    <div class="ads__text" *ngIf="ads === true" [ngStyle]="style()">
-      {{ 'translate.youHaveNoSoldAds' | translate }}
+    <div class="ads" [ngStyle]="ads === false ? { height: '0px' } : { height: '110px' }">
+        <div class="ads__text" *ngIf="ads === true" [ngStyle]="style()">
+            {{ 'translate.youHaveNoSoldAds' | translate }}
+        </div>
     </div>
-  </div>
-  <div *ngIf="ads === false">
-    <div *ngFor="let ad of soldProducts[0]; let i = index" class="card">
-      <div class="image">
-        <div class="image__wrapper">
-          <img class="image__sold" [src]="ad.image[0]" />
+    <div *ngIf="ads === false">
+        <div *ngFor="let ad of soldProducts[0]; let i = index" class="card">
+            <div class="image">
+                <div class="image__wrapper">
+                    <img class="image__sold" [src]="ad.image[0]" />
+                </div>
+            </div>
+            <div class="text">
+                <div class="text__link">
+                    <div class="text__title">{{ ad.productName }}</div>
+                </div>
+                <div class="text__line"></div>
+                <div class="text__link">
+                    <div class="text__body">{{ ad.description }}</div>
+                </div>
+                <div class="text__body-price">
+                    <div class="text__price">
+                        <div>{{ ad.price | number: '.2-2' }} CHF</div>
+                    </div>
+                    <div class="text__day">
+                        <div>{{ ad.soldDate | date: 'MMM d, y, H:mm' }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sold">
+                {{ 'translate.sold' | translate }}
+            </div>
         </div>
-      </div>
-      <div class="text">
-        <div class="text__link">
-          <div class="text__title">{{ ad.productName }}</div>
-        </div>
-        <div class="text__line"></div>
-        <div class="text__link">
-          <div class="text__body">{{ ad.description }}</div>
-        </div>
-        <div class="text__body-price">
-          <div class="text__price">
-            <div>{{ ad.price | number: '.2-2' }} CHF</div>
-          </div>
-          <div class="text__day">
-            <div>{{ ad.soldDate | date: 'medium' }}</div>
-          </div>
-        </div>
-      </div>
-      <div class="sold">
-        {{ 'translate.sold' | translate }}
-      </div>
     </div>
-  </div>
-  <ng-container *ngIf="ads === false">
-    <div class="increaseButtonClass sold-btn" *ngIf="disableButton">
-      <button class="show--more" mat-button (click)="increaseShow()">
+    <ng-container *ngIf="ads === false">
+        <div class="increaseButtonClass sold-btn" *ngIf="disableButton">
+            <button class="show--more" mat-button (click)="increaseShow()">
         {{ 'translate.showMore' | translate }}
       </button>
-    </div>
-  </ng-container>
+        </div>
+    </ng-container>
 </div>

@@ -1,51 +1,39 @@
 <div class="container">
-  <div class="ads">
-    <div class="ads__text" *ngIf="ads === false">
-      {{ 'translate.userNoActiveAds' | translate }}
+    <div class="ads">
+        <div class="ads__text" *ngIf="ads === false">
+            {{ 'translate.userNoActiveAds' | translate }}
+        </div>
     </div>
-  </div>
-  <div class="ads__body" *ngIf="ads === true">
-    <div *ngFor="let active of activeProducts[0]; let i = index" class="card">
-      <div class="image">
-        <div class="image__imageBody">
-          <img
-            class="image__imageBody__image"
-            [src]="active.image[0]"
-            [routerLink]="['/ad/', active.id]"
-          />
+    <div class="ads__body" *ngIf="ads === true">
+        <div *ngFor="let active of activeProducts[0]; let i = index" class="card">
+            <div class="image">
+                <div class="image__imageBody">
+                    <img class="image__imageBody__image" [src]="active.image[0]" [routerLink]="['/ad/', active.id]" />
+                </div>
+            </div>
+            <div class="text">
+                <div class="text__link">
+                    <div class="text__title">{{ active.productName }}</div>
+                </div>
+                <div class="text__line"></div>
+                <div class="text__link">
+                    <div class="text__body">{{ active.description }}</div>
+                </div>
+                <div class="text__body-price">
+                    <div class="text__price">
+                        <div>{{ active.price | number: '.2-2' }} CHF</div>
+                    </div>
+                    <div class="text__day">
+                        <div>{{ active.adsDate | date: 'MMM d, y, H:mm' }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="amount" (click)="getAd(active)">
+                <img (click)="sendEmail()" style="width: 35px" src="../../../../assets/images/update-info-bussines/email.png" />
+            </div>
         </div>
-      </div>
-      <div class="text">
-        <div class="text__link">
-          <div class="text__title">{{ active.productName }}</div>
-        </div>
-        <div class="text__line"></div>
-        <div class="text__link">
-          <div class="text__body">{{ active.description }}</div>
-        </div>
-        <div class="text__body-price">
-          <div class="text__price">
-            <div>{{ active.price | number: '.2-2' }} CHF</div>
-          </div>
-          <div class="text__day">
-            <div>{{ active.adsDate | date: 'medium' }}</div>
-          </div>
-        </div>
-      </div>
-      <div class="amount" (click)="getAd(active)">
-        <img
-          (click)="sendEmail()"
-          style="width: 35px"
-          src="../../../../assets/images/update-info-bussines/email.png"
-        />
-      </div>
     </div>
-  </div>
-  <div class="page" *ngIf="email">
-    <app-email
-      [sellerEmail]="sellerEmail"
-      [adForEmail]="adForEmail"
-      (closeEmail)="closeEmail()"
-    ></app-email>
-  </div>
+    <div class="page" *ngIf="email">
+        <app-email [sellerEmail]="sellerEmail" [adForEmail]="adForEmail" (closeEmail)="closeEmail()"></app-email>
+    </div>
 </div>

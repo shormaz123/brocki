@@ -1,82 +1,54 @@
 <div class="container">
-  <div
-    class="ads"
-    [ngStyle]="ads === true ? { height: '0px' } : { height: '110px' }"
-  >
-    <div class="ads__text" *ngIf="ads === false" [ngStyle]="style()">
-      {{ 'translate.youHaveNotActiveAds' | translate }}
+    <div class="ads" [ngStyle]="ads === true ? { height: '0px' } : { height: '110px' }">
+        <div class="ads__text" *ngIf="ads === false" [ngStyle]="style()">
+            {{ 'translate.youHaveNotActiveAds' | translate }}
+        </div>
     </div>
-  </div>
-  <div class="ads__body" *ngIf="ads === true">
-    <div *ngFor="let active of activeProducts[0]; let i = index" class="card">
-      <div class="card">
-        <div class="image">
-          <div
-            class="image__photo"
-            [class.wrapper]="active.status === 'ACTIVE'"
-          >
-            <img
-              class="image__img"
-              [ngStyle]="{
+    <div class="ads__body" *ngIf="ads === true">
+        <div *ngFor="let active of activeProducts[0]; let i = index" class="card">
+            <div class="card">
+                <div class="image">
+                    <div class="image__photo" [class.wrapper]="active.status === 'ACTIVE'">
+                        <img class="image__img" [ngStyle]="{
                 opacity:
                   active.status === 'NOT_ACCEPTED' ||
                   active.status === 'READYFORREVIEW'
                     ? '0.1'
                     : '1'
-              }"
-              [class.activeImg]="active.status === 'ACTIVE'"
-              [src]="active.image[0]"
-              [routerLink]="['/ad/', active.id]"
-            />
-          </div>
-          <img
-            *ngIf="
+              }" [class.activeImg]="active.status === 'ACTIVE'" [src]="active.image[0]" [routerLink]="['/ad/', active.id]" />
+                    </div>
+                    <img *ngIf="
               active.status === 'NOT_ACCEPTED' ||
               active.status === 'READYFORREVIEW'
-            "
-            class="image__image image__image--label"
-            [src]="languageLabel(active.status)"
-          />
-        </div>
-        <div class="text">
-          <div class="text__link">
-            <div class="text__title">{{ active.productName }}</div>
-          </div>
-          <div class="text__line"></div>
-          <div class="text__link">
-            <div class="text__body">{{ active.description }}</div>
-          </div>
-          <div class="text__body-price">
-            <div class="text__price">
-              <div>{{ active.price | number: '.2-2' }} CHF</div>
-            </div>
-            <div class="text__day">
-              <div>{{ active.adsDate | date: 'medium' }}</div>
-            </div>
-          </div>
-        </div>
-        <div
-          *ngIf="active.status === 'ACTIVE' || active.status === 'NOT_ACCEPTED'"
-          class="delete-ad"
-          (click)="deleteAd(active, i)"
-          [inlineSVG]="'../../../assets/images/update-info-bussines/trash.svg'"
-        ></div>
-        <div
-          *ngIf="active.status === 'ACTIVE'"
-          class="amount"
-          (click)="soldAd(active, i)"
-        >
-          <div class="tooltip">
-            <img
-              style="width: 35px"
-              src="../../../../assets/images/myAccount/money icon.png"
-            />
-            <span class="tooltiptext">{{
+            " class="image__image image__image--label" [src]="languageLabel(active.status)" />
+                </div>
+                <div class="text">
+                    <div class="text__link">
+                        <div class="text__title">{{ active.productName }}</div>
+                    </div>
+                    <div class="text__line"></div>
+                    <div class="text__link">
+                        <div class="text__body">{{ active.description }}</div>
+                    </div>
+                    <div class="text__body-price">
+                        <div class="text__price">
+                            <div>{{ active.price | number: '.2-2' }} CHF</div>
+                        </div>
+                        <div class="text__day">
+                            <div>{{ active.adsDate | date: 'MMM d, y, H:mm' }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="active.status === 'ACTIVE' || active.status === 'NOT_ACCEPTED'" class="delete-ad" (click)="deleteAd(active, i)" [inlineSVG]="'../../../assets/images/update-info-bussines/trash.svg'"></div>
+                <div *ngIf="active.status === 'ACTIVE'" class="amount" (click)="soldAd(active, i)">
+                    <div class="tooltip">
+                        <img style="width: 35px" src="../../../../assets/images/myAccount/money icon.png" />
+                        <span class="tooltiptext">{{
               'translate.soldAd' | translate
             }}</span>
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
