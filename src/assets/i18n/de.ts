@@ -215,6 +215,10 @@ export const de = {
     confirmAccountText:
       'Bitte überprüfen Sie Ihre E-Mail-Posteingang auf eine Aktivierungs-E-Mail und bestätigen Sie diese. Anschliessend können Sie eine Anzeige erstellen.',
     notYetAvailable: 'Noch nicht verfügbar!',
-    or: 'oder '
+    or: 'oder ',
+    maxNumberOfTags: 'Sie können bis zu 3 Tags auswählen',
+    deleteAd: 'Die Anzeige wird gelöscht!',
+    adMovedToSold: 'Die Anzeige wird in "Verkauft" verschoben',
+    adReactivation: 'Die Anzeige wurde reaktiviert!',
   },
 };

@@ -141,19 +141,9 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     if (this.clickedTags.length < 3) {
       this.clickedTags.push(this.clickedTag);
     } else {
-      this.setLanguage();
-    }
-  }
-
-  setLanguage() {
-    if (this.currentLang === 'en') {
-      return this.toastr.warning('You can choose up to 3 tags');
-    } else if (this.currentLang === 'fr') {
-      return this.toastr.warning("Vous pouvez choisir jusqu'à 3 balises");
-    } else if (this.currentLang === 'de') {
-      return this.toastr.warning('Sie können bis zu 3 Tags auswählen');
-    } else if (this.currentLang === 'it') {
-      return this.toastr.warning('Puoi scegliere fino a 3 tag');
+      this.toastr.warning(
+        this.translateService.instant('translate.maxNumberOfTags')
+      );
     }
   }
 
@@ -283,14 +273,15 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   }
 
   showDecimal(price: number): void {
-    this.decimal = (this.createForm.value.price * 100) % 1 === 0;
+    this.decimal = Math.fround(this.createForm.value.price * 100) % 1 === 0;
     if (this.decimal) {
-      this.decimalNumber = price;
       console.log(this.decimal);
+      this.decimalNumber = price;
       this.createForm.patchValue({
         price: this.decimalNumber,
       });
     } else {
+      console.log(this.decimal);
       this.createForm.patchValue({
         price: this.decimalNumber,
       });

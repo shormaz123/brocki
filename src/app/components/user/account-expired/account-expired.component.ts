@@ -75,21 +75,11 @@ export class AccountExpiredComponent implements OnDestroy, OnChanges {
         ads.userId = expired.userId;
         ads.tags = expired.tags;
         this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
-          this.reactivatedAds();
+          this.toastr.success(
+            this.translateService.instant('translate.adReactivation')
+          );
         });
       }
     });
-  }
-
-  reactivatedAds() {
-    if (this.language === 'en') {
-      return this.toastr.success('The ad has been reactivated!');
-    } else if (this.language === 'fr') {
-      return this.toastr.success("L'annonce a été réactivée!");
-    } else if (this.language === 'de') {
-      return this.toastr.success('Die Anzeige wurde reaktiviert!');
-    } else if (this.language === 'it') {
-      return this.toastr.success("L'annuncio è stato riattivato!");
-    }
   }
 }

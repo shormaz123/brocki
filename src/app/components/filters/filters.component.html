@@ -69,9 +69,10 @@
             class="manualAmount__input"
             formControlName="minPrice"
             #min
-            (keyup)="minPrice(min.value)"
+            (keyup)="minPrice($event, min.value)"
             type="number"
-            onKeyPress="if(this.value.length==6) return false;"
+            onKeyPress="if(this.value.length==12) return false;"
+            placeholder="0"
           />
         </div>
       </div>
@@ -82,22 +83,23 @@
             class="manualAmount__input"
             formControlName="maxPrice"
             #max
-            (keyup)="maxPrice(max.value)"
+            (keyup)="maxPrice($event, max.value)"
             type="number"
-            onKeyPress="if(this.value.length==6) return false;"
+            onKeyPress="if(this.value.length==12) return false;"
+            placeholder="999999999999"
           />
         </div>
       </div>
     </form>
-    <div class="amount" style="padding-bottom: 25px">
+    <!-- <div class="amount" style="padding-bottom: 25px">
       <ng5-slider
         [(value)]="fromPrice"
         [(highValue)]="toPrice"
         [options]="options"
       ></ng5-slider>
-    </div>
+    </div> -->
     <button
-      class="button"
+      class="button filter-btn"
       style="margin-bottom: 50px"
       (click)="confirmButton()"
     >

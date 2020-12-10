@@ -15,8 +15,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class FiltersComponent implements OnInit, OnDestroy {
   filterForm: FormGroup = this.fb.group({
-    minPrice: ['0', [Validators.required]],
-    maxPrice: ['1000000', [Validators.required]],
+    minPrice: ['', [Validators.required]],
+    maxPrice: ['', [Validators.required]],
   });
 
   region: string;
@@ -46,7 +46,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   };
 
   fromPrice: number = 0;
-  toPrice: number = 1000000;
+  toPrice: number = 999999999999;
   options: Options = {
     floor: this.filterForm.value.minPrice,
     ceil: this.filterForm.value.maxPrice,
@@ -129,20 +129,22 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.region = event.target.value;
   }
 
-  minPrice(min: string) {
+  minPrice(event: any, min: string) {
+    event.preventDefault();
     this.fromPrice = Number(min);
     if (this.fromPrice > this.toPrice) {
-      this.toPrice = 1000000;
+      this.toPrice = 999999999999;
       this.filterForm.controls.maxPrice.patchValue(this.toPrice);
     } else if (this.fromPrice < this.toPrice) {
       this.fromPrice;
     }
   }
 
-  maxPrice(max: string) {
+  maxPrice(event: any, max: string) {
+    event.preventDefault();
     this.toPrice = Number(max);
     if (this.toPrice < this.fromPrice) {
-      return (this.toPrice = 1000000);
+      return (this.toPrice = 999999999999);
     } else if (this.fromPrice < this.toPrice) {
       return this.fromPrice;
     }

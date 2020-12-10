@@ -100,7 +100,7 @@ export class AccountActiveComponent implements OnInit, OnChanges {
         ads.userId = null;
         ads.tags = null;
         this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
-          this.successDelete();
+          this.toastr.success('translate.deleteAd');
           this.ad = '1';
           this.changeStatusDelete.emit(this.ad);
         });
@@ -136,36 +136,12 @@ export class AccountActiveComponent implements OnInit, OnChanges {
         ads.userId = null;
         ads.tags = null;
         this.adsService.changeStatusOfAds(ads, ads.id).subscribe(() => {
-          this.successSold();
+          this.toastr.success('translate.adMovedToSold');
           this.ad = '1';
           this.changeStatusSold.emit(this.ad);
         });
       }
     });
-  }
-
-  successDelete() {
-    if (this.language === 'en') {
-      return this.toastr.success('The ad is deleted!');
-    } else if (this.language === 'fr') {
-      return this.toastr.success("L'annonce est supprimée");
-    } else if (this.language === 'de') {
-      return this.toastr.success('Die Anzeige wird gelöscht');
-    } else if (this.language === 'it') {
-      return this.toastr.success("L'annuncio viene eliminato");
-    }
-  }
-
-  successSold() {
-    if (this.language === 'en') {
-      return this.toastr.success('The ad is moved to sold');
-    } else if (this.language === 'fr') {
-      return this.toastr.success("L'annonce est déplacée vers vendue");
-    } else if (this.language === 'de') {
-      return this.toastr.success('Die Anzeige wird in "Verkauft" verschoben');
-    } else if (this.language === 'it') {
-      return this.toastr.success("L'annuncio viene spostato in Venduto");
-    }
   }
 
   style() {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegistration } from '../../shared/models/userRegistration.model';
-import { AuthService } from '../../@core/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -46,8 +45,10 @@ export class RegistrationComponent implements OnInit {
   addressPostalCode: any;
   addressPlace: any;
 
+  houseNumber: number;
+  street: string;
+
   constructor(
-    private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
     private translateService: TranslateService,
@@ -72,7 +73,7 @@ export class RegistrationComponent implements OnInit {
       role_id: [3],
       terms: [false, [Validators.required]],
       street: ['', [Validators.required]],
-      houseNumber: ['', [Validators.required]],
+      houseNumber: [''],
       postalNumber: ['', [Validators.required]],
       city: ['', [Validators.required]],
     });
@@ -90,17 +91,32 @@ export class RegistrationComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.registerForm.valid && this.registerForm.value.terms === true) {
-      this.registration = this.registerForm.value;
-      this.auth.loginAfterRegistration(this.registration).subscribe(
-      (response) => {
-        this.openSnackbar(), this.router.navigate(['/site']);
-      },
-      (error) => {
-            this.error = true;
-            setTimeout(() => (this.error = false), 2000);
-            this.errorMessage = error.message;
-          }
-      )
+      this.houseNumber = this.registerForm.value.street.replace(/\D/g, '');
+      this.street = this.registerForm.value.street.replace(/[0-9]/g, '').trim();
+      const userRegistration = {
+        email: this.registerForm.value.email,
+        password: this.registerForm.value.password,
+        userName: this.registerForm.value.userName,
+        credit: 0,
+        bussinesType: this.registerForm.value.bussinesType,
+        role_id: this.registerForm.value.role_id,
+        terms: this.registerForm.value.terms,
+        street: this.street,
+        houseNumber: this.houseNumber,
+        postalNumber: this.registerForm.value.postalNumber,
+        city: this.registerForm.value.city,
+      };
+
+      this.auth.loginAfterRegistration(userRegistration).subscribe(
+        (response) => {
+          this.openSnackbar(), this.router.navigate(['/site']);
+        },
+        (error) => {
+          this.error = true;
+          setTimeout(() => (this.error = false), 2000);
+          this.errorMessage = error.message;
+        }
+      );
     } else {
       this.errorMessage = this.translateService.instant(
         'translate.fillEveryFieldError'
@@ -133,15 +149,18 @@ export class RegistrationComponent implements OnInit {
     this.private = false;
     this.business = true;
     this.registerForm.controls.role_id.setValue(value);
-    this.registerForm.controls.bussinesType.setValue('INSTITUTION');
+    this.registerForm.controls.bussinesType.setValue('BUSSINES');
   }
 
   openSnackbar() {
     let config = new MatSnackBarConfig();
     config.verticalPosition = this.verticalPosition;
     config.horizontalPosition = this.horizontalPosition;
-    config.panelClass = ['orange-snackbar']
-    this.snackBar.open(this.translateService.instant('translate.confirmAccountText'), this.action ? this.translateService.instant('translate.ok') : undefined, config
-      );
+    config.panelClass = ['orange-snackbar'];
+    this.snackBar.open(
+      this.translateService.instant('translate.confirmAccountText'),
+      this.action ? this.translateService.instant('translate.ok') : undefined,
+      config
+    );
   }
 }

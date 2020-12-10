@@ -61,10 +61,6 @@
           <input input formControlName="street" type="text" maxlength="50" />
         </div>
         <div class="inputItem">
-          <label>{{ 'translate.addressNumberAd' | translate }}</label>
-          <input formControlName="houseNumber" maxlength="10" />
-        </div>
-        <div class="inputItem">
           <label>{{ 'translate.addressCodePostal' | translate }}</label>
           <input formControlName="postalNumber" maxlength="10" />
         </div>
@@ -73,15 +69,24 @@
           <input formControlName="city" type="text" maxlength="30" />
         </div>
         <!-- <div class="inputItem3">
-                    <label>{{ 'translate.typeAndSelectAddress' | translate }}:</label>
-                    <input formControlName="location" [value]="selectedAddress" (keypress)="search($event)" type="text" [matAutocomplete]="auto" />
-                    <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let address of addresses, let i = index" [value]="responseLocationObject[i]" (click)="onSelect(address, i)">
-                            {{address}}
-                        </mat-option>
-                    </mat-autocomplete>
-
-                </div> -->
+          <label>{{ 'translate.typeAndSelectAddress' | translate }}:</label>
+          <input
+            formControlName="location"
+            [value]="selectedAddress"
+            (keypress)="search($event)"
+            type="text"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let address of addresses; let i = index"
+              [value]="responseLocationObject[i]"
+              (click)="onSelect(address, i)"
+            >
+              {{ address }}
+            </mat-option>
+          </mat-autocomplete>
+        </div> -->
         <!-- <div class="inputItem5">
                     <label>{{ 'translate.canton' | translate }}</label>
                     <select name="contactMethod" class="form-control" required formControlName="region">

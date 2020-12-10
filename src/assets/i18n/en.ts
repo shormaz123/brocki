@@ -63,8 +63,8 @@ export const en = {
     canton: 'Canton',
     createAccount: 'Create account',
     username: 'Username',
-    selectCategory:'Select Category',
-    selectSubCategory:'Select Subcategory',
+    selectCategory: 'Select Category',
+    selectSubCategory: 'Select Subcategory',
     confirmTermsAndConditionsOne:
       'Please confirm that you agree to our terms and conditions.',
     confirmTermsAndConditionsTwo: '',
@@ -199,15 +199,19 @@ export const en = {
     acruallySoldAd: 'Whether the ad was actually sold?',
     searchedAds: 'Searched ads',
     filteredAds: 'Filtered ads',
-    modalReactivate:'Are you sure you want to reactivate this ad?',
+    modalReactivate: 'Are you sure you want to reactivate this ad?',
     addressAd: 'Address',
     addressNumberAd: 'Number',
     addressCodePostal: 'Postcode',
     addressPlace: 'Place',
     location: 'Location',
-    confirmAccountText: 'Please check your e-mail inbox for an activation e-mail and confirm it. You can then create an ad.',
+    confirmAccountText:
+      'Please check your e-mail inbox for an activation e-mail and confirm it. You can then create an ad.',
     notYetAvailable: 'Not yet available!',
-    or: 'or '
-
+    or: 'or ',
+    maxNumberOfTags: 'You can choose up to 3 tags',
+    deleteAd: 'The ad is deleted!',
+    adMovedToSold: 'The ad is moved to sold',
+    adReactivation: 'The ad has been reactivated!',
   },
 };

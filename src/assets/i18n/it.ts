@@ -63,8 +63,8 @@ export const it = {
     canton: 'Cantone',
     createAccount: 'Creare un profilo',
     username: 'Nome utente',
-    selectCategory:'Seleziona categoria',
-    selectSubCategory:'Seleziona Sottocategoria',
+    selectCategory: 'Seleziona categoria',
+    selectSubCategory: 'Seleziona Sottocategoria',
     confirmTermsAndConditionsOne:
       'Conferma di accettare i nostri termini e condizioni.',
     confirmTermsAndConditionsTwo: '',
@@ -201,14 +201,19 @@ export const it = {
     acruallySoldAd: "L'annuncio è stato venduto?",
     searchedAds: 'Annunci cercati',
     filteredAds: 'Annunci filtrati',
-    modalReactivate:'Sei sicuro di voler riattivare questo annuncio?',
+    modalReactivate: 'Sei sicuro di voler riattivare questo annuncio?',
     addressAd: 'Indirizzo',
     addressNumberAd: 'Numero',
     addressCodePostal: 'Codice postale',
     addressPlace: 'Posto',
     location: 'Posizione',
-    confirmAccountText: "Controlla la tua casella di posta elettronica per un'e-mail di attivazione e confermala. È quindi possibile creare un annuncio.",
+    confirmAccountText:
+      "Controlla la tua casella di posta elettronica per un'e-mail di attivazione e confermala. È quindi possibile creare un annuncio.",
     notYetAvailable: 'Non ancora disponibile!',
-    or: 'o '
+    or: 'o ',
+    maxNumberOfTags: 'Puoi scegliere fino a 3 tag',
+    deleteAd: "L'annuncio viene eliminato!",
+    adMovedToSold: "L'annuncio viene spostato in Venduto",
+    adReactivation: "L'annuncio è stato riattivato!",
   },
 };
