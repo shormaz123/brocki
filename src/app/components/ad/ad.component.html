@@ -38,7 +38,7 @@
         <div class="left">
             <div class="profile">
                 <div class="seller-image">
-                    <img [appImgFallback]="noImage" *ngIf="!reviewUser" [src]="userImage" [routerLink]="['/seller', userSellerId]" pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!" tooltipPosition="top" style="cursor: pointer" />
+                    <img [appImgFallback]="noImage" *ngIf="!reviewUser" [src]="sellerProfileImage" [routerLink]="['/seller', userSellerId]" pTooltip="{{ 'translate.clickHereToSeeSellersInfo' | translate }}!" tooltipPosition="top" style="cursor: pointer" />
                     <img *ngIf="reviewUser" [src]="reviewUser.companyImage[0]" [routerLink]="['/seller/', reviewUser.id]" />
                 </div>
             </div>

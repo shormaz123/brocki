@@ -27,6 +27,7 @@ export class SellerProfileComponent implements OnInit {
   sellerEmail: string;
   defaultImage = '../../../assets/images/myAccount/profile-picture.png';
   sellerImage: string = this.defaultImage;
+  noImage = '../../../assets/images/navigation/noImage.jpg'
   sellerindex: number;
   activeProducts: Array<any> = [];
   adsActive: boolean;
@@ -39,6 +40,7 @@ export class SellerProfileComponent implements OnInit {
   checked: boolean = true;
   pageSize: number = 8;
   sellerStatus: string;
+  sellerProfileImage;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -51,6 +53,7 @@ export class SellerProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sellerId = params.id;
       this.userService.getUserById(this.sellerId).subscribe((seller) => {
+        this.sellerProfileImage = seller.profileImage;
         this.sellerStatus = seller.userStatus;
         const [street, streetNumber, postalNumber, city] = seller.address.split(
           ','

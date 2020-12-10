@@ -58,6 +58,7 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
   adImage;
   adDescription;
   adTitle;
+  sellerProfileImage;
 
   usersImagesAvailabe: boolean;
   categoryImagesAvailable: boolean;
@@ -243,7 +244,7 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.userService.getUserById(this.userSellerId).subscribe((x) => {
           this.companyName = x.company;
-
+          this.sellerProfileImage = x.profileImage
           this.sellerEmail = x.email;
           if (x.roleName === 'bussines') {
             this.private = false;

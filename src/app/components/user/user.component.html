@@ -8,7 +8,8 @@
             <div class="image" *ngIf="roleName === 'bussines' || roleName === 'admin'">
                 <div class="imageBorder">
                     <div class="profil-image">
-                        <img class="user-image" [src]="userImage" />
+                        <img class="user-image" type="file" [appImgFallback]="noImage" [src]="profileImage" (click)="selectFile.click()" />
+                        <input type="file" (change)="getImage($event)" style="display: none" #selectFile>
                     </div>
                 </div>
                 <span *ngIf="private">{{ userName }}</span>
