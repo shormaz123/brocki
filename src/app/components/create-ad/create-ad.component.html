@@ -156,7 +156,7 @@
           <div
             class="form__tag"
             [ngClass]="{ active: clickedTags.includes(tag) }"
-            (click)="chosenTag(tag, i)"
+            (click)="chosenTag(tag)"
           >
             {{ tag.name[currentLang] }}
           </div>
