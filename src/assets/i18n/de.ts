@@ -215,6 +215,7 @@ export const de = {
     confirmAccountText:
       'Bitte überprüfen Sie Ihre E-Mail-Posteingang auf eine Aktivierungs-E-Mail und bestätigen Sie diese. Anschliessend können Sie eine Anzeige erstellen.',
     notYetAvailable: 'Noch nicht verfügbar!',
-    or: 'oder '
+    or: 'oder ',
+    changeProfileImage: 'Click here if you want to change your profile image'
   },
 };

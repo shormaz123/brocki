@@ -209,6 +209,7 @@ export const it = {
     location: 'Posizione',
     confirmAccountText: "Controlla la tua casella di posta elettronica per un'e-mail di attivazione e confermala. È quindi possibile creare un annuncio.",
     notYetAvailable: 'Non ancora disponibile!',
-    or: 'o '
+    or: 'o ',
+    changeProfileImage: 'Clicca qui se vuoi cambiare la tua immagine del profilo'
   },
 };

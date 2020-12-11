@@ -7,7 +7,7 @@
         <div class="account">
             <div class="image" *ngIf="roleName === 'bussines' || roleName === 'admin'">
                 <div class="imageBorder">
-                    <div class="profil-image">
+                    <div class="profil-image" pTooltip="{{ 'translate.changeProfileImage' | translate }}!">
                         <img class="user-image" type="file" [appImgFallback]="noImage" [src]="profileImage" (click)="selectFile.click()" />
                         <input type="file" (change)="getImage($event)" style="display: none" #selectFile>
                     </div>

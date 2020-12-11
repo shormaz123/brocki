@@ -210,6 +210,7 @@ export const fr = {
     location: 'Emplacement',
     confirmAccountText: 'Veuillez vérifier votre boîte de réception pour un e-mail d`activation et le confirmer. Vous pouvez ensuite créer une annonce.',
     notYetAvailable: 'Pas encore disponible!',
-    or: 'ou '
+    or: 'ou ',
+    changeProfileImage: 'Cliquez ici si vous souhaitez modifier votre image de profil'
   },
 };

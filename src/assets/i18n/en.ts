@@ -207,7 +207,8 @@ export const en = {
     location: 'Location',
     confirmAccountText: 'Please check your e-mail inbox for an activation e-mail and confirm it. You can then create an ad.',
     notYetAvailable: 'Not yet available!',
-    or: 'or '
+    or: 'or ',
+    changeProfileImage: 'Klicken Sie hier, wenn Sie Ihr Profilbild ändern möchten'
 
   },
 };
