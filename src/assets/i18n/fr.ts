@@ -216,5 +216,6 @@ export const fr = {
     deleteAd: "L'annonce est supprimée!",
     adMovedToSold: "L'annonce est déplacée vers vendue",
     adReactivation: "L'annonce a été réactivée!",
+    changeProfileImage: 'Cliquez ici si vous souhaitez modifier votre image de profil'
   },
 };

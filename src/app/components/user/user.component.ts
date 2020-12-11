@@ -28,6 +28,7 @@ export class UserComponent implements OnInit {
   userId: number;
   userName: string;
   defaultImage = '../../../assets/images/myAccount/profile-picture.png';
+  noImage = '../../../assets/images/nonProfileImage.png'
   userImage: string = this.defaultImage;
   activeProducts?: Array<any> = [];
   expiredProducts?: Array<any> = [];
@@ -49,6 +50,10 @@ export class UserComponent implements OnInit {
   activeAds?: Array<Ads> = [];
   activeAdsLength?: number;
   pageSize: number = 8;
+  profileImage: string;
+  currentPhotos: Array<any> = [];
+  profileImageSpinner = false;
+  profileImageBoolean;
 
   constructor(
     private userService: UserService,
@@ -94,7 +99,9 @@ export class UserComponent implements OnInit {
     }
     this.scroll();
     this.userService.getUser().subscribe((res) => {
+      this.profileImageBoolean = true;
       this.roleName = res.roleName;
+      this.profileImage = res.profileImage;
       if (res.roleName === 'bussines' || 'admin') {
         this.companyName = res.company;
 
@@ -266,4 +273,28 @@ export class UserComponent implements OnInit {
   deleteAds(event: any) {
     this.activeAdsLength = this.activeAdsLength - Number(event);
   }
+
+  getImage(ev) {
+    // ev.preventDefault();
+    this.profileImageSpinner = true;
+    this.profileImageBoolean = false;
+    this.profileImage = ''
+    const formData = new FormData();
+
+    const newPhotos = Object.values(ev.target.files);
+    this.currentPhotos = [...newPhotos];
+    this.currentPhotos.forEach((photo) => formData.append('file', photo));
+    this.adsService.uploadImageInStorage(formData).subscribe((res) => {
+      this.profileImageSpinner = true;
+      console.log(res)
+      this.user.profileImage = res[0];
+      // this.profileImage = res[0];
+      this.currentPhotos = [];
+      this.userService.updateUser(this.user).subscribe( x => {
+        this.profileImageSpinner = false;
+        this.profileImageBoolean = true;
+        this.profileImage = x.profileImage
+    });
+    });
+ }
 }

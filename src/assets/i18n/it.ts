@@ -215,5 +215,6 @@ export const it = {
     deleteAd: "L'annuncio viene eliminato!",
     adMovedToSold: "L'annuncio viene spostato in Venduto",
     adReactivation: "L'annuncio è stato riattivato!",
+    changeProfileImage: 'Clicca qui se vuoi cambiare la tua immagine del profilo'
   },
 };

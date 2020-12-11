@@ -1,260 +1,241 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixin.scss';
-
 .mainContainer {
-  width: 100vw;
-  height: auto;
-  background-color: #f6f6f6;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-
-  .container {
-    width: 70%;
-    height: 300px;
-    background-color: white;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    width: 100vw;
+    height: auto;
+    background-color: #f6f6f6;
     display: flex;
+    justify-content: center;
     flex-direction: column;
-
-    @include rwdm(1600) {
-      width: 1280px;
-    }
-
-    @include rwd(1600) {
-      width: 985px;
-    }
-
-    @include xl {
-      width: 985px;
-    }
-
-    .account {
-      height: 250px;
-      display: flex;
-      flex-direction: row;
-
-      .image {
-        width: 33%;
+    align-items: center;
+    .container {
+        width: 70%;
+        height: 300px;
+        background-color: white;
+        margin-top: 40px;
+        margin-bottom: 40px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 0 0 0 67px;
-
+        @include rwdm(1600) {
+            width: 1280px;
+        }
         @include rwd(1600) {
-          padding: 0 0 0 67px;
+            width: 985px;
         }
-
-        .imageBorder {
-          border-radius: 20px;
+        @include xl {
+            width: 985px;
         }
-        span {
-          font-size: 18pt;
-          margin-top: 10px;
+        .account {
+            height: 250px;
+            display: flex;
+            flex-direction: row;
+            .image {
+                width: 33%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 0 0 0 67px;
+                @include rwd(1600) {
+                    padding: 0 0 0 67px;
+                }
+                .imageBorder {
+                    border-radius: 20px;
+                }
+                span {
+                    font-size: 18pt;
+                    margin-top: 10px;
+                }
+            }
+            .user-image {
+                width: 100%;
+                border-radius: 3px;
+            }
         }
-      }
-
-      .user-image {
-        width: 100%;
-        border-radius: 3px;
-      }
+        .navigation {
+            height: 50px;
+            background-color: $red;
+        }
     }
-
-    .navigation {
-      height: 50px;
-      background-color: $red;
-    }
-  }
 }
 
 .profil-image {
-  overflow: hidden;
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: 160px 160px;
-  width: 160px;
-  height: 160px;
-  border-radius: 17px;
-  border: 3px solid $red;
-  display: flex;
-  align-items: center;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 160px 160px;
+    width: 160px;
+    height: 160px;
+    border-radius: 17px;
+    border: 3px solid $red;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .profil-name {
-  height: 36px;
+    height: 36px;
 }
 
 .body {
-  width: 100%;
-
-  .checkmarks {
-    display: flex;
-    justify-content: space-between;
-    padding: 35px 150px 0 184px;
-    height: 20%;
-    align-items: center;
-
-    @include rwd(1600) {
-      padding: 35px 115px 0 120px;
+    width: 100%;
+    .checkmarks {
+        display: flex;
+        justify-content: space-between;
+        padding: 35px 150px 0 184px;
+        height: 20%;
+        align-items: center;
+        @include rwd(1600) {
+            padding: 35px 115px 0 120px;
+        }
     }
-  }
 }
 
 .counter {
-  width: 900px;
-  margin: 25px auto 0;
-  display: flex;
-  justify-content: space-around;
-
-  @include rwd(1600) {
-    width: 750px;
-    justify-content: space-between;
-    padding: 0 100px 0 140px;
-  }
+    width: 900px;
+    margin: 25px auto 0;
+    display: flex;
+    justify-content: space-around;
+    @include rwd(1600) {
+        width: 750px;
+        justify-content: space-between;
+        padding: 0 100px 0 140px;
+    }
 }
 
 .ads-counter {
-  border-radius: 50px;
-  font-weight: bold;
-  color: #fff;
-  background-color: $red;
-  padding: 20px 17px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 160px;
-  height: 30px;
-
-  &--active {
-    background-color: $accept;
-  }
+    border-radius: 50px;
+    font-weight: bold;
+    color: #fff;
+    background-color: $red;
+    padding: 20px 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 30px;
+    &--active {
+        background-color: $accept;
+    }
 }
 
 .admin {
-  padding: 58px 170px 0 170px !important;
-  @include rwd(1600) {
-    padding: 58px 90px 0 140px !important;
-  }
+    padding: 58px 170px 0 170px !important;
+    @include rwd(1600) {
+        padding: 58px 90px 0 140px !important;
+    }
 }
 
 .boxes {
-  display: flex;
-  justify-content: space-between;
-  height: 250px;
-  padding: 123px 170px 0 180px;
-
-  @include rwd(1600) {
-    padding: 123px 90px 0 80px;
-  }
-
-  &__image {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    margin: 0 auto;
-    &--background {
-      background-color: $red;
-      color: $white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 13px;
-      font-size: 32px;
+    display: flex;
+    justify-content: space-between;
+    height: 250px;
+    padding: 123px 170px 0 180px;
+    @include rwd(1600) {
+        padding: 123px 90px 0 80px;
     }
-
-    &--favorites {
-      background-color: $red;
+    &__image {
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+        margin: 0 auto;
+        &--background {
+            background-color: $red;
+            color: $white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 13px;
+            font-size: 32px;
+        }
+        &--favorites {
+            background-color: $red;
+        }
     }
-  }
-
-  &__link {
-    cursor: pointer;
-    width: 110px;
-    text-align: center;
-  }
-
-  &__text {
-    margin: 19px 0 0;
-    font-weight: 500;
-    text-transform: capitalize;
-  }
+    &__link {
+        cursor: pointer;
+        width: 110px;
+        text-align: center;
+    }
+    &__text {
+        margin: 19px 0 0;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
 }
 
 .navigation {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 155px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 155px;
+    @include rwd(1600) {
+        padding: 0 90px 0 90px;
+    }
+    .navItem {
+        width: 20% !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        height: 100%;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    span {
+        color: white;
+    }
+}
 
-  @include rwd(1600) {
-    padding: 0 90px 0 90px;
-  }
+.focus {
+    height: 100%;
+    width: 140px;
+    display: flex;
+    padding: 20px 0 0 0;
+    justify-content: center;
+    flex-direction: row;
+    &:hover {
+        cursor: pointer;
+    }
+}
 
-  .navItem {
-    width: 20% !important;
+.active {
+    width: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    height: 100%;
-
-    &:hover {
-      cursor: pointer;
+    background: white;
+    height: 40px;
+    margin-top: 12px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    span {
+        color: $red;
+        font-weight: 500;
     }
-  }
-
-  span {
-    color: white;
-  }
-}
-
-.focus {
-  height: 100%;
-  width: 140px;
-  display: flex;
-  padding: 20px 0 0 0;
-  justify-content: center;
-  flex-direction: row;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.active {
-  width: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  background: white;
-  height: 40px;
-  margin-top: 12px;
-  border-radius: 10px 10px 0 0;
-  cursor: pointer;
-
-  span {
-    color: $red;
-    font-weight: 500;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .secondContainer {
-  padding: 0 0 50px 0;
-  height: auto;
+    padding: 0 0 50px 0;
+    height: auto;
 }
 
 svg {
-  fill: white;
+    fill: white;
 }
 
 .hide {
-  display: none;
+    display: none;
+}
+
+mat-spinner {
+    margin-left: 15px !important;
 }

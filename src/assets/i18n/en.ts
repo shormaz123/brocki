@@ -213,5 +213,7 @@ export const en = {
     deleteAd: 'The ad is deleted!',
     adMovedToSold: 'The ad is moved to sold',
     adReactivation: 'The ad has been reactivated!',
+    changeProfileImage: 'Click here if you want to change your profile image'
+
   },
 };
