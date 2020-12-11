@@ -216,6 +216,6 @@ export const de = {
       'Bitte überprüfen Sie Ihre E-Mail-Posteingang auf eine Aktivierungs-E-Mail und bestätigen Sie diese. Anschliessend können Sie eine Anzeige erstellen.',
     notYetAvailable: 'Noch nicht verfügbar!',
     or: 'oder ',
-    changeProfileImage: 'Click here if you want to change your profile image'
+    changeProfileImage: 'Klicken Sie hier, wenn Sie Ihr Profilbild ändern möchten'
   },
 };

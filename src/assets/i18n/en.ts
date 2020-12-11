@@ -208,7 +208,7 @@ export const en = {
     confirmAccountText: 'Please check your e-mail inbox for an activation e-mail and confirm it. You can then create an ad.',
     notYetAvailable: 'Not yet available!',
     or: 'or ',
-    changeProfileImage: 'Klicken Sie hier, wenn Sie Ihr Profilbild ändern möchten'
+    changeProfileImage: 'Click here if you want to change your profile image'
 
   },
 };

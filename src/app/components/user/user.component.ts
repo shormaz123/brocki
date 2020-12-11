@@ -52,6 +52,8 @@ export class UserComponent implements OnInit {
   pageSize: number = 8;
   profileImage: string;
   currentPhotos: Array<any> = [];
+  profileImageSpinner = false;
+  profileImageBoolean;
 
   constructor(
     private userService: UserService,
@@ -97,6 +99,7 @@ export class UserComponent implements OnInit {
     }
     this.scroll();
     this.userService.getUser().subscribe((res) => {
+      this.profileImageBoolean = true;
       this.roleName = res.roleName;
       this.profileImage = res.profileImage;
       if (res.roleName === 'bussines' || 'admin') {
@@ -273,18 +276,23 @@ export class UserComponent implements OnInit {
 
   getImage(ev) {
     // ev.preventDefault();
-
+    this.profileImageSpinner = true;
+    this.profileImageBoolean = false;
+    this.profileImage = ''
     const formData = new FormData();
 
     const newPhotos = Object.values(ev.target.files);
     this.currentPhotos = [...newPhotos];
     this.currentPhotos.forEach((photo) => formData.append('file', photo));
     this.adsService.uploadImageInStorage(formData).subscribe((res) => {
+      this.profileImageSpinner = true;
       console.log(res)
       this.user.profileImage = res[0];
-      this.profileImage = res[0];
+      // this.profileImage = res[0];
       this.currentPhotos = [];
       this.userService.updateUser(this.user).subscribe( x => {
+        this.profileImageSpinner = false;
+        this.profileImageBoolean = true;
         this.profileImage = x.profileImage
     });
     });
