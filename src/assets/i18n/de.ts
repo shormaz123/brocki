@@ -220,6 +220,7 @@ export const de = {
     deleteAd: 'Die Anzeige wird gelöscht!',
     adMovedToSold: 'Die Anzeige wird in "Verkauft" verschoben',
     adReactivation: 'Die Anzeige wurde reaktiviert!',
-    changeProfileImage: 'Klicken Sie hier, wenn Sie Ihr Profilbild ändern möchten'
+    changeProfileImage: 'Klicken Sie hier, wenn Sie Ihr Profilbild ändern möchten',
+    invalidPrice: 'Ungültiger Preis. Der Preis kann eine maximale Länge von 12 mit 2 Dezimalstellen sein!',
   },
 };

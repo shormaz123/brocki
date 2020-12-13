@@ -213,7 +213,7 @@ export const en = {
     deleteAd: 'The ad is deleted!',
     adMovedToSold: 'The ad is moved to sold',
     adReactivation: 'The ad has been reactivated!',
-    changeProfileImage: 'Click here if you want to change your profile image'
-
+    changeProfileImage: 'Click here if you want to change your profile image',
+    invalidPrice: 'Invalid price. Price can be max 12 length with 2 decimals!',
   },
 };

@@ -22,19 +22,15 @@ import { AuthConst } from '../../@core/consts/auth.const';
 import { Tags } from '../../shared/models/tags.model';
 import { Observable } from 'rxjs';
 
-interface category {
+interface Category {
   id: number;
   groupName: string;
 }
 
-interface subcategory {
+interface SubCategory {
   adsGroup: number;
   id: number;
   subGroupName: string;
-}
-
-interface tag {
-  id: number;
 }
 
 @Component({
@@ -56,10 +52,10 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   currentPhotos: Array<any> = [];
   filteredCategory: Array<adsGroup> = [];
   filteredSubcategory: Array<adsSubGroup> = [];
-  toggleCategory: boolean = false;
-  toggleSubcategory: boolean = false;
-  toggleListCategory: boolean = false;
-  toggleListSubcategory: boolean = false;
+  toggleCategory: boolean;
+  toggleSubcategory: boolean;
+  toggleListCategory: boolean;
+  toggleListSubcategory: boolean;
   language: string;
   clickedTags: Array<any> = [];
   clickedTag: any;
@@ -78,7 +74,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  addExtraClass: boolean = false;
+  addExtraClass: boolean;
 
   //
 
@@ -147,7 +143,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     }
   }
 
-  findCategory(selectedCategory: category): void {
+  findCategory(selectedCategory: Category): void {
     this.subcategories = [];
     this.filteredSubcategory = [];
     this.categoryId = selectedCategory.id;
@@ -266,26 +262,21 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     this.currentPhotos.splice(index, 1);
   }
 
-  findsubcategory(subcategory: subcategory): void {
+  findsubcategory(subcategory: SubCategory): void {
     this.subcategoryId = subcategory.id;
     this.subcategoryName = subcategory.subGroupName[this.currentLang];
     this.createForm.patchValue({ subcategory: this.subcategoryName });
   }
 
-  showDecimal(price: number): void {
-    this.decimal = Math.fround(this.createForm.value.price * 100) % 1 === 0;
-    if (this.decimal) {
-      console.log(this.decimal);
-      this.decimalNumber = price;
-      this.createForm.patchValue({
-        price: this.decimalNumber,
-      });
-    } else {
-      console.log(this.decimal);
-      this.createForm.patchValue({
-        price: this.decimalNumber,
-      });
+  isPriceValid = (price: number) => {
+    const priceString = price.toString();
+
+    const [amount, decimals] = priceString.split('.');
+    if (amount && amount.length > 12) {
+      return false;
     }
+
+    return decimals && decimals.length <= 2;
   }
 
   onSubmit() {
@@ -301,13 +292,13 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       if (result === true) {
         const create = new CreateAd();
         create.productName = this.createForm.value.productName;
-        if (create.productName.length === 0) {
+        if (!create.productName.length) {
           this.toastr.warning(
             this.translateService.instant('translate.mustAddName')
           );
         }
         create.description = this.createForm.value.description;
-        if (create.description.length === 0) {
+        if (!create.description.length) {
           this.toastr.warning(
             this.translateService.instant('translate.mustAddDescription')
           );
@@ -338,9 +329,18 @@ export class CreateAdComponent implements OnInit, OnDestroy {
 
         create.price = this.createForm.value.price;
 
-        if (create.price === 0) {
+        if (!create.price) {
           this.toastr.warning(
             this.translateService.instant('translate.setPrice')
+          );
+          return;
+        }
+
+        const isPriceValid = this.isPriceValid(create.price);
+
+        if (!isPriceValid) {
+          this.toastr.warning(
+            this.translateService.instant('translate.invalidPrice')
           );
           return;
         }
@@ -381,7 +381,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   }
 
   openSnackbar() {
-    let config = new MatSnackBarConfig();
+    const config = new MatSnackBarConfig();
     config.verticalPosition = this.verticalPosition;
     config.horizontalPosition = this.horizontalPosition;
     config.duration = this.setAutoHide ? this.autoHide : 0;
