@@ -81,7 +81,7 @@ export const de = {
     guestBook: 'Gästebuch',
     shareVia: 'Teilen per',
     update: 'Aktualisieren Sie',
-    info: 'die Info',
+    info: "die Info's",
     acceptAds: 'Inserate zulassen',
     acceptProfile: 'Profil akzeptieren',
     accept: 'Akzeptieren',
