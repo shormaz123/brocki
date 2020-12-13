@@ -3,6 +3,7 @@ import { Ads } from '../../shared/models/ads.model';
 import { UserService } from '../../@core/services/user.service';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { AdsService } from '../../@core/services/ads.service';
+import { AuthService } from 'app/@core/services/auth.service';
 
 @Component({
   selector: 'app-filters-ads',
@@ -27,7 +28,8 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
 
   constructor(
     private userService: UserService,
-    private adsService: AdsService
+    private adsService: AdsService,
+    private authService: AuthService
   ) {}
 
   ngOnChanges() {
@@ -37,15 +39,20 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.userService.getUser().subscribe((user) => {
-      this.userId = user.id;
-      this.userService.getFavourites(this.userId).subscribe((favAds) => {
-        this.favoriteAds = favAds;
-        this.favAds = this.ads.map(
-          (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-        );
+    const signIn = this.authService.isSignedIn();
+    if (signIn) {
+      this.userService.getUser().subscribe((user) => {
+        this.userId = user.id;
+        this.userService.getFavourites(this.userId).subscribe((favAds) => {
+          this.favoriteAds = favAds;
+          this.favAds = this.ads.map(
+            (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
+          );
+        });
       });
-    });
+    } else {
+      this.favAds = this.ads;
+    }
   }
 
   increaseShow() {

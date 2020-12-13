@@ -1,38 +1,49 @@
 <div class="carouselContainer">
-    <ngx-carousel [inputs]="carouselTile" style="width: 800px">
-        <ngx-tile NgxCarouselItem *ngFor="let item of randomAds; ">
-            <div style="
+  <ngx-carousel [inputs]="carouselTile" style="width: 800px">
+    <ngx-tile NgxCarouselItem *ngFor="let item of randomAds">
+      <div
+        style="
           padding: '5px';
           background-color: #f6f6f6;
           width: 100%;
           height: 100%;
-        ">
-                <div style="background-color: white; cursor: pointer; padding: 10px" class="cardHover">
-                    <div class="image" (mousedown)="goToAd($event, item.id)">
-                        <img style="width: 100%" src="Card" [src]="item.image[0]" />
-                    </div>
-                    <div class="cardBody" [routerLink]="['/ad', item.id]">
-                        <div class="bodyLabel">
-                            <label style="font-size: 20px; font-weight: bolder">{{
+        "
+      >
+        <div
+          style="background-color: white; cursor: pointer; padding: 10px"
+          class="cardHover"
+        >
+          <div class="image" (mousedown)="goToAd($event, item.id)">
+            <img style="width: 100%" src="Card" [src]="item.image[0]" />
+          </div>
+          <div class="cardBody" [routerLink]="['/ad', item.id]">
+            <div class="bodyLabel">
+              <label style="font-size: 20px; font-weight: bolder">{{
                 item.productName
               }}</label>
-                        </div>
-                        <div class="adLine"></div>
-                        <div class="description">
-                            <label style="font-size: 12px">{{ item.description }}</label>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <div class="pricetag">
-                            <label>{{ item.price | number: '1.2-2':'en-US' }} CHF</label>
-                        </div>
-                        <div>
-                            <mat-icon *ngIf="!token" pTooltip="{{
+            </div>
+            <div class="adLine"></div>
+            <div class="description">
+              <label style="font-size: 12px">{{ item.description }}</label>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="pricetag">
+              <label>{{ item.price | number: '1.2-2':'en-US' }} CHF</label>
+            </div>
+            <div>
+              <mat-icon
+                style="line-height: 40px"
+                *ngIf="!token"
+                pTooltip="{{
                   'translate.pleaseLoginBeforeYouAddThisAd' | translate
-                }}!" tooltipPosition="bottom" aria-label="Example icon-button with a heart icon">
-                                favorite_border
-                            </mat-icon>
-                            <button mat-icon-button *ngIf="token" [disableRipple]="true">
+                }}!"
+                tooltipPosition="bottom"
+                aria-label="Example icon-button with a heart icon"
+              >
+                favorite_border
+              </mat-icon>
+              <button mat-icon-button *ngIf="token" [disableRipple]="true">
                 <mat-icon
                   *ngIf="item.favourite"
                   (click)="removeFromWishlist(item)"
@@ -50,17 +61,17 @@
                   favorite_border
                 </mat-icon>
               </button>
-                        </div>
-                        <span style="color: black">{{ item.adsDate | date }}</span>
-                    </div>
-                </div>
             </div>
-        </ngx-tile>
-        <button NgxCarouselPrev class="leftRs">
+            <span style="color: black">{{ item.adsDate | date }}</span>
+          </div>
+        </div>
+      </div>
+    </ngx-tile>
+    <button NgxCarouselPrev class="leftRs">
       <span class="ui-carousel-prev-icon pi pi-chevron-left"></span>
     </button>
-        <button NgxCarouselNext class="rightRs">
+    <button NgxCarouselNext class="rightRs">
       <span class="ui-carousel-prev-icon pi pi-chevron-right"></span>
     </button>
-    </ngx-carousel>
+  </ngx-carousel>
 </div>

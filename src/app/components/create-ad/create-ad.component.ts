@@ -272,12 +272,14 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     const priceString = price.toString();
 
     const [amount, decimals] = priceString.split('.');
+    debugger;
     if (amount && amount.length > 12) {
+      console.log(amount);
       return false;
     }
-
+    console.log(decimals);
     return decimals && decimals.length <= 2;
-  }
+  };
 
   onSubmit() {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {

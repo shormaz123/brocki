@@ -22,7 +22,7 @@ export const de = {
     businessAccounts: 'Geschäftskonten',
     from: 'Von',
     to: 'Bis',
-    change: 'Veränderung',
+    change: 'Ändern',
     fixedPrice: 'Fixpreis',
     onlyProductsWithPictures: 'Nur Produkte mit Bildern',
     productWarranty: 'Produktgarantie',
@@ -220,7 +220,9 @@ export const de = {
     deleteAd: 'Die Anzeige wird gelöscht!',
     adMovedToSold: 'Die Anzeige wird in "Verkauft" verschoben',
     adReactivation: 'Die Anzeige wurde reaktiviert!',
-    changeProfileImage: 'Klicken Sie hier, wenn Sie Ihr Profilbild ändern möchten',
-    invalidPrice: 'Ungültiger Preis. Der Preis kann eine maximale Länge von 12 mit 2 Dezimalstellen sein!',
+    changeProfileImage:
+      'Klicken Sie hier, wenn Sie Ihr Profilbild ändern möchten',
+    invalidPrice:
+      'Ungültiger Preis. Der Preis kann eine maximale Länge von 12 mit 2 Dezimalstellen sein!',
   },
 };
