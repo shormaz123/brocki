@@ -15,7 +15,7 @@ import { AdsService } from '../../@core/services/ads.service';
 export class SearchedAdsComponent implements OnInit {
   pageNumber = 1;
   disableButton = false;
-  ads;
+  ads: Ads[] = [];
   token;
   favoriteAds: Ads[];
   userRequest: UserAddAdsRequest;
