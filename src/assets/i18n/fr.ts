@@ -216,6 +216,7 @@ export const fr = {
     deleteAd: "L'annonce est supprimée!",
     adMovedToSold: "L'annonce est déplacée vers vendue",
     adReactivation: "L'annonce a été réactivée!",
-    changeProfileImage: 'Cliquez ici si vous souhaitez modifier votre image de profil'
+    changeProfileImage: 'Cliquez ici si vous souhaitez modifier votre image de profil',
+    invalidPrice: 'Prix invalide. Le prix peut être d\'une longueur maximale de 12 avec 2 décimales!',
   },
 };
