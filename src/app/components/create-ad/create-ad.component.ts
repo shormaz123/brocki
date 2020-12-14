@@ -275,8 +275,11 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     if (amount && amount.length > 12) {
       return false;
     }
+    if (decimals && decimals.length > 2) {
+      return false;
+    }
 
-    return decimals && decimals.length <= 2;
+    return true;
   }
 
   onSubmit() {
