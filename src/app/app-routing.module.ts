@@ -159,6 +159,7 @@ const routes: Routes = [
       {
         path: 'change-password',
         component: ChangePasswordComponent,
+        canActivate: [AuthGuardService]
       },
       {
         path: 'searched-ads',
