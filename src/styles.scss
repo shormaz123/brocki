@@ -294,3 +294,17 @@ body .ui-accordion .ui-accordion-header:not(.ui-state-disabled).ui-state-active 
         color: $red !important;
     }
 }
+
+//credit card ui
+.ElementsApp {
+    font-size: 18px !important;
+}
+
+::ng-deep .orange-snackbar {
+    background: orange !important;
+}
+
+.mat-snack-bar-container {
+    background: orange !important;
+    color: black;
+}

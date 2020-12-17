@@ -158,9 +158,7 @@ export class RegistrationComponent implements OnInit {
     config.horizontalPosition = this.horizontalPosition;
     config.panelClass = ['orange-snackbar'];
     this.snackBar.open(
-      this.translateService.instant('translate.confirmAccountText'),
-      this.action ? this.translateService.instant('translate.ok') : undefined,
-      config
+      this.translateService.instant('translate.acceptEmail'),
     );
   }
 }

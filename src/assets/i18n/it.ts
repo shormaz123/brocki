@@ -217,5 +217,13 @@ export const it = {
     adReactivation: "L'annuncio è stato riattivato!",
     changeProfileImage: 'Clicca qui se vuoi cambiare la tua immagine del profilo',
     invalidPrice: 'Prezzo non valido. Il prezzo può essere massimo 12 lunghezza con 2 decimali!',
+    acceptEmail:
+    "Conferma il tuo account utilizzando il link che abbiamo inviato alla tua email. Questo dà a Minibrocki molte grandi funzioni.",
+  acceptEmailWentWrong:
+    "Se non ricevi un'e-mail entro le prossime 24 ore o se hai problemi con la registrazione, contatta il nostro supporto a: info@minibrocki.ch Un membro del personale si prenderà cura di esso il prima possibile.",
+  acceptBusinessProfileWaitMsg:
+    "Per verificare il tuo account aziendale su Minibrocki, vorremmo verificarlo rapidamente. Ti invieremo un'e-mail non appena sarà stato fatto.",
+  declinedProfile:
+    "Il tuo profilo è stato rifiutato. Per ulteriori informazioni, contattaci su info@minibrocki.ch.",
   },
 };

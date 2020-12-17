@@ -17,6 +17,7 @@ import { AdsService } from '../../@core/services/ads.service';
 import { Ads } from '../../shared/models/ads.model';
 import { AuthStore } from 'app/@core/services/auth.store';
 import { User } from 'app/shared/models/user.model';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
 
 @Component({
   selector: 'app-header',
@@ -43,6 +44,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userDataSub: Subscription;
   user: User;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   @Output() notify = new EventEmitter<any>();
 
   private displaySideBarSubscription: Subscription;
@@ -55,7 +59,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private translateBackend: TranslateServiceRest,
     private adsService: AdsService,
-    public auth: AuthStore
+    public auth: AuthStore,
+    public snackBar: MatSnackBar,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -70,6 +76,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
     if (localStorage.getItem(AuthConst.token) == null) {
     } else {
+      this.translate.use(localStorage.getItem(AuthConst.language));
       this.getUser();
     }
     this.adsService.getAllAdsGroups().subscribe((x) => {
@@ -115,14 +122,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   change(code: string) {
+    const token = localStorage.getItem(AuthConst.token)
     this.getLanguage.emit(code);
     this.translate.use(code);
     this.translateBackend.sendLanguage(code);
     this.notify.emit(code);
+    if (this.user) {
+      this.changeLanguageInSnackbar()
+    }
   }
 
   getUser(): void {
     this.userService.getUser().subscribe((user) => {
+      if (user.userStatus === 'UNCONFIRMED') {
+        this.openSnackbarForAcceptEmail();
+      }
+      if (user.userStatus === 'READY') {
+        this.openSnackbarForAcceptBussinesMsg()
+      }
+      if (user.userStatus === "DECLINED") {
+        this.openSnackbarForDeclinedProfile();
+      }
       this.user = user;
       localStorage.setItem(AuthConst.userStatus, user.userStatus);
       if (user.bussinesType === 'PRIVATE') {
@@ -177,4 +197,46 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   selectCategoryOnSideBar(category: any) {}
+
+  openSnackbarForAcceptEmail() {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.panelClass = ['orange-snackbar'];
+    this.snackBar.open(
+      this.translateService.instant('translate.acceptEmail'),
+    );
+  }
+
+  openSnackbarForDeclinedProfile() {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.panelClass = ['orange-snackbar'];
+    this.snackBar.open(
+      this.translateService.instant('translate.declinedProfile'),
+    );
+  }
+
+  openSnackbarForAcceptBussinesMsg() {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.panelClass = ['orange-snackbar'];
+    this.snackBar.open(
+      this.translateService.instant('translate.acceptBusinessProfileWaitMsg'),
+    );
+  }
+
+  changeLanguageInSnackbar() {
+    if (this.user.userStatus === 'UNCONFIRMED') {
+      this.openSnackbarForAcceptEmail();
+    }
+    if (this.user.userStatus === 'READY') {
+      this.openSnackbarForAcceptBussinesMsg()
+    }
+    if (this.user.userStatus === "DECLINED") {
+      this.openSnackbarForDeclinedProfile();
+    }
+  }
 }
