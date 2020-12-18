@@ -161,4 +161,8 @@ export class RegistrationComponent implements OnInit {
       this.translateService.instant('translate.acceptEmail'),
     );
   }
+
+  openFile() {
+    window.open("assets/documents/Allgemeine Geschäftsbedingungen MiniBrocki.ch.pdf");
+}
 }
