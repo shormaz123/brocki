@@ -32,7 +32,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         () => {},
         (err: any) => {
           if (err instanceof HttpErrorResponse) {
-            if (err.status === 500) {
+            if (err.status === 401) {
               this.auth.logout();
               this.route.navigate(['/login']);
             }

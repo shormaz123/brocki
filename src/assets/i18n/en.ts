@@ -215,5 +215,7 @@ export const en = {
     adReactivation: 'The ad has been reactivated!',
     changeProfileImage: 'Click here if you want to change your profile image',
     invalidPrice: 'Invalid price. Price can be max 12 length with 2 decimals!',
+    createNewList: 'Create new list',
+    create: 'Create',
   },
 };

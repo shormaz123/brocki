@@ -29,7 +29,7 @@ export const de = {
     urgentSales: 'Dringende Verkäufe',
     confirm: 'Bestätigen ',
     postAd: 'Anzeige erstellen',
-    email: 'E-Mail-Adresse',
+    email: 'E-mail adresse',
     subject: 'Gegenstand',
     message: 'Nachricht',
     sendMassage: 'Nachricht senden',
@@ -224,5 +224,7 @@ export const de = {
       'Klicken Sie hier, wenn Sie Ihr Profilbild ändern möchten',
     invalidPrice:
       'Ungültiger Preis. Der Preis kann eine maximale Länge von 12 mit 2 Dezimalstellen sein!',
+    createNewList: 'Create new list',
+    create: 'Erstellen',
   },
 };

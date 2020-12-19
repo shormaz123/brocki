@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   email: string;
   errorBoolean: boolean;
   errorMessage: string;
-
+  eye = false;
 
   constructor(
     private router: Router,
@@ -29,19 +29,22 @@ export class LoginComponent implements OnInit {
     this.errorBoolean = false;
   }
 
+  toggleEye(): void {
+    this.eye = !this.eye;
+  }
+
   // getValuesTest
 
   submitForm(): void {
-    this.auth.login(this.email, this.password)
-    .subscribe(
-        () => {
-            this.router.navigateByUrl("/site")
-        },
-        error => {
-                  this.errorBoolean = true;
-                  setTimeout(() => (this.errorBoolean = false), 2000);
-                  this.errorMessage = error.message;
-        }
+    this.auth.login(this.email, this.password).subscribe(
+      () => {
+        this.router.navigateByUrl('/site');
+      },
+      (error) => {
+        this.errorBoolean = true;
+        setTimeout(() => (this.errorBoolean = false), 2000);
+        this.errorMessage = error.message;
+      }
     );
   }
 }

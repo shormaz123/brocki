@@ -47,7 +47,28 @@
         </div>
         <div class="inputItem2">
           <label>{{ 'translate.password' | translate }} </label>
-          <input formControlName="password" type="password" maxlength="30" />
+          <input
+            formControlName="password"
+            type="password"
+            maxlength="30"
+            id="mysecretpassword"
+            type="password"
+            showHideInput
+          />
+          <div
+            class="eye"
+            *ngIf="eye"
+            (click)="toggleEye()"
+            showHideTrigger="mysecretpassword"
+            [inlineSVG]="'../../../assets/images/visible.svg'"
+          ></div>
+          <div
+            class="eye"
+            *ngIf="!eye"
+            (click)="toggleEye()"
+            showHideTrigger="mysecretpassword"
+            [inlineSVG]="'../../../assets/images/invisible.svg'"
+          ></div>
         </div>
         <div class="inputItem3">
           <label *ngIf="private">{{ 'translate.username' | translate }}</label>

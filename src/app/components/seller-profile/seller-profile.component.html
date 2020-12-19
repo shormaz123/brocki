@@ -1,93 +1,133 @@
 <div class="mainContainer">
-    <div class="container">
-        <div class="account">
-            <div class="image">
-                <div class="imageBorder">
-                    <div class="profil-image">
-                        <img class="seller-image" [src]="sellerProfileImage" [appImgFallback]="noImage" />
-                    </div>
-                </div>
+  <div class="container">
+    <div class="account">
+      <div class="image">
+        <div class="imageBorder">
+          <div class="profil-image">
+            <img
+              class="seller-image"
+              [src]="sellerProfileImage"
+              [appImgFallback]="noImage"
+            />
+          </div>
+        </div>
+      </div>
+      <section class="body">
+        <div class="body-user-info">
+          <div class="user-info">
+            <div class="user-name-list">
+              <div class="profil-name" *ngIf="business">
+                {{ sellerCompany }}
+              </div>
+              <div class="profil-name" *ngIf="private">{{ sellerName }}</div>
             </div>
-            <section class="body">
-                <div class="body-user-info">
-                    <div class="user-info">
-                        <div class="user-name-list">
-                            <div class="profil-name" *ngIf="business">
-                                {{ sellerCompany }}
-                            </div>
-                            <div class="profil-name" *ngIf="private">{{ sellerName }}</div>
-                        </div>
-                        <div class="user-address">{{ address }}</div>
-                    </div>
-                    <div class="checkmarks">
-                        <div class="example-section">
-                            <mat-checkbox [checked]="checked" class="example-margin" onclick="return false;">{{ 'translate.checkedUser' | translate }}</mat-checkbox>
-                            <mat-checkbox [checked]="checked" class="example-margin" onclick="return false;">{{ 'translate.approvedPhone' | translate }}</mat-checkbox>
-                            <!-- <mat-checkbox class="example-margin" [disabled]="true"
+            <div class="user-address">{{ address }}</div>
+          </div>
+          <div class="checkmarks">
+            <div class="example-section">
+              <mat-checkbox
+                [checked]="checked"
+                class="example-margin"
+                onclick="return false;"
+                >{{ 'translate.checkedUser' | translate }}</mat-checkbox
+              >
+              <mat-checkbox
+                [checked]="checked"
+                class="example-margin"
+                onclick="return false;"
+                >{{ 'translate.approvedPhone' | translate }}</mat-checkbox
+              >
+              <!-- <mat-checkbox class="example-margin" [disabled]="true"
                 >successful sales</mat-checkbox
               > -->
-                        </div>
-                    </div>
-                </div>
-                <div class="boxes">
-                    <div class="iconBox" (click)="phonesOfSeller()">
-                        <div class="phoneImage phoneImage--margin">
-                            <div class="photo" [inlineSVG]="
+            </div>
+          </div>
+        </div>
+        <div class="boxes">
+          <div class="iconBox" (click)="phonesOfSeller()">
+            <div class="phoneImage phoneImage--margin">
+              <div
+                class="photo"
+                [inlineSVG]="
                   '../../../assets/images/update-info-bussines/phone.svg'
-                "></div>
-                        </div>
-                        <div class="phone" *ngIf="sellerPhones">
-                            <div>{{ sellerPhone }}</div>
-                            <div>{{ sellerMobile }}</div>
-                        </div>
-                    </div>
-                    <div class="iconBox iconBox--email" (click)="sendEmail()">
-                        <div class="phoneImage">
-                            <div class="photo" [inlineSVG]="
+                "
+              ></div>
+            </div>
+            <div class="phone" *ngIf="sellerPhones">
+              <div>{{ sellerPhone }}</div>
+              <div>{{ sellerMobile }}</div>
+            </div>
+          </div>
+          <div class="iconBox iconBox--email" (click)="sendEmail()">
+            <div class="phoneImage">
+              <div
+                class="photo"
+                [inlineSVG]="
                   '../../../assets/images/update-info-bussines/email.svg'
-                "></div>
-                        </div>
-                        <div class="iconBox__email"></div>
-                    </div>
-                </div>
-            </section>
+                "
+              ></div>
+            </div>
+            <div class="iconBox__email"></div>
+          </div>
         </div>
-        <div class="navigation">
-            <div class="navItem" (click)="activeButton()">
-                <div [ngClass]="{ active: active, focus: !active }">
-                    <span>{{ 'translate.active' | translate }}</span>
-                </div>
-            </div>
-            <div class="navItem" (click)="soldButton()">
-                <div [ngClass]="{ active: sold, focus: !sold }">
-                    <span>{{ 'translate.sold' | translate }}</span>
-                </div>
-            </div>
-            <div class="navItem" (click)="aboutButton()">
-                <div [ngClass]="{ active: about, focus: !about }">
-                    <span>{{ 'translate.aboutUs' | translate }} </span>
-                </div>
-            </div>
-            <div class="navItem" (click)="infoButton()">
-                <div [ngClass]="{ active: info, focus: !info }">
-                    <span>Info</span>
-                </div>
-            </div>
-            <div class="navItem" (click)="guestButton()" *ngIf="sellerStatus != 'READY'">
-                <div [ngClass]="{ active: guest, focus: !guest }">
-                    <span>{{ 'translate.guestBook' | translate }}</span>
-                </div>
-            </div>
+      </section>
+    </div>
+    <div class="navigation">
+      <div class="navItem" (click)="activeButton()">
+        <div [ngClass]="{ active: active, focus: !active }">
+          <span>{{ 'translate.active' | translate }}</span>
         </div>
+      </div>
+      <div class="navItem" (click)="soldButton()">
+        <div [ngClass]="{ active: sold, focus: !sold }">
+          <span>{{ 'translate.sold' | translate }}</span>
+        </div>
+      </div>
+      <div class="navItem" (click)="aboutButton()">
+        <div [ngClass]="{ active: about, focus: !about }">
+          <span>{{ 'translate.aboutUs' | translate }} </span>
+        </div>
+      </div>
+      <div class="navItem" (click)="infoButton()">
+        <div [ngClass]="{ active: info, focus: !info }">
+          <span>Info</span>
+        </div>
+      </div>
+      <div
+        class="navItem"
+        (click)="guestButton()"
+        *ngIf="sellerStatus != 'READY'"
+      >
+        <div [ngClass]="{ active: guest, focus: !guest }">
+          <span>{{ 'translate.guestBook' | translate }}</span>
+        </div>
+      </div>
     </div>
-    <div class="secondContainer">
-        <app-active-seller [sellerEmail]="sellerEmail" [activeProducts]="activeProducts" [ads]="adsActive" *ngIf="active"></app-active-seller>
-        <app-aboutus-seller *ngIf="about"></app-aboutus-seller>
-        <app-guestbook-seller [CommentsOfUser]="CommentsOfUser" (guestBook)="guestBook()" *ngIf="guest "></app-guestbook-seller>
-        <app-sold-seller [soldProducts]="soldProducts" [ads]="adsSold" *ngIf="sold"></app-sold-seller>
-        <app-info-seller *ngIf="info"></app-info-seller>
-    </div>
-    <div class="page" *ngIf="email">
-        <app-email [sellerEmail]="sellerEmail" (closeEmail)="closeEmail()"></app-email>
-    </div>
+  </div>
+  <div class="secondContainer">
+    <app-active-seller
+      [sellerEmail]="sellerEmail"
+      [activeProducts]="activeProducts"
+      [ads]="adsActive"
+      *ngIf="active"
+    ></app-active-seller>
+    <app-aboutus-seller *ngIf="about"></app-aboutus-seller>
+    <app-guestbook-seller
+      [CommentsOfUser]="CommentsOfUser"
+      (guestBook)="guestBook()"
+      *ngIf="guest"
+    ></app-guestbook-seller>
+    <app-sold-seller
+      [soldProducts]="soldProducts"
+      [ads]="adsSold"
+      *ngIf="sold"
+    ></app-sold-seller>
+    <app-info-seller *ngIf="info"></app-info-seller>
+  </div>
+  <div class="page" *ngIf="email">
+    <app-email
+      [sellerEmail]="sellerEmail"
+      (closeEmail)="closeEmail()"
+    ></app-email>
+  </div>
 </div>

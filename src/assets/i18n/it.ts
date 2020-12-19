@@ -215,7 +215,11 @@ export const it = {
     deleteAd: "L'annuncio viene eliminato!",
     adMovedToSold: "L'annuncio viene spostato in Venduto",
     adReactivation: "L'annuncio è stato riattivato!",
-    changeProfileImage: 'Clicca qui se vuoi cambiare la tua immagine del profilo',
-    invalidPrice: 'Prezzo non valido. Il prezzo può essere massimo 12 lunghezza con 2 decimali!',
+    changeProfileImage:
+      'Clicca qui se vuoi cambiare la tua immagine del profilo',
+    invalidPrice:
+      'Prezzo non valido. Il prezzo può essere massimo 12 lunghezza con 2 decimali!',
+    createNewList: 'Create new list',
+    create: 'Creare',
   },
 };
