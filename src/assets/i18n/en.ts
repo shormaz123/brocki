@@ -205,8 +205,6 @@ export const en = {
     addressCodePostal: 'Postcode',
     addressPlace: 'Place',
     location: 'Location',
-    confirmAccountText:
-      'Please check your e-mail inbox for an activation e-mail and confirm it. You can then create an ad.',
     notYetAvailable: 'Not yet available!',
     or: 'or ',
     maxNumberOfTags: 'You can choose up to 3 tags',
@@ -215,6 +213,16 @@ export const en = {
     adReactivation: 'The ad has been reactivated!',
     changeProfileImage: 'Click here if you want to change your profile image',
     invalidPrice: 'Invalid price. Price can be max 12 length with 2 decimals!',
+    confirmAccountText:
+      'Please confirm your account using the link we have sent to your email. This gives Minibrocki many great functions.',
+    acceptEmail:
+      'Please confirm your account using the link we have sent to your email. This gives Minibrocki many great functions.',
+    acceptEmailWentWrong:
+      'If you do not receive an email within the next 24 hours or if you have problems registering, please contact our support at: info@minibrocki.ch A member of staff will take care of it as soon as possible.',
+    acceptBusinessProfileWaitMsg:
+      'In order to verify your business account on Minibrocki, we would like to check it quickly. We will send you an email as soon as this is done.',
+    declinedProfile:
+      'Your profile was declined. For more information, contact us on info@minibrocki.ch.',
     createNewList: 'Create new list',
     create: 'Create',
   },

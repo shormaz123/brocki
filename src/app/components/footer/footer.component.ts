@@ -26,6 +26,6 @@ export class FooterComponent implements OnInit {
   }
 
   openFile() {
-    window.open("assets/documents/Allgemeine Geschäftsbedingungen MiniBrocki.ch.pdf");
+    window.open('assets/documents/AGB2020.pdf');
 }
 }

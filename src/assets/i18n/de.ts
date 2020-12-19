@@ -224,6 +224,14 @@ export const de = {
       'Klicken Sie hier, wenn Sie Ihr Profilbild ändern möchten',
     invalidPrice:
       'Ungültiger Preis. Der Preis kann eine maximale Länge von 12 mit 2 Dezimalstellen sein!',
+    acceptEmail:
+      'Bitte bestätigen Sie Ihr Konto über den Link, den wir an Ihre E-Mail gesendet haben. Dadurch erhalten viele tolle Funktionen von Minibrocki.',
+    acceptEmailWentWrong:
+      'Falls Sie innerhalb der nächsten 24 Stunden keine E-Mail erhalten oder Probleme bei der Registrierung haben kontaktieren Sie bitte unseren Support auf: info@minibrocki.ch Ein Mitarbeiter wird sich so schnell wie möglich darum kümmern.',
+    acceptBusinessProfileWaitMsg:
+      'Um Ihr Geschäfts-Konto auf Minibrocki zu verifizieren möchten wir dieses noch schnell überprüfen. Wir werden Ihnen eine E-Mail senden sobald dies geschehen ist.',
+    declinedProfile:
+      'Ihr Profil wurde abgelehnt. Für weitere Informationen kontaktieren Sie uns unter info@minibrocki.ch.',
     createNewList: 'Create new list',
     create: 'Erstellen',
   },

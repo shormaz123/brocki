@@ -321,3 +321,17 @@ body
   justify-content: center;
   background-color: $red;
 }
+
+//credit card ui
+.ElementsApp {
+  font-size: 18px !important;
+}
+
+::ng-deep .orange-snackbar {
+  background: orange !important;
+}
+
+.mat-snack-bar-container {
+  background: orange !important;
+  color: black;
+}

@@ -8,6 +8,8 @@ import { UserService } from './user.service';
 import { User } from 'app/shared/models/user.model';
 import { WishlistService } from './wishlist.service';
 import { UserRegistration } from 'app/shared/models/userRegistration.model';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 const AUTH_DATA = 'auth_data';
 
@@ -32,10 +34,15 @@ export class AuthStore {
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private wishlist: WishlistService
+    private wishlist: WishlistService,
+    public snackBar: MatSnackBar,
+    private translateService: TranslateService
   ) {
     this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
 
@@ -94,5 +101,36 @@ export class AuthStore {
     localStorage.removeItem(AuthConst.roleName);
     localStorage.removeItem(AuthConst.token);
     localStorage.removeItem(AuthConst.userId);
+    this.snackBar.dismiss();
+  }
+
+  openSnackbarForAcceptEmail() {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.panelClass = ['orange-snackbar'];
+    this.snackBar.open(
+      this.translateService.instant('translate.acceptEmail'),
+    );
+  }
+
+  openSnackbarForDeclinedProfile() {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.panelClass = ['orange-snackbar'];
+    this.snackBar.open(
+      this.translateService.instant('translate.declinedProfile'),
+    );
+  }
+
+  openSnackbarForAcceptBussinesMsg() {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.panelClass = ['orange-snackbar'];
+    this.snackBar.open(
+      this.translateService.instant('translate.acceptBusinessProfileWaitMsg'),
+    );
   }
 }

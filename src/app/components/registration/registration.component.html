@@ -119,10 +119,15 @@
       </div>
       <div class="lastDiv1">
         <div class="textPassword">
-          <mat-checkbox class="example-margin" formControlName="terms"
-            >{{ 'translate.confirmTermsAndConditionsOne' | translate }}<br />{{
-              'translate.confirmTermsAndConditionsTwo' | translate
-            }}
+          <mat-checkbox class="example-margin" formControlName="terms">
+            <label
+              (click)="openFile()"
+              style="text-decoration: underline; cursor: pointer"
+              >{{ 'translate.confirmTermsAndConditionsOne' | translate
+              }}<br />{{
+                'translate.confirmTermsAndConditionsTwo' | translate
+              }}</label
+            >
           </mat-checkbox>
         </div>
       </div>
