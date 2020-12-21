@@ -52,6 +52,8 @@
     color: $red;
     cursor: pointer;
     position: relative;
+    display: flex;
+    align-items: center;
     img {
         margin-right: 10px;
         width: 30px;
@@ -526,4 +528,20 @@ p-carousel {
 .ngx-gallery {
     display: inline-block;
     margin-bottom: 20px;
+}
+
+.reportButton {
+    width: fit-content;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: white;
+    color: $red;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-decoration: underline;
+    border-left: 1px solid $lightgray-second;
+    ;
 }

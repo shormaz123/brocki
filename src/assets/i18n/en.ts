@@ -225,5 +225,6 @@ export const en = {
       'Your profile was declined. For more information, contact us on info@minibrocki.ch.',
     createNewList: 'Create new list',
     create: 'Create',
+    reportAd: 'Report ad'
   },
 };

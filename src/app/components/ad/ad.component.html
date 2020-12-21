@@ -28,6 +28,9 @@
                         {{ 'translate.copied' | translate }}!
                     </div>
                 </div>
+                <div class="reportButton" (click)="reportAd()">
+                    {{ 'translate.reportAd' | translate }}
+                </div>
             </div>
         </div>
     </div>
@@ -168,4 +171,11 @@
     [adForEmail]="ad"
     (closeEmail)="closeEmail()"
   ></app-email>
+</div>
+<div class="page" *ngIf="report">
+<app-report-ad
+(closeReportAd)="closeReportAd()"
+
+>
+</app-report-ad>
 </div>

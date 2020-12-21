@@ -222,5 +222,6 @@ export const fr = {
       "Prix invalide. Le prix peut être d'une longueur maximale de 12 avec 2 décimales!",
     createNewList: 'Create new list',
     create: 'Créer',
+    reportAd: 'Signaler une annonce'
   },
 };

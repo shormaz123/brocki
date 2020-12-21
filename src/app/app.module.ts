@@ -116,6 +116,7 @@ import { SentryModule } from './sentry.module';
 import { environment } from './../environments/environment.prod';
 import { FavoriteModalComponent } from './components/favorite-modal/favorite-modal.component';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+import { ReportAdComponent } from './components/report-ad/report-ad.component';
 
 registerLocaleData(en);
 
@@ -175,6 +176,7 @@ registerLocaleData(en);
     ImgFallbackDirective,
     AdsAdditionalFiltersComponent,
     FavoriteModalComponent,
+    ReportAdComponent,
   ],
   imports: [
     BrowserModule,

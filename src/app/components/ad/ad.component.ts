@@ -22,6 +22,7 @@ import { Subscription, Observable } from 'rxjs';
 import { AuthStore } from 'app/@core/services/auth.store';
 import { WishlistService } from 'app/@core/services/wishlist.service';
 import { Meta, Title, MetaDefinition } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-ad',
@@ -91,6 +92,7 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
   typeShareTwitter;
   typeShareFacebook;
   shareUrl = document.URL;
+  report: boolean = false;
 
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
@@ -105,8 +107,6 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private auth: AuthStore,
     private wishlist: WishlistService,
-    private readonly metaService: Meta,
-    private readonly titleService: Title
   ) {
 
   }
@@ -198,8 +198,6 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
       this.adsService.getAdById(id).subscribe((response) => {
         this.userSellerId = response.userId;
         this.ad = response;
-        this.setMetaTags();
-
         this.adImage = response.image[0];
         this.adDescription = response.description;
         this.adTitle = response.productName;
@@ -392,53 +390,19 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
       searchParams.set('url', this.shareUrl);
       this.navUrl =  'https://twitter.com/share?' + searchParams;
       window.open(this.navUrl, "_blank");
-
     }
-
-  }
-
-  setMetaTags() {
-    this.titleService.setTitle(this.ad.productName)
-    this.metaService.addTag({ name: 'twitter:card', content: "summary_large_image" });
-    this.metaService.addTag({ name: 'twitter:title', content: this.ad.productName });
-    this.metaService.addTag({ name: 'twitter:description', content: this.ad.description });
-    this.metaService.addTag({ name: 'twitter:image', content: this.ad.image[0]});
-    this.metaService.addTag({ name: 'title', content: this.ad.productName});
-    this.metaService.addTag({ name: 'description', content: this.ad.description});
-
-       //OpenGraph
-
-       this.metaService.addTag({ property: 'og:type', content: "article" });
-       this.metaService.addTag({ property: 'og:site_name', content: 'www.minibrocki.ch' });
-       this.metaService.addTag({ property: 'og:title', content: this.ad.productName });
-       this.metaService.addTag({ property: 'og:description', content: this.ad.description });
-       this.metaService.addTag({ property: 'og:url', content: this.shareUrl });
-       this.metaService.addTag({ property: 'og:image', content: this.ad.image[0] });
-       this.metaService.addTag({ property: 'og:image:width', content: "600" });
-       this.metaService.addTag({ property: 'og:image:height', content: "340" });
-       this.metaService.addTag({ property: 'fb:app_id', content: "125963815872560" });
-
   }
 
 ngOnDestroy() {
-  this.metaService.removeTag(`property='og:image'`);
-  this.metaService.removeTag(`property='og:title'`);
-  this.metaService.removeTag(`property='og:image:alt'`);
-  this.metaService.removeTag(`property='og:type'`);
-  this.metaService.removeTag(`property='og:description'`);
-  this.metaService.removeTag(`property='og:url'`);
-  this.metaService.removeTag(`property='og:site_name'`);
-  this.metaService.removeTag(`property='fb:app_id'`);
-  this.metaService.removeTag(`property='og:url'`);
-  this.metaService.removeTag(`property='fb:image:width'`);
-  this.metaService.removeTag(`property='og:image:height'`);
-  this.metaService.removeTag(`name='twitter:card'`);
-  this.metaService.removeTag(`name='twitter:description'`);
-  this.metaService.removeTag(`name='twitter:title'`);
-  this.metaService.removeTag(`name='twitter:image'`);
-  this.metaService.removeTag(`name='title'`);
-  this.metaService.updateTag({ name: 'description', content: 'Die minibrocki® ️App soll das Upcycling fördern und helfen dem Schweizer Secondhand mit Dienstleistungen, Stiftungen mit Werkstätten und Antiquitätenhändlern, in der heutigen dynamischen Marktentwicklung neue Kunden zu begeistern und ihre Artikel einfacher ins Internet zu befördern.'});
-  this.titleService.setTitle('MiniBrocki')
+}
+
+reportAd() {
+  this.report = true;
+}
+
+closeReportAd() {
+    this.report = false;
+    console.log('rsdfsdf')
 }
 
 }

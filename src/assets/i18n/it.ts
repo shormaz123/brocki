@@ -221,5 +221,6 @@ export const it = {
       'Prezzo non valido. Il prezzo può essere massimo 12 lunghezza con 2 decimali!',
     createNewList: 'Create new list',
     create: 'Creare',
+    reportAd: 'Segnala annuncio'
   },
 };

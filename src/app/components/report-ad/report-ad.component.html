@@ -1,0 +1,16 @@
+<div class="page">
+    <form class="email" (ngSubmit)="onSubmit()">
+        <div class="email__title">
+            {{ 'translate.messageToSeller' | translate }}
+        </div>
+
+        <div class="email__buttons">
+            <button class="email__button" type="button" (click)="closeModal()">
+        Close
+      </button>
+            <button class="email__button email__button--primary" type="submit">
+        {{ 'translate.send' | translate }}
+      </button>
+        </div>
+    </form>
+</div>
