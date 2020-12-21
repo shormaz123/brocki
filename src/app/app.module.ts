@@ -115,8 +115,9 @@ import { NgxSocialShareModule } from 'ngx-social-share';
 import { SentryModule } from './sentry.module';
 import { environment } from './../environments/environment.prod';
 import { FavoriteModalComponent } from './components/favorite-modal/favorite-modal.component';
-import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+import { ShowHidePasswordModule, ShowHideService } from 'ngx-show-hide-password';
 import { ReportAdComponent } from './components/report-ad/report-ad.component';
+import { WishlistService } from './@core/services/wishlist.service';
 
 registerLocaleData(en);
 
@@ -251,6 +252,8 @@ registerLocaleData(en);
     AuthGuardService,
     TranslateServiceRest,
     AuthStore,
+    WishlistService,
+    ShowHideService,
     Meta,
     UserStatusGuardService,
     {
