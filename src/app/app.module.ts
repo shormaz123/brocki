@@ -113,7 +113,9 @@ import { UserStatusGuardService } from './@core/services/UserStatusGuard.service
 import { ImgFallbackDirective } from './utils/fallbackImage.directive';
 import { NgxSocialShareModule } from 'ngx-social-share';
 import { SentryModule } from './sentry.module';
-import { environment } from './../environments/environment.prod'
+import { environment } from './../environments/environment.prod';
+import { FavoriteModalComponent } from './components/favorite-modal/favorite-modal.component';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 registerLocaleData(en);
 
@@ -172,6 +174,7 @@ registerLocaleData(en);
     AdsCardDetailComponent,
     ImgFallbackDirective,
     AdsAdditionalFiltersComponent,
+    FavoriteModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -214,6 +217,7 @@ registerLocaleData(en);
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatExpansionModule,
+    ShowHidePasswordModule,
     environment.enableSentry ? SentryModule.forRoot() : [],
     NgxHotjarModule.forRoot('2010944'),
     ToastrModule.forRoot({
@@ -234,7 +238,7 @@ registerLocaleData(en);
       apiKey: 'AIzaSyAFo8eoAunpvp47MeINO5LlMdhJkG0Pvz0',
     }),
   ],
-  entryComponents: [ConfirmDialogComponent],
+  entryComponents: [ConfirmDialogComponent, FavoriteModalComponent],
   exports: [MatExpansionModule],
   providers: [
     HttpBaseService,

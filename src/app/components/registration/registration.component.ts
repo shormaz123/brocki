@@ -47,6 +47,7 @@ export class RegistrationComponent implements OnInit {
 
   houseNumber: number;
   street: string;
+  eye = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -82,6 +83,10 @@ export class RegistrationComponent implements OnInit {
     this.private = true;
     this.business = false;
     this.registerForm.controls.role_id.setValue(3);
+  }
+
+  toggleEye(): void {
+    this.eye = !this.eye;
   }
 
   get f() {

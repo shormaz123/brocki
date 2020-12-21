@@ -1,29 +1,65 @@
 <div class="loginContainer">
-    <div style="padding: 0 0 25px 0">
-        <span class="title">{{ 'translate.signin' | translate }}</span>
+  <div style="padding: 0 0 25px 0">
+    <span class="title">{{ 'translate.signin' | translate }}</span>
+  </div>
+  <div class="data">
+    <div class="labels">
+      <div class="label">
+        {{ 'translate.email' | translate }} {{ 'translate.or' | translate }}
+        {{ 'translate.username' | translate }}
+      </div>
+      <input
+        [(ngModel)]="email"
+        (keydown.enter)="submitForm()"
+        maxlength="40"
+      />
     </div>
-    <div class="data">
-        <div class="labels">
-            <div class="label">{{ 'translate.email' | translate }} {{ 'translate.or' | translate }} {{ 'translate.username' | translate }}</div>
-            <input [(ngModel)]="email" (keydown.enter)="submitForm()" />
-        </div>
-        <div class="input">
-            <div class="label">{{ 'translate.password' | translate }}</div>
-            <input [(ngModel)]="password" type="password" (keydown.enter)="submitForm()" />
-        </div>
+    <div class="input">
+      <div class="label">{{ 'translate.password' | translate }}</div>
+      <input
+        [(ngModel)]="password"
+        type="password"
+        (keydown.enter)="submitForm()"
+        id="mysecretpassword"
+        type="password"
+        showHideInput
+        maxlength="30"
+      />
+      <div
+        class="eye"
+        *ngIf="eye"
+        (click)="toggleEye()"
+        showHideTrigger="mysecretpassword"
+        [inlineSVG]="'../../../assets/images/visible.svg'"
+      ></div>
+      <div
+        class="eye"
+        *ngIf="!eye"
+        (click)="toggleEye()"
+        showHideTrigger="mysecretpassword"
+        [inlineSVG]="'../../../assets/images/invisible.svg'"
+      ></div>
     </div>
-    <nz-alert nzType="error" nzMessage="{{ errorMessage }}" nzShowIcon *ngIf="errorBoolean" style="margin-bottom: 20px; margin-bottom: 20px"></nz-alert>
-    <div>
-        <button class="button button__width" (click)="submitForm()">
+  </div>
+  <nz-alert
+    nzType="error"
+    nzMessage="{{ errorMessage }}"
+    nzShowIcon
+    *ngIf="errorBoolean"
+    style="margin-bottom: 20px; margin-bottom: 20px"
+  ></nz-alert>
+  <div>
+    <button class="button button__width" (click)="submitForm()">
       {{ 'translate.login' | translate }}
     </button>
-    </div>
-    <div class="lastDiv">
-        <div class="textPassword">
-            <button class="button__registration" routerLink="/registration">
+  </div>
+  <div class="lastDiv">
+    <div class="textPassword">
+      <button class="button__registration" routerLink="/registration">
         {{ 'translate.signup' | translate }}
       </button>
-            <span class="forPassword" routerLink="/forgetPassword">{{ 'translate.forgotPassword' | translate }}?</span
+      <span class="forPassword" routerLink="/forgetPassword"
+        >{{ 'translate.forgotPassword' | translate }}?</span
       >
     </div>
   </div>

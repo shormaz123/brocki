@@ -17,7 +17,7 @@ export class SellerProfileComponent implements OnInit {
   about: boolean;
   info: boolean;
   guest: boolean;
-  email: boolean = false;
+  email = false;
   sellerPhones: boolean;
   sellerId;
   sellerCompany: string;
@@ -27,7 +27,7 @@ export class SellerProfileComponent implements OnInit {
   sellerEmail: string;
   defaultImage = '../../../assets/images/myAccount/profile-picture.png';
   sellerImage: string = this.defaultImage;
-  noImage = '../../../assets/images/navigation/noImage.jpg'
+  noImage = '../../../assets/images/navigation/noImage.jpg';
   sellerindex: number;
   activeProducts: Array<any> = [];
   adsActive: boolean;
