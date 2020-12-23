@@ -402,7 +402,6 @@ reportAd() {
 
 closeReportAd() {
     this.report = false;
-    console.log('rsdfsdf')
 }
 
 }

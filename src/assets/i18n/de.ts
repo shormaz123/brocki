@@ -234,6 +234,7 @@ export const de = {
       'Ihr Profil wurde abgelehnt. Für weitere Informationen kontaktieren Sie uns unter info@minibrocki.ch.',
     createNewList: 'Create new list',
     create: 'Erstellen',
-    reportAd: 'Anzeige melden'
+    reportAd: 'Anzeige melden',
+    reportSended: 'Bericht gesendet!'
   },
 };

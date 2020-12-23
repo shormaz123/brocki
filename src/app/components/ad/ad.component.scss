@@ -44,10 +44,9 @@
 }
 
 .socialButton {
-    width: fit-content;
+    width: 130px;
     border-radius: 20px;
     text-align: center;
-    padding-right: 10px;
     background-color: white;
     color: $red;
     cursor: pointer;
@@ -436,8 +435,6 @@ p-carousel {
 }
 
 .copiedTooltip {
-    width: 100%;
-    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -446,8 +443,15 @@ p-carousel {
     border: 1px green solid;
     border-radius: 10px;
     color: white;
-    margin-top: 10px;
     position: absolute;
+    width: fit-content;
+    border-radius: 20px;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .mat-icon-button {
@@ -544,4 +548,12 @@ p-carousel {
     text-decoration: underline;
     border-left: 1px solid $lightgray-second;
     ;
+}
+
+.copied {
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
 }

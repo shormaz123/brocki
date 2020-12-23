@@ -22,13 +22,15 @@
                 <!-- <div [socialShare]="'fb'">Facebook</div>
                 <div [socialShare]="'tw'">Twitter</div> -->
 
-                <div class="socialButton" (click)="copyLink()">
+                <div class="socialButton" (click)="copyLink()" *ngIf="!copied">
                     <img src="../../../assets/images/ad/logoThree.png" />{{ 'translate.copyLink' | translate }}
-                    <div class="copiedTooltip" *ngIf="copied">
+                </div>
+                <div *ngIf="copied" class="copied">
+                    <div class="copiedTooltip">
                         {{ 'translate.copied' | translate }}!
                     </div>
                 </div>
-                <div class="reportButton" (click)="reportAd()">
+                <div class="reportButton" (click)="reportAd()" *ngIf="auth.isLoggedIn$ | async">
                     {{ 'translate.reportAd' | translate }}
                 </div>
             </div>
@@ -175,7 +177,7 @@
 <div class="page" *ngIf="report">
 <app-report-ad
 (closeReportAd)="closeReportAd()"
-
+[adId]="adId"
 >
 </app-report-ad>
 </div>

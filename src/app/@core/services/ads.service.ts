@@ -302,4 +302,11 @@ export class AdsService {
   getSubCategoryById(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/mybrocki/subgroup/${id}`);
   }
+
+  sendReportMessage(adReportId: any, reasonMessage: string):Observable<any> {
+    let params = new HttpParams();
+    params = params.append('adId', adReportId);
+    params = params.append('reasonMessage', reasonMessage);
+    return this.http.post(`${this.baseUrl}/mybrocki/auth/ads/report`, params);
+  }
 }

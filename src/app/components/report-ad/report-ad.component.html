@@ -1,16 +1,26 @@
 <div class="page">
-    <form class="email" (ngSubmit)="onSubmit()">
+    <form class="email" (ngSubmit)="onSubmitReport()" [formGroup]="reportForm">
         <div class="email__title">
-            {{ 'translate.messageToSeller' | translate }}
+            {{ 'translate.reportAd' | translate }}
         </div>
-
+        <div class="email__body">
+            <div class="email__message">
+                <label class="email__label">{{
+          'translate.message' | translate
+        }}</label>
+                <div>
+                    <textarea class="email__textarea" type="text" formControlName="reasonMessage"></textarea>
+                </div>
+            </div>
+        </div>
         <div class="email__buttons">
             <button class="email__button" type="button" (click)="closeModal()">
-        Close
+        {{ 'translate.close' | translate }}
       </button>
             <button class="email__button email__button--primary" type="submit">
         {{ 'translate.send' | translate }}
       </button>
         </div>
+        <div class="email__close" (click)="closeModal()" [inlineSVG]="'../../../assets/images/buttons/close.svg'"></div>
     </form>
 </div>
