@@ -105,7 +105,7 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private helpersService: HelpersService,
     private router: Router,
-    private auth: AuthStore,
+    public auth: AuthStore,
     private wishlist: WishlistService,
   ) {
 
