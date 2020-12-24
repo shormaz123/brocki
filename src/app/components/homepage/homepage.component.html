@@ -1,31 +1,23 @@
-<app-ad-single-carousel
-  [favAds]="favAds"
-  [userId]="userId"
-  *ngIf="favAds"
-></app-ad-single-carousel>
+<app-ad-single-carousel [favAds]="favAds" [userId]="userId" *ngIf="favAds"></app-ad-single-carousel>
 <div class="container">
-  <div class="advertise">
-    <img
-      src="../../../assets/images/banner1.jpg"
-      routerLink="/contact-us"
-      style="cursor: pointer"
-    />
-  </div>
-  <div class="siteButtons">
-    <!-- <button class="siteButton">Around me</button> -->
-    <button class="siteButton" [routerLink]="['../freshly-advertised-ads']">
+    <div class="advertise">
+        <img src="../../../assets/images/happy-new-year-1.jpg" routerLink="/contact-us" style="cursor: pointer" />
+    </div>
+    <div class="siteButtons">
+        <!-- <button class="siteButton">Around me</button> -->
+        <button class="siteButton" [routerLink]="['../freshly-advertised-ads']">
       {{ 'translate.freshlyAdvertised' | translate }}
     </button>
-    <button class="siteButton" [routerLink]="['../unused-ads']">
+        <button class="siteButton" [routerLink]="['../unused-ads']">
       {{ 'translate.unused' | translate }}
     </button>
-    <button class="siteButton" [routerLink]="['../most-wanted-ads']">
+        <button class="siteButton" [routerLink]="['../most-wanted-ads']">
       {{ 'translate.mostWanted' | translate }}
     </button>
-  </div>
+    </div>
 </div>
 <div class="suggestions">
-  <span class="suggText">
+    <span class="suggText">
     {{ 'translate.suggestionsForYou' | translate }}:</span
   >
   <div class="bodySuggestions2">
