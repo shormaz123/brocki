@@ -1,5 +1,5 @@
 <div class="page">
-    <form class="email" (ngSubmit)="onSubmitReport()" [formGroup]="reportForm">
+    <div class="email">
         <div class="email__title">
             {{ 'translate.reportAd' | translate }}
         </div>
@@ -9,7 +9,7 @@
           'translate.message' | translate
         }}</label>
                 <div>
-                    <textarea class="email__textarea" type="text" formControlName="reasonMessage"></textarea>
+                    <textarea class="email__textarea" type="text" [(ngModel)]="reasonMessage"></textarea>
                 </div>
             </div>
         </div>
@@ -17,10 +17,10 @@
             <button class="email__button" type="button" (click)="closeModal()">
         {{ 'translate.close' | translate }}
       </button>
-            <button class="email__button email__button--primary" type="submit">
+            <button class="email__button email__button--primary" (click)="onSubmitReport()">
         {{ 'translate.send' | translate }}
       </button>
         </div>
         <div class="email__close" (click)="closeModal()" [inlineSVG]="'../../../assets/images/buttons/close.svg'"></div>
-    </form>
+    </div>
 </div>

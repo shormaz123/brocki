@@ -303,10 +303,8 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/subgroup/${id}`);
   }
 
-  sendReportMessage(adReportId: any, reasonMessage: string):Observable<any> {
-    let params = new HttpParams();
-    params = params.append('adId', adReportId);
-    params = params.append('reasonMessage', reasonMessage);
-    return this.http.post(`${this.baseUrl}/mybrocki/auth/ads/report`, params);
+  sendReportMessage(adId: number, reasonMessage: string):Observable<any> {
+
+    return this.http.post(`${this.baseUrl}/mybrocki/auth/ads/report`, {adId, reasonMessage});
   }
 }

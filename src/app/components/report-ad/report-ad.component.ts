@@ -12,8 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ReportAdComponent implements OnInit {
   @Output() readonly closeReportAd = new EventEmitter<void>();
   @Input() adId: number;
-
-  reportForm: FormGroup;
+  reasonMessage: string;
 
   constructor(private fb: FormBuilder,
     private adsService: AdsService,
@@ -21,17 +20,13 @@ export class ReportAdComponent implements OnInit {
     private translateService: TranslateService) { }
 
   ngOnInit() {
-    this.reportForm = this.fb.group({
-      adId: [this.adId, [Validators.required]],
-      reasonMessage: ['', [Validators.required]],
-    });
+
   }
 
   onSubmitReport() {
-    const message = this.reportForm.value.reasonMessage;
-    this.adsService.sendReportMessage(this.adId, message).subscribe( response => {
+    this.adsService.sendReportMessage(+this.adId, this.reasonMessage).subscribe( response => {
       if (response) {
-        this.toastr.success(this.translateService.instant('translate.emailSent'));
+        this.toastr.success(this.translateService.instant('translate.reportSended'));
         console.log(response)
         this.closeModal();
       }
