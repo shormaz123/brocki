@@ -4,6 +4,7 @@ import { AdsService } from '../../@core/services/ads.service';
 import { UserService } from '../../@core/services/user.service';
 import { Ads } from '../../shared/models/ads.model';
 import { Router } from '@angular/router';
+import { AuthConst } from 'app/@core/consts/auth.const';
 
 @Component({
   selector: 'app-ads-additional-filters',
@@ -20,6 +21,7 @@ export class AdsAdditionalFiltersComponent implements OnInit {
   most: boolean;
   unused: boolean;
   advertised: boolean;
+  token;
 
   constructor(
     private adsService: AdsService,
@@ -28,67 +30,75 @@ export class AdsAdditionalFiltersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.token = localStorage.getItem(AuthConst.token)
+
     this.url = this.router.url;
     if (this.url === '/most-wanted-ads') {
       this.most = true;
       this.mostWanted$ = this.adsService.mostWanted(this.pageNumber);
-      this.userService.getUser().subscribe((user) => {
-        const userId = user.id;
-        this.userService.getFavourites(userId).subscribe((favAds) => {
-          this.mostWanted$.subscribe((ads: Ads[]) => {
-            if (ads.length !== 16) {
-              this.buttonHide = true;
-            }
-            ads.forEach((wanted) => {
-              favAds.find((ad: Ads) => {
-                if (ad.id === wanted.id) {
-                  wanted.favourite = true;
-                }
+      if (this.token) {
+        this.userService.getUser().subscribe((user) => {
+          const userId = user.id;
+          this.userService.getFavourites(userId).subscribe((favAds) => {
+            this.mostWanted$.subscribe((ads: Ads[]) => {
+              if (ads.length !== 16) {
+                this.buttonHide = true;
+              }
+              ads.forEach((wanted) => {
+                favAds.find((ad: Ads) => {
+                  if (ad.id === wanted.id) {
+                    wanted.favourite = true;
+                  }
+                });
               });
             });
           });
         });
-      });
+      }
     } else if (this.url === '/unused-ads') {
       this.unused = true;
       this.unusedAds$ = this.adsService.unusedAds(this.pageNumber);
-      this.userService.getUser().subscribe((user) => {
-        const userId = user.id;
-        this.userService.getFavourites(userId).subscribe((favAds) => {
-          this.unusedAds$.subscribe((ads: Ads[]) => {
-            if (ads.length !== 16) {
-              this.buttonHide = true;
-            }
-            ads.forEach((wanted) => {
-              favAds.find((ad: Ads) => {
-                if (ad.id === wanted.id) {
-                  wanted.favourite = true;
-                }
+      if (this.token) {
+        this.userService.getUser().subscribe((user) => {
+          const userId = user.id;
+          this.userService.getFavourites(userId).subscribe((favAds) => {
+            this.unusedAds$.subscribe((ads: Ads[]) => {
+              if (ads.length !== 16) {
+                this.buttonHide = true;
+              }
+              ads.forEach((wanted) => {
+                favAds.find((ad: Ads) => {
+                  if (ad.id === wanted.id) {
+                    wanted.favourite = true;
+                  }
+                });
               });
             });
           });
         });
-      });
+      }
     } else if (this.url === '/freshly-advertised-ads') {
       this.advertised = true;
       this.advertisedAds$ = this.adsService.getAdsByPagination(this.pageNumber);
-      this.userService.getUser().subscribe((user) => {
-        const userId = user.id;
-        this.userService.getFavourites(userId).subscribe((favAds) => {
-          this.advertisedAds$.subscribe((ads: Ads[]) => {
-            if (ads.length !== 16) {
-              this.buttonHide = true;
-            }
-            ads.forEach((wanted) => {
-              favAds.find((ad: Ads) => {
-                if (ad.id === wanted.id) {
-                  wanted.favourite = true;
-                }
+      if (this.token) {
+        this.userService.getUser().subscribe((user) => {
+          const userId = user.id;
+          this.userService.getFavourites(userId).subscribe((favAds) => {
+            this.advertisedAds$.subscribe((ads: Ads[]) => {
+              if (ads.length !== 16) {
+                this.buttonHide = true;
+              }
+              ads.forEach((wanted) => {
+                favAds.find((ad: Ads) => {
+                  if (ad.id === wanted.id) {
+                    wanted.favourite = true;
+                  }
+                });
               });
             });
           });
         });
-      });
+      }
     }
   }
 
