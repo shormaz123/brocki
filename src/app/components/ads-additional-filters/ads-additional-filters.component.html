@@ -1,11 +1,14 @@
 <div class="main--container">
-  <div class="container">
-    <div class="under--container">
-      <span class="title" *ngIf="most">
+    <div class="container">
+        <div class="under--container">
+            <span class="title" *ngIf="most">
         {{ 'translate.mostWanted' | translate }}</span
       >
       <span class="title" *ngIf="unused">
         {{ 'translate.unused' | translate }}</span
+      >
+      <span class="title" *ngIf="advertised">
+        {{ 'translate.freshlyAdvertised' | translate }}</span
       >
     </div>
   </div>
