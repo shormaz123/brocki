@@ -19,6 +19,7 @@ import { AuthStore } from 'app/@core/services/auth.store';
 import { User } from 'app/shared/models/user.model';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarRef, MatSnackBarVerticalPosition, SimpleSnackBar } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
+import { WishlistService } from 'app/@core/services/wishlist.service';
 
 @Component({
   selector: 'app-header',
@@ -64,9 +65,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     public snackBar: MatSnackBar,
     private translateService: TranslateService,
     private toastr: ToastrService,
+    private wishlist: WishlistService
   ) {}
 
   ngOnInit() {
+    this.wishlist.load();
     this.sidebarTitleBackground = false;
     this.currentLang = localStorage.getItem(AuthConst.language);
     this.chosenLanguage = this.translateBackend.getChoosenLanguage();

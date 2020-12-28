@@ -16,7 +16,7 @@ export class WishlistService implements OnDestroy {
 
 
   constructor( private userService: UserService) {
-    this.load();
+
   }
   private data: WishlistData = {
     favoriteAds: []
