@@ -111,6 +111,7 @@ export class AuthStore {
     config.panelClass = ['orange-snackbar'];
     this.snackBar.open(
       this.translateService.instant('translate.acceptEmail'),
+      this.translateService.instant('translate.resendEmail')
     );
   }
 
@@ -131,6 +132,7 @@ export class AuthStore {
     config.panelClass = ['orange-snackbar'];
     this.snackBar.open(
       this.translateService.instant('translate.acceptBusinessProfileWaitMsg'),
+
     );
   }
 }

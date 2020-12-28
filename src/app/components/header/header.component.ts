@@ -17,7 +17,8 @@ import { AdsService } from '../../@core/services/ads.service';
 import { Ads } from '../../shared/models/ads.model';
 import { AuthStore } from 'app/@core/services/auth.store';
 import { User } from 'app/shared/models/user.model';
-import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarRef, MatSnackBarVerticalPosition, SimpleSnackBar } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -61,7 +62,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private adsService: AdsService,
     public auth: AuthStore,
     public snackBar: MatSnackBar,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -203,9 +205,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     config.verticalPosition = this.verticalPosition;
     config.horizontalPosition = this.horizontalPosition;
     config.panelClass = ['orange-snackbar'];
-    this.snackBar.open(
+    let snack = this.snackBar.open(
       this.translateService.instant('translate.acceptEmail'),
+      this.translateService.instant('translate.resendEmail')
     );
+    snack.onAction().subscribe(() => {
+      this.userService.resendVerificationEmail().subscribe( x=> {
+        if (x) {
+          this.toastr.success(
+            '',
+            this.translateService.instant('translate.emailSent')
+          );
+        }
+      },
+      error => {
+      })
+    });
   }
 
   openSnackbarForDeclinedProfile() {

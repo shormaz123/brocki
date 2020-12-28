@@ -3,11 +3,12 @@ import { environment } from '../../../environments/environment';
 import { HttpBaseService } from './http-base.service';
 import { User } from '../../shared/models/user.model';
 import { Observable, Subject } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { UserFavorite } from '../../shared/models/userFavorite.model';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { Email } from '../../shared/models/email.model';
 import { tap, shareReplay } from 'rxjs/operators';
+import { AuthConst } from '../consts/auth.const';
 
 @Injectable({
   providedIn: 'root',
@@ -142,6 +143,15 @@ export class UserService {
     return this.http.post(
       `${this.baseUrl}/mybrocki/confirm-account?token=${token}`,
       token
+    );
+  }
+
+  resendVerificationEmail(): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.set('security-token', localStorage.getItem(AuthConst.token));
+
+    return this.http.post(
+        `${this.baseUrl}/mybrocki/resendmail`, {headers}
     );
   }
 }

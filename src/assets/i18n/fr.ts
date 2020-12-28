@@ -210,6 +210,14 @@ export const fr = {
     location: 'Emplacement',
     confirmAccountText:
       'Veuillez vérifier votre boîte de réception pour un e-mail d`activation et le confirmer. Vous pouvez ensuite créer une annonce.',
+     acceptEmail:
+    "Veuillez confirmer votre compte en utilisant le lien que nous avons envoyé à votre adresse e-mail. Cela vous donne sûr Minibrocki de nombreuses fonctions intéressantes.",
+  acceptEmailWentWrong:
+    "Si vous ne recevez pas d'e-mail dans les prochaines 24 heures ou si vous rencontrez des problèmes pour vous inscrire, veuillez contacter notre support à: info@minibrocki.ch Un membre du personnel s'en chargera dans les plus brefs délais.",
+  acceptBusinessProfileWaitMsg:
+    "Afin de vérifier votre compte professionnel sur Minibrocki, nous aimerions vérifier cela rapidement. Nous vous enverrons un e-mail dès que cela sera fait.",
+  declinedProfile:
+    "Votre profil a été refusé. Pour plus d'informations, contactez-nous sur info@minibrocki.ch.",
     notYetAvailable: 'Pas encore disponible!',
     or: 'ou ',
     maxNumberOfTags: "Vous pouvez choisir jusqu'à 3 balises",
@@ -223,6 +231,7 @@ export const fr = {
     createNewList: 'Create new list',
     create: 'Créer',
     reportAd: 'Signaler une annonce',
-    reportSended: 'Rapport envoyé!'
+    reportSended: 'Rapport envoyé!',
+    resendEmail: 'Cliquez ici si vous souhaitez que nous vous envoyions à nouveau un e-mail de confirmation.'
   },
 };

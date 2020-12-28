@@ -235,6 +235,7 @@ export const de = {
     createNewList: 'Create new list',
     create: 'Erstellen',
     reportAd: 'Anzeige melden',
-    reportSended: 'Bericht gesendet!'
+    reportSended: 'Bericht gesendet!',
+    resendEmail: 'Klicken Sie hier, wenn wir Ihnen erneut eine Bestätigungs-E-Mail senden sollen.'
   },
 };
