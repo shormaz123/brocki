@@ -164,6 +164,7 @@ export class RegistrationComponent implements OnInit {
     config.panelClass = ['orange-snackbar'];
     this.snackBar.open(
       this.translateService.instant('translate.acceptEmail'),
+      this.translateService.instant('translate.resendEmail')
     );
   }
 

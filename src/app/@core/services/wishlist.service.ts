@@ -9,7 +9,6 @@ import {
 import { map, takeUntil } from 'rxjs/operators';
 import { AuthConst } from '../consts/auth.const';
 import { UserService } from './user.service';
-import { Subscription } from 'rxjs/Subscription';
 
 interface WishlistData {
   favoriteAds: Ads[];
@@ -19,86 +18,73 @@ interface WishlistData {
   providedIn: 'root',
 })
 export class WishlistService implements OnDestroy {
-  private listenSubscription: Subscription;
-  constructor(private userService: UserService) {
-    setTimeout(() => {
-      this.load();
-    }, 200);
+
+
+  constructor( private userService: UserService) {
+
   }
   private data: WishlistData = {
     favoriteAds: [],
   };
 
-  token;
-  userFavoriteAds;
-  private destroy$: Subject<void> = new Subject();
-  private onAddingSubject$: Subject<Ads> = new Subject();
-  private adsSubject$: BehaviorSubject<Ads[]> = new BehaviorSubject(
-    this.data.favoriteAds
-  );
+token;
+userFavoriteAds;
+private destroy$: Subject<void> = new Subject();
+private onAddingSubject$: Subject<Ads> = new Subject();
+private adsSubject$: BehaviorSubject<Ads[]> = new BehaviorSubject(this.data.favoriteAds);
 
-  readonly ads$: Observable<Ads[]> = this.adsSubject$.pipe(
-    takeUntil(this.destroy$)
-  );
-  readonly count$: Observable<number> = this.adsSubject$.pipe(
-    map((ads) => ads.length)
-  );
-  readonly onAdding$: Observable<Ads> = this.onAddingSubject$.asObservable();
+
+    readonly ads$: Observable<Ads[]> = this.adsSubject$.pipe(takeUntil(this.destroy$));
+    readonly count$: Observable<number> = this.adsSubject$.pipe(map(ads => ads.length));
+    readonly onAdding$: Observable<Ads> = this.onAddingSubject$.asObservable();
+
 
   add(ad: Ads): Observable<void> {
+
     // timer only for demo
-    return timer(0).pipe(
-      map(() => {
+    return timer(0).pipe(map(() => {
         this.onAddingSubject$.next(ad);
 
-        const index = this.data.favoriteAds.findIndex(
-          (item) => item.id === ad.id
-        );
+        const index = this.data.favoriteAds.findIndex(item => item.id === ad.id);
         if (index === -1) {
-          this.data.favoriteAds.push(ad);
-          this.save();
+            this.data.favoriteAds.push(ad);
+            this.save();
         }
-      })
-    );
-  }
+    }));
+}
 
-  private save(): void {
-    this.adsSubject$.next(this.data.favoriteAds);
-  }
 
-  load(): void {
-    this.token = localStorage.getItem(AuthConst.token);
-    if (this.token) {
-      this.listenSubscription = this.userService
-        .getFavourites()
-        .subscribe((x) => {
-          this.data.favoriteAds = x;
-          this.save();
-        });
+private save(): void {
+  this.adsSubject$.next(this.data.favoriteAds);
+}
+
+ load(): void {
+  this.token = localStorage.getItem(AuthConst.token);
+  if (this.token) {
+      this.userService
+      .getFavourites(Number(localStorage.getItem('brocki_id')))
+      .subscribe( x => {
+        this.data.favoriteAds = x;
+        this.save();
+      });
     }
-  }
+}
 
-  remove(ad: Ads): Observable<void> {
-    // timer only for demo
-    return timer(0).pipe(
-      map(() => {
-        const index = this.data.favoriteAds.findIndex(
-          (item) => item.id === ad.id
-        );
+remove(ad: Ads): Observable<void> {
+  // timer only for demo
+  return timer(0).pipe(map(() => {
+      const index = this.data.favoriteAds.findIndex(item => item.id === ad.id);
 
-        if (index !== -1) {
+      if (index !== -1) {
           this.data.favoriteAds.splice(index, 1);
           this.save();
-        }
-      })
-    );
-  }
+      }
+  }));
+}
 
-  ngOnDestroy(): void {
-    if (this.listenSubscription) {
-      this.listenSubscription.unsubscribe();
-    }
-    this.destroy$.next();
-    this.destroy$.complete();
+
+ngOnDestroy(): void {
+  this.destroy$.next();
+  this.destroy$.complete();
   }
 }

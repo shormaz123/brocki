@@ -16,7 +16,10 @@ export class ConfirmLoginComponent implements OnInit {
   currentLang;
   text ='Bitte bestätigen Sie Ihre Registrierung.';
   buttonText = 'Konto bestätigen';
+  expiredLink = 'Entschuldigung, dein Link ist abgelaufen'
   language;
+  userId;
+  userStatus: string;
 
   constructor(
     private router: Router,
@@ -28,6 +31,10 @@ export class ConfirmLoginComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       this.confirmToken = queryParams.token;
+      this.userId = queryParams.user;
+      this.userService.getUserById(queryParams.user).subscribe( x=> {
+        this.userStatus = x.userStatus;
+      })
     })
     this.translate.use(localStorage.getItem(AuthConst.language));
     this.language = localStorage.getItem(AuthConst.language);
@@ -56,16 +63,20 @@ export class ConfirmLoginComponent implements OnInit {
   setLanguage() {
     if (this.currentLang === 'en') {
       this.text='Please, confirm your registration.',
-      this.buttonText = 'Confirm account'
+      this.buttonText = 'Confirm account',
+      this.expiredLink = 'Sorry, your link has expired'
     } else if (this.currentLang === 'fr') {
       this.text='Veuillez confirmer votre inscription.',
-      this.buttonText = 'Confirmer le compte'
+      this.buttonText = 'Confirmer le compte',
+      this.expiredLink = 'Désolé, votre lien a expiré'
     } else if (this.currentLang === 'de') {
       this.text='Bitte bestätigen Sie Ihre Registrierung.',
+      this.expiredLink = 'Entschuldigung, dein Link ist abgelaufen'
       this.buttonText = 'Konto bestätigen'
     } else if (this.currentLang === 'it') {
       this.text='Per favore, conferma la tua registrazione',
-      this.buttonText = "Confermare l'account"
+      this.buttonText = "Confermare l'account",
+      this.expiredLink = 'Spiacenti, il tuo link è scaduto'
     }
   }
 }

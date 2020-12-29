@@ -226,6 +226,8 @@ export const en = {
     createNewList: 'Create new list',
     create: 'Create',
     reportAd: 'Report ad',
-    reportSended: 'Report sended!'
+    reportSended: 'Report sended!',
+    resendEmail: 'Click here if you want us to send you a confirmation email again.',
+    linkExpired: 'Sorry, your link has expired',
   },
 };
