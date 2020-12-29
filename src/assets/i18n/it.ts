@@ -231,6 +231,7 @@ export const it = {
     create: 'Creare',
     reportAd: 'Segnala annuncio',
     reportSended: 'Rapporto inviato!',
-    resendEmail: "Fai clic qui se desideri che ti inviamo nuovamente un'email di conferma"
+    resendEmail: "Fai clic qui se desideri che ti inviamo nuovamente un'email di conferma",
+    linkExpired: 'Spiacenti, il tuo link è scaduto'
   },
 };

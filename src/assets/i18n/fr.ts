@@ -232,6 +232,7 @@ export const fr = {
     create: 'Créer',
     reportAd: 'Signaler une annonce',
     reportSended: 'Rapport envoyé!',
-    resendEmail: 'Cliquez ici si vous souhaitez que nous vous envoyions à nouveau un e-mail de confirmation.'
+    resendEmail: 'Cliquez ici si vous souhaitez que nous vous envoyions à nouveau un e-mail de confirmation.',
+    linkExpired: 'Désolé, votre lien a expiré'
   },
 };
