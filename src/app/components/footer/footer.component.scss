@@ -113,15 +113,16 @@
 
   &__email {
     display: flex;
-    padding: 0px 43px 5px 0;
+    padding: 0 43px 5px 0;
     width: 276px;
   }
 
   &__email-text {
     margin: 0 0 5px 0;
     font-size: 15px;
-    width: 276px;
+    width: 270px;
     text-align: justify;
+    word-break: break-all;
   }
 
   &__email-email {

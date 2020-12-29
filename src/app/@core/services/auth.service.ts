@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
 import { HttpBaseService } from './http-base.service';
 import { AuthResponse } from '../../shared/models/responses/auth.response';
 import { Observable } from 'rxjs';
@@ -40,8 +39,8 @@ export class AuthService {
     });
   }
 
-  newPassword(oldPassword: string, password: string): Observable<String> {
-    return this.http.put<String>(
+  newPassword(oldPassword: string, password: string): Observable<string> {
+    return this.http.put<string>(
       `${this.baseUrl}/mybrocki/auth/users/newpassword`,
       { oldPassword, password }
     );

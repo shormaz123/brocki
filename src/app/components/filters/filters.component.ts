@@ -24,11 +24,11 @@ export class FiltersComponent implements OnInit, OnDestroy {
   errorMessage;
   public filterAd: FilterAds;
   ads: any;
-  hideFilter: boolean = false;
-  currentLang = 'de';
+  hideFilter = false;
+  currentLang: string | undefined;
   subscriptionLang: Subscription;
-  pageNumber: number = 1;
-  pageSize: number = 16;
+  pageNumber = 1;
+  pageSize = 16;
   language: string;
   location: string;
   fillAds: any;
@@ -45,8 +45,8 @@ export class FiltersComponent implements OnInit, OnDestroy {
     subGroupName: '',
   };
 
-  fromPrice: number = 0;
-  toPrice: number = 999999999999;
+  fromPrice = 0;
+  toPrice = 999999999999;
   options: Options = {
     floor: this.filterForm.value.minPrice,
     ceil: this.filterForm.value.maxPrice,
@@ -85,6 +85,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.language = localStorage.getItem(AuthConst.language);
+    this.currentLang = this.language;
     this.adsService.getAllAdsGroups().subscribe((x) => {
       this.categoriesGroup = x;
     });
@@ -105,7 +106,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.subCategoriesGroup = [];
     this.category.id = Number(event.target.value);
 
-    let index = event.target.options.selectedIndex;
+    const index = event.target.options.selectedIndex;
 
     this.category.groupName = event.target.options[index].label;
 
@@ -120,7 +121,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   findSubCategory(event: any): void {
     this.subCategory.id = Number(event.target.value);
 
-    let index = event.target.options.selectedIndex;
+    const index = event.target.options.selectedIndex;
 
     this.subCategory.subGroupName = event.target.options[index].label;
   }

@@ -19,7 +19,7 @@ export class FavoriteModalComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getFavourites().subscribe((fav) => {
-      (this.favorites = fav) (this.list = false);
+      (this.favorites = fav), (this.list = false);
     });
     console.log(this.favorites);
   }
@@ -34,13 +34,13 @@ export class FavoriteModalComponent implements OnInit {
       favouriteName: favoriteList,
     };
     this.list = false;
-    this.userService.createFavorite(favorite).subscribe((x) => {
-      // this.userService.getFavourites().subscribe((fav) => {
-      //   (this.favorites = fav), (this.list = false);
-      // });
-      console.log('aaa' + this.favorites.id);
-      console.log(x);
-    });
+    // this.userService.createFavorite(favorite).subscribe((x) => {
+    //   this.userService.getFavourites().subscribe((fav) => {
+    //     (this.favorites = fav) (this.list = false);
+    //   });
+    //   console.log('aaa' + this.favorites.id);
+    //   console.log(x);
+    // });
     // this.route.navigate(['/favorite']);
   }
 }
