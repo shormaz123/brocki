@@ -3,7 +3,6 @@ import { HttpBaseService } from './http-base.service';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Ads } from '../../shared/models/ads.model';
-import { adsGroup } from '../../shared/models/adsGroup.model';
 import { adsSubGroup } from '../../shared/models/adsSubGroup.model';
 import { User } from '../../shared/models/user.model';
 import { CreateAd } from '../../shared/models/create-ad.model';
@@ -11,11 +10,7 @@ import { Comment } from '../../shared/models/createComment.model';
 import { Tags } from '../../shared/models/tags.model';
 import {
   HttpClient,
-  HttpEvent,
-  HttpErrorResponse,
-  HttpEventType,
   HttpParams,
-  HttpHeaders,
 } from '@angular/common/http';
 import { map, shareReplay } from 'rxjs/operators';
 import { AdsParam } from '../../shared/models/adParams.model';
@@ -187,8 +182,8 @@ export class AdsService {
    *
    */
   changeStatusOfAds(ads: Ads, id: number): Observable<Ads> {
-    let query = new HttpParams();
-    query = query.append('status', ads.status);
+    const query = new HttpParams();
+    query.append('status', ads.status);
     return this.http
       .put<Ads>(`${this.baseUrl}/mybrocki/auth/ads/status/${id}`, ads)
       .pipe(shareReplay());
@@ -303,8 +298,10 @@ export class AdsService {
     return this.http.get(`${this.baseUrl}/mybrocki/subgroup/${id}`);
   }
 
-  sendReportMessage(adId: number, reasonMessage: string):Observable<any> {
-
-    return this.http.post(`${this.baseUrl}/mybrocki/auth/ads/report`, {adId, reasonMessage});
+  sendReportMessage(adId: number, reasonMessage: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/mybrocki/auth/ads/report`, {
+      adId,
+      reasonMessage,
+    });
   }
 }

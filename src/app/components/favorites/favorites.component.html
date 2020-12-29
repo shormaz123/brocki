@@ -1,13 +1,16 @@
-<div class="container">
-    <div class="under--container">
-        <span class="title">{{ 'translate.favoriteAds' | translate }}</span>
+<section class="container">
+  <div class="under--container">
+    <span class="title">{{ 'translate.favoriteAds' | translate }}</span>
+  </div>
+  <div class="no--ads--container" *ngIf="favoriteAds?.length === 0">
+    <h1>{{ 'translate.noAvailableAds' | translate }}</h1>
+  </div>
+  <div class="favorites">
+    <div class="favorites__line--card">
+      <div *ngFor="let group of favoriteGroups$ | async">
+        <div>{{ group.id }}</div>
+      </div>
+      <!-- <app-ads-card-detail class="favorites__favorite--ads" [ads]="favoriteAds"></app-ads-card-detail> -->
     </div>
-    <div class="no--ads--container" *ngIf="favoriteAds?.length === 0">
-        <h1>{{ 'translate.noAvailableAds' | translate }}</h1>
-    </div>
-    <div class="favorites">
-        <div class="favorites__line--card">
-            <app-ads-card-detail class="favorites__favorite--ads" [ads]="favoriteAds"></app-ads-card-detail>
-        </div>
-    </div>
-</div>
+  </div>
+</section>

@@ -15,7 +15,7 @@ export class AdsAdditionalFiltersComponent implements OnInit {
   mostWanted$: Observable<Ads[]>;
   unusedAds$: Observable<Ads[]>;
   advertisedAds$: Observable<Ads[]>;
-  pageNumber: number = 1;
+  pageNumber = 1;
   buttonHide = false;
   url: string | undefined;
   most: boolean;
@@ -30,7 +30,7 @@ export class AdsAdditionalFiltersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.token = localStorage.getItem(AuthConst.token)
+    this.token = localStorage.getItem(AuthConst.token);
 
     this.url = this.router.url;
     if (this.url === '/most-wanted-ads') {
@@ -39,7 +39,7 @@ export class AdsAdditionalFiltersComponent implements OnInit {
       if (this.token) {
         this.userService.getUser().subscribe((user) => {
           const userId = user.id;
-          this.userService.getFavourites(userId).subscribe((favAds) => {
+          this.userService.getFavourites().subscribe((favAds) => {
             this.mostWanted$.subscribe((ads: Ads[]) => {
               if (ads.length !== 16) {
                 this.buttonHide = true;
@@ -61,7 +61,7 @@ export class AdsAdditionalFiltersComponent implements OnInit {
       if (this.token) {
         this.userService.getUser().subscribe((user) => {
           const userId = user.id;
-          this.userService.getFavourites(userId).subscribe((favAds) => {
+          this.userService.getFavourites().subscribe((favAds) => {
             this.unusedAds$.subscribe((ads: Ads[]) => {
               if (ads.length !== 16) {
                 this.buttonHide = true;
@@ -83,7 +83,7 @@ export class AdsAdditionalFiltersComponent implements OnInit {
       if (this.token) {
         this.userService.getUser().subscribe((user) => {
           const userId = user.id;
-          this.userService.getFavourites(userId).subscribe((favAds) => {
+          this.userService.getFavourites().subscribe((favAds) => {
             this.advertisedAds$.subscribe((ads: Ads[]) => {
               if (ads.length !== 16) {
                 this.buttonHide = true;

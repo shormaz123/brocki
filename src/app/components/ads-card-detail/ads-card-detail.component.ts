@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { AuthConst } from 'app/@core/consts/auth.const';
 import { UserService } from 'app/@core/services/user.service';
 import { WishlistService } from 'app/@core/services/wishlist.service';
@@ -31,17 +31,21 @@ export class AdsCardDetailComponent implements OnInit {
     this.wishlist.remove(ad).subscribe();
     this.userService
       .deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id')))
-      .subscribe((x) => {});
+      .subscribe(() => {});
   }
 
   addToWishlist(ad: Ads): void {
     this.showModal = true;
-    this.wishlist.add(ad).subscribe();
-    this.userRequest = {
-      adsId: ad.id,
-      userId: Number(localStorage.getItem('brocki_id')),
-    };
-    this.userService.updateUserFavourites(this.userRequest).subscribe();
+    this.userService.getFavourites().subscribe((x) => {
+      console.log('getGroups');
+      console.log(x);
+    });
+    // this.wishlist.add(ad).subscribe();
+    // this.userRequest = {
+    //   adsId: ad.id,
+    //   userId: Number(localStorage.getItem('brocki_id')),
+    // };
+    // this.userService.updateUserFavourites(this.userRequest).subscribe();
   }
 
   closeModal(): void {

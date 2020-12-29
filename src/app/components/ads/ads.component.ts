@@ -39,7 +39,7 @@ export class AdsComponent implements OnInit, OnDestroy {
   clickedTag: number;
   tags = [];
   newAds: any;
-  disableButton: boolean = true;
+  disableButton = true;
   chosenLanguage;
   userLang;
   startingAds;
@@ -78,7 +78,7 @@ export class AdsComponent implements OnInit, OnDestroy {
         map(() => this.rootRoute(this.activatedRoute)),
         filter((route: ActivatedRoute) => route.outlet === 'primary')
       )
-      .subscribe((route: ActivatedRoute) => {});
+      .subscribe(() => {});
 
     //
     this.activatedRoute.params.subscribe((params) => {
@@ -97,7 +97,7 @@ export class AdsComponent implements OnInit, OnDestroy {
         });
       this.adsService
         .getSubBySubGroupId(params.subGroupId)
-        .subscribe((x) => {});
+        .subscribe(() => {});
       this.adsService
         .getAdsBySubGroupParam(params.subGroupId, this.pageNumber)
         .subscribe((ads) => {
@@ -131,11 +131,7 @@ export class AdsComponent implements OnInit, OnDestroy {
   }
 
   showMoreButton() {
-    if (this.favAds.length !== 3) {
-      this.disableButton = false;
-    } else {
-      this.disableButton = true;
-    }
+    this.disableButton = this.favAds.length === 3;
   }
 
   change(code: string) {
@@ -263,7 +259,7 @@ export class AdsComponent implements OnInit, OnDestroy {
   }
 
   getFavoriteAds(userId: number) {
-    this.userService.getFavourites(userId).subscribe((x) => {
+    this.userService.getFavourites().subscribe((x) => {
       this.favoriteAds = x;
       // Replace objects between two arrays.
       this.favAds = this.ads.map(
@@ -307,11 +303,7 @@ export class AdsComponent implements OnInit, OnDestroy {
               );
             }
             this.pageNumber = 1;
-            if (this.favAds.length !== 3) {
-              this.disableButton = false;
-            } else {
-              this.disableButton = true;
-            }
+            this.disableButton = this.favAds.length === 3;
           });
       } else {
         this.adsService
@@ -323,11 +315,7 @@ export class AdsComponent implements OnInit, OnDestroy {
                 (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
               );
             }
-            if (this.favAds.length !== 3) {
-              this.disableButton = false;
-            } else {
-              this.disableButton = true;
-            }
+            this.disableButton = this.favAds.length === 3;
           });
       }
       return;
@@ -348,11 +336,7 @@ export class AdsComponent implements OnInit, OnDestroy {
               (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
             );
           }
-          if (this.favAds.length !== 3) {
-            this.disableButton = false;
-          } else {
-            this.disableButton = true;
-          }
+          this.disableButton = this.favAds.length === 3;
         });
     } else {
       this.setLanguage();
@@ -363,7 +347,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     if (this.currentLang === 'en') {
       return this.toastr.warning('You can choose up to 3 tags');
     } else if (this.currentLang === 'fr') {
-      return this.toastr.warning("Vous pouvez choisir jusqu'à 3 balises");
+      return this.toastr.warning('Vous pouvez choisir jusqu\'à 3 balises');
     } else if (this.currentLang === 'de') {
       return this.toastr.warning('Sie können bis zu 3 Tags auswählen');
     } else if (this.currentLang === 'it') {
@@ -375,7 +359,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     const x = window.scrollX;
     const y = window.scrollY;
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function () {
+    window.onscroll = function() {
       window.scrollTo(x, y);
     };
   }
@@ -386,13 +370,12 @@ export class AdsComponent implements OnInit, OnDestroy {
 
   enableScrolling() {
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function () {};
+    window.onscroll = function() {};
   }
 
   increaseShow() {
     this.pageNumber += 1;
-    this.adsService
-      .filterSubCategoryTags(this.clickedTags, this.pageNumber, this.subGroupId)
+    this.adsService.filterSubCategoryTags(this.clickedTags, this.pageNumber, this.subGroupId)
       .subscribe((response) => {
         this.newAds = response;
         if (this.newAds.length !== 3) {

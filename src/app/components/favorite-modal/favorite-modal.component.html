@@ -7,6 +7,7 @@
           <img
             class="favorite__image"
             src="../../../assets/images/myAccount/contact us.png"
+            alt=""
           />
         </div>
         <div class="favorite__icon-text">favorite</div>
@@ -27,7 +28,6 @@
       </div>
       <div class="favorite-main__box favorite-main__box--end">
         <div
-          type="button"
           class="favorite-main__button"
           (click)="create(createFavoriteList.value)"
         >
@@ -50,7 +50,6 @@
       </div>
       <div class="favorite-created__button-box">
         <div
-          type="button"
           class="favorite-created__button"
           (click)="create(createFavoriteList.value)"
         >
@@ -66,7 +65,7 @@
       </div>
       <div class="favorite-list__favorite">
         <div class="favorite-list__select" *ngFor="let favorite of favorites">
-          <div>{{ favorite }}</div>
+          <div>{{ favorite.favouriteName }}</div>
         </div>
       </div>
     </section>

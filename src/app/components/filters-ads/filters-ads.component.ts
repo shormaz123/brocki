@@ -23,8 +23,8 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
 
   newAds: any;
 
-  pageNumber: number = 1;
-  disableButton: boolean = true;
+  pageNumber = 1;
+  disableButton = true;
 
   constructor(
     private userService: UserService,
@@ -43,7 +43,7 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
     if (signIn) {
       this.userService.getUser().subscribe((user) => {
         this.userId = user.id;
-        this.userService.getFavourites(this.userId).subscribe((favAds) => {
+        this.userService.getFavourites().subscribe((favAds) => {
           this.favoriteAds = favAds;
           this.favAds = this.ads.map(
             (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
@@ -83,17 +83,17 @@ export class FiltersAdsComponent implements OnInit, OnChanges {
     const x = window.scrollX;
     const y = window.scrollY;
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function () {
+    window.onscroll = function() {
       window.scrollTo(x, y);
     };
   }
 
   enableScrolling() {
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function () {};
+    window.onscroll = function() {};
   }
 
-  onMouseWheel(e) {
+  onMouseWheel() {
     this.enableScrolling();
   }
 }

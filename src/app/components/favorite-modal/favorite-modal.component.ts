@@ -1,7 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { HelpersService } from 'app/@core/services/helpers.service';
-import { Ads } from 'app/shared/models/ads.model';
+import { UserService } from 'app/@core/services/user.service';
 
 @Component({
   selector: 'app-favorite-modal',
@@ -9,14 +8,21 @@ import { Ads } from 'app/shared/models/ads.model';
   styleUrls: ['./favorite-modal.component.scss'],
 })
 export class FavoriteModalComponent implements OnInit {
+  // tslint:disable-next-line:no-output-native
   @Output() close = new EventEmitter();
   favorites: any = [];
   emptyInput: string | undefined;
   list = true;
+  subscriptionFavorite: any;
 
-  constructor(private HelpersService: HelpersService, private route: Router) {}
+  constructor(private userService: UserService, private route: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService.getFavourites().subscribe((fav) => {
+      (this.favorites = fav) (this.list = false);
+    });
+    console.log(this.favorites);
+  }
 
   closeModal(): void {
     this.close.emit();
@@ -24,8 +30,17 @@ export class FavoriteModalComponent implements OnInit {
 
   create(favoriteList: string): void {
     this.emptyInput = '';
+    const favorite = {
+      favouriteName: favoriteList,
+    };
     this.list = false;
-    this.HelpersService.getFavorites(favoriteList);
-    this.route.navigate(['/favorite']);
+    this.userService.createFavorite(favorite).subscribe((x) => {
+      // this.userService.getFavourites().subscribe((fav) => {
+      //   (this.favorites = fav), (this.list = false);
+      // });
+      console.log('aaa' + this.favorites.id);
+      console.log(x);
+    });
+    // this.route.navigate(['/favorite']);
   }
 }

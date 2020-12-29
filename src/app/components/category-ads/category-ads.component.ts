@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AuthConst } from 'app/@core/consts/auth.const';
 import { HelpersService } from 'app/@core/services/helpers.service';
 import { UserService } from 'app/@core/services/user.service';
@@ -15,7 +15,7 @@ import { UserAddAdsRequest } from 'app/shared/models/useraddAdsRequest.model';
   templateUrl: './category-ads.component.html',
   styleUrls: ['./category-ads.component.scss'],
 })
-export class CategoryAdsComponent implements OnInit {
+export class CategoryAdsComponent implements OnInit, OnDestroy {
   selectedImage: string;
   displaySideNav: boolean;
   subscriptionLang: Subscription;
@@ -193,7 +193,7 @@ export class CategoryAdsComponent implements OnInit {
   }
 
   getFavoriteAds(userId: number) {
-    this.userService.getFavourites(userId).subscribe((x) => {
+    this.userService.getFavourites().subscribe((x) => {
       this.favoriteAds = x;
       // Replace objects between two arrays.
       this.favAds = this.ads.map(

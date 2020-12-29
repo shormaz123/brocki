@@ -7,7 +7,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserFavorite } from '../../shared/models/userFavorite.model';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { Email } from '../../shared/models/email.model';
-import { tap, shareReplay } from 'rxjs/operators';
+import { shareReplay, first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -31,8 +31,9 @@ export class UserService {
     return this.user.asObservable();
   }
 
-  deleteUser(id: number): Observable<String> {
-    return this.http.delete<String>(`${this.baseUrl}/brocki/users/${id}`);
+
+  deleteUser(id: number): Observable<string> {
+    return this.http.delete<string>(`${this.baseUrl}/brocki/users/${id}`);
   }
 
   getUserById(id: any): Observable<User> {
@@ -69,10 +70,28 @@ export class UserService {
     );
   }
 
-  getFavourites(id: number): Observable<any> {
-    return this.http.get<any>(
-      `${this.baseUrl}/mybrocki/auth/users/favourites/${id}`
-    );
+  /**
+   * Get all favorite groups
+   *
+   */
+  getFavourites(): Observable<any> {
+    return this.http
+      .get<any>(`${this.baseUrl}/mybrocki/auth/ads/favouritelist/user`)
+      .pipe(shareReplay(), first());
+  }
+
+  /**
+   *  Create favorite
+   */
+  createFavorite(favorite: any): Observable<any> {
+    // let params = new HttpParams();
+    // params = params.append('favoriteName', favorite.toString());
+    return this.http
+      .post<any>(
+        `${this.baseUrl}/mybrocki/auth/ads/favouritelist/create`,
+        favorite
+      )
+      .pipe(shareReplay());
   }
 
   deleteUserFavourite(adId: number, userId: number) {

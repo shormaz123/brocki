@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Ads } from '../../shared/models/ads.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HelpersService } from '../../@core/services/helpers.service';
@@ -31,6 +31,7 @@ export class SearchedAdsComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnChanges() {
     if (Object.keys(this.ads).length !== 12) {
       this.disableButton = false;
@@ -41,11 +42,9 @@ export class SearchedAdsComponent implements OnInit {
     this.token = localStorage.getItem(AuthConst.token);
     if (this.token) {
       this.userId = Number(localStorage.getItem('brocki_id'));
-      this.userService
-        .getFavourites(Number(localStorage.getItem('brocki_id')))
-        .subscribe((x) => {
-          this.favoriteAds = x;
-        });
+      this.userService.getFavourites().subscribe((x) => {
+        this.favoriteAds = x;
+      });
     }
     this.route.params.subscribe((params) => {
       this.productName = params.data;
@@ -61,13 +60,8 @@ export class SearchedAdsComponent implements OnInit {
               } else {
                 this.ads = x;
               }
-              if (Object.keys(this.ads).length !== 12) {
-                this.disableButton = false;
-              } else {
-                this.disableButton = true;
-              }
+              this.disableButton = Object.keys(this.ads).length === 12;
             },
-            (error) => {}
           );
       }
     });
@@ -86,17 +80,16 @@ export class SearchedAdsComponent implements OnInit {
     };
     this.userService
       .updateUserFavourites(this.userRequest)
-      .subscribe((x) => {}),
-      (error) => {};
+      .subscribe(() => {}, () => {}, );
+
     this.helpersService.$numOfFavs.next();
   }
 
   removeFromWishlist(adId: number) {
     this.userService
       .deleteUserFavourite(adId, this.userId)
-      .subscribe((x) => {}),
-      // tslint:disable-next-line:no-unused-expression
-      (error) => {};
+      .subscribe(() => {}, () => {}, );
+
     this.helpersService.$numOfFavs.next();
   }
 
@@ -118,17 +111,17 @@ export class SearchedAdsComponent implements OnInit {
     const x = window.scrollX;
     const y = window.scrollY;
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function () {
+    window.onscroll = function() {
       window.scrollTo(x, y);
     };
   }
 
   enableScrolling() {
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function () {};
+    window.onscroll = function() {};
   }
 
-  onMouseWheel(e) {
+  onMouseWheel() {
     this.enableScrolling();
   }
 }

@@ -36,7 +36,7 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
   clickedTag: number;
   tags = [];
   newAds: any;
-  disableButton: boolean = true;
+  disableButton = true;
   chosenLanguage;
   userLang;
   startingAds: number;
@@ -102,11 +102,7 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
   }
 
   showMoreButton() {
-    if (this.favAds.length !== 3) {
-      this.disableButton = false;
-    } else {
-      this.disableButton = true;
-    }
+    this.disableButton = this.favAds.length === 3;
   }
 
   ngOnDestroy() {
@@ -234,7 +230,7 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
   }
 
   getFavoriteAds(userId: number) {
-    this.userService.getFavourites(userId).subscribe((x) => {
+    this.userService.getFavourites().subscribe((x) => {
       this.favoriteAds = x;
       // Replace objects between two arrays.
       this.favAds = this.ads.map(
@@ -267,11 +263,7 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
               );
             }
             this.pageNumber = 1;
-            if (this.favAds.length !== 3) {
-              this.disableButton = false;
-            } else {
-              this.disableButton = true;
-            }
+            this.disableButton = this.favAds.length === 3;
           });
       } else {
         this.adsService
@@ -283,11 +275,7 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
                 (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
               );
             }
-            if (this.favAds.length !== 3) {
-              this.disableButton = false;
-            } else {
-              this.disableButton = true;
-            }
+            this.disableButton = this.favAds.length === 3;
           });
       }
       return;
@@ -304,11 +292,7 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
               (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
             );
           }
-          if (this.favAds.length !== 3) {
-            this.disableButton = false;
-          } else {
-            this.disableButton = true;
-          }
+          this.disableButton = this.favAds.length === 3;
         });
     } else {
       this.setLanguage();
@@ -319,7 +303,7 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
     if (this.currentLang === 'en') {
       return this.toastr.warning('You can choose up to 3 tags');
     } else if (this.currentLang === 'fr') {
-      return this.toastr.warning("Vous pouvez choisir jusqu'à 3 balises");
+      return this.toastr.warning('Vous pouvez choisir jusqu\'à 3 balises');
     } else if (this.currentLang === 'de') {
       return this.toastr.warning('Sie können bis zu 3 Tags auswählen');
     } else if (this.currentLang === 'it') {
@@ -344,16 +328,18 @@ export class AdsCategoryWithTagsComponent implements OnInit, OnDestroy {
   disableScrolling() {
     const x = window.scrollX;
     const y = window.scrollY;
-    window.onscroll = function () {
+    // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function() {
       window.scrollTo(x, y);
     };
   }
 
-  onMouseWheel(e) {
+  onMouseWheel() {
     this.enableScrolling();
   }
 
   enableScrolling() {
-    window.onscroll = function () {};
+    // tslint:disable-next-line:only-arrow-functions
+    window.onscroll = function() {};
   }
 }
