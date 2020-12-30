@@ -63,7 +63,9 @@
                     <div *ngIf="!admin" class="boxes__link" (click)="goTo('/contact-us')">
                         <div class="boxes__image" [inlineSVG]="'../../../assets/images/myAccount/contact-us.svg'"></div>
                         <div class="boxes__text">
+                            <label>
                             {{ 'translate.contactUs' | translate }}
+                            </label>
                         </div>
                     </div>
                     <div *ngIf="admin" class="boxes__link" (click)="goTo('/accept-users')">
