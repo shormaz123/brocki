@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'app/@core/services/user.service';
 
@@ -10,6 +10,7 @@ import { UserService } from 'app/@core/services/user.service';
 export class FavoriteModalComponent implements OnInit {
   // tslint:disable-next-line:no-output-native
   @Output() close = new EventEmitter();
+  @Input() favoriteList;
   favorites: any = [];
   emptyInput: string | undefined;
   list = true;
@@ -18,10 +19,13 @@ export class FavoriteModalComponent implements OnInit {
   constructor(private userService: UserService, private route: Router) {}
 
   ngOnInit() {
-    this.userService.getFavourites().subscribe((fav) => {
-      (this.favorites = fav), (this.list = false);
-    });
-    console.log(this.favorites);
+    if (this.favoriteList) {
+      this.favorites = this.favoriteList;
+      (this.list = false)
+    }
+    // this.userService.getFavourites().subscribe((fav) => {
+    //   (this.favorites = fav), (this.list = false);
+    // });
   }
 
   closeModal(): void {

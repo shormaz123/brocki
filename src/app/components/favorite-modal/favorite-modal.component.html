@@ -1,73 +1,51 @@
 <div class="background">
-  <section class="favorite">
-    <div class="favorite__close" (click)="closeModal()">X</div>
-    <section class="favorite__icon">
-      <div class="favorite__icon-box">
-        <div>
-          <img
-            class="favorite__image"
-            src="../../../assets/images/myAccount/contact us.png"
-            alt=""
-          />
-        </div>
-        <div class="favorite__icon-text">favorite</div>
-      </div>
-    </section>
-    <section class="favorite-main" *ngIf="list">
-      <div class="favorite-main__box">
-        <label class="favorite-main__label">{{
+    <section class="favorite">
+        <div class="favorite__close" (click)="closeModal()">X</div>
+        <section class="favorite__icon">
+            <div class="favorite__icon-box">
+                <div>
+                    <img class="favorite__image" src="../../../assets/images/myAccount/contact us.png" alt="" />
+                </div>
+                <div class="favorite__icon-text">favorite</div>
+            </div>
+        </section>
+        <section class="favorite-main" *ngIf="list">
+            <div class="favorite-main__box">
+                <label class="favorite-main__label">{{
           'translate.createNewList' | translate
         }}</label>
-        <input
-          class="favorite-main__input"
-          #createFavoriteList
-          [(ngModel)]="emptyInput"
-          (keyup.enter)="create(createFavoriteList.value)"
-          maxlength="25"
-        />
-      </div>
-      <div class="favorite-main__box favorite-main__box--end">
-        <div
-          class="favorite-main__button"
-          (click)="create(createFavoriteList.value)"
-        >
-          {{ 'translate.create' | translate }}
-        </div>
-      </div>
-    </section>
-    <section class="favorite-created" *ngIf="!list">
-      <div class="favorite-created__box">
-        <label class="favorite-created__label">{{
+                <input class="favorite-main__input" #createFavoriteList [(ngModel)]="emptyInput" (keyup.enter)="create(createFavoriteList.value)" maxlength="25" />
+            </div>
+            <div class="favorite-main__box favorite-main__box--end">
+                <div class="favorite-main__button" (click)="create(createFavoriteList.value)">
+                    {{ 'translate.create' | translate }}
+                </div>
+            </div>
+        </section>
+        <section class="favorite-created" *ngIf="!list">
+            <div class="favorite-created__box">
+                <label class="favorite-created__label">{{
           'translate.createNewList' | translate
         }}</label>
-        <input
-          class="favorite-created__input"
-          #createFavoriteList
-          [(ngModel)]="emptyInput"
-          (keyup.enter)="create(createFavoriteList.value)"
-          maxlength="25"
-        />
-      </div>
-      <div class="favorite-created__button-box">
-        <div
-          class="favorite-created__button"
-          (click)="create(createFavoriteList.value)"
-        >
-          {{ 'translate.create' | translate }}
-        </div>
-      </div>
-    </section>
-    <section class="favorite-list" *ngIf="!list">
-      <div class="favorite-list__box">
-        <label class="favorite-main__label">{{
+                <input class="favorite-created__input" #createFavoriteList [(ngModel)]="emptyInput" (keyup.enter)="create(createFavoriteList.value)" maxlength="25" />
+            </div>
+            <div class="favorite-created__button-box">
+                <div class="favorite-created__button" (click)="create(createFavoriteList.value)">
+                    {{ 'translate.create' | translate }}
+                </div>
+            </div>
+        </section>
+        <section class="favorite-list" *ngIf="!list">
+            <div class="favorite-list__box">
+                <label class="favorite-main__label">{{
           'translate.createNewList' | translate
         }}</label>
-      </div>
-      <div class="favorite-list__favorite">
-        <div class="favorite-list__select" *ngFor="let favorite of favorites">
-          <div>{{ favorite.favouriteName }}</div>
-        </div>
-      </div>
+            </div>
+            <div class="favorite-list__favorite">
+                <div class="favorite-list__select" *ngFor="let favorite of favorites">
+                    <div>{{ favorite.favouriteName }}</div>
+                </div>
+            </div>
+        </section>
     </section>
-  </section>
 </div>

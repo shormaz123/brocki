@@ -16,6 +16,7 @@ export class AdsCardDetailComponent implements OnInit {
   @Input() ads: any;
   favoriteAds?: Ads[];
   showModal = false;
+  favoriteList;
 
   constructor(
     private wishlist: WishlistService,
@@ -35,10 +36,10 @@ export class AdsCardDetailComponent implements OnInit {
   }
 
   addToWishlist(ad: Ads): void {
-    this.showModal = true;
     this.userService.getFavourites().subscribe((x) => {
-      console.log('getGroups');
-      console.log(x);
+      console.log(x, 'glavni');
+      this.favoriteList = x;
+    this.showModal = true;
     });
     // this.wishlist.add(ad).subscribe();
     // this.userRequest = {

@@ -78,7 +78,7 @@ export class UserService {
   getFavourites(): Observable<any> {
     return this.http
       .get<any>(`${this.baseUrl}/mybrocki/auth/ads/favouritelist/user`)
-      .pipe(shareReplay(), first());
+
   }
 
   /**
