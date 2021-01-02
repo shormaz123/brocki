@@ -30,7 +30,7 @@ export const de = {
     confirm: 'Bestätigen ',
     postAd: 'Anzeige erstellen',
     email: 'E-mail adresse',
-    subject: 'Gegenstand',
+    subject: 'Betreff',
     message: 'Nachricht',
     sendMassage: 'Nachricht senden',
     password: 'Passwort',
