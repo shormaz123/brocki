@@ -233,6 +233,7 @@ export const fr = {
     reportAd: 'Signaler une annonce',
     reportSended: 'Rapport envoyé!',
     resendEmail: 'Cliquez ici si vous souhaitez que nous vous envoyions à nouveau un e-mail de confirmation.',
-    linkExpired: 'Désolé, votre lien a expiré'
+    linkExpired: 'Désolé, votre lien a expiré',
+    priceHint: 'incl. TVA'
   },
 };

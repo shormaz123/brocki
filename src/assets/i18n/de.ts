@@ -237,6 +237,7 @@ export const de = {
     reportAd: 'Anzeige melden',
     reportSended: 'Bericht gesendet!',
     resendEmail: 'Klicken Sie hier, wenn wir Ihnen erneut eine Bestätigungs-E-Mail senden sollen.',
-    linkExpired: 'Entschuldigung, dein Link ist abgelaufen'
+    linkExpired: 'Entschuldigung, dein Link ist abgelaufen',
+    priceHint: 'inkl. MwSt'
   },
 };
