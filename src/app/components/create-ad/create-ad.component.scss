@@ -291,6 +291,11 @@
         color: #d62b1f;
         font-weight: bold;
     }
+    &__priceHint {
+        margin: 8px 0 0 10px;
+        font-size: 17px;
+        color: #d62b1f;
+    }
     &__token {
         display: flex;
         flex-direction: column;

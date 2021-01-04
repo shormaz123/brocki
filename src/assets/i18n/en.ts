@@ -229,5 +229,6 @@ export const en = {
     reportSended: 'Report sended!',
     resendEmail: 'Click here if you want us to send you a confirmation email again.',
     linkExpired: 'Sorry, your link has expired',
+    priceHint: 'VAT incl.'
   },
 };

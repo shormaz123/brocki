@@ -232,6 +232,7 @@ export const it = {
     reportAd: 'Segnala annuncio',
     reportSended: 'Rapporto inviato!',
     resendEmail: "Fai clic qui se desideri che ti inviamo nuovamente un'email di conferma",
-    linkExpired: 'Spiacenti, il tuo link è scaduto'
+    linkExpired: 'Spiacenti, il tuo link è scaduto',
+    priceHint: 'IVA incl.'
   },
 };
