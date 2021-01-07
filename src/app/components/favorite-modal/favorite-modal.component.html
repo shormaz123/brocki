@@ -36,7 +36,6 @@
                     {{ 'translate.create' | translate }}
                 </div>
             </div>
-
           <div  *ngIf='selectedGroup' class="favorite-created__button-box">
             <div class="favorite-created__button" (click)="add()">
               {{ 'translate.add' | translate }}
@@ -52,9 +51,7 @@
             <div class="favorite-list__favorite">
                 <div class="favorite-list__select" *ngFor="let favorite of favorites">
                   <div class="favorite-list__image-box">
-<!--                    <img class='favorite-list__image' alt="" src="assets/images/header/my%20account.svg"/>-->
                     <img class='favorite-list__image' alt="" (click)="getImage(favorite)" [src]="image"/>
-
                   </div>
                   <div class="favorite-list__heart-box">
                     <button mat-icon-button  [disableRipple]="true">

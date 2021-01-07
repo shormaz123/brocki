@@ -5,7 +5,6 @@ import {
   OnInit,
   ViewChild,
   Input,
-  OnDestroy,
 } from '@angular/core';
 import { AdsService } from '../../@core/services/ads.service';
 import { UserService } from '../../@core/services/user.service';
@@ -27,7 +26,7 @@ import { WishlistService } from 'app/@core/services/wishlist.service';
   templateUrl: './ad.component.html' ,
   styleUrls: ['./ad.component.scss'],
 })
-export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AdComponent implements OnInit, AfterViewInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[] = [];
   reviewAdsImages: NgxGalleryImage[] = [];
@@ -147,10 +146,7 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
       this.getNewAd(this.adId);
     });
 
-  /**
-   * Get user for review Ad
-   *
-   **/
+  ////// Get user for review Ad
     if (this.card) {
       this.userService.getUserById(this.card.userId).subscribe((res) => {
         this.reviewUser = res;
@@ -160,8 +156,8 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
         this.address =
           street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
         this.reviewUserId = res.id;
-        this.adsService.getAllByUserId(this.reviewUserId).subscribe((res) => {
-          this.reviewUserActiveAds = res;
+        this.adsService.getAllByUserId(this.reviewUserId).subscribe((activeAds) => {
+          this.reviewUserActiveAds = activeAds;
           for (const picture of this.card.image) {
             this.reviewAdsImages.push({
               small: picture,
@@ -388,15 +384,11 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-ngOnDestroy() {
-}
+  reportAd() {
+    this.report = true;
+  }
 
-reportAd() {
-  this.report = true;
-}
-
-closeReportAd() {
+  closeReportAd() {
     this.report = false;
-}
-
+  }
 }
