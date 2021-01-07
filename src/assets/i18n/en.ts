@@ -11,7 +11,7 @@ export const en = {
     home: 'Home',
     myAccount: 'My account',
     aboutUs: 'About us',
-    noComments: "You don't have any comments yet",
+    noComments: 'You don\'t have any comments yet',
     minibrockiDescriptionOne: 'The ',
     minibrockiDescriptionTwo: 'minibrocki® ',
     minibrockiDescriptionThree:
@@ -224,10 +224,16 @@ export const en = {
     declinedProfile:
       'Your profile was declined. For more information, contact us on info@minibrocki.ch.',
     createNewList: 'Create new list',
+    chooseList: 'Choose list',
+    newList: 'new list',
     create: 'Create',
     reportAd: 'Report ad',
     reportSended: 'Report sended!',
     resendEmail: 'Click here if you want us to send you a confirmation email again.',
     linkExpired: 'Sorry, your link has expired',
+    add: 'Add',
+    items: 'Items',
+    emptyField: 'Please fill in the text field',
+    deleteFavoriteGroup: 'Are you sure you want to delete this group?'
   },
 };

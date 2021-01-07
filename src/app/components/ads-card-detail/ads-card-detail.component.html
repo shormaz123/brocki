@@ -1,18 +1,18 @@
 <div class="card" *ngFor="let ad of ads; let i = index">
     <div class="card__hover">
-        <div class="card__image" [routerLink]="['/ad', ad.id]">
+        <div class="card__image" [routerLink]="['/ad', ad?.id]">
             <img style="width: 100%" alt='' [src]="ad?.image[0]" />
         </div>
-        <div class="card__body" [routerLink]="['/ad', ad.id]">
-            <label class="card__body--label">{{ ad.productName }}</label>
+        <div class="card__body" [routerLink]="['/ad', ad?.id]">
+            <label class="card__body--label">{{ ad?.productName }}</label>
             <div class="card__line"></div>
             <div class="card__description">
-                <label class="card__description--label">{{ ad.description }}</label>
+                <label class="card__description--label">{{ ad?.description }}</label>
             </div>
         </div>
         <div class="card__links">
             <div class="card__pricetag">
-                <label class="card__pricetag--label">{{ ad.price | number: '1.2-2':'en-US' }} CHF</label
+                <label class="card__pricetag--label">{{ ad?.price | number: '1.2-2':'en-US' }} CHF</label
         >
       </div>
       <div>
@@ -29,16 +29,14 @@
         </mat-icon>
         <button mat-icon-button *ngIf="token" [disableRipple]="true">
           <mat-icon
-            (click)="ad.favourite = !ad.favourite"
-            *ngIf="ad.favourite"
+            *ngIf="!ad?.favourite === adFavorite"
             (click)="removeFromWishlist(ad)"
             aria-label="Example icon-button with a heart icon"
           >
             favorite
           </mat-icon>
           <mat-icon
-            *ngIf="!ad.favourite"
-            (click)="ad.favourite = !ad.favourite"
+            *ngIf="ad?.favourite === adFavorite"
             (click)="addToWishlist(ad)"
             aria-label="Example icon-button with a heart icon"
           >
@@ -46,10 +44,10 @@
           </mat-icon>
         </button>
       </div>
-      <span class="card__date">{{ ad.adsDate | date }}</span>
+      <span class="card__date">{{ ad?.adsDate | date }}</span>
     </div>
   </div>
- <div class="page" *ngIf="showModal">
-   <app-favorite-modal [favoriteList]="favoriteList" (close)="closeModal()"></app-favorite-modal>
- </div>
+</div>
+<div class="page" *ngIf="showModal">
+  <app-favorite-modal [favoriteList]="favoriteList" (addToGroup)="addAdToGroup($event)"  (createGroup)="createGroup($event)" (close)="closeModal()"></app-favorite-modal>
 </div>

@@ -2,7 +2,6 @@
 @import '../../../scss/mixin.scss';
 
 .card {
-  padding: '5px';
   padding: 10px !important;
   width: 256px;
   background-color: $lightgrey;
@@ -96,8 +95,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
     width: 200px;
     height: 25px;
     color: white;

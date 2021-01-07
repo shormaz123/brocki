@@ -8,7 +8,7 @@ import { UserFavorite } from '../../shared/models/userFavorite.model';
 import { UserAddAdsRequest } from '../../shared/models/useraddAdsRequest.model';
 import { Email } from '../../shared/models/email.model';
 import { AuthConst } from '../consts/auth.const';
-import { shareReplay, first } from 'rxjs/operators';
+import {shareReplay, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -78,15 +78,27 @@ export class UserService {
   getFavourites(): Observable<any> {
     return this.http
       .get<any>(`${this.baseUrl}/mybrocki/auth/ads/favouritelist/user`)
-
+      .pipe( map((fav => fav)),
+      shareReplay()
+      );
   }
 
   /**
-   *  Create favorite
+   * Get all ads  from favorite group
+   *
    */
-  createFavorite(favorite: any): Observable<any> {
-    // let params = new HttpParams();
-    // params = params.append('favoriteName', favorite.toString());
+  getAdsFromGroup(groupId: number): Observable<any> {
+    return this.http
+      .get<any>(`${this.baseUrl}/mybrocki/auth/ads/favouritelist/${groupId}`)
+      .pipe( map((fav => fav)),
+        shareReplay()
+      );
+  }
+
+  /**
+   *  Create favorite group
+   */
+  createFavoriteGroup(favorite: any): Observable<any> {
     return this.http
       .post<any>(
         `${this.baseUrl}/mybrocki/auth/ads/favouritelist/create`,
@@ -95,9 +107,34 @@ export class UserService {
       .pipe(shareReplay());
   }
 
-  deleteUserFavourite(adId: number, userId: number) {
+    /**
+     *  Add Ad to Favorite group
+     */
+    addFavoriteAdToGroup(add: any): Observable<any> {
+    return this.http
+      .put<any>(
+        `${this.baseUrl}/mybrocki/auth/users/favourites`,
+        add
+      )
+      .pipe(shareReplay());
+  }
+
+  /**
+   *
+   * Delete Favorite group
+   */
+deleteFavoriteList(groupId: number): Observable<any> {
+  return this.http.delete<any>(`${this.baseUrl}/mybrocki/auth/ads/favouritelist/delete/${groupId}`)
+    .pipe(shareReplay());
+  }
+
+  /**
+   *
+   * Delete AD from Favorite group
+   */
+  deleteUserFavourite(adId: number) {
     return this.http.delete<UserFavorite>(
-      `${this.baseUrl}/mybrocki/auth/users/favourites/delete?adsId=${adId}&userId=${userId}`
+      `${this.baseUrl}/mybrocki/auth/users/favourites/delete?adsId=${adId}`
     );
   }
 

@@ -18,15 +18,13 @@ import { HelpersService } from '../../@core/services/helpers.service';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription,  } from 'rxjs';
 import { AuthStore } from 'app/@core/services/auth.store';
 import { WishlistService } from 'app/@core/services/wishlist.service';
-import { Meta, Title, MetaDefinition } from '@angular/platform-browser';
-import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-ad',
-  templateUrl: './ad.component.html',
+  templateUrl: './ad.component.html' ,
   styleUrls: ['./ad.component.scss'],
 })
 export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -38,13 +36,13 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
   reviewUserId: number;
   reviewUserActiveAds: Ads;
   allOfreviewer: boolean;
-  noImage = '../../../assets/images/navigation/noImage.jpg'
+  noImage = '../../../assets/images/navigation/noImage.jpg';
 
   adId: number;
   userSellerId: number;
   ad: Ads;
   userSeller: User;
-  adsByUser:any = [];
+  adsByUser: any = [];
   allAdsByUser: any = [];
   adGroupId?;
   adsByCategory;
@@ -92,7 +90,7 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
   typeShareTwitter;
   typeShareFacebook;
   shareUrl = document.URL;
-  report: boolean = false;
+  report = false;
 
 
   @ViewChild('ngx-gallery', { static: false }) gallery: ElementRef;
@@ -137,7 +135,7 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.enableScrolling();
     if (this.token) {
-      this.auth.userProfile$.subscribe((response) => {
+      this.auth.userProfile$.subscribe(() => {
         this.userId = Number(localStorage.getItem('brocki_id'));
         // this.getUserAndFavAd();
       });
@@ -149,10 +147,10 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
       this.getNewAd(this.adId);
     });
 
-    /**
-     * Get user for review Ad
-     *
-     **/
+  /**
+   * Get user for review Ad
+   *
+   **/
     if (this.card) {
       this.userService.getUserById(this.card.userId).subscribe((res) => {
         this.reviewUser = res;
@@ -188,7 +186,7 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
 
   enableScrolling() {
     // tslint:disable-next-line:only-arrow-functions
-    window.onscroll = function () {};
+    window.onscroll = function() {};
   }
 
   getNewAd(id: number) {
@@ -210,7 +208,8 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
               this.categoryImagesAvailable = false;
             } else {
               if (this.token) {
-                for (var i = 0; i < this.favoriteAds.length; i++) {
+                // tslint:disable-next-line:prefer-for-of
+                for (let i = 0; i < this.favoriteAds.length; i++) {
                   if (this.favoriteAds[i].id === this.ad.id) {
                     this.ad.favourite = true;
                   }
@@ -221,12 +220,12 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
                     (obj) =>
                       this.favoriteAds.find((o) => o.id === obj.id) || obj
                   )
-                  .filter((el) => el.id != this.adId);
+                  .filter((el) => el.id !== this.adId);
               } else {
                 this.categoryImagesAvailable = true;
                 this.allAdsByCategory = x;
                 this.adsByCategory = this.allAdsByCategory.filter(
-                  (el) => el.id != this.adId
+                  (el) => el.id !== this.adId
                 );
               }
             }
@@ -242,7 +241,7 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.userService.getUserById(this.userSellerId).subscribe((x) => {
           this.companyName = x.company;
-          this.sellerProfileImage = x.profileImage
+          this.sellerProfileImage = x.profileImage;
           this.sellerEmail = x.email;
           if (x.roleName === 'bussines') {
             this.private = false;
@@ -261,17 +260,13 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
           } else if (this.companyImage === []) {
             this.userImage = this.defaultImage;
           }
-          if (x == null) {
-            this.usersImagesAvailabe = false;
-          } else {
-            this.usersImagesAvailabe = true;
-            this.userSeller = x;
-            const [street, streetNumber, postalNumber, city] = x.address.split(
-              ','
-            );
-            this.address =
-              street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
-          }
+          this.usersImagesAvailabe = true;
+          this.userSeller = x;
+          const [street, streetNumber, postalNumber, city] = x.address.split(
+            ','
+          );
+          this.address =
+            street + ' ' + streetNumber + ', ' + postalNumber + ' ' + city;
         });
 
         this.adsService.getAllByUserId(this.userSellerId).subscribe((x) => {
@@ -284,12 +279,12 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
                 .map(
                   (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
                 )
-                .filter((el) => el.id != this.adId);
+                .filter((el) => el.id !== this.adId);
             } else {
               this.usersImagesAvailabe = true;
               this.allAdsByUser = x;
               this.adsByUser = this.allAdsByUser.filter(
-                (el) => el.id != this.adId
+                (el) => el.id !== this.adId
               );
             }
           }
@@ -316,10 +311,10 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
       if (this.token) {
         this.adsByUser = this.allAdsByUser.map(
           (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-        ).filter((el) => el.id != this.adId);;
+        ).filter((el) => el.id !== this.adId);
         this.adsByCategory = this.allAdsByCategory.map(
           (obj) => this.favoriteAds.find((o) => o.id === obj.id) || obj
-        ).filter((el) => el.id != this.adId);;
+        ).filter((el) => el.id !== this.adId);
         }
     });
   }
@@ -327,8 +322,8 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
   removeFromWishlist(ad: Ads): void {
     this.wishlist.remove(ad).subscribe();
     this.userService
-      .deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id')))
-      .subscribe((x) => {});
+      .deleteUserFavourite(ad.id)
+      .subscribe(() => {});
   }
 
   addToWishlist(ad: Ads): void {
@@ -379,17 +374,17 @@ export class AdComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public share(type: string) {
-    let searchParams = new URLSearchParams();
+    const searchParams = new URLSearchParams();
     if (type === 'facebook') {
       searchParams.set('u', this.shareUrl);
       this.navUrl = 'https://www.facebook.com/sharer/sharer.php?' + searchParams;
-      window.open(this.navUrl, "_blank");
+      window.open(this.navUrl, '_blank');
 
     }
     if (type === 'twitter') {
       searchParams.set('url', this.shareUrl);
       this.navUrl =  'https://twitter.com/share?' + searchParams;
-      window.open(this.navUrl, "_blank");
+      window.open(this.navUrl, '_blank');
     }
   }
 

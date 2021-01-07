@@ -1,16 +1,62 @@
+<ng-template [ngIf]="mode === 0">
 <section class="container">
   <div class="under--container">
-    <span class="title">{{ 'translate.favoriteAds' | translate }}</span>
+    <span class="title">{{ 'translate.favorite' | translate }}</span>
+    <div class="create-button-box">
+      <div class="create-button-box__button" (click)="openModal()">
+        <div>
+          <img class="create-button-box__image" alt="" src="../../../assets/images/create-new-list.svg"/>
+        </div>
+        <div class="create-new-list__text">{{'translate.create' | translate}}
+          <span style="color:#d62b1f"> {{'translate.newList' | translate}}</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="no--ads--container" *ngIf="favoriteAds?.length === 0">
+  <div class="no--ads--container" *ngIf="favoriteList?.length === 0">
     <h1>{{ 'translate.noAvailableAds' | translate }}</h1>
   </div>
   <div class="favorites">
     <div class="favorites__line--card">
       <div *ngFor="let group of favoriteGroups$ | async">
-        <div>{{ group.id }}</div>
+        <div class="favorite-group">
+          <div class="favorite-group__delete" (click)="deleteGroup(group)">X</div>
+          <img class="favorite-group__image" (click)="getImage(group)" [src]="image" alt=""/>
+          <div class="favorite-group__info-box">
+            <div class="favorite-group__name" (click)="openFavoriteGroup(group)">{{group.favouriteName}}</div>
+            <div class="favorite-group__ads-box" (click)="getNumberOfAds(group)">
+              <div class="favorite-group__number-ads">{{numberOfAds}}</div>
+              <div>{{'translate.items' | translate}}</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- <app-ads-card-detail class="favorites__favorite--ads" [ads]="favoriteAds"></app-ads-card-detail> -->
+      <div class="create-new-list" *ngIf="favoriteList?.length > 5" (click)="openModal()">
+        <div class="create-new-list__container">
+          <div class="create-new-list__image-box">
+            <img alt="" src="../../../assets/images/create-new-list.svg" style="height:50px"/>
+          </div>
+          <div class="create-new-list__text">{{'translate.create' | translate}}
+            <span style="color:#d62b1f"> {{'translate.newList' | translate}}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="page" *ngIf="showModal">
+    <app-favorite-modal [favoriteList]="favoriteList" (close)="closeModal()"  (createGroup)="createGroup($event)"  [listFromFavorite]="list"></app-favorite-modal>
+  </div>
 </section>
+</ng-template>
+<ng-template [ngIf]="mode === 1">
+  <section class="container">
+    <div class="under--container">
+      <div class="arrow-left" (click)="backToFavoriteGroups()">&#10229;</div>
+      <span class="groupName__title">{{ 'translate.favorite' | translate }}  &#8594; <span class="groupName__red">{{groupName}}</span></span>
+    </div>
+    <app-loading-spinner></app-loading-spinner>
+    <ng-template [ngIf]="loadAds">
+     <app-ads-card-detail class="favorites__favorite--ads" [ads]="adsInGroup" [selectedGroup]="selectedGroup"></app-ads-card-detail>
+    </ng-template>
+  </section>
+</ng-template>

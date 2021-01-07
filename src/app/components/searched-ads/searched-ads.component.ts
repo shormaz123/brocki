@@ -87,7 +87,7 @@ export class SearchedAdsComponent implements OnInit {
 
   removeFromWishlist(adId: number) {
     this.userService
-      .deleteUserFavourite(adId, this.userId)
+      .deleteUserFavourite(adId)
       .subscribe(() => {}, () => {}, );
 
     this.helpersService.$numOfFavs.next();
