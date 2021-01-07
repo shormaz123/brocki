@@ -1,20 +1,19 @@
 <div class="container">
-  <div class="create">
-    <div class="create__ad-title">
-      <div class="create__title">
-        {{ 'translate.createAd' | translate }}
-      </div>
-    </div>
-    <form class="form" (ngSubmit)="onSubmit()" [formGroup]="createForm">
-      <div class="form__input">
-        <label class="form__label">{{ 'translate.title' | translate }}:</label>
-        <div>
-          <input formControlName="productName" maxLength="50" />
+    <div class="create">
+        <div class="create__ad-title">
+            <div class="create__title">
+                {{ 'translate.createAd' | translate }}
+            </div>
         </div>
-      </div>
-      <div class="form__input">
-        <label class="form__label"
-          >{{ 'translate.description' | translate }}:</label
+        <form class="form" (ngSubmit)="onSubmit()" [formGroup]="createForm">
+            <div class="form__input">
+                <label class="form__label">{{ 'translate.title' | translate }}:</label>
+                <div>
+                    <input formControlName="productName" maxLength="50" />
+                </div>
+            </div>
+            <div class="form__input">
+                <label class="form__label">{{ 'translate.description' | translate }}:</label
         >
         <div>
           <textarea
@@ -148,23 +147,15 @@
         </div>
       </div>
       <label class="form__label">{{ 'translate.tags' | translate }}:</label>
-      <div class="form__buttons">
-        <div
-          style="margin: 0 20px 15px 0"
-          *ngFor="let tag of tags$ | async; let i = index"
-        >
-          <div
-            class="form__tag"
-            [ngClass]="{ active: clickedTags.includes(tag) }"
-            (click)="chosenTag(tag)"
-          >
-            {{ tag.name[currentLang] }}
-          </div>
-        </div>
-      </div>
-      <div class="form__input">
-        <label class="form__label form__label--equal"
-          >{{ 'translate.adPictures' | translate }}:</label
+                <div class="form__buttons">
+                    <div style="margin: 0 20px 15px 0" *ngFor="let tag of tags$ | async; let i = index">
+                        <div class="form__tag" [ngClass]="{ active: clickedTags.includes(tag) }" (click)="chosenTag(tag)">
+                            {{ tag.name[currentLang] }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form__input">
+                    <label class="form__label form__label--equal">{{ 'translate.adPictures' | translate }}:</label
         >
         <div
           class="form__picture"
@@ -184,45 +175,28 @@
               <label class="form__delete-label">{{
                 'translate.deletePhoto' | translate
               }}</label>
+                </div>
             </div>
-          </div>
-          <div class="form__svg" *ngIf="photos.length < 6">
-            <div
-              class="form__svg--image"
-              [inlineSVG]="
+            <div class="form__svg" *ngIf="photos.length < 6">
+                <div class="form__svg--image" [inlineSVG]="
                 '../../../assets/images/update-info-bussines/add-photo.svg'
-              "
-            ></div>
-            <div>
-              <input
-                formControlName="image"
-                class="form__upload--image form__upload--image--image-input"
-                (change)="uploadImage($event)"
-                accept="image/*"
-                type="file"
-                multiple="multiple"
-              />
+              "></div>
+                <div>
+                    <input formControlName="image" class="form__upload--image form__upload--image--image-input" (change)="uploadImage($event)" accept="image/*" type="file" multiple="multiple" />
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="form__input">
-        <label class="form__label">{{ 'translate.price' | translate }}:</label>
-        <div class="form__price">
-          <input
-            placeholder="0.00"
-            step="0.01"
-            class="form__input form__input--price"
-            formControlName="price"
-            type="text"
-            NumberOnly
-          />
-          <p class="form__currency">CHF</p>
-        </div>
-      </div>
-      <div class="form__token">
-        <label class="form__label"
-          >{{ 'translate.adWillBreCharged' | translate }}:</label
+    </div>
+</div>
+<div class="form__input">
+    <label class="form__label">{{ 'translate.price' | translate }}:</label>
+    <div class="form__price">
+        <input placeholder="0.00" step="0.01" class="form__input form__input--price" formControlName="price" type="text" NumberOnly />
+        <p class="form__currency">CHF</p>
+        <p class="form__priceHint">{{ 'translate.priceHint' | translate }}</p>
+    </div>
+</div>
+<div class="form__token">
+    <label class="form__label">{{ 'translate.adWillBreCharged' | translate }}:</label
         >
         <div class="form__credit">
           <img src="../../../assets/images/credits icon.png" />

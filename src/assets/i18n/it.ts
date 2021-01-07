@@ -238,6 +238,7 @@ export const it = {
     add: 'Add',
     items: 'Elementi',
     emptyField: 'Si prega di compilare il campo di testo',
-    deleteFavoriteGroup: 'Are you sure you want to delete this group?'
+    deleteFavoriteGroup: 'Are you sure you want to delete this group?',
+    priceHint: 'IVA incl.'
   },
 };

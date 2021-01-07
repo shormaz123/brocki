@@ -240,6 +240,7 @@ export const de = {
     reportSended: 'Bericht gesendet!',
     resendEmail: 'Klicken Sie hier, wenn wir Ihnen erneut eine Bestätigungs-E-Mail senden sollen.',
     linkExpired: 'Entschuldigung, dein Link ist abgelaufen',
+    priceHint: 'inkl. MwSt',
     add: 'Add',
     items: 'Artikel',
     emptyField: 'Bitte füllen Sie das Textfeld aus',
