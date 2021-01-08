@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Ads } from '../../shared/models/ads.model';
 import { WishlistService } from 'app/@core/services/wishlist.service';
 import { UserService } from 'app/@core/services/user.service';
@@ -16,7 +16,7 @@ import {take, debounceTime, shareReplay} from 'rxjs/operators';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss'],
 })
-export class FavoritesComponent implements OnInit {
+export class FavoritesComponent implements OnInit, OnDestroy {
   favoriteGroups$: Observable<any>;
   favoriteList: any = [];
   mode = 0;
@@ -49,7 +49,7 @@ export class FavoritesComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.favoriteGroups$ = this.userService.getFavourites();
-      this.favoriteGroups$.subscribe(x => this.favoriteList = x );
+      this.favoriteSubscription = this.favoriteGroups$.pipe(debounceTime(1000)).subscribe(x => this.favoriteList = x );
 
     } , 500 );
     this.getUserAndFavAd();
@@ -160,5 +160,9 @@ export class FavoritesComponent implements OnInit {
         return 0;
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.favoriteSubscription.unsubscribe();
   }
 }
