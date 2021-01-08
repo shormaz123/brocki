@@ -27,7 +27,6 @@ export class ReportAdComponent implements OnInit {
     this.adsService.sendReportMessage(+this.adId, this.reasonMessage).subscribe( response => {
       if (response) {
         this.toastr.success(this.translateService.instant('translate.reportSended'));
-        console.log(response)
         this.closeModal();
       }
       (error) => {

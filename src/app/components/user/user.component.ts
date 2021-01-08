@@ -286,7 +286,6 @@ export class UserComponent implements OnInit {
     this.currentPhotos.forEach((photo) => formData.append('file', photo));
     this.adsService.uploadImageInStorage(formData).subscribe((res) => {
       this.profileImageSpinner = true;
-      console.log(res)
       this.user.profileImage = res[0];
       // this.profileImage = res[0];
       this.currentPhotos = [];
