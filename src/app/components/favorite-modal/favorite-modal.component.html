@@ -6,7 +6,9 @@
                 <div>
                     <img class="favorite__image" src="../../../assets/images/myAccount/contact us.png" alt="" />
                 </div>
-                <div class="favorite__icon-text">favorite</div>
+                <div class="favorite__icon-text">{{
+                  'translate.favorite' | translate
+                  }}</div>
             </div>
         </section>
         <section class="favorite-main" *ngIf="list">
@@ -29,11 +31,16 @@
         }}</label>
                 <input class="favorite-created__input" #createFavoriteList [(ngModel)]="emptyInput" (keyup.enter)="create(createFavoriteList.value)" maxlength="25" />
             </div>
-            <div class="favorite-created__button-box">
+            <div *ngIf='!selectedGroup' class="favorite-created__button-box">
                 <div class="favorite-created__button" (click)="create(createFavoriteList.value)">
                     {{ 'translate.create' | translate }}
                 </div>
             </div>
+          <div  *ngIf='selectedGroup' class="favorite-created__button-box">
+            <div class="favorite-created__button" (click)="add()">
+              {{ 'translate.add' | translate }}
+            </div>
+          </div>
         </section>
         <section class="favorite-list" *ngIf="!list">
             <div class="favorite-list__box">
@@ -43,7 +50,28 @@
             </div>
             <div class="favorite-list__favorite">
                 <div class="favorite-list__select" *ngFor="let favorite of favorites">
-                    <div>{{ favorite.favouriteName }}</div>
+                  <div class="favorite-list__image-box">
+                    <img class='favorite-list__image' alt="" (click)="getImage(favorite)" [src]="image"/>
+                  </div>
+                  <div class="favorite-list__heart-box">
+                    <button mat-icon-button  [disableRipple]="true">
+                      <mat-icon
+                        *ngIf="favorite.id === heart"
+                        (click)="heartToggle(favorite)"
+                        aria-label="Example icon-button with a heart icon"
+                      >
+                        favorite
+                      </mat-icon>
+                      <mat-icon
+                        *ngIf="favorite.id !== heart"
+                        (click)="heartToggle(favorite)"
+                        aria-label="Example icon-button with a heart icon"
+                      >
+                        favorite_border
+                      </mat-icon>
+                    </button>
+                  </div>
+                  <div class="favorite-list__option" (click)="getFavoriteGroup(favorite)">{{ favorite.favouriteName }}</div>
                 </div>
             </div>
         </section>

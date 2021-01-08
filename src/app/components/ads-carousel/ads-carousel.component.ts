@@ -1,8 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Ads} from '../../shared/models/ads.model';
-import {AdsService} from '../../@core/services/ads.service';
 import {UserService} from '../../@core/services/user.service';
-import {HelpersService} from '../../@core/services/helpers.service';
 import { WishlistService } from 'app/@core/services/wishlist.service';
 import { AuthConst } from 'app/@core/consts/auth.const';
 
@@ -30,7 +28,7 @@ userRequest;
 
   removeFromWishlist(ad: Ads): void {
     this.wishlist.remove(ad).subscribe();
-    this.userService.deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id'))).subscribe((x) => {
+    this.userService.deleteUserFavourite(ad.id).subscribe(() => {
     });
   }
 

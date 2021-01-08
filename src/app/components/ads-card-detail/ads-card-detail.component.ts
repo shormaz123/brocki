@@ -1,9 +1,10 @@
-import { Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import { AuthConst } from 'app/@core/consts/auth.const';
 import { UserService } from 'app/@core/services/user.service';
 import { WishlistService } from 'app/@core/services/wishlist.service';
 import { Ads } from 'app/shared/models/ads.model';
 import { UserAddAdsRequest } from 'app/shared/models/useraddAdsRequest.model';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-ads-card-detail',
@@ -14,13 +15,17 @@ export class AdsCardDetailComponent implements OnInit {
   userRequest: UserAddAdsRequest;
   token;
   @Input() ads: any;
+  @Input() selectedGroup: any;
   favoriteAds?: Ads[];
   showModal = false;
   favoriteList;
+  clickedAd: Ads;
+  adFavorite = false;
 
   constructor(
     private wishlist: WishlistService,
-    private userService: UserService
+    private userService: UserService,
+    private route: Router
   ) {}
 
   ngOnInit() {
@@ -29,24 +34,59 @@ export class AdsCardDetailComponent implements OnInit {
 
   removeFromWishlist(ad: Ads): void {
     this.showModal = false;
+    if (this.selectedGroup) {
+    this.wishlist.remove(ad, this.selectedGroup.id).subscribe();
+    } else {
     this.wishlist.remove(ad).subscribe();
-    this.userService
-      .deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id')))
-      .subscribe(() => {});
+    }
+    setTimeout(() => {
+        this.userService
+          .deleteUserFavourite(ad.id)
+          .subscribe(() => {});
+      }, 100 );
   }
 
   addToWishlist(ad: Ads): void {
+    this.adFavorite = false;
+    this.clickedAd = ad;
     this.userService.getFavourites().subscribe((x) => {
-      console.log(x, 'glavni');
-      this.favoriteList = x;
-    this.showModal = true;
+      if (x) {
+        this.favoriteList = x;
+        this.showModal = true;
+      }
     });
-    // this.wishlist.add(ad).subscribe();
-    // this.userRequest = {
-    //   adsId: ad.id,
-    //   userId: Number(localStorage.getItem('brocki_id')),
-    // };
-    // this.userService.updateUserFavourites(this.userRequest).subscribe();
+  }
+
+  createGroup(event: any): void {
+    this.clickedAd.favourite = true;
+    this.adFavorite = this.clickedAd.favourite;
+    const favorite = {
+        favouriteName: event,
+      };
+    this.wishlist.add(this.clickedAd).subscribe();
+    this.userService.createFavoriteGroup(favorite).subscribe(
+      group => {
+        const adToGroup = {
+          adsId: this.clickedAd.id,
+          favId: group.id,
+        };
+        this.userService.addFavoriteAdToGroup(adToGroup).subscribe(() => {
+          this.wishlist.load();
+        });
+        this.route.navigate(['/favorite']);
+      });
+  }
+
+  addAdToGroup(event: any): void {
+    this.clickedAd.favourite = true;
+    this.adFavorite = this.clickedAd.favourite;
+    const adToGroup = {
+      adsId: this.clickedAd.id,
+      favId: event,
+    };
+    this.wishlist.add(this.clickedAd).subscribe();
+    this.userService.addFavoriteAdToGroup(adToGroup).subscribe();
+    this.route.navigate(['/favorite']);
   }
 
   closeModal(): void {

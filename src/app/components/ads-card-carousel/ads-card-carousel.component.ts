@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {UserService} from '../../@core/services/user.service';
 import {UserAddAdsRequest} from '../../shared/models/useraddAdsRequest.model';
 import {Ads} from '../../shared/models/ads.model';
@@ -70,7 +70,7 @@ export class AdsCardCarouselComponent implements OnInit, OnChanges, AfterViewIni
 
   removeFromWishlist(ad: Ads): void {
     this.wishlist.remove(ad).subscribe();
-    this.userService.deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id'))).subscribe((x) => {
+    this.userService.deleteUserFavourite(ad.id).subscribe(() => {
     });
   }
 

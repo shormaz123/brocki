@@ -21,7 +21,7 @@ export class AdSingleCarouselComponent implements OnInit {
   public carouselTileItems: Array<any>;
   public carouselTile: NgxCarousel;
   token;
-  userRequest: UserAddAdsRequest
+  userRequest: UserAddAdsRequest;
   public carouselOne: NgxCarousel;
 
   constructor( private wishlist: WishlistService, private userService: UserService
@@ -41,13 +41,13 @@ export class AdSingleCarouselComponent implements OnInit {
       custom: 'banner',
       touch: true
     };
-    this.ads = this.favAds
+    this.ads = this.favAds;
     this.token = localStorage.getItem(AuthConst.token);
   }
 
   removeFromWishlist(ad: Ads): void {
     this.wishlist.remove(ad).subscribe();
-    this.userService.deleteUserFavourite(ad.id, Number(localStorage.getItem('brocki_id'))).subscribe((x) => {
+    this.userService.deleteUserFavourite(ad.id).subscribe(() => {
     });
   }
 

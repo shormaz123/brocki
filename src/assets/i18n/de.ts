@@ -30,7 +30,7 @@ export const de = {
     confirm: 'Bestätigen ',
     postAd: 'Anzeige erstellen',
     email: 'E-mail adresse',
-    subject: 'Gegenstand',
+    subject: 'Betreff',
     message: 'Nachricht',
     sendMassage: 'Nachricht senden',
     password: 'Passwort',
@@ -81,7 +81,7 @@ export const de = {
     guestBook: 'Gästebuch',
     shareVia: 'Teilen per',
     update: 'Aktualisieren Sie',
-    info: "die Info's",
+    info: 'die Info\'s',
     acceptAds: 'Inserate zulassen',
     acceptProfile: 'Profil akzeptieren',
     accept: 'Akzeptieren',
@@ -232,12 +232,18 @@ export const de = {
       'Um Ihr Geschäfts-Konto auf Minibrocki zu verifizieren möchten wir dieses noch schnell überprüfen. Wir werden Ihnen eine E-Mail senden sobald dies geschehen ist.',
     declinedProfile:
       'Ihr Profil wurde abgelehnt. Für weitere Informationen kontaktieren Sie uns unter info@minibrocki.ch.',
-    createNewList: 'Create new list',
+    createNewList: 'Neue Liste erstellen',
+    chooseList: 'Liste auswählen',
+    newList: 'neue Liste',
     create: 'Erstellen',
     reportAd: 'Anzeige melden',
     reportSended: 'Bericht gesendet!',
     resendEmail: 'Klicken Sie hier, wenn wir Ihnen erneut eine Bestätigungs-E-Mail senden sollen.',
     linkExpired: 'Entschuldigung, dein Link ist abgelaufen',
-    priceHint: 'inkl. MwSt'
+    priceHint: 'inkl. MwSt',
+    add: 'Add',
+    items: 'Artikel',
+    emptyField: 'Bitte füllen Sie das Textfeld aus',
+    deleteFavoriteGroup: 'Are you sure you want to delete this group?'
   },
 };
