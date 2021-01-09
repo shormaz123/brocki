@@ -140,7 +140,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getUser(): void {
 
     this.userService.getUser().subscribe((user) => {
-      console.log(user)
       if (user.userStatus === 'UNCONFIRMED') {
         this.openSnackbarForAcceptEmail();
       }
