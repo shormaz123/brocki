@@ -61,16 +61,20 @@ export class FavoritesComponent implements OnInit, OnDestroy {
             this.pictures = [...this.pictures];
             this.image = this.getAllGroups[0].image[0];
             this.pictures.push(this.image);
-            console.log('image', this.image);
-            for (const picture of this.pictures) {
-              this.picture = picture;
-              console.log(this.picture);
+            console.log(this.pictures);
+            // const pictureIndex = this.pictures.findIndex(
+            //   img =>
+            // )
+            // console.log('image', this.image);
+            // for (const picture of this.pictures) {
+            //   this.picture = picture;
+            //   console.log(this.picture);
               // if (this.pictures) {
               //   return this.picture;
               // } else {
               //   return undefined;
               // }
-            }
+            // }
 
           });
         });
@@ -94,6 +98,10 @@ export class FavoritesComponent implements OnInit, OnDestroy {
       //   this.picture = this.adsInGroup[0].image[0];
       // }
     });
+  }
+
+  getPicture(picture: string): void {
+    console.log('PICTURE' , picture);
   }
 
   openFavoriteGroup(group: any): void {
@@ -164,6 +172,15 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   }
 
   // getImage(group: any) {
+  // this.userService.getAdsFromGroup(group.id).subscribe(selectedGroup => {
+  //   this.getAllGroups = selectedGroup;
+  //   this.image = this.getAllGroups[0].image[0];
+  //   if (this.image) {
+  //         return this.image;
+  //       } else {
+  //         return undefined;
+  //       }
+  // });
   //   this.userService.getAdsFromGroup(group.id).subscribe(selectedGroup => {
   //     this.getAllGroups = selectedGroup;
   //     selectedGroup.forEach( favoriteGroup => {

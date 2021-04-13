@@ -19,19 +19,20 @@
   <div class="favorites">
     <div class="favorites__line--card">
 
-      <div *ngFor="let group of favoriteGroups$ | async">
-        <div class="favorite-group">
-          <div class="favorite-group__delete" (click)="deleteGroup(group)">X</div>
-          <img class="favorite-group__image" [src]="picture" alt=""/>
-          <div class="favorite-group__info-box">
-            <div class="favorite-group__name" (click)="openFavoriteGroup(group)">{{group.favouriteName}}</div>
-            <div class="favorite-group__ads-box">
-              <div class="favorite-group__number-ads">{{numberOfAds}}</div>
-              <div>{{'translate.items' | translate}}</div>
+        <div *ngFor="let group of favoriteGroups$ | async">
+          <div class="favorite-group">
+            <div class="favorite-group__delete" (click)="deleteGroup(group)">X</div>
+            <img class="favorite-group__image" *ngFor="let picture of pictures" [src]="picture" alt=""/>
+            <div class="favorite-group__info-box">
+              <div class="favorite-group__name" (click)="openFavoriteGroup(group)">{{group.favouriteName}}</div>
+              <div class="favorite-group__ads-box">
+                <div class="favorite-group__number-ads">{{numberOfAds}}</div>
+                <div>{{'translate.items' | translate}}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+
 
       <div class="create-new-list" *ngIf="favoriteList?.length > 5" (click)="openModal()">
         <div class="create-new-list__container">
